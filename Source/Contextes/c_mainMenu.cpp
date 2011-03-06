@@ -115,7 +115,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         eventManager->StopEvenement(Mouse::Left,EventClic);
         m_save = false;
         if (m_reset)
-            Reset(jeu), jeu->hero.m_quetes.clear();
+            Reset(jeu);
         else if(jeu->map)
             jeu->map->Sauvegarder(&jeu->hero);
 
@@ -207,6 +207,8 @@ void c_MainMenu::Reset(Jeu *jeu)
     jeu->hero.m_contenuSave.push_back(configuration->chemin_temps+"Save.sav.hs");
 
     jeu->hero.m_contenuSave.push_back(configuration->chemin_temps+"Image.png");
+
+    jeu->hero.ResetQuests();
 }
 
 void c_MainMenu::ChargerListeSaves()
@@ -850,7 +852,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
 
         jeu->menu.border.Afficher(coordonnee(configuration->Resolution.w/2 - texte.GetRect().Width/2 - 4,
                                          configuration->Resolution.h/2 - 24),
-                              coordonnee(texte.GetRect().Width + 8,64), 18);
+                              coordonnee(texte.GetRect().Width + 8,texte.GetRect().Height + 4), 18);
     }
 
 

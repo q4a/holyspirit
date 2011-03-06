@@ -1130,6 +1130,8 @@ void Map::InitialiserMinimap()
                             minimap.Move(-1024, 0), cur_x ++;
                         while(minimap.GetPosition().x - minimap.GetSize().x / 2 < 0)
                             minimap.Move(1024, 0), cur_x --;
+                        while(minimap.GetPosition().y - minimap.GetSize().y / 2 < 0)
+                            minimap.Move(0, 1024), cur_y --;
 
 
                         if(m_render_minimap[cur_y][cur_x].GetHeight() != 1024)
@@ -1498,7 +1500,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
         minimap.SetSubRect(sf::IntRect(hero->m_classe.icone_mm.position.x, hero->m_classe.icone_mm.position.y,
                                        hero->m_classe.icone_mm.position.w, hero->m_classe.icone_mm.position.h));
 
-        minimap.SetColor(sf::Color(255,255,255,(int)(alpha * 0.2f)));
+        minimap.SetColor(sf::Color(255,255,255,(int)(alpha * 0.5f)));
         minimap.SetPosition((int)(configuration->Resolution.x*0.5f) ,
                             (int)(configuration->Resolution.y*0.5f));
         minimap.SetOrigin(hero->m_classe.icone_mm.position.w/2, hero->m_classe.icone_mm.position.h/2);

@@ -211,6 +211,15 @@ void Hero::Reset()
     newDoc = false;
 }
 
+void Hero::ResetQuests()
+{
+    m_quetes.clear();
+
+    for(unsigned i = 0 ; i < m_inventaire.size(); ++i)
+        if(m_inventaire[i].m_type == AUCUN && m_inventaire[i].getRarete() == QUETE)
+           m_inventaire.erase(m_inventaire.begin() + i--);
+}
+
 void Hero::Sauvegarder()
 {
     console->Ajouter("");
@@ -643,7 +652,6 @@ void Hero::Charger(const std::string &chemin_save)
                     throw "Impossible de charger la sauvegarde";
             }
             while (caractere!='$');
-
 
             if (configuration->debug)
                 console->Ajouter("/Lectures des potales.");
@@ -1094,9 +1102,9 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    if (m_caracteristiques.pts_restant>0)
+    if (m_personnage.getCaracteristique().pts_restant>0)
     {
-        m_classe.plus_button[0].position.y = (int)(string.GetPosition().y-3);
+        m_classe.plus_button[0].position.y = (int)(373-decalage);
         sf::Sprite sprite = m_classe.plus_button[0].Afficher(0);
         moteurGraphique->AjouterCommande(&sprite,15,0);
 
@@ -1155,9 +1163,9 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    if (m_caracteristiques.pts_restant>0)
+    if (m_personnage.getCaracteristique().pts_restant>0)
     {
-        m_classe.plus_button[1].position.y = (int)(string.GetPosition().y-3);
+        m_classe.plus_button[1].position.y = (int)(401-decalage);
         sf::Sprite sprite = m_classe.plus_button[1].Afficher(0);
         moteurGraphique->AjouterCommande(&sprite,15,0);
 
@@ -1186,8 +1194,8 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     }
 
     string.SetString(configuration->getText(0,6).c_str());
-    string.SetX(46 + (configuration->Resolution.x - 800) * 0.5);
-    string.SetY(406 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+   // string.SetX(46 + (configuration->Resolution.x - 800) * 0.5);
+    //string.SetY(404 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
     string.SetPosition(AutoScreenAdjust(46,404,decalage));
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -1206,9 +1214,9 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.vitalite;
         string.SetString(buf.str());
-        string.SetX((132 + (configuration->Resolution.x - 800) * 0.5)+17-string.GetRect().Width/2);
-        string.SetY(432 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
-        string.SetPosition(AutoScreenAdjust(132,434,decalage));
+        //string.SetX((132 + (configuration->Resolution.x - 800) * 0.5)+17-string.GetRect().Width/2);
+       // string.SetY(429 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+        string.SetPosition(AutoScreenAdjust(132,432,decalage));
         string.Move(17 - string.GetRect().Width * 0.5, 0);
         /*if (m_caracteristiques.vitalite!=m_personnage.getCaracteristique().vitalite)
             string.SetColor(sf::Color(0,128,255));
@@ -1217,9 +1225,9 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    if (m_caracteristiques.pts_restant>0)
+    if (m_personnage.getCaracteristique().pts_restant>0)
     {
-        m_classe.plus_button[2].position.y = (int)(string.GetPosition().y-3);
+        m_classe.plus_button[2].position.y = (int)(429-decalage);
         sf::Sprite sprite = m_classe.plus_button[2].Afficher(0);
         moteurGraphique->AjouterCommande(&sprite,15,0);
 
@@ -1248,8 +1256,8 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     }
 
     string.SetString(configuration->getText(0,7).c_str());
-    string.SetX(46 + (configuration->Resolution.x - 800) * 0.5);
-    string.SetY(434 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+  //  string.SetX(46 + (configuration->Resolution.x - 800) * 0.5);
+  //  string.SetY(434 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
     string.SetPosition(AutoScreenAdjust(46,432,decalage));
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -1277,9 +1285,9 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    if (m_caracteristiques.pts_restant>0)
+    if (m_personnage.getCaracteristique().pts_restant>0)
     {
-        m_classe.plus_button[3].position.y = (int)(string.GetPosition().y-3);
+        m_classe.plus_button[3].position.y = (int)(457-decalage);
         sf::Sprite sprite = m_classe.plus_button[3].Afficher(0);
         moteurGraphique->AjouterCommande(&sprite,15,0);
 
@@ -1335,9 +1343,9 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    if (m_caracteristiques.pts_restant>0)
+    if (m_personnage.getCaracteristique().pts_restant>0)
     {
-        m_classe.plus_button[4].position.y = (int)(string.GetPosition().y-3);
+        m_classe.plus_button[4].position.y = (int)(485-decalage);
         sf::Sprite sprite = m_classe.plus_button[4].Afficher(0);
         moteurGraphique->AjouterCommande(&sprite,15,0);
 
@@ -1694,35 +1702,46 @@ void Hero::AfficherQuetes(float decalage)
     newQuest = false;
     m_quetePointee = -1;
     coordonnee position = m_classe.position_contenu_quetes;
+
+    bool actif = true;
+
     for (int i = (int)m_quetes.size()-1;i >= 0;--i)
-    if(m_quetes[i].m_nom != " ")
     {
-        sf::Text texte;
-        texte.SetFont(moteurGraphique->m_font);
-        texte.SetCharacterSize(14);
-        texte.SetPosition(AutoScreenAdjust(position.x + 2,position.y,decalage));
-
-        texte.SetString(m_quetes[i].m_nom);
-
-        moteurGraphique->AjouterTexte(&texte,15);
-
-        if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_contenu_quetes.x,0).x
-         &&eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_contenu_quetes.x + m_classe.position_contenu_quetes.w,0).x
-         &&eventManager->getPositionSouris().y > texte.GetRect().Top
-         &&eventManager->getPositionSouris().y < texte.GetRect().Top + 19)
+        if(m_quetes[i].m_nom != " " && m_quetes[i].m_actif == actif)
         {
-            sf::Sprite sprite;
-            sprite.SetImage(*moteurGraphique->getImage(0));
-            sprite.Resize(m_classe.position_contenu_quetes.w, 19);
-            sprite.SetPosition(AutoScreenAdjust(position.x,position.y,decalage));
-            sprite.SetColor(sf::Color(255, 255, 255, 128));
+            sf::Text texte;
+            texte.SetFont(moteurGraphique->m_font);
+            texte.SetCharacterSize(14);
+            texte.SetPosition(AutoScreenAdjust(position.x + 2,position.y,decalage));
 
-            m_quetePointee = i;
+            if(!actif)
+                texte.SetColor(sf::Color(128,128,128));
 
-            moteurGraphique->AjouterCommande(&sprite,15,0);
+            texte.SetString(m_quetes[i].m_nom);
+
+            moteurGraphique->AjouterTexte(&texte,15);
+
+            if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_contenu_quetes.x,0).x
+             &&eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_contenu_quetes.x + m_classe.position_contenu_quetes.w,0).x
+             &&eventManager->getPositionSouris().y > texte.GetRect().Top
+             &&eventManager->getPositionSouris().y < texte.GetRect().Top + 19)
+            {
+                sf::Sprite sprite;
+                sprite.SetImage(*moteurGraphique->getImage(0));
+                sprite.Resize(m_classe.position_contenu_quetes.w, 19);
+                sprite.SetPosition(AutoScreenAdjust(position.x,position.y,decalage));
+                sprite.SetColor(sf::Color(255, 255, 255, 128));
+
+                m_quetePointee = i;
+
+                moteurGraphique->AjouterCommande(&sprite,15,0);
+            }
+
+            position.y += 19;
         }
 
-        position.y += 19;
+        if(i == 0 && actif)
+            i = m_quetes.size(), actif = false;
     }
 
     int queteAffichee = 0;
@@ -1834,7 +1853,7 @@ void Hero::AfficherDocs(float decalage)
     }
 }
 
-void Hero::AfficherPotales(float decalage)
+void Hero::AfficherPotales(float decalage, std::string chemin)
 {
     coordonnee position = m_classe.position_contenu_description_quete;
     m_potale_selectionnee = -1;
@@ -1848,8 +1867,12 @@ void Hero::AfficherPotales(float decalage)
                                            position.y,decalage));
         texte.SetString(configuration->getText(4,m_potales[i].nom));
 
-        moteurGraphique->AjouterTexte(&texte,15);
 
+        if(fabs(m_potales[i].position.x - m_personnage.getCoordonnee().x) < 5
+        && fabs(m_potales[i].position.y - m_personnage.getCoordonnee().y) < 5
+        && m_potales[i].chemin == chemin)
+            texte.SetColor(sf::Color(128,128,128));
+        else
         if(eventManager->getPositionSouris().x > m_classe.position_contenu_description_quete.x + (configuration->Resolution.x - 800) * 0.5
         && eventManager->getPositionSouris().x < m_classe.position_contenu_description_quete.x + m_classe.position_contenu_description_quete.w  + (configuration->Resolution.x - 800) * 0.5
         && eventManager->getPositionSouris().y > texte.GetRect().Top
@@ -1870,6 +1893,8 @@ void Hero::AfficherPotales(float decalage)
 
             moteurGraphique->AjouterCommande(&sprite,15,0);
         }
+
+        moteurGraphique->AjouterTexte(&texte,15);
 
         position.y += 19;
     }
@@ -1967,7 +1992,8 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
            // bool plus_button_survol = false;
             bool add_point = false;
 
-            if (m_personnage.getCaracteristique().miracles_restant > 0)
+            if (m_personnage.getCaracteristique().miracles_restant > 0
+            && (int)((m_personnage.getCaracteristique().niveau-1)/3) >= m_lvl_miracles[i])
             {
                 if (m_classe.miracles[i].m_buf == -1 || m_lvl_miracles[m_classe.miracles[i].m_buf] > 0)
                 {
@@ -2353,7 +2379,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
             {
                 sf::Sprite sprite2 = sprite;
                 sprite2.SetImage(*moteurGraphique->getImage(moteurGraphique->m_img_item_unusable));
-                sprite2.SetColor(sf::Color(224,0,0,128));
+                sprite2.SetColor(sf::Color(96,0,0,128));
                 moteurGraphique->AjouterCommande(&sprite2,16,0);
             }
 
@@ -2398,6 +2424,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
         }
 
     m_max_defilement_trader=0;
+
+  //  cout<<trader<<endl<<&m_coffre<<endl<<endl;
 
     for (int i=0;i<(int)(*trader).size();++i)
     {
@@ -2508,7 +2536,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
             {
                 sf::Sprite sprite2 = sprite;
                 sprite2.SetImage(*moteurGraphique->getImage(moteurGraphique->m_img_item_unusable));
-                sprite2.SetColor(sf::Color(160,0,0,128));
+                sprite2.SetColor(sf::Color(96,0,0,128));
                 moteurGraphique->AjouterCommande(&sprite2,16,0);
             }
             moteurGraphique->AjouterCommande(&sprite,16,0);
@@ -3825,13 +3853,13 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
         else
         {
             for (int z=0;z<(int)m_inventaire.size();z++)
-                if (m_inventaire[z].m_equipe==-1 && m_inventaire[z].getPrix() >= 0)
+                if (m_inventaire[z].m_equipe==-1)// && m_inventaire[z].getPrix() >= 0)
                     if (caseVisee.x >= m_inventaire[z].getPosition().x
                       &&caseVisee.x <  m_inventaire[z].getPosition().x+m_inventaire[z].getTaille().x
                       &&caseVisee.y >= m_inventaire[z].getPosition().y
                       &&caseVisee.y <  m_inventaire[z].getPosition().y+m_inventaire[z].getTaille().y)
                     {
-                        if (eventManager->getEvenement(Key::LControl,EventKey))
+                        if (eventManager->getEvenement(Key::LControl,EventKey) && m_inventaire[z].getPrix() >= 0)
                         {
                             if(trader)
                             if((trader->empty() && (trader == &m_coffre || craft || bless)) || !trader->empty())
@@ -3847,7 +3875,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                                     AutoTrierCoffre();
                             }
                         }
-                        else if (eventManager->getEvenement(Key::LShift,EventKey))
+                        else if (eventManager->getEvenement(Key::LShift,EventKey) && m_inventaire[z].getPrix() >= 0)
                         {
                             if(craft || bless)
                             {
@@ -3896,7 +3924,8 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
         }
 
 
-        if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
+        if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size()
+        && m_inventaire[m_objetEnMain].getPrix() >= 0)
         {
             m_inventaire[m_objetEnMain].JouerSon();
 

@@ -74,7 +74,7 @@ void c_Potales::Utiliser(Jeu *jeu)
 
     jeu->menu.AfficherQuetes(m_decalage,&jeu->hero.m_classe);
 
-    jeu->hero.AfficherPotales(m_decalage);
+    jeu->hero.AfficherPotales(m_decalage,jeu->map->getNom());
 
     if(jeu->hero.m_potale_selectionnee >= 0)
     {

@@ -68,6 +68,7 @@ public:
     ~Hero();
 
     void Reset();
+    void ResetQuests();
 
     void Sauvegarder();
     void SauvegarderApercu();
@@ -81,7 +82,7 @@ public:
     bool AfficherInventaire(float, std::vector<Objet> *, bool hideLeft, bool bless = false, bool craft = false);
     void AfficherQuetes(float);
     void AfficherDocs(float);
-    void AfficherPotales(float);
+    void AfficherPotales(float, std::string);
     bool AfficherMiracles(float , int );
     void AfficherCaracteristiques(float decalage, bool trader);
     void AfficherRaccourcis();
@@ -180,6 +181,10 @@ public:
     int m_no_schema_bless;
     int m_no_result_craft;
     int m_no_result_bless;
+    float m_craft_time;
+    float m_bless_time;
+    float m_craft_time_max;
+    float m_bless_time_max;
 
     coordonnee m_case_visee;
 
@@ -205,10 +210,6 @@ private:
 
     bool m_achat;
 
-    float m_craft_time;
-    float m_bless_time;
-    float m_craft_time_max;
-    float m_bless_time_max;
 
     bool m_trier_en_hauteur;
 };

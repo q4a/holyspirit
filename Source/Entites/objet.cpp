@@ -2252,6 +2252,9 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"_"));
 
+        if(coffre)
+            modPrix = 1.0;
+
         std::ostringstream buf;
         buf<<configuration->getText(0,28)<<(int)((float)m_prix*modPrix);
 

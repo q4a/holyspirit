@@ -24,16 +24,18 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 
-ParticuleSysteme::ParticuleSysteme() : m_son(-1)
+ParticuleSysteme::ParticuleSysteme()
 {
 
 }
-ParticuleSysteme::ParticuleSysteme(int modeleInt, ModeleParticuleSysteme *modele, coordonnee position, sf::Color color,float force,float angle) : m_son(-1)
+ParticuleSysteme::ParticuleSysteme(int modeleInt, ModeleParticuleSysteme *modele, coordonnee position, sf::Color color,float force,float angle)
 {
     m_modele=modeleInt;
     Generer(force,modele,position,angle);
     m_color=color;
     m_son=modele->m_son;
+
+    m_son_joue = false;
 }
 
 ParticuleSysteme::~ParticuleSysteme()
@@ -99,8 +101,20 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
                     position.x = -(int)(Iter->position.x/64/5);
                     position.y =  (int)(Iter->position.y/32/5);
 
-                    if (((int)fabs(Iter->vecteur.z*3)>10 && !m_son.unique) || m_son.unique && (int)fabs(Iter->vecteur.z*3)>30)
-                        moteurSons->JouerSon(m_son.no,position,m_son.unique);
+                    int nbr = 0;
+                    int random = rand()%m_son.size();
+
+                    if (((int)fabs(Iter->vecteur.z*3)>10 && !m_son[random].unique) || m_son[random].unique && (int)fabs(Iter->vecteur.z*3)>10 && !m_son_joue)
+                    {
+                        while(!moteurSons->JouerSon(m_son[random++].no,position, m_son[random].unique) && nbr++ < m_son.size())
+                        {
+                            if(random >= m_son.size())
+                                random = 0;
+                        }
+
+                        m_son_joue = true;
+                    }
+                       // moteurSons->JouerSon(m_son[random].no,position,m_son[random].unique);
                 }
 
                 if (Iter->position.z<0)

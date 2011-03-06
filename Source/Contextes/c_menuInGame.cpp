@@ -169,6 +169,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         {
             buttons_principal[2].m_action = false;
             jeu->m_mainMenu->m_save=true;
+            jeu->m_mainMenu->m_reset=false;
             jeu->m_contexte = jeu->m_mainMenu;
         }
 

@@ -48,7 +48,7 @@ class ModeleParticuleSysteme
 
     //private:
     int m_image;
-    Infos_son m_son;
+    std::vector<Infos_son> m_son;
     std::string m_chemin;
     std::vector <ModeleParticule> m_particules;
 };

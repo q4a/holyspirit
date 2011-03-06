@@ -54,6 +54,7 @@ public:
     int m_id;
     int m_statut;
     std::string m_map;
+    bool m_actif;
 };
 
 #endif

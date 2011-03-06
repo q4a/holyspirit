@@ -60,7 +60,9 @@ class ParticuleSysteme
 
     private:
     sf::Color m_color;
-    Infos_son m_son;
+    std::vector<Infos_son> m_son;
+
+    bool m_son_joue;
 };
 
 #endif

@@ -41,12 +41,14 @@ Quete::     Quete() : Document()
 {
     m_id            = 0;
     m_statut        = 0;
+    m_actif         = true;
 }
 
 Quete::     Quete(int id) : Document()
 {
     m_id            = id;
     m_statut        = 0;
+    m_actif         = true;
 }
 
 Quete::    ~Quete()

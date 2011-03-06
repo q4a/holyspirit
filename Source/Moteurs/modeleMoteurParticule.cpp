@@ -24,11 +24,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 
 
-ModeleParticuleSysteme::ModeleParticuleSysteme() : m_son(-1)
+ModeleParticuleSysteme::ModeleParticuleSysteme()
 {
 
 }
-ModeleParticuleSysteme::ModeleParticuleSysteme(std::string chemin) : m_son(-1)
+ModeleParticuleSysteme::ModeleParticuleSysteme(std::string chemin)
 {
     Charger(chemin);
 }
@@ -77,13 +77,14 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
                     {
                         std::string cheminSon;
                         fichier>>cheminSon;
-                        m_son = moteurSons->AjouterBuffer(cheminSon);
+                        m_son.push_back(moteurSons->AjouterBuffer(cheminSon));
                     }
                     else if (caractere=='u')
                     {
                         bool temp;
                         fichier>>temp;
-                        m_son.unique = temp;
+                        if(!m_son.empty())
+                            m_son.back().unique = temp;
                     }
                     if (fichier.eof())
                     {

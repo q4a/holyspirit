@@ -206,11 +206,13 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 void Map::Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
    // jeu->hero.m_personnage.m_cible = NULL;
-
-    jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets());
+    bool trader = true;
     if(!script->m_instructions[noInstruction].m_valeurs.empty())
         if(script->getValeur(noInstruction, 0) == 1)
-            jeu->m_inventaire->setTrader(&hero->m_coffre);
+            jeu->m_inventaire->setTrader(&hero->m_coffre), trader = false;
+
+    if(trader)
+        jeu->m_inventaire->setTrader(m_monstre[monstre].getPointeurObjets());
 
     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
@@ -467,6 +469,14 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                     hero->m_quetes[i].m_statut = (int)script->getValeur(noInstruction, 1);
                 }
         }
+        else if (script->m_instructions[noInstruction].nom=="setQuestActif")
+        {
+            for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
+                if (hero->m_quetes[i].m_id == (int)script->getValeur(noInstruction, 0))
+                {
+                    hero->m_quetes[i].m_actif = (int)script->getValeur(noInstruction, 1);
+                }
+        }
         else if (script->m_instructions[noInstruction].nom=="giftItem" && monstre != -1)
         {
             if (script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < (int)(*m_monstre[monstre].getPointeurObjets()).size())
@@ -673,6 +683,16 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                             if(hero->getNomObjet(i) == script->m_instructions[no].valeurString)
                                 hero->delObjet(i), i--;
 
+                }
+                else if (script->m_instructions[no].nom=="crafted")
+                {
+                    bool oldok = ok;
+                    ok = false;
+
+                    if(jeu->hero.m_no_result_craft >= 0)
+                        if(jeu->hero.m_craft_time <= 0)
+                            if(jeu->hero.getNomObjet(jeu->hero.m_no_result_craft) == script->m_instructions[no].valeurString)
+                                ok = oldok;
                 }
                 else if (script->m_instructions[no].nom=="exist_friend")
                 {
