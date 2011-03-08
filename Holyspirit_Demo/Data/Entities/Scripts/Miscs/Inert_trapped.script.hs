@@ -6,7 +6,7 @@ main
 		then
 			variable * 0 * 1
 
-			if rand * 75
+			if rand * 50
 			then
 				useMiracle * 0
 				setState * 3	
