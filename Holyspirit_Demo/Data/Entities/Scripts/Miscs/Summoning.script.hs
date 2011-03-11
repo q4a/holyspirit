@@ -14,5 +14,13 @@ main
 		end
 	end
 
+	if miracle * variable 2
+		numberInvocation * 0
+	then
+		setCollision * 1
+	else
+		setCollision * 0
+	end
+
 	setInvocationID * variable 1
 end 
