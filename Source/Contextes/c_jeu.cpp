@@ -62,6 +62,8 @@ c_Jeu::c_Jeu()
     tempsSauvergarde=0;
     nbrTourBoucle=0;
 
+    m_dead = 0;
+
     temps[0] = 0;
     temps[1] = 0;
     temps[2] = 0;
@@ -141,11 +143,12 @@ void c_Jeu::Utiliser(Jeu *jeu)
     }
 
     Lumieres(jeu);
-    Evenements(jeu);
-    Deplacements(jeu);
-    //IA(jeu);
-    Animation(jeu);
-
+    if (jeu->hero.m_personnage.EnVie())
+    {
+        Evenements(jeu);
+        Deplacements(jeu);
+        Animation(jeu);
+    }
     jeu->hero.PlacerCamera();
 
     Affichage(jeu);
@@ -204,7 +207,7 @@ void c_Jeu::GererTemps(Jeu *jeu)
         if (jeu->hero.m_caracteristiques.maxVie != 0.0f)
         {
             if (jeu->hero.m_caracteristiques.vie/(float)jeu->hero.m_caracteristiques.maxVie<0.25)
-                configuration->effetMort=150-(jeu->hero.m_caracteristiques.vie*600/jeu->hero.m_caracteristiques.maxVie),jeu->sonMort.SetVolume(configuration->effetMort);
+                configuration->effetMort=75-(jeu->hero.m_caracteristiques.vie*600/jeu->hero.m_caracteristiques.maxVie)/2,jeu->sonMort.SetVolume(configuration->effetMort);
             else
                 configuration->effetMort=0,jeu->sonMort.SetVolume(0);
         }
@@ -212,17 +215,37 @@ void c_Jeu::GererTemps(Jeu *jeu)
     else
     {
         configuration->effetMort=150;
+        m_dead += tempsEcoule;
 
-        std::string nomMap=jeu->hero.m_potales[jeu->hero.m_last_potale].chemin;
+        jeu->hero.m_personnage.m_cible = NULL;
 
-        coordonnee coordonneePerso;
-        coordonneePerso.x=jeu->hero.m_potales[jeu->hero.m_last_potale].position.x;
-        coordonneePerso.y=jeu->hero.m_potales[jeu->hero.m_last_potale].position.y;
+        if(eventManager->getEvenement(sf::Mouse::Left,EventClic) && m_dead >= 2)
+        {
+            m_dead = 0;
+            std::string nomMap=jeu->hero.m_potales[jeu->hero.m_last_potale].chemin;
 
-        jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
+            coordonnee coordonneePerso;
+            coordonneePerso.x=jeu->hero.m_potales[jeu->hero.m_last_potale].position.x;
+            coordonneePerso.y=jeu->hero.m_potales[jeu->hero.m_last_potale].position.y;
 
-        jeu->next_screen = 8;
-        jeu->Next();
+            jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
+
+            jeu->next_screen = 8;
+            jeu->Next();
+        }
+
+        moteurGraphique->special_typo.Draw(configuration->getText(0,102), sf::Vector2f(configuration->Resolution.w/2,
+                                                          configuration->Resolution.h/2-96), 64, 19, true, sf::Color(255,255,255,(m_dead <= 2) ? m_dead/2*255 : 255));
+        moteurGraphique->special_typo.Draw(configuration->getText(0,103), sf::Vector2f(configuration->Resolution.w/2,
+                                                          configuration->Resolution.h/2), 32, 19, true, sf::Color(255,255,255,(m_dead <= 2) ? m_dead/2*255 : 255));
+
+        if(m_dead >= 2)
+        {
+            moteurGraphique->special_typo_p.Draw(configuration->getText(0,102), sf::Vector2f(configuration->Resolution.w/2,
+                                                              configuration->Resolution.h/2-96), 64, 19, true, sf::Color(255,255,255,fabs(m_dead - (int)((m_dead+1)/2)*2)*255));
+            moteurGraphique->special_typo_p.Draw(configuration->getText(0,103), sf::Vector2f(configuration->Resolution.w/2,
+                                                              configuration->Resolution.h/2), 32, 19, true, sf::Color(255,255,255,fabs(m_dead - (int)((m_dead+1)/2)*2)*255));
+        }
     }
 
 }
@@ -469,7 +492,7 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
     {
         //if(jeu->hero.m_classe.miracles[newmiracle].m_direct)
         {
-            if (!jeu->hero.m_personnage.frappeEnCours)
+          //  if (!jeu->hero.m_personnage.frappeEnCours)
             {
                 eventManager->StopEvenement(Mouse::Right,EventClic);
 
@@ -693,7 +716,7 @@ void c_Jeu::Evenements(Jeu *jeu)
         {
             if(eventManager->getEvenement(configuration->m_key_actions[K_STAND], EventKey) || jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
             {
-                if (!jeu->hero.m_personnage.frappeEnCours)
+                //if (!jeu->hero.m_personnage.frappeEnCours)
                 {
                     coordonnee cible;
 
@@ -806,7 +829,7 @@ void c_Jeu::Evenements(Jeu *jeu)
                 eventManager->StopEvenement(Mouse::Left,EventClic);
             else
             {
-                if (!jeu->hero.m_personnage.frappeEnCours)
+                //if (!jeu->hero.m_personnage.frappeEnCours)
                 {
                     coordonnee cible;
 

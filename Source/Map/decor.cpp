@@ -283,7 +283,7 @@ void Decor::AjouterObjet(Objet objet)
 
 
     m_objets.back().m_alpha = 0;
-    m_objets.back().m_hauteur = rand()%64;
+    m_objets.back().m_hauteur = 32 + rand()%32;
     m_objets.back().m_monter = 1;
     m_objets.back().m_rotation = rand() % 360;
 }

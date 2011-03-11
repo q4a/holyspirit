@@ -661,7 +661,7 @@ bool Personnage::SeDeplacer(float tempsEcoule)
             m_arrivee.x = m_positionCase.x;
             m_arrivee.y = m_positionCase.y;
 
-            if(m_positionPixel.x < m_arrivee.x * COTE_TILE)
+            /*if(m_positionPixel.x < m_arrivee.x * COTE_TILE)
                 m_positionCase.x --;
             else if(m_positionPixel.x > m_arrivee.x * COTE_TILE)
                 m_positionCase.x ++;
@@ -669,7 +669,7 @@ bool Personnage::SeDeplacer(float tempsEcoule)
             if(m_positionPixel.y < m_arrivee.y * COTE_TILE)
                 m_positionCase.y --;
             else if(m_positionPixel.y > m_arrivee.y * COTE_TILE)
-                m_positionCase.y ++;
+                m_positionCase.y ++;*/
 
             m_cheminFinal.x     = m_arrivee.x;
             m_cheminFinal.y     = m_arrivee.y;
@@ -757,8 +757,8 @@ bool Personnage::SeDeplacer(float tempsEcoule)
                       ||(m_positionCase.y>m_cheminFinal.y&&m_positionPixel.y<=m_cheminFinal.y*COTE_TILE)
                       || m_positionCase.y==m_cheminFinal.y)
                     {
-                        m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
-                        m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
+                       // m_positionPixel.x=(m_cheminFinal.x*COTE_TILE);
+                       // m_positionPixel.y=(m_cheminFinal.y*COTE_TILE);
 
                         m_positionPixel.h=m_cheminFinal.h;
 

@@ -180,6 +180,9 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
 
 void EventManager::AfficherCurseur(bool transparent)
 {
+    m_positionSouris.x = moteurGraphique->getPositionSourisEcran().x;
+    m_positionSouris.y = moteurGraphique->getPositionSourisEcran().y;
+
     Sprite Sprite;
     Sprite.SetImage(*moteurGraphique->getImage(idcurseur));
     if (configuration->Resolution.x > 0)

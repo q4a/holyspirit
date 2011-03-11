@@ -34,6 +34,7 @@ EventManager *eventManager;
 
 int main (  )
 {
+    srand(time(NULL));
  //   std::set_terminate( __gnu_cxx::__verbose_terminate_handler)
 
     configuration=Configuration::GetInstance();
@@ -52,7 +53,6 @@ int main (  )
 
     console->Ajouter("");
 
-    srand(time(NULL));
 
     try
     {

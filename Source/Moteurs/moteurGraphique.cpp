@@ -1031,6 +1031,11 @@ sf::Vector2f MoteurGraphique::getPositionSouris()
     return m_ecran.ConvertCoords(m_ecran.GetInput().GetMouseX(), m_ecran.GetInput().GetMouseY(), m_camera);
 }
 
+sf::Vector2f MoteurGraphique::getPositionSourisEcran()
+{
+    return sf::Vector2f(m_ecran.GetInput().GetMouseX(), m_ecran.GetInput().GetMouseY());
+}
+
 void MoteurGraphique::Printscreen()
 {
     std::ostringstream buf;

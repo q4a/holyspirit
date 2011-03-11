@@ -1190,6 +1190,7 @@ void Objet::ChargerMiracle(const Caracteristique &caract)
 
 void Objet::Generer(int bonus)
 {
+    //srand(time(NULL));
     if(va - vi + 1 != 0)
         m_vie=(rand() % (va - vi + 1)) + vi;
     else
@@ -1223,7 +1224,7 @@ void Objet::Generer(int bonus)
 
             if(bonus != 0)
             {
-                int random=rand()%10000 / bonus;
+                int random=(int)(float(rand()/(float)RAND_MAX*10000) / (float)bonus);
 
                 if (random<=1500)
                     rarete=BONNEFACTURE;

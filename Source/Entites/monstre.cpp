@@ -153,11 +153,15 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
 void Monstre::GenererInventaire(Modele_Monstre *modele)
 {
+    //srand(time(NULL));
     m_objets.clear();
 
     for (unsigned k=0; k<modele->getObjets().size(); k++)
         for (unsigned i=0; i<modele->getObjets()[k].size(); i++)
-            if ((float)(rand()%100000)<=(float)(modele->getObjets()[k][i].getChanceTrouver()*0.5*(m_caracteristique.rang*3+1))
+            if ( ( rand()/(float)RAND_MAX) * 40000<=(float)(modele->getObjets()[k][i].getChanceTrouver()*(m_caracteristique.rang*3+1))
+
+
+               // (float)(rand()%100000)<=(float)(modele->getObjets()[k][i].getChanceTrouver()*0.5*(m_caracteristique.rang*3+1))
                 || modele->getObjets()[k][i].getChanceTrouver() == -1)
             {
                 m_objets.push_back(modele->getObjets()[k][i]);

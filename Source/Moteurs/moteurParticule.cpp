@@ -102,8 +102,12 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
                     position.y =  (int)(Iter->position.y/32/5);
 
                     int nbr = 0;
-                    int random = rand()%m_son.size();
+                    int random = -1;
 
+                    if(!m_son.empty())
+                    random = rand()%m_son.size();
+
+                    if(random != -1)
                     if (((int)fabs(Iter->vecteur.z*3)>10 && !m_son[random].unique) || m_son[random].unique && (int)fabs(Iter->vecteur.z*3)>10 && !m_son_joue)
                     {
                         while(!moteurSons->JouerSon(m_son[random++].no,position, m_son[random].unique) && nbr++ < m_son.size())

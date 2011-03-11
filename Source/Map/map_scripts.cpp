@@ -626,6 +626,11 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                     if (!m_monstre[monstre].getVu())
                         ok=false;
                 }
+                else if (script->m_instructions[no].nom=="visible" && monstre != -1)
+                {
+                    if (!TileVisible(hero->m_personnage.getCoordonnee().x,hero->m_personnage.getCoordonnee().y,m_monstre[monstre].getCoordonnee()))
+                        ok=false;
+                }
                 else if (script->m_instructions[no].nom=="shooter" && monstre != -1)
                 {
                     if (!m_monstre[monstre].m_shooter)

@@ -130,6 +130,8 @@ void c_Chargement::setC_Chargement(const std::string &prochaineMap,const coordon
 
 void Charger(void* UserData)
 {
+    srand(time(NULL));
+
     sf::Context context;
 
     Jeu *jeu = static_cast<Jeu*>(UserData);
@@ -175,7 +177,7 @@ void c_Chargement::PreLoad(Jeu *jeu)
     if (jeu->map!=NULL && !m_debut)
         jeu->map->Sauvegarder(&jeu->hero);
 
-
+    musicEnCours = -1;
     if(jeu->map!=NULL)
         if(jeu->map->m_musiqueEnCours < (int)jeu->map->m_musiques.size())
             musicEnCours = jeu->map->m_musiques[jeu->map->m_musiqueEnCours];
@@ -458,7 +460,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
             jeu->menu.AfficherHUD(&jeu->hero.m_classe);
             jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_personnage.getCaracteristique(),&jeu->hero.m_classe);
         }
-        if(mort)
+        if(mort && allerVersImageChargement)
             configuration->effetMort = z*3;
     }
     else

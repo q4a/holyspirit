@@ -129,6 +129,8 @@ private:
 
     bool m_diplace_mode;
 
+    float m_dead;
+
 };
 
 #endif

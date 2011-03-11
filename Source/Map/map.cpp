@@ -147,7 +147,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 
     int numeroModuleAleatoire=rand()%10;
 
-    bool entite_map_existante=0,mapExistante=0;
+    bool entite_map_existante=false,mapExistante=false;
 
     m_nom_fichier=nomMap;
     string chemin = nomMap,chemin2 = configuration->chemin_temps+nomMap;
@@ -1567,7 +1567,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                     ///SOURCE DE CRASH
                     if(!m_decor[couche][j][k].added_minimap)
                         if(fabs(j-hero->m_personnage.getCoordonnee().y) < 8 && fabs(k-hero->m_personnage.getCoordonnee().x) < 8)
-                            //if(TileVisible(k,j,hero->m_personnage.getCoordonnee()))
+                            if(TileVisible(k,j,hero->m_personnage.getCoordonnee()))
                             {
                                 if(m_decor[couche][j][k].m_spriteMinimap.GetSize().x> 1)
                                 {
@@ -1585,6 +1585,8 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                         minimap.Move(-1024, 0), cur_x ++;
                                     while(minimap.GetPosition().x - minimap.GetSize().x / 2 < 0)
                                         minimap.Move(1024, 0), cur_x --;
+                                    while(minimap.GetPosition().y - minimap.GetSize().y / 2 < 0)
+                                        minimap.Move(0, 1024), cur_y --;
 
 
                                     if(m_render_minimap[cur_y][cur_x].GetHeight() != 1024)
@@ -2290,6 +2292,12 @@ void Map::TestVisionMonstre(int numero, Hero *hero)
 
 bool Map::TileVisible(int x,int y, coordonnee pos)
 {
+    int d = ((x - pos.x)*(x - pos.x) + (y - pos.y)*(y - pos.y));
+
+    for(int i = 0 ; i < d ; ++i)
+        if(getTypeCase((int)(pos.x + (x - pos.x)*i/d),(int)(pos.y + (y - pos.y)*i/d))==1)
+            return false;
+
     return true;
 }
 
@@ -2710,6 +2718,8 @@ void Map::TesterPoussable(Personnage &personnage, float temps, int id)
                                         (int)((personnage.getCoordonneePixel().y - personnage.getPousse().x * temps * COTE_TILE * 5 + COTE_TILE * 0.5f * (personnage.getPousse().x >= 0))/COTE_TILE),
                                         id))
                 personnage.setPousse(coordonneeDecimal(0, -personnage.getPousse().x));
+            else
+                personnage.setPousse(coordonneeDecimal(0, 0));
         }
         else if(personnage.getPousse().y != 0)
         {
@@ -2721,6 +2731,8 @@ void Map::TesterPoussable(Personnage &personnage, float temps, int id)
                                         (int)((personnage.getCoordonneePixel().y + COTE_TILE * 0.5f * (personnage.getPousse().y >= 0))/COTE_TILE),
                                         id))
                 personnage.setPousse(coordonneeDecimal(-personnage.getPousse().y, 0));
+            else
+                personnage.setPousse(coordonneeDecimal(0, 0));
         }
     }
 }
