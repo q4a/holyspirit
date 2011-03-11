@@ -12,4 +12,5 @@ $
 $
 *Data/Entities/Particles/Human_blood.ps.hs
 $
+*Data/Entities/Miracles/Zombie_crawl.miracle.hs
 $

@@ -26,21 +26,7 @@ main
 				else
 					randomDisplace
 				end
-		else
-			if variable * 0 * 0
-			then
-				variable * 0 * 1
-				if rand * 10
-				then
-					useMiracle * 0
-				end
-			end
-			
-			
-			if miracle * 0
-			then
-				setState * 5 * 0
-			end
+
 		end
 	end
 end
