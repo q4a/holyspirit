@@ -49,7 +49,7 @@ $
 	$
 	*
 		*Set_TearfulWidow_circlet.item.hs
-		r200
+		r75
 	$
 	*
 		*Shield_great_shield.item.hs
@@ -61,13 +61,13 @@ $
 	$
 	*
 		*Sword_2h_katzbalger.item.hs
-		r200
+		r75
 		*Sword_2h_two_hands_sword.item.hs
 		r5000
 	$
 	*
 		*Crossbow_crossbow_fire.item.hs
-		r200
+		r75
 		*Crossbow_crossbow.item.hs
 		r5000
 	$

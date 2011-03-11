@@ -41,7 +41,7 @@ $
 	$
 	*
 		*Crossbow_crossbow_fire.item.hs
-		r100
+		r50
 		*Crossbow_crossbow.item.hs
 		r2500
 	$

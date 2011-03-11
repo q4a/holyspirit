@@ -49,7 +49,7 @@ $
 	$
 	*
 		*Set_TearfulWidow_circlet.item.hs
-		r100
+		r50
 	$
 	*
 		*Shield_small_shield.item.hs
@@ -65,7 +65,7 @@ $
 	$
 	*
 		*Crossbow_crossbow_fire.item.hs
-		r100
+		r50
 		*Crossbow_crossbow.item.hs
 		r2500
 	$

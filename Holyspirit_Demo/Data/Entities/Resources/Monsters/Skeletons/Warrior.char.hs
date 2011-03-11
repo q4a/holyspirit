@@ -33,7 +33,7 @@ $
 		*Dagger_ceremonial_dagger.item.hs
 		r2500
 		*Dagger_scarifier.item.hs
-		r100
+		r50
 	$
 	*
 		*Helmet_leather_cap.item.hs
@@ -47,7 +47,7 @@ $
 		*Sword_1h_long_sword.item.hs
 		r2500
 		*Sword_1h_holy_sword.item.hs
-		r100
+		r50
 	$
 	*
 		*Necklage_necklage.item.hs

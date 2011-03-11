@@ -18,27 +18,27 @@ $
 	$
 	*
 		*Craft_coal.item.hs
-		r10000
+		r2000
 	$
 	*
 		*Craft_ore_iron.item.hs
-		r10000
+		r1000
 	$
 	*
 		*Craft_ore_copper.item.hs
-		r10000
+		r1000
 	$
 	*
 		*Craft_ore_gold.item.hs
-		r5000
+		r500
 	$
 	*
 		*Craft_gem_ruby.item.hs
-		r2000
+		r200
 	$
 	*
 		*Craft_gem_emerald.item.hs
-		r2000
+		r200
 	$
 $
 

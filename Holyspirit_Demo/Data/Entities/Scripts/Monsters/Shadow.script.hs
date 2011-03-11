@@ -12,7 +12,7 @@ main
 					playSound * 0
 				end
 
-				if rand * 75
+				if rand * 50
 				then
 					fight
 				else

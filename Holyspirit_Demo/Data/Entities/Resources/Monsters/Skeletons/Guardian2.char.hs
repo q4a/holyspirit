@@ -26,7 +26,7 @@ $
 	$
 	*
 		*Sword_2h_katzbalger.item.hs
-		r200
+		r100
 		*Sword_2h_two_hands_sword.item.hs
 		r5000
 	$

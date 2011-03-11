@@ -4,11 +4,39 @@ $
 $
 * 0
 $
-*v25 di20 da30 m0.5 h0 a10 n2 i0 x50 u1 $
+*v50 di75 da100 m0.5 h0 a20 n2 i0 x50 u1 c0 $
 $
 *Data/Entities/Scripts/Monsters/Shadow.script.hs
 $
-	#ITEMS
+	
+	*
+		*Necklage_necklage.item.hs
+		r2000
+	$
+	*
+		*Ring_ring.item.hs
+		r2000
+	$
+	*
+		*Helmet_circlet.item.hs
+		r2000
+	$
+	*
+		*Set_TearfulWidow_circlet.item.hs
+		r100
+	$
+	*
+		*Set_TearfulWidow_necklage.item.hs
+		r100
+	$
+	*
+		*Craft_gem_ruby.item.hs
+		r2000
+	$
+	*
+		*Craft_gem_emerald.item.hs
+		r2000
+	$
 $
 $
 $

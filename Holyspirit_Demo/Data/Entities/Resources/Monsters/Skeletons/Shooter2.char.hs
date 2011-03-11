@@ -33,7 +33,7 @@ $
 		*Crossbow_crossbow.item.hs
 		r5000
 		*Crossbow_crossbow_fire.item.hs
-		r200
+		r75
 	$
 	*
 		*Gun_arquebuse.item.hs
