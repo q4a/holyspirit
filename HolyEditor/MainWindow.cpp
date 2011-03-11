@@ -1362,7 +1362,7 @@ void MainWindow::s_annulerNouveau()
 void MainWindow::ouvrir()
 {
     //chemin = QFileDialog::getExistingDirectory(this);
-    chemin = QFileDialog::getOpenFileName(this, "Ouvrir une map", "Data/Editeur/Maps", "Map (*.map.hs )");
+    chemin = QFileDialog::getOpenFileName(this, "Ouvrir une map", "Data/Editeur/Maps", "Map (*.map.hs )", NULL,QFileDialog::DontUseNativeDialog);
 
     if (!chemin.toStdString().empty())
     {
@@ -1644,12 +1644,12 @@ void MainWindow::redo()
 void MainWindow::importerTileset()
 {
     QStringList  cheminList;
-    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir un tileset", "Data/Graphics/Landscapes", "Tileset (*.ts.hs )");
+    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir un tileset", "Data/Graphics/Landscapes", "Tileset (*.ts.hs )", NULL,QFileDialog::DontUseNativeDialog);
 
     for (int j = 0; j < cheminList.size(); ++j)
         if (!cheminList.at(j).toStdString().empty())
         {
-            std::string temp = cheminList.at(j).toStdString();
+            std::string temp = cheminList.at(j).toStdString().substr(QDir::currentPath().size()+1, temp.size() - QDir::currentPath().size() - 1);
             std::string temp2 = "Data";
 
             for (unsigned k = 0 ; k < temp.size() ; ++k)
@@ -1696,12 +1696,12 @@ void MainWindow::importerTileset()
 void MainWindow::importerHerbe()
 {
     QStringList  cheminList;
-    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir un tileset", "Data/Graphics/Grass", "Tileset (*.ts.hs )");
+    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir un tileset", "Data/Graphics/Grass", "Tileset (*.ts.hs )", NULL,QFileDialog::DontUseNativeDialog);
 
     for (int j = 0; j < cheminList.size(); ++j)
         if (!cheminList.at(j).toStdString().empty())
         {
-            std::string temp = cheminList.at(j).toStdString();
+            std::string temp = cheminList.at(j).toStdString().substr(QDir::currentPath().size()+1, temp.size() - QDir::currentPath().size() - 1);
             std::string temp2 = "Data";
 
             for (unsigned k = 0 ; k < temp.size() ; ++k)
@@ -1749,13 +1749,15 @@ void MainWindow::importerHerbe()
 void MainWindow::importerEntite()
 {
     QStringList  cheminList;
-    cheminList = QFileDialog::getOpenFileNames(this, "Ouvrir une entite", "Data/Entities/Resources", "Entite (*.char.hs )");
+    cheminList = QFileDialog::getOpenFileNames(0, "Ouvrir une entite", "Data/Entities/Resources", "Entite (*.char.hs )", NULL,QFileDialog::DontUseNativeDialog);
 
     for (int j = 0; j < cheminList.size(); ++j)
         if (!cheminList.at(j).toStdString().empty())
         {
-            std::string temp = cheminList.at(j).toStdString();
+            std::string temp = cheminList.at(j).toStdString().substr(QDir::currentPath().size()+1, temp.size() - QDir::currentPath().size() - 1);
             std::string temp2 = "Data";
+
+            std::cout<<" HAHA = "<<temp<<std::endl;
 
             for (unsigned k = 0 ; k < temp.size() ; ++k)
             {
