@@ -23,7 +23,8 @@ main
 							randomDisplace
 							variable * 0 * 1
 						else
-							if distance * 6
+							if distance * 7
+							    visible
 							then
 								if rand * 50
 								then

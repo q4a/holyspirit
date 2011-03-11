@@ -11,6 +11,7 @@ main
 					evasion  
 				else	
 					if distance * 8 
+					   visible
 					then
 						shoot   
 					else
