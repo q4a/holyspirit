@@ -1,6 +1,9 @@
 
 main
+	incrementVariable * 0 * time
+	incrementVariable * 0 * time
 	if variable * 9 * 0 
+		variable_bigger * 0 * 1
 	then
 		if alive
 		then
