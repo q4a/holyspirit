@@ -47,6 +47,10 @@ $
 		*Ring_ring.item.hs
 		r500
 	$
+	*
+		*Ring_teuderic_ring.item.hs
+		r15
+	$
 	
 $
 *Data/Entities/Particles/Human_bones.ps.hs

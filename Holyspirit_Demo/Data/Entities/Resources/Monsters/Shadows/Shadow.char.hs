@@ -18,6 +18,10 @@ $
 		r2000
 	$
 	*
+		*Ring_teuderic_ring.item.hs
+		r25
+	$
+	*
 		*Helmet_circlet.item.hs
 		r2000
 	$

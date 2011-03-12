@@ -76,6 +76,10 @@ $
 		r2000
 	$
 	*
+		*Ring_teuderic_ring.item.hs
+		r25
+	$
+	*
 		*Litanie_0.item.hs
 		r2000
 	$
