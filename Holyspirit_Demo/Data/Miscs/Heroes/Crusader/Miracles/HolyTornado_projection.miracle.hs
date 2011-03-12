@@ -3,23 +3,27 @@ $
 	*34
 $
 	* l * 10 $
-	* l * 1 $
-	* l * 2 $
+	* l * 3 $
+	* l * 6 $
 $
 	*35
 $
 	* f%0 e2 c2 $
 $
-	* t0 l5 l8 s0 ia2 id1 ie100 if1 ig2 ih75 $
-	* t-1 l7 l2 $
-	* t7 ia3 id1 $
-	* t-1 l4 l6 $
+	* t-1 l1 l2 $
+	* t0 l7 l10 s0 ia2 id1 ie100 if3 ig25 ih75 $
+	* t0 ia2 id1 ie100 if9 ig2 ih75 $
+	* t-1 l4 $
+	* t7 ia5 id1 $
+	* t-1 l6 l8 $
 	* t2 ia%1 ib%2 ic0 $
 	* t3 s1 ia7 $
 	* t13 ia1 $
 	
 	* t11 ia1 ib10 ic1 $
 	* t11 ia1 ib5 ic1 $
+	
+	
 $
 	*
 			*Data/Graphics/Miracles/Tornado.png

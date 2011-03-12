@@ -94,9 +94,11 @@
          Chargement de l'objet : Craft_coal.item.hs
          
          Chargement de l'objet : Craft_gem_emerald.item.hs
+         Chargement de : Data/Sounds/UI/DropItem4.wav
          
          Chargement de l'objet : Ring_ring.item.hs
          Chargement de : Data/Graphics/Items/Rings.png
+         Chargement de : Data/Sounds/UI/DropItem3.wav
          
          Chargement de l'objet : Ring_ring.item.hs
          
@@ -146,6 +148,7 @@
          
          Chargement de l'objet : Necklage_necklage.item.hs
          Chargement de : Data/Graphics/Items/Necklages.png
+         Chargement de : Data/Sounds/UI/DropItem5.wav
          
          Chargement de l'objet : Helmet_iron_cap.item.hs
          
@@ -303,6 +306,7 @@
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
          Chargement de : Data/Graphics/Miracles/PowerfulSlash.png
          Chargement de : Data/Sounds/Miracles/PowerfulSlash.wav
@@ -335,6 +339,7 @@
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
@@ -460,6 +465,7 @@
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
@@ -900,13 +906,13 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Chargement de : Data/Entities/Resources/Miscs/Torch_up.char.hs terminé
          /Lectures des monstres.
          
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
          /Lectures des cases.
          Chargement de la map terminé.
          Initialisation de l'herbe terminée.
          Initialisation des décors terminée.
          Initialisation des entités terminée.
          Chargement de : Data/Musics/Abbey.ogg
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
          
          ---------------------------------------------------------------------------------
          EVENEMENT : Changement de map
@@ -918,18 +924,27 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Drawing_crossbow_crossbow.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Armband_gauntlet.item.hs
          /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
+         /Sauvegarde de Crossbow_crossbow.item.hs
+         /Sauvegarde de Crossbow_crossbow.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Helmet_iron_cap.item.hs
+         /Sauvegarde de Helmet_iron_cap.item.hs
          /Sauvegarde de Shield_great_shield.item.hs
          /Sauvegarde de Shield_small_shield.item.hs
          /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Shield_small_shield.item.hs
          /Sauvegarde de Sword_1h_small_sword.item.hs
          /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
          /Sauvegarde de Mace_2h_timber_axe.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
@@ -942,16 +957,19 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Necklage_necklage.item.hs
-         /Sauvegarde de Necklage_necklage.item.hs
          /Sauvegarde de Ring_ring.item.hs
          /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Drawing_shield_bronze.item.hs
          /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_ore_copper.item.hs
          /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_gold.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_ruby.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          Sauvegarde de la map terminée !
          /Génération de l'image...
@@ -1054,6 +1072,7 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
@@ -1192,8 +1211,12 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Chargement de : Zombie_Dead0.png
          Chargement de : Zombie_Dead1.png
          Chargement de : Zombie_Dead2.png
-         Chargement de : Data/Sounds/Entities/Zombie0.wav
-         Chargement de : Data/Sounds/Entities/Zombie1.wav
+         Chargement de : Data/Sounds/Entities/Zombies/Zombie0.wav
+         Chargement de : Data/Sounds/Entities/Zombies/Zombie1.wav
+         Chargement de : Data/Sounds/Entities/Zombies/Zombie2.wav
+         Chargement de : Data/Sounds/Entities/Zombies/Zombie3.wav
+         Chargement de : Data/Sounds/Entities/Zombies/Zombie4.wav
+         Chargement de : Data/Sounds/Entities/Zombies/Zombie5.wav
          Chargement de : Data/Entities/Resources/Monsters/Zombies/Zombie.char.hs terminé
          
          Chargement du monstre : Data/Entities/Resources/Monsters/Zombies/Zombie_crawl.char.hs
@@ -1210,6 +1233,89 @@ ERREUR : Impossible de charger : Data/Sounds/Hein.wav
          Initialisation de l'herbe terminée.
          Initialisation des décors terminée.
          Initialisation des entités terminée.
+         
+         Sauvegarde de la map : Data/User/Temps/Agrarian_lands0.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Agrarian_lands0.map.hs.emap.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Sword_2h_two_hands_sword.item.hs
+         /Sauvegarde de Sword_1h_long_sword.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Helmet_horned_barbute.item.hs
+         /Sauvegarde de Helmet_horned_barbute.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Litanie_0.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Craft_ore_gold.item.hs
+         /Sauvegarde de Craft_ore_gold.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Shield_great_shield.item.hs
+         /Sauvegarde de Armband_gauntlet.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
+         /Sauvegarde de Helmet_iron_cap.item.hs
+         /Sauvegarde de Armor_barbarian.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Sword_1h_holy_sword.item.hs
+         /Sauvegarde de Drawing_golem_coal.item.hs
+         /Sauvegarde de Craft_gem_ruby.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_faith0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Craft_gem_ruby.item.hs
+         /Ecriture des objets.
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Craft_ore_iron.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
+         /Sauvegarde de Armor_chainmail.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Crossbow_crossbow_fire.item.hs
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
          
          Sauvegarde de la map : Data/User/Temps/Agrarian_lands0.map.hs
          Sauvegarde de la map_entite : Data/User/Temps/entites_map_Agrarian_lands0.map.hs.emap.hs
