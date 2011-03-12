@@ -31,7 +31,7 @@ $
 	$
 	*
 		*Sword_1h_holy_sword.item.hs
-		r50
+		r15
 		*Sword_1h_small_sword.item.hs
 		r2500
 	$

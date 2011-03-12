@@ -82,7 +82,7 @@ $
 	
 	*
 		*Drawing_golem_coal.item.hs
-		r1000
+		r1500
 	$
 	*
 		*Drawing_helmet_circlet.item.hs

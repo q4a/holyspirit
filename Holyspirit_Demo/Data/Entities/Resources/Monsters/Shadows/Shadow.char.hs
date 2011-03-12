@@ -23,11 +23,11 @@ $
 	$
 	*
 		*Set_TearfulWidow_circlet.item.hs
-		r100
+		r25
 	$
 	*
 		*Set_TearfulWidow_necklage.item.hs
-		r100
+		r25
 	$
 	*
 		*Craft_gem_ruby.item.hs

@@ -17,10 +17,10 @@ $
 		r5000
 	$
 	*
+		*Armor_barbarian.item.hs
+		r50
 		*Armor_chainmail.item.hs
 		r5000
-		*Armor_barbarian.item.hs
-		r200
 	$
 	*
 		*Helmet_horned_barbute.item.hs
@@ -28,7 +28,7 @@ $
 	$
 	*
 		*Sword_2h_katzbalger.item.hs
-		r200
+		r50
 		*Sword_2h_two_hands_sword.item.hs
 		r5000
 	$
@@ -37,7 +37,7 @@ $
 		*Dagger_ceremonial_dagger.item.hs
 		r5000
 		*Dagger_scarifier.item.hs
-		r200
+		r50
 	$
 	*
 		*Necklage_necklage.item.hs
@@ -46,10 +46,6 @@ $
 	*
 		*Ring_ring.item.hs
 		r1000
-	$
-	*
-		*Armor_barbarian.item.hs
-		r200
 	$
 	
 $

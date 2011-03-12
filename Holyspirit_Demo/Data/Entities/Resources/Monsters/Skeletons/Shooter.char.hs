@@ -30,18 +30,12 @@ $
 		r2500
 	$
 	*
-		*Crossbow_crossbow.item.hs
-		r2500
-		*Crossbow_crossbow_fire.item.hs
-		r100
-	$
-	*
 		*Gun_arquebuse.item.hs
 		r2500
 	$
 	*
 		*Crossbow_crossbow_fire.item.hs
-		r50
+		r15
 		*Crossbow_crossbow.item.hs
 		r2500
 	$
