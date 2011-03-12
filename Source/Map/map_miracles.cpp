@@ -695,7 +695,7 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
                 cible = miracleEnCours.m_coordonneeCible;
         }
 
-        coordonnee positionCase;
+        coordonnee positionCase = cible;
         positionCase.x = cible.x-1;
         positionCase.y = cible.y-1;
 
@@ -703,6 +703,10 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
             positionCase.x=0;
         if (positionCase.y<0)
             positionCase.y=0;
+        if (positionCase.x>=m_dimensions.x)
+            positionCase.x=m_dimensions.x - 1;
+        if (positionCase.y>=m_dimensions.y)
+            positionCase.y=m_dimensions.y - 1;
 
         while ((getCollision(positionCase.x,positionCase.y) || ( positionCase.x==hero->m_personnage.getCoordonnee().x && positionCase.y==hero->m_personnage.getCoordonnee().y )) && invoquer )
         {
@@ -753,11 +757,17 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
 
             m_monstre.push_back(Monstre ());
 
+            if(effet.m_informations[1] == 1)
+                m_monstre.back().setCoordonneePixel2(personnage->getCoordonneePixel());
+
+            positionCase.x = (int)(m_monstre.back().getCoordonneePixel().x/COTE_TILE + 0.5);
+            positionCase.y = (int)(m_monstre.back().getCoordonneePixel().y/COTE_TILE + 0.5);
+
             m_monstre.back().Charger(numero,&m_ModeleMonstre[numero]);
             m_monstre.back().setCoordonnee(positionCase),m_monstre.back().setDepart();
 
-            if(effet.m_informations[0] == 1)
-                m_monstre.back().setCoordonneePixel2(info.m_position);
+            if(effet.m_informations[1] == 1)
+                m_monstre.back().setCoordonneePixel2(personnage->getCoordonneePixel());
 
             if(effet.m_informations[1] == 1)
             m_monstre.back().setForcedAngle(personnage->getAngle());
@@ -774,6 +784,7 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
                 hero->m_amis.push_back(&m_monstre.back());
 
             info.m_cible = &m_monstre.back();
+
 
             m_decor[1][positionCase.y][positionCase.x].setMonstre(m_monstre.size()-1);
 
@@ -1321,6 +1332,7 @@ void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,fl
 {
     bool continuerb = true;
     for (int i=0;i<(int)personnage->m_miracleEnCours.size() && continuerb;++i)
+    if(personnage->m_miracleEnCours[i].m_modele >= 0 && personnage->m_miracleEnCours[i].m_modele < (int)miracles.size())
     {
         bool detruire = false;
 
