@@ -756,6 +756,12 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
             m_monstre.back().Charger(numero,&m_ModeleMonstre[numero]);
             m_monstre.back().setCoordonnee(positionCase),m_monstre.back().setDepart();
 
+            if(effet.m_informations[0] == 1)
+                m_monstre.back().setCoordonneePixel2(info.m_position);
+
+            if(effet.m_informations[1] == 1)
+            m_monstre.back().setForcedAngle(personnage->getAngle());
+
             coordonnee pos;
             pos.x=(int)(((m_monstre.back().getCoordonneePixel().x-m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE*64));
             pos.y=(int)(((m_monstre.back().getCoordonneePixel().x+m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;

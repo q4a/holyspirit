@@ -2181,7 +2181,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 else
                     Iter_monstre->m_compteur=0;
 
-                if (Iter_monstre->EnVie())
+                //if (Iter_monstre->EnVie())
                     if ((int)(Iter_monstre->getCoordonneePixel().y/COTE_TILE + 0.5) != y
                      || (int)(Iter_monstre->getCoordonneePixel().x/COTE_TILE + 0.5) != x)
                         if ( (int)(Iter_monstre->getCoordonneePixel().x/COTE_TILE + 0.5) >= 0 && (int)(Iter_monstre->getCoordonneePixel().x/COTE_TILE + 0.5) < m_dimensions.x

@@ -648,7 +648,11 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 }
                 else if (script->m_instructions[no].nom=="getState" && monstre != -1)
                 {
-                    if (m_monstre[monstre].getEtat() != (int)script->getValeur(no, 0))
+                      if (m_monstre[monstre].getEtat() != script->getValeur(no, 0)
+                            || (script->m_instructions[no].m_valeurs.size() >= 2
+                                 && m_monstre[monstre].m_entite_graphique.m_noAnimation != script->getValeur(no, 1)))
+
+                  //  if (m_monstre[monstre].getEtat() != (int)script->getValeur(no, 0))
                         ok=false;
                 }
                 else if (script->m_instructions[no].nom=="numberInvocation" && monstre != -1)

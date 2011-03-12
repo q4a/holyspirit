@@ -477,7 +477,10 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
                 {
                     if(jeu->hero.m_raccourcis[i].miracle)
                         newmiracle = jeu->hero.m_raccourcis[i].no;
-                    else
+                    else if(jeu->hero.m_raccourcis[i].no != jeu->hero.m_no_schema_craft &&
+                            jeu->hero.m_raccourcis[i].no != jeu->hero.m_no_result_craft &&
+                            jeu->hero.m_raccourcis[i].no != jeu->hero.m_no_schema_bless &&
+                            jeu->hero.m_raccourcis[i].no != jeu->hero.m_no_result_bless)
                         jeu->hero.UtiliserObjet(jeu->hero.m_raccourcis[i].no);
                 }
 

@@ -2705,6 +2705,12 @@ void Hero::AfficherRaccourcis()
                                             m_inventaire[m_raccourcis[i].no].getPositionImage().y,
                                             m_inventaire[m_raccourcis[i].no].getPositionImage().w,
                                             m_inventaire[m_raccourcis[i].no].getPositionImage().h));
+
+                if( m_raccourcis[i].no == m_no_schema_craft ||
+                    m_raccourcis[i].no == m_no_result_craft ||
+                    m_raccourcis[i].no == m_no_schema_bless ||
+                    m_raccourcis[i].no == m_no_result_bless)
+                    sprite.SetColor(sf::Color(32,32,32));
             }
 
             sprite.Resize(m_classe.position_raccourcis[i].w, m_classe.position_raccourcis[i].h);
@@ -3640,7 +3646,11 @@ void Hero::AutoTrierInventaire()
     for(int o = 0 ; o < 9 ; ++o)
     for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
     if(m_inventaire[i].m_type == ordre_tri[o]
-    && m_inventaire[i].m_equipe < 0)
+    && m_inventaire[i].m_equipe < 0
+    && m_no_schema_bless != i
+    && m_no_schema_craft != i
+    && m_no_result_craft != i
+    && m_no_result_bless != i)
     {
         std::vector<std::string> nom_objets_bis;
         std::vector<int> taille_objets_bis;
@@ -3697,32 +3707,54 @@ void Hero::AutoTrierInventaire()
     for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
     if(m_inventaire[i].m_type == ordre_tri[t]
     && m_inventaire[i].m_equipe < 0
-    && m_inventaire[i].getChemin() == nom_objets[n])
+    && m_inventaire[i].getChemin() == nom_objets[n]
+    && m_no_schema_bless != i
+    && m_no_schema_craft != i
+    && m_no_result_craft != i
+    && m_no_result_bless != i)
     {
         for(int k = 0 ; k < 8 ; ++k)
             if(m_raccourcis[k].miracle == false
             && m_raccourcis[k].no == (int)i)
                 new_raccourci[k] = inventaire_bis.size();
 
-        if(m_no_schema_craft == (int)i)
-            new_no_schema_craft = inventaire_bis.size();
-        if(m_no_schema_bless == (int)i)
-            new_no_schema_bless = inventaire_bis.size();
-        if(m_no_result_craft == (int)i)
-            new_no_result_craft = inventaire_bis.size();
-        if(m_no_result_bless == (int)i)
-            new_no_result_bless = inventaire_bis.size();
-
         inventaire_bis.push_back(m_inventaire[i]);
     }
 
     for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
-        if(m_inventaire[i].m_equipe >= 0)
+        if(m_inventaire[i].m_equipe >= 0
+        || m_no_schema_bless == i
+        || m_no_schema_craft == i
+        || m_no_result_craft == i
+        || m_no_result_bless == i)
+        {
+            if(m_no_schema_craft == (int)i)
+                new_no_schema_craft = inventaire_bis.size();
+            if(m_no_schema_bless == (int)i)
+                new_no_schema_bless = inventaire_bis.size();
+            if(m_no_result_craft == (int)i)
+                new_no_result_craft = inventaire_bis.size();
+            if(m_no_result_bless == (int)i)
+                new_no_result_bless = inventaire_bis.size();
             inventaire_bis.push_back(m_inventaire[i]);
+        }
+
 
     m_inventaire.clear();
     for(unsigned i = 0 ; i < inventaire_bis.size() ; ++i)
-        m_inventaire.push_back(inventaire_bis[i]), m_inventaire.back().m_dejaTrie = (inventaire_bis[i].m_equipe >= 0);
+    {
+        m_inventaire.push_back(inventaire_bis[i]);
+        m_inventaire.back().m_dejaTrie = (inventaire_bis[i].m_equipe >= 0);
+
+        if(new_no_schema_craft == (int)i)
+            m_inventaire.back().m_dejaTrie = true;
+        if(new_no_schema_bless == (int)i)
+            m_inventaire.back().m_dejaTrie = true;
+        if(new_no_result_craft == (int)i)
+            m_inventaire.back().m_dejaTrie = true;
+        if(new_no_result_bless == (int)i)
+            m_inventaire.back().m_dejaTrie = true;
+    }
 
     for(int k = 0 ; k < 8 ; ++k)
         if(m_raccourcis[k].miracle == false)
@@ -3785,7 +3817,11 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                     RangerObjet(m_objetEnMain);
                     m_objetEnMain = -1;
                 }
-                else if(!m_raccourcis[i].miracle)
+                else if(!m_raccourcis[i].miracle &&
+                        m_raccourcis[i].no != m_no_schema_craft &&
+                        m_raccourcis[i].no != m_no_result_craft &&
+                        m_raccourcis[i].no != m_no_schema_bless &&
+                        m_raccourcis[i].no != m_no_result_bless)
                 {
                     m_objetEnMain = m_raccourcis[i].no;
                     m_raccourcis[i].no = -1;
@@ -3824,7 +3860,9 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                         for (int z=0;z<(int)m_inventaire.size();z++)
                             for (int y=m_inventaire[z].getPosition().y;y<m_inventaire[z].getPosition().y+m_inventaire[z].getTaille().y;y++)
                                 for (int x=m_inventaire[z].getPosition().x;x<m_inventaire[z].getPosition().x+m_inventaire[z].getTaille().x;x++)
-                                    if (m_inventaire[z].m_equipe==-1)
+                                    if (m_inventaire[z].m_equipe==-1
+                                     && z != m_no_schema_craft && z != m_no_result_craft
+                                     && z != m_no_schema_bless && z != m_no_result_bless)
                                         if (j==x&&i==y&&m_objetEnMain!=z)
                                         {
                                             if (temp!=z&&temp!=-1)
@@ -3853,7 +3891,9 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
         else
         {
             for (int z=0;z<(int)m_inventaire.size();z++)
-                if (m_inventaire[z].m_equipe==-1)// && m_inventaire[z].getPrix() >= 0)
+                if (m_inventaire[z].m_equipe==-1
+                && z != m_no_schema_craft && z != m_no_result_craft
+                && z != m_no_schema_bless && z != m_no_result_bless)// && m_inventaire[z].getPrix() >= 0)
                     if (caseVisee.x >= m_inventaire[z].getPosition().x
                       &&caseVisee.x <  m_inventaire[z].getPosition().x+m_inventaire[z].getTaille().x
                       &&caseVisee.y >= m_inventaire[z].getPosition().y
@@ -4109,6 +4149,8 @@ void Hero::GererCraft(std::vector<Objet> *trader)
                         Objet result;
                         result.Charger(m_inventaire[m_no_schema_craft].m_craft_result, m_caracteristiques);
                         result.Generer(0);
+
+                        moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
 
                         m_inventaire.push_back(result);
                         m_no_result_craft = m_inventaire.size() - 1;

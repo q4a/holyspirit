@@ -232,6 +232,12 @@ void Configuration::ChargerInit()
                 fichier>>temp;
                 sound_menu = moteurSons->AjouterBuffer(temp);
             }
+            if (chaine== "sound_create_item:")
+            {
+                std::string temp;
+                fichier>>temp;
+                sound_create_item = moteurSons->AjouterBuffer(temp);
+            }
 
 
             if (chaine== "basic_cursor:")
