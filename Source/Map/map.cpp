@@ -2154,7 +2154,10 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 {
                     TesterPoussable(*Iter_monstre, temps, monstre);
 
-                    bool seDeplacer = Iter_monstre->SeDeplacer(temps*100);
+                    bool seDeplacer = false;
+
+                    if(Iter_monstre->m_actif)
+                        seDeplacer = Iter_monstre->SeDeplacer(temps*100);
 
                     Script *script=&Iter_monstre->m_scriptAI;
                     if ((int)script->m_instructions.size()>0)
@@ -2326,8 +2329,8 @@ bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, i
     if(cible != NULL && monstre != &hero->m_personnage)
         monstre->m_cible = cible;
 
-    for (int x=monstre->getCoordonnee().x-5;x<=5+monstre->getCoordonnee().x;x++)
-        for (int y=monstre->getCoordonnee().y-5;y<=5+monstre->getCoordonnee().y;y++)
+    for (int x=monstre->getCoordonnee().x-10;x<=10+monstre->getCoordonnee().x;x++)
+        for (int y=monstre->getCoordonnee().y-10;y<=10+monstre->getCoordonnee().y;y++)
             if (x>=0&&y>=0&&x<m_dimensions.x&&y<m_dimensions.y)
                 for (unsigned o = 0 ; o < m_decor[1][y][x].getMonstre().size() ; ++o)
                     if (m_decor[1][y][x].getMonstre()[o]>=0&&m_decor[1][y][x].getMonstre()[o]<(int)m_monstre.size())

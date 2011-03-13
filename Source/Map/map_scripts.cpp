@@ -375,6 +375,10 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             Script_Craft(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="bless" && monstre != -1)
             Script_Bless(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
+        else  if (script->m_instructions[noInstruction].nom=="setFriendly" && monstre != -1)
+        {
+            m_monstre[monstre].m_friendly = script->getValeur(noInstruction, 0);
+        }
         else if (script->m_instructions[noInstruction].nom=="teleportation_menu")
             Script_Potale(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="add_checkpoint")
