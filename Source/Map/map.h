@@ -59,6 +59,8 @@ public:
     void CalculerOmbresEtLumieres();
     void Detruire();
 
+    void DelEffet(int no);
+
     //int GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre, const coordonnee lanceur, const coordonnee cible,int couche);
 
     void GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);

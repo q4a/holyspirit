@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "../constantes.h"
 #include "hero.h"
 #include "../globale.h"
+#include "../jeu.h"
 
 
 #include <iostream>
@@ -40,7 +41,7 @@ using namespace sf;
 int crypter(int);
 int decrypter(int);
 
-int TrierInventaire(std::vector<Objet>*, int, bool = 0);
+//int TrierInventaire(std::vector<Objet>*, int, bool = 0);
 
 std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte);
 
@@ -2993,7 +2994,7 @@ void Hero::GererTemps(float temps)
         m_caracteristiques.vie=m_caracteristiques.maxVie;
         m_caracteristiques.foi=m_caracteristiques.maxFoi;
 
-        UtiliserMiracle(0,NULL,coordonnee ());
+        UtiliserMiracle(0,NULL,coordonnee (),NULL);
     }
 
     m_personnage.setCaracteristique(temp);
@@ -3279,7 +3280,7 @@ void Hero::StopMiraclesCharme()
             }
 }
 
-bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coord)
+bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coord, Jeu *jeu)
 {
   /*  float m=atan2((double)(m_personnage.getCoordonnee().x-cible_coord.x),(double)(m_personnage.getCoordonnee().y-cible_coord.y));
     m+=M_PI/3;
@@ -3352,8 +3353,12 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                                     if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_chemin == m_classe.miracles[miracle].m_chemin)
                                     {
                                         for (int o = 0; o < (int) m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
+                                        {
                                             if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == EFFET)
                                                 m_personnage.m_miracleEnCours[i].m_infos[o]->m_cible->m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_IDObjet].m_effet.m_actif = false;
+                                            if(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele].m_effets[m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == EFFET_GRAPHIQUE)
+                                                jeu->map->DelEffet(m_personnage.m_miracleEnCours[i].m_infos[o]->m_IDObjet);
+                                        }
 
                                         m_personnage.m_miracleEnCours.erase(m_personnage.m_miracleEnCours.begin()+i--);
                                     }

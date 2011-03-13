@@ -506,7 +506,7 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
                 else
                     cible = eventManager->getCasePointee();
 
-                if (jeu->hero.UtiliserMiracle(newmiracle, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible))
+                if (jeu->hero.UtiliserMiracle(newmiracle, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
                 {
                     jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
 
@@ -736,7 +736,7 @@ void c_Jeu::Evenements(Jeu *jeu)
 
                     jeu->hero.StopMiraclesFrappe();
                     if(ok)
-                    if (jeu->hero.UtiliserMiracle(jeu->hero.m_miracle_gauche, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible))
+                    if (jeu->hero.UtiliserMiracle(jeu->hero.m_miracle_gauche, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
                     {
                         attaque_normale = false;
                         eventManager->StopEvenement(Mouse::Left,EventClicA);
@@ -841,7 +841,7 @@ void c_Jeu::Evenements(Jeu *jeu)
                     else
                         cible = eventManager->getCasePointee();
 
-                    if (jeu->hero.UtiliserMiracle(jeu->hero.m_personnage.m_miracleALancer, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible))
+                    if (jeu->hero.UtiliserMiracle(jeu->hero.m_personnage.m_miracleALancer, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
                     {
                         eventManager->StopEvenement(Mouse::Right,EventClic);
 

@@ -61,6 +61,8 @@ struct Item_Used
     float       max_time;
 };
 
+class Jeu;
+
 class Hero
 {
 public:
@@ -124,7 +126,7 @@ public:
     void AutoTrierInventaire();
     void AutoTrierCoffre();
 
-    bool UtiliserMiracle(int, Personnage*, coordonnee );
+    bool UtiliserMiracle(int, Personnage*, coordonnee , Jeu *);
     void StopMiraclesFrappe();
     void StopMiraclesCharme();
 

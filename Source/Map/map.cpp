@@ -1954,6 +1954,12 @@ void Map::MusiquePlay()
         m_musiqueEnCours=0;
 }
 
+void Map::DelEffet(int no)
+{
+    if(no >= 0 && no < m_effets.size())
+        m_effets[no].m_actif = false;
+}
+
 void Map::GererProjectilesEtEffets(Hero *hero,float temps)
 {
     coordonnee vueMin,vueMax;
