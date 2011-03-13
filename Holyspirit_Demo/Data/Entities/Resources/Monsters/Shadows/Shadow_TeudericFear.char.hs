@@ -1,10 +1,10 @@
 *Data/Entities/Resources/Monsters/Shadows/Shadow.rs.hs
 $
-* n7 $
+* n50 $
 $
-* 0
+* 3
 $
-*v50 di75 da100 m0.5 h0 a20 n2 i0 x80 u1 c0 i1 $
+*v750 di150 da200 m0.5 h0 a200 n2 i0 x120 u1 c0 i1 $
 $
 *Data/Entities/Scripts/Monsters/Shadow.script.hs
 $

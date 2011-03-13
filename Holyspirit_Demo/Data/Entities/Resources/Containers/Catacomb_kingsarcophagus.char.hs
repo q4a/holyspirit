@@ -1,8 +1,8 @@
-*Data/Entities/Resources/Containers/Catacomb_sarcophagus.rs.hs
+*Data/Entities/Resources/Containers/Catacomb_kingsarcophagus.rs.hs
 $
-	* n38 $
+	* n48 $
 $
-	* 0
+	* 3
 $
 	*v1 m0 o0 a0 n-1 f1 p1 u1 $
 $
@@ -14,18 +14,18 @@ $
 		r2000
 	$
 	*
+		*Craft_gem_ruby.item.hs
+		r2000
+	$
+	*
+		*Craft_gem_emerald.item.hs
+		r2000
+	$
+	*
 		*Craft_gem_emerald.item.hs
 		r2000
 	$
 	
-	*
-		*Potion_heal0.item.hs
-		r4000
-	$
-	*
-		*Potion_faith0.item.hs
-		r4000
-	$
 	
 	*
 		*Armband_gauntlet.item.hs
@@ -81,15 +81,23 @@ $
 	$
 	*
 		*Set_Teuderic_ring.item.hs
-		r25
+		r75
 	$
 	*
 		*Set_Teuderic_crowl.item.hs
-		r25
+		r75
 	$
 	*
 		*Set_Teuderic_breastplate.item.hs
-		r25
+		r75
+	$
+	*
+		*Litanie_0.item.hs
+		r2000
+	$
+	*
+		*Litanie_0.item.hs
+		r2000
 	$
 	*
 		*Litanie_0.item.hs

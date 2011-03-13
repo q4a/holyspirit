@@ -151,4 +151,9 @@ Schéma expliquant la conception d'une épée courte.
 Schéma : Arbalète de poing
 Schéma expliquant la conception d'une arbalète de poing.
 Sceau de Teudéric
-Anneau ayant appertenu au glorieux Teudéric.
+Anneau ayant appertenu au glorieux Roi Teudéric.
+Couronne de Teudéric
+Couronne ayant appertenu au glorieux Roi Teudéric.
+Plastron de Teudéric
+Plastron ayant appertenu au glorieux Roi Teudéric.
+Atours de Teudéric

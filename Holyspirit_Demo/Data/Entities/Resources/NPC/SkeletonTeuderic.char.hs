@@ -1,66 +1,58 @@
-*Data/Entities/Resources/Monsters/Skeletons/LordSkeleton.rs.hs
+*Data/Entities/Resources/NPC/SkeletonTeuderic.rs.hs
 $
-* n34 $
+* n49 $
 $
-* 2
+* 3
 $
-*v250 di50 da100 m0.45 o1 a50 n2 t1 x50 $
+*v2000 di100 da200 m0.35 o1 a500 n10 t1.15 x80 f1 u1 p1  $
 $
-*Data/Entities/Scripts/Monsters/Standard.script.hs
+*Data/Entities/Scripts/NPC/SkeletonTeuderic.script.hs
 $
 	*
 		*Armband_gauntlet.item.hs
-		r2500
+		r5000
 	$
 	*
 		*Boots_leather.item.hs
-		r2500
+		r5000
 	$
 	*
-		*Armor_barbarian.item.hs
-		r25
 		*Armor_chainmail.item.hs
-		r2500
+		r5000
 	$
 	*
-		*Helmet_horned_barbute.item.hs
-		r2500
+		*Helmet_iron_cap.item.hs
+		r5000
 	$
 	*
 		*Sword_2h_katzbalger.item.hs
-		r25
+		r100
 		*Sword_2h_two_hands_sword.item.hs
-		r2500
-	$
-	
-	*
-		*Dagger_ceremonial_dagger.item.hs
-		r2500
-		*Dagger_scarifier.item.hs
-		r25
+		r5000
 	$
 	*
 		*Necklage_necklage.item.hs
-		r500
+		r1000
 	$
 	*
 		*Ring_ring.item.hs
-		r500
+		r1000
 	$
 	*
 		*Set_Teuderic_ring.item.hs
-		r15
+		r100
 	$
 	*
 		*Set_Teuderic_crowl.item.hs
-		r15
+		r100
 	$
 	*
 		*Set_Teuderic_breastplate.item.hs
-		r15
+		r100
 	$
 	
 $
 *Data/Entities/Particles/Human_bones.ps.hs
 $
+*Data/Miscs/Miracles/Quest/Quest.miracle.hs
 $

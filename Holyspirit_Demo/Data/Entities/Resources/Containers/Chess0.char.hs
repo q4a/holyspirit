@@ -76,7 +76,15 @@ $
 		r2000
 	$
 	*
-		*Ring_teuderic_ring.item.hs
+		*Set_Teuderic_ring.item.hs
+		r25
+	$
+	*
+		*Set_Teuderic_crowl.item.hs
+		r25
+	$
+	*
+		*Set_Teuderic_breastplate.item.hs
 		r25
 	$
 	*

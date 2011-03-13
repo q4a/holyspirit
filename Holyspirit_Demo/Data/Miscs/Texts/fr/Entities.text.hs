@@ -46,8 +46,8 @@ Sergent Waldemar
 Ecritoire
 Paysan corrompu
 Rejeton
-
-
-
+Tombeau du Roi Teudéric
+Roi Teudéric
+Tourment de Teudéric
 
 

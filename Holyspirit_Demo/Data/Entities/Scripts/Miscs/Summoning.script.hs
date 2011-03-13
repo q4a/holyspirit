@@ -22,5 +22,10 @@ main
 		setCollision * 0
 	end
 
+	if numberInvocation * 0
+	then else
+		variable * 3 * 1
+	end
+
 	setInvocationID * variable 1
 end 

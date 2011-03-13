@@ -173,7 +173,7 @@ Oué, le faucheur ! Tu connais pas ? C'est une sorte de grand échalas avec une tê
 
 ///DOORS///
 C'est fermé à clé.
-
+C'est fermé.
 
 //MISSED RELIC///
 Le reliquaire de Sainte Galswinthe est vide !
@@ -193,4 +193,18 @@ Ca... Je ne n'en sais rien. Certains ont incriminé un voleur, d'autres un animal
 
 
 
+
+
+
+
+///TEUDERIC///
+Salut étranger bla bla je suis Teudéric, si tu m'aide à buter ces fantomes je t'offrirai mon trésor.
+Alors, étranger, es-tu décidé à m'aider ?
+Ca marche !
+Mouahaha, je vais l'arracher sur ton cadavre, ouai !
+Je vais y réfléchir.
+A moi soldat ! Sus à l'ennemi !
+Tu va crever, vermine !
+Enfin... la liberté...
+Aarrgggh, on se reverra en Enfer !
 

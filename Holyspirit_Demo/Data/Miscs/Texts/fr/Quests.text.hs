@@ -1,5 +1,5 @@
-Je dois aller dans les catacombes voir ce qu'il s'y passe.
 Les choses qui rodaient dans les catacombes
+Je dois aller dans les catacombes voir ce qu'il s'y passe.
 J'ai retrouvé le journal du moine Rédimus. Celui-ci indique qu'il se trame des choses terrifiantes dans les catacombes. Je dois en parler avec l'Abbé.
 L'abbé m'a dit de retrouver les quatre reliques de l'abbaye pour pouvoir prononcer l'incantation purificatrice. 
 Je dois escorter un Frère jusqu'à l'Oculus, au centre des catacombes, afin qu'il accomplisse le Rituel de Purification.
@@ -33,3 +33,11 @@ La jeune femme n'était hélas plus elle-même. J'ai dû mettre fin à sa nouvelle ho
 
 Une créature dans la nuit
 FAUCHEUR
+
+
+
+Le Roi Teudéric
+J'ai décidé d'aider Teudéric à combattre ses fantomes.
+J'ai aidé Teudéric.
+J'ai décidé d'affronter Teudéric et prendre son trésor.
+J'ai échoué, Teudéric s'est fait absorber par ses fantômes.
