@@ -95,7 +95,7 @@ class Configuration : public CSingleton<Configuration>
     std::string water_map;
     std::string music_menu;
     std::string mainscreen_menu;
-    int sound_menu,sound_create_item;
+    int sound_menu,sound_create_item, sound_select_miracle;
     std::string ambientShadow_tileset;
 
     std::string miracle_item_physic,miracle_item_fire, miracle_item_holy, miracle_item_poison,

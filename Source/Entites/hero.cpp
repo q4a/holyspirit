@@ -909,23 +909,18 @@ void Hero::ChargerModele(bool tout)
 
 void Hero::CalculerOrdreAffichage()
 {
-
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         m_ordreAffichage[i]=-1;
-
-    int ordre;
-
 
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
     {
         if (m_cheminModele[i] != "")
         {
-            ordre = m_personnage.getOrdre(&m_modelePersonnage[i]);
+            int ordre = m_personnage.getOrdre(&m_modelePersonnage[i]);
             if (ordre!=-10)
                 m_ordreAffichage[(int)(NOMBRE_MORCEAU_PERSONNAGE/2+ordre)]=i;
         }
     }
-
 }
 
 void Hero::Afficher()
@@ -2047,6 +2042,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             if(add_point)
             {
                 moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+                moteurSons->JouerSon(configuration->sound_select_miracle,coordonnee (0,0),0);
 
                 if (m_personnage.getCaracteristique().miracles_restant > 0)
                     if (m_classe.miracles[i].m_buf == -1 || (m_classe.miracles[i].m_buf != -1 && m_lvl_miracles[m_classe.miracles[i].m_buf] > 0))
@@ -2081,6 +2077,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             {
                 if (m_miracleEnMain >= 0)
                 {
+                    moteurSons->JouerSon(configuration->sound_select_miracle,coordonnee (0,0),0);
                     m_raccourcis[i].no = m_miracleEnMain;
                     m_raccourcis[i].miracle = true;
                     m_miracleEnMain = -1;
@@ -2098,6 +2095,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
         {
             if (m_miracleEnMain >= 0)
             {
+                moteurSons->JouerSon(configuration->sound_select_miracle,coordonnee (0,0),0);
                 m_miracle_gauche = m_miracleEnMain;
                 m_miracleEnMain = -1;
             }
@@ -2114,6 +2112,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
         {
             if (m_miracleEnMain >= 0)
             {
+                moteurSons->JouerSon(configuration->sound_select_miracle,coordonnee (0,0),0);
                 m_personnage.m_miracleALancer = m_miracleEnMain;
                 m_miracleEnMain = -1;
             }
@@ -3083,7 +3082,7 @@ void Hero::RecalculerCaracteristiques(bool bis)
             }
 
     for (unsigned i=0;i<liste_set.size();++i)
-        for (unsigned k=0;(int)k < liste_set[i].m_nombre;++k)
+        for (unsigned k=0;(int)k < liste_set[i].m_nombre && k < liste_set[i].m_benedictions.size();++k)
         {
             for (int j=0;j<(int)liste_set[i].m_benedictions[k].size();++j)
                 switch (liste_set[i].m_benedictions[k][j].type)
@@ -3176,7 +3175,7 @@ void Hero::RecalculerCaracteristiques(bool bis)
             }
 
     for (unsigned i=0;i<liste_set.size();++i)
-        for (unsigned k=0; (int)k<liste_set[i].m_nombre;++k)
+        for (unsigned k=0; (int)k<liste_set[i].m_nombre && k < liste_set[i].m_benedictions.size();++k)
             for (int j=0;j<(int)liste_set[i].m_benedictions[k].size();++j)
                 switch (liste_set[i].m_benedictions[k][j].type)
                 {

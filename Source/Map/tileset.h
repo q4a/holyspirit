@@ -56,7 +56,7 @@ class Tileset
 	const   coordonnee &getPositionDuTile(int tile, int type = 0);
 	bool    getCollisionTile(int tile);
 	int     getAnimationTile(int tile, int type = 0);
-	int     getSonTile(int tile);
+	std::vector<int>     getSonTile(int tile);
 	const   Lumiere &getLumiereDuTile(int tile);
 	bool    getOmbreDuTile(int tile);
 	bool    getReflectionDuTile(int tile);

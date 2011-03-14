@@ -828,7 +828,7 @@ void Personnage::InfligerDegats(float degats, int type, float temps)
 
             while(!m_entite_graphique.m_tileset->JouerSon(m_entite_graphique.m_tileset->getSonSpecial(0, random++),position, true) && nbr++ < m_entite_graphique.m_tileset->getNombreSonsSpecial(0))
             {
-                if(random > m_entite_graphique.m_tileset->getNombreSonsSpecial(0))
+                if(random >= m_entite_graphique.m_tileset->getNombreSonsSpecial(0))
                     random = 0;
             }
         }

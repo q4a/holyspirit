@@ -34,7 +34,7 @@ Tile::~Tile()
 {
 }
 
-void Tile::setTile( coordonnee positionDansLImage,int image,bool collision,int animation,int son,Lumiere lumiere, coordonnee lumiere_decal,bool ombre,
+void Tile::setTile( coordonnee positionDansLImage,int image,bool collision,int animation,std::vector<int> son,Lumiere lumiere, coordonnee lumiere_decal,bool ombre,
                     bool reflection,char orientation,bool transparent,coordonnee centre,float temps, int opacity, int layer,
                     int attaque, int ordre, int angle, int ambientShadow)
 {
@@ -82,7 +82,7 @@ int Tile::getAnimation()
 {
     return m_animation;
 }
-int Tile::getSon()
+std::vector<int> Tile::getSon()
 {
     return m_son;
 }
@@ -149,6 +149,6 @@ void Tile::setImage(int image)
 }
 void Tile::setSon(int son)
 {
-    m_son=son;
+    m_son.push_back(son);//son;
 }
 

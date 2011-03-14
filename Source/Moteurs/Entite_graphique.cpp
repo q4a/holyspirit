@@ -135,8 +135,15 @@ void Entite_graphique::NextTile(bool cur,bool no_sound)
         }
 
 
-        if(m_tileset->getSonTile(m_noAnimation) >= 0 && !no_sound)
-            m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation),position,option_sonUnique,m_sound_volume);
+        if(!m_tileset->getSonTile(m_noAnimation).empty() && !no_sound)
+        {
+            const int n = m_tileset->getSonTile(m_noAnimation).size();
+            int no = rand()%n, nbr = 0;
+
+            while(!m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation)[no++],position,option_sonUnique,m_sound_volume) && nbr++ < n)
+                if(no >= n)
+                    no = 0;
+        }
 
 
         if(configuration->Lumiere && m_light.ID() == -1 && m_tileset->getLumiereDuTile(m_noAnimation).intensite > 0)

@@ -94,7 +94,7 @@ void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
 void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
 {
     coordonnee position,centre(-100,-100,-100,-100), coordMinimap(0,0,0,0);
-    int animation=m_tile.size(),son=-1,image=0,imageMM = 0;
+    int animation=m_tile.size(),image=0,imageMM = 0;
     Lumiere lumiere;
     lumiere.intensite=lumiere_base;
     lumiere.rouge = -1;
@@ -113,6 +113,7 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
     std::string nom;
     int distortionTile = -1;
     std::vector <int> shadowmapTile;
+    std::vector <int> son;
     int ambientShadow = -1;
 
 
@@ -144,7 +145,8 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
             fichier>>animation;
             break;
         case 's':
-            fichier>>son;
+            son.push_back(-1);
+            fichier>>son.back();
             break;
         case 'o':
             fichier>>ombre;
@@ -458,11 +460,10 @@ int Tileset::getAnimationTile(int tile,int type)
 }
 
 
-int Tileset::getSonTile(int tile)
+std::vector<int> Tileset::getSonTile(int tile)
 {
     if (tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getSon();
-    return 0;
 }
 
 int Tileset::getTaille(int type)
