@@ -314,8 +314,8 @@ void c_Jeu::Deplacements(Jeu *jeu)
     position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
     Listener::SetGlobalVolume((float)configuration->volume);
-    Listener::SetPosition(-position.x, 32, position.y);
-    Listener::SetDirection(0, -1, 1);
+    Listener::SetPosition(-position.x, 8, position.y);
+   // Listener::SetDirection(0, -0.5, 1);
     jeu->map->MusiquePlay();
     jeu->sonMort.SetPosition(position.x,0,position.y);
 }
