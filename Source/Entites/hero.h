@@ -172,6 +172,7 @@ public:
     std::vector<Document>  m_docs;
     std::vector<Potale> m_potales;
     std::vector<int> m_lvl_miracles;
+    std::vector<int> m_lvl_miracles_new;
 
     std::vector<Personnage *> m_amis;
 

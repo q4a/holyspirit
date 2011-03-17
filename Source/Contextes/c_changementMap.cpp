@@ -339,12 +339,12 @@ void c_Chargement::PostLoad(Jeu *jeu)
     jeu->hero.m_personnage.frappeEnCours = false;
     jeu->hero.m_personnage.m_lancementMiracleEnCours = false;
 
-    coordonnee position;
-    position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
-    position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
-    Listener::SetGlobalVolume((float)configuration->volume);
-    Listener::SetPosition(-position.x, 0, position.y);
-    Listener::SetDirection(0, 0, 1);
+//    coordonnee position;
+  //  position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
+   // position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
+  //  Listener::SetGlobalVolume((float)configuration->volume);
+   // Listener::SetPosition(-position.x, 0, position.y);
+   // Listener::SetDirection(0, 0, 1);
     jeu->map->MusiquePlay();
 
     if (configuration->Lumiere)

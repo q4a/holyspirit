@@ -119,6 +119,7 @@ void Hero::Reset()
     m_docs.clear();
     m_potales.clear();
     m_lvl_miracles.clear();
+    m_lvl_miracles_new.clear();
     m_amis.clear();
     m_coffre.clear();
     m_items_cooldown.clear();
@@ -674,6 +675,8 @@ void Hero::Charger(const std::string &chemin_save)
 
     m_lvl_miracles.front() = 1;
 
+    m_lvl_miracles_new = m_lvl_miracles;
+
     ChargerModele();
 
     RecalculerCaracteristiques();
@@ -783,7 +786,7 @@ void Hero::ChargerModele(bool tout)
         miraclesLances.push_back(m_classe.miracles[m_personnage.m_miracleEnCours[i].m_modele]);
 
     m_classe.miracles.clear();
-    m_classe.Charger(m_cheminClasse, m_lvl_miracles, m_caracteristiques);
+    m_classe.Charger(m_cheminClasse, m_lvl_miracles_new, m_caracteristiques);
 
     for (int i=0;i<(int)m_inventaire.size();++i)
     {
@@ -1925,7 +1928,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
         if (m_classe.page_miracles[i] == fenetreEnCours)
         {
             std::ostringstream buf2;
-            buf2<<m_lvl_miracles[i]<<endl;
+            buf2<<m_lvl_miracles_new[i]<<endl;
             texte.SetString(buf2.str());
             texte.SetPosition(AutoScreenAdjust(m_classe.position_miracles[i].x,
                                                m_classe.position_miracles[i].y + 39,decalage));
@@ -1959,7 +1962,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
         moteurGraphique->AjouterCommande(&sprite, 15,0);
     }
 
-    for (int i = 0;i < (int)m_lvl_miracles.size(); ++i)
+    for (int i = 0;i < (int)m_lvl_miracles_new.size(); ++i)
         if (m_classe.page_miracles[i] == fenetreEnCours)
         {
             sf::Sprite sprite;
@@ -2017,7 +2020,8 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                 retour = true;
 
                 if (eventManager->getEvenement(Mouse::Left,EventClic))
-                    if (m_lvl_miracles[i] > 0)
+                    if (m_lvl_miracles_new[i] > 0 && m_classe.miracles[i].m_buf == -1 ||
+                        m_lvl_miracles[i] > 0)
                     {
                         if (m_classe.miracles[i].m_buf != -1)
                             m_miracleEnMain = m_classe.miracles[i].m_buf;
@@ -3040,6 +3044,8 @@ void Hero::RecalculerCaracteristiques(bool bis)
     m_caracteristiques.armure[PHYSIQUE] = m_caracteristiques.dexterite*2;
     temp.armure[PHYSIQUE]               = m_caracteristiques.dexterite*2;
 
+    m_lvl_miracles_new = m_lvl_miracles;
+
     std::vector<Set> liste_set;
 
     for (int i=0;i<(int)m_inventaire.size();++i)
@@ -3078,6 +3084,16 @@ void Hero::RecalculerCaracteristiques(bool bis)
                             if(m_inventaire[i].m_benedictions[j].info1 == PT_FOI)
                                 m_caracteristiques.maxFoi   += m_inventaire[i].m_benedictions[j].info2;
                             break;
+                        case MIRACLE_SUPP:
+                            int no = -1;
+
+                            for(int k = 0 ; k < m_classe.miracles.size() ; ++k)
+                                if(m_classe.miracles[k].m_chemin == m_inventaire[i].m_benedictions[j].text)
+                                    no = k;
+
+                            if(no >= 0 && no < m_lvl_miracles_new.size())
+                                m_lvl_miracles_new[no] += m_inventaire[i].m_benedictions[j].info1;
+                            break;
                     }
             }
 
@@ -3104,6 +3120,16 @@ void Hero::RecalculerCaracteristiques(bool bis)
                             m_caracteristiques.maxVie   += liste_set[i].m_benedictions[k][j].info2;
                         if(liste_set[i].m_benedictions[k][j].info1 == PT_FOI)
                             m_caracteristiques.maxFoi   += liste_set[i].m_benedictions[k][j].info2;
+                        break;
+                    case MIRACLE_SUPP:
+                        int no = -1;
+
+                        for(int m = 0 ; m < m_classe.miracles.size() ; ++m)
+                            if(m_classe.miracles[m].m_chemin == liste_set[i].m_benedictions[k][j].text)
+                                no = m;
+
+                        if(no >= 0 && no < m_lvl_miracles_new.size())
+                            m_lvl_miracles_new[no] += liste_set[i].m_benedictions[k][j].info1;
                         break;
                 }
         }

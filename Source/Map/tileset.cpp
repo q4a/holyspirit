@@ -352,6 +352,20 @@ void Tileset::Charger(ifstream &fichier, int lumiere_base, cDAT *reader)
                         if(!m_sons.empty())
                             m_sons.back().unique = temp;
                     }
+                    else if (caractere=='p')
+                    {
+                        bool temp;
+                        fichier>>temp;
+                        if(!m_sons.empty())
+                            m_sons.back().preserv = temp;
+                    }
+                    else if (caractere=='p')
+                    {
+                        int v;
+                        fichier>>v;
+                        if(!m_sons.empty())
+                            m_sons.back().volume =v;
+                    }
                     if (fichier.eof())
                     {
                         console->Ajouter("Erreur : Monstre \" "+m_chemin+" \" Invalide",1);
@@ -656,7 +670,7 @@ bool Tileset::JouerSon(int numeroSon,coordonnee position, bool unique, float vol
         if(m_sons[numeroSon].unique == true)
             unique = true;
 
-        return moteurSons->JouerSon(m_sons[numeroSon].no,pos,unique,(int)volume);
+        return moteurSons->JouerSon(m_sons[numeroSon].no,pos,unique,m_sons[numeroSon].preserv,(int)volume*m_sons[numeroSon].volume/100);
     }
 
     return false;

@@ -29,10 +29,12 @@ MoteurSons::MoteurSons()
     sonEnCours=0;
 
     for (int i=0;i<NOMBRE_SONS;i++)
-        m_IDSons[i]=-1;
+        m_IDSons[i]=-1,m_sons_preserv[i]=false;
 }
 MoteurSons::~MoteurSons()
 {
+    for (int i=0;i<(int)m_buffers.size();i++)
+        delete m_buffers[i];
     m_buffers.clear();
     m_cheminsSons.clear();
 }
@@ -53,10 +55,10 @@ int MoteurSons::AjouterBuffer(std::string chemin)
         if (m_cheminsSons[i]==chemin)
             return i;
 
-    m_buffers.push_back(sf::SoundBuffer ());
+    m_buffers.push_back(new sf::SoundBuffer ());
     m_cheminsSons.push_back(chemin);
 
-    if (!m_buffers.back().LoadFromFile(chemin.c_str()))
+    if (!m_buffers.back()->LoadFromFile(chemin.c_str()))
     {
         console->Ajouter("Impossible de charger : "+chemin,1);
         return -1;
@@ -70,10 +72,11 @@ int MoteurSons::AjouterBuffer(std::string chemin)
 void MoteurSons::StopAllSounds()
 {
     for (int i=0;i<NOMBRE_SONS;i++)
-        m_sons[i].Stop();
+        if(!m_sons_preserv[i])
+            m_sons[i].Stop();
 }
 
-bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
+bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,int volume)
 {
     m_music.SetPosition(sf::Listener::GetPosition());
 
@@ -129,17 +132,19 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,int volume)
 
             m_sons[sonEnCours].SetVolume(volume);
             m_IDSons[sonEnCours]=ID;
-            m_sons[sonEnCours].SetBuffer(m_buffers[ID]);
+            m_sons[sonEnCours].SetBuffer(*m_buffers[ID]);
 
             //sf::Sound::Status Status = m_sons[sonEnCours].GetStatus();
             //if (Status==0)
                 m_sons[sonEnCours].Play();
 
             m_sons[sonEnCours].SetPosition(position.x,0,position.y);
-        //    m_sons[sonEnCours].SetAttenuation(1.f);
-            m_sons[sonEnCours].SetMinDistance(10.f);
+            //m_sons[sonEnCours].SetAttenuation(1.f);
+            m_sons[sonEnCours].SetMinDistance(16.f);
 
             m_sons[sonEnCours].SetLoop(false);
+
+            m_sons_preserv[sonEnCours] = preserv;
                       //  m_sons[sonEnCours].SetPosition(sf::Listener::GetPosition());
         }
 

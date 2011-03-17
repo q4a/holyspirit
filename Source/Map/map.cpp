@@ -2388,7 +2388,8 @@ bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, i
             moteurGraphique->AjouterSystemeParticules(m_ModeleMonstre[monstre->getModele()].m_particules,position2,buffer,force,angle);
         }
 
-        monstre->Pousser(coordonneeDecimal(cos(m) * force * 0.1f, sin(m) * force * 0.1f));
+        if(!monstre->m_impoussable)
+            monstre->Pousser(coordonneeDecimal(cos(m) * force * 0.1f, sin(m) * force * 0.1f));
 
         if (monstre->getCoordonnee().x>=0&&monstre->getCoordonnee().x<m_dimensions.x&&monstre->getCoordonnee().y>=0&&monstre->getCoordonnee().y<m_dimensions.y)
             for (int i=0;i<(int)monstre->getObjets().size();++i)

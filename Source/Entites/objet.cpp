@@ -355,6 +355,9 @@ void Objet::SauvegarderTexte(std::ofstream *fichier)
         *fichier<<" i2"<<m_benedictions[i].info2;
         *fichier<<" i3"<<m_benedictions[i].info3;
 
+        if(!m_benedictions[i].text.empty())
+        *fichier<<" m"<<m_benedictions[i].text;
+
         *fichier<<" $ ";
     }
 
@@ -459,6 +462,7 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
         {
 
             int type=0,info1=0,info2=0,info3=0;
+            std::string text;
 
             *fichier>>type;
 
@@ -475,6 +479,10 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
                     if (caractere=='3')
                         *fichier>>info3;
                 }
+
+                if (caractere=='m')
+                    *fichier>>text;
+
                 if (fichier->eof())
                 {
                     throw "Impossible de charger l'objet";
@@ -489,6 +497,7 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
                 m_benedictions.back().info1=info1;
                 m_benedictions.back().info2=info2;
                 m_benedictions.back().info3=info3;
+                m_benedictions.back().text=text;
 
                 if (m_type!=LITANIE)
                     ChargerMiracleBenediction(m_benedictions.back(),m_miracle,m_useMiracle);
@@ -941,6 +950,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             if (caractere=='*')
             {
                 int b=-1,ia=-1,ib=-1, ic=-1;
+                std::string text;
                 do
                 {
                     fichier->get(caractere);
@@ -957,6 +967,9 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
                             *fichier>>ib;
                         if (caractere=='3')
                             *fichier>>ic;
+                        break;
+                    case 'm' :
+                        *fichier>>text;
                         break;
                     }
 
@@ -976,6 +989,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
                     m_benedictions.back().info1=ia;
                     m_benedictions.back().info2=ib;
                     m_benedictions.back().info3=ic;
+                    m_benedictions.back().text=text;
 
                     if (m_type!=LITANIE)
                         ChargerMiracleBenediction(m_benedictions.back(),m_miracle,m_useMiracle);
@@ -1096,11 +1110,11 @@ void Set::Charger(std::string chemin, Caracteristique caract)
 
                 do
                 {
-
                     fichier->get(caractere);
                     if (caractere=='*')
                     {
                         int b=-1,ia=-1,ib=-1, ic=-1;
+                        std::string text;
                         do
                         {
                             fichier->get(caractere);
@@ -1117,6 +1131,10 @@ void Set::Charger(std::string chemin, Caracteristique caract)
                                     *fichier>>ib;
                                 if (caractere=='3')
                                     *fichier>>ic;
+                                break;
+
+                            case 'm' :
+                                *fichier>>text;
                                 break;
                             }
 
@@ -1135,6 +1153,7 @@ void Set::Charger(std::string chemin, Caracteristique caract)
                         m_benedictions.back().back().info1=ia;
                         m_benedictions.back().back().info2=ib;
                         m_benedictions.back().back().info3=ic;
+                        m_benedictions.back().back().text = text;
 
                         bool useMir = m_useMiracle.back();
                         ChargerMiracleBenediction(m_benedictions.back().back(),m_miracle.back(),useMir);
@@ -1843,6 +1862,33 @@ sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *
     return string;
 }
 
+int getNomMiracle(const std::string &path)
+{
+    int nom = 0;
+
+    ifstream fichier;
+    fichier.open(path.c_str(), ios::in);
+    if (fichier)
+    {
+        char caractere;
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+                fichier>>nom;
+
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Miracle \" "+path+" \" Invalide",1);
+                caractere='$';
+            }
+        }
+        while (caractere!='$');
+    }
+
+    return nom;
+}
+
 std::string getTextBenediction(const benediction &bene)
 {
     std::ostringstream buf;
@@ -1887,6 +1933,12 @@ std::string getTextBenediction(const benediction &bene)
     {
         buf<<configuration->getText(1,12 + bene.info1);
         buf<<" "<<bene.info2;
+    }
+    if(bene.type == MIRACLE_SUPP)
+    {
+        buf<<configuration->getText(1,21);
+        buf<<configuration->getText(6,getNomMiracle(bene.text));
+        buf<<" +"<<bene.info1;
     }
     return buf.str();
 }

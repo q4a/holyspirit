@@ -28,11 +28,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 struct Infos_son
 {
-    Infos_son(int n, bool u = false) : no(n), unique(u)
+    Infos_son(int n, bool u = false, bool p = false, int v = 100) : no(n), unique(u), preserv(p), volume(v)
     {
     }
     int no;
     bool unique;
+    bool preserv;
+    int volume;
 };
 
 class MoteurSons : public CSingleton<MoteurSons>
@@ -45,7 +47,7 @@ class MoteurSons : public CSingleton<MoteurSons>
 	void Gerer();
 	void Vider();
 	int AjouterBuffer(std::string);
-	bool JouerSon(int ID,coordonnee position,bool unique=0,int volume=100);
+	bool JouerSon(int ID,coordonnee position,bool unique=0,bool preserv = 0,int volume=100);
 	void StopAllSounds();
 
 	void PlayNewMusic(const std::string &chemin);
@@ -63,8 +65,9 @@ class MoteurSons : public CSingleton<MoteurSons>
 
 	int sonEnCours;
 	sf::Sound m_sons[NOMBRE_SONS];
+	bool m_sons_preserv[NOMBRE_SONS];
 	int m_IDSons[NOMBRE_SONS];
-	std::vector <sf::SoundBuffer> m_buffers;
+	std::vector <sf::SoundBuffer *> m_buffers;
 	std::vector <std::string> m_cheminsSons;//Permet de s'assurer d'avoir des singletons
 
 	sf::Music m_music;

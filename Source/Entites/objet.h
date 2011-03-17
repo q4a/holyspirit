@@ -38,6 +38,7 @@ struct benediction
     int info1;
     int info2;
     int info3;
+    std::string text;
 };
 
 struct Requirement
