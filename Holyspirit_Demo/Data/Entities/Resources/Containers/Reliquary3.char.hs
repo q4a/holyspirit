@@ -8,10 +8,6 @@ $
 $
 	*Data/Entities/Scripts/Miscs/Chess.script.hs
 $
-	*
-		*Quest_relic3.item.hs
-		r-1
-	$
 $
 
 $

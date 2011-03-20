@@ -208,3 +208,13 @@ Tu va crever, vermine !
 Enfin... la liberté...
 Aarrgggh, on se reverra en Enfer !
 
+
+
+///Johannes///
+Je te pique ta relique, nah !
+C'est tout ce que tu as à donner ?
+Pathétique chien de Dieu !
+
+
+
+
