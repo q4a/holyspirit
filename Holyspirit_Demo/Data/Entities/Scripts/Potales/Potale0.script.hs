@@ -15,12 +15,14 @@ main
 		then
 			stop_speak
 			teleportation_menu
+			variable * 1 * 0
 		end
 		
 		if speak_choice * 2
 		then
 			stop_speak
 			trade * 1
+			variable * 1 * 0
 		end
 		
 	else
