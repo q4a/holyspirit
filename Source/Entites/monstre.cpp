@@ -97,6 +97,7 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
     m_caracteristique=modele->getCaracteristique();
     m_impenetrable = modele->m_impenetrable;
     m_impoussable = modele->m_impoussable;
+    m_noDistanceRestriction = modele->m_noDistanceRestriction;
     m_selectable = modele->m_selectable;
     m_collision = modele->m_collision;
 
@@ -326,6 +327,10 @@ bool Modele_Monstre::Charger(const std::string &chemin)
 
                     case 'c':
                         fichier>>m_collision;
+                        break;
+
+                    case 'g':
+                        fichier>>m_noDistanceRestriction;
                         break;
 
                     case 'r':

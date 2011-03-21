@@ -64,6 +64,7 @@ public:
     bool m_impoussable;
     bool m_collision;
     bool m_selectable;
+    bool m_noDistanceRestriction;
 
     std::string m_chemin;
 
@@ -177,6 +178,7 @@ public:
 
     bool m_inexistant;
     bool m_selectable;
+    bool m_noDistanceRestriction;
 
     Personnage* m_vientDeFrapper;
     Personnage* m_vientDeToucher;

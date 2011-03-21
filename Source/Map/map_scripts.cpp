@@ -64,12 +64,17 @@ void Map::Script_Teleport(Jeu *jeu,Script *script,int noInstruction,int monstre,
 {
     if (m_monstre[monstre].EnVie())
     {
-        if (seDeplacer && !m_monstre[monstre].frappeEnCours)
+        if (seDeplacer && !m_monstre[monstre].frappeEnCours || (int)script->getValeur(noInstruction, 0))
         {
             int temp = monstre;
+
+            m_decor[1]  [(int)(m_monstre[temp].getCoordonneePixel().y/COTE_TILE + 0.5)]
+                        [(int)(m_monstre[temp].getCoordonneePixel().x/COTE_TILE + 0.5)].delMonstre(monstre);
             m_monstre[temp].setCoordonnee(m_monstre[temp].getArrivee());
             m_monstre[temp].setDepart();
             m_monstre[monstre].setArrivee(m_monstre[monstre].getCoordonnee());
+            m_decor[1]  [(int)(m_monstre[temp].getCoordonneePixel().y/COTE_TILE + 0.5)]
+                        [(int)(m_monstre[temp].getCoordonneePixel().x/COTE_TILE + 0.5)].setMonstre(monstre);
         }
     }
 }
@@ -86,6 +91,8 @@ void Map::Script_UseMiracle(Jeu *jeu,Script *script,int noInstruction,int monstr
 
             if (m_monstre[monstre].m_miracleALancer == -1)
                 m_monstre[monstre].setEtat(2);
+
+            m_monstre[monstre].frappeEnCours = true;
 
             if(m_monstre[monstre].m_cible)
                 m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonneePixel(),m_monstre[monstre].m_cible->getCoordonneePixel());
@@ -524,6 +531,11 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                     m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].setCaracteristique(temp);
                 }
         }
+        else if (script->m_instructions[noInstruction].nom=="goto" && monstre != -1)
+        {
+            m_monstre[monstre].setArrivee(
+                        coordonnee((int)script->getValeur(noInstruction, 0), (int)script->getValeur(noInstruction, 1)));
+        }
         else if (script->m_instructions[noInstruction].nom=="entity_goto" && monstre == -1)
         {
             if(script->getValeur(noInstruction, 0) < m_listID.size())
@@ -620,6 +632,11 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
             {
                 int no = (int) script->m_instructions[noInstruction].m_valeurs[b];
 
+                if (script->m_instructions[no].nom=="hero_dead")
+                {
+                    if (hero->m_personnage.EnVie())
+                        ok=false;
+                }
                 if (script->m_instructions[no].nom=="alive" && monstre != -1)
                 {
                     if (!m_monstre[monstre].EnVie())
@@ -658,6 +675,12 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
 
                   //  if (m_monstre[monstre].getEtat() != (int)script->getValeur(no, 0))
                         ok=false;
+                }
+                else if (script->m_instructions[no].nom=="position" && monstre != -1)
+                {
+                    if (m_monstre[monstre].getCoordonnee().x != script->getValeur(no, 0)
+                    ||  m_monstre[monstre].getCoordonnee().y != script->getValeur(no, 1))
+                            ok = false;
                 }
                 else if (script->m_instructions[no].nom=="numberInvocation" && monstre != -1)
                 {

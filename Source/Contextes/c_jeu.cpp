@@ -314,8 +314,8 @@ void c_Jeu::Deplacements(Jeu *jeu)
     position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
     Listener::SetGlobalVolume((float)configuration->volume);
-    Listener::SetPosition(-position.x, 8, position.y);
-   // Listener::SetDirection(0, -0.5, 1);
+    Listener::SetPosition(-position.x, 1, position.y);
+    Listener::SetDirection(0, 0, 1);
     jeu->map->MusiquePlay();
     jeu->sonMort.SetPosition(position.x,0,position.y);
 }
@@ -695,6 +695,10 @@ void c_Jeu::Evenements(Jeu *jeu)
     if(!eventManager->getEvenement(Mouse::Left,EventClic))
         m_diplace_mode = false;
 
+
+    if(!jeu->menu.m_dialogue.empty())
+        jeu->map->m_monstreIllumine = -1;
+
     if(eventManager->getPositionSouris().y < 492 * configuration->Resolution.h/600)
     if(jeu->menu.m_dialogue.empty()
     || eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_contenu_dialogue.x,0).x
@@ -704,7 +708,7 @@ void c_Jeu::Evenements(Jeu *jeu)
   /*  || eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_contenu_dialogue.y).y
         + jeu->hero.m_classe.position_contenu_dialogue.h*/)
     {
-        if (!eventManager->getEvenement(Mouse::Left,EventClic))
+        if (!eventManager->getEvenement(Mouse::Left,EventClic) && jeu->menu.m_dialogue.empty())
             jeu->map->getMonstre(eventManager->getCasePointee());
 
         if (eventManager->getEvenement(configuration->m_key_actions[K_PICKITEMS],EventKey))

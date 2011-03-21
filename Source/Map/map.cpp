@@ -1914,6 +1914,9 @@ void Map::Animer(Hero *hero,float temps)
                                 m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_position.x=m_monstre[monstre].getCoordonneePixel().x;
                                 m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_position.y=m_monstre[monstre].getCoordonneePixel().y;
 
+                                m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_position.x += m_monstre[monstre].m_entite_graphique.m_decalage.y*2 + m_monstre[monstre].m_entite_graphique.m_decalage.x;
+                                m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_position.y += m_monstre[monstre].m_entite_graphique.m_decalage.y*2 - m_monstre[monstre].m_entite_graphique.m_decalage.x;
+
                                 m_monstre[monstre].m_miracleEnCours.back().m_coordonneeCible = hero->m_personnage.getProchaineCase();
                                 m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_cible = m_monstre[monstre].m_cible;
                             }
@@ -1924,7 +1927,8 @@ void Map::Animer(Hero *hero,float temps)
                         if(configuration->Lumiere)
                             moteurGraphique->LightManager->Generate(m_monstre[monstre].m_entite_graphique.m_light);
 
-                        GererMiracle(&m_monstre[monstre],m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles,temps,hero);
+                        if(!m_monstre[monstre].m_noDistanceRestriction)
+                            GererMiracle(&m_monstre[monstre],m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles,temps,hero);
 
                         if(m_monstre[monstre].m_doitMourir && m_monstre[monstre].EnVie() )
                             InfligerDegats(&m_monstre[monstre], NULL, m_monstre[monstre].getCaracteristique().vie, 4, hero, 0);
@@ -2119,7 +2123,8 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 {
     for(std::vector<Monstre>::iterator Iter_monstre = m_monstre.begin();Iter_monstre!=m_monstre.end();++Iter_monstre) {
     if(fabs(hero->m_personnage.getCoordonnee().x - Iter_monstre->getCoordonnee().x) < 20
-    && fabs(hero->m_personnage.getCoordonnee().y - Iter_monstre->getCoordonnee().y) < 20)
+    && fabs(hero->m_personnage.getCoordonnee().y - Iter_monstre->getCoordonnee().y) < 20
+    || Iter_monstre->m_noDistanceRestriction)
     {
         int monstre = -1;
         int x = (int)(Iter_monstre->getCoordonneePixel().x/COTE_TILE + 0.5);
@@ -2133,6 +2138,9 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 
         if(monstre >= 0)
         {
+            if(Iter_monstre->m_noDistanceRestriction)
+                GererMiracle(&m_monstre[monstre],m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles,temps,hero);
+
             if(Iter_monstre->m_inexistant)
                 m_decor[1][y][x].delMonstre(monstre);
             else

@@ -139,8 +139,12 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,in
                 m_sons[sonEnCours].Play();
 
             m_sons[sonEnCours].SetPosition(position.x,0,position.y);
-            //m_sons[sonEnCours].SetAttenuation(1.f);
-            m_sons[sonEnCours].SetMinDistance(16.f);
+
+            if(position.x==-1&&position.y==-1)
+                m_sons[sonEnCours].SetPosition(sf::Listener::GetPosition());
+
+            m_sons[sonEnCours].SetAttenuation(0.5f);
+            //m_sons[sonEnCours].SetMinDistance(16.f);
 
             m_sons[sonEnCours].SetLoop(false);
 

@@ -102,6 +102,8 @@ Personnage::Personnage()
 
     m_impenetrable                      = 0;
     m_impoussable                       = 0;
+
+    m_noDistanceRestriction             = 0;
     m_doitMourir                        = 0;
     m_collision                         = 1;
 
@@ -176,6 +178,7 @@ Modele_Personnage::Modele_Personnage()
 
     m_impenetrable                       = 0;
     m_impoussable                        = 0;
+    m_noDistanceRestriction              = 0;
     m_selectable                         = 1;
 }
 
@@ -1191,7 +1194,7 @@ void Personnage::setEtat(int etat)
     if(m_etat != etat)
         m_entite_graphique.m_animation = 0;
 
-    m_etat=etat,m_entite_graphique.m_noAnimation=0,frappeEnCours=false;
+    m_etat=etat/*,m_entite_graphique.m_noAnimation=0*/,frappeEnCours=false;
 }
 void Personnage::setJustEtat(int etat)
 {
