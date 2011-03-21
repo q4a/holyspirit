@@ -16,6 +16,13 @@ main
 			setActif * 0
 			setState * 3
 		end
+		
+		if variable * 0 * 0
+			getState * 3
+		then
+			setActif * 1
+			setState * 0 * 0
+		end
 	else
 		if talk
 		then

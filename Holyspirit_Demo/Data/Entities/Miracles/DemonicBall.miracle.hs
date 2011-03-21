@@ -4,7 +4,7 @@ $
 $
 $
 	* t0 l2 l1 l3 s0 ia10 $
-	* t2 ia50 ib100 ic2 $
+	* t2 ia10 ib30 ic2 $
 	* t3 s1 ia7 $
 	* t11 ia0 ib4 $
 $

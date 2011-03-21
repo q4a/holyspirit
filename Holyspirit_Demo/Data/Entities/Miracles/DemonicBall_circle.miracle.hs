@@ -14,7 +14,7 @@ $
 	* t0 l10 l9 l11 s0 ia10 ib270 $
 	* t0 l10 l9 l11 s0 ia10 ib315 $
 
-	* t2 ia50 ib100 ic2 $
+	* t2 ia10 ib30 ic2 $
 	* t3 s1 ia7 $
 
 	* t11 ia0 ib4 $
