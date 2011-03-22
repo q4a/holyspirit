@@ -214,7 +214,7 @@ Aarrgggh, on se reverra en Enfer !
 Pardon jeune personne, mais cette relique me revient ! J'allais juste la prendre quand vous êtes arrivé ! Hi hi ! 
 Allez, mes chéris, occupez vous de notre vaillant héros ! 
 Allez, mes chéris, occupez vous de cette petite idiote ! 
-Imbécile, tu vas t’épuiser à me suivre… 
+Imbécile, tu vas t'épuiser à me suivre...
 Allez, un peu d’exercice ! 
 De la part de Johannes ! 
 Il est l'heure que je te fasse souffrir... personnellement !
