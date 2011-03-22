@@ -87,10 +87,10 @@ void Map::Script_UseMiracle(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             m_monstre[monstre].setArrivee(m_monstre[monstre].getCoordonnee());
 
-            if (m_monstre[monstre].m_miracleALancer == -1)
-                m_monstre[monstre].setEtat(2);
+           // if (m_monstre[monstre].m_miracleALancer == -1)
+             //   m_monstre[monstre].setEtat(2);
 
-            m_monstre[monstre].frappeEnCours = true;
+            //m_monstre[monstre].frappeEnCours = true;
 
             if(m_monstre[monstre].m_cible)
                 m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonneePixel(),m_monstre[monstre].m_cible->getCoordonneePixel());
