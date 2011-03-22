@@ -1194,7 +1194,7 @@ void Personnage::setEtat(int etat)
     if(m_etat != etat)
         m_entite_graphique.m_animation = 0;
 
-    m_etat=etat/*,m_entite_graphique.m_noAnimation=0*/,frappeEnCours=false;
+    m_etat=etat,frappeEnCours=false/*,m_entite_graphique.m_noAnimation=0*/;
 }
 void Personnage::setJustEtat(int etat)
 {

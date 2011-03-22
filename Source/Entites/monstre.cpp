@@ -515,7 +515,7 @@ void Monstre::TesterVision(coordonnee positionHero)
         {
             if (m_vu)
                 setDepart();
-            m_vu=0,m_etat=0,m_entite_graphique.m_noAnimation=0;
+            m_vu=0/*,m_etat=0,m_entite_graphique.m_noAnimation=0*/;
 
             m_cible = NULL;
         }

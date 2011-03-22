@@ -616,7 +616,16 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             jeu->m_contexte = jeu->m_chargement;
         }
         else if (script->m_instructions[noInstruction].nom=="playMusic")
-            moteurSons->PlayNewMusic(script->m_instructions[noInstruction].valeurString);
+        {
+            if(script->m_instructions[noInstruction].valeurString.empty())
+            {
+                m_musiqueEnCours = (int)script->getValeur(noInstruction, 0);
+                if (m_musiqueEnCours >=0 && m_musiqueEnCours < (int)m_musiques.size())
+                    moteurSons->PlayNewMusic(m_musiques[m_musiqueEnCours]);
+            }
+            else
+                moteurSons->PlayNewMusic(script->m_instructions[noInstruction].valeurString);
+        }
     }
 }
 
