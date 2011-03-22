@@ -54,7 +54,7 @@ class Jeu
     Menu menu;
     Map *map;
     Hero hero;
-    sf::Clock Clock;
+    sf::Clock Clock, MusicClock;
     sf::SoundBuffer bufferSonMort;
 	sf::Sound  sonMort;
 

@@ -66,15 +66,13 @@ void Map::Script_Teleport(Jeu *jeu,Script *script,int noInstruction,int monstre,
     {
         if (seDeplacer && !m_monstre[monstre].frappeEnCours || (int)script->getValeur(noInstruction, 0))
         {
-            int temp = monstre;
-
-            m_decor[1]  [(int)(m_monstre[temp].getCoordonneePixel().y/COTE_TILE + 0.5)]
-                        [(int)(m_monstre[temp].getCoordonneePixel().x/COTE_TILE + 0.5)].delMonstre(monstre);
-            m_monstre[temp].setCoordonnee(m_monstre[temp].getArrivee());
-            m_monstre[temp].setDepart();
+            m_decor[1]  [(int)(m_monstre[monstre].getCoordonneePixel().y/COTE_TILE + 0.5)]
+                        [(int)(m_monstre[monstre].getCoordonneePixel().x/COTE_TILE + 0.5)].delMonstre(monstre);
+            m_monstre[monstre].setCoordonnee(m_monstre[monstre].getArrivee());
+            m_monstre[monstre].setDepart();
             m_monstre[monstre].setArrivee(m_monstre[monstre].getCoordonnee());
-            m_decor[1]  [(int)(m_monstre[temp].getCoordonneePixel().y/COTE_TILE + 0.5)]
-                        [(int)(m_monstre[temp].getCoordonneePixel().x/COTE_TILE + 0.5)].setMonstre(monstre);
+            m_decor[1]  [(int)(m_monstre[monstre].getCoordonneePixel().y/COTE_TILE + 0.5)]
+                        [(int)(m_monstre[monstre].getCoordonneePixel().x/COTE_TILE + 0.5)].setMonstre(monstre);
         }
     }
 }
@@ -617,6 +615,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
             jeu->m_contexte = jeu->m_chargement;
         }
+        else if (script->m_instructions[noInstruction].nom=="playMusic")
+            moteurSons->PlayNewMusic(script->m_instructions[noInstruction].valeurString);
     }
 }
 

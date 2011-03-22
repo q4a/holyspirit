@@ -44,7 +44,7 @@ class MoteurSons : public CSingleton<MoteurSons>
     friend void CSingleton<MoteurSons>::Kill();
 
 
-	void Gerer();
+	void Gerer(float temps);
 	void Vider();
 	int AjouterBuffer(std::string);
 	bool JouerSon(int ID,coordonnee position,bool unique=0,bool preserv = 0,int volume=100);
@@ -71,6 +71,10 @@ class MoteurSons : public CSingleton<MoteurSons>
 	std::vector <std::string> m_cheminsSons;//Permet de s'assurer d'avoir des singletons
 
 	sf::Music m_music;
+
+	std::string m_curMusic;
+	std::string m_nextMusic;
+	float change_volume;
 };
 
 #endif

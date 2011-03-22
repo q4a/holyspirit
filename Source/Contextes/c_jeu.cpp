@@ -149,6 +149,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
         Deplacements(jeu);
         Animation(jeu);
     }
+    else
+        jeu->map->GererScript(jeu,&jeu->hero,tempsEcoule,&jeu->menu);
+
     jeu->hero.PlacerCamera();
 
     Affichage(jeu);

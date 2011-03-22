@@ -26,6 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 MoteurSons::MoteurSons()
 {
+    change_volume = 100;
     sonEnCours=0;
 
     for (int i=0;i<NOMBRE_SONS;i++)
@@ -39,8 +40,37 @@ MoteurSons::~MoteurSons()
     m_cheminsSons.clear();
 }
 
-void MoteurSons::Gerer()
+void MoteurSons::Gerer(float temps)
 {
+    m_music.SetVolume(configuration->music_volume * change_volume * 0.01);
+
+    if(!m_nextMusic.empty() && m_nextMusic != m_curMusic)
+    {
+        change_volume -= temps * 50;
+        if(change_volume <= 0 || m_curMusic.empty())
+        {
+            if(!m_curMusic.empty())
+                change_volume = 0;
+
+            m_music.Stop();
+
+            m_music.SetLoop(false);
+
+            if (!m_music.OpenFromFile(m_nextMusic.c_str()))
+                console->Ajouter("Impossible de charger : "+m_nextMusic,1);
+            else
+                console->Ajouter("Chargement de : "+m_nextMusic,0),m_music.Play();
+
+            m_curMusic = m_nextMusic;
+            m_nextMusic.clear();
+        }
+    }
+    else if(change_volume < 100)
+    {
+        change_volume += temps * 50;
+        if(change_volume >= 100)
+            change_volume = 100;
+    }
 }
 
 void MoteurSons::Vider()
@@ -160,15 +190,7 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,in
 
 void MoteurSons::PlayNewMusic(const std::string &chemin)
 {
-    m_music.Stop();
-
-    m_music.SetLoop(false);
-    m_music.SetVolume(configuration->music_volume);
-
-    if (!m_music.OpenFromFile(chemin.c_str()))
-        console->Ajouter("Impossible de charger : "+chemin,1);
-    else
-        console->Ajouter("Chargement de : "+chemin,0),m_music.Play();
+    m_nextMusic = chemin;
 }
 
 sf::Sound::Status MoteurSons::GetMusicStatus()

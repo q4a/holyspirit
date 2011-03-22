@@ -94,6 +94,9 @@ void Jeu::Demarrer()
 
         if(m_display)
             moteurGraphique->Afficher();
+
+        moteurSons->Gerer(MusicClock.GetElapsedTime());
+        MusicClock.Reset();
     }
 
     if(m_jeu->m_thread_sauvegarde)
