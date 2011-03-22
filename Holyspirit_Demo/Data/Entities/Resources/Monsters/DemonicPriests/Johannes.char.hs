@@ -4,7 +4,7 @@ $
 $
 * 3
 $
-*v500 di10 da50 m0.3 o1 a200 n5 s1 x50 g1 $
+*v500 di10 da50 m0.3 o1 a200 n5 s1 x50 g1 r11000000  $
 $
 *Data/Entities/Scripts/Monsters/Johannes.script.hs
 $
