@@ -18,7 +18,7 @@ main
 					variable * 4 * 0
 				else
 					variable * 0 * 1
-					setState * 3  * 0
+					setState * 2  * 0
 					variable * 4 * 0
 				end
 			
@@ -45,9 +45,9 @@ main
 	then
 		setCollision * 0
 
-		if getState * 3
+		if getState * 2
 		then else
-			setState * 3 * 0
+			setState * 2 * 0
 		end
 	else
 		setCollision * 1

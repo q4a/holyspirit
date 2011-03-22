@@ -24,22 +24,36 @@ main
 			then 
 				if variable * 1 * 1
 				then
+					if variable * 8 * 0
+					then
+						setState * 2 * 0
+					end
+						
+					incrementVariable * 8 * time
+					if variable_bigger * 8 * 2
+					then
+						variable * 1 * 2
+					end
+					tell * 213 * 10000
+				end
+			
+				if variable * 1 * 2
+				then
 					if miracle * 0
 					then
 					else
-						setState * 2 * 0
-						variable * 1 * 2
+						variable * 1 * 3
 					end
 				end
 				
-				if variable * 1 * 2
+				if variable * 1 * 3
 					getState * 0
 				then
 					useMiracle * 0
 					setState * 4 * 0
 				end
 				
-				if variable * 1 * 2
+				if variable * 1 * 3
 					miracle * 0
 				then
 					goto * 11 * 150
@@ -47,13 +61,12 @@ main
 					variable * 0 * 2
 					variable * 1 * 0
 					useMiracle * 0	
-					tell * 213 * 10000
 				end
 			end
 		end
 		
 		if variable * 0 * 2
-			distance * 3
+			distance * 4
 		then
 			if miracle * 1
 			then
@@ -80,7 +93,7 @@ main
 		
 		
 		if variable * 0 * 3
-			distance * 3
+			distance * 6
 		then
 			if miracle * 1
 			then
@@ -145,7 +158,7 @@ main
 		
 		
 		if variable * 0 * 6
-			distance * 2
+			distance * 4
 		then
 			if miracle * 1
 			then
@@ -203,7 +216,7 @@ main
 		end 
 		
 		if variable * 0 * 9
-			distance * 2
+			distance * 3
 		then
 			if miracle * 1
 			then
@@ -261,7 +274,7 @@ main
 		
 		
 		if variable * 0 * 12
-			distance * 2
+			distance * 4
 		then
 			if miracle * 1
 			then
@@ -319,7 +332,7 @@ main
 		end 
 		
 		if variable * 0 * 15
-			distance * 3
+			distance * 4
 		then
 			if miracle * 1
 			then
@@ -427,7 +440,13 @@ main
 				end
 			end
 		else
-			look_hero
+			if variable * 0 * 1
+			then else
+			if variable * 0 * 0
+			then else
+				look_hero
+			end
+			end
 		end
 	else
 		variable * 0 * 99
