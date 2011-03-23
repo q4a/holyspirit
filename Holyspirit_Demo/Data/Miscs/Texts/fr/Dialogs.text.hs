@@ -155,8 +155,8 @@ Et bien non, pas pour l'instant. Ces horribles créatures ont l'air d'ignorer l'a
 Au revoir !
 Qu'est-ce qui se passe ?
 Ah ! En voilà une question ! Et bien je ne saurais te répondre précisément. Tout Ruhigland semble être brusquement envahi de créatures hostiles, de cadavres et de squelettes étrangement réanimés... Certains évoquent une créature sanguinaire qui se promène la nuit, surnomée le « faucheur », d'autres parlent d'une monstruosité aux yeux qui brillent comme la braise, dans la forêt... Va faire le tri entre les fantasmes de ces bouseux et la réalité !\En tout cas nous sommes nombreux à penser que tout ça a quelque chose à voir avec une vengeance des barbares...
-
-
+Y a-t-il des survivants en dehors de l'abbaye ?
+Quelques uns... La vieille Myrta et sa nièce Ridwen qui vivent dans les bois au sud, le patron de l'auberge du Loup pelé qui s'est retranché chez lui, et Jacquou, le pauvre imbécile du village qui se promène. Il n'a peur de rien lui ! Il se ballade la nuit avec d'étranges petits objets lumineux. Je me demande comment il arrive à survivre au milieu de tout ça, mais il refuse de venir avec nous ! 
 
 
 
@@ -198,24 +198,24 @@ Ca... Je ne n'en sais rien. Certains ont incriminé un voleur, d'autres un animal
 
 
 ///TEUDERIC///
-Salut étranger bla bla je suis Teudéric, si tu m'aide à buter ces fantomes je t'offrirai mon trésor.
-Alors, étranger, es-tu décidé à m'aider ?
-Ca marche !
-Mouahaha, je vais l'arracher sur ton cadavre, ouai !
-Je vais y réfléchir.
-A moi soldat ! Sus à l'ennemi !
+Par tous les dieux oubliés... un être humain, un vrai, en chair !\Je ne pensais pas en revoir un jour... \Aide-moi mortel ! Je veux retourner dans ma tombe et y trouver le repos mais j'ai ne peux le faire tout seul ! 
+Je suis Teudéric, roi de l'Ancien peuple. Pas le plus brillant c'est sûr, j'ai été berné et trahi par une bande de médiocres courtisans. Quand je me suis rendu compte de leur félonie je les ai tous fait pendre. Mais depuis ma mort leurs fantômes me hantent sans relâche, et cela fait des siècles que je subis cette existence infernale sans espoir de repos. Seul un vivant peut m'en débarrasser ! 
+Qui es-tu ?
+Meurs, abomination squelettique !
+Pour l'heure j'ai autre chose à faire...
+Comment puis-je t'aider ?
+C'est simple. Attends quelques instants et ils vont revenir. Gunther, Ingmar, Boris et les autres, ces ignobles pourceaux ! Je suis impuissant contre eux mais toi tu pourras les vaincre. Ou périr d'ailleurs, je dois te prévenir qu'ils sont plus puissants morts qu'ils ne l'étaient vivants ! 
+D'accord.
+Dans ce cas je m'en vais !
+Sus à l'ennemi !
 Tu va crever, vermine !
 Enfin... la liberté...
-Aarrgggh, on se reverra en Enfer !
-
-
-
 ///Johannes///
 Pardon jeune personne, mais cette relique me revient ! J'allais juste la prendre quand vous êtes arrivé ! Hi hi ! 
 Allez, mes chéris, occupez vous de notre vaillant héros ! 
 Allez, mes chéris, occupez vous de cette petite idiote ! 
 Imbécile, tu vas t'épuiser à me suivre...
-Allez, un peu d’exercice ! 
+Allez, un peu d'exercice ! 
 De la part de Johannes ! 
 Il est l'heure que je te fasse souffrir... personnellement !
 
