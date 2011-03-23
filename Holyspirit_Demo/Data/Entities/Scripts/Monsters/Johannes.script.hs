@@ -36,7 +36,10 @@ main
 					getState * 0
 				then
 					useMiracle * 0
+					if getState * 4
+				then else
 					setState * 4 * 0
+				end
 				end
 				
 				if variable * 1 * 2
@@ -61,9 +64,13 @@ main
 			end
 			
 			if miracle * 0
-			then else
+			then 
+			else
 				useMiracle * 0
-				setState * 4 * 0
+				if getState * 4
+				then else
+					setState * 4 * 0
+				end
 				variable * 1 * 1
 			end
 			
@@ -91,7 +98,10 @@ main
 			if miracle * 0
 			then else
 				useMiracle * 0
-				setState * 4 * 0
+				if getState * 4
+				then else
+					setState * 4 * 0
+				end
 				variable * 1 * 1
 			end
 			
@@ -130,7 +140,10 @@ main
 			if miracle * 0
 			then else
 				useMiracle * 0
-				setState * 4 * 0
+				if getState * 4
+				then else
+					setState * 4 * 0
+				end
 				variable * 1 * 1
 			end
 			
@@ -158,7 +171,10 @@ main
 			if miracle * 0
 			then else
 				useMiracle * 0
-				setState * 4 * 0
+				if getState * 4
+				then else
+					setState * 4 * 0
+				end
 				variable * 1 * 1
 			end
 			
@@ -191,7 +207,10 @@ main
 			if miracle * 0
 			then else
 				useMiracle * 0
-				setState * 4 * 0
+				if getState * 4
+				then else
+					setState * 4 * 0
+				end
 				variable * 1 * 1
 			end
 			
@@ -218,7 +237,10 @@ main
 			if miracle * 0
 			then else
 				useMiracle * 0
-				setState * 4 * 0
+				if getState * 4
+				then else
+					setState * 4 * 0
+				end
 				variable * 1 * 1
 			end
 			
@@ -251,7 +273,10 @@ main
 			if miracle * 0
 			then else
 				useMiracle * 0
-				setState * 4 * 0
+				if getState * 4
+				then else
+					setState * 4 * 0
+				end
 				variable * 1 * 1
 			end
 			
@@ -278,7 +303,10 @@ main
 			if miracle * 0
 			then else
 				useMiracle * 0
-				setState * 4 * 0
+				if getState * 4
+				then else
+					setState * 4 * 0
+				end
 				variable * 1 * 1
 			end
 			
@@ -311,7 +339,10 @@ main
 			if miracle * 0
 			then else
 				useMiracle * 0
-				setState * 4 * 0
+				if getState * 4
+				then else
+					setState * 4 * 0
+				end
 				variable * 1 * 1
 			end
 			
@@ -338,7 +369,10 @@ main
 			if miracle * 0
 			then else
 				useMiracle * 0
-				setState * 4 * 0
+				if getState * 4
+				then else
+					setState * 4 * 0
+				end
 				variable * 1 * 1
 			end
 			
