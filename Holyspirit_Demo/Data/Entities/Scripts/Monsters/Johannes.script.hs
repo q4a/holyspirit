@@ -50,7 +50,7 @@ main
 					variable * 0 * 2
 					variable * 1 * 0
 					useMiracle * 0	
-					tell * 213 * 10000
+					speak * 213
 				end
 			end
 		end
