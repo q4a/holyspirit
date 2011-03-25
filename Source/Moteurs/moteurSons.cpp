@@ -47,9 +47,9 @@ void MoteurSons::Gerer(float temps)
     if(!m_nextMusic.empty() && m_nextMusic != m_curMusic)
     {
         change_volume -= temps * 50;
-        if(change_volume <= 0 || m_curMusic.empty())
+        if(change_volume <= 0 || m_curMusic.empty() ||  GetMusicStatus() == 0)
         {
-            if(!m_curMusic.empty())
+            if(change_volume <= 0)
                 change_volume = 0;
 
             m_music.Stop();

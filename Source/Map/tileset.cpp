@@ -359,7 +359,7 @@ void Tileset::Charger(ifstream &fichier, int lumiere_base, cDAT *reader)
                         if(!m_sons.empty())
                             m_sons.back().preserv = temp;
                     }
-                    else if (caractere=='p')
+                    else if (caractere=='v')
                     {
                         int v;
                         fichier>>v;
