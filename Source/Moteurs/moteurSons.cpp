@@ -42,6 +42,7 @@ MoteurSons::~MoteurSons()
 
 void MoteurSons::Gerer(float temps)
 {
+    m_music.SetPosition(sf::Listener::GetPosition());
     m_music.SetVolume(configuration->music_volume * change_volume * 0.01);
 
     if(!m_nextMusic.empty() && m_nextMusic != m_curMusic)
@@ -108,8 +109,6 @@ void MoteurSons::StopAllSounds()
 
 bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,int volume)
 {
-    m_music.SetPosition(sf::Listener::GetPosition());
-
     if (volume>100)
         volume=100;
     if (volume<0)
