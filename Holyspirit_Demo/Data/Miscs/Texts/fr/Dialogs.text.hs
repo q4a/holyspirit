@@ -72,7 +72,7 @@ Hergahrt, l'ancien prêtre de l'Eglise de Saint Waldinghe ! Mon Dieu... Je ne pen
 Bien sûr ! La bénédiction augmente les vertus des armes et armures. Pour que je puisse donner ma bénédiction il me faut de l'eau bénite, une litanie à chanter et bien entendu un objet à bénir !
 Allons-y !
 Et ensuite ?
-Ensuite il faudra y escorter un frère mineur pour prononcer une litanie dans l'Oculus, l'ancienne salle de cérémonie des premiers fidèles. Tu la reconnaitras, c'est la plus grande salle des catacombes et la lumière extérieur donne dedans.\Pour l'instant va chercher les reliques ! Ca fait très longtemps que personne n'est allé les voir et nous avons perdu les plans des catacombes...\Tu devras trouver l'oreille de Sainte Frénégonde, le coeur de Saint Joachim, les yeux de Sainte Galswinthe et le doigt de Saint Clodomir. Bonne chance !
+Ensuite il faudra y escorter un frère mineur pour prononcer une litanie dans l'Oculus, l'ancienne salle de cérémonie des premiers fidèles. Tu la reconnaitras, c'est la plus grande salle des catacombes et la lumière extérieure donne dedans.\Pour l'instant va chercher les reliques ! Ca fait très longtemps que personne n'est allé les voir et nous avons perdu les plans des catacombes...\Tu devras trouver l'oreille de Sainte Frénégonde, le coeur de Saint Joachim, les yeux de Sainte Galswinthe et le doigt de Saint Clodomir. Bonne chance !
 
 
 
