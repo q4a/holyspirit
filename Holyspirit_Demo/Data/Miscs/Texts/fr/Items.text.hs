@@ -131,7 +131,7 @@ Livre des Saints - Le Sacrifice de Joachim
 Extrait du Livre des Saints, ce document\relate l'histoire de Saint Joachim.\Clic droit pour utiliser.
 Livre des Saints - Le Courage de Galswinthe
 Extrait du Livre des Saints, ce document\relate l'histoire de Sainte Galswinthe.\Clic droit pour utiliser.
-Livre des Saints - La Vie Exemplaire de Saint Clodomir
+Livre des Saints - La Vie Exemplaire de Clodomir
 Extrait du Livre des Saints, ce document\relate l'histoire de Saint Clodomir.\Clic droit pour utiliser.
 Armure barbare d'Haksil
 Armure de maille et de cuir\qui appartenut au terrible chef barbare\Haksil Wurgasht.\Certains la disent encore souillée par\le sang de Sainte Frénégonde...
@@ -157,3 +157,5 @@ Couronne ayant appertenu au glorieux Roi Teudéric.
 Plastron de Teudéric
 Plastron ayant appertenu au glorieux Roi Teudéric.
 Atours de Teudéric
+L'histoire de l'Abbaye de Saint Clodomir
+Par frère Vlanker, moine honoraire de l’abbaye.

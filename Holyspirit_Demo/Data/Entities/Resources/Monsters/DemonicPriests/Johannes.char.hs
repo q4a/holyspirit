@@ -19,4 +19,5 @@ $
 *Data/Entities/Miracles/DemonicBall_x3.miracle.hs
 *Data/Entities/Miracles/Summoning_Guardian.miracle.hs
 *Data/Entities/Miracles/DemonicBall_circle.miracle.hs
+*Data/Entities/Miracles/FlammableOil.miracle.hs
 $

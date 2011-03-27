@@ -30,7 +30,14 @@ main
 		then
 			setActif * 0
 		else
-			setActif * 1
+			
+			if variable_bigger * 4 * 1
+			then
+				setActif * 1
+			else
+				setActif * 0
+			end
+
 			if talk
 				variable * 1 * 2
 			then

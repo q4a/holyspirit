@@ -391,9 +391,6 @@ main
 		
 		if variable * 0 * 16
 		then
-			variable * 2 * -1
-
-			
 			if see
 			then
 				if distance * 8
@@ -453,6 +450,10 @@ main
 			look_hero
 		end
 	else
+		if variable * 0 * 99
+		then else
+			useMiracle * 5
+		end
 		variable * 0 * 99
 	end
 end 
