@@ -393,83 +393,62 @@ main
 		then
 			variable * 2 * -1
 
-			if getState * 4 
-				if see
-				then
-					useMiracle * 2
-				else
-					setState * 0
-				end
+			
+			if see
 			then
-			else
-				if see
+				if distance * 8
 				then
-					variable * 2 * -1
-					if distance * 2 
+					
+					if numberInvocation * 0
 					then
-						if rand * 25 
+						stop
+						
+						if stop
 						then
-							evasion
-						else
-							if rand * 75 
-							then
-								if numberInvocation * 0
-								then
-									variable * 2 * 1
-								else
-									variable * 2 * 2
-								end
-							else
-								variable * 2 * 0
-							end  
-						end
-					else
-						if distance * 3 
-						then
-							evasion  
-						else
-							if distance * 6 
-							then
+							if miracle * 3
+							then else
+								useMiracle * 3
+							end
 							
-								if numberInvocation * 0
-								then
-									variable * 2 * 1
-								else
-									variable * 2 * 0
-								end
-							
-							else
-								fight
+							if getState * 5 
+							then else
+								setState * 5 * 0
 							end
 						end
-					end
-				
-				else
-					variable * 2 * -1
-					randomDisplace  
-				end
-			
-				if variable * 2 * 0
-				then
-					if rand * 75
-					then
-						if rand * 50
-						then
-							useMiracle * 4
-						else
-							useMiracle * 2
-						end
 					else
-						useMiracle * 1
+						if distance * 2
+						then
+							useMiracle * 0
+							if getState * 4
+							then else
+								stop
+								setState * 4 * 0
+							end 
+							
+							if miracle * 0
+							then
+								evasion  * 1
+								teleport * 1
+							end
+						else
+							if rand * 90
+							then
+								useMiracle * 4
+							end
+							useMiracle * 1
+						end
 					end
+				else
+					fight
 				end
-
-				if variable * 2 * 1
-				then
-					useMiracle * 3
-					setState * 4
-				end
+			else
+					randomDisplace 
 			end
+			
+			
+			
+			
+			
 		else
 			look_hero
 		end
