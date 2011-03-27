@@ -32,15 +32,27 @@ void Map::Script_Evasion(Jeu *jeu,Script *script,int noInstruction,int monstre,H
 {
     if (m_monstre[monstre].EnVie())
     {
-        if (!m_monstre[monstre].frappeEnCours)
+        if (!m_monstre[monstre].frappeEnCours || (int)script->getValeur(noInstruction, 0))
         {
-            if (m_monstre[monstre].getArrivee().x==m_monstre[monstre].getCoordonnee().x&&m_monstre[monstre].getArrivee().y==m_monstre[monstre].getCoordonnee().y)
+            if((m_monstre[monstre].getArrivee().x==m_monstre[monstre].getCoordonnee().x
+             && m_monstre[monstre].getArrivee().y==m_monstre[monstre].getCoordonnee().y) || (int)script->getValeur(noInstruction, 0))
             {
                 coordonnee arrivee;
                 arrivee=m_monstre[monstre].getCoordonnee();
-                arrivee.x+=m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x;
-                arrivee.y+=m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y;
-                m_monstre[monstre].setArrivee(arrivee);
+                arrivee.x+=(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x) * 3;
+                arrivee.y+=(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y) * 3;
+
+                if((TileVisible(arrivee.x, arrivee.y, m_monstre[monstre].getCoordonnee())
+                && !getCollision(arrivee.x,arrivee.y)) || !(int)script->getValeur(noInstruction, 0))
+                    m_monstre[monstre].setArrivee(arrivee);
+                else
+                {
+                    arrivee.x-=(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x) * 6;
+                    arrivee.y-=(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y) * 6;
+                    if(TileVisible(arrivee.x, arrivee.y, m_monstre[monstre].getCoordonnee())
+                    && !getCollision(arrivee.x,arrivee.y))
+                        m_monstre[monstre].setArrivee(arrivee);
+                }
             }
         }
     }
@@ -533,6 +545,11 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             m_monstre[monstre].setArrivee(
                         coordonnee((int)script->getValeur(noInstruction, 0), (int)script->getValeur(noInstruction, 1)));
+        }
+        else if (script->m_instructions[noInstruction].nom=="stop" && monstre != -1)
+        {
+            m_monstre[monstre].setArrivee(
+                        coordonnee(m_monstre[monstre].getProchaineCase().x, m_monstre[monstre].getProchaineCase().y));
         }
         else if (script->m_instructions[noInstruction].nom=="entity_goto" && monstre == -1)
         {

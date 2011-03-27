@@ -48,7 +48,7 @@ void MoteurSons::Gerer(float temps)
     if(!m_nextMusic.empty() && m_nextMusic != m_curMusic)
     {
         change_volume -= temps * 50;
-        if(change_volume <= 0 || m_curMusic.empty() ||  GetMusicStatus() == 0)
+        if(change_volume <= 0 || m_curMusic.empty() || GetMusicStatus() == 0)
         {
             if(change_volume <= 0)
                 change_volume = 0;
@@ -131,7 +131,8 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,in
                     y=m_sons[i].GetPosition().y;
                     z=m_sons[i].GetPosition().z;
                     // Je test voir si le nouveau son du même type est plus près du perso que l'ancien, si oui, je mets la position du nouveau à la place de l'ancien
-                    if ((double)(((positionHero.x+x)*(positionHero.x+x)+(positionHero.y-y)*(positionHero.y-y)))>(double)(((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))))
+                    if ((double)(((positionHero.x+x)*(positionHero.x+x)+(positionHero.y-y)*(positionHero.y-y)))>
+                        (double)(((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))))
                         m_sons[i].SetPosition(position.x,0,position.y);
                         //m_sons[i].SetPosition(sf::Listener::GetPosition());
 

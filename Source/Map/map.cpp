@@ -581,7 +581,6 @@ bool Map::Charger(std::string nomMap,Hero *hero)
         {
             position.x=0;
             position.y=0;
-
             do
             {
                 //Chargement des "décors", des cases de la map

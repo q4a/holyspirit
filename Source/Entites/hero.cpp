@@ -684,7 +684,7 @@ void Hero::Charger(const std::string &chemin_save)
 
     for(unsigned i = 0 ; i < m_docs.size() ; ++i)
     {
-        m_docs[i].m_description = DecouperTexte(m_docs.back().m_description,m_classe.position_contenu_docs.w,16);
+        m_docs[i].m_description = DecouperTexte(m_docs[i].m_description,m_classe.position_contenu_docs.w,16);
         m_docs[i].GenerateDescription();
     }
 

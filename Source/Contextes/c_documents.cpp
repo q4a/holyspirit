@@ -102,6 +102,7 @@ void c_Documents::Utiliser(Jeu *jeu)
     if (eventManager->getEvenement(Mouse::Left,EventClic))
     {
         eventManager->StopEvenement(Mouse::Left,EventClic);
+        if(jeu->hero.m_docPointe >= 0)
         jeu->hero.m_docSelectionne = jeu->hero.m_docPointe;
         if(jeu->hero.m_docPointe >= 0)
             jeu->hero.m_defil_cdoc = 0;
