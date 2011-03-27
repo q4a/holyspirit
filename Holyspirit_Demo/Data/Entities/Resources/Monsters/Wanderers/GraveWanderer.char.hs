@@ -4,7 +4,7 @@ $
 $
 * 0
 $
-*v10 di25 da40 m0.2 o1 a5 n5 s1 x50 $
+*v10 di10 da15 m0.2 o1 a5 n5 s1 x50 $
 $
 *Data/Entities/Scripts/Monsters/GraveWanderer.script.hs
 $

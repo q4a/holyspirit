@@ -1,10 +1,15 @@
 $
 $
+	* i0 $
+	* a0 $
 $
 $
+	* a1 $
 $
-	* t0 l1 s0 ia10 $
-	* t2 ia10 ib15 ic0 $
+	* t-1 l1 l4 $
+	* t0 l2 s0 ia15 $ 
+	* t2 ia%0 ib%1 ic0 $
+	* t-1 $
 $
 	*
 		*Data/Graphics/Miracles/Bone_spike.png
