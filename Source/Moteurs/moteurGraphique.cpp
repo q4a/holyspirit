@@ -83,13 +83,14 @@ void MoteurGraphique::CreateNewWindow()
 
     if (configuration->postFX)
     {
-        EffectBlur.SetTexture("texture", sf::Shader::CurrentTexture);
-        EffectBlur2.SetTexture("texture", sf::Shader::CurrentTexture);
-        EffectBlurScreen.SetTexture("texture", sf::Shader::CurrentTexture);
-        EffectMort.SetTexture("framebuffer", sf::Shader::CurrentTexture);
-        EffectFiltre.SetTexture("framebuffer", sf::Shader::CurrentTexture);
-        EffectWater.SetTexture("framebuffer", sf::Shader::CurrentTexture);
-        EffectDistortion.SetTexture("framebuffer", sf::Shader::CurrentTexture);
+        EffectBlur.SetCurrentTexture("texture");
+        EffectBlur2.SetCurrentTexture("texture");
+        EffectBlurScreen.SetCurrentTexture("texture");
+        EffectMort.SetCurrentTexture("framebuffer");
+        EffectFiltre.SetCurrentTexture("framebuffer");
+        EffectWater.SetCurrentTexture("framebuffer");
+        EffectDistortion.SetCurrentTexture("framebuffer");
+
         EffectDistortion.SetTexture("distortion_map",m_distortion_screen.GetImage());
     }
 
@@ -463,7 +464,7 @@ void MoteurGraphique::Afficher()
 
             m_distortion_screen.Display();
 
-            EffectDistortion.SetTexture("framebuffer", sf::Shader::CurrentTexture);
+            EffectDistortion.SetCurrentTexture("framebuffer");
             EffectDistortion.SetTexture("distortion_map", m_distortion_screen.GetImage());
 
             bufferImage.Display();
