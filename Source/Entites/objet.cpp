@@ -515,7 +515,7 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
 }
 
 
-void Objet::Charger(const std::string &chemin, const Caracteristique &caract,bool NePasAjouterBenedictions)
+void Objet::Charger(const std::string &chemin, const Caracteristique &caract,bool NePasAjouterBenedictions, bool ChargerSet)
 {
     console->Ajouter("",0);
     console->Ajouter("Chargement de l'objet : "+chemin,0);
@@ -917,7 +917,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
         while (caractere!='$');
 
         m_set = Set ();
-        if(!m_chemin_set.empty())
+        if(!m_chemin_set.empty() && ChargerSet)
             m_set.Charger(m_chemin_set, caract);
 
         this->ChargerCaracteristiques(fichier);
@@ -1067,8 +1067,10 @@ void Set::Charger(std::string chemin, Caracteristique caract)
             fichier->get(caractere);
             if (caractere=='*')
             {
-                m_items.push_back("");
-                *fichier>>m_items.back();
+                m_items_path.push_back("");
+                *fichier>>m_items_path.back();
+                m_items.push_back(Objet ());
+                m_items.back().Charger(m_items_path.back(),caract,false,false);
             }
             if (fichier->eof())
             {
@@ -2027,18 +2029,19 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
         for(unsigned i = 0 ; i < m_set.m_items.size() ; ++i)
         {
-            Objet tempobj;
-            tempobj.Charger(m_set.m_items[i], caract);
-            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,tempobj.m_nom.c_str()));
+            //Objet tempobj;
+            //tempobj.Charger(m_set.m_items[i], caract);
+
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_set.m_items[i].m_nom.c_str()));
             temp.back().SetStyle(2);
 
             bool ok = false;
             if(items != NULL)
                 for(unsigned j = 0 ; j < items->size() ; ++j)
-                    if((*items)[j].m_chemin == m_set.m_items[i] && (*items)[j].m_equipe >= 0)
+                    if((*items)[j].m_chemin == m_set.m_items_path[i] && (*items)[j].m_equipe >= 0)
                         ok = true;
             if(ok)
-                temp.back().SetColor(GetItemColor(tempobj.m_rarete)), m_set.m_nombre++;
+                temp.back().SetColor(GetItemColor(m_set.m_items[i].m_rarete)), m_set.m_nombre++;
             else
                 temp.back().SetColor(sf::Color(128,128,128));
         }

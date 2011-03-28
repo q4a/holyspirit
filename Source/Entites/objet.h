@@ -82,7 +82,8 @@ class Set
     std::string m_chemin;
 
     std::vector<std::vector<benediction> > m_benedictions;
-    std::vector<std::string> m_items;
+    std::vector<Objet> m_items;
+    std::vector<std::string> m_items_path;
 
     std::vector<Miracle> m_miracle;
     std::vector<bool> m_useMiracle;
@@ -100,7 +101,7 @@ public:
 
     void Afficher(const coordonnee &position);
     int AfficherCaracteristiques(coordonnee position, Border &border,const Caracteristique &caract, std::vector<Objet> *items, std::string nom_classe,float modPrix = 1, bool compare = false, bool = false,  bool = false, bool = false);
-    void Charger(const std::string &chemin, const Caracteristique &caract,bool NePasAjouterBenedictions=false);
+    void Charger(const std::string &chemin, const Caracteristique &caract,bool NePasAjouterBenedictions=false, bool ChargerSet = true);
     void ChargerCaracteristiques(std::ifstream *fichier);
 
     void Sauvegarder(std::ofstream *fichier);

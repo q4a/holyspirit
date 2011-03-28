@@ -3046,7 +3046,7 @@ void Hero::RecalculerCaracteristiques(bool bis)
 
     m_lvl_miracles_new = m_lvl_miracles;
 
-    std::vector<Set> liste_set;
+    std::vector<Set *> liste_set;
 
     for (int i=0;i<(int)m_inventaire.size();++i)
         if (m_inventaire[i].m_equipe>=0)
@@ -3056,82 +3056,22 @@ void Hero::RecalculerCaracteristiques(bool bis)
                 {
                     bool ajouter = true;
                     for(unsigned j = 0 ; j < liste_set.size(); ++j)
-                        if(liste_set[j].m_chemin == m_inventaire[i].m_chemin_set)
-                            ajouter = false, liste_set[j].m_nombre++;
+                        if(liste_set[j]->m_chemin == m_inventaire[i].m_chemin_set)
+                            ajouter = false, liste_set[j]->m_nombre++;
 
                     if(ajouter)
-                        liste_set.push_back(m_inventaire[i].m_set), liste_set.back().m_nombre = 0;
+                        liste_set.push_back(&m_inventaire[i].m_set), liste_set.back()->m_nombre = 0;
                 }
 
                 for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
-                    switch (m_inventaire[i].m_benedictions[j].type)
-                    {
-                        case CARACT_SUPP:
-                            if(m_inventaire[i].m_benedictions[j].info1 == FORCE)
-                                m_caracteristiques.force    += m_inventaire[i].m_benedictions[j].info2;
-                            if(m_inventaire[i].m_benedictions[j].info1 == DEXTERITE)
-                                m_caracteristiques.dexterite+= m_inventaire[i].m_benedictions[j].info2;
-                            if(m_inventaire[i].m_benedictions[j].info1 == VITALITE)
-                                m_caracteristiques.vitalite += m_inventaire[i].m_benedictions[j].info2;
-                            if(m_inventaire[i].m_benedictions[j].info1 == PIETE)
-                                m_caracteristiques.piete    += m_inventaire[i].m_benedictions[j].info2;
-                            if(m_inventaire[i].m_benedictions[j].info1 == CHARISME)
-                                m_caracteristiques.charisme += m_inventaire[i].m_benedictions[j].info2;
-                            break;
-                        case POINTS_SUPP:
-                            if(m_inventaire[i].m_benedictions[j].info1 == PT_VIE)
-                                m_caracteristiques.maxVie   += m_inventaire[i].m_benedictions[j].info2;
-                            if(m_inventaire[i].m_benedictions[j].info1 == PT_FOI)
-                                m_caracteristiques.maxFoi   += m_inventaire[i].m_benedictions[j].info2;
-                            break;
-                        case MIRACLE_SUPP:
-                            int no = -1;
-
-                            for(int k = 0 ; k < m_classe.miracles.size() ; ++k)
-                                if(m_classe.miracles[k].m_chemin == m_inventaire[i].m_benedictions[j].text)
-                                    no = k;
-
-                            if(no >= 0 && no < m_lvl_miracles_new.size())
-                                m_lvl_miracles_new[no] += m_inventaire[i].m_benedictions[j].info1;
-                            break;
-                    }
+                    AjouterEffetsBenediction1(m_inventaire[i].m_benedictions[j]);
             }
 
     for (unsigned i=0;i<liste_set.size();++i)
-        for (unsigned k=0;(int)k < liste_set[i].m_nombre && k < liste_set[i].m_benedictions.size();++k)
+        for (unsigned k=0;(int)k < liste_set[i]->m_nombre && k < liste_set[i]->m_benedictions.size();++k)
         {
-            for (int j=0;j<(int)liste_set[i].m_benedictions[k].size();++j)
-                switch (liste_set[i].m_benedictions[k][j].type)
-                {
-                    case CARACT_SUPP:
-                        if(liste_set[i].m_benedictions[k][j].info1 == FORCE)
-                            m_caracteristiques.force    += liste_set[i].m_benedictions[k][j].info2;
-                        if(liste_set[i].m_benedictions[k][j].info1 == DEXTERITE)
-                            m_caracteristiques.dexterite+= liste_set[i].m_benedictions[k][j].info2;
-                        if(liste_set[i].m_benedictions[k][j].info1 == VITALITE)
-                            m_caracteristiques.vitalite += liste_set[i].m_benedictions[k][j].info2;
-                        if(liste_set[i].m_benedictions[k][j].info1 == PIETE)
-                            m_caracteristiques.piete    += liste_set[i].m_benedictions[k][j].info2;
-                        if(liste_set[i].m_benedictions[k][j].info1 == CHARISME)
-                            m_caracteristiques.charisme += liste_set[i].m_benedictions[k][j].info2;
-                        break;
-                    case POINTS_SUPP:
-                        if(liste_set[i].m_benedictions[k][j].info1 == PT_VIE)
-                            m_caracteristiques.maxVie   += liste_set[i].m_benedictions[k][j].info2;
-                        if(liste_set[i].m_benedictions[k][j].info1 == PT_FOI)
-                            m_caracteristiques.maxFoi   += liste_set[i].m_benedictions[k][j].info2;
-                        break;
-                    case MIRACLE_SUPP:
-                        int no = -1;
-
-                        for(int m = 0 ; m < m_classe.miracles.size() ; ++m)
-                            if(m_classe.miracles[m].m_chemin == liste_set[i].m_benedictions[k][j].text)
-                                no = m;
-
-                        if(no >= 0 && no < m_lvl_miracles_new.size())
-                            m_lvl_miracles_new[no] += liste_set[i].m_benedictions[k][j].info1;
-                        break;
-                }
+            for (int j=0;j<(int)liste_set[i]->m_benedictions[k].size();++j)
+                AjouterEffetsBenediction1(liste_set[i]->m_benedictions[k][j]);
         }
 
     m_caracteristiques.maxVie += m_caracteristiques.vitalite*10;
@@ -3180,44 +3120,13 @@ void Hero::RecalculerCaracteristiques(bool bis)
                 temp.armure[PHYSIQUE]     += m_inventaire[i].m_armure*accru/100;
 
                 for (int j=0;j<(int)m_inventaire[i].m_benedictions.size();++j)
-                {
-                     if (m_inventaire[i].m_benedictions[j].type==DEGATS_SUPP)
-                     {
-                        m_caracteristiques.degatsMin[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info2;
-                        m_caracteristiques.degatsMax[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info3;
-                     }
-                     if (m_inventaire[i].m_benedictions[j].type==DEGATS_TEMPS_SUPP)
-                     {
-                        m_caracteristiques.degatsMin[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info2;
-                        m_caracteristiques.degatsMax[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info2;
-                     }
-
-                     if (m_inventaire[i].m_benedictions[j].type==ARMURE_SUPP)
-                     {
-                        m_caracteristiques.armure[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info2;
-                        temp.armure[m_inventaire[i].m_benedictions[j].info1]+=m_inventaire[i].m_benedictions[j].info2;
-                     }
-                }
+                    AjouterEffetsBenediction2(m_inventaire[i].m_benedictions[j], temp);
             }
 
     for (unsigned i=0;i<liste_set.size();++i)
-        for (unsigned k=0; (int)k<liste_set[i].m_nombre && k < liste_set[i].m_benedictions.size();++k)
-            for (int j=0;j<(int)liste_set[i].m_benedictions[k].size();++j)
-                switch (liste_set[i].m_benedictions[k][j].type)
-                {
-                    case DEGATS_SUPP:
-                        m_caracteristiques.degatsMin[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info2;
-                        m_caracteristiques.degatsMax[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info3;
-                        break;
-                    case DEGATS_TEMPS_SUPP:
-                        m_caracteristiques.degatsMin[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info2;
-                        m_caracteristiques.degatsMax[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info2;
-                        break;
-                    case ARMURE_SUPP:
-                        m_caracteristiques.armure[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info2;
-                        temp.armure[liste_set[i].m_benedictions[k][j].info1]+=liste_set[i].m_benedictions[k][j].info2;
-                        break;
-                }
+        for (unsigned k=0; (int)k<liste_set[i]->m_nombre && k < liste_set[i]->m_benedictions.size();++k)
+            for (int j=0;j<(int)liste_set[i]->m_benedictions[k].size();++j)
+                AjouterEffetsBenediction2(liste_set[i]->m_benedictions[k][j], temp);
 
     for (int i = 0; i < (int)m_personnage.m_effets.size(); ++i)
         if (m_personnage.m_effets[i].m_effet.m_actif)
@@ -3274,6 +3183,61 @@ void Hero::RecalculerCaracteristiques(bool bis)
     m_personnage.setCaracteristique(temp);
 
     RecalculerGolems();
+}
+
+void Hero::AjouterEffetsBenediction1(benediction &bene)
+{
+    switch (bene.type)
+    {
+        case CARACT_SUPP:
+            if(bene.info1 == FORCE)
+                m_caracteristiques.force    += bene.info2;
+            if(bene.info1 == DEXTERITE)
+                m_caracteristiques.dexterite+= bene.info2;
+            if(bene.info1 == VITALITE)
+                m_caracteristiques.vitalite += bene.info2;
+            if(bene.info1 == PIETE)
+                m_caracteristiques.piete    += bene.info2;
+            if(bene.info1 == CHARISME)
+                m_caracteristiques.charisme += bene.info2;
+            break;
+        case POINTS_SUPP:
+            if(bene.info1 == PT_VIE)
+                m_caracteristiques.maxVie   += bene.info2;
+            if(bene.info1 == PT_FOI)
+                m_caracteristiques.maxFoi   += bene.info2;
+            break;
+        case MIRACLE_SUPP:
+            int no = -1;
+
+            for(int k = 0 ; k < m_classe.miracles.size() ; ++k)
+                if(m_classe.miracles[k].m_chemin == bene.text)
+                    no = k;
+
+            if(no >= 0 && no < m_lvl_miracles_new.size())
+                m_lvl_miracles_new[no] += bene.info1;
+            break;
+    }
+}
+
+void Hero::AjouterEffetsBenediction2(benediction &bene, Caracteristique &temp)
+{
+     if (bene.type==DEGATS_SUPP)
+     {
+        m_caracteristiques.degatsMin[bene.info1]+=bene.info2;
+        m_caracteristiques.degatsMax[bene.info1]+=bene.info3;
+     }
+     if (bene.type==DEGATS_TEMPS_SUPP)
+     {
+        m_caracteristiques.degatsMin[bene.info1]+=bene.info2;
+        m_caracteristiques.degatsMax[bene.info1]+=bene.info2;
+     }
+
+     if (bene.type==ARMURE_SUPP)
+     {
+        m_caracteristiques.armure[bene.info1]+=bene.info2;
+        temp.armure[bene.info1]+=bene.info2;
+     }
 }
 
 void Hero::RecalculerGolems()

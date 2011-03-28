@@ -1110,8 +1110,8 @@ bool Map::Miracle_Degats(Hero *hero, Personnage *personnage, Miracle &modele, Ef
     if (info.m_cible != NULL)
     {
         info.m_position = info.m_cible->getCoordonneePixel();
-        info.m_position.x += info.m_cible->m_entite_graphique.m_decalage.y*2 + info.m_cible->m_entite_graphique.m_decalage.x;
-        info.m_position.y += info.m_cible->m_entite_graphique.m_decalage.y*2 - info.m_cible->m_entite_graphique.m_decalage.x;
+        info.m_position.x += 16;//info.m_cible->m_entite_graphique.m_decalage.y*2 + info.m_cible->m_entite_graphique.m_decalage.x;
+        info.m_position.y += 16;//info.m_cible->m_entite_graphique.m_decalage.y*2 - info.m_cible->m_entite_graphique.m_decalage.x;
         if (info.m_cible->getCoordonnee().y >=0 && info.m_cible->getCoordonnee().y < (int)m_decor[0].size())
             if (info.m_cible->getCoordonnee().x >=0 && info.m_cible->getCoordonnee().x < (int)m_decor[0][info.m_cible->getCoordonnee().y].size())
             {

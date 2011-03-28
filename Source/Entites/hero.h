@@ -96,6 +96,9 @@ public:
 
     void GererTemps(float temps);
     void RecalculerCaracteristiques(bool bis = true);
+    void AjouterEffetsBenediction1(benediction &bene);
+    void AjouterEffetsBenediction2(benediction &bene, Caracteristique &temp);
+
     void RecalculerGolems();
 
     void RegenererVie(float vie);

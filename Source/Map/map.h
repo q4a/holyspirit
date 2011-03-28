@@ -45,6 +45,12 @@ public:
     ~Map();
 
     bool Charger(std::string,Hero *hero);
+    void ChargerInfos(std::ifstream *, const std::string &chemin);
+    void ChargerEntites(std::ifstream *, const std::string &chemin);
+    void ChargerCases(std::ifstream *, const std::string &chemin, bool ,Hero *hero);
+    void AddMonstre(std::vector <int> &, std::vector <int> &, std::vector <Entite_graphique> &, Entite_graphique &, coordonnee &position,
+                    int &, int &, int );
+
     void Initialiser(Hero *hero);
     void InitialiserMinimap();
     void CreerSprite(sf::Vector3f position_case);
@@ -52,16 +58,13 @@ public:
 
     void Afficher(Hero *hero,bool alt,float alpha=255);
     void AfficherSac(coordonnee ,float ,coordonnee ,Caracteristique , std::string, Border &);
-    void AfficherMinimap(coordonnee position,int typeCase,float alpha);
 
-    void Animer(Hero *hero,float temps); // Animation des tiles
+    void Animer(Hero *hero,float temps);
 
     void CalculerOmbresEtLumieres();
     void Detruire();
 
     void DelEffet(int no);
-
-    //int GererMiracle(EntiteMiracle *entiteMiracle,Miracle *modeleMiracle,Hero *hero,bool monstre, const coordonnee lanceur, const coordonnee cible,int couche);
 
     void GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
     void GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
@@ -147,8 +150,6 @@ public:
     casePathfinding ** getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 
     int m_defilerObjets,m_objetPointe,m_monstreIllumine;
-    /*sf::Music m_musique[MAX_MUSIQUE];
-    int m_musiqueEnCours,m_nombreMusique;*/
     std::vector<std::string> m_musiques;
     int m_musiqueEnCours;
 
