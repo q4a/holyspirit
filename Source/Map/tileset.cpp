@@ -34,20 +34,20 @@ Tileset::Tileset()
 {
     option_forcedShadow     = false;
     option_forcedReflect    = false;
-    empty_lumiere.intensite = 0;
+    defaultLight.intensite = 0;
 }
 Tileset::Tileset(const std::string &chemin)
 {
     option_forcedShadow     = false;
     option_forcedReflect    = false;
-    empty_lumiere.intensite = 0;
+    defaultLight.intensite = 0;
     Charger(chemin);
 }
 Tileset::Tileset(ifstream &fichier)
 {
     option_forcedShadow     = false;
     option_forcedReflect    = false;
-    empty_lumiere.intensite = 0;
+    defaultLight.intensite = 0;
     Charger(fichier);
 }
 Tileset::~Tileset()
@@ -439,16 +439,14 @@ const coordonnee &Tileset::getPositionDuTile(int tile,int type)
     {
         if (tile>=0&&tile<(int)m_tile_distortion.size())
             return m_tile_distortion[tile].getCoordonnee();
-        else
-            return m_tile_distortion[0].getCoordonnee();
     }
     else
     {
         if (tile>=0&&tile<(int)m_tile.size())
             return m_tile[tile].getCoordonnee();
-        else
-            return m_tile[0].getCoordonnee();
     }
+
+    return defaultCoordonnee;
 }
 
 bool Tileset::getCollisionTile(int tile)
@@ -478,6 +476,7 @@ std::vector<int> Tileset::getSonTile(int tile)
 {
     if (tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getSon();
+    return defaultSounds;
 }
 
 int Tileset::getTaille(int type)
@@ -493,7 +492,7 @@ const Lumiere &Tileset::getLumiereDuTile(int tile)
     if (tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getLumiere();
 
-    return empty_lumiere;
+    return defaultLight;
 }
 
 bool Tileset::getOmbreDuTile(int tile)
@@ -587,6 +586,7 @@ const std::vector <int> &Tileset::getShadowmapDuTile(int tile)
 {
     if (tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].m_shadowMap;
+    return defaultShadowMap;
 }
 
 
@@ -603,16 +603,14 @@ const coordonnee &Tileset::getCentreDuTile(int tile,int type)
     {
         if (tile>=0&&tile<(int)m_tile_distortion.size())
             return m_tile_distortion[tile].getCentre();
-        else
-            return m_tile_distortion[0].getCentre();
     }
     else
     {
         if (tile>=0&&tile<(int)m_tile.size())
             return m_tile[tile].getCentre();
-        else
-            return m_tile[0].getCentre();
     }
+
+    return defaultCoordonnee;
 }
 
 
@@ -620,8 +618,7 @@ coordonnee Tileset::getLumiereDecalDuTile(int tile)
 {
     if (tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].getLumiereDecal();
-    else
-        return m_tile[0].getLumiereDecal();
+    return defaultCoordonnee;
 }
 
 int Tileset::getAmbientShadow(int tile,int type)
@@ -630,16 +627,13 @@ int Tileset::getAmbientShadow(int tile,int type)
     {
         if (tile>=0&&tile<(int)m_tile_distortion.size())
             return m_tile_distortion[tile].getAmbientShadow();
-        else
-            return m_tile_distortion[0].getAmbientShadow();
     }
     else
     {
         if (tile>=0&&tile<(int)m_tile.size())
             return m_tile[tile].getAmbientShadow();
-        else
-            return m_tile[0].getAmbientShadow();
     }
+    return -1;
 }
 
 int Tileset::getMinimap(int tile)
@@ -655,8 +649,8 @@ const coordonnee &Tileset::getPositionMinimap(int tile)
 {
     if (tile>=0&&tile<(int)m_tile.size())
         return m_tile[tile].m_coordMinimap;
-    else
-        return m_tile[0].m_coordMinimap;
+
+    return defaultCoordonnee;
 }
 
 bool Tileset::JouerSon(int numeroSon,coordonnee position, bool unique, float volume)

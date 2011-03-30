@@ -98,8 +98,10 @@ class Tileset
 	std::vector <Infos_son>                   m_sons;
 	std::vector <std::vector <int> >    m_sonsSpecial;
 
-	Lumiere empty_lumiere;
-
+	Lumiere             defaultLight;
+	std::vector<int>    defaultShadowMap;
+	std::vector<int>    defaultSounds;
+	coordonnee          defaultCoordonnee;
 };
 
 class Herbe : public Tileset

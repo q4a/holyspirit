@@ -2280,9 +2280,9 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     if(!m_set.m_chemin.empty())
     {
         add_space = true;
-        for(int k = 0 ; k < m_set.m_nombre && k < m_set.m_benedictions.size() ; ++k)
+        for(unsigned k = 0 ; k < m_set.m_nombre && k < m_set.m_benedictions.size() ; ++k)
         {
-            for (int i=0;i<(int)m_set.m_benedictions[k].size();i++)
+            for (unsigned i=0;i<m_set.m_benedictions[k].size();i++)
                 temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,getTextBenediction(m_set.m_benedictions[k][i]).c_str(),GetItemColor(5)));
 
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));

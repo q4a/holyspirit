@@ -391,7 +391,7 @@ void c_Jeu::Animation(Jeu *jeu)
     if (retour == 2 || retour == 1)
     {
         if (jeu->hero.m_personnage.m_cible == NULL)
-            jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
+            jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0,0);
 
         if (!eventManager->getEvenement(Mouse::Left,EventClic))
             jeu->hero.m_personnage.m_cible = NULL,jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);

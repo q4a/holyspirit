@@ -2020,7 +2020,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                 retour = true;
 
                 if (eventManager->getEvenement(Mouse::Left,EventClic))
-                    if (m_lvl_miracles_new[i] > 0 && m_classe.miracles[i].m_buf == -1 ||
+                    if((m_lvl_miracles_new[i] > 0 && m_classe.miracles[i].m_buf == -1) ||
                         m_lvl_miracles[i] > 0)
                     {
                         if (m_classe.miracles[i].m_buf != -1)
@@ -3210,11 +3210,11 @@ void Hero::AjouterEffetsBenediction1(benediction &bene)
         case MIRACLE_SUPP:
             int no = -1;
 
-            for(int k = 0 ; k < m_classe.miracles.size() ; ++k)
+            for(unsigned k = 0 ; k < m_classe.miracles.size() ; ++k)
                 if(m_classe.miracles[k].m_chemin == bene.text)
                     no = k;
 
-            if(no >= 0 && no < m_lvl_miracles_new.size())
+            if(no >= 0 && no < (int)m_lvl_miracles_new.size())
                 m_lvl_miracles_new[no] += bene.info1;
             break;
     }

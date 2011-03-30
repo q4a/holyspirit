@@ -111,7 +111,7 @@ public:
     void setCoordonnee(const coordonnee &nouvellesCoordonnees);
     void setArrivee(const coordonnee &arrivee);
     void setMauvaiseArrivee(const coordonnee &arrivee);
-    void setEtat(int  etat);
+    void setEtat(int  etat, int pose = -1);
     void setJustEtat(int etat);
     void setPose(int  pose);
     void setAngle(int  angle);

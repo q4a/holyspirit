@@ -1189,10 +1189,13 @@ void Personnage::setVitesse(float vitesse)
     m_caracteristique.vitesse=vitesse;
 }
 
-void Personnage::setEtat(int etat)
+void Personnage::setEtat(int etat, int pose)
 {
     if(m_etat != etat)
         m_entite_graphique.m_animation = 0;
+
+    if(pose != -1)
+        m_entite_graphique.m_noAnimation = pose;
 
     m_etat=etat,frappeEnCours=false/*,m_entite_graphique.m_noAnimation=0*/;
 }

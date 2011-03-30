@@ -53,7 +53,7 @@
 					<Add option="-DDEBUG" />
 					<Add option="-D_WINDOWS" />
 					<Add option="-DSFML_STATIC" />
-					<Add directory="..\..\SFML2\include" />
+					<Add directory="..\..\LaurentGomila-SFML-4217ea6\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-lsfml-audio-s" />
@@ -62,11 +62,7 @@
 					<Add option="-lsfml-system-s" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
-					<Add library="..\..\SFML2\lib\libsfml-audio-s.a" />
-					<Add library="..\..\SFML2\lib\libsfml-graphics-s.a" />
-					<Add library="..\..\SFML2\lib\libsfml-window-s.a" />
-					<Add library="..\..\SFML2\lib\libsfml-system-s.a" />
-					<Add directory="..\..\SFML2\lib" />
+					<Add directory="..\..\SFML_BUILD_GIT\lib" />
 				</Linker>
 			</Target>
 			<Target title="FullDebug">
