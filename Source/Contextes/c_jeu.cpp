@@ -394,11 +394,11 @@ void c_Jeu::Animation(Jeu *jeu)
             jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0,0);
 
         if (!eventManager->getEvenement(Mouse::Left,EventClic))
-            jeu->hero.m_personnage.m_cible = NULL,jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
+            jeu->hero.m_personnage.m_cible = NULL,jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0,0);
 
         if (jeu->hero.m_personnage.m_cible != NULL)
             if(!jeu->hero.m_personnage.m_cible->EnVie())
-                jeu->hero.m_personnage.m_cible = NULL,jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
+                jeu->hero.m_personnage.m_cible = NULL,jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0,0);
     }
 
 
@@ -407,7 +407,7 @@ void c_Jeu::Animation(Jeu *jeu)
         if (jeu->hero.m_personnage.m_cible != NULL)
             if (fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().x - jeu->hero.m_personnage.getCoordonnee().x) > 1
              || fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().y - jeu->hero.m_personnage.getCoordonnee().y) > 1)
-                jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0);
+                jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0,0);
     }
 
     if(!jeu->hero.m_personnage.frappeEnCours)

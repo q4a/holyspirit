@@ -929,7 +929,7 @@ void Hero::CalculerOrdreAffichage()
 void Hero::Afficher()
 {
     if(m_personnage.getEtat() == 3)
-        m_personnage.setEtat(0);
+        m_personnage.setEtat(0,0);
 
     int plusHaut = -1;
     int plusBas = -1;
