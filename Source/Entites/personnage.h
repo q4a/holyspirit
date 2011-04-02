@@ -102,6 +102,8 @@ public:
     int AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3);
     void DetruireEffets();
     void RecalculerEffets();
+    void DesactiverEffets();
+    void ActiverEffets();
 
     void Kill();
 

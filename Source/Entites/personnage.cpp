@@ -285,6 +285,19 @@ void Personnage::Sauvegarder(ofstream &fichier)
                     m_caracteristique.maxVie -= m_effets[i].m_info2;
                     m_caracteristique.vie -= m_effets[i].m_info2;
                 }
+                if(m_effets[i].m_info1 == 1)
+                {
+                    if(m_effets[i].m_info2 == 0)
+                        m_caracteristique.force -= m_effets[i].m_info3;
+                    if(m_effets[i].m_info2 == 1)
+                        m_caracteristique.dexterite -= m_effets[i].m_info3;
+                    if(m_effets[i].m_info2 == 2)
+                        m_caracteristique.vitalite -= m_effets[i].m_info3;
+                    if(m_effets[i].m_info2 == 3)
+                        m_caracteristique.piete -= m_effets[i].m_info3;
+                    if(m_effets[i].m_info2 == 4)
+                        m_caracteristique.charisme -= m_effets[i].m_info3;
+                }
             }
         }
     }
@@ -322,6 +335,19 @@ void Personnage::Sauvegarder(ofstream &fichier)
                 {
                     m_caracteristique.maxVie += m_effets[i].m_info2;
                     m_caracteristique.vie    += m_effets[i].m_info2;
+                }
+                if(m_effets[i].m_info1 == 1)
+                {
+                    if(m_effets[i].m_info2 == 0)
+                        m_caracteristique.force += m_effets[i].m_info3;
+                    if(m_effets[i].m_info2 == 1)
+                        m_caracteristique.dexterite += m_effets[i].m_info3;
+                    if(m_effets[i].m_info2 == 2)
+                        m_caracteristique.vitalite += m_effets[i].m_info3;
+                    if(m_effets[i].m_info2 == 3)
+                        m_caracteristique.piete += m_effets[i].m_info3;
+                    if(m_effets[i].m_info2 == 4)
+                        m_caracteristique.charisme += m_effets[i].m_info3;
                 }
             }
         }
@@ -886,6 +912,19 @@ void Personnage::GererEffets(float temps)
                     if(m_caracteristique.vie > m_caracteristique.maxVie)
                         m_caracteristique.vie = m_caracteristique.maxVie;
                 }
+                if(m_effets[i].m_info1 == 1)
+                {
+                    if(m_effets[i].m_info2 == 0)
+                        m_caracteristique.force -= m_effets[i].m_info3;
+                    if(m_effets[i].m_info2 == 1)
+                        m_caracteristique.dexterite -= m_effets[i].m_info3;
+                    if(m_effets[i].m_info2 == 2)
+                        m_caracteristique.vitalite -= m_effets[i].m_info3;
+                    if(m_effets[i].m_info2 == 3)
+                        m_caracteristique.piete -= m_effets[i].m_info3;
+                    if(m_effets[i].m_info2 == 4)
+                        m_caracteristique.charisme -= m_effets[i].m_info3;
+                }
             }
             if(m_effets[i].m_type == AURA_ARMURE)
                 if(m_effets[i].m_info1 >= 0 && m_effets[i].m_info1 < 4)
@@ -1147,6 +1186,19 @@ int Personnage::AjouterEffet(Tileset *tileset, int type, int compteur, int info1
             m_caracteristique.maxVie += m_effets.back().m_info2;
             m_caracteristique.vie += m_effets.back().m_info2;
         }
+        if(m_effets.back().m_info1 == 1)
+        {
+            if(m_effets.back().m_info2 == 0)
+                m_caracteristique.force += m_effets.back().m_info3;
+            if(m_effets.back().m_info2 == 1)
+                m_caracteristique.dexterite += m_effets.back().m_info3;
+            if(m_effets.back().m_info2 == 2)
+                m_caracteristique.vitalite += m_effets.back().m_info3;
+            if(m_effets.back().m_info2 == 3)
+                m_caracteristique.piete += m_effets.back().m_info3;
+            if(m_effets.back().m_info2 == 4)
+                m_caracteristique.charisme += m_effets.back().m_info3;
+        }
     }
 
     if(m_effets.back().m_type == AURA_ARMURE)
@@ -1167,6 +1219,85 @@ void Personnage::RecalculerEffets()
             {
                 m_caracteristique.maxVie += m_effets[i].m_info2;
                 m_caracteristique.vie += m_effets[i].m_info2;
+            }
+            /*if(m_effets[i].m_info1 == 1)
+            {
+                if(m_effets[i].m_info2 == 0)
+                    m_caracteristique.force += m_effets[i].m_info3;
+                if(m_effets[i].m_info2 == 1)
+                    m_caracteristique.dexterite += m_effets[i].m_info3;
+                if(m_effets[i].m_info2 == 2)
+                    m_caracteristique.vitalite += m_effets[i].m_info3;
+                if(m_effets[i].m_info2 == 3)
+                    m_caracteristique.piete += m_effets[i].m_info3;
+                if(m_effets[i].m_info2 == 4)
+                    m_caracteristique.charisme += m_effets[i].m_info3;
+            }*/
+        }
+
+        if(m_effets[i].m_type == AURA_ARMURE)
+            if(m_effets[i].m_info1 >= 0 && m_effets[i].m_info1 < 4)
+                m_caracteristique.armure[(int)m_effets[i].m_info1] += m_effets[i].m_info2;
+    }
+}
+
+void Personnage::DesactiverEffets()
+{
+    for(unsigned i = 0 ; i < m_effets.size() ; ++i)
+    if(m_effets[i].m_effet.m_actif || m_effets[i].m_effet.m_old_actif)
+    {
+        if(m_effets[i].m_type == AURA_CARACTERISTIQUES)
+        {
+            if(m_effets[i].m_info1 == 0)
+            {
+                m_caracteristique.maxVie -= m_effets[i].m_info2;
+                m_caracteristique.vie -= m_effets[i].m_info2;
+            }
+            if(m_effets[i].m_info1 == 1)
+            {
+                if(m_effets[i].m_info2 == 0)
+                    m_caracteristique.force -= m_effets[i].m_info3;
+                if(m_effets[i].m_info2 == 1)
+                    m_caracteristique.dexterite -= m_effets[i].m_info3;
+                if(m_effets[i].m_info2 == 2)
+                    m_caracteristique.vitalite -= m_effets[i].m_info3;
+                if(m_effets[i].m_info2 == 3)
+                    m_caracteristique.piete -= m_effets[i].m_info3;
+                if(m_effets[i].m_info2 == 4)
+                    m_caracteristique.charisme -= m_effets[i].m_info3;
+            }
+        }
+
+        if(m_effets[i].m_type == AURA_ARMURE)
+            if(m_effets[i].m_info1 >= 0 && m_effets[i].m_info1 < 4)
+                m_caracteristique.armure[(int)m_effets[i].m_info1] -= m_effets[i].m_info2;
+    }
+}
+
+void Personnage::ActiverEffets()
+{
+    for(unsigned i = 0 ; i < m_effets.size() ; ++i)
+    if(m_effets[i].m_effet.m_actif || m_effets[i].m_effet.m_old_actif)
+    {
+        if(m_effets[i].m_type == AURA_CARACTERISTIQUES)
+        {
+            if(m_effets[i].m_info1 == 0)
+            {
+                m_caracteristique.maxVie += m_effets[i].m_info2;
+                m_caracteristique.vie += m_effets[i].m_info2;
+            }
+            if(m_effets[i].m_info1 == 1)
+            {
+                if(m_effets[i].m_info2 == 0)
+                    m_caracteristique.force += m_effets[i].m_info3;
+                if(m_effets[i].m_info2 == 1)
+                    m_caracteristique.dexterite += m_effets[i].m_info3;
+                if(m_effets[i].m_info2 == 2)
+                    m_caracteristique.vitalite += m_effets[i].m_info3;
+                if(m_effets[i].m_info2 == 3)
+                    m_caracteristique.piete += m_effets[i].m_info3;
+                if(m_effets[i].m_info2 == 4)
+                    m_caracteristique.charisme += m_effets[i].m_info3;
             }
         }
 

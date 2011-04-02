@@ -229,6 +229,8 @@ void Hero::Sauvegarder()
 
     ofstream fichier((configuration->chemin_temps+"Save.sav.hs").c_str(), ios::out | ios::trunc | ios::binary);
 
+    m_personnage.DesactiverEffets();
+
     if (fichier)
     {
         if (configuration->debug)
@@ -346,6 +348,8 @@ void Hero::Sauvegarder()
     cDAT fichierSave;
 
     fichierSave.Create(m_contenuSave, configuration->chemin_saves+m_chemin_save);
+
+    m_personnage.ActiverEffets();
 }
 
 void Hero::SauvegarderApercu()
