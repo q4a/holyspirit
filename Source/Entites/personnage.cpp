@@ -366,14 +366,21 @@ int Personnage::getOrdre(Modele_Personnage *modele)
 
 void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbrillance, bool sansEffetHaut, bool sansEffetBas)
 {
-    if(!sansEffetBas)
-        for(int i = 0; i < (int)m_effets.size(); ++i)
-            if(m_effets[i].m_effet.m_actif)
-                if(m_effets[i].m_effet.getOrdre() == -1)
-                {
-                    m_effets[i].m_effet.m_position = m_positionPixel;
-                    m_effets[i].m_effet.Afficher();
-                }
+    sf::Color effect_color(255,255,255);
+
+    for(int i = 0; i < (int)m_effets.size(); ++i)
+        if(m_effets[i].m_effet.m_actif)
+        {
+            if(!sansEffetBas)
+            if(m_effets[i].m_effet.getOrdre() == -1)
+            {
+                m_effets[i].m_effet.m_position = m_positionPixel;
+                m_effets[i].m_effet.Afficher();
+            }
+
+            if(m_effets[i].useColor)
+                effect_color = m_effets[i].m_color;
+        }
 
     if (modele!=NULL)
         if (m_etat>=0 && m_etat < (int)modele->m_tileset.size())
@@ -383,7 +390,11 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
                 m_entite_graphique.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
                 m_entite_graphique.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
 
-                m_entite_graphique.SetColor(m_entite_graphique.m_color);
+                m_entite_graphique.SetColor(sf::Color (
+                                            (m_entite_graphique.m_color.r * (float)effect_color.r / 255),
+                                            (m_entite_graphique.m_color.r * (float)effect_color.g / 255),
+                                            (m_entite_graphique.m_color.r * (float)effect_color.b / 255),
+                                            (m_entite_graphique.m_color.r * (float)effect_color.a / 255)));
 
                 moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique);
 
@@ -1163,7 +1174,7 @@ void Personnage::DetruireEffets()
     }
 }
 
-int Personnage::AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3)
+int Personnage::AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3, int colorr, int colorg, int colorb, int colora)
 {
     m_effets.push_back(EffetPersonnage());
 
@@ -1178,6 +1189,14 @@ int Personnage::AjouterEffet(Tileset *tileset, int type, int compteur, int info1
     m_effets.back().m_info1             = info1;
     m_effets.back().m_info2             = info2;
     m_effets.back().m_info3             = info3;
+
+    m_effets.back().m_color             = sf::Color(colorr, colorg, colorb, colora);
+
+    if(colorr != 0 || colorg != 0 || colorb != 0 || colora != 0)
+        m_effets.back().useColor = true;
+
+
+
 
     if(m_effets.back().m_type == AURA_CARACTERISTIQUES)
     {

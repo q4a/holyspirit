@@ -99,7 +99,7 @@ public:
 
     void InfligerDegats(float degats, int type, float temps = 0);
 
-    int AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3);
+    int AjouterEffet(Tileset *tileset, int type, int compteur, int info1, int info2, int info3, int colorr, int colorg, int colorb, int colora);
     void DetruireEffets();
     void RecalculerEffets();
     void DesactiverEffets();

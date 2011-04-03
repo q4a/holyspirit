@@ -213,7 +213,11 @@ bool Map::Miracle_Effet  (Hero *hero, Personnage *personnage, Miracle &modele, E
                 effet.m_informations[2], // TEMPS
                 effet.m_informations[3], // INFOS
                 effet.m_informations[4],
-                effet.m_informations[5]);
+                effet.m_informations[5],
+                effet.m_informations[6], // COLOR
+                effet.m_informations[7], // COLOR
+                effet.m_informations[8], // COLOR
+                effet.m_informations[9]); // COLOR
             info.m_cible = personnage;
         }
         else if(info.m_cible != NULL)
@@ -224,7 +228,11 @@ bool Map::Miracle_Effet  (Hero *hero, Personnage *personnage, Miracle &modele, E
                 effet.m_informations[2], // TEMPS
                 effet.m_informations[3], // INFOS
                 effet.m_informations[4],
-                effet.m_informations[5]);
+                effet.m_informations[5],
+                effet.m_informations[6], // COLOR
+                effet.m_informations[7], // COLOR
+                effet.m_informations[8], // COLOR
+                effet.m_informations[9]); // COLOR
 
             info.m_position = info.m_cible->getCoordonneePixel();
         }

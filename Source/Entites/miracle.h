@@ -61,6 +61,8 @@ public:
         m_info1 = -1;
         m_info2 = -1;
         m_info3 = -1;
+
+        useColor = false;
     }
 
     void Afficher();
@@ -70,6 +72,9 @@ public:
     float           m_info1;
     float           m_info2;
     float           m_info3;
+
+    bool            useColor;
+    sf::Color       m_color;
 };
 
 
