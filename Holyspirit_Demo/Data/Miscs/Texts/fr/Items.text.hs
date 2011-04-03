@@ -38,8 +38,8 @@ Anneau
 Un petit anneau sertit d'une pierre.
 Planche en bois
 Une planche qui peut servir à\confectionner bien des objets...\Peut-être la première étape d'un cercueil ?
-
-
+Arbalète à étrier
+...
 Petit bouclier
 Un petit bouclier de bois\garni de renforts métalliques.
 Epée courte

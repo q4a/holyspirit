@@ -8,7 +8,11 @@ $
 $
 *Data/Entities/Scripts/Monsters/Bowman.script.hs
 $
-	#ITEMS
+	
+	*
+		*Crossbow_stirrup_crossbow.item.hs
+		r-1
+	$
 $
 *Data/Entities/Particles/Human_blood.ps.hs
 $

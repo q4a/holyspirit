@@ -3,6 +3,7 @@
 *Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_ground2.png
 *Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_ground3.png
 *Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_decals.png
+*Data/Graphics/Landscapes/AgrarianLands/Fields.png
 $
 $
 *x0 y0 w160 h96 i0 ey48 vHerbe1 z0 $
@@ -31,5 +32,7 @@ $
 
 *x0 y0 w384 h192 i4 vDecalRoche1 z0 $
 *x0 y192 w384 h192 i4 vDecalRoche2 z0 $
+
+*x0 y0 w512 h256 i5 vChamps z0 $
 
 $

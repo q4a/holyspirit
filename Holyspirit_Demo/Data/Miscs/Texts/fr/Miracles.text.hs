@@ -51,9 +51,13 @@ La courtisane envoit un carreau qui\explose au bout d'une seconde, se séparant e
 Dégâts : %1\% des dégâts d'origine.
 Explosion
 Le carreau tiré par l'arbalète est explosif.\Il inflige 10-20 points de dégâts par le feu.
-
-
-
-
-
+Ombre
+La courtisane blabla
+Esquive : +%1
+Assassinat
+La courtisane porte un coup mortel à sa cible.\Utilisable uniquement en mode Ombre.
+Dégâts : +%1\%
+Egorger
+La courtisane se déplace quasi instantanément derrière sa cible, lui infligeant ensuite une attaque foudroyante.\Utilisable uniquement en mode Ombre.
+Dégâts : %1 à %2
 
