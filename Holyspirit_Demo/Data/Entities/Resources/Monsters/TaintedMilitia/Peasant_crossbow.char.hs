@@ -11,7 +11,7 @@ $
 	
 	*
 		*Crossbow_stirrup_crossbow.item.hs
-		r-1
+		r2500
 	$
 $
 *Data/Entities/Particles/Human_blood.ps.hs
