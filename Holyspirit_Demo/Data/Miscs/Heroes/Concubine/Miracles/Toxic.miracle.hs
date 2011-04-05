@@ -12,7 +12,7 @@ $
 $
 	* f%0 c1 $
 $
-	* t10 l1 ia2 ib0 id1 $
+	* t10 l1 ia2 ib0 id1 ie1 $
 
 	* t8 l2 ia-1 ib1 ic25 $
 
