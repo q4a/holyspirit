@@ -2699,8 +2699,8 @@ void Hero::AfficherRaccourcis()
                  || m_classe.miracles[m_raccourcis[i].no].m_reserveFoi > m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
                  || m_classe.miracles[m_raccourcis[i].no].m_coutVie + m_classe.miracles[m_raccourcis[i].no].m_reserveVie > m_caracteristiques.vie
                  || m_classe.miracles[m_raccourcis[i].no].m_reserveVie > m_caracteristiques.maxVie - m_caracteristiques.reserveVie
-                 || (m_cas != m_classe.miracles[m_raccourcis[i].no].m_cas
-                     && m_classe.miracles[m_raccourcis[i].no].m_cas != -1))
+                 ||(m_cas != m_classe.miracles[m_raccourcis[i].no].m_cas1 && m_cas != m_classe.miracles[m_raccourcis[i].no].m_cas2
+                     && m_classe.miracles[m_raccourcis[i].no].m_cas1 != -1))
                     sprite.SetColor(sf::Color(32,32,32));
 
             }
@@ -3334,7 +3334,9 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
             && m_classe.miracles[miracle].m_coutVie + m_classe.miracles[miracle].m_reserveVie
             <= m_caracteristiques.vie && m_classe.miracles[miracle].m_reserveVie <= m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
             {
-                    if (m_cas == m_classe.miracles[miracle].m_cas || m_classe.miracles[miracle].m_cas == -1)
+                    if((m_cas == m_classe.miracles[miracle].m_cas1 || m_cas == m_classe.miracles[miracle].m_cas2)
+                     || m_classe.miracles[miracle].m_cas1 == -1)
+
                     {
                         if ((cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS)
                          || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS

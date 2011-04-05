@@ -179,7 +179,7 @@ public:
     bool                        m_direct;
     bool                        m_golem;
     bool                        m_miracleArme;
-    int                         m_cas;
+    int                         m_cas1, m_cas2;
     float                       m_cooldown;
     float                       m_cur_time;
     int                         m_consommer;

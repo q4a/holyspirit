@@ -320,7 +320,8 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
     m_direct     =  false;
     m_golem      =  false;
     m_chemin     =  chemin;
-    m_cas        =  -1;
+    m_cas1       =  -1;
+    m_cas2       =  -1;
     m_reserveFoi =  0;
     m_coutFoi    =  0;
     m_reserveVie =  0;
@@ -538,7 +539,10 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
                         break;
 
                     case 'e':
-                        fichier>>m_cas;
+                        if(m_cas1 == -1)
+                            fichier>>m_cas1;
+                        else
+                            fichier>>m_cas2;
                         break;
 
                     case 'd':

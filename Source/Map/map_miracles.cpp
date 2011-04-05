@@ -971,6 +971,20 @@ bool Map::Miracle_Pose(Hero *hero, Personnage *personnage, Miracle &modele, Effe
     if(effet.m_informations[3])
         personnage->m_lancementMiracleEnCours = true;
 
+    if(effet.m_informations[4])
+    {
+        coordonnee pos;
+        if(info.m_cible)
+            pos = info.m_cible->getCoordonneePixel();
+        else
+        {
+            pos.x = (int)(miracleEnCours.m_coordonneeCible.x * COTE_TILE);
+            pos.y = (int)(miracleEnCours.m_coordonneeCible.y * COTE_TILE);
+        }
+
+        personnage->Frappe(personnage->getCoordonneePixel(),pos);
+    }
+
     for (int p=0;p<(int)effet.m_lien.size();p++)
     {
         miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
