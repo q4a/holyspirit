@@ -395,45 +395,26 @@ main
 			then
 				if distance * 8
 				then
-					
-					if numberInvocation * 0
+					if distance * 2
 					then
-						stop
+						useMiracle * 0
+						if getState * 4
+						then else
+							stop
+							setState * 4 * 0
+						end 
 						
-						if stop
+						if miracle * 0
 						then
-							if miracle * 3
-							then else
-								useMiracle * 3
-							end
-							
-							if getState * 5 
-							then else
-								setState * 5 * 0
-							end
+							evasion  * 1
+							teleport * 1
 						end
 					else
-						if distance * 2
+						if rand * 90
 						then
-							useMiracle * 0
-							if getState * 4
-							then else
-								stop
-								setState * 4 * 0
-							end 
-							
-							if miracle * 0
-							then
-								evasion  * 1
-								teleport * 1
-							end
-						else
-							if rand * 90
-							then
-								useMiracle * 4
-							end
-							useMiracle * 1
+							useMiracle * 4
 						end
+						useMiracle * 1
 					end
 				else
 					fight
@@ -441,8 +422,6 @@ main
 			else
 					randomDisplace 
 			end
-			
-			
 			
 			
 			
