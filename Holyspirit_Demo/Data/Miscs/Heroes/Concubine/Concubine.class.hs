@@ -137,6 +137,24 @@ $
 	* e0 x444 y522 w29 h15 m51 	i * mData/Graphics/Menus/UI/hud_button_2.png x29 y0 w29 h15 $ $ $ 
 	* e4 x473 y522 w29 h15 m17 	i * mData/Graphics/Menus/UI/hud_button_2.png x145 y0 w29 h15 $ $ $ 
 $
+	* e1 x37 y18 w29 h15 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
+	* e2 x66 y18 w29 h15 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $  
+$
+	* e1 x37 y18 w29 h15 m104 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
+	* e2 x66 y18 w29 h15 m105 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $ 
+$
+
+	* e0 x179 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
+	* e1 x202 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $  
+	* e0 x575 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
+	* e1 x598 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $  
+$
+	* e0 x179 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
+	* e1 x202 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $ 
+	* e0 x575 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
+	* e1 x598 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $  
+$
+
 	* x56 y88 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_scroll.png $
 $
 	* x258 y45 w96 h160 m Data/Graphics/Menus/UI/Slot3x5.png n Data/Graphics/Menus/UI/Slot_craft.png $

@@ -101,4 +101,6 @@ Toi au moins tu n'as jamais prétendu être vertueuse...\Née dans la fange, tu t'e
 Fanatique religieux par excellence, il s'était fait un devoir de passer au bûcher tout hérétique ou sorcière qui soit. Et ce sans autre forme de procès, n'ayant jamais eu un remord ou l'ombre d'un doute quand à la culpabilité de ses victimes. Dieu décide donc d'accomplir le rêve de l'inquisiteur, c'est à dire le lâcher dans un monde réellement envahi par le Mal, un endroit où il pourra làcher sa folie et son sadisme sans faire de victime innocente.
 Le pistolero est un de ces chasseurs de prime pour qui seul ses propres intérêts comptent. Il n'hésites pas à tuer des innocents si il le doit et ses contrats sont sa seule limite. Et encore si une autre offre lui parait plus intéressante, il pourra se retourner contre son patron. Normalement destiné aux enfers, il est engagé par Dieu pour faire le sale boulot.
 Vous êtes mort !
-Cliquez pour avoir une seconde chance !
+Cliquez pour avoir une nouvelle chance !
+Set d'armes n°1 (W)
+Set d'armes n°2 (W)
