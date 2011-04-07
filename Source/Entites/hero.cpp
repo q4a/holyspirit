@@ -3080,6 +3080,14 @@ void Hero::RecalculerCaracteristiques(bool bis)
          &&(m_inventaire[i].m_equipe_set == m_weaponsSet || m_inventaire[i].m_equipe_set == -1))
             if (m_inventaire[i].Utilisable(buf,m_cheminClasse))
             {
+                 if (m_inventaire[i].m_type==ARME)
+                {
+                    if (m_inventaire[i].m_shoot_weapon)
+                        m_personnage.m_shooter=true;
+                    else
+                        m_personnage.m_shooter=false;
+                }
+
                 if(!m_inventaire[i].m_chemin_set.empty())
                 {
                     bool ajouter = true;
@@ -4547,14 +4555,6 @@ bool Hero::Equiper(int numero, int emplacement)
 
                     if (ok)
                     {
-                        if (m_inventaire[numero].m_type==ARME)
-                        {
-                            if (m_inventaire[numero].m_shoot_weapon)
-                                m_personnage.m_shooter=true;
-                            else
-                                m_personnage.m_shooter=false;
-                        }
-
                         m_inventaire[numero].m_equipe=emplacement;
                         if(m_classe.emplacements[emplacement].weaponsSet)
                             m_inventaire[numero].m_equipe_set=m_weaponsSet;

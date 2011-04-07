@@ -629,7 +629,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
     if(eventManager->getEvenement(configuration->m_key_actions[K_CHANGE_WEAPONS],EventKey))
     {
         eventManager->StopEvenement(configuration->m_key_actions[K_CHANGE_WEAPONS],EventKey);
-        jeu->hero.m_weaponsSet = !jeu->hero.m_weaponsSet;
+        jeu->hero.m_weaponsSet = (jeu->hero.m_weaponsSet == 1) ? 0 : 1;
         jeu->hero.ChargerModele();
         jeu->hero.RecalculerCaracteristiques(true);
     }
