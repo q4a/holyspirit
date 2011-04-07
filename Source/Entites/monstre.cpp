@@ -54,6 +54,8 @@ Monstre::Monstre():
 
     m_attente=0;
     m_compteur=0;
+
+    m_ID = -1;
 }
 
 Monstre::Monstre(Personnage &personnage):

@@ -552,6 +552,8 @@ void                ChargerCoordonneeInterface(ifstream &fichier, coordonnee &co
 
 void Emplacement_inventaire::Charger(ifstream &fichier)
 {
+    weaponsSet = -1;
+
     char caractere;
     std::string buf;
     do
@@ -573,6 +575,9 @@ void Emplacement_inventaire::Charger(ifstream &fichier)
             break;
         case 'h' :
             fichier>>position.h;
+            break;
+        case 'd' :
+            fichier>>weaponsSet;
             break;
         case 'n' :
             fichier>>buf;
@@ -894,6 +899,11 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
 
         ChargerBouton(fichier, boutons_menus_hud);
         ChargerBouton(fichier, boutons_menus_hud_2);
+
+        ChargerBouton(fichier, boutons_menus_weapons);
+        ChargerBouton(fichier, boutons_menus_weapons_2);
+        ChargerBouton(fichier, boutons_menus_weapons_t);
+        ChargerBouton(fichier, boutons_menus_weapons_t_2);
 
         do
         {

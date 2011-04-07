@@ -135,6 +135,7 @@ Objet::Objet()
     m_chemin="";
     m_rarete=0;
     m_equipe=-1;
+    m_equipe_set=-1;
 
     m_position.x=0;
     m_position.y=0;
@@ -172,6 +173,7 @@ Objet::Objet(std::string nom, int rarete)
     m_image=0;
     m_chemin="";
     m_equipe=-1;
+    m_equipe_set=-1;
     m_capaciteBenediction=0;
 
     m_useMiracle = false;
@@ -240,6 +242,10 @@ void Objet::Sauvegarder(std::ofstream *fichier)
     caractere='e';
     fichier->write((char*)&caractere, sizeof(char));
     fichier->write((char*)&m_equipe, sizeof(int));
+
+    caractere='w';
+    fichier->write((char*)&caractere, sizeof(char));
+    fichier->write((char*)&m_equipe_set, sizeof(int));
     //fichier->write((char*)&espace, sizeof(char));
 
 
@@ -330,6 +336,7 @@ void Objet::SauvegarderTexte(std::ofstream *fichier)
 {
     *fichier<<" o ";
     *fichier<<" e"<<m_equipe;
+    *fichier<<" w"<<m_equipe_set;
     *fichier<<" r"<<m_rarete;
 
     *fichier<<" g"<<m_prix;
@@ -389,7 +396,7 @@ void Objet::ChargerChemin(std::ifstream *fichier)
 
 void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, bool NePasAjouterBenedictions)
 {
-    m_rarete=0,m_equipe=-1;
+    m_rarete=0,m_equipe=-1, m_equipe_set = -1;
     m_degatsMin=0,m_degatsMax=0,m_armure=0;
     m_position.y=0;
     m_position.x=0;
@@ -401,6 +408,8 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
         fichier->get(caractere);
         if (caractere=='e')
             *fichier>>m_equipe;
+        if (caractere=='w')
+            *fichier>>m_equipe_set;
 
         else if (caractere=='r')
             *fichier>>m_rarete;

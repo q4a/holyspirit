@@ -155,7 +155,8 @@ public:
     int m_argent;
     int m_holywater;
 
-    int m_miracle_gauche;
+    int m_miracle_gauche[2];
+    int m_miracle_droite[2];
 
     //cDAT m_fichierSave;
     std::vector<std::string> m_contenuSave;
@@ -203,6 +204,7 @@ public:
     bool newQuest, newDoc;
 
     int m_cas;
+    int m_weaponsSet;
 
 private:
     coordonnee m_chercherSac,m_sacVise;

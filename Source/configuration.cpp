@@ -184,6 +184,8 @@ void Configuration::ChargerKeyMapping()
                 std::string buf; fichier>>buf; m_key_actions[K_STAND] = convert_string_to_key(buf); }
             if (chaine== "K_PICKITEMS:") {
                 std::string buf; fichier>>buf; m_key_actions[K_PICKITEMS] = convert_string_to_key(buf); }
+            if (chaine== "K_CHANGE_WEAPONS:") {
+                std::string buf; fichier>>buf; m_key_actions[K_CHANGE_WEAPONS] = convert_string_to_key(buf); }
         }
 
         fichier.close();
@@ -504,6 +506,7 @@ void Configuration::SauvegarderKeyMapping()
         fichier<<"K_DOCS: "<<convert_key_to_string(m_key_actions[K_DOCS])<<std::endl;
         fichier<<"K_STAND: "<<convert_key_to_string(m_key_actions[K_STAND])<<std::endl;
         fichier<<"K_PICKITEMS: "<<convert_key_to_string(m_key_actions[K_PICKITEMS])<<std::endl;
+        fichier<<"K_CHANGE_WEAPONS: "<<convert_key_to_string(m_key_actions[K_CHANGE_WEAPONS])<<std::endl;
 
         fichier.close();
     }
@@ -1190,6 +1193,7 @@ void Configuration::InitKeys()
     m_key_actions[K_DOCS]       = 'd';
     m_key_actions[K_STAND]      = sf::Key::LShift;
     m_key_actions[K_PICKITEMS]  = sf::Key::LAlt;
+    m_key_actions[K_CHANGE_WEAPONS]  = 'w';
 }
 
 int Configuration::convert_string_to_key(const std::string& string)

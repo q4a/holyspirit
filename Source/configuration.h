@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "singleton.h"
 #include "constantes.h"
 
-#define NBR_KEYS_ACTIONS 16
+#define NBR_KEYS_ACTIONS 17
 
 enum {O_PRINCIPAL, O_GRAPHICS, O_GRAPHISC_AVANCED, O_SOUNDS};
 
@@ -41,7 +41,8 @@ enum {
         K_MAP,
         K_DOCS,
         K_STAND,
-        K_PICKITEMS
+        K_PICKITEMS,
+        K_CHANGE_WEAPONS
         };
 
 class Configuration : public CSingleton<Configuration>

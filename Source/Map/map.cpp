@@ -1049,7 +1049,6 @@ bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, i
             hero->m_personnage.AjouterPointAme(monstre->getCaracteristique().pointAme);
 
         float force=((degats*3)/monstre->getCaracteristique().maxVie)*10,angle;
-      //  double m=atan2(monstre->getCoordonneePixel().y-hero->m_personnage.getCoordonneePixel().y,monstre->getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().x);
         double m = 0;
 
         if(cible != NULL)

@@ -446,7 +446,7 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
         int i = 0;
         for(int j = 0; j < 8 ; ++j)
             if(jeu->hero.m_raccourcis[j].miracle
-            && jeu->hero.m_raccourcis[j].no == jeu->hero.m_personnage.m_miracleALancer)
+            && jeu->hero.m_raccourcis[j].no == jeu->hero.m_miracle_droite[jeu->hero.m_weaponsSet])
                 i = j + eventManager->getMolette();
 
         for(int j = 0; j < 8 ; ++j,i+=eventManager->getMolette())
@@ -460,7 +460,7 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
             && jeu->hero.m_raccourcis[i].no >= 0
             && jeu->hero.m_raccourcis[i].no < (int)jeu->hero.m_classe.miracles.size())
                 if(!jeu->hero.m_classe.miracles[jeu->hero.m_raccourcis[i].no].m_direct)
-                    jeu->hero.m_personnage.m_miracleALancer = jeu->hero.m_raccourcis[i].no, j = 8;
+                    jeu->hero.m_miracle_droite[jeu->hero.m_weaponsSet] = jeu->hero.m_raccourcis[i].no, j = 8;
         }
     }
 
@@ -625,6 +625,15 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
     if(eventManager->getEvenement(Key::Tab,EventKey))
         eventManager->StopEvenement(Key::Tab,EventKey), choix = B_CHAT;
 
+
+    if(eventManager->getEvenement(configuration->m_key_actions[K_CHANGE_WEAPONS],EventKey))
+    {
+        eventManager->StopEvenement(configuration->m_key_actions[K_CHANGE_WEAPONS],EventKey);
+        jeu->hero.m_weaponsSet = !jeu->hero.m_weaponsSet;
+        jeu->hero.ChargerModele();
+        jeu->hero.RecalculerCaracteristiques(true);
+    }
+
     if(choix == B_MAP)
     {
         if (!configuration->Minimap)
@@ -683,6 +692,49 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
         jeu->menu.ClearSpeakChoice();
     }
 
+    for(unsigned i = 0 ; i < jeu->hero.m_classe.boutons_menus_weapons_t.size() ; ++i)
+    {
+        Bouton *bouton;
+
+        if(jeu->hero.m_weaponsSet == jeu->hero.m_classe.boutons_menus_weapons_t[i].lien)
+            bouton = &jeu->hero.m_classe.boutons_menus_weapons_t_2[i];
+        else
+            bouton = &jeu->hero.m_classe.boutons_menus_weapons_t[i];
+
+        sf::Sprite sprite;
+
+        sprite.SetImage(*moteurGraphique->getImage(bouton->image.image));
+        sprite.SetSubRect(sf::IntRect(bouton->image.position.x,
+                                      bouton->image.position.y,
+                                      bouton->image.position.w,
+                                      bouton->image.position.h));
+
+        sprite.SetPosition(AutoScreenAdjust(bouton->position.x,
+                                            bouton->position.y));
+
+        sprite.Resize(bouton->position.w, bouton->position.h);
+
+        moteurGraphique->AjouterCommande(&sprite, 17,0);
+
+        if(bouton->Survol())
+        {
+            moteurGraphique->AjouterTexte(bouton->nom,coordonnee(eventManager->getPositionSouris().x,
+                                                       eventManager->getPositionSouris().y - 20),
+                                            jeu->hero.m_classe.border,
+                                            19,0,12,sf::Color(224,224,224));
+            if(eventManager->getEvenement(Mouse::Left,EventClic))
+            {
+                eventManager->StopEvenement(Mouse::Left,EventClic);
+
+                jeu->hero.m_weaponsSet = jeu->hero.m_classe.boutons_menus_weapons_t[i].lien;
+
+                jeu->hero.ChargerModele();
+                jeu->hero.RecalculerCaracteristiques(true);
+            }
+        }
+    }
+
+
     return -1;
 }
 
@@ -722,7 +774,7 @@ void c_Jeu::Evenements(Jeu *jeu)
                 jeu->map->m_monstreIllumine = -1, eventManager->StopEvenement(Mouse::Left,EventClic);
 
         bool attaque_normale = true;
-        if (eventManager->getEvenement(Mouse::Left,EventClic) && jeu->hero.m_miracle_gauche >= 0)
+        if (eventManager->getEvenement(Mouse::Left,EventClic) && jeu->hero.m_miracle_gauche[jeu->hero.m_weaponsSet] >= 0)
         {
             if(eventManager->getEvenement(configuration->m_key_actions[K_STAND], EventKey) || jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
             {
@@ -743,7 +795,7 @@ void c_Jeu::Evenements(Jeu *jeu)
 
                     jeu->hero.StopMiraclesFrappe();
                     if(ok)
-                    if (jeu->hero.UtiliserMiracle(jeu->hero.m_miracle_gauche, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
+                    if (jeu->hero.UtiliserMiracle(jeu->hero.m_miracle_gauche[jeu->hero.m_weaponsSet], jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
                     {
                         attaque_normale = false;
                         eventManager->StopEvenement(Mouse::Left,EventClicA);
@@ -848,7 +900,7 @@ void c_Jeu::Evenements(Jeu *jeu)
                     else
                         cible = eventManager->getCasePointee();
 
-                    if (jeu->hero.UtiliserMiracle(jeu->hero.m_personnage.m_miracleALancer, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
+                    if (jeu->hero.UtiliserMiracle(jeu->hero.m_miracle_droite[jeu->hero.m_weaponsSet], jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
                     {
                         eventManager->StopEvenement(Mouse::Right,EventClic);
 

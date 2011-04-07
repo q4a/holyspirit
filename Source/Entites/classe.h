@@ -67,6 +67,8 @@ struct Emplacement_inventaire
     int image_empty;
     bool empty;
 
+    bool weaponsSet;
+
     void Charger(std::ifstream &fichier);
     void Afficher(float);
 };
@@ -141,6 +143,12 @@ struct Classe
 
     std::vector<Bouton>  boutons_menus_hud;
     std::vector<Bouton>  boutons_menus_hud_2;
+
+
+    std::vector<Bouton>  boutons_menus_weapons;
+    std::vector<Bouton>  boutons_menus_weapons_2;
+    std::vector<Bouton>  boutons_menus_weapons_t;
+    std::vector<Bouton>  boutons_menus_weapons_t_2;
 
     std::vector <Emplacement_inventaire> emplacements;
 

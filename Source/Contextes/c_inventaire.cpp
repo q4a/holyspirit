@@ -230,6 +230,50 @@ void c_Inventaire::Utiliser(Jeu *jeu)
             eventManager->StopEvenement(Mouse::Left,EventClic);
     }
 
+
+
+
+    for(unsigned i = 0 ; i < jeu->hero.m_classe.boutons_menus_weapons.size() ; ++i)
+    {
+        Bouton *bouton;
+
+        if(jeu->hero.m_weaponsSet == jeu->hero.m_classe.boutons_menus_weapons[i].lien)
+            bouton = &jeu->hero.m_classe.boutons_menus_weapons_2[i];
+        else
+            bouton = &jeu->hero.m_classe.boutons_menus_weapons[i];
+
+        sf::Sprite sprite;
+
+        sprite.SetImage(*moteurGraphique->getImage(bouton->image.image));
+        sprite.SetSubRect(sf::IntRect(bouton->image.position.x,
+                                      bouton->image.position.y,
+                                      bouton->image.position.w,
+                                      bouton->image.position.h));
+
+        sprite.SetPosition(AutoScreenAdjust(bouton->position.x,
+                                            bouton->position.y-m_decalage));
+
+        sprite.Resize(bouton->position.w, bouton->position.h);
+
+        moteurGraphique->AjouterCommande(&sprite, 17,0);
+
+        if(bouton->Survol())
+        {
+            moteurGraphique->AjouterTexte(bouton->nom,coordonnee(eventManager->getPositionSouris().x,
+                                                       eventManager->getPositionSouris().y - 20),
+                                            jeu->hero.m_classe.border,
+                                            19,0,12,sf::Color(224,224,224));
+            if(eventManager->getEvenement(Mouse::Left,EventClic))
+            {
+                eventManager->StopEvenement(Mouse::Left,EventClic);
+
+                jeu->hero.m_weaponsSet = jeu->hero.m_classe.boutons_menus_weapons[i].lien;
+
+                jeu->hero.RecalculerCaracteristiques(true);
+            }
+        }
+    }
+
     if (eventManager->getEvenement(Mouse::Left,EventClic)
      && !jeu->hero.m_classe.sort_inventory.m_hover)
     {

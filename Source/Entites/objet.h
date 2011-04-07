@@ -134,7 +134,7 @@ public:
     void setPosition(int, int);
     void setChanceTrouver(float);
 
-    int m_type,m_equipe;
+    int m_type,m_equipe,m_equipe_set;
     std::vector <int> m_emplacement;
     std::vector <int> m_emplacementImpossible;
     std::vector <std::string> m_IDClasse;

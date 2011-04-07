@@ -75,7 +75,7 @@ bool AjouterObjetInventaire(Objet newObj, std::vector<Objet>* inventaire, coordo
                             if (x+w < taille.w && (infini || y+h < taille.h))
                             {
                                 for (int j=0;j<(int)inventaire->size()-1 && ajouter;j++)
-                                    if ((*inventaire)[j].m_equipe<0)
+                                    if ((*inventaire)[j].m_equipe<0)// || ((*inventaire)[j].m_equipe_set != m_weaponsSet && (*inventaire)[j].m_equipe_set >= 0))
                                         for (int Y=0;Y<(*inventaire)[j].getTaille().y && ajouter;Y++)
                                             for (int X=0;X<(*inventaire)[j].getTaille().x && ajouter;X++)
                                                 if ((*inventaire)[j].getPosition().x+X==x+w && (*inventaire)[j].getPosition().y+Y==y+h)
@@ -129,6 +129,7 @@ void Hero::Reset()
 
     m_personnage = Personnage ();
 
+    m_weaponsSet = 0;
 
     m_personnage.setEtat(ARRET);
 
@@ -161,8 +162,6 @@ void Hero::Reset()
 
     miracleEnCours=0;
 
-    m_miracle_gauche  = -1;
-
     m_miracleEnMain = -1;
 
     m_cas=0;
@@ -191,6 +190,11 @@ void Hero::Reset()
     m_max_defil_ldoc = 0;
 
     m_personnage.m_miracleALancer = -1;
+
+    m_miracle_droite[0] = -1;
+    m_miracle_droite[1] = -1;
+    m_miracle_gauche[0] = -1;
+    m_miracle_gauche[1] = -1;
 
     m_last_potale = 0;
 
@@ -272,8 +276,10 @@ void Hero::Sauvegarder()
         for(int i = 0 ; i < 8 ; ++i)
             fichier<<m_raccourcis[i].miracle<<" "<<m_raccourcis[i].no<<endl;
 
-        fichier<<m_personnage.m_miracleALancer<<endl;
-        fichier<<m_miracle_gauche<<endl;
+        fichier<<m_miracle_droite[0]<<endl;
+        fichier<<m_miracle_droite[1]<<endl;
+        fichier<<m_miracle_gauche[0]<<endl;
+        fichier<<m_miracle_gauche[1]<<endl;
 
         if (configuration->debug)
             console->Ajouter("/Ecriture des caracterstiques.");
@@ -475,10 +481,20 @@ void Hero::Charger(const std::string &chemin_save)
             for(int i = 0 ; i < 8 ; ++i)
                 *fichier>>m_raccourcis[i].miracle>>m_raccourcis[i].no;
 
-            *fichier>>m_personnage.m_miracleALancer;
+            if(temp >= 10)
+            {
+                *fichier>>m_miracle_droite[0];
+                *fichier>>m_miracle_droite[1];
+                *fichier>>m_miracle_gauche[0];
+                *fichier>>m_miracle_gauche[1];
+            }
+            else
+            {
+                *fichier>>m_miracle_droite[0];
+                if(temp >= 3)
+                    *fichier>>m_miracle_gauche[0];
+            }
 
-            if(temp >= 3)
-                *fichier>>m_miracle_gauche;
 
             charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
 
@@ -498,7 +514,9 @@ void Hero::Charger(const std::string &chemin_save)
                     m_inventaire.back().m_benedictions.clear();
                     m_inventaire.back().ChargerTexte(fichier,m_caracteristiques);
 
-                    if (m_inventaire.back().m_equipe>=0&&m_inventaire.back().m_type==ARME)
+                    if(m_inventaire.back().m_equipe>=0
+                    &&(m_inventaire.back().m_equipe_set == m_weaponsSet || m_inventaire.back().m_equipe_set == -1)
+                    &&m_inventaire.back().m_type==ARME)
                     {
                         if (m_inventaire.back().m_shoot_weapon)
                             m_personnage.m_shooter=true;
@@ -794,7 +812,8 @@ void Hero::ChargerModele(bool tout)
 
     for (int i=0;i<(int)m_inventaire.size();++i)
     {
-        if (m_inventaire[i].m_equipe>=0&&m_inventaire[i].m_equipe<(int)m_classe.emplacements.size())
+        if (m_inventaire[i].m_equipe>=0&&m_inventaire[i].m_equipe<(int)m_classe.emplacements.size()
+         &&(m_inventaire[i].m_equipe_set == m_weaponsSet || m_inventaire[i].m_equipe_set == -1))
         if (m_inventaire[i].Utilisable(m_caracteristiques,m_cheminClasse))
         {
             m_inventaire[i].ChargerMiracle(m_personnage.getCaracteristique());
@@ -838,7 +857,8 @@ void Hero::ChargerModele(bool tout)
 
 
     for (int i=0;i<(int)m_inventaire.size();++i)
-        if (m_inventaire[i].m_equipe>=0)
+        if (m_inventaire[i].m_equipe>=0
+         &&(m_inventaire[i].m_equipe_set == m_weaponsSet || m_inventaire[i].m_equipe_set == -1))
         if (m_inventaire[i].Utilisable(m_caracteristiques,m_cheminClasse))
         {
             if (m_inventaire[i].m_emplacementImageHero.size()>0)
@@ -2066,8 +2086,8 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                                 if(m_raccourcis[k].no == -1)
                                     m_raccourcis[k].no = i, m_raccourcis[k].miracle = true, k=8;
 
-                            if(m_personnage.m_miracleALancer == -1 && !m_classe.miracles[i].m_direct)
-                                m_personnage.m_miracleALancer = i;
+                            if(m_miracle_droite[m_weaponsSet] == -1 && !m_classe.miracles[i].m_direct)
+                                m_miracle_droite[m_weaponsSet] = i;
                         }
 
                         ChargerModele();
@@ -2104,11 +2124,11 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             if (m_miracleEnMain >= 0)
             {
                 moteurSons->JouerSon(configuration->sound_select_miracle,coordonnee (0,0),0);
-                m_miracle_gauche = m_miracleEnMain;
+                m_miracle_gauche[m_weaponsSet] = m_miracleEnMain;
                 m_miracleEnMain = -1;
             }
             else
-                m_miracleEnMain = m_miracle_gauche, m_miracle_gauche = -1;
+                m_miracleEnMain = m_miracle_gauche[m_weaponsSet], m_miracle_gauche[m_weaponsSet] = -1;
 
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
@@ -2121,11 +2141,11 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             if (m_miracleEnMain >= 0)
             {
                 moteurSons->JouerSon(configuration->sound_select_miracle,coordonnee (0,0),0);
-                m_personnage.m_miracleALancer = m_miracleEnMain;
+                m_miracle_droite[m_weaponsSet] = m_miracleEnMain;
                 m_miracleEnMain = -1;
             }
             else
-                m_miracleEnMain = m_personnage.m_miracleALancer, m_personnage.m_miracleALancer = -1;
+                m_miracleEnMain = m_miracle_droite[m_weaponsSet], m_miracle_droite[m_weaponsSet] = -1;
 
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
@@ -2174,7 +2194,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
     }
 
     for (int i=0;i<(int)m_inventaire.size();++i)
-        if (i!=m_objetEnMain && (m_inventaire[i].m_equipe==-1 || (m_inventaire[i].m_equipe>=0 && !hideLeft)))
+        if (i!=m_objetEnMain && (m_inventaire[i].m_equipe==-1
+      || (m_inventaire[i].m_equipe>=0 && !hideLeft &&(m_inventaire[i].m_equipe_set == m_weaponsSet || m_inventaire[i].m_equipe_set == -1))))
         if ((i == m_no_result_bless && bless)
          || (i == m_no_result_craft && craft)
          || (i == m_no_schema_bless && bless)
@@ -2247,7 +2268,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
             else if(i != m_no_schema_craft && i != m_no_result_craft
                  && i != m_no_schema_bless && i != m_no_result_bless)
             {
-                if (m_inventaire[i].m_equipe>=0&&m_inventaire[i].m_equipe<(int)m_classe.emplacements.size())
+                if (m_inventaire[i].m_equipe>=0&&m_inventaire[i].m_equipe<(int)m_classe.emplacements.size()
+                 &&(m_inventaire[i].m_equipe_set == m_weaponsSet || m_inventaire[i].m_equipe_set == -1))
                 {
                     m_classe.emplacements[m_inventaire[i].m_equipe].empty = false;
 
@@ -2806,16 +2828,17 @@ void Hero::AfficherRaccourcis()
         }
     }
 
-    if (m_personnage.m_miracleALancer >= 0 && m_personnage.m_miracleALancer < (int)m_classe.position_miracles.size())
+    if (m_miracle_droite[m_weaponsSet] >= 0
+     && m_miracle_droite[m_weaponsSet] < (int)m_classe.position_miracles.size())
     {
         sf::Sprite sprite;
 
-        sprite.SetImage(*moteurGraphique->getImage(m_classe.icone_miracles[m_personnage.m_miracleALancer].image));
+        sprite.SetImage(*moteurGraphique->getImage(m_classe.icone_miracles[m_miracle_droite[m_weaponsSet]].image));
 
-        sprite.SetSubRect(IntRect(  m_classe.icone_miracles[m_personnage.m_miracleALancer].position.x,
-                                    m_classe.icone_miracles[m_personnage.m_miracleALancer].position.y,
-                                    m_classe.icone_miracles[m_personnage.m_miracleALancer].position.w,
-                                    m_classe.icone_miracles[m_personnage.m_miracleALancer].position.h));
+        sprite.SetSubRect(IntRect(  m_classe.icone_miracles[m_miracle_droite[m_weaponsSet]].position.x,
+                                    m_classe.icone_miracles[m_miracle_droite[m_weaponsSet]].position.y,
+                                    m_classe.icone_miracles[m_miracle_droite[m_weaponsSet]].position.w,
+                                    m_classe.icone_miracles[m_miracle_droite[m_weaponsSet]].position.h));
 
         sprite.SetPosition(AutoScreenAdjust(m_classe.position_miracleALancerDroite.x,
                                             m_classe.position_miracleALancerDroite.y - 2));
@@ -2824,10 +2847,10 @@ void Hero::AfficherRaccourcis()
 
         sprite.Resize(m_classe.position_miracleALancerDroite.w,m_classe.position_miracleALancerDroite.h);
 
-        if (m_classe.miracles[m_personnage.m_miracleALancer].m_coutFoi + m_classe.miracles[m_personnage.m_miracleALancer].m_reserveFoi > m_caracteristiques.foi
-         || m_classe.miracles[m_personnage.m_miracleALancer].m_reserveFoi > m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
-         || m_classe.miracles[m_personnage.m_miracleALancer].m_coutVie + m_classe.miracles[m_personnage.m_miracleALancer].m_reserveVie > m_caracteristiques.vie
-         || m_classe.miracles[m_personnage.m_miracleALancer].m_reserveVie > m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
+        if (m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_coutFoi + m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_reserveFoi > m_caracteristiques.foi
+         || m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_reserveFoi > m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
+         || m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_coutVie + m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_reserveVie > m_caracteristiques.vie
+         || m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_reserveVie > m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
             sprite.SetColor(sf::Color(64,64,64));
 
         moteurGraphique->AjouterCommande(&sprite,18,0);
@@ -2836,16 +2859,16 @@ void Hero::AfficherRaccourcis()
         && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
         && eventManager->getPositionSouris().y > sprite.GetPosition().y
         && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
-            m_classe.miracles[m_personnage.m_miracleALancer].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false);
+            m_classe.miracles[m_miracle_droite[m_weaponsSet]].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false);
 
 
-        if(m_classe.miracles[m_personnage.m_miracleALancer].m_cooldown > 0
-        && m_classe.miracles[m_personnage.m_miracleALancer].m_cooldown != m_classe.miracles[m_personnage.m_miracleALancer].m_cur_time)
+        if(m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_cooldown > 0
+        && m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_cooldown != m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_cur_time)
         {
             float temp = (float)m_classe.position_miracleALancerDroite.h
-                         *(m_classe.miracles[m_personnage.m_miracleALancer].m_cooldown
-                           - m_classe.miracles[m_personnage.m_miracleALancer].m_cur_time)
-                         / m_classe.miracles[m_personnage.m_miracleALancer].m_cooldown;
+                         *(m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_cooldown
+                           - m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_cur_time)
+                         / m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_cooldown;
 
             sprite.SetImage(*moteurGraphique->getImage(0));
             sprite.Resize(m_classe.position_miracleALancerDroite.w,temp);
@@ -2855,16 +2878,16 @@ void Hero::AfficherRaccourcis()
         }
     }
 
-    if (m_miracle_gauche >= 0 && m_miracle_gauche < (int)m_classe.position_miracles.size())
+    if (m_miracle_gauche[m_weaponsSet] >= 0 && m_miracle_gauche[m_weaponsSet] < (int)m_classe.position_miracles.size())
     {
         sf::Sprite sprite;
 
-        sprite.SetImage(*moteurGraphique->getImage(m_classe.icone_miracles[m_miracle_gauche].image));
+        sprite.SetImage(*moteurGraphique->getImage(m_classe.icone_miracles[m_miracle_gauche[m_weaponsSet]].image));
 
-        sprite.SetSubRect(IntRect(  m_classe.icone_miracles[m_miracle_gauche].position.x,
-                                    m_classe.icone_miracles[m_miracle_gauche].position.y,
-                                    m_classe.icone_miracles[m_miracle_gauche].position.w,
-                                    m_classe.icone_miracles[m_miracle_gauche].position.h));
+        sprite.SetSubRect(IntRect(  m_classe.icone_miracles[m_miracle_gauche[m_weaponsSet]].position.x,
+                                    m_classe.icone_miracles[m_miracle_gauche[m_weaponsSet]].position.y,
+                                    m_classe.icone_miracles[m_miracle_gauche[m_weaponsSet]].position.w,
+                                    m_classe.icone_miracles[m_miracle_gauche[m_weaponsSet]].position.h));
 
         sprite.SetPosition(AutoScreenAdjust(m_classe.position_miracleALancerGauche.x,
                                             m_classe.position_miracleALancerGauche.y - 2));
@@ -2873,10 +2896,10 @@ void Hero::AfficherRaccourcis()
 
         sprite.Resize(m_classe.position_miracleALancerGauche.w,m_classe.position_miracleALancerGauche.h);
 
-        if (m_classe.miracles[m_miracle_gauche].m_coutFoi + m_classe.miracles[m_miracle_gauche].m_reserveFoi > m_caracteristiques.foi
-         || m_classe.miracles[m_miracle_gauche].m_reserveFoi > m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
-         || m_classe.miracles[m_miracle_gauche].m_coutVie + m_classe.miracles[m_miracle_gauche].m_reserveVie > m_caracteristiques.vie
-         || m_classe.miracles[m_miracle_gauche].m_reserveVie > m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
+        if (m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_coutFoi + m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_reserveFoi > m_caracteristiques.foi
+         || m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_reserveFoi > m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
+         || m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_coutVie + m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_reserveVie > m_caracteristiques.vie
+         || m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_reserveVie > m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
             sprite.SetColor(sf::Color(64,64,64));
 
         moteurGraphique->AjouterCommande(&sprite,18,0);
@@ -2886,16 +2909,16 @@ void Hero::AfficherRaccourcis()
         && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
         && eventManager->getPositionSouris().y > sprite.GetPosition().y
         && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
-            m_classe.miracles[m_miracle_gauche].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false);
+            m_classe.miracles[m_miracle_gauche[m_weaponsSet]].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false);
 
 
-        if(m_classe.miracles[m_miracle_gauche].m_cooldown > 0
-        && m_classe.miracles[m_miracle_gauche].m_cooldown != m_classe.miracles[m_miracle_gauche].m_cur_time)
+        if(m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_cooldown > 0
+        && m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_cooldown != m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_cur_time)
         {
             float temp = (float)m_classe.position_miracleALancerGauche.h
-                         *(m_classe.miracles[m_miracle_gauche].m_cooldown
-                           - m_classe.miracles[m_miracle_gauche].m_cur_time)
-                         / m_classe.miracles[m_miracle_gauche].m_cooldown;
+                         *(m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_cooldown
+                           - m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_cur_time)
+                         / m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_cooldown;
 
             sprite.SetImage(*moteurGraphique->getImage(0));
             sprite.Resize(m_classe.position_miracleALancerGauche.w,temp);
@@ -3053,7 +3076,8 @@ void Hero::RecalculerCaracteristiques(bool bis)
     std::vector<Set *> liste_set;
 
     for (int i=0;i<(int)m_inventaire.size();++i)
-        if (m_inventaire[i].m_equipe>=0)
+        if (m_inventaire[i].m_equipe>=0
+         &&(m_inventaire[i].m_equipe_set == m_weaponsSet || m_inventaire[i].m_equipe_set == -1))
             if (m_inventaire[i].Utilisable(buf,m_cheminClasse))
             {
                 if(!m_inventaire[i].m_chemin_set.empty())
@@ -3107,7 +3131,8 @@ void Hero::RecalculerCaracteristiques(bool bis)
     }
 
     for (int i=0;i<(int)m_inventaire.size();++i)
-        if (m_inventaire[i].m_equipe>=0)
+        if (m_inventaire[i].m_equipe>=0
+         &&(m_inventaire[i].m_equipe_set == m_weaponsSet || m_inventaire[i].m_equipe_set == -1))
             if (m_inventaire[i].Utilisable(buf,m_cheminClasse))
             {
                 int accru=100;
@@ -3450,12 +3475,14 @@ bool Hero::AjouterObjet(Objet &objet,bool enMain)
 
                             for (int k=0;k<(int)objet.m_emplacementImpossible.size();k++)
                                 for(int o = 0 ; o < (int)m_inventaire.size() ; ++o)
-                                    if(m_inventaire[o].m_equipe >= 0 && m_inventaire[o].m_equipe < (int)m_classe.emplacements.size())
+                                    if(m_inventaire[o].m_equipe >= 0 && m_inventaire[o].m_equipe < (int)m_classe.emplacements.size()
+                                    &&(m_inventaire[o].m_equipe_set == m_weaponsSet || m_inventaire[o].m_equipe_set == -1))
                                         if (objet.m_emplacementImpossible[k]==m_classe.emplacements[m_inventaire[o].m_equipe].emplacement)
                                             continuer = true;
 
                             for(unsigned k = 0 ; k < m_inventaire.size() ; ++k)
-                                if(m_inventaire[k].m_equipe >= 0 && m_inventaire[k].m_equipe < (int)m_classe.emplacements.size())
+                                if(m_inventaire[k].m_equipe >= 0 && m_inventaire[k].m_equipe < (int)m_classe.emplacements.size()
+                                &&(m_inventaire[k].m_equipe_set == m_weaponsSet || m_inventaire[k].m_equipe_set == -1))
                                     for (unsigned o=0;o<m_inventaire[k].m_emplacementImpossible.size();o++)
                                         if(m_classe.emplacements[j].emplacement == m_inventaire[k].m_emplacementImpossible[o])
                                             continuer = true;
@@ -4489,20 +4516,23 @@ bool Hero::Equiper(int numero, int emplacement)
         {
             for (int i=0;i<(int)m_inventaire.size();++i)
             {
-                if (m_inventaire[i].m_equipe==emplacement)
+                if (m_inventaire[i].m_equipe==emplacement
+                 &&(m_inventaire[i].m_equipe_set == m_weaponsSet || m_inventaire[i].m_equipe_set == -1))
                     if (numero!=i)
                         ancienEquipe=i;
 
                 for (int j=0;j<(int)m_inventaire[i].m_emplacementImpossible.size();j++)
                     if (numero!=i)
-                        if (m_inventaire[i].m_equipe>=0)
+                        if (m_inventaire[i].m_equipe>=0
+                         &&(m_inventaire[i].m_equipe_set == m_weaponsSet || m_inventaire[i].m_equipe_set == -1))
                             if (m_inventaire[i].m_emplacementImpossible[j]==m_classe.emplacements[emplacement].emplacement)
                                 ok=false;
 
 
                 if (numero>=0&&numero<(int)m_inventaire.size())
                     for (int j=0;j<(int)m_inventaire[numero].m_emplacementImpossible.size();j++)
-                        if (m_inventaire[i].m_equipe>=0&&m_inventaire[i].m_equipe<(int)m_classe.emplacements.size())
+                        if (m_inventaire[i].m_equipe>=0&&m_inventaire[i].m_equipe<(int)m_classe.emplacements.size()
+                         &&(m_inventaire[i].m_equipe_set == m_weaponsSet || m_inventaire[i].m_equipe_set == -1))
                             if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==m_inventaire[numero].m_emplacementImpossible[j])
                                 ok=false;
             }
@@ -4526,6 +4556,10 @@ bool Hero::Equiper(int numero, int emplacement)
                         }
 
                         m_inventaire[numero].m_equipe=emplacement;
+                        if(m_classe.emplacements[emplacement].weaponsSet)
+                            m_inventaire[numero].m_equipe_set=m_weaponsSet;
+                        else
+                            m_inventaire[numero].m_equipe_set=-1;
                     }
 
                     if (ancienEquipe>=0&&ancienEquipe<(int)m_inventaire.size())
@@ -4552,7 +4586,8 @@ bool Hero::Equiper(int numero, int emplacement)
     else
     {
         for (int i=0;i<(int)m_inventaire.size();++i)
-            if (m_inventaire[i].m_equipe==emplacement)
+            if (m_inventaire[i].m_equipe==emplacement
+             &&(m_inventaire[i].m_equipe_set == m_weaponsSet || m_inventaire[i].m_equipe_set == -1))
                 m_objetEnMain=i, m_achat=false;
     }
 
