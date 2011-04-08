@@ -552,7 +552,7 @@ void                ChargerCoordonneeInterface(ifstream &fichier, coordonnee &co
 
 void Emplacement_inventaire::Charger(ifstream &fichier)
 {
-    weaponsSet = -1;
+    weaponsSet = 0;
 
     char caractere;
     std::string buf;

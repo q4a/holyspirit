@@ -751,10 +751,21 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                         }
 
                         if (getTypeCase((int)(projectile->m_positionCase.x),(int)(projectile->m_positionCase.y))==1
-                        && (projectile->m_position.y - (projectile->m_positionCase.y+0.5)*COTE_TILE) *
+
+                        && (projectile->m_position.y > (projectile->m_positionCase.y+0.25)*COTE_TILE
+                          ||getTypeCase((int)(projectile->m_positionCase.x),(int)(projectile->m_positionCase.y-1))==1)
+                        && (projectile->m_position.y < (projectile->m_positionCase.y+0.75)*COTE_TILE
+                          ||getTypeCase((int)(projectile->m_positionCase.x),(int)(projectile->m_positionCase.y+1))==1)
+
+                        && (projectile->m_position.x > (projectile->m_positionCase.x+0.25)*COTE_TILE
+                          ||getTypeCase((int)(projectile->m_positionCase.x-1),(int)(projectile->m_positionCase.y))==1)
+                        && (projectile->m_position.x < (projectile->m_positionCase.x+0.75)*COTE_TILE
+                          ||getTypeCase((int)(projectile->m_positionCase.x+1),(int)(projectile->m_positionCase.y))==1)
+
+                       /* && (projectile->m_position.y - (projectile->m_positionCase.y+0.5)*COTE_TILE) *
                            (projectile->m_position.y - (projectile->m_positionCase.y+0.5)*COTE_TILE) +
                            (projectile->m_position.x - (projectile->m_positionCase.x+0.5)*COTE_TILE) *
-                           (projectile->m_position.x - (projectile->m_positionCase.x+0.5)*COTE_TILE) < COTE_TILE * COTE_TILE * 0.5)
+                           (projectile->m_position.x - (projectile->m_positionCase.x+0.5)*COTE_TILE) < COTE_TILE * COTE_TILE * 0.5*/)
                             projectile->m_actif=false;
 
                         if (projectile->m_actif)
