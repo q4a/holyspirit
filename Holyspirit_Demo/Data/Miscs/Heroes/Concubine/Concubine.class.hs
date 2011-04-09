@@ -196,7 +196,7 @@ $
 		
 	* e1 b-1 x115 y363 w38 h38 mData/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs i * mData/Graphics/Menus/UI/Concubine/ConcubinePath2.png x64 y0 w32 h32 $ $ $
 	* e1 b-1 x197 y303 w38 h38 mData/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs i * mData/Graphics/Menus/UI/Concubine/ConcubinePath2.png x64 y0 w32 h32 $ $ $
-	* e1 b-1 x197 y423 w38 h38 mData/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs i * mData/Graphics/Menus/UI/Concubine/ConcubinePath2.png x64 y0 w32 h32 $ $ $
+	* e1 b-1 x197 y423 w38 h38 mData/Miscs/Heroes/Concubine/Miracles/Bleed.miracle.hs i * mData/Graphics/Menus/UI/Concubine/ConcubinePath2.png x64 y0 w32 h32 $ $ $
 
 $
 
