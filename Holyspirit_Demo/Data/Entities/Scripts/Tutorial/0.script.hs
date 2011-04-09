@@ -8,9 +8,9 @@ main
 			then
 				if player_class " Data/Miscs/Heroes/Concubine/Concubine.class.hs"
 				then
-					speak * 32
+					speak * 32 * 1
 				else
-					speak * 31
+					speak * 31 * 1
 				end
 				
 				speak_choice * 43 * 1
