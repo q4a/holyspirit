@@ -12,4 +12,5 @@ $
 *x192 y128 w128 h128 ey80 i0 c0 z1 vSqueletteAssis $
 *x320 y128 w128 h128 ey80 i0 c0 z1 vSqueletteAssis2 $
 
+*x320 y0 w128 h128 ey80 i0 c0 z1 vEboulis $
 $
