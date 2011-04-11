@@ -33,8 +33,9 @@ Julien Renoux
 Marine Desmolin
 SpotLine (Clément Duquesne)
 
-*Artworkers (Loading screens)
+*Artworkers (Loading screens & playintro)
 Sabine van Apeldoorn (http://tiphereth.ultra-book.com/)
+towarlock@hotmail.com
 
 *Webmasters
 Schnafon (Xavier Lambein)
@@ -42,9 +43,6 @@ EnTraversDesNéons (Adam Santoro)
 
 
 +Externs
-
-*2D Artist
-towarlock@hotmail.com
 
 *Linux programmer
 Merwin (Gabriel Pichot)
