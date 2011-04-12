@@ -2060,6 +2060,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 
                     eventManager->StopEvenement(Mouse::Right,EventClic);
 
+                    RecalculerCaracteristiques(true);
                     ChargerModele();
                 }
             }
@@ -2090,6 +2091,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                                 m_miracle_droite[m_weaponsSet] = i;
                         }
 
+                        RecalculerCaracteristiques(true);
                         ChargerModele();
                     }
             }
@@ -2242,7 +2244,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                     temp.x+=96;
 
                     for (int j=0;j<(int)m_inventaire.size();j++)
-                        if (m_inventaire[j].m_equipe>=0)
+                        if (m_inventaire[j].m_equipe>=0
+                         &&(m_inventaire[j].m_equipe_set == m_weaponsSet || m_inventaire[j].m_equipe_set == -1))
                             for (int k=0;k<(int)m_inventaire[i].m_emplacement.size();k++)
                                 for (int l=0;l<(int)m_inventaire[j].m_emplacement.size();l++)
                                     if (m_inventaire[i].m_emplacement[k]==m_inventaire[j].m_emplacement[l])
@@ -2260,7 +2263,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
 
                         if(ok)
                             for (int j=0;j<(int)m_inventaire.size();j++)
-                                if(m_inventaire[j].m_equipe == k)
+                                if(m_inventaire[j].m_equipe == k
+                                &&(m_inventaire[j].m_equipe_set == m_weaponsSet || m_inventaire[j].m_equipe_set == -1))
                                     temp.x=decalage2-4,decalage2=m_inventaire[j].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,0,0);
                     }
                 }
@@ -2522,7 +2526,8 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
 
                     if(ok)
                         for (int j=0;j<(int)m_inventaire.size();j++)
-                            if(m_inventaire[j].m_equipe == k)
+                            if(m_inventaire[j].m_equipe == k
+                            &&(m_inventaire[j].m_equipe_set == m_weaponsSet || m_inventaire[j].m_equipe_set == -1))
                                 temp.x=decalage2+12,decalage2=m_inventaire[j].AfficherCaracteristiques(temp,m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse,1,1,1,1,1);
                 }
             }
@@ -2933,8 +2938,21 @@ void Hero::PlacerCamera()
 {
     configuration->zoom = configuration->zoom_or + m_personnage.getCoordonneePixel().h*0.002;
 
-    moteurGraphique->m_camera.SetCenter(((m_personnage.getCoordonneePixel().x - m_personnage.getCoordonneePixel().y) * 64.0f * DIVISEUR_COTE_TILE),
-                                        ((m_personnage.getCoordonneePixel().x + m_personnage.getCoordonneePixel().y) * 32.0f * DIVISEUR_COTE_TILE + 32.0f) - m_personnage.getCoordonneePixel().h);
+    sf::Vector2f next_pos(((m_personnage.getCoordonneePixel().x - m_personnage.getCoordonneePixel().y) * 64.0f * DIVISEUR_COTE_TILE),
+                          ((m_personnage.getCoordonneePixel().x + m_personnage.getCoordonneePixel().y) * 32.0f * DIVISEUR_COTE_TILE + 32.0f) - m_personnage.getCoordonneePixel().h);
+
+   /* if(moteurGraphique->m_camera.GetCenter().x < next_pos.x)
+        moteurGraphique->m_camera.Move(1,0);
+    else if(moteurGraphique->m_camera.GetCenter().x > next_pos.x)
+        moteurGraphique->m_camera.Move(-1,0);
+
+    if(moteurGraphique->m_camera.GetCenter().y < next_pos.y)
+        moteurGraphique->m_camera.Move(0,1);
+    else if(moteurGraphique->m_camera.GetCenter().y > next_pos.y)
+        moteurGraphique->m_camera.Move(0,-1);*/
+
+    moteurGraphique->m_camera.SetCenter(next_pos);
+
     moteurGraphique->m_camera.SetSize(configuration->Resolution.x, configuration->Resolution.y);
     moteurGraphique->m_camera.Zoom(configuration->zoom);
 

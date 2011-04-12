@@ -92,6 +92,7 @@ class Menu
 
 	std::string m_dialogue;
 	coordonnee  m_dialogue_position;
+	bool        m_forced_dialogue;
 
 	float m_hauteur;
 	float m_cur_talk_hauteur;

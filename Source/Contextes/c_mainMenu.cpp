@@ -77,6 +77,8 @@ c_MainMenu::c_MainMenu()
     m_credit_defil = 0;
     time = 0;
     m_story = DecouperTexte(configuration->getText(0,66), 640,16);
+
+    ChargerListeSaves();
 }
 
 c_MainMenu::~c_MainMenu()
@@ -152,6 +154,8 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
         configuration->zoom = 1.0;
         configuration->effetNoir = 0;
+
+        ChargerListeSaves();
     }
 
     m_mainscreen.Resize(configuration->Resolution.x, configuration->Resolution.y);
@@ -266,17 +270,26 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     buttons_principal[0].position.x = configuration->Resolution.w/2-buttons_principal[0].position.w/2;
     buttons_principal[0].Afficher(0);
 
-    if(buttons_principal[0].m_press)
-        moteurGraphique->special_typo_p.Draw(configuration->getText(0,53), sf::Vector2f(configuration->Resolution.w/2,
-                                                                                        buttons_principal[0].position.y), 72, 19, true);
-    else if(buttons_principal[0].m_hover)
-        moteurGraphique->special_typo_h.Draw(configuration->getText(0,53), sf::Vector2f(configuration->Resolution.w/2,
-                                                                                        buttons_principal[0].position.y), 72, 19, true);
-    else
+    if(m_chemin_saves.empty())
+    {
         moteurGraphique->special_typo.Draw(configuration->getText(0,53), sf::Vector2f(configuration->Resolution.w/2,
-                                                                                      buttons_principal[0].position.y), 72, 19, true);
+                                                                                      buttons_principal[0].position.y), 72, 19, true,
+                                           sf::Color(128,128,128));
+    }
+    else
+    {
+        if(buttons_principal[0].m_press)
+            moteurGraphique->special_typo_p.Draw(configuration->getText(0,53), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                            buttons_principal[0].position.y), 72, 19, true);
+        else if(buttons_principal[0].m_hover)
+            moteurGraphique->special_typo_h.Draw(configuration->getText(0,53), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                            buttons_principal[0].position.y), 72, 19, true);
+        else
+            moteurGraphique->special_typo.Draw(configuration->getText(0,53), sf::Vector2f(configuration->Resolution.w/2,
+                                                                                          buttons_principal[0].position.y), 72, 19, true);
+    }
 
-    if(buttons_principal[0].m_action)
+    if(buttons_principal[0].m_action && !m_chemin_saves.empty())
     {
         buttons_principal[0].m_action = false;
         no_ecran = E_CONTINUER;

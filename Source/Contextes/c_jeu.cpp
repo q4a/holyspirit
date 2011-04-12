@@ -669,11 +669,12 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
         {
             if(jeu->menu.m_dialogue.empty() || jeu->m_contexte != jeu->m_jeu)
                 return 4;
-            else
+            else if(!jeu->menu.m_forced_dialogue)
                 jeu->menu.ClearSpeakChoice(),jeu->menu.m_dialogue.clear(),jeu->hero.m_personnage.m_cible = NULL;
         }
     }
 
+    if(!jeu->menu.m_forced_dialogue)
     if (eventManager->getEvenement(Key::Return,EventKey)
      ||(eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x,0).x
      && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x + jeu->hero.m_classe.position_bouton_dialogue.w,0).x
@@ -681,7 +682,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
      && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.talk.position.h - jeu->menu.m_hauteur + jeu->hero.m_classe.position_bouton_dialogue.h).y
      && eventManager->getEvenement(Mouse::Left,EventClicA)))
     {
-        if(!jeu->menu.m_dialogue.empty()/* && jeu->m_jeu->alpha_dialog > 192*/)
+        if(!jeu->menu.m_dialogue.empty() /* && jeu->m_jeu->alpha_dialog > 192*/)
         {
             eventManager->StopEvenement(Key::Escape,EventKey);
             eventManager->StopEvenement(Mouse::Left,EventClicA);
@@ -928,12 +929,13 @@ void c_Jeu::Evenements(Jeu *jeu)
 
     if(fabs(jeu->menu.m_dialogue_position.x - jeu->hero.m_personnage.getCoordonnee().x) > 2
     || fabs(jeu->menu.m_dialogue_position.y - jeu->hero.m_personnage.getCoordonnee().y) > 2)
+    if(!jeu->menu.m_forced_dialogue)
     {
         jeu->menu.ClearSpeakChoice();
         jeu->menu.m_dialogue.clear();
     }
 
-    if(!jeu->menu.m_dialogue.empty())
+    if(!jeu->menu.m_dialogue.empty() && !jeu->menu.m_forced_dialogue)
     if(eventManager->getEvenement(sf::Mouse::Left, EventClic))
     if(eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_contenu_dialogue.x,0).x
     || eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_contenu_dialogue.x,0).x + jeu->hero.m_classe.position_contenu_dialogue.w

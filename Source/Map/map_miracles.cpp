@@ -1102,6 +1102,73 @@ bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Ef
     return 1;
 }
 
+
+bool Map::Miracle_Teleport(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+{
+    coordonnee enCours = miracleEnCours.m_coordonneeCible;
+
+    float angle = 0;
+    if(info.m_cible != NULL)
+        angle = info.m_cible->getAngle() * M_PI / 180;
+
+    enCours.x = miracleEnCours.m_coordonneeCible.x + (int)(cos(angle+M_PI)*2);
+    enCours.y = miracleEnCours.m_coordonneeCible.y + (int)(sin(angle+M_PI)*2);
+    if(!getCollision(enCours.x,enCours.y))
+        personnage->setCoordonnee(enCours);
+
+    enCours.x = miracleEnCours.m_coordonneeCible.x + (int)(cos(angle+3*M_PI_4)*2);
+    enCours.y = miracleEnCours.m_coordonneeCible.y + (int)(sin(angle+3*M_PI_4)*2);
+    if(!getCollision(enCours.x,enCours.y))
+        personnage->setCoordonnee(enCours);
+
+    enCours.x = miracleEnCours.m_coordonneeCible.x + (int)(cos(angle-3*M_PI_4)*2);
+    enCours.y = miracleEnCours.m_coordonneeCible.y + (int)(sin(angle-3*M_PI_4)*2);
+    if(!getCollision(enCours.x,enCours.y))
+        personnage->setCoordonnee(enCours);
+
+    enCours.x = miracleEnCours.m_coordonneeCible.x + (int)(cos(angle+M_PI_2)*2);
+    enCours.y = miracleEnCours.m_coordonneeCible.y + (int)(sin(angle+M_PI_2)*2);
+    if(!getCollision(enCours.x,enCours.y))
+        personnage->setCoordonnee(enCours);
+
+    enCours.x = miracleEnCours.m_coordonneeCible.x + (int)(cos(angle-M_PI_2)*2);
+    enCours.y = miracleEnCours.m_coordonneeCible.y + (int)(sin(angle-M_PI_2)*2);
+    if(!getCollision(enCours.x,enCours.y))
+        personnage->setCoordonnee(enCours);
+
+    enCours.x = miracleEnCours.m_coordonneeCible.x + (int)(cos(angle+M_PI_4)*2);
+    enCours.y = miracleEnCours.m_coordonneeCible.y + (int)(sin(angle+M_PI_4)*2);
+    if(!getCollision(enCours.x,enCours.y))
+        personnage->setCoordonnee(enCours);
+
+    enCours.x = miracleEnCours.m_coordonneeCible.x + (int)(cos(angle-M_PI_4)*2);
+    enCours.y = miracleEnCours.m_coordonneeCible.y + (int)(sin(angle-M_PI_4)*2);
+    if(!getCollision(enCours.x,enCours.y))
+        personnage->setCoordonnee(enCours);
+
+    enCours.x = miracleEnCours.m_coordonneeCible.x + (int)(cos(angle)*2);
+    enCours.y = miracleEnCours.m_coordonneeCible.y + (int)(sin(angle)*2);
+    if(!getCollision(enCours.x,enCours.y))
+        personnage->setCoordonnee(enCours);
+
+    enCours = miracleEnCours.m_coordonneeCible;
+    if(!getCollision(enCours.x,enCours.y))
+        personnage->setCoordonnee(enCours);
+
+    personnage->setDepart();
+    personnage->setArrivee(personnage->getCoordonnee());
+
+    for (int p=0;p<(int)effet.m_lien.size();p++)
+    {
+        miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
+        miracleEnCours.m_infos.back()->m_effetEnCours    = effet.m_lien[p];
+        miracleEnCours.m_infos.back()->m_position        = info.m_position;
+        miracleEnCours.m_infos.back()->m_cible           = info.m_cible;
+    }
+    miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
+    return 0;
+}
+
 bool Map::Miracle_EffetEcran(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     moteurGraphique->m_effetsEcran.push_back(Effet_ecran ());
@@ -1127,19 +1194,22 @@ bool Map::Miracle_EffetEcran(Hero *hero, Personnage *personnage, Miracle &modele
 
 bool Map::Miracle_Degats(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
-    int deg = rand() % (int)(effet.m_informations[1] - effet.m_informations[0] + 1) + effet.m_informations[0];
+    int deg = 0;
+
+    if(effet.m_informations[1] != 0)
+        deg = rand() % (int)(effet.m_informations[1] - effet.m_informations[0] + 1) + effet.m_informations[0];
 
     if (info.m_cible != NULL)
     {
         info.m_position = info.m_cible->getCoordonneePixel();
         info.m_position.x += COTE_TILE/2 + 1;//info.m_cible->m_entite_graphique.m_decalage.y*2 + info.m_cible->m_entite_graphique.m_decalage.x;
         info.m_position.y += COTE_TILE/2 + 1;//info.m_cible->m_entite_graphique.m_decalage.y*2 - info.m_cible->m_entite_graphique.m_decalage.x;
-        if (info.m_cible->getCoordonnee().y >=0 && info.m_cible->getCoordonnee().y < (int)m_decor[0].size())
-            if (info.m_cible->getCoordonnee().x >=0 && info.m_cible->getCoordonnee().x < (int)m_decor[0][info.m_cible->getCoordonnee().y].size())
-            {
+       // if (info.m_cible->getCoordonnee().y >=0 && info.m_cible->getCoordonnee().y < (int)m_decor[0].size())
+         //   if (info.m_cible->getCoordonnee().x >=0 && info.m_cible->getCoordonnee().x < (int)m_decor[0][info.m_cible->getCoordonnee().y].size())
+           // {
                 if(deg != 0)
                     InfligerDegats(info.m_cible, personnage, deg, effet.m_informations[2], hero, effet.m_informations[3]);
-            }
+           // }
     }
 
     for (unsigned p=0;p<effet.m_lien.size();p++)
@@ -1506,6 +1576,13 @@ void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,fl
 
                 else if (type == VARIABLE_MIRACLE)
                     continuer = Miracle_Variable  ( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                                                    miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
+                                                    personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
+                                                    temps, o, detruire);
+
+
+                else if (type == TELEPORT)
+                    continuer = Miracle_Teleport(   hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);

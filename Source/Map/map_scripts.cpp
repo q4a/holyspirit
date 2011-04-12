@@ -443,6 +443,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
 
                 jeu->menu.m_dialogue_position = hero->m_personnage.getCoordonnee();
                 //hero->m_personnage.m_cible = NULL;
+
+                jeu->menu.m_forced_dialogue = (int)script->getValeur(noInstruction, 1);
             }
         }
         else if (script->m_instructions[noInstruction].nom=="stop_speak")

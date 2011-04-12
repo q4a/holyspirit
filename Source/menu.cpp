@@ -77,6 +77,8 @@ Menu::Menu()
         for(unsigned i = 0 ; i < 8 ; ++i)
             ChargerBouton(fichier, buttons[i]), buttons[i].no_opacity = true;
     }
+
+    m_forced_dialogue = false;
 }
 
 void Menu::AfficherHUD(Classe *classe)

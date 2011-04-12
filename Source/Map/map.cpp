@@ -524,6 +524,7 @@ void Map::Animer(Hero *hero,float temps)
             for (int k=vueMin.x;k<vueMax.x;k++)
             {
                 m_decor[i][j][k].m_entite_graphique.Animer(temps);
+                m_decor[i][j][k].m_entite_herbe.Animer(temps);
 
                 for(int z = 0; z < m_decor[i][j][k].getNombreObjets() ; ++z)
                 {
