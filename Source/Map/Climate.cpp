@@ -83,6 +83,9 @@ void Climate::Charger(std::string chemin)
                     else if (caractere=='y')
                         fichier>>pos.y;
 
+                    else if (caractere=='f')
+                        fichier>>m_entities.back().m_fixed;
+
 
                     if (fichier.eof())
                     {
@@ -175,6 +178,23 @@ void Climate::Update(float time)
 
         m_entities[i].SetScale((float)configuration->Resolution.x/800,
                                 (float)configuration->Resolution.y/600);
+
+        if(!m_entities[i].m_fixed)
+        {
+            sf::Vector2f pos = m_entities[i].GetPosition();
+
+            if(pos.x < GetViewRect(moteurGraphique->m_camera).Left)
+                pos.x += (int)((GetViewRect(moteurGraphique->m_camera).Left - pos.x)/GetViewRect(moteurGraphique->m_camera).Width + 1)*GetViewRect(moteurGraphique->m_camera).Width;
+            if(pos.y < GetViewRect(moteurGraphique->m_camera).Top)
+                pos.y += (int)((GetViewRect(moteurGraphique->m_camera).Top - pos.y)/GetViewRect(moteurGraphique->m_camera).Height + 1)*GetViewRect(moteurGraphique->m_camera).Height;
+
+            if(pos.x > GetViewRect(moteurGraphique->m_camera).Left + GetViewRect(moteurGraphique->m_camera).Width)
+                pos.x -= (int)((pos.x - GetViewRect(moteurGraphique->m_camera).Left)/GetViewRect(moteurGraphique->m_camera).Width)*GetViewRect(moteurGraphique->m_camera).Width;
+            if(pos.y > GetViewRect(moteurGraphique->m_camera).Top + GetViewRect(moteurGraphique->m_camera).Height)
+                pos.y -= (int)((pos.y - GetViewRect(moteurGraphique->m_camera).Top)/GetViewRect(moteurGraphique->m_camera).Height)*GetViewRect(moteurGraphique->m_camera).Height;
+
+            m_entities[i].SetPosition(pos.x, pos.y);
+        }
 
         sf::Color color = m_entities[i].GetColor();
         float temp = (float)color.a * GetState();

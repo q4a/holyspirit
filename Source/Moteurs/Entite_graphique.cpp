@@ -292,7 +292,7 @@ void Entite_graphique::Generer()
 
             SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
             SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
-                                            positionPartieDecor.w, positionPartieDecor.h - 1));
+                                   positionPartieDecor.w, positionPartieDecor.h - 1));
 
             SetOrigin(m_tileset->getCentreDuTile(m_noAnimation).x,m_tileset->getCentreDuTile(m_noAnimation).y);
 
@@ -307,9 +307,9 @@ void Entite_graphique::Generer()
 
             if(m_scale.x < 0)
             SetOrigin(positionPartieDecor.w - m_tileset->getCentreDuTile(m_noAnimation).x,
-                               m_tileset->getCentreDuTile(m_noAnimation).y);
+                      m_tileset->getCentreDuTile(m_noAnimation).y);
 
-            SetRotation(m_rotation);
+           SetRotation(m_rotation);
 
             m_decalCouche = m_tileset->getLayerDuTile(m_noAnimation);
 
