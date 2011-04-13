@@ -35,4 +35,6 @@ $
 
 *x0 y0 w512 h256 i5 vChamps z0 $
 
+*x0 y400 w180 h96 i0 ey48 vTerreBerge z0 $
+
 $
