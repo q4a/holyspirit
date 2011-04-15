@@ -351,10 +351,15 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                         if (m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles[m_monstre[monstre].m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type==INVOCATION)
                             if (m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet>=0&&m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet<(int)m_monstre.size())
                             {
-
                                 if((int)m_listID.size() <= (int)script->getValeur(noInstruction, 0))
                                     m_listID.resize((int)script->getValeur(noInstruction, 0) + 1);
-                                m_listID[(int)script->getValeur(noInstruction, 0)].push_back(m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet);
+
+                                bool add = true;
+                                for(int j = 0 ; j < m_listID[(int)script->getValeur(noInstruction, 0)].size() ; ++j)
+                                    if(m_listID[(int)script->getValeur(noInstruction, 0)][j] == m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet)
+                                        add = false;
+                                if(add)
+                                    m_listID[(int)script->getValeur(noInstruction, 0)].push_back(m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet);
                             }
             }
         }
