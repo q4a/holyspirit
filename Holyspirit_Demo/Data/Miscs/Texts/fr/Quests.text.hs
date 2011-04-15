@@ -3,7 +3,7 @@ Je dois aller dans les catacombes voir ce qu'il s'y passe.
 J'ai retrouvé le journal du moine Rédimus. Celui-ci indique qu'il se trame des choses terrifiantes dans les catacombes. Je dois en parler avec l'Abbé.
 L'abbé m'a dit de retrouver les quatre reliques de l'abbaye pour pouvoir prononcer l'incantation purificatrice. 
 Je dois escorter un Frère jusqu'à l'Oculus, au centre des catacombes, afin qu'il accomplisse le Rituel de Purification.
-L'abbé m'a dit de retrouver les quatre reliques de l'abbaye pour pouvoir prononcer l'incantation purificatrice. D'après Alcuin, une relique aurait disparue depuis quelques années.
+L'abbé m'a dit de retrouver les quatre reliques de l'abbaye pour pouvoir prononcer l'incantation purificatrice. D'après Alcuin, une relique aurait disparu depuis quelques années.
 
 
 La charette abandonnée

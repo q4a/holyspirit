@@ -157,5 +157,5 @@ Couronne ayant appertenu au glorieux Roi Teudéric.
 Plastron de Teudéric
 Plastron ayant appertenu au glorieux Roi Teudéric.
 Atours de Teudéric
-L'histoire de l'Abbaye de Saint Clodomir
+Histoire de l'Abbaye de Saint Clodomir
 Par frère Vlanker, moine honoraire de l’abbaye.
