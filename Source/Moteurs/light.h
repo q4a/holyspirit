@@ -27,6 +27,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef LIGHTH
 #define LIGHTH
 
+const int LIGHT_ALPHA = 64;
+
 struct Wall
 {
     Wall(sf::Vector2f p1 , sf::Vector2f p2 )

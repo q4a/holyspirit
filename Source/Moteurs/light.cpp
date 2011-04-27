@@ -207,17 +207,17 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, std::list<int> deja_w
     m_shape.push_back(sf::Shape ());
 
     // On lui donne comme point de départ (0,0), le centre de la lumière, avec la couleur et intensité maximal
-    m_shape.back().AddPoint(0, 0,  sf::Color((int)(m_intensity*m_color.r/255),(int)(m_intensity*m_color.g/255),(int)(m_intensity*m_color.b/255)));
+    m_shape.back().AddPoint(0, 0,  sf::Color((int)(m_intensity*m_color.r/255),(int)(m_intensity*m_color.g/255),(int)(m_intensity*m_color.b/255),96));
 
     // On calcul ou l'on se trouve par rapport au centre, pour savoir à quel intensité on est
     intensity=m_intensity-gpl::sqrt(pt1.x*pt1.x + pt1.y*pt1.y)*m_intensity/m_radius;
     // Et on ajoute un  point au shape
-    m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255)));
+    m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255),96));
 
     // Idem
     intensity2=m_intensity-gpl::sqrt(pt2.x*pt2.x + pt2.y*pt2.y)*m_intensity/m_radius;
 
-    m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity2*m_color.r/255),(int)(intensity2*m_color.g/255),(int)(intensity2*m_color.b/255)));
+    m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity2*m_color.r/255),(int)(intensity2*m_color.g/255),(int)(intensity2*m_color.b/255),96));
 
     // On met que le shape soit en Add et on lui donne sa position
     m_shape.back().SetBlendMode(sf::Blend::Add);
@@ -230,15 +230,35 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, std::list<int> deja_w
 
     m_shape.back().SetPosition(m_position.x,m_position.y/2);
 
-    if (intensity>1||intensity2>1)
-        if ( 0>=(pt1.y) - (pt1.x)*(((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x))))
+    float a = (((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x)));
+    float b = (pt2.y) - a*pt2.x;
+
+    sf::Vector2f p;
+    p.x = -b/(a+1/a);
+    p.y = a * p.x + b;
+
+    float intensity3 = intensity * ((sqrt(p.x*p.x + p.y * p.y))/64);
+    float intensity4 = intensity2 * ((sqrt(p.x*p.x + p.y * p.y))/64);
+
+    if(intensity3 < 0)
+        intensity3 = 0;
+    if(intensity3 > intensity)
+        intensity3 = intensity;
+    if(intensity4 < 0)
+        intensity4 = 0;
+    if(intensity4 > intensity2)
+        intensity4 = intensity2;
+
+    if(p.y < 0)
+    if (intensity3>1||intensity4>1)
+        //if ( 0>=(pt1.y) - (pt1.x)*(((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x))))
         {
             m_shape.push_back(sf::Shape ());
 
-            m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255)));
-            m_shape.back().AddPoint(pt1.x,pt1.y/2-hauteur * sin(intensity /m_intensity*M_PI_2),  sf::Color(0,0,0));
-            m_shape.back().AddPoint(pt2.x,pt2.y/2-hauteur * sin(intensity2/m_intensity*M_PI_2),  sf::Color(0,0,0));
-            m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity2*m_color.r/255),(int)(intensity2*m_color.g/255),(int)(intensity2*m_color.b/255)));
+            m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity3*m_color.r/255),(int)(intensity3*m_color.g/255),(int)(intensity3*m_color.b/255),LIGHT_ALPHA));
+            m_shape.back().AddPoint(pt1.x,pt1.y/2-hauteur * sin(intensity3 /m_intensity*M_PI_2),  sf::Color(0,0,0));
+            m_shape.back().AddPoint(pt2.x,pt2.y/2-hauteur * sin(intensity4/m_intensity*M_PI_2),  sf::Color(0,0,0));
+            m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity4*m_color.r/255),(int)(intensity4*m_color.g/255),(int)(intensity4*m_color.b/255),LIGHT_ALPHA));
 
             m_shape.back().SetBlendMode(sf::Blend::Add);
 
@@ -293,7 +313,7 @@ void Light::SetColor(sf::Color color)
 void Light::SetPosition(sf::Vector2f position)
 {
     m_position=position;
-    m_position.y += 2.11;
+   // m_position.y += 2.11;
     //m_position.x += 0.01;
 }
 

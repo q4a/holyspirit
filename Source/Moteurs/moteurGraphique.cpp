@@ -105,6 +105,7 @@ void MoteurGraphique::CreateNewWindow()
 
 void MoteurGraphique::Charger()
 {
+    configuration->effetMort=0;
     if (configuration->postFX)
     {
         console->Ajouter("");
@@ -136,8 +137,6 @@ void MoteurGraphique::Charger()
         EffectMort.SetParameter("offset", 0);
         EffectMort.SetParameter("color",1, 1, 1);
 
-
-        configuration->effetMort=0;
 
 
         if (!EffectFiltre.LoadFromFile(configuration->chemin_fx+configuration->nom_effetFiltre))
@@ -373,7 +372,7 @@ void MoteurGraphique::Afficher()
         sf::Sprite sprite_b;
         sprite_b.SetColor(sf::Color(m_soleil.rouge * m_soleil.intensite/255,
                                        m_soleil.vert  * m_soleil.intensite/255,
-                                       m_soleil.bleu  * m_soleil.intensite/255,255));
+                                       m_soleil.bleu  * m_soleil.intensite/255,LIGHT_ALPHA));
         sprite_b.Resize(m_light_screen.GetWidth(),m_light_screen.GetHeight());
         m_light_screen.Draw(sprite_b);
 
@@ -402,7 +401,7 @@ void MoteurGraphique::Afficher()
         }
     }
 
-    if(configuration->Reflection)
+    if(configuration->Reflection && configuration->postFX)
         m_water_screen.Clear(sf::Color(0,0,0,255));
     else
         bufferImage.Clear(sf::Color(0,0,0,255));
@@ -548,7 +547,7 @@ void MoteurGraphique::Afficher()
         {
             sf::Sprite sprite2;
             sprite2.SetImage(*getImage(0));
-            sprite2.Resize(configuration->Resolution.w,configuration->Resolution.h);
+            sprite2.Resize(configuration->Resolution.x,configuration->Resolution.y);
             sprite2.SetColor(sf::Color((int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),255));
             sprite2.SetBlendMode(sf::Blend::Multiply);
             bufferImage.Draw(sprite2);
