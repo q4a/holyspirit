@@ -23,7 +23,7 @@ $
 	* t3 s0 ia8 $ 
 
 	* t11 l6 ia0 ib8 $
-	* t10 l7 ia2 ib6$
+	* t10 l7 ia2 ib6 $
 	* t7 ia11 ic1 id2 $
 
 	* t-1 l9 l10 $

@@ -17,4 +17,5 @@ $
 *x0 y192 w384 h192 i3 vDalles2  z0 u1 $
 *x0 y384 w384 h192 i3 vDalles3  z0 u1 $
 *x0 y576 w384 h192 i3 vDallesCirculaire  z0 u1 $
+*x0 y768 w384 h192 i3 vFresque  z0 u1 $
 $
