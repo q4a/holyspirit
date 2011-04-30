@@ -163,20 +163,22 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, std::list<int> deja_w
                 {
                     sf::Vector2f i = Intersect(pt1,pt2,sf::Vector2f (0,0),l1);
 
-                    if((pt1.x > i.x + 0.01 && pt2.x < i.x - 0.01) || (pt1.x < i.x - 0.01 && pt2.x > i.x + 0.01))
-                    if((pt1.y > i.y + 0.01 && pt2.y < i.y - 0.01) || (pt1.y < i.y - 0.01 && pt2.y > i.y + 0.01))
-                        if(l1.y > 0 && i.y > 0 || l1.y < 0 && i.y < 0)
-                        if(l1.x > 0 && i.x > 0 || l1.x < 0 && i.x < 0)
+                    if(i != pt1 && i != pt2)
+                    if((pt1.x >= i.x && pt2.x <= i.x) || (pt1.x <= i.x && pt2.x >= i.x))
+                    if((pt1.y >= i.y && pt2.y <= i.y) || (pt1.y <= i.y && pt2.y >= i.y))
+                        if(l1.y >= 0 && i.y >= 0 || l1.y <= 0 && i.y <= 0)
+                        if(l1.x >= 0 && i.x >= 0 || l1.x <= 0 && i.x <= 0)
                         AddTriangle(i, pt2, deja_wall, m_wall, m_sectors, m_origin_sector,m_wall[*IterWall].hauteur), pt2 = i, hauteur = m_wall[*IterWall].hauteur;
                 }
-                if(l2.x * l2.x + l2.y * l2.y < m_radius * m_radius)
+                if(l2.x * l2.x + l2.y * l2.y <= m_radius * m_radius)
                 {
                     sf::Vector2f i = Intersect(pt1,pt2,sf::Vector2f (0,0),l2);
 
-                    if((pt1.x > i.x + 0.01 && pt2.x < i.x - 0.01) || (pt1.x < i.x - 0.01 && pt2.x > i.x + 0.01))
-                    if((pt1.y > i.y + 0.01 && pt2.y < i.y - 0.01) || (pt1.y < i.y - 0.01 && pt2.y > i.y + 0.01))
-                        if(l2.y > 0 && i.y > 0 || l2.y < 0 && i.y < 0)
-                        if(l2.x > 0 && i.x > 0 || l2.x < 0 && i.x < 0)
+                    if(i != pt1 && i != pt2)
+                    if((pt1.x >= i.x && pt2.x <= i.x) || (pt1.x <= i.x && pt2.x >= i.x))
+                    if((pt1.y >= i.y && pt2.y <= i.y) || (pt1.y <= i.y && pt2.y >= i.y))
+                        if(l2.y >= 0 && i.y >= 0 || l2.y <= 0 && i.y <= 0)
+                        if(l2.x >= 0 && i.x >= 0 || l2.x <= 0 && i.x <= 0)
                         AddTriangle(pt1, i, deja_wall, m_wall, m_sectors, m_origin_sector,m_wall[*IterWall].hauteur), pt1 = i, hauteur = m_wall[*IterWall].hauteur;
                 }
 

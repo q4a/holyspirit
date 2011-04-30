@@ -718,8 +718,8 @@ bool Personnage::SeDeplacer(float tempsEcoule)
         }
 
 
-        if(m_miracleALancer == -1)
-            frappeEnCours = 0;
+        //if(m_miracleALancer == -1)
+        //    frappeEnCours = 0;
 
         return 0;
     }

@@ -971,6 +971,8 @@ bool Map::Miracle_Pose(Hero *hero, Personnage *personnage, Miracle &modele, Effe
     if(effet.m_informations[3])
         personnage->m_lancementMiracleEnCours = true;
 
+      //  personnage->m_etatForce = true;
+
     if(effet.m_informations[4])
     {
         coordonnee pos;
