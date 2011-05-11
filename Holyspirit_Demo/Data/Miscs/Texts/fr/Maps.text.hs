@@ -4,3 +4,4 @@ Les catacombes - Niv 1
 L'abbaye - intérieur
 Les terres agraires
 Les catacombes - Niv 2
+Le cimetière
