@@ -26,8 +26,8 @@ $
 
 *x0 	y512 w256 h256 ey160 i0 c1 lr0 lv0 lb0 li-255 rh lh96 	z1	vMurHaut 		m i3 x32 y0 	w16 h16 $ $ 
 *x256 	y512 w256 h256 ey160 i0 c1 lr0 lv0 lb0 li-255 rb lh96 	z1	vMurBas	 	m i3 x80 y0 	w16 h16 $ $
-*x0 	y256 w256 h256 ey160 i1 c1 lr0 lv0 lb0 li-255 rd lh32 	z1 vMurDroite 		m i3 x48 y0 	w16 h16 $ $
-*x0 	y0 w256 h256 ey160 i1 c1 lr0 lv0 lb0 li-255 rg lh32 	z1 vMurGauche 		m i3 x64 y0 	w16 h16 $ $
+*x0 	y256 w256 h256 ey160 i1 c1 lr0 lv0 lb0 li-255 rd lh96 	z1 vMurDroite 		m i3 x48 y0 	w16 h16 $ $
+*x0 	y0 w256 h256 ey160 i1 c1 lr0 lv0 lb0 li-255 rg lh96 	z1 vMurGauche 		m i3 x64 y0 	w16 h16 $ $
 
 *x0 	y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 rx lh96 	z1 vMurInvisibleX 		m i3 x16 y0 	w16 h16 $ $
 *x0 	y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 ry lh96 	z1 vMurInvisibleY 		m i3 x0 y0 	w16 h16 $ $
@@ -38,4 +38,5 @@ $
 *x0 	y768 w256 h256 ey160 i1 c1 lr0 lv0 lb0 li-255 rh lh32 	z1 vMurInvisibleHaut	 		m i3 x32 y0 	w16 h16 $ $
 
 *x256 	y0 w256 h256 ey160 i1 c1 lr0 lv0 lb0 li-255 rd lh32 	z1 vMurBackDroite	 		m i3 x48 y0 	w16 h16 $ $
-*x256 	y256 w256 h256 ey160 i1 c1 lr0 lv0 lb0 li-255 rg lh32 	z1 vMurBackGauche	 		m i3 x64 y0 	w16 h16 $ $$
+*x256 	y256 w256 h256 ey160 i1 c1 lr0 lv0 lb0 li-255 rg lh32 	z1 vMurBackGauche	 		m i3 x64 y0 	w16 h16 $ $
+$
