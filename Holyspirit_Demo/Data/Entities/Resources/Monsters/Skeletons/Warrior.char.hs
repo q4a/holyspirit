@@ -26,7 +26,7 @@ $
 		r2500
 	$
 	*
-		*Armor_gambeson.item.hs
+		*Armor_leather.item.hs
 		r2500
 	$
 	*

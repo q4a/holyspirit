@@ -70,7 +70,7 @@ Hache de bucheron
 Cette puissante hache sert\habituellement à découper des arbres,\mais tranche aussi très\bien la viande et les os...
 Masse de boucher
 Cette masse a pour but\premier de tuer les cochons.\Mais elle se révèle aussi\très efficace contre les démons.\\Arme à deux mains.
-
+Armure de cuir
 
 Larme de la Veuve Éplorée
 Un bijou qui sied à ravir pour une femme en deuil.
