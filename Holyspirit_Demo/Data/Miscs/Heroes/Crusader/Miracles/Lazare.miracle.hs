@@ -20,9 +20,10 @@ $
 	*
 		*Data/Graphics/Miracles/Lazare.png
 		$
+		* mData/Sounds/Miracles/Aura.wav $
 		$
 		* x0 y0 w128 h64 ey128 a1 i0 n0.04 p0 $
-		* x128 y0 w128 h64 ey128 a2 i0 n0.04 p16 $
+		* x128 y0 w128 h64 ey128 a2 i0 n0.04 p16 s0 $
 		* x256 y0 w128 h64 ey128 a3 i0 n0.04 p32 $
 		* x384 y0 w128 h64 ey128 a4 i0 n0.04 p48 $
 		* x512 y0 w128 h64 ey128 a5 i0 n0.04 p64 $
