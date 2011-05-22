@@ -45,9 +45,9 @@ Light_Entity Light_Manager::Add_Dynamic_Light(Light light)
     m_DynamicLight.push_back(light);
     return Light_Entity((int)m_DynamicLight.size()-1,true);
 }
-Light_Entity Light_Manager::Add_Dynamic_Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color)
+Light_Entity Light_Manager::Add_Dynamic_Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color, bool m)
 {
-    m_DynamicLight.push_back(Light (position,intensity,radius,quality,color));
+    m_DynamicLight.push_back(Light (position,intensity,radius,quality,color,m));
     return Light_Entity((int)m_DynamicLight.size()-1,true);
 }
 
@@ -181,7 +181,46 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2,int hauteu
         m_origin_sector.x++;
     }
 
-    m_sectors[pt1.y/SECTOR_SIZE + m_origin_sector.y][pt1.x/SECTOR_SIZE + m_origin_sector.x].push_back(m_wall.size()-1);
+    int x = pt1.x/SECTOR_SIZE + m_origin_sector.x;
+    int y = pt1.y/SECTOR_SIZE + m_origin_sector.y;
+
+    m_sectors[y][x].push_back(m_wall.size()-1);
+
+    for(int w = 0 ; w < m_sectors[y][x].size() ; ++w)
+    {
+        if(fabs(m_wall[m_sectors[y][x][w]].pt1.x - m_wall.back().pt1.x) < 5
+        && fabs(m_wall[m_sectors[y][x][w]].pt1.y - m_wall.back().pt1.y) < 5)
+        {
+            int m = m_wall.back().hauteur1 + m_wall[m_sectors[y][x][w]].hauteur1;
+            m_wall.back().hauteur1 = m/2;
+            m_wall[m_sectors[y][x][w]].hauteur1 = m/2;
+            m_wall[m_sectors[y][x][w]].pt1 = m_wall.back().pt1;
+        }
+        if(fabs(m_wall[m_sectors[y][x][w]].pt1.x - m_wall.back().pt2.x) < 5
+        && fabs(m_wall[m_sectors[y][x][w]].pt1.y - m_wall.back().pt2.y) < 5)
+        {
+            int m = m_wall.back().hauteur2 + m_wall[m_sectors[y][x][w]].hauteur1;
+            m_wall.back().hauteur2 = m/2;
+            m_wall[m_sectors[y][x][w]].hauteur1 = m/2;
+            m_wall[m_sectors[y][x][w]].pt1 = m_wall.back().pt2;
+        }
+        if(fabs(m_wall[m_sectors[y][x][w]].pt2.x - m_wall.back().pt1.x) < 5
+        && fabs(m_wall[m_sectors[y][x][w]].pt2.y - m_wall.back().pt1.y) < 5)
+        {
+            int m = m_wall.back().hauteur1 + m_wall[m_sectors[y][x][w]].hauteur2;
+            m_wall.back().hauteur1 = m/2;
+            m_wall[m_sectors[y][x][w]].hauteur2 = m/2;
+            m_wall[m_sectors[y][x][w]].pt2 = m_wall.back().pt1;
+        }
+        if(fabs(m_wall[m_sectors[y][x][w]].pt2.x - m_wall.back().pt2.x) < 5
+        && fabs(m_wall[m_sectors[y][x][w]].pt2.y - m_wall.back().pt2.y) < 5)
+        {
+            int m = m_wall.back().hauteur2 + m_wall[m_sectors[y][x][w]].hauteur2;
+            m_wall.back().hauteur2 = m/2;
+            m_wall[m_sectors[y][x][w]].hauteur2 = m/2;
+            m_wall[m_sectors[y][x][w]].pt2 = m_wall.back().pt2;
+        }
+    }
 
     return Wall_Entity(m_wall.size()-1);
 }
@@ -302,10 +341,10 @@ void Light_Manager::DrawWallShadow(sf::RenderTarget *App,sf::View *camera,float 
         m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt2.x,m_wall[*IterWall].pt2.y*0.5),sf::Color(0,0,0,(int)(255)));
         m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt1.x,m_wall[*IterWall].pt1.y*0.5),sf::Color(0,0,0,(int)(255)));
 
-        m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt1.x-m_wall[*IterWall].hauteur * vect.x,
-                                                 m_wall[*IterWall].pt1.y*0.5+m_wall[*IterWall].hauteur * vect.y),sf::Color(0,0,0,(int)(255)));
-        m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt2.x-m_wall[*IterWall].hauteur * vect.x,
-                                                 m_wall[*IterWall].pt2.y*0.5+m_wall[*IterWall].hauteur * vect.y),sf::Color(0,0,0,(int)(255)));
+        m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt1.x-m_wall[*IterWall].hauteur1 * vect.x,
+                                                 m_wall[*IterWall].pt1.y*0.5+m_wall[*IterWall].hauteur1 * vect.y),sf::Color(0,0,0,(int)(255)));
+        m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt2.x-m_wall[*IterWall].hauteur2 * vect.x,
+                                                 m_wall[*IterWall].pt2.y*0.5+m_wall[*IterWall].hauteur2 * vect.y),sf::Color(0,0,0,(int)(255)));
         App->Draw(m_wall[*IterWall].m_shadow);
      }
 }
@@ -351,6 +390,12 @@ void Light_Manager::SetIntensity(Light_Entity &e, int i)
     if (e.Dynamic())
         if (e.ID()>=0&&e.ID()<(int)m_DynamicLight.size())
             m_DynamicLight[e.ID()].SetIntensity(i);
+}
+void Light_Manager::SetMovingLight(Light_Entity &e, bool m)
+{
+    if (e.Dynamic())
+        if (e.ID()>=0&&e.ID()<(int)m_DynamicLight.size())
+            m_DynamicLight[e.ID()].SetMovingLight(m);
 }
 
 void Light_Manager::SetIntensity(Wall_Entity &e, int i)

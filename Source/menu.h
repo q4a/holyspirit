@@ -114,6 +114,8 @@ class Menu
 
 
 	std::string m_old_dialogue;
+
+	int m_current_choice;
 };
 
 #endif

@@ -147,7 +147,7 @@ void Hero::Reset()
 
     Caracteristique temp;
 
-    temp.vitesse            = 0.7;
+    temp.vitesse            = 0.9;
     temp.niveau             = 1;
     temp.nom                = "Héros";
 
@@ -4203,7 +4203,7 @@ void Hero::GererCraft(std::vector<Objet> *trader)
                         result.Charger(m_inventaire[m_no_schema_craft].m_craft_result, m_caracteristiques);
                         result.Generer(0);
 
-                        moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+                        moteurSons->JouerSon(configuration->sound_create_item,coordonnee (0,0),0);
 
                         m_inventaire.push_back(result);
                         m_no_result_craft = m_inventaire.size() - 1;
@@ -4366,6 +4366,8 @@ void Hero::GererBless()
                     m_bless_time_max = m_bless_time;
                     delObjet(m_no_schema_bless);
                     m_no_schema_bless = -1;
+
+                    moteurSons->JouerSon(configuration->sound_bless_item,coordonnee (0,0),0);
                 }
             }
             else

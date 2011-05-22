@@ -234,11 +234,23 @@ void Configuration::ChargerInit()
                 fichier>>temp;
                 sound_menu = moteurSons->AjouterBuffer(temp);
             }
+            if (chaine== "sound_dialog:")
+            {
+                std::string temp;
+                fichier>>temp;
+                sound_dialog = moteurSons->AjouterBuffer(temp);
+            }
             if (chaine== "sound_create_item:")
             {
                 std::string temp;
                 fichier>>temp;
                 sound_create_item = moteurSons->AjouterBuffer(temp);
+            }
+            if (chaine== "sound_bless_item:")
+            {
+                std::string temp;
+                fichier>>temp;
+                sound_bless_item = moteurSons->AjouterBuffer(temp);
             }
             if (chaine== "sound_select_miracle:")
             {

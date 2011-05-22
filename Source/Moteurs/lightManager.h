@@ -51,7 +51,7 @@ class Light_Manager : public CSingleton<Light_Manager>
     //Différents moyen d'ajouter une lumière dynamique, soit on l'ajoute sans aucune valeur par défaut, soit on lui donne une lumière par défaut, soit on lui donne ses valeurs "à la main"
     Light_Entity Add_Dynamic_Light();
     Light_Entity Add_Dynamic_Light(Light);
-    Light_Entity Add_Dynamic_Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color);
+    Light_Entity Add_Dynamic_Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color, bool = false);
 
     //Différents moyen d'ajouter une lumière dynamique, soit on lui donne une lumière par défaut, soit on lui donne ses valeurs "à la main"
     //On ne peut ajouter une lumière static sans rien, ça ne servirait à rien car elle ne peut être modifiée par la suite
@@ -88,6 +88,7 @@ class Light_Manager : public CSingleton<Light_Manager>
     void SetRadius(Light_Entity &, int );
     void SetColor(Light_Entity &, sf::Color );
     void SetIntensity(Light_Entity &, int);
+    void SetMovingLight(Light_Entity &, bool);
 
     void SetIntensity(Wall_Entity &, int);
 

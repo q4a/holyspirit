@@ -784,7 +784,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     jeu->m_no_printscreen = true;
 
     if(eventManager->getEvenement(sf::Key::Escape, EventKey))
-        no_ecran = E_PRINCIPAL,nom_hero.clear(),jeu->m_no_printscreen = false;
+        no_ecran = E_PRINCIPAL,nom_hero.clear(),jeu->m_no_printscreen = false,ChargerListeSaves();
 
     if(((eventManager->getChar() >= 'a' && eventManager->getChar() <= 'z')
      || (eventManager->getChar() >= 'A' && eventManager->getChar() <= 'Z')
@@ -969,6 +969,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     {
         buttons_nouveau[0].m_action = false;
         no_ecran = E_PRINCIPAL;
+        ChargerListeSaves();
     }
 }
 void  c_MainMenu::E_Credits(Jeu *jeu)

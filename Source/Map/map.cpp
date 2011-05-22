@@ -362,7 +362,7 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                                 m_effets[m_decor[1][j][k].getEffetGraphique()[o]].Afficher();
 
 
-                        if (m_decor[1][j][k].getNombreObjets()>0&&couche==1)
+                        /*if (m_decor[1][j][k].getNombreObjets()>0&&couche==1)
                         {
                             position.x=(k-j-1)*64+48;
                             position.y=(k+j)*32+16;
@@ -378,6 +378,33 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
                             objetPointe=m_decor[1][j][k].AfficherTexteObjets(position);
 
                             if (objetPointe>=0&&!eventManager->getEvenement(sf::Mouse::Left,EventClicA) && alt)
+                            {
+                                m_sacPointe.x=k;
+                                m_sacPointe.y=j;
+
+                                if (eventManager->getEvenement(sf::Key::LControl,EventKey))
+                                    m_decor[1][j][k].getObjet(objetPointe)->AfficherCaracteristiques(eventManager->getPositionSouris(),hero->m_classe.border,hero->m_caracteristiques,&hero->m_coffre,hero->m_cheminClasse);
+
+                                m_objetPointe=objetPointe;
+                            }
+                        }*/
+
+                        if (m_decor[1][j][k].getNombreObjets()>0&&couche==1)
+                        {
+                            position.x=(k-j-1)*64+48;
+                            position.y=(k+j)*32+16;
+
+                            for (int o=0;o<m_decor[1][j][k].getNombreObjets();o++)
+                                m_decor[1][j][k].getObjet(o)->Afficher(position);
+
+                            int objetPointe=-1;
+
+                            if (alt)
+                                m_decor[1][j][k].AlphaObjets(255);
+
+                            objetPointe=m_decor[1][j][k].AfficherTexteObjets(position/*,alt*/);
+
+                            if (objetPointe>=0&&!eventManager->getEvenement(sf::Mouse::Left,EventClicA)&&m_monstreIllumine==-1/* && alt*/)
                             {
                                 m_sacPointe.x=k;
                                 m_sacPointe.y=j;
@@ -526,32 +553,7 @@ void Map::Animer(Hero *hero,float temps)
                 m_decor[i][j][k].m_entite_graphique.Animer(temps);
                 m_decor[i][j][k].m_entite_herbe.Animer(temps);
 
-                for(int z = 0; z < m_decor[i][j][k].getNombreObjets() ; ++z)
-                {
-                    m_decor[i][j][k].getObjet(z)->m_alpha -= temps*200;
-                    if(m_decor[i][j][k].getObjet(z)->m_alpha < 0)
-                        m_decor[i][j][k].getObjet(z)->m_alpha = 0;
-
-                    if(m_decor[i][j][k].getObjet(z)->m_hauteur > 0)
-                    {
-                        if(m_decor[i][j][k].getObjet(z)->m_monter)
-                            m_decor[i][j][k].getObjet(z)->m_hauteur += temps * 100 + temps * (96 - m_decor[i][j][k].getObjet(z)->m_hauteur) * 2;
-                        else
-                            m_decor[i][j][k].getObjet(z)->m_hauteur -= temps * 100 + temps * (96 - m_decor[i][j][k].getObjet(z)->m_hauteur) * 2;
-
-                        m_decor[i][j][k].getObjet(z)->m_rotation += temps * 1000;
-
-                        if(m_decor[i][j][k].getObjet(z)->m_hauteur > 96)
-                            m_decor[i][j][k].getObjet(z)->m_monter = false;
-                        if(m_decor[i][j][k].getObjet(z)->m_hauteur <= 0)
-                        {
-                            m_decor[i][j][k].getObjet(z)->m_rotation = 20 - rand() % 40;
-                            m_decor[i][j][k].getObjet(z)->m_hauteur = 0;
-                            m_decor[i][j][k].getObjet(z)->m_alpha = 512;
-                            m_decor[i][j][k].getObjet(z)->JouerSon();
-                        }
-                    }
-                }
+                m_decor[i][j][k].AnimerObjets(temps);
 
                 for (int z=0;z<(int)m_decor[i][j][k].getMonstre().size();z++)
                 {
@@ -753,14 +755,14 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
 
                         if (getTypeCase((int)(projectile->m_positionCase.x),(int)(projectile->m_positionCase.y))==1
 
-                        && (projectile->m_position.y > (projectile->m_positionCase.y+0.25)*COTE_TILE
+                        && (projectile->m_position.y + 32 > ((float)projectile->m_positionCase.y+0.25)*COTE_TILE
                           ||getTypeCase((int)(projectile->m_positionCase.x),(int)(projectile->m_positionCase.y-1))==1)
-                        && (projectile->m_position.y < (projectile->m_positionCase.y+0.75)*COTE_TILE
+                        && (projectile->m_position.y + 32 < ((float)projectile->m_positionCase.y+0.75)*COTE_TILE
                           ||getTypeCase((int)(projectile->m_positionCase.x),(int)(projectile->m_positionCase.y+1))==1)
 
-                        && (projectile->m_position.x > (projectile->m_positionCase.x+0.25)*COTE_TILE
+                        && (projectile->m_position.x + 32 > ((float)projectile->m_positionCase.x+0.25)*COTE_TILE
                           ||getTypeCase((int)(projectile->m_positionCase.x-1),(int)(projectile->m_positionCase.y))==1)
-                        && (projectile->m_position.x < (projectile->m_positionCase.x+0.75)*COTE_TILE
+                        && (projectile->m_position.x + 32 < ((float)projectile->m_positionCase.x+0.75)*COTE_TILE
                           ||getTypeCase((int)(projectile->m_positionCase.x+1),(int)(projectile->m_positionCase.y))==1)
 
                        /* && (projectile->m_position.y - (projectile->m_positionCase.y+0.5)*COTE_TILE) *

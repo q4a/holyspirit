@@ -35,23 +35,9 @@ public:
 	    }
     }
 
-
-    //un couple d'accesseur / mutateur
-    int GetValue()
-    {
-        return  value;
-    }
-
-    void SetValue(int val)
-    {
-	value=val;
-    }
-
 protected:
 
-    int value;
-
-    CSingleton() : value(0)
+    CSingleton()
     {
     }
 

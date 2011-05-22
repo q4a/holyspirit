@@ -581,6 +581,7 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
                 m_images[i].nom=nom;
 
                 m_images[i].img = new sf::Image();
+                m_images[i].img->SetSmooth(true);
 
                 if (!configuration->lissage)
                     m_images[i].img->SetSmooth(false);
@@ -605,6 +606,7 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
     m_images.back().nom=nom;
 
     m_images.back().img = new sf::Image();
+    m_images.back().img->SetSmooth(true);
 
     if (!configuration->lissage)
         m_images.back().img->SetSmooth(false);
@@ -641,6 +643,7 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance,bool newimag
                 m_images[i].nom=chemin;
 
                 m_images[i].img = new sf::Image();
+                m_images[i].img->SetSmooth(true);
 
                 if (!configuration->lissage)
                     m_images[i].img->SetSmooth(false);
@@ -665,6 +668,7 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance,bool newimag
     m_images.back().nom=chemin;
 
     m_images.back().img = new sf::Image();
+    m_images.back().img->SetSmooth(true);
 
     if (!configuration->lissage)
         m_images.back().img->SetSmooth(false);
@@ -690,9 +694,10 @@ int MoteurGraphique::AjouterImage(const sf::Image &img,int importance)
 
     m_images.back().img = new sf::Image();
     (*m_images.back().img) = img;
+    m_images.back().img->SetSmooth(true);
 
-    if (!configuration->lissage)
-        m_images.back().img->SetSmooth(false);
+    //if (!configuration->lissage)
+       // m_images.back().img->SetSmooth(false);
 
     m_images.back().importance=importance;
 
@@ -1023,7 +1028,7 @@ std::string MoteurGraphique::getCheminImage(int IDimage)
 
 bool MoteurGraphique::getEvent(sf::Event &EventReceived)
 {
-    return m_ecran.GetEvent(EventReceived);
+    return m_ecran.PollEvent(EventReceived);
 }
 
 sf::Vector2f MoteurGraphique::getPositionSouris()

@@ -299,6 +299,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
 
         bullet2.FlipX(true);
 
+        int current_choice = -1;
         for(unsigned i = 0 ; i < m_choices.size() ; ++i)
         {
             texte.SetString(m_choices[i].text);
@@ -315,6 +316,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
              &&eventManager->getPositionSouris().y > texte.GetRect().Top
              &&eventManager->getPositionSouris().y < texte.GetRect().Top + 20)
              {
+                 current_choice = i;
                 if(eventManager->getEvenement(sf::Mouse::Left, EventClic))
                 {
                     m_speak_choice = m_choices[i].no;
@@ -326,6 +328,9 @@ void Menu::AfficherDialogue(float time,Classe *classe)
                 //bullet2.SetImage(*moteurGraphique->getImage(classe->bullet_on.image));
                 bullet1.SetX(minX + 16);
               //  bullet2.SetX(maxX - 16);
+
+                if(m_current_choice != i)
+                    moteurSons->JouerSon(configuration->sound_dialog,coordonnee (0,0),0);
 
                 texte.SetColor(sf::Color(255,224,128));
              }
@@ -342,6 +347,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
              moteurGraphique->AjouterCommande(&bullet1,16,0);
             // moteurGraphique->AjouterCommande(&bullet2,16,0);
         }
+        m_current_choice = current_choice;
     }
 
 }

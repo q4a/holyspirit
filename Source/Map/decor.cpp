@@ -153,7 +153,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
         sprite.SetColor(sf::Color(0,0,0,(int)(224.0f*alpha)));
         sprite.Resize(texte.GetRect().Width +8 , texte.GetRect().Height+4);
 
-        if(eventManager->getEvenement(configuration->m_key_actions[K_PICKITEMS],EventKey))
+     //   if(eventManager->getEvenement(configuration->m_key_actions[K_PICKITEMS],EventKey))
             if(eventManager->getPositionSouris().x>sprite.GetPosition().x
              &&eventManager->getPositionSouris().y>sprite.GetPosition().y
              &&eventManager->getPositionSouris().x<sprite.GetPosition().x + texte.GetRect().Width +8
@@ -190,6 +190,35 @@ void Decor::AlphaObjets(int alpha)
             m_objets[i].m_alpha = alpha;
 }
 
+void Decor::AnimerObjets(float temps)
+{
+    for(int z = 0; z < getNombreObjets() ; ++z)
+    {
+        getObjet(z)->m_alpha -= temps*200;
+        if(getObjet(z)->m_alpha < 0)
+            getObjet(z)->m_alpha = 0;
+
+        if(getObjet(z)->m_hauteur > 0)
+        {
+            if(getObjet(z)->m_monter)
+                getObjet(z)->m_hauteur += temps * 100 + temps * (96 - getObjet(z)->m_hauteur) * 2;
+            else
+                getObjet(z)->m_hauteur -= temps * 100 + temps * (96 - getObjet(z)->m_hauteur) * 2;
+
+            getObjet(z)->m_rotation += temps * 1000;
+
+            if(getObjet(z)->m_hauteur > 96)
+                getObjet(z)->m_monter = false;
+            if(getObjet(z)->m_hauteur <= 0)
+            {
+                getObjet(z)->m_rotation = 20 - rand() % 40;
+                getObjet(z)->m_hauteur = 0;
+                getObjet(z)->m_alpha = 512;
+                getObjet(z)->JouerSon();
+            }
+        }
+    }
+}
 
 void Decor::setNumeroHerbe(int numero)
 {

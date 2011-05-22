@@ -48,6 +48,8 @@ public:
     bool AfficherTexteObjet(coordonnee position,int, float *decalage = NULL);
     void AlphaObjets(int alpha);
 
+    void AnimerObjets(float temps);
+
     int getTile(); // Prendre le numéro du tile du décor
     int getTileset(); // Prendre le numéro du tileset du décor
     int getPosition(char type); // Prendre la position du décor

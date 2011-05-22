@@ -80,7 +80,11 @@ sf::Sprite Bouton_pressoire::Afficher(float decalage)
             hover = true;
 
     if(!eventManager->getEvenement(sf::Mouse::Left,EventClicA))
+    {
+        if(!m_hover && hover)
+            moteurSons->JouerSon(configuration->sound_dialog,coordonnee (0,0),0);
         m_hover = hover;
+    }
 
     if(hover && m_press && !eventManager->getEvenement(sf::Mouse::Left,EventClicA))
         m_press = false, m_action = true,

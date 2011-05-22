@@ -27,7 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef LIGHTH
 #define LIGHTH
 
-const int LIGHT_ALPHA = 64;
+const int LIGHT_ALPHA = 255;
 
 struct Wall
 {
@@ -35,21 +35,24 @@ struct Wall
     {
         pt1=p1;
         pt2=p2;
-        hauteur=96;
+        hauteur1=96;
+        hauteur2=96;
         actif = true;
     }
     Wall(sf::Vector2f p1,sf::Vector2f p2,int newhauteur)
     {
         pt1=p1;
         pt2=p2;
-        hauteur=newhauteur;
+        hauteur1=newhauteur;
+        hauteur2=newhauteur;
         actif = true;
     }
 
     // Pt1 et Pt2 sont les deux extrémités du mur
     sf::Vector2f pt1;
     sf::Vector2f pt2;
-    int hauteur;
+    int hauteur1;
+    int hauteur2;
 
     bool actif;
 
@@ -116,7 +119,7 @@ public :
 
     // Constructeur et destructeur
     Light();
-    Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color);
+    Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color, bool = false);
     ~Light();
 
     // Afficher la lumière
@@ -126,10 +129,11 @@ public :
     void Generate(std::vector<Wall>& m_wall,std::vector <std::vector <std::vector <int> > > &m_sectors, sf::Vector2i &m_origin_sector);
 
     // Ajouter un triangle à la lumière, en effet, les lumières sont composée de triangles
-    void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, std::list<int> deja_wall, std::vector<Wall>& m_wall, std::vector <std::vector <std::vector <int> > > &m_sectors, sf::Vector2i &m_origin_sector, int hauteur = 96);
+    void AddTriangle(sf::Vector3f pt1,sf::Vector3f pt2, std::list<int> deja_wall, std::vector<Wall>& m_wall, std::vector <std::vector <std::vector <int> > > &m_sectors, sf::Vector2i &m_origin_sector);
 
 
     // Changer différents attributs de la lumière
+    void SetMovingLight(bool);
     void SetIntensity(float);
     void SetRadius(float);
     void SetQuality(int);
@@ -162,6 +166,8 @@ private :
 
     //Tableau dynamique de Shape, ce sont ces shapes de type triangle qui compose la lumière
     std::vector <sf::Shape> m_shape;
+
+    bool m_movinglight;
 };
 
 #endif

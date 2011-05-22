@@ -36,7 +36,7 @@ void Projectile::Afficher()
     if (m_actif)
     {
         m_position.h    = 32;
-        m_effet.SetRotation((-(m_rotation)*180/M_PI));
+        m_effet.SetRotation(((m_rotation)*180/M_PI));
         m_effet.Afficher();
     }
 }

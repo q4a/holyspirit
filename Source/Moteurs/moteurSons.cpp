@@ -178,6 +178,9 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,in
 
             m_sons[sonEnCours].SetLoop(false);
 
+            m_sons[sonEnCours].SetPitch(0.94 + (rand()/(float)RAND_MAX)*0.14);
+
+
             m_sons_preserv[sonEnCours] = preserv;
                       //  m_sons[sonEnCours].SetPosition(sf::Listener::GetPosition());
         }

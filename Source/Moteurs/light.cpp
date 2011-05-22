@@ -29,9 +29,10 @@ Light::Light()
     m_radius=0;
     m_quality=0;
     m_actif=false;
+    m_movinglight = false;
 }
 
-Light::Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color)
+Light::Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color, bool movinglight)
 {
     m_position=position;
 
@@ -47,7 +48,7 @@ Light::Light(sf::Vector2f position, float intensity, float radius, int quality, 
         m_actif=true;
     else
         m_actif=false;
-
+    m_movinglight = movinglight;
 }
 
 Light::~Light()
@@ -64,9 +65,9 @@ void Light::Draw(sf::RenderTarget *App)
 }
 
 
-sf::Vector2f Intersect(sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f q1, sf::Vector2f q2)
+sf::Vector3f Intersect(sf::Vector3f p1, sf::Vector3f p2, sf::Vector2f q1, sf::Vector2f q2)
 {
-    sf::Vector2f j;
+    sf::Vector3f j;
 
     if((p2.x - p1.x) == 0 && (q2.x - q1.x) == 0)
         j.x = 0, j.y = 0;
@@ -97,34 +98,41 @@ sf::Vector2f Intersect(sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f q1, sf::Ve
         float c = (q2.y - q1.y) / (q2.x - q1.x);
         float d = q1.y - q1.x * c;
 
-        j.x = (d-b)/(a-c);
-        j.y = a * j.x + b;
+        if(a != c)
+        {
+            j.x = (d-b)/(a-c);
+            j.y = a * j.x + b;
+        }
+        else
+            j.x = 0, j.y = 0;
     }
 
     return j;
 }
 
-sf::Vector2f Collision(sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f q1, sf::Vector2f q2)
+sf::Vector3f Collision(sf::Vector3f p1, sf::Vector3f p2, sf::Vector2f q1, sf::Vector2f q2)
 {
-    sf::Vector2f i;
+    sf::Vector3f i;
     i = Intersect(p1, p2, q1, q2);
 
-    if(((i.x >= p1.x - 0.1 && i.x <= p2.x + 0.1)
-        || (i.x >= p2.x - 0.1 && i.x <= p1.x + 0.1))
-    && ((i.x >= q1.x - 0.1 && i.x <= q2.x + 0.1)
-        || (i.x >= q2.x - 0.1 && i.x <= q1.x + 0.1))
-    && ((i.y >= p1.y - 0.1 && i.y <= p2.y + 0.1)
-        || (i.y >= p2.y - 0.1 && i.y <= p1.y + 0.1))
-    && ((i.y >= q1.y - 0.1 && i.y <= q2.y + 0.1)
-        || (i.y >= q2.y - 0.1 && i.y <= q1.y + 0.1)))
+    if(((i.x >= p1.x - 0.01 && i.x <= p2.x + 0.01)
+        || (i.x >= p2.x - 0.01 && i.x <= p1.x + 0.01))
+    && ((i.x >= q1.x - 0.01 && i.x <= q2.x + 0.01)
+        || (i.x >= q2.x - 0.01 && i.x <= q1.x + 0.01))
+    && ((i.y >= p1.y - 0.01 && i.y <= p2.y + 0.01)
+        || (i.y >= p2.y - 0.01 && i.y <= p1.y + 0.01))
+    && ((i.y >= q1.y - 0.01 && i.y <= q2.y + 0.01)
+        || (i.y >= q2.y - 0.01 && i.y <= q1.y + 0.01)))
+   // if(((i.x >= p1.x - 0.01 && i.x <= p2.x + 0.01) || (i.x <= p1.x + 0.01 && i.x >= p2.x - 0.01))
+   // && ((i.x >= q1.x - 0.01 && i.x <= q2.x + 0.01) || (i.x <= q1.x + 0.01 && i.x >= q2.x - 0.01)))
         return i;
     else
-        return sf::Vector2f (0,0);
+        return sf::Vector3f (0,0,0);
 
 }
 
 
-void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, std::list<int> deja_wall,std::vector<Wall>& m_wall, std::vector <std::vector <std::vector <int> > > &m_sectors, sf::Vector2i &m_origin_sector, int hauteur)
+void Light::AddTriangle(sf::Vector3f pt1,sf::Vector3f pt2, std::list<int> deja_wall,std::vector<Wall>& m_wall, std::vector <std::vector <std::vector <int> > > &m_sectors, sf::Vector2i &m_origin_sector)
 {
     // On bo€ucle sur tous les murs
     if (configuration->Lumiere==2)
@@ -151,53 +159,82 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, std::list<int> deja_w
                 }
 
 
-            if(ok)
-            if ( m_wall[*IterWall].pt1.x-m_position.x>-m_radius && m_wall[*IterWall].pt1.y-m_position.y>-m_radius
-              && m_wall[*IterWall].pt2.x-m_position.x<m_radius && m_wall[*IterWall].pt2.y-m_position.y<m_radius )
-            {
+            if(ok){
+
                 // l1 et l2 sont les positions relatives au centre de la lumière des deux extrémités du mur
                 sf::Vector2f l1(m_wall[*IterWall].pt1.x-m_position.x, m_wall[*IterWall].pt1.y-m_position.y);
                 sf::Vector2f l2(m_wall[*IterWall].pt2.x-m_position.x, m_wall[*IterWall].pt2.y-m_position.y);
 
+            if(l1.x * l1.x + l1.y * l1.y < m_radius * m_radius
+            || l2.x * l2.x + l2.y * l2.y < m_radius * m_radius)
+            {
+
                 if(l1.x * l1.x + l1.y * l1.y < m_radius * m_radius)
                 {
-                    sf::Vector2f i = Intersect(pt1,pt2,sf::Vector2f (0,0),l1);
+                    sf::Vector3f i = Intersect(pt1,pt2,sf::Vector2f (0,0),l1);
+                    i.z = pt1.z;
 
-                    if(i != pt1 && i != pt2)
+                    if(!(i.x == pt1.x && i.y == pt1.y)
+                    && !(i.x == pt2.x && i.y == pt2.y))
                     if((pt1.x >= i.x && pt2.x <= i.x) || (pt1.x <= i.x && pt2.x >= i.x))
                     if((pt1.y >= i.y && pt2.y <= i.y) || (pt1.y <= i.y && pt2.y >= i.y))
-                        if(l1.y >= 0 && i.y >= 0 || l1.y <= 0 && i.y <= 0)
-                        if(l1.x >= 0 && i.x >= 0 || l1.x <= 0 && i.x <= 0)
-                        AddTriangle(i, pt2, deja_wall, m_wall, m_sectors, m_origin_sector,m_wall[*IterWall].hauteur), pt2 = i, hauteur = m_wall[*IterWall].hauteur;
+                    if(l1.y >= 0 && i.y >= 0 || l1.y <= 0 && i.y <= 0)
+                    if(l1.x >= 0 && i.x >= 0 || l1.x <= 0 && i.x <= 0)
+                    if(i.x * i.x + i.y * i.y > l1.x * l1.x + l1.y * l1.y)
+                        AddTriangle(i, pt2, deja_wall, m_wall, m_sectors, m_origin_sector), i.z = pt2.z, pt2 = i;
                 }
                 if(l2.x * l2.x + l2.y * l2.y <= m_radius * m_radius)
                 {
-                    sf::Vector2f i = Intersect(pt1,pt2,sf::Vector2f (0,0),l2);
+                    sf::Vector3f i = Intersect(pt1,pt2,sf::Vector2f (0,0),l2);
+                    i.z = pt2.z;
 
-                    if(i != pt1 && i != pt2)
+                    if(!(i.x == pt1.x && i.y == pt1.y)
+                    && !(i.x == pt2.x && i.y == pt2.y))
                     if((pt1.x >= i.x && pt2.x <= i.x) || (pt1.x <= i.x && pt2.x >= i.x))
                     if((pt1.y >= i.y && pt2.y <= i.y) || (pt1.y <= i.y && pt2.y >= i.y))
-                        if(l2.y >= 0 && i.y >= 0 || l2.y <= 0 && i.y <= 0)
-                        if(l2.x >= 0 && i.x >= 0 || l2.x <= 0 && i.x <= 0)
-                        AddTriangle(pt1, i, deja_wall, m_wall, m_sectors, m_origin_sector,m_wall[*IterWall].hauteur), pt1 = i, hauteur = m_wall[*IterWall].hauteur;
+                    if(l2.y >= 0 && i.y >= 0 || l2.y <= 0 && i.y <= 0)
+                    if(l2.x >= 0 && i.x >= 0 || l2.x <= 0 && i.x <= 0)
+                    if(i.x * i.x + i.y * i.y > l2.x * l2.x + l2.y * l2.y)
+                        AddTriangle(pt1, i, deja_wall, m_wall, m_sectors, m_origin_sector), i.z = pt1.z, pt1 = i;
                 }
 
                 deja_wall.push_back(*IterWall);
 
-                sf::Vector2f m = Collision(l1, l2, sf::Vector2f(0,0), pt1);
-                sf::Vector2f n = Collision(l1, l2, sf::Vector2f(0,0), pt2);
-                sf::Vector2f o = Collision(l1, l2, pt1, pt2);
+                sf::Vector3f m = Collision(sf::Vector3f(0,0,0), pt1, l1, l2);
+                sf::Vector3f n = Collision(sf::Vector3f(0,0,0), pt2, l1, l2);
+                sf::Vector3f o = Collision(pt1, pt2, l1, l2);
+
+                float d = sqrt((l1.x-l2.x)*(l1.x-l2.x) + (l1.y-l2.y)*(l1.y-l2.y));
+
+                /*m.z = m_wall[*IterWall].hauteur2 * sqrt((m.x-l1.x)*(m.x-l1.x) + (m.y-l1.y)*(m.y-l1.y))/d
+                    + m_wall[*IterWall].hauteur1 * sqrt((m.x-l2.x)*(m.x-l2.x) + (m.y-l2.y)*(m.y-l2.y))/d;
+                n.z = m_wall[*IterWall].hauteur2 * sqrt((n.x-l1.x)*(n.x-l1.x) + (n.y-l1.y)*(n.y-l1.y))/d
+                    + m_wall[*IterWall].hauteur1 * sqrt((n.x-l2.x)*(n.x-l2.x) + (n.y-l2.y)*(n.y-l2.y))/d;
+                o.z = m_wall[*IterWall].hauteur2 * sqrt((m.x-l1.x)*(o.x-l1.x) + (o.y-l1.y)*(o.y-l1.y))/d
+                    + m_wall[*IterWall].hauteur1 * sqrt((m.x-l2.x)*(o.x-l2.x) + (o.y-l2.y)*(o.y-l2.y))/d;*/
+                    m.z = m_wall[*IterWall].hauteur2;
+                    n.z = m_wall[*IterWall].hauteur2;
+                    o.z = m_wall[*IterWall].hauteur2;
+
+             /*if(!(pt1.x == m.x && pt1.y == m.y)
+             && !(pt2.x == m.x && pt2.y == m.y)
+             && !(pt1.x == n.x && pt1.y == n.y)
+             && !(pt2.x == n.x && pt2.y == n.y))*/
+             {
 
                 if((m.x != 0 || m.y != 0) && (n.x != 0 || n.y != 0))
-                    pt1 = m, pt2 = n, hauteur = m_wall[*IterWall].hauteur;
-                else
+                    pt1 = m, pt2 = n;
+                else if(!(pt1.x == o.x && pt1.y == o.y)
+                     && !(pt2.x == o.x && pt2.y == o.y))
                 {
-                    if((m.x != 0 || m.y != 0) && (o.x != 0 || o.y != 0))
-                        AddTriangle(m ,o , deja_wall, m_wall, m_sectors, m_origin_sector,m_wall[*IterWall].hauteur), pt1 = o;
+                    if((m.x != 0 || m.y != 0) && (o.x != 0 || o.y != 0) && !(m.x == o.x && m.y == o.y))
+                        AddTriangle(m ,o , deja_wall, m_wall, m_sectors, m_origin_sector), pt1 = o;
 
-                    if((n.x != 0 || n.y != 0) && (o.x != 0 || o.y != 0))
-                        AddTriangle(o ,n , deja_wall, m_wall, m_sectors, m_origin_sector,m_wall[*IterWall].hauteur), pt2 = o;
+                    if((n.x != 0 || n.y != 0) && (o.x != 0 || o.y != 0) && !(n.x == o.x && n.y == o.y))
+                        AddTriangle(o ,n , deja_wall, m_wall, m_sectors, m_origin_sector), pt2 = o;
                 }
+             }
+            }
             }
         }
 
@@ -206,66 +243,88 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, std::list<int> deja_w
 
 
     // On ajoute un shape
-    m_shape.push_back(sf::Shape ());
 
-    // On lui donne comme point de départ (0,0), le centre de la lumière, avec la couleur et intensité maximal
-    m_shape.back().AddPoint(0, 0,  sf::Color((int)(m_intensity*m_color.r/255),(int)(m_intensity*m_color.g/255),(int)(m_intensity*m_color.b/255),96));
+    if(!(pt1.x == pt2.x && pt1.y == pt2.y))
+    {
+        m_shape.push_back(sf::Shape ());
 
-    // On calcul ou l'on se trouve par rapport au centre, pour savoir à quel intensité on est
-    intensity=m_intensity-gpl::sqrt(pt1.x*pt1.x + pt1.y*pt1.y)*m_intensity/m_radius;
-    // Et on ajoute un  point au shape
-    m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255),96));
+        // On lui donne comme point de départ (0,0), le centre de la lumière, avec la couleur et intensité maximal
+        m_shape.back().AddPoint(0, 0,  sf::Color((int)(m_intensity*m_color.r/255),(int)(m_intensity*m_color.g/255),(int)(m_intensity*m_color.b/255),255), sf::Color(0,255,0));
 
-    // Idem
-    intensity2=m_intensity-gpl::sqrt(pt2.x*pt2.x + pt2.y*pt2.y)*m_intensity/m_radius;
+        // On calcul ou l'on se trouve par rapport au centre, pour savoir à quel intensité on est
+        intensity=m_intensity-gpl::sqrt(pt1.x*pt1.x + pt1.y*pt1.y)*m_intensity/m_radius;
+        // Et on ajoute un  point au shape
+        m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255),255), sf::Color(0,255,0));
 
-    m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity2*m_color.r/255),(int)(intensity2*m_color.g/255),(int)(intensity2*m_color.b/255),96));
+        // Idem
+        intensity2=m_intensity-gpl::sqrt(pt2.x*pt2.x + pt2.y*pt2.y)*m_intensity/m_radius;
 
-    // On met que le shape soit en Add et on lui donne sa position
-    m_shape.back().SetBlendMode(sf::Blend::Add);
+        m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity2*m_color.r/255),(int)(intensity2*m_color.g/255),(int)(intensity2*m_color.b/255),255), sf::Color(0,255,0));
 
-    if(hauteur > 160)
-        hauteur = 160;
-    if(hauteur == -1)
-        hauteur = 256;
+        // On met que le shape soit en Add et on lui donne sa position
+        m_shape.back().SetBlendMode(sf::Blend::Add);
+        //m_shape.back().EnableOutline(true);
+        //m_shape.back().SetOutlineThickness(2);
+
+        if(pt1.z > 160)
+            pt1.z = 160;
+        if(pt1.z < 0)
+            pt1.z = -pt1.z;
+        if(pt2.z > 160)
+            pt2.z = 160;
+        if(pt2.z < 0)
+            pt2.z = -pt2.z;
 
 
-    m_shape.back().SetPosition(m_position.x,m_position.y/2);
+        m_shape.back().SetPosition(m_position.x,m_position.y/2);
 
-    float a = (((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x)));
-    float b = (pt2.y) - a*pt2.x;
+        float a = ((pt1.x)-(pt2.x) != 0) ? (((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x))) : 1;
+        float b = (pt2.y) - a*pt2.x;
 
-    sf::Vector2f p;
-    p.x = -b/(a+1/a);
-    p.y = a * p.x + b;
+        sf::Vector2f p;
+        p.x = -b/(a+1/a);
+        p.y = a * p.x + b;
 
-    float intensity3 = intensity * ((sqrt(p.x*p.x + p.y * p.y))/64);
-    float intensity4 = intensity2 * ((sqrt(p.x*p.x + p.y * p.y))/64);
+        float intensity3 = intensity;
+        float intensity4 = intensity2;
 
-    if(intensity3 < 0)
-        intensity3 = 0;
-    if(intensity3 > intensity)
-        intensity3 = intensity;
-    if(intensity4 < 0)
-        intensity4 = 0;
-    if(intensity4 > intensity2)
-        intensity4 = intensity2;
-
-    if(p.y < 0)
-    if (intensity3>1||intensity4>1)
-        //if ( 0>=(pt1.y) - (pt1.x)*(((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x))))
+        if(m_movinglight)
         {
-            m_shape.push_back(sf::Shape ());
-
-            m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity3*m_color.r/255),(int)(intensity3*m_color.g/255),(int)(intensity3*m_color.b/255),LIGHT_ALPHA));
-            m_shape.back().AddPoint(pt1.x,pt1.y/2-hauteur * sin(intensity3 /m_intensity*M_PI_2),  sf::Color(0,0,0));
-            m_shape.back().AddPoint(pt2.x,pt2.y/2-hauteur * sin(intensity4/m_intensity*M_PI_2),  sf::Color(0,0,0));
-            m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity4*m_color.r/255),(int)(intensity4*m_color.g/255),(int)(intensity4*m_color.b/255),LIGHT_ALPHA));
-
-            m_shape.back().SetBlendMode(sf::Blend::Add);
-
-            m_shape.back().SetPosition(m_position.x,m_position.y/2);
+            intensity3 *= sqrt(p.x*p.x + p.y * p.y)/64;
+            intensity4 *= sqrt(p.x*p.x + p.y * p.y)/64;
         }
+
+        if(intensity3 < 0)
+            intensity3 = 0;
+        if(intensity3 > intensity)
+            intensity3 = intensity;
+        if(intensity4 < 0)
+            intensity4 = 0;
+        if(intensity4 > intensity2)
+            intensity4 = intensity2;
+
+      //  if(p.y < 0)
+        if (intensity3>1||intensity4>1)
+        if (intensity3>=0&&intensity4>=0)
+        if (pt2.z > 0 || pt1.z > 0)
+            if ( 0 > (pt1.y) - (pt1.x)*(((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x))))
+            {
+                m_shape.push_back(sf::Shape ());
+
+                m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity3*m_color.r/255),(int)(intensity3*m_color.g/255),(int)(intensity3*m_color.b/255),LIGHT_ALPHA),sf::Color(255,0,0));
+                if(pt1.z > 0)
+                    m_shape.back().AddPoint(pt1.x,pt1.y/2-pt1.z * sin(intensity3 /m_intensity*M_PI_2),  sf::Color(0,0,0),sf::Color(255,0,0));
+                if(pt2.z > 0)
+                    m_shape.back().AddPoint(pt2.x,pt2.y/2-pt2.z * sin(intensity4/m_intensity*M_PI_2),  sf::Color(0,0,0),sf::Color(255,0,0));
+                m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity4*m_color.r/255),(int)(intensity4*m_color.g/255),(int)(intensity4*m_color.b/255),LIGHT_ALPHA),sf::Color(255,0,0));
+
+                m_shape.back().SetBlendMode(sf::Blend::Add);
+
+                m_shape.back().SetPosition(m_position.x,m_position.y/2);
+               // m_shape.back().EnableOutline(true);
+               // m_shape.back().SetOutlineThickness(2);
+            }
+    }
 }
 
 void Light::Generate(std::vector<Wall>& m_wall, std::vector <std::vector <std::vector <int> > > &m_sectors, sf::Vector2i &m_origin_sector)
@@ -283,10 +342,12 @@ void Light::Generate(std::vector<Wall>& m_wall, std::vector <std::vector <std::v
     for (int i=0;i<m_quality;i++)
     {
         list.clear();
-        AddTriangle(sf::Vector2f((int)((float)m_radius*cos((float)i*buf)),
-                                 (int)((float)m_radius*sin((float)i*buf))) ,
-                    sf::Vector2f((int)((float)m_radius*cos((float)(i+1)*buf)),
-                                 (int)((float)m_radius*sin((float)(i+1)*buf))),list,m_wall, m_sectors, m_origin_sector);
+        AddTriangle(sf::Vector3f((int)((float)m_radius*cos((float)i*buf)),
+                                 (int)((float)m_radius*sin((float)i*buf)),
+                                 0) ,
+                    sf::Vector3f((int)((float)m_radius*cos((float)(i+1)*buf)),
+                                 (int)((float)m_radius*sin((float)(i+1)*buf)),
+                                 0),list,m_wall, m_sectors, m_origin_sector);
     }
 
 }
@@ -294,6 +355,10 @@ void Light::Generate(std::vector<Wall>& m_wall, std::vector <std::vector <std::v
 
 // Différentes fonctions pour modifier les attributs de la lumière, et pour les récupérer
 
+void Light::SetMovingLight(bool m)
+{
+    m_movinglight=m;
+}
 void Light::SetIntensity(float intensity)
 {
     m_intensity=intensity;
@@ -315,7 +380,7 @@ void Light::SetColor(sf::Color color)
 void Light::SetPosition(sf::Vector2f position)
 {
     m_position=position;
-   // m_position.y += 2.11;
+    m_position.y += 2.11;
     //m_position.x += 0.01;
 }
 

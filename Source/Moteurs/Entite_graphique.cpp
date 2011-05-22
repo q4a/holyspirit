@@ -309,7 +309,7 @@ void Entite_graphique::Generer()
             SetOrigin(positionPartieDecor.w - m_tileset->getCentreDuTile(m_noAnimation).x,
                       m_tileset->getCentreDuTile(m_noAnimation).y);
 
-           SetRotation(m_rotation);
+           SetRotation(-m_rotation);
 
             m_decalCouche = m_tileset->getLayerDuTile(m_noAnimation);
 
