@@ -1,0 +1,76 @@
+*Data/Entities/Resources/Monsters/Skeletons/Warrior.rs.hs
+$
+* n5 $
+$
+*0
+$
+*v20 di30 da50 m0.35 o1 a10 n2 x35 $
+$
+*Data/Entities/Scripts/Monsters/Standard.script.hs
+$
+	*
+		*Potion_heal0.item.hs
+		r2000
+	$
+	*
+		*Potion_faith0.item.hs
+		r2000
+	$
+	
+	*
+		*Armband_leather.item.hs
+		r2500
+	$
+	*
+		*Boots_leather.item.hs
+		r2500
+	$
+	*
+		*Armor_leather.item.hs
+		r2500
+	$
+	*
+		*Dagger_ceremonial_dagger.item.hs
+		r2500
+		*Dagger_scarifier.item.hs
+		r15
+	$
+	*
+		*Helmet_leather_cap.item.hs
+		r2500
+	$
+	*
+		*Shield_great_shield.item.hs
+		r2500
+	$
+	*
+		*Sword_1h_long_sword.item.hs
+		r2500
+		*Sword_1h_holy_sword.item.hs
+		r15
+	$
+	*
+		*Necklage_necklage.item.hs
+		r500
+	$
+	*
+		*Ring_ring.item.hs
+		r500
+	$
+	*
+		*Set_Teuderic_ring.item.hs
+		r15
+	$
+	*
+		*Set_Teuderic_crowl.item.hs
+		r15
+	$
+	*
+		*Set_Teuderic_breastplate.item.hs
+		r15
+	$
+$
+*Data/Entities/Particles/Human_bones.ps.hs
+$
+$
+
