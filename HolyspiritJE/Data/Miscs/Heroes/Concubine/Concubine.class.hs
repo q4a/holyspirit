@@ -165,20 +165,20 @@ $
 	* x159 y88 w64 h64 m Data/Graphics/Menus/UI/Craft_button.png n Data/Graphics/Menus/UI/Craft_button_ok.png $
 $
 	* e1 x45 y116 w96 h96 d1 m Data/Graphics/Menus/UI/Slot3x3.png n Data/Graphics/Menus/UI/Slot_hand1concubine.png $
-	* e2 x148 y116 w64 h96 d1 m Data/Graphics/Menus/UI/Slot2x3.png n Data/Graphics/Menus/UI/Slot_hand2concubine.png $
+	* e2 x293 y116 w64 h96 d1 m Data/Graphics/Menus/UI/Slot2x3.png n Data/Graphics/Menus/UI/Slot_hand2concubine.png $
 	
-	* e3 x221 y116 w64 h96 m Data/Graphics/Menus/UI/Slot2x3.png n Data/Graphics/Menus/UI/Slot_lightarmor.png $
-	* e4 x293 y116 w64 h96 m Data/Graphics/Menus/UI/Slot2x3.png n Data/Graphics/Menus/UI/Slot_robe.png $
+	* e3 x148 y116 w64 h96 m Data/Graphics/Menus/UI/Slot2x3.png n Data/Graphics/Menus/UI/Slot_lightarmor.png $
+	* e4 x221 y116 w64 h96 m Data/Graphics/Menus/UI/Slot2x3.png n Data/Graphics/Menus/UI/Slot_robe.png $
 	
-	* e5 x293 y44 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_helmet.png $
-	* e6 x293 y220 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_boots.png $
-	* e7 x45 y220 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_armband.png $
+	* e5 x180 y44 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_helmet.png $
+	* e6 x148 y220 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_boots.png $
+	* e7 x221 y220 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_armband.png $
 	
-	* e8 x45 y76 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
-	* e8 x83 y76 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
-	* e9 x253 y76 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_necklage.png $
-	* e8 x121 y76 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
-	* e8 x159 y76 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
+	* e8 x55 y220 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
+	* e8 x93 y220 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
+	* e9 x252 y76 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_necklage.png $
+	* e8 x290 y220 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
+	* e8 x328 y220 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
 $
 	* x738 y60 w24 h32 $
 $

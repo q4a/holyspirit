@@ -162,18 +162,18 @@ $
 $
 	* x159 y88 w64 h64 m Data/Graphics/Menus/UI/Craft_button.png n Data/Graphics/Menus/UI/Craft_button_ok.png $
 $
-	* e1 x45 y52 w64 h160 d1 m Data/Graphics/Menus/UI/Slot2x5.png n Data/Graphics/Menus/UI/Slot_hand1crusader.png $
-	* e2 x115 y116 w96 h96 d1 m Data/Graphics/Menus/UI/Slot3x3.png n Data/Graphics/Menus/UI/Slot_hand2crusader.png $
+	* e1 x63 y52 w64 h160 d1 m Data/Graphics/Menus/UI/Slot2x5.png n Data/Graphics/Menus/UI/Slot_hand1crusader.png $
+	* e2 x243 y116 w96 h96 d1 m Data/Graphics/Menus/UI/Slot3x3.png n Data/Graphics/Menus/UI/Slot_hand2crusader.png $
 	
-	* e3 x221 y116 w64 h96 m Data/Graphics/Menus/UI/Slot2x3.png n Data/Graphics/Menus/UI/Slot_lightarmor.png $
+	* e3 x153 y131 w64 h96 m Data/Graphics/Menus/UI/Slot2x3.png n Data/Graphics/Menus/UI/Slot_lightarmor.png $
 	
-	* e5 x293 y44 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_helmet.png $
-	* e6 x293 y220 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_boots.png $
-	* e7 x45 y220 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_armband.png $
+	* e5 x153 y52 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_helmet.png $
+	* e6 x259 y220 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_boots.png $
+	* e7 x63 y220 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_armband.png $
 	
-	* e8 x115 y220 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
-	* e8 x180 y220 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
-	* e9 x253 y76 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_necklage.png $
+	* e8 x138 y240 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
+	* e8 x203 y240 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
+	* e9 x243 y76 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_necklage.png $
 	
 	
 $
