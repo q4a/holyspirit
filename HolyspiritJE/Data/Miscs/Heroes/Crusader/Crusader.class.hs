@@ -46,7 +46,7 @@ $
 $
 	* x14 y336 w32 h32 m Data/Graphics/Menus/UI/Scroll_button.png $
 $
-	* x432 y33 w27 h24 	in * mData/Graphics/Menus/UI/SortInventory.png x0 y0 w27 h24 $ $ 
+	* x739 y343 w27 h24 	in * mData/Graphics/Menus/UI/SortInventory.png x0 y0 w27 h24 $ $ 
 						ih * mData/Graphics/Menus/UI/SortInventory.png x27 y0 w27 h24 $ $
 						ip * mData/Graphics/Menus/UI/SortInventory.png x54 y0 w27 h24 $ $ $ 
 $
@@ -136,23 +136,23 @@ $
 	* e0 x444 y522 w29 h15 m51 	i * mData/Graphics/Menus/UI/hud_button_2.png x29 y0 w29 h15 $ $ $ 
 	* e4 x473 y522 w29 h15 m17 	i * mData/Graphics/Menus/UI/hud_button_2.png x145 y0 w29 h15 $ $ $ 
 $
-	* e0 x37 y18 w29 h15 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
-	* e1 x66 y18 w29 h15 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $  
-$
 	* e0 x37 y18 w29 h15 m104 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
-	* e1 x66 y18 w29 h15 m105 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $ 
+	* e1 x66 y18 w29 h15 m105 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $  
+$
+	* e0 x37 y18 w29 h15 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
+	* e1 x66 y18 w29 h15 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $ 
 $
 
 
-	* e0 x179 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
-	* e1 x202 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $  
-	* e0 x575 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
-	* e1 x598 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $  
-$
 	* e0 x179 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
-	* e1 x202 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $ 
+	* e1 x202 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $  
 	* e0 x575 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
 	* e1 x598 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $  
+$
+	* e0 x179 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
+	* e1 x202 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $ 
+	* e0 x575 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
+	* e1 x598 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $  
 $
 
 
@@ -166,7 +166,6 @@ $
 	* e2 x115 y116 w96 h96 d1 m Data/Graphics/Menus/UI/Slot3x3.png n Data/Graphics/Menus/UI/Slot_hand2crusader.png $
 	
 	* e3 x221 y116 w64 h96 m Data/Graphics/Menus/UI/Slot2x3.png n Data/Graphics/Menus/UI/Slot_lightarmor.png $
-	* e4 x293 y116 w64 h96 m Data/Graphics/Menus/UI/Slot2x3.png n Data/Graphics/Menus/UI/Slot_heavyarmor.png $
 	
 	* e5 x293 y44 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_helmet.png $
 	* e6 x293 y220 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_boots.png $
@@ -183,6 +182,10 @@ $
 	* e0 x58 y46 w42 h42 m35 	i * mData/Graphics/Menus/UI/Crusader/CrusaderPath1.png x96 y0 w32 h32 $ $ $
 	* e1 x124 y46 w42 h42 m36	i * mData/Graphics/Menus/UI/Crusader/CrusaderPath2.png x0 y0 w32 h32 $ $ $
 	* e2 x186 y46 w42 h42 m37	i * mData/Graphics/Menus/UI/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
+$
+	* e0 x49 y37 w59 h55	i * mData/Graphics/Menus/UI/Miracle_tab.png x0 y0 w59 h55 $ $ $
+	* e1 x115 y37 w59 h55	i * mData/Graphics/Menus/UI/Miracle_tab.png x0 y0 w59 h55 $ $ $
+	* e2 x177 y37 w59 h55	i * mData/Graphics/Menus/UI/Miracle_tab.png x0 y0 w59 h55 $ $ $
 $
 	* e-1 b-1 mData/Miscs/Miracles/LevelUp/LevelUp.miracle.hs $
 

@@ -104,3 +104,5 @@ Non resquiescat in pace...
 Cliquez pour avoir une nouvelle chance !
 Set d'armes n°1 (W)
 Set d'armes n°2 (W)
+Arme à une main
+Arme à deux mains
