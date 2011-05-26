@@ -119,9 +119,9 @@ $
 $
 	* x520 y554 w33 h33 $
 $
-	* x182 y550 w41 h41 $
+	* x182 y550 w41 h41 m Data/Graphics/Menus/UI/Attack.png $
 $
-	* x577 y550 w41 h41 $
+	* x577 y550 w41 h41 m Data/Graphics/Menus/UI/Attack.png $
 $
 	* e2 x299 y522 w29 h15 m14 	i * mData/Graphics/Menus/UI/hud_button.png x87 y0 w29 h15 $ $ $ 
 	* e1 x328 y522 w29 h15 m16 	i * mData/Graphics/Menus/UI/hud_button.png x58 y0 w29 h15 $ $ $ 
