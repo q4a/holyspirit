@@ -60,4 +60,5 @@ Dégâts : +%1\%
 Egorger
 La courtisane se déplace quasi instantanément derrière sa cible, lui infligeant ensuite une attaque foudroyante.\Utilisable uniquement en mode Ombre.
 Dégâts : %1 à %2
-
+Attaquer
+Dégâts : %0 à %1

@@ -106,3 +106,5 @@ Set d'armes n°1 (W)
 Set d'armes n°2 (W)
 Arme à une main
 Arme à deux mains
+Clic gauche
+Clic droit
