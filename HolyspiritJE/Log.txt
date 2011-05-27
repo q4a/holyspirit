@@ -91,181 +91,203 @@
          Chargement de : Data/Graphics/Menus/UI/Slot_craft.png
          Chargement de : Data/Graphics/Menus/UI/Craft_button.png
          Chargement de : Data/Graphics/Menus/UI/Craft_button_ok.png
+         Chargement de : Data/Graphics/Menus/UI/Slot2x5.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_hand1crusader.png
          Chargement de : Data/Graphics/Menus/UI/Slot3x3.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_hand1concubine.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_hand2crusader.png
          Chargement de : Data/Graphics/Menus/UI/Slot2x3.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_hand2concubine.png
          Chargement de : Data/Graphics/Menus/UI/Slot_lightarmor.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_robe.png
          Chargement de : Data/Graphics/Menus/UI/Slot_helmet.png
          Chargement de : Data/Graphics/Menus/UI/Slot_boots.png
          Chargement de : Data/Graphics/Menus/UI/Slot_armband.png
          Chargement de : Data/Graphics/Menus/UI/Slot1x1.png
          Chargement de : Data/Graphics/Menus/UI/Slot_ring.png
          Chargement de : Data/Graphics/Menus/UI/Slot_necklage.png
-         Chargement de : Data/Graphics/Menus/UI/Concubine/ConcubinePath1.png
-         Chargement de : Data/Graphics/Menus/UI/Concubine/ConcubinePath2.png
-         Chargement de : Data/Graphics/Menus/UI/Concubine/ConcubinePath3.png
+         Chargement de : Data/Graphics/Menus/UI/Crusader/CrusaderPath1.png
+         Chargement de : Data/Graphics/Menus/UI/Crusader/CrusaderPath2.png
+         Chargement de : Data/Graphics/Menus/UI/Crusader/CrusaderPath3.png
          Chargement de : Data/Graphics/Menus/UI/Miracle_tab.png
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
          Chargement de : Data/Graphics/Miracles/LevelUp0.png
          Chargement de : Data/Graphics/Miracles/LevelUp1.png
          Chargement de : Data/Sounds/Miracles/LevelUp.wav
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement de : Data/Graphics/Miracles/Bolt.png
-         Chargement de : Data/Graphics/Miracles/Toxic0.png
-         Chargement de : Data/Sounds/Miracles/Toxic.wav
-         Chargement de : Data/Graphics/Miracles/Toxic1.png
-         Chargement de : Data/Graphics/Miracles/Toxic2.png
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement de : Data/Graphics/Miracles/PoisonEffect.png
-         Chargement de : Data/Graphics/Miracles/Venom.png
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement de : Data/Graphics/Miracles/Splinter.png
-         Chargement de : Data/Graphics/Miracles/Explosion1.png
-         Chargement de : Data/Sounds/Miracles/SplinterShot.wav
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement de : Data/Sounds/Miracles/Charmed.wav
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
-         Chargement de : Data/Graphics/Miracles/Dagger0.png
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Tornado.png
+         Chargement de : Data/Sounds/Miracles/Tornado.wav
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement de : Data/Graphics/Miracles/PowerfulSlash.png
          Chargement de : Data/Sounds/Miracles/PowerfulSlash.wav
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement de : Data/Graphics/Miracles/LastJudgement.png
+         Chargement de : Data/Graphics/Miracles/Explosion0.png
+         Chargement de : Data/Sounds/Miracles/Explosion0.wav
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Burn0.png
+         Chargement de : Data/Sounds/Landscapes/Fire.wav
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Blast.png
+         Chargement de : Data/Graphics/Miracles/CineticEffect.png
+         Chargement de : Data/Sounds/Miracles/Speed_effect.wav
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement de : Data/Graphics/Miracles/FaithArmor.png
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Lazare.png
+         Chargement de : Data/Sounds/Miracles/Aura.wav
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Barbe.png
+         Chargement de : Data/Graphics/Miracles/FireEffect.png
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Armors/Nude/OneHand.rs.hs
-         Chargement de : Concubine_Nude_1H_Wait0.png
-         Chargement de : Concubine_Nude_1H_Walk0.png
-         Chargement de : Concubine_Nude_1H_Walk1.png
-         Chargement de : Concubine_Nude_1H_Attack0.png
-         Chargement de : Concubine_Nude_1H_Attack1.png
-         Chargement de : Concubine_Nude_1H_Attack2.png
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
+         Chargement de : Crusader_Nude_1H_Wait0.png
+         Chargement de : Crusader_Nude_1H_Walk0.png
+         Chargement de : Crusader_Nude_1H_Attack0.png
+         Chargement de : Crusader_Nude_1H_Attack1.png
          Chargement de : Data/Sounds/Entities/Footstep0.wav
          Chargement de : Data/Sounds/Entities/Attack0.wav
-         Chargement de : Data/Sounds/Entities/Female_hurt0.wav
-         Chargement de : Data/Sounds/Entities/Female_hurt1.wav
-         Chargement de : Data/Sounds/Entities/Female_hurt2.wav
+         Chargement de : Data/Sounds/Entities/Male_hurt0.wav
+         Chargement de : Data/Sounds/Entities/Male_hurt1.wav
+         Chargement de : Data/Sounds/Entities/Male_hurt2.wav
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Helmets/Hair_1h.rs.hs
-         Chargement de : Concubine_Hair_1H_Wait0.png
-         Chargement de : Concubine_Hair_1H_Walk0.png
-         Chargement de : Concubine_Hair_1H_Attack0.png
-         
-         Chargement de l'objet : Dagger_dagger.item.hs
-         Chargement de : Data/Graphics/Items/Daggers.png
+         Chargement de l'objet : Sword_1h_small_sword.item.hs
+         Chargement de : Data/Graphics/Items/Swords.png
          Chargement de : Data/Sounds/UI/DropItem1.wav
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Weapons_OneHand/Dagger_r.rs.hs
-         Chargement de : Concubine_Dagger_R_Wait0.png
-         Chargement de : Concubine_Dagger_R_Walk0.png
-         Chargement de : Concubine_Dagger_R_Attack0.png
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
+         Chargement de : Crusader_SmallSword_R_Wait0.png
+         Chargement de : Crusader_SmallSword_R_Walk0.png
+         Chargement de : Crusader_SmallSword_R_Attack0.png
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Armors/Nude/OneHand.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Helmets/Hair_1h.rs.hs
-         
-         Chargement de l'objet : Dagger_dagger.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Weapons_OneHand/Dagger_l.rs.hs
-         Chargement de : Concubine_Dagger_L_Wait0.png
-         Chargement de : Concubine_Dagger_L_Walk0.png
-         Chargement de : Concubine_Dagger_L_Attack0.png
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Armors/Nude/TwoWeapons.rs.hs
-         Chargement de : Concubine_Nude_2W_Attack0.png
-         Chargement de : Concubine_Nude_2W_Attack1.png
-         Chargement de : Concubine_Nude_2W_Attack2.png
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Helmets/Hair_1h.rs.hs
-         
-         Chargement de l'objet : Crossbow_crossbow.item.hs
-         Chargement de : Data/Graphics/Items/Crossbows.png
+         Chargement de l'objet : Shield_small_shield.item.hs
+         Chargement de : Data/Graphics/Items/Shields.png
          Chargement de : Data/Sounds/UI/DropItem0.wav
-         Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
+         Chargement de : Crusader_SmallShield_Wait0.png
+         Chargement de : Crusader_SmallShield_Walk0.png
+         Chargement de : Crusader_SmallShield_Attack0.png
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
          
          Chargement de l'objet : Armor_gambeson.item.hs
          Chargement de : Data/Graphics/Items/Armors.png
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Armors/Gambeson/TwoWeapons.rs.hs
-         Chargement de : Concubine_Gambeson_1H_Wait0.png
-         Chargement de : Concubine_Gambeson_1H_Walk0.png
-         Chargement de : Concubine_Gambeson_2W_Attack0.png
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Helmets/Hair_1h.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Gambeson/OneHand.rs.hs
+         Chargement de : Crusader_Gambeson_1H_Wait0.png
+         Chargement de : Crusader_Gambeson_1H_Walk0.png
+         Chargement de : Crusader_Gambeson_1H_Attack0.png
+         Chargement de : Crusader_Gambeson_1H_Attack1.png
          
          Chargement de l'objet : Potion_heal0.item.hs
          Chargement de : Data/Graphics/Items/Potions.png
@@ -281,31 +303,31 @@
          
          Chargement de l'objet : Potion_heal0.item.hs
          Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
-         
-         Chargement de l'objet : Potion_heal0.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Helmets/Hair_1h.rs.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          /Chargement du héro terminé
          /Génération de l'image...
          /Image affichée.
@@ -314,12 +336,9 @@
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Crossbow_crossbow.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
          /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
@@ -338,12 +357,9 @@
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Crossbow_crossbow.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
          /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
@@ -360,29 +376,35 @@
          Chargements d'images diverses :
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Armors/Gambeson/TwoWeapons.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Gambeson/OneHand.rs.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Weapons_OneHand/Dagger_r.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
          
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Weapons_OneHand/Dagger_l.rs.hs
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Helmets/Hair_1h.rs.hs
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
          
          Chargement de la map : Abbey.map.hs
          /Lectures du nom.
@@ -399,8 +421,15 @@
          Chargement de : Data/Graphics/Climates/FullRain_water.png
          Chargement de : Data/Graphics/Climates/FullRain_water.ts.hs
          Chargement de : Data/Graphics/Climates/Thunder.png
-         Chargement de : Data/Sounds/Climates/Thunder0.wav
-         Chargement de : Data/Sounds/Climates/Thunder1.wav
+         Chargement de : Data/Sounds/Climates/Thunder_0_0.wav
+         Chargement de : Data/Sounds/Climates/Thunder_0_1.wav
+         Chargement de : Data/Sounds/Climates/Thunder_0_2.wav
+         Chargement de : Data/Sounds/Climates/Thunder_1_0.wav
+         Chargement de : Data/Sounds/Climates/Thunder_1_1.wav
+         Chargement de : Data/Sounds/Climates/Thunder_1_2.wav
+         Chargement de : Data/Sounds/Climates/Thunder_1_3.wav
+         Chargement de : Data/Sounds/Climates/Thunder_1_4.wav
+         Chargement de : Data/Sounds/Climates/Thunder_1_5.wav
          Chargement de : Data/Graphics/Climates/Thunder.ts.hs
          /Lectures des ciels.
          Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_1_0.png
@@ -457,6 +486,7 @@
          Chargement de : Data/Graphics/Items/Books.png
          Chargement du miracle : Data/Miscs/Miracles/Items/Toxic_0.miracle.hs
 ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
+         Chargement de : Data/Sounds/Miracles/Toxic.wav
          
          Chargement de l'objet : Litanie_0.item.hs
          
@@ -535,7 +565,9 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement de l'objet : Armor_chainmail.item.hs
          
          Chargement de l'objet : Crossbow_crossbow.item.hs
+         Chargement de : Data/Graphics/Items/Crossbows.png
          Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Bolt.png
          
          Chargement de l'objet : Crossbow_crossbow.item.hs
          Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
@@ -544,6 +576,7 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
          
          Chargement de l'objet : Dagger_ceremonial_dagger.item.hs
+         Chargement de : Data/Graphics/Items/Daggers.png
          
          Chargement de l'objet : Dagger_ceremonial_dagger.item.hs
          
@@ -569,7 +602,6 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement de l'objet : Helmet_iron_cap.item.hs
          
          Chargement de l'objet : Shield_great_shield.item.hs
-         Chargement de : Data/Graphics/Items/Shields.png
          
          Chargement de l'objet : Shield_great_shield.item.hs
          
@@ -582,7 +614,6 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement de l'objet : Shield_small_shield.item.hs
          
          Chargement de l'objet : Sword_1h_small_sword.item.hs
-         Chargement de : Data/Graphics/Items/Swords.png
          
          Chargement de l'objet : Sword_1h_small_sword.item.hs
          
@@ -801,26 +832,17 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement de : Data/Entities/Resources/Miscs/Torch_up.char.hs terminé
          /Lectures des monstres.
          
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
-         Chargement de : Data/Graphics/Miracles/FireEffect.png
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
          Chargement de : Data/Graphics/Miracles/HolyEffect.png
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement de : Data/Graphics/Miracles/PoisonEffect.png
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
          /Lectures des cases.
          Chargement de la map terminé.
@@ -828,6 +850,106 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Initialisation des décors terminée.
          Initialisation des entités terminée.
          Chargement de : Data/Musics/Abbey.ogg
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
          /Génération de l'image...
          /Image affichée.
          /Image générée.
@@ -835,12 +957,9 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Sauvegarde du héro...
          Ouverture du fichier.
          /Ecriture des caracterstiques.
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Crossbow_crossbow.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
          /Sauvegarde de Armor_gambeson.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
