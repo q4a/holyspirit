@@ -11,7 +11,7 @@ $
 $
 	* t-1 l1 l5 l6 $
 	* t5 l2 ia3 $
-	* t6  l4 s1 ia1 ib0 ic16 $
+	* t6  l4 s0 ia1 ib0 ic1 $
 	
 	* t6 s0 ia1 ib3 ic-100 id1 ie1 if%1 ig128 ih128 ii128 ij160 $
 	
