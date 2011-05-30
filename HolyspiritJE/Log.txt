@@ -844,19 +844,24 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement de : Data/Entities/Resources/Miscs/Torch_up.char.hs terminé
          /Lectures des monstres.
          
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
          Chargement de : Data/Graphics/Miracles/PoisonEffect.png
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement de : Data/Graphics/Miracles/HolyEffect.png
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
          /Lectures des cases.
          Chargement de la map terminé.
          Initialisation de l'herbe terminée.
@@ -934,19 +939,18 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          /Sauvegarde de Necklage_necklage.item.hs
          /Sauvegarde de Ring_ring.item.hs
          /Sauvegarde de Ring_ring.item.hs
-         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Drawing_golem_coal.item.hs
+         /Sauvegarde de Drawing_shield_bronze.item.hs
+         /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_ore_copper.item.hs
-         /Sauvegarde de Craft_ore_copper.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_ore_gold.item.hs
-         /Sauvegarde de Craft_ore_gold.item.hs
          /Sauvegarde de Craft_ore_gold.item.hs
          /Sauvegarde de Craft_gem_emerald.item.hs
          /Sauvegarde de Craft_gem_ruby.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          Sauvegarde de la map terminée !
@@ -1112,7 +1116,6 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          
          Chargement de l'objet : Set_Teuderic_ring.item.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
-         Chargement de : Data/Graphics/Miracles/HolyEffect.png
          
          Chargement de l'objet : Set_Teuderic_breastplate.item.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
@@ -1137,6 +1140,20 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement de : PeasantFork_Dead0.png
          Chargement de : PeasantFork_Dead1.png
          Chargement de : PeasantFork_Dead2.png
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_death0.wav
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_death1.wav
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_death2.wav
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_death3.wav
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_hurted0.wav
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_hurted1.wav
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_hurted2.wav
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_hurted3.wav
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_hurted4.wav
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_hurted5.wav
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_hurted6.wav
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_hurted7.wav
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_hurted8.wav
+         Chargement de : Data/Sounds/Entities/Peasant/Peasant_hurted9.wav
          Chargement de : Data/Entities/Resources/Monsters/TaintedMilitia/Peasant_fork.char.hs terminé
          
          Chargement du monstre : Data/Entities/Resources/Monsters/Reaper/Offspring.char.hs
@@ -1295,7 +1312,6 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement de : PeasantCrossbow_Reload0.png
          Chargement de : PeasantCrossbow_Dead0.png
          Chargement de : PeasantCrossbow_Dead1.png
-         Chargement de : Data/Sounds/Entities/Crossbow0.wav
          Chargement de : Data/Entities/Resources/Monsters/TaintedMilitia/Peasant_crossbow.char.hs terminé
          
          Chargement du monstre : Data/Entities/Resources/Containers/Chess_tobacco.char.hs
@@ -1429,6 +1445,9 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          /Lectures des monstres.
          
          Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
          /Lectures des cases.
          Chargement de la map terminé.
          Initialisation de l'herbe terminée.
@@ -1437,18 +1456,26 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement de : Data/Musics/AgrarianLands0.ogg
          
          Sauvegarde de la map : Data/User/Temps/Agrarian_lands0.map.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Agrarian_lands0.map.hs.emap.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
          /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Shield_great_shield.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Agrarian_lands0.map.hs.emap.hs
          /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Shield_great_shield.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Crossbow_stirrup_crossbow.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
          /Sauvegarde de Quest_tobacco.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Boots_leather.item.hs
@@ -1456,13 +1483,14 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          /Sauvegarde de Dagger_dagger.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
          /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Drawing_helmet_horned_barbute.item.hs
-         /Sauvegarde de Drawing_crossbow_crossbow.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Drawing_shield_bronze.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Armor_leather.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
          Sauvegarde de la map terminée !
          
          Sauvegarde du héro...
@@ -1475,6 +1503,8 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
@@ -1484,19 +1514,26 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Sauvegarde du héro terminée !
          
          Sauvegarde de la map : Data/User/Temps/Agrarian_lands0.map.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Shield_great_shield.item.hs
+         /Sauvegarde de Ring_ring.item.hs
          Sauvegarde de la map_entite : Data/User/Temps/entites_map_Agrarian_lands0.map.hs.emap.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Shield_great_shield.item.hs
          /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Crossbow_stirrup_crossbow.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
          /Sauvegarde de Quest_tobacco.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Boots_leather.item.hs
@@ -1504,13 +1541,14 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          /Sauvegarde de Dagger_dagger.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
          /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Drawing_helmet_horned_barbute.item.hs
-         /Sauvegarde de Drawing_crossbow_crossbow.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Drawing_shield_bronze.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Armor_leather.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
          Sauvegarde de la map terminée !
          
          Sauvegarde du héro...
@@ -1523,6 +1561,8 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
@@ -1532,19 +1572,29 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Sauvegarde du héro terminée !
          
          Sauvegarde de la map : Data/User/Temps/Agrarian_lands0.map.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
-         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Boots_leather.item.hs
          /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Shield_great_shield.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
          Sauvegarde de la map_entite : Data/User/Temps/entites_map_Agrarian_lands0.map.hs.emap.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Shield_great_shield.item.hs
          /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Crossbow_stirrup_crossbow.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Armor_gambeson.item.hs
          /Sauvegarde de Sword_1h_small_sword.item.hs
-         /Sauvegarde de Boots_leather.item.hs
-         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
          /Sauvegarde de Quest_tobacco.item.hs
          /Sauvegarde de Armband_leather.item.hs
          /Sauvegarde de Boots_leather.item.hs
@@ -1552,13 +1602,14 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          /Sauvegarde de Dagger_dagger.item.hs
          /Sauvegarde de Helmet_leather_cap.item.hs
          /Sauvegarde de Shield_small_shield.item.hs
-         /Sauvegarde de Sword_1h_small_sword.item.hs
          /Sauvegarde de Mace_2h_timber_axe.item.hs
-         /Sauvegarde de Drawing_helmet_horned_barbute.item.hs
-         /Sauvegarde de Drawing_crossbow_crossbow.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Drawing_shield_bronze.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
-         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Armor_leather.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
          Sauvegarde de la map terminée !
          
          Sauvegarde du héro...
@@ -1571,6 +1622,72 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Ecriture des objets.
+         /Ecriture des objets du coffre.
+         /Ecriture des miracles.
+         /Ecriture des docs.
+         /Ecriture des quetes.
+         /Ecriture des potales.
+         Sauvegarde du héro terminée !
+         
+         Sauvegarde de la map : Data/User/Temps/Agrarian_lands0.map.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Shield_great_shield.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Crossbow_stirrup_crossbow.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Agrarian_lands0.map.hs.emap.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Shield_great_shield.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Crossbow_stirrup_crossbow.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Quest_tobacco.item.hs
+         /Sauvegarde de Armband_leather.item.hs
+         /Sauvegarde de Boots_leather.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Helmet_leather_cap.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Mace_2h_timber_axe.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Drawing_shield_bronze.item.hs
+         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Armor_leather.item.hs
+         /Sauvegarde de Ring_ring.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Ouverture du fichier.
+         /Ecriture des caracterstiques.
+         /Sauvegarde de Sword_1h_small_sword.item.hs
+         /Sauvegarde de Shield_small_shield.item.hs
+         /Sauvegarde de Armor_gambeson.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.
@@ -1592,6 +1709,8 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
          /Sauvegarde de Potion_heal0.item.hs
+         /Sauvegarde de Dagger_dagger.item.hs
+         /Sauvegarde de Sword_1h_small_sword.item.hs
          /Ecriture des objets.
          /Ecriture des objets du coffre.
          /Ecriture des miracles.

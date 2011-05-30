@@ -4,7 +4,7 @@ $
 $
 * 0
 $
-*v20 di20 da30 m0.15 o1 a10 n3 t1 x40 $
+*v20 di20 da30 m0.15 o1 a10 n3 t1 x40 s1 $
 $
 *Data/Entities/Scripts/Monsters/Zombie.script.hs
 $
