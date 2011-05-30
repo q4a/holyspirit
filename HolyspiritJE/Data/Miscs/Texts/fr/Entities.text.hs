@@ -27,7 +27,7 @@ Molosse infernal
 Abbé Hademar
 Potale de l'Abbaye
 Potale des Catacombes
-Potale de l'orée de la forêt
+Potale du cimetière
 Tenancier derrière la porte
 Croisé
 Courtisane

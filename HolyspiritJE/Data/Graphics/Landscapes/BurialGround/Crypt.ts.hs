@@ -1,4 +1,4 @@
-*Data/Landscapes/Graphics/BurialGround/Crypt/Crypt.png
+*Data/Graphics/Landscapes/BurialGround/Crypt.png
 *Data/Graphics/Menus/UI/MinimapIcones.png
 $
 $
