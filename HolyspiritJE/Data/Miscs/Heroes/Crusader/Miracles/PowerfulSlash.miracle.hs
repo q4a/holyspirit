@@ -190,8 +190,11 @@ $
 	
 	*
 		$
-			* mData/Sounds/Miracles/PowerfulSlash.wav $
+			* mData/Sounds/Miracles/PowerfulSlash0.wav $
+			* mData/Sounds/Miracles/PowerfulSlash1.wav $
+			* mData/Sounds/Miracles/PowerfulSlash2.wav $
+			* mData/Sounds/Miracles/PowerfulSlash3.wav $
 		$
-		*  s0 a0 n0.01 $
+		*  s0 s1 s2 s3 a0 n0.01 $
 	$
 $
