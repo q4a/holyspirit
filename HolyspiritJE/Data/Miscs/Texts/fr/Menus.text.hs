@@ -1,5 +1,5 @@
 Retour
-Quitter la démo
+Nouvelle partie
 Réinitialiser la partie
 Vie
 Foi

@@ -12,4 +12,6 @@ $
 
 *x0 y0 w320 h320 ey256 ex192 i2 c1 z1 vCharetteMarchand $
 
+*x576 y0 w256 h256 i0 ey128 c1 z1 vPonton $
+
 $
