@@ -4,7 +4,7 @@ $
 $
 * 2
 $
-*v250 di50 da100 m0.45 o1 a50 n2 t1 x50 $
+*v150 di25 da50 m0.45 o1 a50 n2 t1 x50 $
 $
 *Data/Entities/Scripts/Monsters/Standard.script.hs
 $
@@ -29,6 +29,8 @@ $
 	*
 		*Sword_2h_katzbalger.item.hs
 		r25
+		*Sword_2h_bone_spadone.item.hs
+		r2500
 		*Sword_2h_two_hands_sword.item.hs
 		r2500
 	$

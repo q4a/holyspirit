@@ -6,3 +6,4 @@ Les terres agraires
 Les catacombes - Niv 2
 Le cimetière
 Grotte
+Mausolée

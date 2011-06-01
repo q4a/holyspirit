@@ -29,6 +29,8 @@ $
 	*
 		*Sword_2h_katzbalger.item.hs
 		r50
+		*Sword_2h_bone_spadone.item.hs
+		r2500
 		*Sword_2h_two_hands_sword.item.hs
 		r5000
 	$
