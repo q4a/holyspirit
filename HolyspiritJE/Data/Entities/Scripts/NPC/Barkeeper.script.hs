@@ -1,13 +1,18 @@
 main 
+	if quest * 4 * -1
+	then
+		tell * 137 * 5000
+	end
+
 	if talk
 	then
 		if quest * 4 * -1
 		then
 			if variable * 0 * 0
 			then
-				speak * 43
-				speak_choice * 44 * 1
-				speak_choice * 45 * 2
+				speak * 138
+				speak_choice * 139 * 1
+				speak_choice * 140 * 2
 				variable * 0 * 1
 			end
 		
@@ -15,8 +20,8 @@ main
 			then	
 				stop_speak
 				newQuest * 4 
-				setQuestName * 4  * 47
-				setQuestState * 4 * 0 * 48
+				setQuestName * 4  * 25
+				setQuestState * 4 * 0 * 26
 			end
 		
 			if speak_choice * 2
@@ -26,9 +31,10 @@ main
 		else
 			if quest * 4 * 1
 			then
-				speak * 52
-				setQuestState * 4 * 2 * 51
-				addCash * 1000
+				speak * 142
+				setQuestState * 4 * 2 * 28
+				setQuestActif * 4 * 0
+				setActif * 0
 			end
 		end
 	else

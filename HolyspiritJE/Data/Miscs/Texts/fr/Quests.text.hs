@@ -25,8 +25,8 @@ Toutes les créatures ont été éliminées.
 
 L'aubergiste assiégé
 Je dois libérer le passage devant l'auberge.
+Je dois parler à l'aubergiste.
 L'aubergiste a pu s'échapper.
-
 Une maison dans la forêt
 Je dois secourir une jeune femme qui est terrée dans sa maison au sud-est de l'abbaye, dans la forêt.
 La jeune femme n'était hélas plus elle-même. J'ai dû mettre fin à sa nouvelle horrible existence.

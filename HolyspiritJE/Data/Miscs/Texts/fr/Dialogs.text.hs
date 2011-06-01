@@ -135,13 +135,13 @@ Là ? Tout de suite ? Mais je m'emmerde ! Voilà, parfaitement, je m'ennuie à un t
 
 
 ///BARKEEPER////
-Pssst !\Hé vous !\Venez m'aider, je n'ose plus sortir de mon auberge depuis que ces démons m'ont attaqué ! 
+Pssst ! Hé vous !
+Pssst ! Hé vous ! Venez m'aider!\Je n'ose plus sortir de mon auberge depuis que ces démons m'ont attaqué ! 
 Je vais vous en débarrasser tout de suite !
 Attendez, j'ai d'autres détails à régler avant...
 Hé ! J'ai toujours besoin de vous ! Aidez-moi, j'en peux plus de rester enfermé ici !
 Merci, je ne sais pas où aller mais au moins je vais pouvoir fuir loin d'ici !
 Vous entendez un hurlement de souffrance dans le lointain... On dirait la voix de l'aubergiste... 
-
 
 
 
