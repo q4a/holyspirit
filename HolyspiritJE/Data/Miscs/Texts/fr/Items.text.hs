@@ -158,6 +158,6 @@ Plastron de Teudéric
 Plastron ayant appertenu au glorieux Roi Teudéric.
 Atours de Teudéric
 Histoire de l'Abbaye de Saint Clodomir
-Par frère Vlanker, moine honoraire de l’abbaye.
+Par frère Vlanker, moine honoraire de l'abbaye.
 Blague à tabac
 Le tabac de Romulus !
