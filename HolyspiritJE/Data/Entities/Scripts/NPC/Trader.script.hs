@@ -101,6 +101,7 @@ main
 			
 				setQuestState * 1 * 2 * 11
 				stopMiracle * 0
+				setQuestActif * 1 * 0
 			end
 		end
 		
@@ -113,7 +114,6 @@ main
 			newQuest * 1 
 			setQuestName * 1 * 8
 			setQuestState * 1 * 0 * 9
-			setQuestActif * 1 * 0
 			stopMiracle * 0
 		end
 		
