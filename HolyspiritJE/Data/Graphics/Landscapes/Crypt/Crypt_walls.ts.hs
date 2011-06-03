@@ -28,8 +28,8 @@ $
 *x0 y0 w0 h0 i0 c1 z1 vCollision lh128 $
 
 
-*x0 y0 w256 h256 ey160 t1 i2 c1 z1 vMurExitX lr0 lv0 lb0 li-255 rx lh128 t1 m i2 x0 y120 	w32 h32 $ $
-*x0 y0 w256 h256 ey160 t1 i2 c1 z1 vMurExitY lr0 lv0 lb0 li-255 ry lh128 t1 m i2 x0 y120 	w32 h32 $ $
+*x0 y0 w256 h256 ey160 t1 i2 c1 z1 vMurExitX lr0 lv0 lb0 li-255 rx lh128 t1 m i1 x0 y120 	w32 h32 $ $
+*x0 y0 w256 h256 ey160 t1 i2 c1 z1 vMurExitY lr0 lv0 lb0 li-255 ry lh128 t1 m i1 x0 y120 	w32 h32 $ $
 
 
 $

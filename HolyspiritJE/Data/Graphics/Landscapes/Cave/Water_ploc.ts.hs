@@ -1,8 +1,17 @@
 *Data/Graphics/Climates/FullRain_water.png
 $
 * mData/Sounds/Landscapes/Water_ploc0.wav $
+* mData/Sounds/Landscapes/Water_ploc1.wav $
+* mData/Sounds/Landscapes/Water_ploc2.wav $
+* mData/Sounds/Landscapes/Water_ploc3.wav $
+* mData/Sounds/Landscapes/Water_ploc4.wav $
+* mData/Sounds/Landscapes/Water_ploc5.wav $
+* mData/Sounds/Landscapes/Water_ploc6.wav $
+* mData/Sounds/Landscapes/Water_ploc7.wav $
+* mData/Sounds/Landscapes/Water_ploc8.wav $
+* mData/Sounds/Landscapes/Water_ploc9.wav $
 $
-* x0 y0 w23 h13 i0 ex13 ey4 n0.07 a1 u-6 s0 $
+* x0 y0 w23 h13 i0 ex13 ey4 n0.07 a1 u-6 s0 s1 s2 s3 s4 s5 s6 s7 s8 s9 $
 * x23 y0 w25 h14 i0 ex14 ey5 n0.07 a2 u-6 $
 * x48 y0 w27 h14 i0 ex14 ey5 n0.07 a3 u-6 $
 * x75 y0 w29 h14 i0 ex15 ey5 n0.07 a4 u-6 $
