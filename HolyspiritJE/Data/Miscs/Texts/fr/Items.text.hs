@@ -145,7 +145,7 @@ Le coeur de Saint Joachim
 
 L'oeil de Sainte Galswinthe
 
-
+Argent : 
 Schéma : Epée courte
 Schéma expliquant la conception d'une épée courte.
 Schéma : Arbalète de poing
