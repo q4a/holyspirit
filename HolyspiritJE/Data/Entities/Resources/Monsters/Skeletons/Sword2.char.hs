@@ -10,6 +10,12 @@ $
 $
 	
 	*
+		*Gold.item.hs
+		r10000
+		i25
+		a100
+	$
+	*
 		*Armband_leather.item.hs
 		r5000
 	$

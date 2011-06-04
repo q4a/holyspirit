@@ -9,6 +9,12 @@ $
 *Data/Entities/Scripts/Monsters/Zombie.script.hs
 $
 	*
+		*Gold.item.hs
+		r10000
+		i25
+		a100
+	$
+	*
 		*Armor_leather.item.hs
 		r2500
 	$

@@ -10,6 +10,12 @@ $
 $
 	
 	*
+		*Gold.item.hs
+		r10000
+		i25
+		a100
+	$
+	*
 		*Necklage_necklage.item.hs
 		r2000
 	$

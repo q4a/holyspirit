@@ -9,6 +9,12 @@ $
 *Data/Entities/Scripts/Monsters/Standard.script.hs
 $
 	*
+		*Gold.item.hs
+		r10000
+		i25
+		a100
+	$
+	*
 		*Potion_heal0.item.hs
 		r2000
 	$

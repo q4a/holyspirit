@@ -9,6 +9,12 @@ $
 	*Data/Entities/Scripts/Miscs/Chess.script.hs
 $
 	*
+		*Gold.item.hs
+		r10000
+		i100
+		a300
+	$
+	*
 		*Craft_gem_ruby.item.hs
 		r4000
 	$

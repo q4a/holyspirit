@@ -9,6 +9,12 @@ $
 *Data/Entities/Scripts/Monsters/Standard.script.hs
 $
 	*
+		*Gold.item.hs
+		r10000
+		i200
+		a1000
+	$
+	*
 		*Armband_gauntlet.item.hs
 		r5000
 	$

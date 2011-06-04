@@ -9,6 +9,12 @@ $
 *Data/Entities/Scripts/Monsters/Shooter.script.hs
 $
 	*
+		*Gold.item.hs
+		r10000
+		i25
+		a100
+	$
+	*
 		*Craft_coal.item.hs
 		r5000
 	$

@@ -9,6 +9,12 @@ $
 	*Data/Entities/Scripts/Miscs/Inert_trapped.script.hs
 $
 	*
+		*Gold.item.hs
+		r10000
+		i10
+		a50
+	$
+	*
 		*Potion_heal0.item.hs
 		r10000
 	$

@@ -10,6 +10,12 @@ $
 $
 	
 	*
+		*Gold.item.hs
+		r10000
+		i1000
+		a10000
+	$
+	*
 		*Craft_gem_ruby.item.hs
 		r2000
 	$

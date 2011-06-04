@@ -8,7 +8,12 @@ $
 $
 *Data/Entities/Scripts/Monsters/GraveWanderer.script.hs
 $
-	#ITEMS
+	*
+		*Gold.item.hs
+		r10000
+		i25
+		a100
+	$
 $
 *Data/Entities/Particles/Human_bones.ps.hs
 $

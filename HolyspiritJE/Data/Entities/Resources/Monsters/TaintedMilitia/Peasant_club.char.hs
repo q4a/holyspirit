@@ -12,7 +12,7 @@ $
 		*Gold.item.hs
 		r10000
 		i25
-		a50
+		a100
 	$
 	*
 		*Armor_leather.item.hs

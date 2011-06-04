@@ -8,6 +8,12 @@ $
 $
 *Data/Entities/Scripts/Monsters/Standard.script.hs
 $
+	*
+		*Gold.item.hs
+		r10000
+		i25
+		a100
+	$
 	
 	*
 		*Armband_leather.item.hs
