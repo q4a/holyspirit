@@ -52,7 +52,7 @@ Nom
 Console (Tab)
 Uniquement pour : 
 Continuer
-Nouveau jeu
+Appuyez sur une touche
 Options
 Quitter
 Retour
