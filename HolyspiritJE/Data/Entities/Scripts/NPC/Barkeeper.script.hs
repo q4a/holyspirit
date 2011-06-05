@@ -1,7 +1,11 @@
 main 
 	if quest * 4 * -1
 	then
-		tell * 137 * 5000
+		if see
+		then
+		else
+			tell * 137 * 5000
+		end
 	end
 
 	if talk
