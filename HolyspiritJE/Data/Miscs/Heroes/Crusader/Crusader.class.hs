@@ -18,6 +18,8 @@ $
 $
 	* mArmors/Nude/OneHand.rs.hs mArmors/Nude/TwoWeapons.rs.hs mArmors/Nude/TwoHands.rs.hs $
 $
+	*Data/Sounds/Entities/Crusader/Crusader_death0.wav
+$
 	* tbu * x4 y0 w1 h4 m Data/Graphics/Menus/UI/Border.png $ $
 	  tbd * x4 y6 w1 h4 m Data/Graphics/Menus/UI/Border.png $ $
 	  tbl * x0 y4 w4 h2 m Data/Graphics/Menus/UI/Border.png $ $

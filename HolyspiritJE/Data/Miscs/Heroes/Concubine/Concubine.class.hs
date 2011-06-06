@@ -22,6 +22,8 @@ $
 	* mArmors/Nude/OneHand.rs.hs mArmors/Nude/TwoWeapons.rs.hs mArmors/Nude/TwoHands.rs.hs $
 	* mHelmets/Hair_1h.rs.hs mHelmets/Hair_1h.rs.hs mHelmets/Hair_2h.rs.hs $
 $
+	*Data/Sounds/Entities/Concubine/Concubine_death0.wav
+$
 	* tbu * x4 y0 w1 h4 m Data/Graphics/Menus/UI/Border.png $ $
 	  tbd * x4 y5 w1 h4 m Data/Graphics/Menus/UI/Border.png $ $
 	  tbl * x0 y4 w4 h1 m Data/Graphics/Menus/UI/Border.png $ $
