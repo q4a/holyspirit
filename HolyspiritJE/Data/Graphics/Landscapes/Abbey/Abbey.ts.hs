@@ -1,27 +1,32 @@
-*Data/Graphics/Landscapes/Abbey/Abbey_1_0.png
-*Data/Graphics/Landscapes/Abbey/Abbey_1_1.png
-*Data/Graphics/Landscapes/Abbey/Abbey_1_2.png
-*Data/Graphics/Landscapes/Abbey/Abbey_2_0.png
-*Data/Graphics/Landscapes/Abbey/Abbey_2_1.png
-
-*Data/Graphics/Landscapes/Abbey/Abbey_1_0_s0.png
-*Data/Graphics/Landscapes/Abbey/Abbey_1_1_s0.png
-*Data/Graphics/Landscapes/Abbey/Abbey_1_2_s0.png
-*Data/Graphics/Landscapes/Abbey/Abbey_2_0_s0.png
-*Data/Graphics/Landscapes/Abbey/Abbey_2_1_s0.png
-
-*Data/Graphics/Landscapes/Abbey/Abbey_1_0_s1.png
-*Data/Graphics/Landscapes/Abbey/Abbey_1_1_s1.png
-
-*Data/Graphics/Landscapes/Abbey/Abbey_2_0_s1.png
-*Data/Graphics/Landscapes/Abbey/Abbey_2_1_s1.png
+*Data/Graphics/Landscapes/Abbey/Abbaye0.png
+*Data/Graphics/Landscapes/Abbey/Abbaye1.png
+*Data/Graphics/Landscapes/Abbey/Abbaye2.png
+*Data/Graphics/Landscapes/Abbey/Abbaye3.png
+*Data/Graphics/Landscapes/Abbey/Abbaye4.png
+*Data/Graphics/Landscapes/Abbey/Abbaye5.png
+*Data/Graphics/Landscapes/Abbey/Abbaye6.png
+*Data/Graphics/Landscapes/Abbey/Abbaye7.png
+*Data/Graphics/Landscapes/Abbey/Abbaye8.png
+*Data/Graphics/Landscapes/Abbey/Abbaye9.png
+*Data/Graphics/Landscapes/Abbey/Abbaye10.png
+*Data/Graphics/Landscapes/Abbey/Abbaye11.png
+*Data/Graphics/Landscapes/Abbey/Abbaye12.png
 $
 $
-* x0 y0 w512 h1024 i0 c1 ey832 ex512 lr0 lv0 lb0 li-255 lh256 ry 		k x0 y0 w512 h1024 b315 i5 ey832 ex512 $	k x0 y0 w512 h1024 b180 i10 ey832 ex512 $ $
-* x0 y0 w1024 h1024 i1 c1 ey672 ex64 lr0 lv0 lb0 li-255 lh512 rx 		k x0 y0 w1024 h1024 b315 i6 ey672 ex64 $	k x0 y0 w1024 h1024 b180 i11 ey672 ex64 $ $
-* x0 y0 w192  h1024 i2 c1 ey864 ex64 									k x0 y0 w192  h1024  b315 i7 ey864 ex64 $ $
-* x0 y0 w1024 h910 i3 c1  ey768 ex928 lr0 lv0 lb0 li-255 lh256 rx									k x0 y0 w1024 h910 b315 i8 ey768 ex928 $	k x0 y0 w1024 h910 b180 i12 ey768 ex928 $ $
-* x0 y0 w1024 h910 i4 c1  ey800 ex-32 lr0 lv0 lb0 li-255 lh256 rb									k x0 y0 w1024 h910 b315 i9 ey800 ex-32 $	k x0 y0 w1024 h910 b180 i13 ey800 ex-32 $  $
+* x0 y0 w1024 h1024 ey800 i0 c1 li-255 lh512 rx $
+* x0 y0 w768 h1024 ex256 ey928 i1 $
+* x0 y0 w1024  h1024 ex480 ey492 i2 $
+* x0 y0 w640 h640 ex288 ey332 i3 $
+* x0 y0 w1024 h768 ex284 ey736 i4 c1 $
+* x0 y0 w768 h768 ex488 ey584 i5 c1 li-255 lh256 rx $
+* x0 y0 w768 h1024 ex394 ey768 i6 $
+* x0 y0 w768 h768 ex346 ey540 i7 $
+* x0 y0 w768 h640 ex428 ey517 i8 $
+* x0 y0 w768 h768 ex428 ey516 i9 $
+
+* x0 y0 w256 h256 ex133 ey192  i10 c1 $
+* x0 y0 w128 h192 ex56 ey166  i11 c1 $
+* x0 y0 w128 h192 ex51 ey176 i12 c1 $
 
 * x0 y0 w0 h0 i0 c1 z1 vCollision $
 
@@ -36,8 +41,6 @@ $
 
 *x0 y0 w0 h0 i0 c0 lr0 lv0 lb0 li-255 lh256 rx  z1 vMurLumiereX $
 *x0 y0 w0 h0 i0 c0 lr0 lv0 lb0 li-255 lh512 rx  z1 vMurLumiereGrandX $
-
-* x512 y0 w512 h1024 i0 c1 ey640 ex512 lr0 lv0 lb0 li-255 lh512 rx 	 k x512 y0 w512 h1024 b315 i5 ey640 ex512 $	k x512 y0 w512 h1024 b180 i10 ey640 ex512 $ $
 
 *x0 y0 w0 h0 i0 c0 lr0 lv0 lb0 li-255 lh256 ry  z1 vMurLumierey $
 *x0 y0 w0 h0 i0 c0 lr0 lv0 lb0 li-255 lh256 rb  z1 vMurLumierebas $
