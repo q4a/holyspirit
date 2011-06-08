@@ -14,11 +14,11 @@
 $
 $
 * x0 y0 w1024 h1024 ey800 i0 c1 li-255 lh512 rx $
-* x0 y0 w768 h1024 ex256 ey928 i1 $
+* x0 y0 w768 h1024 ex256 ey928 i1 c1 li-255 lh256 rd  $
 * x0 y0 w1024  h1024 ex480 ey492 i2 $
 * x0 y0 w640 h640 ex288 ey332 i3 $
 * x0 y0 w1024 h768 ex284 ey736 i4 c1 $
-* x0 y0 w768 h768 ex488 ey584 i5 c1 li-255 lh256 rx $
+* x0 y0 w768 h768 ex488 ey584 i5 c1 $
 * x0 y0 w768 h1024 ex394 ey768 i6 $
 * x0 y0 w768 h768 ex346 ey540 i7 $
 * x0 y0 w768 h640 ex428 ey517 i8 $
@@ -49,4 +49,6 @@ $
 
 *x0 y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 lh256 rr  z1 vCollisionT $
 *x0 y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 lh256 rq  z1 vCollisionTI $
+
+*x0 y0 w0 h0 i0 ex83 ey168 lr255 lv200 lb81 li128   z1 vLanterneLumiere $
 $

@@ -468,36 +468,6 @@ ERREUR : Impossible d'ouvrir le fichier : bi0
          Sauvegarde de la map : Data/Editeur/Temp/Abbey_back_3.map.hs
          Sauvegarde de la map terminée !
          
-         Sauvegarde de la map : Data/Editeur/Temp/Abbey_back_4.map.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde de la map : Data/Editeur/Temp/Abbey_back_5.map.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde de la map : Data/Editeur/Temp/Abbey_back_6.map.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde de la map : Data/Editeur/Temp/Abbey_back_7.map.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde de la map : Data/Editeur/Temp/Abbey_back_8.map.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde de la map : Data/Editeur/Temp/Abbey_back_9.map.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde de la map : Data/Editeur/Temp/Abbey_back_10.map.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde de la map : Data/Editeur/Temp/Abbey_back_11.map.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde de la map : Data/Editeur/Temp/Abbey_back_12.map.hs
-         Sauvegarde de la map terminée !
-         
-         Sauvegarde de la map : Data/Editeur/Maps/Abbey.map.hs
-         Sauvegarde de la map terminée !
-         
          Sauvegarde de la map : Data/Editeur/Maps/Abbey.map.hs
          Sauvegarde de la map terminée !
          
