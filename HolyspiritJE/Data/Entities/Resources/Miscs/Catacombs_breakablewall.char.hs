@@ -4,7 +4,7 @@ $
 $
 	*0
 $
- * f0 v10 o1 a0 c1 n-1 p1 u1 t1 $
+ * f0 v10 o1 a0 c1 n-1 p1 u1 t1 s0 $
 $
 	*Data/Entities/Scripts/Miscs/Inert.script.hs
 $

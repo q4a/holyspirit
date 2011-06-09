@@ -4,7 +4,7 @@ $
 $
 *0
 $
-*v20 di30 da50 m0.35 o1 a10 n2 x35 $
+*v20 di30 da50 m0.35 o1 a10 n2 x35 s0 $
 $
 *Data/Entities/Scripts/Monsters/Standard.script.hs
 $

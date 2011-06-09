@@ -4,7 +4,7 @@ $
 $
 * 0
 $
-*v30 di30 da60 m0.35 o1 a15 n2 t1 x60 $
+*v30 di30 da60 m0.35 o1 a15 n2 t1 x60 s0 $
 $
 *Data/Entities/Scripts/Monsters/Shooter.script.hs
 $
