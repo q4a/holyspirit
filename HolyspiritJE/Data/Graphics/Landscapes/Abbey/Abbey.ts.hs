@@ -11,6 +11,7 @@
 *Data/Graphics/Landscapes/Abbey/Abbaye10.png
 *Data/Graphics/Landscapes/Abbey/Abbaye11.png
 *Data/Graphics/Landscapes/Abbey/Abbaye12.png
+*Data/Graphics/Landscapes/Abbey/Abbey_ao0.png
 $
 $
 * x0 y0 w1024 h1024 ey800 i0 c1 li-255 lh512 rx $
@@ -21,7 +22,7 @@ $
 * x0 y0 w768 h768 ex488 ey584 i5 c1 $
 * x0 y0 w768 h1024 ex394 ey768 i6 $
 * x0 y0 w768 h768 ex346 ey540 i7 $
-* x0 y0 w768 h640 ex428 ey517 i8 $
+* x0 y0 w768 h640 ex492 ey485 i8 c1 li-255 lh256 rx $
 * x0 y0 w768 h768 ex428 ey516 i9 $
 
 * x0 y0 w256 h256 ex133 ey192  i10 c1 $
@@ -51,4 +52,7 @@ $
 *x0 y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 lh256 rq  z1 vCollisionTI $
 
 *x0 y0 w0 h0 i0 ex83 ey168 lr255 lv200 lb81 li128   z1 vLanterneLumiere $
+
+
+* x0 y0 w1024 h768 ey320 i13 z0 vAo $
 $
