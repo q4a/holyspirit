@@ -4,11 +4,10 @@ $
 $
 	*Data/Graphics/Menus/Crusader.png
 $
-	* f30 v30 p15 d20 c10 $
+	* f25 v25 p10 d15 c10 $
 $
 	* mSword_1h_small_sword.item.hs $
 	* mShield_small_shield.item.hs $
-	* mArmor_gambeson.item.hs $
 	* mPotion_heal0.item.hs $
 	* mPotion_heal0.item.hs $
 	* mPotion_heal0.item.hs $

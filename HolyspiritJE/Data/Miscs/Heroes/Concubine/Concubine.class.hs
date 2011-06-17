@@ -4,12 +4,9 @@ $
 $
 	*Data/Graphics/Menus/Concubine.png
 $
-	* f25 v20 p15 d25 c20 $
+	* f10 v15 p15 d25 c20 $
 $
 	* mDagger_dagger.item.hs $
-	* mDagger_dagger.item.hs $
-	* mCrossbow_crossbow.item.hs $
-	* mArmor_gambeson.item.hs $
 	* mPotion_heal0.item.hs $
 	* mPotion_heal0.item.hs $
 	* mPotion_heal0.item.hs $

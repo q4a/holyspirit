@@ -1,5 +1,5 @@
 Retour
-Nouvelle partie
+Sauvegarder et quitter
 Réinitialiser la partie
 Vie
 Foi
@@ -52,7 +52,7 @@ Nom
 Console (Tab)
 Uniquement pour : 
 Continuer
-Appuyez sur une touche
+Nouveau jeu
 Options
 Quitter
 Retour
