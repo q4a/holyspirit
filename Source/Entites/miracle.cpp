@@ -928,14 +928,15 @@ sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee
     if (tailleCadran->x < string.GetRect().Width)
         tailleCadran->x = (int)string.GetRect().Width;
 
-    if(chaine != "_")
+    std::string c(chaine);
+    if (c.compare("_") != 0)
         decalage->y += (int)string.GetRect().Height + 2;
 
     return string;
 }
 
 
-void Miracle::AfficherDescription(coordonnee position, Border &border, bool suivant)
+void Miracle::AfficherDescription(coordonnee position, Border &border, bool suivant, int hand)
 {
     std::vector <sf::Text> temp;
 
@@ -943,6 +944,24 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
     sf::Text string;
 
     coordonnee tailleCadran,decalage(-10,0);
+
+    if (hand > 0)
+    {
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        if(hand == 1)
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,108).c_str()));
+        else
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,109).c_str()));
+
+        temp.back().SetCharacterSize(12);
+
+        //temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"_"));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    }
 
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_nom.c_str()));
     temp.back().SetCharacterSize(16);
@@ -973,7 +992,7 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
-    if(m_level > 0)
+    if(m_level > 0 && suivant)
     {
         if (m_coutFoi > 0)
         {

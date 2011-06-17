@@ -258,6 +258,42 @@ void Configuration::ChargerInit()
                 fichier>>temp;
                 sound_select_miracle = moteurSons->AjouterBuffer(temp);
             }
+            if (chaine== "sound_book:")
+            {
+                std::string temp;
+                fichier>>temp;
+                sound_book = moteurSons->AjouterBuffer(temp);
+            }
+            if (chaine== "sound_trade:")
+            {
+                std::string temp;
+                fichier>>temp;
+                sound_trade = moteurSons->AjouterBuffer(temp);
+            }
+            if (chaine== "sound_trade_i:")
+            {
+                std::string temp;
+                fichier>>temp;
+                sound_trade_i = moteurSons->AjouterBuffer(temp);
+            }
+            if (chaine== "sound_quest_start:")
+            {
+                std::string temp;
+                fichier>>temp;
+                sound_quest_start = moteurSons->AjouterBuffer(temp);
+            }
+            if (chaine== "sound_quest_step:")
+            {
+                std::string temp;
+                fichier>>temp;
+                sound_quest_step = moteurSons->AjouterBuffer(temp);
+            }
+            if (chaine== "sound_quest_end:")
+            {
+                std::string temp;
+                fichier>>temp;
+                sound_quest_end = moteurSons->AjouterBuffer(temp);
+            }
 
 
             if (chaine== "basic_cursor:")

@@ -215,6 +215,8 @@ void Hero::Reset()
 
     newQuest = false;
     newDoc = false;
+
+    m_lastRaccourcis = -1;
 }
 
 void Hero::ResetQuests()
@@ -720,6 +722,8 @@ void Hero::Charger(const std::string &chemin_save)
         Caracteristique charTemp;
         charTemp=m_personnage.getCaracteristique();
 
+        charTemp.niveau = 3;
+        charTemp.pointAme = 100;
         charTemp.force=m_classe.caracteristique.force;
         charTemp.vitalite=m_classe.caracteristique.vitalite;
         charTemp.dexterite=m_classe.caracteristique.dexterite;
@@ -729,6 +733,14 @@ void Hero::Charger(const std::string &chemin_save)
 
         m_personnage.setCaracteristique(charTemp);
 
+        int k = 0;
+        for(unsigned i = 0 ; i < m_lvl_miracles.size() ; ++i)
+        {
+            m_lvl_miracles[i] = 1;
+            if(i > 0 && k < 8 && m_classe.miracles[i].m_buf == -1)
+                m_raccourcis[k].no = i, m_raccourcis[k++].miracle = true;
+        }
+
         RecalculerCaracteristiques();
 
         for (int i=0;i<(int)m_classe.equipementParDefaut.size();++i)
@@ -737,7 +749,7 @@ void Hero::Charger(const std::string &chemin_save)
 
             temp.Charger(m_classe.equipementParDefaut[i],m_caracteristiques);
             temp.Generer(1);
-            AjouterObjet(temp);
+            AjouterObjet(temp,false,false);
         }
         ChargerModele();
 
@@ -882,6 +894,9 @@ void Hero::ChargerModele(bool tout)
                         m_cheminModeleNouveau[m_inventaire[i].m_emplacementImageHero[temp]]=m_inventaire[i].m_cheminImageHero[temp];
                         ordre[m_inventaire[i].m_emplacementImageHero[temp]] = temp;
                         priorite[m_inventaire[i].m_emplacementImageHero[temp]] = m_inventaire[i].m_equipe;
+
+                        if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME)
+                            m_weaponModel = m_inventaire[i].m_emplacementImageHero[temp];
                     }
                     pasEquipe[m_inventaire[i].m_emplacementImageHero[temp]]=false;
                 }
@@ -1976,8 +1991,26 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 
         sprite.Resize(m_classe.boutons_miracles[i].position.w, m_classe.boutons_miracles[i].position.h);
 
-        if (i == fenetreEnCours)
+        if (i != fenetreEnCours)
+        {
             sprite.SetColor(sf::Color(128,128,128));
+            if((int)m_classe.onglets_miracles.size() > i)
+            {
+                sf::Sprite sprite2;
+
+                sprite2.SetImage(*moteurGraphique->getImage(m_classe.onglets_miracles[i].image.image));
+                sprite2.SetSubRect(sf::IntRect(m_classe.onglets_miracles[i].image.position.x,
+                                              m_classe.onglets_miracles[i].image.position.y,
+                                              m_classe.onglets_miracles[i].image.position.w,
+                                              m_classe.onglets_miracles[i].image.position.h));
+
+                sprite2.SetPosition(AutoScreenAdjust(m_classe.onglets_miracles[i].position.x,
+                                                    m_classe.onglets_miracles[i].position.y,decalage));
+
+                sprite2.Resize(m_classe.onglets_miracles[i].position.w, m_classe.onglets_miracles[i].position.h);
+                moteurGraphique->AjouterCommande(&sprite2, 16,0);
+            }
+        }
 
         moteurGraphique->AjouterCommande(&sprite, 16,0);
 
@@ -2051,6 +2084,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                             m_miracleEnMain = m_classe.miracles[i].m_buf;
                         else
                             m_miracleEnMain = i;
+                        m_lastRaccourcis = -1;
                         eventManager->StopEvenement(Mouse::Left,EventClic);
                     }
 
@@ -2070,7 +2104,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 
             if(add_point)
             {
-                moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
+                //moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 moteurSons->JouerSon(configuration->sound_select_miracle,coordonnee (0,0),0);
 
                 if (m_personnage.getCaracteristique().miracles_restant > 0)
@@ -2097,57 +2131,77 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             }
         }
 
-    if (eventManager->getEvenement(Mouse::Left,EventClic))
+    if (eventManager->getEvenement(Mouse::Right,EventClic))
+        m_miracleEnMain = -1;
+
+    return (retour);
+}
+
+void Hero::GererRaccourcisMiracles()
+{
+    if(eventManager->getEvenement(Mouse::Left,EventClic))
     {
         for(int i = 0 ; i < 8 ; ++i)
-            if (  eventManager->getPositionSouris().x > m_classe.position_raccourcis[i].x + (configuration->Resolution.x - 800) * 0.5
-                &&eventManager->getPositionSouris().x < m_classe.position_raccourcis[i].x + (configuration->Resolution.x - 800) * 0.5 + m_classe.position_raccourcis[i].w
-                &&eventManager->getPositionSouris().y > m_classe.position_raccourcis[i].y + (configuration->Resolution.y - 600)
-                &&eventManager->getPositionSouris().y < m_classe.position_raccourcis[i].y + (configuration->Resolution.y - 600) + m_classe.position_raccourcis[i].h)
+        {
+            if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_raccourcis[i].x,0).x
+            && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_raccourcis[i].x,0).x + m_classe.position_raccourcis[i].w
+            && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.position_raccourcis[i].y).y
+            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.position_raccourcis[i].y).y + m_classe.position_raccourcis[i].h)
             {
                 if (m_miracleEnMain >= 0)
                 {
                     moteurSons->JouerSon(configuration->sound_select_miracle,coordonnee (0,0),0);
+                    int buf = m_raccourcis[i].no;
                     m_raccourcis[i].no = m_miracleEnMain;
+                    if(m_raccourcis[i].miracle )
+                        m_miracleEnMain = buf;
+                    else
+                        m_objetEnMain = buf, m_miracleEnMain = -1;
+
+                    m_lastRaccourcis = i;
+
                     m_raccourcis[i].miracle = true;
-                    m_miracleEnMain = -1;
+                    eventManager->StopEvenement(Mouse::Left,EventClic);
                 }
-                else if(m_raccourcis[i].miracle)
-                    m_miracleEnMain = m_raccourcis[i].no, m_raccourcis[i].no = -1;
-
-                eventManager->StopEvenement(Mouse::Left,EventClic);
+                else if(m_raccourcis[i].miracle && m_raccourcis[i].no >= 0 && m_objetEnMain == -1)
+                    m_miracleEnMain = m_raccourcis[i].no, m_raccourcis[i].no = -1,m_lastRaccourcis = i,
+                    eventManager->StopEvenement(Mouse::Left,EventClic);
             }
-
-        if (  eventManager->getPositionSouris().x > m_classe.position_miracleALancerGauche.x + (configuration->Resolution.x - 800) * 0.5
-            &&eventManager->getPositionSouris().x < m_classe.position_miracleALancerGauche.x + (configuration->Resolution.x - 800) * 0.5 + m_classe.position_miracleALancerGauche.w
-            &&eventManager->getPositionSouris().y > m_classe.position_miracleALancerGauche.y + (configuration->Resolution.y - 600)
-            &&eventManager->getPositionSouris().y < m_classe.position_miracleALancerGauche.y + (configuration->Resolution.y - 600) + m_classe.position_miracleALancerGauche.h)
+        }
+        if (  eventManager->getPositionSouris().x > m_classe.p_miracleG.position.x + (configuration->Resolution.x - 800) * 0.5
+            &&eventManager->getPositionSouris().x < m_classe.p_miracleG.position.x + (configuration->Resolution.x - 800) * 0.5 + m_classe.p_miracleG.position.w
+            &&eventManager->getPositionSouris().y > m_classe.p_miracleG.position.y + (configuration->Resolution.y - 600)
+            &&eventManager->getPositionSouris().y < m_classe.p_miracleG.position.y + (configuration->Resolution.y - 600) + m_classe.p_miracleG.position.h)
         {
             if (m_miracleEnMain >= 0)
             {
                 moteurSons->JouerSon(configuration->sound_select_miracle,coordonnee (0,0),0);
                 m_miracle_gauche[m_weaponsSet] = m_miracleEnMain;
+                if(m_lastRaccourcis != -1)
+                    m_raccourcis[m_lastRaccourcis].no = m_miracleEnMain;
                 m_miracleEnMain = -1;
             }
             else
-                m_miracleEnMain = m_miracle_gauche[m_weaponsSet], m_miracle_gauche[m_weaponsSet] = -1;
+                m_miracleEnMain = m_miracle_gauche[m_weaponsSet], m_miracle_gauche[m_weaponsSet] = -1,m_lastRaccourcis=-1;
 
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
 
-        if (  eventManager->getPositionSouris().x > m_classe.position_miracleALancerDroite.x + (configuration->Resolution.x - 800) * 0.5
-            &&eventManager->getPositionSouris().x < m_classe.position_miracleALancerDroite.x + (configuration->Resolution.x - 800) * 0.5 + m_classe.position_miracleALancerDroite.w
-            &&eventManager->getPositionSouris().y > m_classe.position_miracleALancerDroite.y + (configuration->Resolution.y - 600)
-            &&eventManager->getPositionSouris().y < m_classe.position_miracleALancerDroite.y + (configuration->Resolution.y - 600) + m_classe.position_miracleALancerDroite.h)
+        if (  eventManager->getPositionSouris().x > m_classe.p_miracleD.position.x + (configuration->Resolution.x - 800) * 0.5
+            &&eventManager->getPositionSouris().x < m_classe.p_miracleD.position.x + (configuration->Resolution.x - 800) * 0.5 + m_classe.p_miracleD.position.w
+            &&eventManager->getPositionSouris().y > m_classe.p_miracleD.position.y + (configuration->Resolution.y - 600)
+            &&eventManager->getPositionSouris().y < m_classe.p_miracleD.position.y + (configuration->Resolution.y - 600) + m_classe.p_miracleD.position.h)
         {
             if (m_miracleEnMain >= 0)
             {
                 moteurSons->JouerSon(configuration->sound_select_miracle,coordonnee (0,0),0);
                 m_miracle_droite[m_weaponsSet] = m_miracleEnMain;
+                if(m_lastRaccourcis != -1)
+                    m_raccourcis[m_lastRaccourcis].no = m_miracleEnMain;
                 m_miracleEnMain = -1;
             }
             else
-                m_miracleEnMain = m_miracle_droite[m_weaponsSet], m_miracle_droite[m_weaponsSet] = -1;
+                m_miracleEnMain = m_miracle_droite[m_weaponsSet], m_miracle_droite[m_weaponsSet] = -1,m_lastRaccourcis=-1;
 
             eventManager->StopEvenement(Mouse::Left,EventClic);
         }
@@ -2169,11 +2223,126 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
 
         moteurGraphique->AjouterCommande(&sprite,19,0);
     }
+}
 
-    if (eventManager->getEvenement(Mouse::Right,EventClic))
-        m_miracleEnMain = -1;
 
-    return (retour);
+void Hero::GererRaccourcisObjets(bool inventory, bool hideLeft)
+{
+    if(eventManager->getEvenement(Mouse::Left,EventClic))
+        for(int i = 0 ; i < 8 ; ++i)
+        {
+            if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_raccourcis[i].x,0).x
+            && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_raccourcis[i].x,0).x + m_classe.position_raccourcis[i].w
+            && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.position_raccourcis[i].y).y
+            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.position_raccourcis[i].y).y + m_classe.position_raccourcis[i].h)
+            {
+                if (m_objetEnMain >= 0)
+                {
+                    moteurSons->JouerSon(configuration->sound_select_miracle,coordonnee (0,0),0);
+                    int buf = m_raccourcis[i].no;
+                    m_raccourcis[i].no = m_objetEnMain;
+
+                    if(m_raccourcis[i].miracle)
+                        m_miracleEnMain = buf, m_objetEnMain = -1;
+                    else
+                        m_objetEnMain = buf;
+
+                    m_lastRaccourcis = -1;
+
+                    m_raccourcis[i].miracle = false;
+                    eventManager->StopEvenement(Mouse::Left,EventClic);
+                }
+                else if(!m_raccourcis[i].miracle && m_raccourcis[i].no >= 0 && m_miracleEnMain == -1)
+                    m_objetEnMain = m_raccourcis[i].no, m_raccourcis[i].no = -1,m_lastRaccourcis = -1,
+                    eventManager->StopEvenement(Mouse::Left,EventClic);
+
+                UpdateRaccourcis();
+            }
+        }
+
+
+    if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
+    {
+        sf::Sprite sprite;
+
+        sprite.SetImage(*moteurGraphique->getImage(0));
+
+        sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32,m_inventaire[m_objetEnMain].getTaille().y*32);
+
+        coordonnee caseVisee;
+        caseVisee.x=(int)(((eventManager->getPositionSouris().x+8)-AutoScreenAdjust(m_classe.position_contenu_inventaire.x,0).x)/32 - m_inventaire[m_objetEnMain].getTaille().x/2);
+        caseVisee.y=(int)(((eventManager->getPositionSouris().y+8)-AutoScreenAdjust(0,m_classe.position_contenu_inventaire.y-32,0).y)/32 - m_inventaire[m_objetEnMain].getTaille().y/2);
+
+        sprite.SetX(eventManager->getPositionSouris().x - m_inventaire[m_objetEnMain].getTaille().x*16);
+        sprite.SetY(eventManager->getPositionSouris().y - m_inventaire[m_objetEnMain].getTaille().y*16);
+
+        sprite.SetColor(GetItemColor(m_inventaire[m_objetEnMain].getRarete()));
+        sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),128));
+
+        if(inventory)
+        {
+            int emplacement=-1;
+            for (int k=0;k<(int)m_classe.emplacements.size();k++)
+                if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.emplacements[k].position.x,0).x
+                && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.emplacements[k].position.x + m_classe.emplacements[k].position.w,0).x
+                && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.emplacements[k].position.y, 0).y
+                && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.emplacements[k].position.y + m_classe.emplacements[k].position.h, 0).y)
+                    emplacement=k;
+
+            if (PossibleEquiper(m_objetEnMain, emplacement) && !hideLeft)
+            {
+                sf::Sprite emp_background;
+                emp_background.SetImage(*moteurGraphique->getImage(moteurGraphique->m_img_item_background));
+
+                emp_background.Resize(m_classe.emplacements[emplacement].position.w,
+                                      m_classe.emplacements[emplacement].position.h);
+
+                emp_background.SetX(m_classe.emplacements[emplacement].position.x);
+                emp_background.SetY(m_classe.emplacements[emplacement].position.y);
+
+                emp_background.SetColor(GetItemColor(m_inventaire[m_objetEnMain].getRarete()));
+                emp_background.SetColor(sf::Color((int)(emp_background.GetColor().r),
+                                                  (int)(emp_background.GetColor().g),
+                                                  (int)(emp_background.GetColor().b),128));
+
+                moteurGraphique->AjouterCommande(&emp_background,17,false);
+            }
+
+            if(eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_contenu_inventaire.x,0).x
+             ||eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_contenu_inventaire.x,0).x + 32*m_classe.position_contenu_inventaire.w
+             ||eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.position_contenu_inventaire.y-32,0).y
+             ||eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.position_contenu_inventaire.y-32,0).y + 32*m_classe.position_contenu_inventaire.h)
+            {
+                if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_sac_inventaire.x,0).x
+                && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_sac_inventaire.x + m_classe.position_sac_inventaire.w,0).x
+                && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.position_sac_inventaire.y, 0).y
+                && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.position_sac_inventaire.y + m_classe.position_sac_inventaire.h * 20, 0).y)
+                    sprite.SetColor(sf::Color(128,0,0,128));
+            }
+            else
+            {
+                sprite.SetX(caseVisee.x*32 + AutoScreenAdjust(m_classe.position_contenu_inventaire.x,0).x);
+                sprite.SetY(caseVisee.y*32 + AutoScreenAdjust(0,m_classe.position_contenu_inventaire.y-32,0).y);
+            }
+        }
+
+        moteurGraphique->AjouterCommande(&sprite,18,0);
+
+        sprite.SetColor(sf::Color(255,255,255,255));
+
+        sprite.SetImage(*moteurGraphique->getImage(m_inventaire[m_objetEnMain].getImage()));
+        sprite.SetSubRect(IntRect(m_inventaire[m_objetEnMain].getPositionImage().x,
+                                  m_inventaire[m_objetEnMain].getPositionImage().y,
+                                  m_inventaire[m_objetEnMain].getPositionImage().w,
+                                  m_inventaire[m_objetEnMain].getPositionImage().h));
+        sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32,
+                      m_inventaire[m_objetEnMain].getTaille().y*32);
+
+        sprite.SetX(eventManager->getPositionSouris().x - m_inventaire[m_objetEnMain].getTaille().x*16);
+        sprite.SetY(eventManager->getPositionSouris().y - m_inventaire[m_objetEnMain].getTaille().y*16);
+
+        moteurGraphique->AjouterCommande(&sprite,19,0);
+    }
 }
 
 bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool hideLeft, bool bless, bool craft)
@@ -2182,10 +2351,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
     m_objetVise = -1;
 
     for(unsigned i = 0 ; i < m_classe.emplacements.size() && !hideLeft ; ++i)
-    {
-        m_classe.emplacements[i].Afficher(decalage);
         m_classe.emplacements[i].empty = true;
-    }
 
     Sprite sprite_sort_inv = m_classe.sort_inventory.Afficher(decalage);
 
@@ -2629,73 +2795,14 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
         }
     }
 
-    if (m_objetEnMain>=0&&m_objetEnMain<(int)m_inventaire.size())
-    {
-        sf::Sprite sprite;
-
-        sprite.SetImage(*moteurGraphique->getImage(0));
-
-        sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32,m_inventaire[m_objetEnMain].getTaille().y*32);
-
-        coordonnee caseVisee;
-        caseVisee.x=(int)(((eventManager->getPositionSouris().x+8)-AutoScreenAdjust(m_classe.position_contenu_inventaire.x,0).x)/32 - m_inventaire[m_objetEnMain].getTaille().x/2);
-        caseVisee.y=(int)(((eventManager->getPositionSouris().y+8)-AutoScreenAdjust(0,m_classe.position_contenu_inventaire.y-32,decalage).y)/32 - m_inventaire[m_objetEnMain].getTaille().y/2);
-
-        sprite.SetX(eventManager->getPositionSouris().x - m_inventaire[m_objetEnMain].getTaille().x*16);
-        sprite.SetY(eventManager->getPositionSouris().y - m_inventaire[m_objetEnMain].getTaille().y*16);
-
-        sprite.SetColor(GetItemColor(m_inventaire[m_objetEnMain].getRarete()));
-
-        int emplacement=-1;
-        for (int k=0;k<(int)m_classe.emplacements.size();k++)
-            if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.emplacements[k].position.x,0).x
-            && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.emplacements[k].position.x + m_classe.emplacements[k].position.w,0).x
-            && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.emplacements[k].position.y, decalage).y
-            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.emplacements[k].position.y + m_classe.emplacements[k].position.h, decalage).y)
-                emplacement=k;
-
-        if (!PossibleEquiper(m_objetEnMain, emplacement) || hideLeft)
-            sprite.SetColor(sf::Color((int)(sprite.GetColor().r*0.25),(int)(sprite.GetColor().g*0.25),(int)(sprite.GetColor().b*0.25),128));
-
-        if(eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_contenu_inventaire.x,0).x
-         ||eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_contenu_inventaire.x,0).x + 32*m_classe.position_contenu_inventaire.w
-         ||eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.position_contenu_inventaire.y-32,decalage).y
-         ||eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.position_contenu_inventaire.y-32,decalage).y + 32*m_classe.position_contenu_inventaire.h)
-        {
-            if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_sac_inventaire.x,0).x
-            && eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_sac_inventaire.x + m_classe.position_sac_inventaire.w,0).x
-            && eventManager->getPositionSouris().y > AutoScreenAdjust(0,m_classe.position_sac_inventaire.y, decalage).y
-            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.position_sac_inventaire.y + m_classe.position_sac_inventaire.h * 20, decalage).y)
-                sprite.SetColor(sf::Color(128,0,0,128));
-        }
-        else
-        {
-            sprite.SetX(caseVisee.x*32 + AutoScreenAdjust(m_classe.position_contenu_inventaire.x,0).x);
-            sprite.SetY(caseVisee.y*32 + AutoScreenAdjust(0,m_classe.position_contenu_inventaire.y-32,decalage).y);
-        }
-
-        moteurGraphique->AjouterCommande(&sprite,18,0);
-
-        sprite.SetColor(sf::Color(255,255,255,255));
-
-        sprite.SetImage(*moteurGraphique->getImage(m_inventaire[m_objetEnMain].getImage()));
-        sprite.SetSubRect(IntRect(m_inventaire[m_objetEnMain].getPositionImage().x,
-                                  m_inventaire[m_objetEnMain].getPositionImage().y,
-                                  m_inventaire[m_objetEnMain].getPositionImage().w,
-                                  m_inventaire[m_objetEnMain].getPositionImage().h));
-        sprite.Resize(m_inventaire[m_objetEnMain].getTaille().x*32,
-                      m_inventaire[m_objetEnMain].getTaille().y*32);
-
-        sprite.SetX(eventManager->getPositionSouris().x - m_inventaire[m_objetEnMain].getTaille().x*16);
-        sprite.SetY(eventManager->getPositionSouris().y - m_inventaire[m_objetEnMain].getTaille().y*16);
-
-        moteurGraphique->AjouterCommande(&sprite,19,0);
-    }
-
     if(!hideLeft)
         AfficherCaracteristiques(decalage, (!trader->empty() || trader == &m_coffre));
 
     moteurGraphique->AjouterCommande(&sprite_sort_inv,17,0);
+
+
+    for(unsigned i = 0 ; i < m_classe.emplacements.size() && !hideLeft ; ++i)
+        m_classe.emplacements[i].Afficher(decalage);
 
 
     return (retour);
@@ -2845,12 +2952,12 @@ void Hero::AfficherRaccourcis()
                                     m_classe.icone_miracles[m_miracle_droite[m_weaponsSet]].position.w,
                                     m_classe.icone_miracles[m_miracle_droite[m_weaponsSet]].position.h));
 
-        sprite.SetPosition(AutoScreenAdjust(m_classe.position_miracleALancerDroite.x,
-                                            m_classe.position_miracleALancerDroite.y - 2));
+        sprite.SetPosition(AutoScreenAdjust(m_classe.p_miracleD.position.x,
+                                            m_classe.p_miracleD.position.y - 2));
 
         sprite.SetBlendMode(sf::Blend::Alpha);
 
-        sprite.Resize(m_classe.position_miracleALancerDroite.w,m_classe.position_miracleALancerDroite.h);
+        sprite.Resize(m_classe.p_miracleD.position.w,m_classe.p_miracleD.position.h);
 
         if (m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_coutFoi + m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_reserveFoi > m_caracteristiques.foi
          || m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_reserveFoi > m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
@@ -2864,24 +2971,26 @@ void Hero::AfficherRaccourcis()
         && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
         && eventManager->getPositionSouris().y > sprite.GetPosition().y
         && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
-            m_classe.miracles[m_miracle_droite[m_weaponsSet]].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false);
+            m_classe.miracles[m_miracle_droite[m_weaponsSet]].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false,2);
 
 
         if(m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_cooldown > 0
         && m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_cooldown != m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_cur_time)
         {
-            float temp = (float)m_classe.position_miracleALancerDroite.h
+            float temp = (float)m_classe.p_miracleD.position.h
                          *(m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_cooldown
                            - m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_cur_time)
                          / m_classe.miracles[m_miracle_droite[m_weaponsSet]].m_cooldown;
 
             sprite.SetImage(*moteurGraphique->getImage(0));
-            sprite.Resize(m_classe.position_miracleALancerDroite.w,temp);
+            sprite.Resize(m_classe.p_miracleD.position.w,temp);
 
             sprite.SetColor(sf::Color(0,0,0,240));
             moteurGraphique->AjouterCommande(&sprite,18,0);
         }
     }
+    else
+        AfficherIconeAttaque(m_classe.p_miracleD);
 
     if (m_miracle_gauche[m_weaponsSet] >= 0 && m_miracle_gauche[m_weaponsSet] < (int)m_classe.position_miracles.size())
     {
@@ -2894,12 +3003,12 @@ void Hero::AfficherRaccourcis()
                                     m_classe.icone_miracles[m_miracle_gauche[m_weaponsSet]].position.w,
                                     m_classe.icone_miracles[m_miracle_gauche[m_weaponsSet]].position.h));
 
-        sprite.SetPosition(AutoScreenAdjust(m_classe.position_miracleALancerGauche.x,
-                                            m_classe.position_miracleALancerGauche.y - 2));
+        sprite.SetPosition(AutoScreenAdjust(m_classe.p_miracleG.position.x,
+                                            m_classe.p_miracleG.position.y - 2));
 
         sprite.SetBlendMode(sf::Blend::Alpha);
 
-        sprite.Resize(m_classe.position_miracleALancerGauche.w,m_classe.position_miracleALancerGauche.h);
+        sprite.Resize(m_classe.p_miracleG.position.w,m_classe.p_miracleG.position.h);
 
         if (m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_coutFoi + m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_reserveFoi > m_caracteristiques.foi
          || m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_reserveFoi > m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
@@ -2914,24 +3023,58 @@ void Hero::AfficherRaccourcis()
         && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
         && eventManager->getPositionSouris().y > sprite.GetPosition().y
         && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
-            m_classe.miracles[m_miracle_gauche[m_weaponsSet]].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false);
+            m_classe.miracles[m_miracle_gauche[m_weaponsSet]].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false,1);
 
 
         if(m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_cooldown > 0
         && m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_cooldown != m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_cur_time)
         {
-            float temp = (float)m_classe.position_miracleALancerGauche.h
+            float temp = (float)m_classe.p_miracleG.position.h
                          *(m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_cooldown
                            - m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_cur_time)
                          / m_classe.miracles[m_miracle_gauche[m_weaponsSet]].m_cooldown;
 
             sprite.SetImage(*moteurGraphique->getImage(0));
-            sprite.Resize(m_classe.position_miracleALancerGauche.w,temp);
+            sprite.Resize(m_classe.p_miracleG.position.w,temp);
 
             sprite.SetColor(sf::Color(0,0,0,240));
             moteurGraphique->AjouterCommande(&sprite,18,0);
         }
     }
+    else
+        AfficherIconeAttaque(m_classe.p_miracleG);
+}
+
+
+void Hero::AfficherIconeAttaque(Image_interface &img)
+{
+    sf::Sprite sprite;
+
+    sprite.SetImage(*moteurGraphique->getImage(img.image));
+
+    sprite.SetPosition(AutoScreenAdjust(img.position.x,
+                                        img.position.y - 2));
+
+    sprite.SetBlendMode(sf::Blend::Alpha);
+
+    sprite.Resize(img.position.w,img.position.h);
+
+    if(&img == &m_classe.p_miracleD)
+        sprite.FlipX(true);
+
+    moteurGraphique->AjouterCommande(&sprite,18,0);
+
+    if(eventManager->getPositionSouris().x > sprite.GetPosition().x
+    && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
+    && eventManager->getPositionSouris().y > sprite.GetPosition().y
+    && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
+    {
+        if(&img == &m_classe.p_miracleG)
+            m_classe.miracles[0].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false,1);
+        else
+            m_classe.miracles[0].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false,2);
+    }
+
 }
 
 void Hero::PlacerCamera()
@@ -3302,6 +3445,34 @@ void Hero::RecalculerGolems()
             m_inventaire[i].CalculerGolem();
 }
 
+void Hero::JouerSonAttaque(int materiau)
+{
+    if(m_weaponModel >= 0 && m_weaponModel < NOMBRE_MORCEAU_PERSONNAGE)
+    if ((int)(m_personnage.getAngle()/45) >= 0
+     && (int)(m_personnage.getAngle()/45) < (int)m_modelePersonnage[m_weaponModel].m_tileset[m_personnage.getEtat()].size())
+    {
+        Tileset *tileset = &m_modelePersonnage[m_weaponModel].m_tileset[m_personnage.getEtat()][(int)(m_personnage.getAngle()/45)];
+
+        if(materiau > 0)
+        if(tileset->getNombreSonsSpecial(materiau) > 0)
+        {
+            int random = rand()%tileset->getNombreSonsSpecial(materiau);
+            int nbr = 0;
+
+            coordonnee position;
+            position.x=(m_personnage.getCoordonnee().x-m_personnage.getCoordonnee().y-1)/5;
+            position.y=(m_personnage.getCoordonnee().x+m_personnage.getCoordonnee().y)/5;
+
+            while(!tileset->JouerSon(tileset->getSonSpecial(materiau, random++),position, true)
+                && nbr++ < tileset->getNombreSonsSpecial(materiau))
+            {
+                if(random >= tileset->getNombreSonsSpecial(materiau))
+                    random = 0;
+            }
+        }
+    }
+}
+
 void Hero::StopMiraclesFrappe()
 {
     for (int i = 0; i < (int)m_personnage.m_miracleEnCours.size(); ++i)
@@ -3480,7 +3651,7 @@ void Hero::addPotale(int x, int y, int nom, const std::string &chemin)
     }
 }
 
-bool Hero::AjouterObjet(Objet &objet,bool enMain)
+bool Hero::AjouterObjet(Objet &objet,bool enMain, bool playSound)
 {
     bool ramasser=false;
 
@@ -3522,7 +3693,7 @@ bool Hero::AjouterObjet(Objet &objet,bool enMain)
                             {
                                 ramasser = true;
                                 AjouterObjetInventaire(objet,&m_inventaire,m_classe.position_contenu_inventaire, true);
-                                Equiper(m_inventaire.size() - 1, j);
+                                Equiper(m_inventaire.size() - 1, j, playSound);
                             }
                         }
             }
@@ -3531,12 +3702,22 @@ bool Hero::AjouterObjet(Objet &objet,bool enMain)
                 ChargerModele();
         }
 
-        if(!ramasser)
-            ramasser = AjouterObjetInventaire(objet,&m_inventaire,m_classe.position_contenu_inventaire, false);
+        if(objet.m_type == GOLD)
+        {
+            ramasser = true;
+            m_argent += objet.m_vie;
+        }
+        else
+        {
+            if(!ramasser)
+                ramasser = AjouterObjetInventaire(objet,&m_inventaire,m_classe.position_contenu_inventaire, false);
+        }
+
 
         if (ramasser)
         {
-            m_inventaire.back().JouerSon();
+            if(playSound)
+                objet.JouerSon();
 
             if (m_inventaire.back().m_type == CONSOMMABLE)
             {
@@ -3700,10 +3881,10 @@ void Hero::AutoTrierInventaire()
     for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
     if(m_inventaire[i].m_type == ordre_tri[o]
     && m_inventaire[i].m_equipe < 0
-    && m_no_schema_bless != i
-    && m_no_schema_craft != i
-    && m_no_result_craft != i
-    && m_no_result_bless != i)
+    && m_no_schema_bless != (int)i
+    && m_no_schema_craft != (int)i
+    && m_no_result_craft != (int)i
+    && m_no_result_bless != (int)i)
     {
         std::vector<std::string> nom_objets_bis;
         std::vector<int> taille_objets_bis;
@@ -3761,10 +3942,10 @@ void Hero::AutoTrierInventaire()
     if(m_inventaire[i].m_type == ordre_tri[t]
     && m_inventaire[i].m_equipe < 0
     && m_inventaire[i].getChemin() == nom_objets[n]
-    && m_no_schema_bless != i
-    && m_no_schema_craft != i
-    && m_no_result_craft != i
-    && m_no_result_bless != i)
+    && m_no_schema_bless != (int)i
+    && m_no_schema_craft != (int)i
+    && m_no_result_craft != (int)i
+    && m_no_result_bless != (int)i)
     {
         for(int k = 0 ; k < 8 ; ++k)
             if(m_raccourcis[k].miracle == false
@@ -3776,10 +3957,10 @@ void Hero::AutoTrierInventaire()
 
     for(unsigned i = 0 ; i < m_inventaire.size() ; ++i)
         if(m_inventaire[i].m_equipe >= 0
-        || m_no_schema_bless == i
-        || m_no_schema_craft == i
-        || m_no_result_craft == i
-        || m_no_result_bless == i)
+        || m_no_schema_bless == (int)i
+        || m_no_schema_craft == (int)i
+        || m_no_result_craft == (int)i
+        || m_no_result_bless == (int)i)
         {
             if(m_no_schema_craft == (int)i)
                 new_no_schema_craft = inventaire_bis.size();
@@ -3959,7 +4140,10 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                             {
                                 m_inventaire[z].JouerSon();
                                 if(trader != &m_coffre && !craft && !bless)
+                                {
                                     m_argent+=m_inventaire[z].getPrix();
+                                    moteurSons->JouerSon(configuration->sound_trade,coordonnee (0,0),0);
+                                }
                                 m_inventaire[z].m_equipe=-1;
                                 AjouterObjetInventaire(m_inventaire[z],trader,m_classe.position_contenu_marchand,true);
                                 delObjet(z);
@@ -4028,6 +4212,8 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                     m_argent+=(int)((float)m_inventaire[m_objetEnMain].getPrix()*(10-(float)m_caracteristiques.charisme/100));
                 else
                     m_argent+=m_inventaire[m_objetEnMain].getPrix();
+
+                moteurSons->JouerSon(configuration->sound_trade,coordonnee (0,0),0);
             }
 
             m_inventaire[m_objetEnMain].m_equipe=-1;
@@ -4056,7 +4242,10 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                         if (AjouterObjet((*trader)[z],!eventManager->getEvenement(Key::LControl,EventKey)))
                         {
                             if(trader != &m_coffre && !craft && !bless)
+                            {
                                 m_argent-=(int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100));
+                                moteurSons->JouerSon(configuration->sound_trade,coordonnee (0,0),0);
+                            }
                             if ((*trader)[z].m_type!=CONSOMMABLE || trader == &m_coffre || craft || bless)
                                 trader->erase(trader->begin()+z);
 
@@ -4064,6 +4253,8 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                                 AutoTrierCoffre();
                         }
                     }
+                    else if((int)((float)(*trader)[z].getPrix()*(10-(float)m_caracteristiques.charisme/100))>m_argent)
+                        moteurSons->JouerSon(configuration->sound_trade_i,coordonnee (0,0),0);
         }
     }
     else
@@ -4521,6 +4712,8 @@ bool Hero::UtiliserObjet(int numero)
                 m_docs.back().m_description = temp;
                 m_docs.back().GenerateDescription();
                 newDoc = true;
+
+                moteurSons->JouerSon(configuration->sound_book,coordonnee (0,0),0);
             }
 
             delObjet(numero);
@@ -4531,7 +4724,7 @@ bool Hero::UtiliserObjet(int numero)
     return 0;
 }
 
-bool Hero::Equiper(int numero, int emplacement)
+bool Hero::Equiper(int numero, int emplacement, bool playsound)
 {
     int ancienEquipe=-1;
     bool ok=true;
@@ -4588,7 +4781,8 @@ bool Hero::Equiper(int numero, int emplacement)
 
             if (ok)
             {
-                m_inventaire[numero].JouerSon();
+                if(playsound)
+                    m_inventaire[numero].JouerSon();
                 if (m_objetEnMain>=0)
                     m_objetEnMain=ancienEquipe;
                 else

@@ -128,6 +128,8 @@ Personnage::Personnage()
     m_selectable = true;
 
     m_speak_time = 0;
+
+    m_materiau = M_VAPOREUX;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -180,6 +182,8 @@ Modele_Personnage::Modele_Personnage()
     m_impoussable                        = 0;
     m_noDistanceRestriction              = 0;
     m_selectable                         = 1;
+
+    m_materiau = M_VAPOREUX;
 }
 
 Personnage::~Personnage()
@@ -855,7 +859,7 @@ void Personnage::InfligerDegats(float degats, int type, float temps)
 
     m_cible = NULL;
 
-    if(degats > 0 && temps == 0)
+    if(degats > 0 && temps == 0 && EnVie())
     if(m_entite_graphique.m_tileset != NULL)
         if(m_entite_graphique.m_tileset->getNombreSonsSpecial(0) > 0)
         {
@@ -1373,7 +1377,11 @@ void Personnage::addAngle(int angle)
 
 void Personnage::setPose(int pose)
 {
-    m_entite_graphique.m_noAnimation=pose;
+    if(m_entite_graphique.m_tileset
+    && m_entite_graphique.m_tileset->getTaille() > pose)
+        m_entite_graphique.m_noAnimation=pose;
+    else if(!m_entite_graphique.m_tileset)
+        m_entite_graphique.m_noAnimation=pose;
 }
 void Personnage::setAngle(int angle)
 {

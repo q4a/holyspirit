@@ -105,6 +105,7 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
     bool collision=0,ombre=option_forcedShadow, reflection = option_forcedReflect,transparent=0;
     char orientation=' ';
     float tempsAnimation=-1;
+    float tempsRandAnimation=0;
     int opacity = 255;
     int layer = 0;
     int attaque = -1;
@@ -159,6 +160,9 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
             break;
         case 'n':
             fichier>>tempsAnimation;
+            break;
+        case 'N':
+            fichier>>tempsRandAnimation;
             break;
         case 'p':
             fichier>>opacity;
@@ -276,17 +280,17 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
     if(type == 1)
     {
         m_tile_distortion.push_back(Tile ());
-        m_tile_distortion.back().setTile(position,image,collision,animation,son,lumiere,lumiere_decal,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
+        m_tile_distortion.back().setTile(position,image,collision,animation,son,lumiere,lumiere_decal,ombre, reflection,orientation,transparent,centre,tempsAnimation,tempsRandAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
     }
     else if(type == 2)
     {
         m_tile_shadowmap.push_back(Tile ());
-        m_tile_shadowmap.back().setTile(position,image,collision,animation,son,lumiere,lumiere_decal,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
+        m_tile_shadowmap.back().setTile(position,image,collision,animation,son,lumiere,lumiere_decal,ombre, reflection,orientation,transparent,centre,tempsAnimation,tempsRandAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
     }
     else
     {
         m_tile.push_back(Tile ());
-        m_tile.back().setTile(position,image,collision,animation,son,lumiere,lumiere_decal,ombre, reflection,orientation,transparent,centre,tempsAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
+        m_tile.back().setTile(position,image,collision,animation,son,lumiere,lumiere_decal,ombre, reflection,orientation,transparent,centre,tempsAnimation,tempsRandAnimation,opacity, layer, attaque, ordre, angle,ambientShadow);
         m_tile.back().m_tileMinimap = imageMM;
         m_tile.back().m_coordMinimap = coordMinimap;
         m_tile.back().m_distortion = distortionTile;
@@ -534,6 +538,22 @@ float Tileset::getTempsDuTile(int tile,int type)
     return 0;
 }
 
+float Tileset::getTempsRandDuTile(int tile,int type)
+{
+    if(type == 1)
+    {
+        if (tile>=0&&tile<(int)m_tile_distortion.size())
+            return m_tile_distortion[tile].getTempsRand();
+    }
+    else
+    {
+        if (tile>=0&&tile<(int)m_tile.size())
+            return m_tile[tile].getTempsRand();
+    }
+
+    return 0;
+}
+
 int Tileset::getOpacityDuTile(int tile,int type)
 {
     if(type == 1)
@@ -664,8 +684,15 @@ bool Tileset::JouerSon(int numeroSon,coordonnee position, bool unique, float vol
         if(m_sons[numeroSon].unique == true)
             unique = true;
 
-        return moteurSons->JouerSon(m_sons[numeroSon].no,pos,unique,m_sons[numeroSon].preserv,(int)volume*m_sons[numeroSon].volume/100);
+       return moteurSons->JouerSon(m_sons[numeroSon].no,pos,unique,m_sons[numeroSon].preserv,(int)volume*m_sons[numeroSon].volume/100);
     }
+
+    return false;
+}
+bool Tileset::IsPlayingSound(int numeroSon)
+{
+    if (numeroSon>=0&&numeroSon<(int)m_sons.size())
+       return moteurSons->IsPlayingSound(m_sons[numeroSon].no);
 
     return false;
 }

@@ -43,13 +43,15 @@ MoteurSons::~MoteurSons()
 void MoteurSons::Gerer(float temps)
 {
     m_music.SetPosition(sf::Listener::GetPosition());
-    m_music.SetVolume(configuration->music_volume * change_volume * 0.01);
+    m_music.SetVolume(configuration->music_volume * change_volume * m_music_volume * 0.0001);
 
-    if(!m_nextMusic.empty() && m_nextMusic != m_curMusic)
+    if(!m_nextMusic.empty() && (m_nextMusic != m_curMusic || GetMusicStatus() == 0))
     {
         change_volume -= temps * 50;
         if(change_volume <= 0 || m_curMusic.empty() || GetMusicStatus() == 0)
         {
+            m_music_volume = 100;
+
             if(change_volume <= 0)
                 change_volume = 0;
 
@@ -61,6 +63,41 @@ void MoteurSons::Gerer(float temps)
                 console->Ajouter("Impossible de charger : "+m_nextMusic,1);
             else
                 console->Ajouter("Chargement de : "+m_nextMusic,0),m_music.Play();
+
+            std::string conf_path = m_nextMusic.substr(0,m_nextMusic.size()-3) + "conf";
+            std::ifstream conf;
+            conf.open(conf_path.c_str(), std::ios::in);
+
+            if (conf)
+            {
+                char caractere;
+                do
+                {
+                    conf.get(caractere);
+                    if (caractere=='*')
+                    {
+                        do
+                        {
+                            conf.get(caractere);
+                            switch (caractere)
+                            {
+                            case 'v' :
+                                conf>>m_music_volume;
+                                break;
+                            }
+
+                            if (conf.eof())
+                                caractere='$';
+                        }
+                        while (caractere!='$');
+                        conf.get(caractere);
+                    }
+                    if (conf.eof())
+                        caractere='$';
+                }
+                while (caractere!='$');
+                conf.close();
+            }
 
             m_curMusic = m_nextMusic;
             m_nextMusic.clear();
@@ -86,16 +123,54 @@ int MoteurSons::AjouterBuffer(std::string chemin)
         if (m_cheminsSons[i]==chemin)
             return i;
 
-    m_buffers.push_back(new sf::SoundBuffer ());
+    m_buffers.push_back(new Infos_buffer ());
     m_cheminsSons.push_back(chemin);
 
-    if (!m_buffers.back()->LoadFromFile(chemin.c_str()))
+    if (!m_buffers.back()->buffer.LoadFromFile(chemin.c_str()))
     {
         console->Ajouter("Impossible de charger : "+chemin,1);
         return -1;
     }
     else
         console->Ajouter("Chargement de : "+chemin,0);
+
+    std::string conf_path = chemin.substr(0,chemin.size()-3) + "conf";
+    std::ifstream conf;
+    conf.open(conf_path.c_str(), std::ios::in);
+
+    if (conf)
+    {
+        char caractere;
+        do
+        {
+            conf.get(caractere);
+            if (caractere=='*')
+            {
+                do
+                {
+                    conf.get(caractere);
+                    switch (caractere)
+                    {
+                    case 'v' :
+                        conf>>m_buffers.back()->volume;
+                        break;
+                    case 'p' :
+                        conf>>m_buffers.back()->pitchable;
+                        break;
+                    }
+
+                    if (conf.eof())
+                        caractere='$';
+                }
+                while (caractere!='$');
+                conf.get(caractere);
+            }
+            if (conf.eof())
+                caractere='$';
+        }
+        while (caractere!='$');
+        conf.close();
+    }
 
     return m_buffers.size()-1;
 }
@@ -105,6 +180,15 @@ void MoteurSons::StopAllSounds()
     for (int i=0;i<NOMBRE_SONS;i++)
         if(!m_sons_preserv[i])
             m_sons[i].Stop();
+}
+
+bool MoteurSons::IsPlayingSound(int ID)
+{
+    if (ID>=0&&ID<(int)m_buffers.size())
+        for (int i=0;i<NOMBRE_SONS;i++)
+            if (m_IDSons[i]==ID && m_sons[i].GetStatus() != 0)
+                return true;
+    return false;
 }
 
 bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,int volume)
@@ -137,16 +221,17 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,in
                         //m_sons[i].SetPosition(sf::Listener::GetPosition());
 
                    // if(volume > m_sons[i].GetVolume())
-                        m_sons[i].SetVolume(volume);
+                        m_sons[i].SetVolume(volume * m_buffers[ID]->volume / 100);
 
-                    if(position.x==-1&&position.y==-1)
+                    if((position.x==-1&&position.y==-1)
+                    || (position.x==0&&position.y==0))
                         m_sons[i].SetPosition(sf::Listener::GetPosition());
 
                     creerNouveauSon=false;
                 }
         }
 
-        if (creerNouveauSon)
+        if (creerNouveauSon/* && volume > 0*/)
         {
             int temp = sonEnCours++;
             if (sonEnCours>=NOMBRE_SONS)
@@ -160,9 +245,9 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,in
             }
 
 
-            m_sons[sonEnCours].SetVolume(volume);
+            m_sons[sonEnCours].SetVolume(volume * m_buffers[ID]->volume / 100);
             m_IDSons[sonEnCours]=ID;
-            m_sons[sonEnCours].SetBuffer(*m_buffers[ID]);
+            m_sons[sonEnCours].SetBuffer(m_buffers[ID]->buffer);
 
             //sf::Sound::Status Status = m_sons[sonEnCours].GetStatus();
             //if (Status==0)
@@ -170,7 +255,8 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,in
 
             m_sons[sonEnCours].SetPosition(position.x,0,position.y);
 
-            if(position.x==-1&&position.y==-1)
+            if((position.x==-1&&position.y==-1)
+            || (position.x==0&&position.y==0))
                 m_sons[sonEnCours].SetPosition(sf::Listener::GetPosition());
 
             m_sons[sonEnCours].SetAttenuation(0.5f);
@@ -178,7 +264,10 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,in
 
             m_sons[sonEnCours].SetLoop(false);
 
-            m_sons[sonEnCours].SetPitch(0.94 + (rand()/(float)RAND_MAX)*0.14);
+            if(m_buffers[ID]->pitchable)
+                m_sons[sonEnCours].SetPitch(0.92 + (rand()/(float)RAND_MAX)*0.20);
+            else
+                m_sons[sonEnCours].SetPitch(1);
 
 
             m_sons_preserv[sonEnCours] = preserv;
@@ -206,3 +295,45 @@ void MoteurSons::setVolumeMusique(int volume)
     m_music.SetVolume(volume);
 }
 
+
+void MoteurSons::DebugRefreshSound()
+{
+    for(unsigned i = 0 ; i < m_cheminsSons.size() ; ++i)
+    {
+        std::string conf_path = m_cheminsSons[i].substr(0,m_cheminsSons[i].size()-3) + "conf";
+        std::ifstream conf;
+        conf.open(conf_path.c_str(), std::ios::in);
+
+        if (conf)
+        {
+            char caractere;
+            do
+            {
+                conf.get(caractere);
+                if (caractere=='*')
+                {
+                    do
+                    {
+                        conf.get(caractere);
+                        switch (caractere)
+                        {
+                        case 'v' :
+                            conf>>m_buffers[i]->volume;
+                            break;
+                        }
+
+                        if (conf.eof())
+                            caractere='$';
+                    }
+                    while (caractere!='$');
+                    conf.get(caractere);
+                }
+                if (conf.eof())
+                    caractere='$';
+            }
+            while (caractere!='$');
+            conf.close();
+        }
+
+    }
+}

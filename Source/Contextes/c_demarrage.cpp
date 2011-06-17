@@ -44,7 +44,7 @@ c_Demarrage::~c_Demarrage()
 
 void c_Demarrage::Utiliser(Jeu *jeu)
 {
-    temps_ecoule=jeu->Clock.GetElapsedTime();
+    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
     jeu->Clock.Reset();
 
     configuration->RafraichirOmbre = 0;

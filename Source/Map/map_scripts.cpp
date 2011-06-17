@@ -76,7 +76,7 @@ void Map::Script_Teleport(Jeu *jeu,Script *script,int noInstruction,int monstre,
 {
     if (m_monstre[monstre].EnVie())
     {
-        if (seDeplacer && !m_monstre[monstre].frappeEnCours || (int)script->getValeur(noInstruction, 0))
+        if((seDeplacer && !m_monstre[monstre].frappeEnCours) || (int)script->getValeur(noInstruction, 0))
         {
             m_decor[1]  [(int)(m_monstre[monstre].getCoordonneePixel().y/COTE_TILE + 0.5)]
                         [(int)(m_monstre[monstre].getCoordonneePixel().x/COTE_TILE + 0.5)].delMonstre(monstre);
@@ -355,7 +355,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                                     m_listID.resize((int)script->getValeur(noInstruction, 0) + 1);
 
                                 bool add = true;
-                                for(int j = 0 ; j < m_listID[(int)script->getValeur(noInstruction, 0)].size() ; ++j)
+                                for(unsigned j = 0 ; j < m_listID[(int)script->getValeur(noInstruction, 0)].size() ; ++j)
                                     if(m_listID[(int)script->getValeur(noInstruction, 0)][j] == m_monstre[monstre].m_miracleEnCours[i].m_infos[o]->m_IDObjet)
                                         add = false;
                                 if(add)
@@ -366,6 +366,12 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         else if (script->m_instructions[noInstruction].nom=="setActif" && monstre != -1)
         {
             m_monstre[monstre].m_actif = script->getValeur(noInstruction, 0);
+        }
+        else if (script->m_instructions[noInstruction].nom=="setSpeed" && monstre != -1)
+        {
+            Caracteristique temp = m_monstre[monstre].getCaracteristique();
+            temp.vitesse = script->getValeur(noInstruction, 0)/100;
+            m_monstre[monstre].setCaracteristique(temp);
         }
         else if (script->m_instructions[noInstruction].nom=="look_hero" && monstre != -1)
         {
@@ -478,6 +484,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                 hero->m_quetes.push_back(Quete ((int)script->getValeur(noInstruction, 0)));
                 hero->m_queteSelectionnee = hero->m_quetes.size() - 1;
                 hero->newQuest = true;
+
+                moteurSons->JouerSon(configuration->sound_quest_start,coordonnee (0,0),0);
             }
         }
         else if (script->m_instructions[noInstruction].nom=="setQuestName")
@@ -503,6 +511,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                 if (hero->m_quetes[i].m_id == (int)script->getValeur(noInstruction, 0))
                 {
                     hero->m_quetes[i].m_actif = (int)script->getValeur(noInstruction, 1);
+                    if(!hero->m_quetes[i].m_actif)
+                        moteurSons->JouerSon(configuration->sound_quest_end,coordonnee (0,0),0);
                 }
         }
         else if (script->m_instructions[noInstruction].nom=="giftItem" && monstre != -1)
@@ -619,7 +629,15 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < m_climates.size())
             {
                 if((bool)script->getValeur(noInstruction, 1))
-                    m_climates[(unsigned)script->getValeur(noInstruction, 0)].m_actif = true;
+                {
+                    if(m_climates[(unsigned)script->getValeur(noInstruction, 0)].m_actif)
+                    {
+                        if(m_climates[(unsigned)script->getValeur(noInstruction, 0)].GetState() == 1.0)
+                            m_climates[(unsigned)script->getValeur(noInstruction, 0)].Continue();
+                    }
+                    else
+                        m_climates[(unsigned)script->getValeur(noInstruction, 0)].m_actif = true;
+                }
                 else
                     m_climates[(unsigned)script->getValeur(noInstruction, 0)].Stop();
 
@@ -649,6 +667,15 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             }
             else
                 moteurSons->PlayNewMusic(script->m_instructions[noInstruction].valeurString);
+        }
+        else if (script->m_instructions[noInstruction].nom=="setAmbiance")
+        {
+            if((int)script->getValeur(noInstruction, 0) < (int)m_ambiances.size())
+                m_playAmbiances[(int)script->getValeur(noInstruction, 0)] = script->getValeur(noInstruction, 1);
+               // moteurSons->JouerSon(m_ambiances[(int)script->getValeur(noInstruction, 0)],coordonnee (), 1, 0, 100*script->getValeur(noInstruction, 1));
+           /* m_musiqueEnCours = (int)script->getValeur(noInstruction, 0);
+            if (m_musiqueEnCours >=0 && m_musiqueEnCours < (int)m_musiques.size())
+                moteurSons->PlayNewMusic(m_musiques[m_musiqueEnCours]);*/
         }
     }
 }
@@ -708,6 +735,13 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
 
                   //  if (m_monstre[monstre].getEtat() != (int)script->getValeur(no, 0))
                         ok=false;
+                }
+                else if (script->m_instructions[no].nom=="getState" && monstre != -1)
+                {
+
+                    if (m_monstre[monstre].getModele()>=0&&m_monstre[monstre].getModele()<(int)m_ModeleMonstre.size())
+                        if(m_monstre[monstre].m_entite_graphique.m_tileset->IsPlayingSound((int)script->getValeur(noInstruction, 0)))
+                            ok=false;
                 }
                 else if (script->m_instructions[no].nom=="position" && monstre != -1)
                 {
@@ -828,15 +862,16 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 {
                     if(m_climates.size() > (unsigned)script->getValeur(no, 0))
                     {
+
                         if(!m_climates[(unsigned)script->getValeur(no, 0)].m_actif)
                             ok = false;
 
-                        if(script->getValeur(no, 1) != -1)
-                        if(m_climates[(unsigned)script->getValeur(no, 0)].m_cur_time < script->getValeur(no, 1))
+                        if(script->getValeur(no, 1) != 0)
+                        if(m_climates[(unsigned)script->getValeur(no, 0)].m_cur_time > script->getValeur(no, 1))
                             ok = false;
 
-                        if(script->getValeur(no, 1) != -2)
-                        if(m_climates[(unsigned)script->getValeur(no, 0)].m_cur_time > script->getValeur(no, 2))
+                        if(script->getValeur(no, 2) != 0)
+                        if(m_climates[(unsigned)script->getValeur(no, 0)].m_cur_time < script->getValeur(no, 2))
                             ok = false;
 
                     }

@@ -90,7 +90,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 {
     jeu->m_display=true;
 
-    temps_ecoule=jeu->Clock.GetElapsedTime();
+    temps_ecoule=(float)jeu->Clock.GetElapsedTime()/1000;
     jeu->Clock.Reset();
 
     if(m_save)

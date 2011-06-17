@@ -150,7 +150,7 @@ public:
     void Concatenencer(const std::string &chemin, const Caracteristique &caract, int level);
     void RechargerTileset();
 
-    void AfficherDescription(coordonnee position, Border &border, bool suivant = true);
+    void AfficherDescription(coordonnee position, Border &border, bool suivant = true, int hand = 0);
     sf::Text AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
 
     std::vector <int>           m_tileset;

@@ -140,11 +140,11 @@ void Light::AddTriangle(sf::Vector3f pt1,sf::Vector3f pt2, std::list<int> deja_w
     for(int y =  (m_position.y - m_radius) / SECTOR_SIZE + m_origin_sector.y;
             y <  (m_position.y + m_radius) / SECTOR_SIZE + 1 + m_origin_sector.y;
           ++y)
-    if(y >= 0 && y < m_sectors.size())
+    if(y >= 0 && y < (int)m_sectors.size())
     for(int x =  (m_position.x - m_radius) / SECTOR_SIZE + m_origin_sector.x;
             x <  (m_position.x + m_radius) / SECTOR_SIZE + 1 + m_origin_sector.x;
           ++x)
-    if(x >= 0 && x < m_sectors[y].size())
+    if(x >= 0 && x < (int)m_sectors[y].size())
     for (std::vector<int>::iterator IterWall=m_sectors[y][x].begin();
                                     IterWall!=m_sectors[y][x].end();++IterWall)
         if(m_wall[*IterWall].actif)
@@ -178,8 +178,8 @@ void Light::AddTriangle(sf::Vector3f pt1,sf::Vector3f pt2, std::list<int> deja_w
                     && !(i.x == pt2.x && i.y == pt2.y))
                     if((pt1.x >= i.x && pt2.x <= i.x) || (pt1.x <= i.x && pt2.x >= i.x))
                     if((pt1.y >= i.y && pt2.y <= i.y) || (pt1.y <= i.y && pt2.y >= i.y))
-                    if(l1.y >= 0 && i.y >= 0 || l1.y <= 0 && i.y <= 0)
-                    if(l1.x >= 0 && i.x >= 0 || l1.x <= 0 && i.x <= 0)
+                    if((l1.y >= 0 && i.y >= 0) || (l1.y <= 0 && i.y <= 0))
+                    if((l1.x >= 0 && i.x >= 0) || (l1.x <= 0 && i.x <= 0))
                     if(i.x * i.x + i.y * i.y > l1.x * l1.x + l1.y * l1.y)
                         AddTriangle(i, pt2, deja_wall, m_wall, m_sectors, m_origin_sector), i.z = pt2.z, pt2 = i;
                 }
@@ -192,8 +192,8 @@ void Light::AddTriangle(sf::Vector3f pt1,sf::Vector3f pt2, std::list<int> deja_w
                     && !(i.x == pt2.x && i.y == pt2.y))
                     if((pt1.x >= i.x && pt2.x <= i.x) || (pt1.x <= i.x && pt2.x >= i.x))
                     if((pt1.y >= i.y && pt2.y <= i.y) || (pt1.y <= i.y && pt2.y >= i.y))
-                    if(l2.y >= 0 && i.y >= 0 || l2.y <= 0 && i.y <= 0)
-                    if(l2.x >= 0 && i.x >= 0 || l2.x <= 0 && i.x <= 0)
+                    if((l2.y >= 0 && i.y >= 0) || (l2.y <= 0 && i.y <= 0))
+                    if((l2.x >= 0 && i.x >= 0) || (l2.x <= 0 && i.x <= 0))
                     if(i.x * i.x + i.y * i.y > l2.x * l2.x + l2.y * l2.y)
                         AddTriangle(pt1, i, deja_wall, m_wall, m_sectors, m_origin_sector), i.z = pt1.z, pt1 = i;
                 }
@@ -204,7 +204,7 @@ void Light::AddTriangle(sf::Vector3f pt1,sf::Vector3f pt2, std::list<int> deja_w
                 sf::Vector3f n = Collision(sf::Vector3f(0,0,0), pt2, l1, l2);
                 sf::Vector3f o = Collision(pt1, pt2, l1, l2);
 
-                float d = sqrt((l1.x-l2.x)*(l1.x-l2.x) + (l1.y-l2.y)*(l1.y-l2.y));
+               // float d = sqrt((l1.x-l2.x)*(l1.x-l2.x) + (l1.y-l2.y)*(l1.y-l2.y));
 
                 /*m.z = m_wall[*IterWall].hauteur2 * sqrt((m.x-l1.x)*(m.x-l1.x) + (m.y-l1.y)*(m.y-l1.y))/d
                     + m_wall[*IterWall].hauteur1 * sqrt((m.x-l2.x)*(m.x-l2.x) + (m.y-l2.y)*(m.y-l2.y))/d;

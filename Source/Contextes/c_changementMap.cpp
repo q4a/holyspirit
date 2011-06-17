@@ -32,7 +32,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
-int GestionBoutons(Jeu *jeu, bool = false);
+int GestionBoutons(Jeu *jeu, bool = false, bool = false, bool = false);
 
 c_Chargement::c_Chargement()
 {
@@ -169,7 +169,7 @@ void c_Chargement::PreLoad(Jeu *jeu)
     if (!jeu->hero.m_personnage.EnVie())
     {
         mort = true;
-        jeu->hero.m_personnage.InfligerDegats(-jeu->hero.m_caracteristiques.maxVie*0.5,4,0);
+        jeu->hero.m_personnage.InfligerDegats(-jeu->hero.m_caracteristiques.maxVie,4,0);
     }
     else
         mort = false;
@@ -388,6 +388,10 @@ void c_Chargement::PostLoad(Jeu *jeu)
 
     jeu->Clock.Reset();
 
+    jeu->map->GererMonstres(jeu,&jeu->hero,0,&jeu->menu);
+    jeu->map->GererScript(jeu,&jeu->hero,0,&jeu->menu);
+    jeu->map->Animer(&jeu->hero,0.1);
+
     m_chargement = false;
 }
 
@@ -400,7 +404,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
     }
 
     temps_ecoule=0;
-    temps_ecoule=jeu->Clock.GetElapsedTime();
+    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
     tempsEcouleDepuisDernierAffichage+=temps_ecoule;
     jeu->Clock.Reset();
 
@@ -449,13 +453,20 @@ void c_Chargement::Utiliser(Jeu *jeu)
     {
         configuration->RafraichirOmbre=1;
 
-        if(jeu->map!=NULL)
-            moteurSons->setVolumeMusique((int)(z*(float)configuration->music_volume/50));
-
         if ((!m_debut&&augmenterNoir)||(!augmenterNoir))
         {
             if(jeu->map!=NULL)
+            {
+                if(augmenterNoir)
+                for(unsigned i = 0 ; i < jeu->map->m_ambiances.size() ; ++i)
+                    jeu->map->m_playAmbiances[i] = false;
+
                 jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
+                if(augmenterNoir)
+                    jeu->map->GererAmbiance(temps_ecoule*20);
+                else
+                    jeu->map->GererAmbiance(temps_ecoule*5);
+            }
 
             jeu->hero.AfficherAmisEtCraft();
 

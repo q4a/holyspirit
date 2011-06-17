@@ -33,7 +33,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
-int GestionBoutons(Jeu *jeu, bool = false);
+int GestionBoutons(Jeu *jeu, bool = false, bool = false, bool = false);
 
 c_Potales::c_Potales()
 {
@@ -47,10 +47,7 @@ void c_Potales::Utiliser(Jeu *jeu)
 {
     int temp = GestionBoutons(jeu);
 
-    if (m_decalage<=-600)
-        m_afficher=1;
-
-    temps_ecoule=jeu->Clock.GetElapsedTime();
+    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
     jeu->m_display=true;
     jeu->Clock.Reset();
 
@@ -70,6 +67,7 @@ void c_Potales::Utiliser(Jeu *jeu)
     {
         m_decalage=-600;
         jeu->Next();
+        m_afficher = 1;
     }
 
     jeu->menu.AfficherQuetes(m_decalage,&jeu->hero.m_classe);
@@ -98,6 +96,7 @@ void c_Potales::Utiliser(Jeu *jeu)
 
     jeu->menu.AfficherHUD(&jeu->hero.m_classe);
     jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,-1,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
+    jeu->map->GererAmbiance(temps_ecoule);
 
     eventManager->AfficherCurseur();
 

@@ -293,7 +293,8 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
             &&info.m_cible->getCaracteristique().niveau > 0 && info.m_cible->getCaracteristique().vitesse > 0
             &&info.m_cible->getCaracteristique().rang <= 1)
         {
-            info.m_cible->m_scriptAI     = Script (effet.m_chaine);
+            info.m_cible->m_scriptAI = effet.m_chaine;
+            info.m_cible->m_scriptAI.Add(m_ModeleMonstre[info.m_cible->getModele()].m_scriptAI);
 
             info.m_cible->m_friendly     = true;
 
@@ -1033,13 +1034,13 @@ bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Ef
             miracleEnCours.m_coordonneeCible.y  = personnage->getCoordonnee().y;
         }
 
-        if (((  miracleEnCours.m_coordonneeDepart.x  < miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x>miracleEnCours.m_coordonneeCible.x*COTE_TILE)
+        if((((  miracleEnCours.m_coordonneeDepart.x  < miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x>miracleEnCours.m_coordonneeCible.x*COTE_TILE)
             ||( miracleEnCours.m_coordonneeDepart.x  > miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x<miracleEnCours.m_coordonneeCible.x*COTE_TILE)
             ||  miracleEnCours.m_coordonneeDepart.x  == miracleEnCours.m_coordonneeCible.x)
 
            &&((  miracleEnCours.m_coordonneeDepart.y   > miracleEnCours.m_coordonneeCible.y&&personnage->getCoordonneePixel().y<miracleEnCours.m_coordonneeCible.y*COTE_TILE)
            ||(   miracleEnCours.m_coordonneeDepart.y   < miracleEnCours.m_coordonneeCible.y&&personnage->getCoordonneePixel().y>miracleEnCours.m_coordonneeCible.y*COTE_TILE)
-           ||    miracleEnCours.m_coordonneeDepart.y   == miracleEnCours.m_coordonneeCible.y)
+           ||    miracleEnCours.m_coordonneeDepart.y   == miracleEnCours.m_coordonneeCible.y))
 
             ||(personnage->getPousse().x == 0 && personnage->getPousse().y == 0))
         {
@@ -1210,7 +1211,11 @@ bool Map::Miracle_Degats(Hero *hero, Personnage *personnage, Miracle &modele, Ef
          //   if (info.m_cible->getCoordonnee().x >=0 && info.m_cible->getCoordonnee().x < (int)m_decor[0][info.m_cible->getCoordonnee().y].size())
            // {
                 if(deg != 0)
+                {
                     InfligerDegats(info.m_cible, personnage, deg, effet.m_informations[2], hero, effet.m_informations[3]);
+                    if(personnage == &hero->m_personnage && effet.m_informations[3] == 0 && effet.m_informations[2] == 0)
+                        hero->JouerSonAttaque(info.m_cible->m_materiau);
+                }
            // }
     }
 
@@ -1441,28 +1446,32 @@ void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,fl
         bool continuer=true;
         for (int o=0;o<(int)personnage->m_miracleEnCours[i].m_infos.size() && continuerb;o++)
         {
-            if (personnage->m_miracleEnCours[i].m_infos[o]->m_effetEnCours >= 0)
+            if (personnage->m_miracleEnCours[i].m_infos[o]->m_effetEnCours >= 0
+             && personnage->m_miracleEnCours[i].m_infos[o]->m_effetEnCours <  (int)miracles[personnage->m_miracleEnCours[i].m_modele].m_effets.size())
             {
 
                 int effetEnCours = personnage->m_miracleEnCours[i].m_infos[o]->m_effetEnCours;
                 int type = -2;
                 if(personnage->m_miracleEnCours[i].m_modele >= 0 && personnage->m_miracleEnCours[i].m_modele < (int)miracles.size())
+                {
                     type = miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[personnage->m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type;
 
-                if(miracles[personnage->m_miracleEnCours[i].m_modele].m_consommer == effetEnCours
-                 &&!personnage->m_miracleEnCours[i].m_dejaConsommeFoi)
-                {
-                    Caracteristique temp = personnage->getCaracteristique();
-                    temp.foi        -= miracles[personnage->m_miracleEnCours[i].m_modele].m_coutFoi
-                                        + miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveFoi;
-                    temp.vie        -= miracles[personnage->m_miracleEnCours[i].m_modele].m_coutVie
-                                        + miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveVie;
-                    temp.reserveFoi += miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveFoi;
-                    temp.reserveVie += miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveVie;
-                    personnage->setCaracteristique(temp);
-                    miracles[personnage->m_miracleEnCours[i].m_modele].m_cur_time = 0;
+                    if(miracles[personnage->m_miracleEnCours[i].m_modele].m_consommer == effetEnCours
+                     &&!personnage->m_miracleEnCours[i].m_dejaConsommeFoi)
+                    {
+                        Caracteristique temp = personnage->getCaracteristique();
+                        temp.foi        -= miracles[personnage->m_miracleEnCours[i].m_modele].m_coutFoi
+                                            + miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveFoi;
+                        temp.vie        -= miracles[personnage->m_miracleEnCours[i].m_modele].m_coutVie
+                                            + miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveVie;
+                        temp.reserveFoi += miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveFoi;
+                        temp.reserveVie += miracles[personnage->m_miracleEnCours[i].m_modele].m_reserveVie;
+                        personnage->setCaracteristique(temp);
+                        miracles[personnage->m_miracleEnCours[i].m_modele].m_cur_time = 0;
 
-                    personnage->m_miracleEnCours[i].m_dejaConsommeFoi = true;
+                        personnage->m_miracleEnCours[i].m_dejaConsommeFoi = true;
+                    }
+
                 }
 
                 if (type == AURA)

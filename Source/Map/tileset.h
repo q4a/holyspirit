@@ -49,6 +49,7 @@ class Tileset
 	void ChargerImages();
 
 	bool JouerSon(int numeroSon,coordonnee position, bool unique = true, float volume = 100);
+	bool IsPlayingSound(int numeroSon);
 	void DeleteTiles();
 
 	int     getImage(int tile, int type = 0);
@@ -66,6 +67,7 @@ class Tileset
             coordonnee getLumiereDecalDuTile(int tile);
 	const   std::string &getChemin(){return m_chemin;}
 	float   getTempsDuTile(int tile, int type = 0);
+	float   getTempsRandDuTile(int tile, int type = 0);
 	int     getOpacityDuTile(int tile, int type = 0);
 	int     getLayerDuTile(int tile);
 	int     getOrdreDuTile(int tile);

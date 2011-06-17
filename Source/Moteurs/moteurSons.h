@@ -37,6 +37,16 @@ struct Infos_son
     int volume;
 };
 
+struct Infos_buffer
+{
+    Infos_buffer() : buffer(), volume(100), pitchable(true)
+    {
+    }
+   sf::SoundBuffer buffer;
+   int volume;
+   bool pitchable;
+};
+
 class MoteurSons : public CSingleton<MoteurSons>
 {
 	public:
@@ -48,6 +58,7 @@ class MoteurSons : public CSingleton<MoteurSons>
 	void Vider();
 	int AjouterBuffer(std::string);
 	bool JouerSon(int ID,coordonnee position,bool unique=0,bool preserv = 0,int volume=100);
+	bool IsPlayingSound(int ID);
 	void StopAllSounds();
 
 	void PlayNewMusic(const std::string &chemin);
@@ -58,6 +69,8 @@ class MoteurSons : public CSingleton<MoteurSons>
 
 	std::string getCheminSon(int IDimage);
 
+	void DebugRefreshSound();
+
 	protected:
 
 	MoteurSons();
@@ -67,7 +80,7 @@ class MoteurSons : public CSingleton<MoteurSons>
 	sf::Sound m_sons[NOMBRE_SONS];
 	bool m_sons_preserv[NOMBRE_SONS];
 	int m_IDSons[NOMBRE_SONS];
-	std::vector <sf::SoundBuffer *> m_buffers;
+	std::vector <Infos_buffer *> m_buffers;
 	std::vector <std::string> m_cheminsSons;//Permet de s'assurer d'avoir des singletons
 
 	sf::Music m_music;
@@ -75,6 +88,7 @@ class MoteurSons : public CSingleton<MoteurSons>
 	std::string m_curMusic;
 	std::string m_nextMusic;
 	float change_volume;
+	int m_music_volume;
 };
 
 #endif

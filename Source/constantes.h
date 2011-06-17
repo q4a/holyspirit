@@ -68,7 +68,7 @@ enum {NORMAL,BONNEFACTURE,BENI,SACRE,SANCTIFIE,DIVIN,INFERNAL,CRAFT,QUETE};
 
 enum {AUCUN_EMPLACEMENT,ARME_PRINCIPAL,BOUCLIER,ARMURE_CORPS,ARMURE_CORPS2,CASQUE,BOTTES,GANT,ANNEAU,PENDENTIF};
 
-enum {AUCUN,ARME,ARMURE,CONSOMMABLE,SCHEMA,LITANIE,JEWELERY,GOLEM,DOCUMENT};
+enum {AUCUN,ARME,ARMURE,CONSOMMABLE,SCHEMA,LITANIE,JEWELERY,GOLEM,DOCUMENT,GOLD};
 
 enum {EFFICACITE_ACCRUE,CARACT_SUPP,POINTS_SUPP,DEGATS_SUPP, ARMURE_SUPP, DEGATS_TEMPS_SUPP, MIRACLE_SUPP};
 
@@ -76,6 +76,7 @@ enum {FORCE, DEXTERITE, VITALITE, PIETE, CHARISME};
 enum {PT_VIE, PT_FOI};
 enum {PHYSIQUE, FEU, FOI, CORROSION};
 
+enum {M_AUCUN, M_ORGANIQUE, M_ARMURE, M_VAPOREUX, M_ROCHE};
 
 enum {B_CHAT,B_MIRACLES,B_INVENTAIRE,B_QUETES,B_MENU,B_MAP,B_DEPLIER, B_DOCS};
 
@@ -235,7 +236,7 @@ struct Caracteristique
         vitesse(0), vie(0), maxVie(0), reserveVie(0), regenVie(0), foi(0),
         maxFoi(0), reserveFoi(0), regenFoi(0), volVie(0), volFoi(0), niveau(0),
         rang(0), force(0), dexterite(0), vitalite(0), piete(0), charisme(0),
-        pts_restant(0), miracles_restant(0), modificateurTaille(0), sang(0)
+        pts_restant(0), miracles_restant(0), modificateurTaille(0)
     {
 
     }
@@ -275,10 +276,6 @@ struct Caracteristique
     int miracles_restant;
 
     float modificateurTaille;
-
-    bool sang;
-
-
 };
 
 sf::FloatRect GetViewRect(const sf::View& view);

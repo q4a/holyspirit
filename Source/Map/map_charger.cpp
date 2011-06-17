@@ -72,6 +72,8 @@ void Map::Detruire()
     if (configuration->debug)
         console->Ajouter("Chemins musiques détruits !");
 
+    m_ambiances.clear();
+
     m_projectile.clear();
     if (configuration->debug)
         console->Ajouter("Projectiles détruits !");
@@ -92,7 +94,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
     m_dimensions.x=0;
     m_dimensions.y=0;
 
-    int numeroModuleAleatoire=rand()%10;
+   // int numeroModuleAleatoire=rand()%10;
 
     bool entite_map_existante=false,mapExistante=false;
 
@@ -255,6 +257,49 @@ void Map::ChargerInfos(ifstream *fichier, const std::string &chemin)
 
     if (configuration->debug)
         console->Ajouter("/Lectures des musiques.");
+
+    do
+    {
+        fichier->get(caractere);
+        if (caractere=='*')
+        {
+            do
+            {
+                fichier->get(caractere);
+                if (caractere=='m')
+                {
+                    string cheminSon;
+                    *fichier>>cheminSon;
+
+                    m_ambiancesPath.push_back(cheminSon);
+                    m_ambiances.push_back(moteurSons->AjouterBuffer(cheminSon));
+                    m_volumeAmbiances.push_back(0);
+                    m_playAmbiances.push_back(true);
+                    m_startPlayAmbiances.push_back(true);
+                }
+                else if (caractere=='p')
+                {
+                    int temp;
+                    *fichier>>temp;
+                    m_playAmbiances.back() = temp;
+                    m_startPlayAmbiances.back() = temp;
+                }
+
+                if (fichier->eof())
+                    caractere='$';
+            }
+            while (caractere!='$');
+
+            fichier->get(caractere);
+        }
+        if (fichier->eof())
+            caractere='$';
+    }
+    while (caractere!='$');
+
+    if (configuration->debug)
+        console->Ajouter("/Lectures des ambiances.");
+
 
     int heureEnCours=0;
     do
@@ -434,8 +479,6 @@ void Map::ChargerEntites(ifstream *fichier2, const std::string &chemin)
 
                 int pos;
 
-
-                char caractere;
                 do
                 {
                     //Chargement du nom
@@ -540,6 +583,8 @@ void Map::ChargerEntites(ifstream *fichier2, const std::string &chemin)
                 }
 
                 objets.clear();
+
+                fichier2->get(caractere);
             }
 
             if (fichier2->eof())
@@ -1021,6 +1066,9 @@ void Map::Sauvegarder(Hero *hero)
         fichier<<"$\n";
         for (unsigned i=0;i< m_musiques.size();++i)
             fichier<<"*"<<m_musiques[i]<<"\n";
+        fichier<<"$\n";
+        for (unsigned i=0;i< m_ambiancesPath.size();++i)
+            fichier<<"* m"<<m_ambiancesPath[i]<<" p"<<m_startPlayAmbiances[i]<<" $\n";
         fichier<<"$\n";
 
         for (int i=0;i<24;++i)

@@ -107,6 +107,8 @@ void Monstre::Charger(int numero,Modele_Monstre *modele)
 
     m_friendly=modele->m_friendly;
 
+    m_materiau=modele->m_materiau;
+
     m_entite_graphique.option_sonUnique = false;
 
     /*if (m_caracteristique.rang==0&&m_caracteristique.pointAme>0)
@@ -265,7 +267,6 @@ bool Modele_Monstre::Charger(const std::string &chemin)
             if (caractere=='*')
             {
                 m_caracteristique.modificateurTaille=1;
-                m_caracteristique.sang=0;
                 m_minimap=true;
                 m_friendly=false;
                 m_collision = true;
@@ -293,10 +294,6 @@ bool Modele_Monstre::Charger(const std::string &chemin)
                         break;
                     case 'n':
                         fichier>>m_caracteristique.niveau;
-                        break;
-
-                    case 's':
-                        fichier>>m_caracteristique.sang;
                         break;
 
                     case 't':
@@ -333,6 +330,10 @@ bool Modele_Monstre::Charger(const std::string &chemin)
 
                     case 'g':
                         fichier>>m_noDistanceRestriction;
+                        break;
+
+                    case 's':
+                        fichier>>m_materiau;
                         break;
 
                     case 'r':
@@ -419,6 +420,18 @@ bool Modele_Monstre::Charger(const std::string &chemin)
                         int temp2;
                         fichier>>temp2;
                         m_objets.back().back().setChanceTrouver(temp2);
+                    }
+                    if (caractere=='i')
+                    {
+                        int temp2;
+                        fichier>>temp2;
+                        m_objets.back().back().setMin(temp2);
+                    }
+                    if (caractere=='a')
+                    {
+                        int temp2;
+                        fichier>>temp2;
+                        m_objets.back().back().setMax(temp2);
                     }
 
                     if (caractere=='*')

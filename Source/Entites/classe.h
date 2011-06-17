@@ -85,6 +85,8 @@ struct Classe
     std::vector<std::string> equipementParDefaut;
     std::string modeleNu[NOMBRE_MORCEAU_PERSONNAGE][3];
 
+    int m_sound_death;
+
     Border border;
 
     Image_interface inventaire;
@@ -117,10 +119,11 @@ struct Classe
     //std::vector<Image_interface> interface_miracles;
 
     std::vector<Bouton> boutons_miracles;
+    std::vector<Bouton> onglets_miracles;
 
     coordonnee position_raccourcis[8];
-    coordonnee position_miracleALancerDroite;
-    coordonnee position_miracleALancerGauche;
+    Image_interface p_miracleD;
+    Image_interface p_miracleG;
 
     coordonnee position_sac_inventaire;
     coordonnee position_contenu_inventaire;

@@ -118,7 +118,7 @@ void Decor::setDecor(int tileset,int tile,const std::vector<int> &monstre,int he
     m_objets=objets;
 }
 
-bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
+bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage, bool selectable)
 {
     bool retour=false;
     if(objet>=0&&objet<(int)m_objets.size())
@@ -154,6 +154,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
         sprite.Resize(texte.GetRect().Width +8 , texte.GetRect().Height+4);
 
      //   if(eventManager->getEvenement(configuration->m_key_actions[K_PICKITEMS],EventKey))
+        if(selectable)
             if(eventManager->getPositionSouris().x>sprite.GetPosition().x
              &&eventManager->getPositionSouris().y>sprite.GetPosition().y
              &&eventManager->getPositionSouris().x<sprite.GetPosition().x + texte.GetRect().Width +8
@@ -168,7 +169,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage)
     return (retour);
 }
 
-int Decor::AfficherTexteObjets(coordonnee position)
+int Decor::AfficherTexteObjets(coordonnee position, bool selectable)
 {
     int retour = -1;
     float decalage = position.y-18;
@@ -176,7 +177,7 @@ int Decor::AfficherTexteObjets(coordonnee position)
     for (int z=0;z<(int)m_objets.size();z++)
     {
         if(m_objets[z].m_alpha > 0)
-            if(AfficherTexteObjet(coordonnee ((int)position.x, (int)decalage), z, &decalage))
+            if(AfficherTexteObjet(coordonnee ((int)position.x, (int)decalage), z, &decalage, selectable))
                 retour=z;
     }
 

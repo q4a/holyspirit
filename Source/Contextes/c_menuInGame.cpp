@@ -32,7 +32,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
-int GestionBoutons(Jeu *jeu, bool = false);
+int GestionBoutons(Jeu *jeu, bool = false, bool = false, bool = false);
 
 c_MenuInGame::c_MenuInGame()
 {
@@ -54,24 +54,25 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     if (configuration->Lumiere)
         jeu->map->CalculerOmbresEtLumieres();
 
+    jeu->map->GererAmbiance(temps_ecoule);
+
     temps_ecoule=0;
     temps_ecoule=jeu->Clock.GetElapsedTime();
     jeu->Clock.Reset();
 
     if (retour)
     {
-        if (m_alpha>0)
-            m_alpha-=temps_ecoule*1000;
+        m_alpha-=temps_ecoule*1000;
         if (m_alpha<0)
             m_alpha=0,retour=false,jeu->Next(),moteurGraphique->m_blur=0;
     }
     else
     {
-        if (m_alpha<255)
-            m_alpha+=temps_ecoule*500;
+        m_alpha+=temps_ecoule*500;
         if (m_alpha>255)
             m_alpha=255;
     }
+
 
     int temp = GestionBoutons(jeu);
     if(temp >= 0)

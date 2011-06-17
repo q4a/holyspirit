@@ -39,8 +39,10 @@ class Climate
         void Draw();
 
         float GetState();
+        float GetTransitionTime();
 
         void Stop();
+        void Continue();
 
         bool m_actif;
 
@@ -51,6 +53,7 @@ class Climate
 
     private:
         std::vector<Entite_graphique> m_entities;
+        std::vector<int> m_noAnimationStart;
 
         float m_max_time;
         float m_transition_time;

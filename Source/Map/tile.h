@@ -34,7 +34,7 @@ class Tile
 	Tile();
 	~Tile();
 	void setTile(   coordonnee positionDansLImage,int image,bool collision,int animation,std::vector<int> son,Lumiere lumiere, coordonnee lumiere_decal,
-                    bool ombre,bool reflection,char orientation,bool transparent,coordonnee centre,float temps, int opacity, int layer,
+                    bool ombre,bool reflection,char orientation,bool transparent,coordonnee centre,float temps, float m_tempsRand, int opacity, int layer,
                     int attaque, int ordre, int angle, int ambientShadow);
 
 	const coordonnee &getCoordonnee();
@@ -50,6 +50,7 @@ class Tile
 	const coordonnee &getCentre();
 	const coordonnee &getLumiereDecal();
 	float getTemps();
+	float getTempsRand();
 	int getOpacity();
 	int getLayer();
 	int getAttaque();
@@ -76,6 +77,7 @@ class Tile
 	std::vector<int> m_son;
 
 	float m_temps;
+	float m_tempsRand;
 	int m_layer;
 
     int m_ordre;

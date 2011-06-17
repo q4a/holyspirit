@@ -32,7 +32,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
-int GestionBoutons(Jeu *jeu, bool = false);
+int GestionBoutons(Jeu *jeu, bool = false, bool = false, bool = false);
 
 inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
 {
@@ -51,12 +51,11 @@ c_Documents::~c_Documents()
 
 void c_Documents::Utiliser(Jeu *jeu)
 {
-    if (m_decalage<=-600)
-        m_afficher=1;
-
-    temps_ecoule=jeu->Clock.GetElapsedTime();
+    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
     jeu->m_display=true;
     jeu->Clock.Reset();
+
+    jeu->map->GererAmbiance(temps_ecoule);
 
     moteurGraphique->Gerer(0);
     jeu->map->MusiquePlay();
@@ -76,6 +75,7 @@ void c_Documents::Utiliser(Jeu *jeu)
     {
         m_decalage=-600;
         jeu->Next();
+        m_afficher = 1;
     }
 
     int temp = GestionBoutons(jeu);
@@ -103,7 +103,10 @@ void c_Documents::Utiliser(Jeu *jeu)
     {
         eventManager->StopEvenement(Mouse::Left,EventClic);
         if(jeu->hero.m_docPointe >= 0)
-        jeu->hero.m_docSelectionne = jeu->hero.m_docPointe;
+        {
+            jeu->hero.m_docSelectionne = jeu->hero.m_docPointe;
+            moteurSons->JouerSon(configuration->sound_book,coordonnee (0,0),0);
+        }
         if(jeu->hero.m_docPointe >= 0)
             jeu->hero.m_defil_cdoc = 0;
     }

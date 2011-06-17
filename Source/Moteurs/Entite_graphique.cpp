@@ -39,6 +39,7 @@ Entite_graphique::Entite_graphique() : sf::Sprite()
     SetSubRect(sf::IntRect(0,0,0,0));
 
     m_animation = 0;
+    m_nextAnimation = 0;
 
     m_old_lightIntensity = 0;
 
@@ -75,7 +76,7 @@ void Entite_graphique::Animer(float temps)
 
     if(m_tileset != NULL)
     {
-        float tempsAnimation = m_tileset->getTempsDuTile(m_noAnimation);
+        float tempsAnimation = m_tileset->getTempsDuTile(m_noAnimation) + m_nextAnimation;
         m_animation += temps;
 
         if(configuration->Lumiere > 0)
@@ -100,7 +101,7 @@ void Entite_graphique::Animer(float temps)
                 Generer();
 
                 m_animation -= tempsAnimation;
-                tempsAnimation = m_tileset->getTempsDuTile(m_noAnimation);
+                tempsAnimation = m_tileset->getTempsDuTile(m_noAnimation) + m_nextAnimation;
             }
     }
 }
@@ -134,13 +135,14 @@ void Entite_graphique::NextTile(bool cur,bool no_sound)
             position.y = (int)moteurGraphique->m_camera.GetCenter().y;
         }
 
+        m_nextAnimation = ((float)rand()/RAND_MAX)*m_tileset->getTempsRandDuTile(m_noAnimation);
 
         if(!m_tileset->getSonTile(m_noAnimation).empty() && !no_sound)
         {
             const int n = m_tileset->getSonTile(m_noAnimation).size();
             int no = rand()%n, nbr = 0;
 
-            while(!m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation)[no++],position,option_sonUnique,m_sound_volume) && nbr++ < n)
+            while(!m_tileset->JouerSon(m_tileset->getSonTile(m_noAnimation)[no++],position,option_sonUnique,m_sound_volume) && nbr++ <= n)
                 if(no >= n)
                     no = 0;
         }

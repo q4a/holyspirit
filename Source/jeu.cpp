@@ -66,7 +66,7 @@ void Jeu::Demarrer()
     m_menuInGame    = new c_MenuInGame;
     m_mainMenu      = new c_MainMenu;
 
-    m_contexte = m_demarrage;
+    m_contexte = m_mainMenu;
 
     Clock.Reset();
 
@@ -77,11 +77,11 @@ void Jeu::Demarrer()
     while (m_run)
     {
         if(map != NULL && map->m_loaded)
-            eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),map->getDimensions());
+            eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime()*0.001,map->getDimensions());
         else
         {
             coordonnee buf(1,1,1,1);
-            eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime(),buf);
+            eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime()*0.001,buf);
         }
 
         if (!m_no_printscreen && eventManager->getEvenement(Key::P,EventKey))
@@ -95,7 +95,7 @@ void Jeu::Demarrer()
         if(m_display)
             moteurGraphique->Afficher();
 
-        moteurSons->Gerer(MusicClock.GetElapsedTime());
+        moteurSons->Gerer(MusicClock.GetElapsedTime()*0.001);
         MusicClock.Reset();
     }
 

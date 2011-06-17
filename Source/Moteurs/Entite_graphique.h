@@ -58,6 +58,7 @@ class Entite_graphique : public sf::Sprite
     int m_ambientShadow;
 
     float m_animation;
+    float m_nextAnimation;
 
     float m_old_lightIntensity;
 

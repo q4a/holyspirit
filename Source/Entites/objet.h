@@ -133,6 +133,8 @@ public:
     void setRarete(int);
     void setPosition(int, int);
     void setChanceTrouver(float);
+    void setMin(int);
+    void setMax(int);
 
     int m_type,m_equipe,m_equipe_set;
     std::vector <int> m_emplacement;

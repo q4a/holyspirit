@@ -846,6 +846,25 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             while (caractere!='$');
         }
 
+
+        do
+        {
+            fichier.get(caractere);
+            if (caractere=='*')
+            {
+                std::string temp;
+                fichier>>temp;
+                m_sound_death = moteurSons->AjouterBuffer(temp);
+            }
+            if (fichier.eof())
+            {
+                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                caractere='$';
+            }
+
+        }
+        while (caractere!='$');
+
         ChargerBorder(fichier, border);
 
         ChargerImageInterface(fichier, inventaire);
@@ -898,8 +917,8 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         for(int i = 0 ; i < 8 ; ++i)
             ChargerCoordonneeInterface(fichier, position_raccourcis[i]);
 
-        ChargerCoordonneeInterface(fichier, position_miracleALancerGauche);
-        ChargerCoordonneeInterface(fichier, position_miracleALancerDroite);
+        ChargerImageInterface(fichier, p_miracleG);
+        ChargerImageInterface(fichier, p_miracleD);
 
         ChargerBouton(fichier, boutons_menus_hud);
         ChargerBouton(fichier, boutons_menus_hud_2);
@@ -975,6 +994,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         ChargerCoordonneeInterface(fichier, position_points_miracles);
 
         ChargerBouton(fichier, boutons_miracles);
+        ChargerBouton(fichier, onglets_miracles);
 
         do
         {

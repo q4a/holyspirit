@@ -246,11 +246,13 @@ void MoteurGraphique::Gerer(float temps)
                 m_effetsEcran_iter->temps   = 0;
 
                 int valeur = (int)m_effetsEcran_iter->info1 ;
-                if(decalage && (fabs(decalageCameraSouhaite.x) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1) || !decalage)
+                if(((decalage && (fabs(decalageCameraSouhaite.x) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1))
+                 || fabs(valeur) == m_effetsEcran_iter->info1) || !decalage)
                         decalageCameraSouhaite.x = (1 - 2 * (rand()%100<50))*valeur;
 
                 valeur = (int)m_effetsEcran_iter->info1 ;
-                if(decalage && (fabs(decalageCameraSouhaite.y) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1 || fabs(valeur) == m_effetsEcran_iter->info1) || !decalage)
+                if(((decalage && (fabs(decalageCameraSouhaite.y) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1))
+                 || fabs(valeur) == m_effetsEcran_iter->info1) || !decalage)
                         decalageCameraSouhaite.y = (1 - 2 * (rand()%100<50))*valeur;
 
                 m_effetsEcran_iter->info1  -= 1;
@@ -806,10 +808,10 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
                 sf::Sprite sprite = *entite;
                 sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
 
-                if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
-                && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
-                && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
-                && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height
+                if((sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
+                 && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
+                 && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
+                 && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height)
                 || sprite.GetRotation() != 0 || entite->m_fixed)
                     AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, !entite->m_fixed);
             }
@@ -821,7 +823,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
                 sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
 
                 sprite.SetScale(1, (100-(float)m_soleil.hauteur)/50);
-                sprite.SetRotation(m_angleOmbreSoleil);
+                sprite.SetRotation(-m_angleOmbreSoleil);
 
                 AjouterCommande(&sprite, 9, !entite->m_fixed);
             }
@@ -848,10 +850,10 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
 
         if(entite->m_distort && configuration->Distortion)
         {
-           if (entite->m_sprite_distortion.GetPosition().x + entite->m_sprite_distortion.GetSize().x - entite->m_sprite_distortion.GetOrigin().x    >= GetViewRect(m_camera).Left
+           if((entite->m_sprite_distortion.GetPosition().x + entite->m_sprite_distortion.GetSize().x - entite->m_sprite_distortion.GetOrigin().x    >= GetViewRect(m_camera).Left
             && entite->m_sprite_distortion.GetPosition().x - entite->m_sprite_distortion.GetOrigin().x                                              <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
             && entite->m_sprite_distortion.GetPosition().y + entite->m_sprite_distortion.GetSize().y - entite->m_sprite_distortion.GetOrigin().y    >= GetViewRect(m_camera).Top
-            && entite->m_sprite_distortion.GetPosition().y - entite->m_sprite_distortion.GetOrigin().y                                              <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height
+            && entite->m_sprite_distortion.GetPosition().y - entite->m_sprite_distortion.GetOrigin().y)                                           <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height
             || entite->m_sprite_distortion.GetRotation() != 0)
                 m_distortion_commandes.push_back(Commande (&entite->m_sprite_distortion, !entite->m_fixed));
         }

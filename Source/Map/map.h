@@ -121,6 +121,7 @@ public:
     bool InfligerDegats(Personnage *monstre, Personnage *cible, float degats, int type, Hero *hero, float temps = 0);
 
     void MusiquePlay();
+    void GererAmbiance(float temps);
 
     bool RamasserObjet(Hero *hero,bool enMain = false);
 
@@ -153,6 +154,10 @@ public:
     int m_defilerObjets,m_objetPointe,m_monstreIllumine;
     std::vector<std::string> m_musiques;
     int m_musiqueEnCours;
+    std::vector<int> m_ambiances;
+    std::vector<float> m_volumeAmbiances;
+    std::vector<bool> m_playAmbiances, m_startPlayAmbiances;
+    std::vector<std::string> m_ambiancesPath;
 
     std::vector<Climate> m_climates;
 

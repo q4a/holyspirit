@@ -33,7 +33,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using namespace sf;
 using namespace std;
 
-int GestionBoutons(Jeu *jeu, bool = false);
+int GestionBoutons(Jeu *jeu, bool = false, bool = false, bool = false);
 
 inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
 {
@@ -56,14 +56,12 @@ c_Miracles::~c_Miracles()
 
 void c_Miracles::Utiliser(Jeu *jeu)
 {
-    if (m_decalage<=-600)
-        m_afficher=1;
-
-    temps_ecoule=jeu->Clock.GetElapsedTime();
+    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
     jeu->m_display=true;
     jeu->Clock.Reset();
 
     moteurGraphique->Gerer(0);
+    jeu->map->GererAmbiance(temps_ecoule);
     //jeu->map->Animer(&jeu->hero,0);
     jeu->map->Afficher(&jeu->hero,0,jeu->m_jeu->alpha_map);
     jeu->hero.AfficherAmisEtCraft();
@@ -79,6 +77,7 @@ void c_Miracles::Utiliser(Jeu *jeu)
     {
         m_decalage=-600;
         jeu->Next();
+        m_afficher = 1;
     }
 
     int temp = GestionBoutons(jeu);

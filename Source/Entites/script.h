@@ -46,6 +46,8 @@ public:
     void Sauvegarder(std::ofstream &fichier);
     void Sauvegarder_instruction(std::ofstream &fichier , int no);
 
+    void Add(Script script);
+
     void   setVariable(int i, float val);
     float  getVariable(int i);
     int    getNbrVariable();

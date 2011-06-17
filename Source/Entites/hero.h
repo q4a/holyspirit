@@ -99,6 +99,8 @@ public:
     void AjouterEffetsBenediction1(benediction &bene);
     void AjouterEffetsBenediction2(benediction &bene, Caracteristique &temp);
 
+    void JouerSonAttaque(int materiau);
+
     void RecalculerGolems();
 
     void RegenererVie(float vie);
@@ -107,7 +109,7 @@ public:
 
     void addPotale(int x, int y, int nom, const std::string &chemin);
 
-    bool AjouterObjet(Objet &objet,bool enMain=false);
+    bool AjouterObjet(Objet &objet,bool enMain=false, bool playSound=true);
 
     Objet DeposerObjet();
     bool PrendreEnMain(std::vector<Objet>*, bool craft = false, bool bless = false);
@@ -118,13 +120,17 @@ public:
 
     bool PossibleEquiper(int numero, int emplacement);
     bool PossibleEquiper(Objet  &, int emplacement);
-    bool Equiper(int numero, int emplacement);
+    bool Equiper(int numero, int emplacement, bool playsound = true);
     bool UtiliserObjet(int numero);
     bool RangerObjet(int numero);
     const std::string &getNomObjet(int numero);
     int getNombreObjet();
 
     void UpdateRaccourcis();
+
+    void GererRaccourcisMiracles();
+    void GererRaccourcisObjets(bool inventory, bool hideLeft);
+    void AfficherIconeAttaque(Image_interface &img);
 
     void AutoTrierInventaire();
     void AutoTrierCoffre();
@@ -152,6 +158,7 @@ public:
     Caracteristique m_caracteristiques;
 
     int miracleEnCours,frappeEnCours,m_objetEnMain,m_objetADeposer,m_objetVise,m_miracleEnMain;
+    int m_lastRaccourcis;
     int m_argent;
     int m_holywater;
 
@@ -205,6 +212,8 @@ public:
 
     int m_cas;
     int m_weaponsSet;
+
+    int m_weaponModel;
 
 private:
     coordonnee m_chercherSac,m_sacVise;

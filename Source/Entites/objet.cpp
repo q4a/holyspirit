@@ -154,7 +154,7 @@ Objet::Objet()
 
     m_prix=0;
 
-    ai=0,aa=0,dii=0,dia=0,dai=0,daa=0,bi=0,ba=0;
+    ai=0,aa=0,dii=0,dia=0,dai=0,daa=0,bi=0,ba=0,vi=0,va=0;
     m_shoot_weapon=0;
 
     m_useMiracle = false;
@@ -521,6 +521,13 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
     }
     while (caractere!='$');
 
+
+    if(m_type == GOLD)
+    {
+        std::ostringstream buf;
+        buf<<m_nom<<m_vie;
+        m_nom = buf.str();
+    }
 }
 
 
@@ -1222,9 +1229,16 @@ void Objet::Generer(int bonus)
 {
     //srand(time(NULL));
     if(va - vi + 1 != 0)
-        m_vie=(rand() % (va - vi + 1)) + vi;
+        m_vie=(int)(((float)rand()/RAND_MAX) * (va - vi + 1) + vi);
     else
         m_vie = 0;
+
+    if(m_type == GOLD)
+    {
+        std::ostringstream buf;
+        buf<<m_nom<<m_vie;
+        m_nom = buf.str();
+    }
 
     if(aa - ai + 1 != 0)
         m_armure=(rand() % (aa - ai + 1)) + ai;
@@ -1862,9 +1876,10 @@ sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *
     if (tailleCadran->x<(int)string.GetRect().Width)
         tailleCadran->x=(int)string.GetRect().Width;
 
-    if(chaine != "_")
+    std::string c(chaine);
+    if(c.compare("_") != 0)
     {
-        if(chaine == "")
+        if(c.compare("") == 0)
             decalage->y+=2;
         else
             decalage->y+=16;
@@ -2127,12 +2142,31 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
     if(m_type == ARME)
     {
-        std::ostringstream buf;
-        buf<<configuration->getText(0,21)<<(int)(m_degatsMin*multiplieurEfficacite/100)<<" - "<<(int)(m_degatsMax*multiplieurEfficacite/100);
+        {
+            std::ostringstream buf;
+            buf<<configuration->getText(0,21)<<(int)(m_degatsMin*multiplieurEfficacite/100)<<" - "<<(int)(m_degatsMax*multiplieurEfficacite/100);
 
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
-        if (multiplieurEfficacite!=100.0f)
-            temp.back().SetColor(sf::Color(0,128,255));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
+            if (multiplieurEfficacite!=100.0f)
+                temp.back().SetColor(sf::Color(0,128,255));
+        }
+
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+
+        {
+            std::ostringstream buf;
+            bool arme2H = false;
+                for (unsigned j=0;j<m_emplacementImpossible.size();j++)
+                    if (m_emplacementImpossible[j]==BOUCLIER)
+                        arme2H = true;
+            if(arme2H)
+                buf<<configuration->getText(0,107);
+            else
+                buf<<configuration->getText(0,106);
+
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
+        }
+
     }
 
     if(m_type == ARMURE)
@@ -2289,7 +2323,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     if(!m_set.m_chemin.empty())
     {
         add_space = true;
-        for(unsigned k = 0 ; k < m_set.m_nombre && k < m_set.m_benedictions.size() ; ++k)
+        for(unsigned k = 0 ; (int)k < m_set.m_nombre && k < m_set.m_benedictions.size() ; ++k)
         {
             for (unsigned i=0;i<m_set.m_benedictions[k].size();i++)
                 temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,getTextBenediction(m_set.m_benedictions[k][i]).c_str(),GetItemColor(5)));
@@ -2516,13 +2550,22 @@ bool Objet::Utilisable(const Caracteristique &caract,std::string IDClasse)
 
 void Objet::JouerSon()
 {
-    moteurSons->JouerSon(m_son,coordonnee (-1,-1,-1,-1));
+    moteurSons->JouerSon(m_son,coordonnee ());
 }
 
 
 void Objet::setChanceTrouver(float chance)
 {
     m_chanceTrouver=chance;
+}
+
+void Objet::setMin(int i)
+{
+    vi=i;
+}
+void Objet::setMax(int a)
+{
+    va=a;
 }
 
 float Objet::getChanceTrouver()

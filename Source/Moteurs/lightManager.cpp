@@ -186,7 +186,7 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2,int hauteu
 
     m_sectors[y][x].push_back(m_wall.size()-1);
 
-    for(int w = 0 ; w < m_sectors[y][x].size() ; ++w)
+    for(int w = 0 ; w < (int)m_sectors[y][x].size() ; ++w)
     {
         if(fabs(m_wall[m_sectors[y][x][w]].pt1.x - m_wall.back().pt1.x) < 5
         && fabs(m_wall[m_sectors[y][x][w]].pt1.y - m_wall.back().pt1.y) < 5)
@@ -229,11 +229,13 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2,int hauteu
 void Light_Manager::Delete_Light(Light_Entity e)
 {
     if (e.Dynamic())
+    {
         if (e.ID()>=0&&e.ID()<(int)m_DynamicLight.size())
             m_DynamicLight[e.ID()].m_actif=false;
-        else
-            if (e.ID()>=0&&e.ID()<(int)m_StaticLight.size())
-                m_StaticLight[e.ID()].m_actif=false;
+    }
+    else
+        if (e.ID()>=0&&e.ID()<(int)m_StaticLight.size())
+            m_StaticLight[e.ID()].m_actif=false;
 }
 
 // On supprime un mur
@@ -328,11 +330,11 @@ void Light_Manager::DrawWallShadow(sf::RenderTarget *App,sf::View *camera,float 
     for(int y =  GetViewRect(*camera).Top * 2 / SECTOR_SIZE + m_origin_sector.y - 1;
             y < (GetViewRect(*camera).Top * 2 + GetViewRect(*camera).Height * 2) / SECTOR_SIZE + 1 + m_origin_sector.y;
           ++y)
-    if(y >= 0 && y < m_sectors.size())
+    if(y >= 0 && y < (int)m_sectors.size())
     for(int x =  GetViewRect(*camera).Left / SECTOR_SIZE + m_origin_sector.x - 1;
             x < (GetViewRect(*camera).Left + GetViewRect(*camera).Width) / SECTOR_SIZE + 1 + m_origin_sector.x;
           ++x)
-    if(x >= 0 && x < m_sectors[y].size())
+    if(x >= 0 && x < (int)m_sectors[y].size())
     for (std::vector<int>::iterator IterWall=m_sectors[y][x].begin();
                                     IterWall!=m_sectors[y][x].end();++IterWall)
      {

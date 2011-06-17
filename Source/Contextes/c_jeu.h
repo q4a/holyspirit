@@ -131,6 +131,8 @@ private:
 
     float m_dead;
 
+    int debug_oldSound;
+
 };
 
 #endif

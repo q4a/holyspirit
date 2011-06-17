@@ -52,6 +52,8 @@ Map::Map()
     m_etat_chargement   = 0;
     m_loaded            = false;
 
+    m_monstreIllumine   = -1;
+
     console->Ajouter("");
     console->Ajouter("Chargements d'images diverses :");
 }
@@ -391,18 +393,22 @@ void Map::Afficher(Hero *hero,bool alt,float alpha)
 
                         if (m_decor[1][j][k].getNombreObjets()>0&&couche==1)
                         {
-                            position.x=(k-j-1)*64+48;
-                            position.y=(k+j)*32+16;
-
+                            position.x=(k-j-1)*64+64;
+                            position.y=(k+j)*32+32;
                             for (int o=0;o<m_decor[1][j][k].getNombreObjets();o++)
                                 m_decor[1][j][k].getObjet(o)->Afficher(position);
 
                             int objetPointe=-1;
 
-                            if (alt)
+                            objetPointe=m_decor[1][j][k].AfficherTexteObjets(position,m_monstreIllumine==-1/*,alt*/);
+
+                            if (alt || objetPointe >= 0
+                                    || (eventManager->getCasePointee().x == k
+                                    && eventManager->getCasePointee().y == j
+                                    && m_monstreIllumine==-1
+                                    &&!eventManager->getEvenement(sf::Mouse::Left,EventClicA)))
                                 m_decor[1][j][k].AlphaObjets(255);
 
-                            objetPointe=m_decor[1][j][k].AfficherTexteObjets(position/*,alt*/);
 
                             if (objetPointe>=0&&!eventManager->getEvenement(sf::Mouse::Left,EventClicA)&&m_monstreIllumine==-1/* && alt*/)
                             {
@@ -523,8 +529,9 @@ int Map::AjouterProjectile(coordonneeDecimal positionReel,coordonneeDecimal cibl
 
 void Map::Animer(Hero *hero,float temps)
 {
-    for(unsigned i = 0 ; i < m_climates.size() ; ++i)
-        m_climates[i].Update(temps);
+    /*for(unsigned i = 0 ; i < m_ambiances.size();++i)
+        if(m_playAmbiances[i])
+            moteurSons->JouerSon(m_ambiances[i],coordonnee (), 1, 0, 100);*/
 
     coordonnee positionHero;
     positionHero.x=(hero->m_personnage.getCoordonnee().x-hero->m_personnage.getCoordonnee().y-1)/5;
@@ -643,9 +650,32 @@ void Map::MusiquePlay()
         m_musiqueEnCours=0;
 }
 
+void Map::GererAmbiance(float temps)
+{
+    for(unsigned i = 0 ; i < m_climates.size() ; ++i)
+        m_climates[i].Update(temps);
+
+    for(unsigned i = 0 ; i < m_ambiances.size() ; ++i)
+    {
+        if(m_playAmbiances[i])
+        {
+            m_volumeAmbiances[i] += temps * 20;
+            if(m_volumeAmbiances[i] > 100)
+                m_volumeAmbiances[i] = 100;
+        }
+        else
+        {
+            m_volumeAmbiances[i] -= temps * 20;
+            if(m_volumeAmbiances[i] < 0)
+                m_volumeAmbiances[i] = 0;
+        }
+        moteurSons->JouerSon(m_ambiances[i],coordonnee (), 1, 0, m_volumeAmbiances[i]);
+    }
+}
+
 void Map::DelEffet(int no)
 {
-    if(no >= 0 && no < m_effets.size())
+    if(no >= 0 && no < (int)m_effets.size())
         m_effets[no].m_actif = false;
 }
 
@@ -708,6 +738,7 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                                         if(m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].m_friendly == projectile->m_monstre)
                                         if(m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].getCaracteristique().niveau >= 0)
                                         if(m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].m_selectable)
+                                        if(m_monstre[m_decor[1][(int)(projectile->m_positionCase.y)][(int)(projectile->m_positionCase.x)].getMonstre()[o]].m_actif)
                                         {
                                             collision = true;
                                             if(rand()%100 > projectile->m_transperce)
@@ -818,8 +849,8 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
 void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 {
     for(std::vector<Monstre>::iterator Iter_monstre = m_monstre.begin();Iter_monstre!=m_monstre.end();++Iter_monstre) {
-    if(fabs(hero->m_personnage.getCoordonnee().x - Iter_monstre->getCoordonnee().x) < 20
-    && fabs(hero->m_personnage.getCoordonnee().y - Iter_monstre->getCoordonnee().y) < 20
+    if((fabs(hero->m_personnage.getCoordonnee().x - Iter_monstre->getCoordonnee().x) < 20
+     && fabs(hero->m_personnage.getCoordonnee().y - Iter_monstre->getCoordonnee().y) < 20)
     || Iter_monstre->m_noDistanceRestriction)
     {
         int monstre = -1;
@@ -1091,8 +1122,7 @@ bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, i
             moteurGraphique->AjouterSystemeParticules(m_ModeleMonstre[monstre->getModele()].m_particules,position2,buffer,force,angle);
         }
 
-        if(!monstre->m_impoussable)
-            monstre->Pousser(coordonneeDecimal(cos(m) * force * 0.1f, sin(m) * force * 0.1f));
+        monstre->Pousser(coordonneeDecimal(cos(m) * force * 0.1f, sin(m) * force * 0.1f));
 
         if (monstre->getCoordonnee().x>=0&&monstre->getCoordonnee().x<m_dimensions.x&&monstre->getCoordonnee().y>=0&&monstre->getCoordonnee().y<m_dimensions.y)
             for (int i=0;i<(int)monstre->getObjets().size();++i)
@@ -1347,7 +1377,7 @@ int Map::getTypeCase(int positionX,int positionY)
     {
         if (m_decor[0][positionY][positionX].getTileset()>=0&&m_decor[0][positionY][positionX].getTileset()<(int)m_tileset.size())
             //if(m_tileset[m_decor[0][positionY][positionX].getTileset()].getCollisionTile(m_decor[0][positionY][positionX].getTile()))
-            if ((int)moteurGraphique->getTileset(m_tileset[m_decor[0][positionY][positionX].getTileset()])->getLumiereDuTile(m_decor[0][positionY][positionX].getTile()).hauteur>32)
+            if ((int)moteurGraphique->getTileset(m_tileset[m_decor[0][positionY][positionX].getTileset()])->getLumiereDuTile(m_decor[0][positionY][positionX].getTile()).hauteur>=32)
                 return 1;
 
         if (m_decor[0][positionY][positionX].getNombreObjets())
@@ -1360,7 +1390,7 @@ int Map::getTypeCase(int positionX,int positionY)
     {
         if (m_decor[1][positionY][positionX].getTileset()>=0&&m_decor[1][positionY][positionX].getTileset()<(int)m_tileset.size())
             //if(m_tileset[m_decor[1][positionY][positionX].getTileset()].getCollisionTile(m_decor[1][positionY][positionX].getTile()))
-            if ((int)moteurGraphique->getTileset(m_tileset[m_decor[1][positionY][positionX].getTileset()])->getLumiereDuTile(m_decor[1][positionY][positionX].getTile()).hauteur>32)
+            if ((int)moteurGraphique->getTileset(m_tileset[m_decor[1][positionY][positionX].getTileset()])->getLumiereDuTile(m_decor[1][positionY][positionX].getTile()).hauteur>=32)
                 return 1;
 
         for (unsigned o = 0 ; o < m_decor[1][positionY][positionX].getMonstre().size() ; ++o)

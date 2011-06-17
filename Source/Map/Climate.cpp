@@ -58,6 +58,7 @@ void Climate::Charger(std::string chemin)
             fichier.get(caractere);
             if (caractere=='*')
             {
+                m_noAnimationStart.push_back(0);
                 m_entities.push_back(Entite_graphique ());
                 m_entities.back().m_couche = 11;
                 m_entities.back().m_fixed = 1;
@@ -69,7 +70,10 @@ void Climate::Charger(std::string chemin)
                     fichier.get(caractere);
 
                     if (caractere=='t')
+                    {
                         fichier>>m_entities.back().m_noAnimation;
+                        m_noAnimationStart.back() = m_entities.back().m_noAnimation;
+                    }
                     else if (caractere=='s')
                     {
                         int temp;
@@ -173,27 +177,34 @@ void Climate::Update(float time)
 {
     for(unsigned i = 0 ; i < m_entities.size() ; ++i)
     {
-        m_entities[i].Animer(time);
-        m_entities[i].Generer();
-
-        m_entities[i].SetScale((float)configuration->Resolution.x/800,
-                                (float)configuration->Resolution.y/600);
-
-        if(!m_entities[i].m_fixed)
+        if(GetState() == 0)
         {
-            sf::Vector2f pos = m_entities[i].GetPosition();
+            m_entities[i].m_noAnimation = m_noAnimationStart[i];
+        }
+        else
+        {
+            m_entities[i].Animer(time);
+            m_entities[i].Generer();
 
-            if(pos.x < GetViewRect(moteurGraphique->m_camera).Left)
-                pos.x += (int)((GetViewRect(moteurGraphique->m_camera).Left - pos.x)/GetViewRect(moteurGraphique->m_camera).Width + 1)*GetViewRect(moteurGraphique->m_camera).Width;
-            if(pos.y < GetViewRect(moteurGraphique->m_camera).Top)
-                pos.y += (int)((GetViewRect(moteurGraphique->m_camera).Top - pos.y)/GetViewRect(moteurGraphique->m_camera).Height + 1)*GetViewRect(moteurGraphique->m_camera).Height;
+            m_entities[i].SetScale((float)configuration->Resolution.x/800,
+                                    (float)configuration->Resolution.y/600);
 
-            if(pos.x > GetViewRect(moteurGraphique->m_camera).Left + GetViewRect(moteurGraphique->m_camera).Width)
-                pos.x -= (int)((pos.x - GetViewRect(moteurGraphique->m_camera).Left)/GetViewRect(moteurGraphique->m_camera).Width)*GetViewRect(moteurGraphique->m_camera).Width;
-            if(pos.y > GetViewRect(moteurGraphique->m_camera).Top + GetViewRect(moteurGraphique->m_camera).Height)
-                pos.y -= (int)((pos.y - GetViewRect(moteurGraphique->m_camera).Top)/GetViewRect(moteurGraphique->m_camera).Height)*GetViewRect(moteurGraphique->m_camera).Height;
+            if(!m_entities[i].m_fixed)
+            {
+                sf::Vector2f pos = m_entities[i].GetPosition();
 
-            m_entities[i].SetPosition(pos.x, pos.y);
+                if(pos.x < GetViewRect(moteurGraphique->m_camera).Left)
+                    pos.x += (int)((GetViewRect(moteurGraphique->m_camera).Left - pos.x)/GetViewRect(moteurGraphique->m_camera).Width + 1)*GetViewRect(moteurGraphique->m_camera).Width;
+                if(pos.y < GetViewRect(moteurGraphique->m_camera).Top)
+                    pos.y += (int)((GetViewRect(moteurGraphique->m_camera).Top - pos.y)/GetViewRect(moteurGraphique->m_camera).Height + 1)*GetViewRect(moteurGraphique->m_camera).Height;
+
+                if(pos.x > GetViewRect(moteurGraphique->m_camera).Left + GetViewRect(moteurGraphique->m_camera).Width)
+                    pos.x -= (int)((pos.x - GetViewRect(moteurGraphique->m_camera).Left)/GetViewRect(moteurGraphique->m_camera).Width)*GetViewRect(moteurGraphique->m_camera).Width;
+                if(pos.y > GetViewRect(moteurGraphique->m_camera).Top + GetViewRect(moteurGraphique->m_camera).Height)
+                    pos.y -= (int)((pos.y - GetViewRect(moteurGraphique->m_camera).Top)/GetViewRect(moteurGraphique->m_camera).Height)*GetViewRect(moteurGraphique->m_camera).Height;
+
+                m_entities[i].SetPosition(pos.x, pos.y);
+            }
         }
 
         sf::Color color = m_entities[i].GetColor();
@@ -234,5 +245,9 @@ void Climate::Stop()
 {
     if(m_cur_time < m_max_time - m_transition_time && m_actif)
         m_cur_time = m_max_time - m_transition_time;
+}
+void Climate::Continue()
+{
+    m_cur_time = m_transition_time;
 }
 

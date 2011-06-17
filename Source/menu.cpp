@@ -110,7 +110,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
    // if(m_dialogue.empty())
      //   clear_diag = false;
 
-    if(!m_old_dialogue.empty() && !clear_diag)
+   /* if(!m_old_dialogue.empty() && !clear_diag)
     {
         if(m_cur_talk_hauteur < classe->talk.position.h)
             m_cur_talk_hauteur += time * 1024 * 1.5;
@@ -174,7 +174,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
              moteurGraphique->AjouterCommande(&bullet1,16,0);
         }
     }
-    else if(!m_dialogue.empty())
+    else if(!m_dialogue.empty())*/
     {
         m_old_dialogue = m_dialogue;
 
@@ -188,6 +188,10 @@ void Menu::AfficherDialogue(float time,Classe *classe)
             texte.SetString(m_choices[i].text);
             m_hauteur += texte.GetRect().Height + 4;
         }
+
+        m_hauteur = (int)((m_hauteur+16)/32) * 32;
+        if(m_dialogue.empty())
+            m_hauteur = 0;
 
         if(m_cur_talk_hauteur < classe->talk.position.h - m_hauteur)
         {
@@ -329,7 +333,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
                 bullet1.SetX(minX + 16);
               //  bullet2.SetX(maxX - 16);
 
-                if(m_current_choice != i)
+                if(m_current_choice != (int)i)
                     moteurSons->JouerSon(configuration->sound_dialog,coordonnee (0,0),0);
 
                 texte.SetColor(sf::Color(255,224,128));
@@ -541,7 +545,10 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         sprite2.SetImage(*moteurGraphique->getImage(classe->barre_vie_monstre.image));
 
-        sprite2.SetSubRect(sf::IntRect(0, 0, (int)(caracteristiqueMonstre.vie/caracteristiqueMonstre.maxVie*moteurGraphique->getImage(classe->barre_vie_monstre.image)->GetWidth()), 32));
+        float vie = (int)caracteristiqueMonstre.vie;
+        if(vie == 0)
+            vie = 1;
+        sprite2.SetSubRect(sf::IntRect(0, 0, (int)(vie/caracteristiqueMonstre.maxVie*moteurGraphique->getImage(classe->barre_vie_monstre.image)->GetWidth()), 32));
         sprite2.SetX(configuration->Resolution.w/2 + classe->barre_vie_monstre.position.x);
         sprite2.SetY(classe->barre_vie_monstre.position.y);
 

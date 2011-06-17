@@ -98,7 +98,7 @@ int Script::Lire(ifstream *fichier)
         }
         else
         {
-            int valeur;
+            float valeur;
 
             istringstream buf(string);
             buf>>valeur;
@@ -233,6 +233,38 @@ void Script::Charger(const std::string &chemin)
     Charger(fichier);
 
     console->Ajouter("Chargement du script : \" "+chemin+" \"");
+}
+
+
+void Script::Add(Script script)
+{
+    //m_instructions.pop_back();
+
+    int taille = m_instructions.size() - 1;
+
+    for(unsigned i = 0 ; i < script.m_instructions[0].m_valeurs.size() ; ++i)
+    {
+        if(script.m_instructions[0].m_valeurs[i] >= 0)
+            m_instructions[0].m_valeurs.push_back(script.m_instructions[0].m_valeurs[i] + taille);
+        else
+            m_instructions[0].m_valeurs.push_back(script.m_instructions[0].m_valeurs[i]);
+        m_instructions[0].m_string_valeurs.push_back("");
+    }
+
+    for(unsigned i = 1 ; i < script.m_instructions.size() ; ++i)
+    {
+        m_instructions.push_back(script.m_instructions[i]);
+        if(m_instructions.back().nom == "if")
+            for(unsigned j = 0 ; j < m_instructions.back().m_valeurs.size() ; ++j)
+                if(m_instructions.back().m_valeurs[j] >= 0)
+                    m_instructions.back().m_valeurs[j] += taille;
+    }
+
+
+    for(unsigned i = m_variables.size() ; i < script.m_variables.size() ; ++i)
+    {
+        m_variables.push_back(script.m_variables[i]);
+    }
 }
 
 void Script::setVariable(int i, float val)

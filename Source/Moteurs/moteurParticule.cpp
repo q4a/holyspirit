@@ -104,24 +104,41 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
                     position.x = -(int)(Iter->position.x/64/5);
                     position.y =  (int)(Iter->position.y/32/5);
 
-                    int nbr = 0;
+
+                    if(!m_son.empty())
+                    {
+                        const int n = m_son.size();
+                        int no = rand()%n, nbr = 0;
+
+                        if (((int)fabs(Iter->vecteur.z*3)>10 && !m_son[no].unique)
+                          ||(m_son[no].unique && (int)fabs(Iter->vecteur.z*3)>10 && !m_son_joue))
+                        while(!moteurSons->JouerSon(m_son[no].no,position, m_son[no].unique) && nbr++ <= n)
+                            if(++no >= n)
+                                no = 0;
+
+                        if(nbr <= n)
+                            m_son_joue = true;
+                    }
+
+                   /* int nbr = 0;
                     int random = -1;
 
                     if(!m_son.empty())
                     random = rand()%m_son.size();
 
                     if(random != -1)
-                    if (((int)fabs(Iter->vecteur.z*3)>10 && !m_son[random].unique) || m_son[random].unique && (int)fabs(Iter->vecteur.z*3)>10 && !m_son_joue)
+                    if (((int)fabs(Iter->vecteur.z*3)>10 && !m_son[random].unique)
+                      ||(m_son[random].unique && (int)fabs(Iter->vecteur.z*3)>10 && !m_son_joue))
                     {
-                        while(!moteurSons->JouerSon(m_son[random++].no,position, m_son[random].unique) && nbr++ < m_son.size())
+                        random++;
+                        while(!moteurSons->JouerSon(m_son[random].no,position, m_son[random].unique) && nbr++ < (int)m_son.size())
                         {
-                            if(random >= m_son.size())
+                            if(random >= (int)m_son.size())
                                 random = 0;
                         }
 
                         m_son_joue = true;
-                    }
-                       // moteurSons->JouerSon(m_son[random].no,position,m_son[random].unique);
+                    }*/
                 }
 
                 if (Iter->position.z<0)

@@ -68,6 +68,8 @@ public:
 
     std::string m_chemin;
 
+    int m_materiau;
+
 protected:
     Caracteristique m_caracteristique;
 };
@@ -203,6 +205,8 @@ public:
 
     std::string     m_speak;
     float           m_speak_time;
+
+    int             m_materiau;
 
 protected:
     int m_etat,m_angle,m_next_angle;

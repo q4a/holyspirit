@@ -106,7 +106,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
     temps[3] = temps[2];
     temps[2] = temps[1];
     temps[1] = temps[0];
-    temps[0] = jeu->Clock.GetElapsedTime();
+    temps[0] = jeu->Clock.GetElapsedTime()*0.001;
 
     configuration->elapsed_time = temps[0];
 
@@ -163,7 +163,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 void c_Jeu::GererTemps(Jeu *jeu)
 {
     tempsSauvergarde                        += tempsEcoule;
-    configuration->minute                   += tempsEcoule;
+    configuration->minute                   += tempsEcoule /*VERSION JE*/ * 2;
     tempsNbrTourBoucle                      += tempsEcoule;
 
     if (configuration->minute>=60)
@@ -200,6 +200,7 @@ void c_Jeu::GererTemps(Jeu *jeu)
 
    // if (alpha_dialog>0)
     jeu->menu.AfficherDialogue(tempsEcoule,&jeu->hero.m_classe);
+    jeu->map->GererAmbiance(tempsEcoule);
 
     if (jeu->hero.m_personnage.EnVie())
     {
@@ -217,6 +218,9 @@ void c_Jeu::GererTemps(Jeu *jeu)
     }
     else
     {
+        if(m_dead == 0)
+            moteurSons->JouerSon(jeu->hero.m_classe.m_sound_death,coordonnee (), true);
+
         configuration->effetMort=150;
         m_dead += tempsEcoule;
 
@@ -320,7 +324,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
     Listener::SetPosition(-position.x, 1, position.y);
     Listener::SetDirection(0, 0, 1);
     jeu->map->MusiquePlay();
-    jeu->sonMort.SetPosition(position.x,0,position.y);
+    jeu->sonMort.SetPosition(-position.x,0,position.y);
 }
 void c_Jeu::Animation(Jeu *jeu)
 {
@@ -360,6 +364,9 @@ void c_Jeu::Animation(Jeu *jeu)
                             {
                                 int degats = (rand()%(jeu->hero.m_personnage.getCaracteristique().degatsMax[PHYSIQUE] - jeu->hero.m_personnage.getCaracteristique().degatsMin[PHYSIQUE]+1))+jeu->hero.m_personnage.getCaracteristique().degatsMin[PHYSIQUE];
 
+                                if(degats > 0)
+                                    jeu->hero.JouerSonAttaque(jeu->hero.m_personnage.m_cible->m_materiau);
+
                                 jeu->hero.m_personnage.m_vientDeFrapper = jeu->hero.m_personnage.m_cible;
                                 jeu->hero.m_personnage.m_vientDAttaquer = jeu->hero.m_personnage.m_cible->getCoordonnee();
                                 jeu->hero.m_personnage.m_degatsInflige  = degats;
@@ -393,7 +400,8 @@ void c_Jeu::Animation(Jeu *jeu)
         if (jeu->hero.m_personnage.m_cible == NULL)
             jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0,0);
 
-        if (!eventManager->getEvenement(Mouse::Left,EventClic))
+        if (!eventManager->getEvenement(Mouse::Left,EventClic)
+         && !eventManager->getEvenement(Mouse::Right,EventClic))
             jeu->hero.m_personnage.m_cible = NULL,jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0,0);
 
         if (jeu->hero.m_personnage.m_cible != NULL)
@@ -468,12 +476,7 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
 
     for(int i = 0 ; i < 8 ; ++i)
     {
-        if (eventManager->getEvenement(configuration->m_key_actions[K_SHORTCUT_1+i],EventKey)
-            ||(eventManager->getEvenement(Mouse::Left,EventClicA)
-            && eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_raccourcis[i].x,0).x
-            && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_raccourcis[i].x,0).x + jeu->hero.m_classe.position_raccourcis[i].w
-            && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_raccourcis[i].y).y
-            && eventManager->getPositionSouris().y < AutoScreenAdjust(0,jeu->hero.m_classe.position_raccourcis[i].y).y + jeu->hero.m_classe.position_raccourcis[i].h))
+        if (eventManager->getEvenement(configuration->m_key_actions[K_SHORTCUT_1+i],EventKey))
         {
             if(!diplace_mode || eventManager->getEvenement(configuration->m_key_actions[K_SHORTCUT_1+i],EventKey))
                 if(jeu->hero.m_raccourcis[i].no >= 0)
@@ -526,8 +529,11 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
     }
 }
 
-int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
+int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, bool hideLeft = false)
 {
+    jeu->hero.GererRaccourcisMiracles();
+    jeu->hero.GererRaccourcisObjets(inventory, hideLeft);
+
     if (   eventManager->getPositionSouris().x > AutoScreenAdjust(775,0).x
         && eventManager->getPositionSouris().x < AutoScreenAdjust(800,0).x
         && eventManager->getPositionSouris().y > AutoScreenAdjust(0,0).y
@@ -630,8 +636,8 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
     {
         eventManager->StopEvenement(configuration->m_key_actions[K_CHANGE_WEAPONS],EventKey);
         jeu->hero.m_weaponsSet = (jeu->hero.m_weaponsSet == 1) ? 0 : 1;
-        jeu->hero.ChargerModele();
         jeu->hero.RecalculerCaracteristiques(true);
+        jeu->hero.ChargerModele();
     }
 
     if(choix == B_MAP)
@@ -742,6 +748,35 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false)
 
 void c_Jeu::Evenements(Jeu *jeu)
 {
+    if(eventManager->getEvenement(sf::Key::S,EventKey))
+        moteurSons->DebugRefreshSound();
+    if(eventManager->getEvenement(sf::Key::L,EventKey))
+    {
+        eventManager->StopEvenement(sf::Key::L,EventKey);
+        if(configuration->volume > 0)
+        {
+            debug_oldSound = configuration->volume;
+            configuration->volume = 0;
+        }
+        else if(debug_oldSound > 0)
+            configuration->volume = debug_oldSound;
+        else
+            configuration->volume = 100;
+
+    }
+    if(eventManager->getEvenement(sf::Key::O,EventKey))
+    {
+        eventManager->StopEvenement(sf::Key::O,EventKey);
+        jeu->map->m_climates[0].m_actif = true;
+        jeu->map->m_climates[1].m_actif = true;
+    }
+    if(eventManager->getEvenement(sf::Key::K,EventKey))
+    {
+        eventManager->StopEvenement(sf::Key::K,EventKey);
+        jeu->map->m_climates[0].Stop();
+        jeu->map->m_climates[1].Stop();
+    }
+
     GestionRaccourcis(jeu, m_diplace_mode);
     jeu->next_screen = GestionBoutons(jeu, m_diplace_mode);
 
@@ -764,7 +799,9 @@ void c_Jeu::Evenements(Jeu *jeu)
   /*  || eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_contenu_dialogue.y).y
         + jeu->hero.m_classe.position_contenu_dialogue.h*/)
     {
-        if (!eventManager->getEvenement(Mouse::Left,EventClic) && jeu->menu.m_dialogue.empty())
+        if(!eventManager->getEvenement(Mouse::Left,EventClic)
+        && !eventManager->getEvenement(Mouse::Right,EventClic)
+        && jeu->menu.m_dialogue.empty())
             jeu->map->getMonstre(eventManager->getCasePointee());
 
         if (eventManager->getEvenement(configuration->m_key_actions[K_PICKITEMS],EventKey))
@@ -772,9 +809,11 @@ void c_Jeu::Evenements(Jeu *jeu)
 
         if(jeu->map->getEntiteMonstre(jeu->map->m_monstreIllumine) != NULL)
             if(!jeu->map->getEntiteMonstre(jeu->map->m_monstreIllumine)->EnVie())
-                jeu->map->m_monstreIllumine = -1, eventManager->StopEvenement(Mouse::Left,EventClic);
+                jeu->map->m_monstreIllumine = -1, eventManager->StopEvenement(Mouse::Left,EventClic),
+                                                  eventManager->StopEvenement(Mouse::Right,EventClic);
 
-        bool attaque_normale = true;
+        bool attaque_normale_g = true;
+        bool attaque_normale_d = true;
         if (eventManager->getEvenement(Mouse::Left,EventClic) && jeu->hero.m_miracle_gauche[jeu->hero.m_weaponsSet] >= 0)
         {
             if(eventManager->getEvenement(configuration->m_key_actions[K_STAND], EventKey) || jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
@@ -798,7 +837,7 @@ void c_Jeu::Evenements(Jeu *jeu)
                     if(ok)
                     if (jeu->hero.UtiliserMiracle(jeu->hero.m_miracle_gauche[jeu->hero.m_weaponsSet], jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
                     {
-                        attaque_normale = false;
+                        attaque_normale_g = false;
                         eventManager->StopEvenement(Mouse::Left,EventClicA);
 
                         if(!eventManager->getEvenement(configuration->m_key_actions[K_STAND], EventKey))
@@ -818,11 +857,64 @@ void c_Jeu::Evenements(Jeu *jeu)
             }
         }
 
-        if(attaque_normale && jeu->hero.m_select_friend < 0)
+        if (eventManager->getEvenement(Mouse::Right,EventClic))
         {
-            if (eventManager->getEvenement(Mouse::Left,EventClic)&&
-                eventManager->getEvenement(Mouse::Left,EventClicA))
+            if (eventManager->getEvenement(Mouse::Left,EventClic))
+                eventManager->StopEvenement(Mouse::Left,EventClic);
+            else
             {
+                //if (!jeu->hero.m_personnage.frappeEnCours)
+                {
+                    coordonnee cible;
+
+                    if (jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
+                        cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())->getProchaineCase();
+                    else
+                        cible = eventManager->getCasePointee();
+
+                    if (jeu->hero.UtiliserMiracle(jeu->hero.m_miracle_droite[jeu->hero.m_weaponsSet], jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
+                    {
+                        attaque_normale_d = false;
+                        eventManager->StopEvenement(Mouse::Right,EventClic);
+
+                        if(!eventManager->getEvenement(configuration->m_key_actions[K_STAND], EventKey))
+                            jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
+                        else
+                            jeu->hero.m_personnage.m_miracleEnCours.back().m_forced_maj = true;
+
+                        coordonnee positionHero;
+                        positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
+                        positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
+
+                        jeu->hero.m_personnage.setArrivee(jeu->hero.m_personnage.getProchaineCase());
+
+                        jeu->hero.m_personnage.m_cible = NULL;
+                    }
+                  /*  else if(!eventManager->getEvenement(Key::LShift,EventKey))
+                        jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
+                    else
+                        jeu->hero.m_personnage.setArrivee(jeu->hero.m_personnage.getProchaineCase());*/
+                }
+            }
+        }
+
+        if((attaque_normale_g || attaque_normale_d) && jeu->hero.m_select_friend < 0)
+        {
+            if((eventManager->getEvenement(Mouse::Left,EventClic)&&
+                eventManager->getEvenement(Mouse::Left,EventClicA)&&
+                attaque_normale_g)
+            || (eventManager->getEvenement(Mouse::Right,EventClic)&&
+                eventManager->getEvenement(Mouse::Right,EventClicA)&&
+                attaque_normale_d))
+            {
+                if (jeu->hero.m_objetEnMain>=0)
+                {
+                    jeu->hero.m_objetADeposer=jeu->hero.m_objetEnMain;
+                    jeu->map->AjouterObjet(jeu->hero.DeposerObjet());
+                }
+                jeu->hero.m_objetEnMain = -1;
+                jeu->hero.m_miracleEnMain = -1;
+
                 jeu->hero.m_personnage.m_miracleBloquant = false;
                 jeu->hero.StopMiraclesFrappe();
                 if (jeu->map->getMonstreIllumine() != -1)
@@ -847,7 +939,8 @@ void c_Jeu::Evenements(Jeu *jeu)
                     jeu->hero.m_personnage.m_cible = NULL;
             }
 
-            if (eventManager->getEvenement(Mouse::Left,EventClic)&&!eventManager->getEvenement(Key::LShift,EventKey))
+            if((eventManager->getEvenement(Mouse::Left,EventClic) || eventManager->getEvenement(Mouse::Right,EventClic))
+            && !eventManager->getEvenement(Key::LShift,EventKey))
             {
                 m_diplace_mode = true;
 
@@ -885,46 +978,6 @@ void c_Jeu::Evenements(Jeu *jeu)
         }
         else
             jeu->hero.setChercherSac(coordonnee (-1,-1,-1,-1));
-
-        if (eventManager->getEvenement(Mouse::Right,EventClic))
-        {
-            if (eventManager->getEvenement(Mouse::Left,EventClic))
-                eventManager->StopEvenement(Mouse::Left,EventClic);
-            else
-            {
-                //if (!jeu->hero.m_personnage.frappeEnCours)
-                {
-                    coordonnee cible;
-
-                    if (jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
-                        cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())->getProchaineCase();
-                    else
-                        cible = eventManager->getCasePointee();
-
-                    if (jeu->hero.UtiliserMiracle(jeu->hero.m_miracle_droite[jeu->hero.m_weaponsSet], jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
-                    {
-                        eventManager->StopEvenement(Mouse::Right,EventClic);
-
-                        if(!eventManager->getEvenement(configuration->m_key_actions[K_STAND], EventKey))
-                            jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
-                        else
-                            jeu->hero.m_personnage.m_miracleEnCours.back().m_forced_maj = true;
-
-                        coordonnee positionHero;
-                        positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
-                        positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
-
-                        jeu->hero.m_personnage.setArrivee(jeu->hero.m_personnage.getProchaineCase());
-
-                        jeu->hero.m_personnage.m_cible = NULL;
-                    }
-                    else if(!eventManager->getEvenement(Key::LShift,EventKey))
-                        jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
-                    else
-                        jeu->hero.m_personnage.setArrivee(jeu->hero.m_personnage.getProchaineCase());
-                }
-            }
-        }
     }
 
     if(fabs(jeu->menu.m_dialogue_position.x - jeu->hero.m_personnage.getCoordonnee().x) > 2
@@ -967,12 +1020,13 @@ void c_Jeu::Affichage(Jeu *jeu)
 
     jeu->menu.AfficherHUD(&jeu->hero.m_classe);
 
-    if (jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL)
+    if (jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())!=NULL && jeu->hero.m_personnage.EnVie())
         jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,1,jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine())->getCaracteristique(),&jeu->hero.m_classe);
     else
         jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
-    eventManager->AfficherCurseur();
+    if(!eventManager->getEvenement(sf::Key::C,EventKey))
+        eventManager->AfficherCurseur();
 
     if (configuration->effetMort&&configuration->postFX&&tempsEffetMort!=0.0f)
     {

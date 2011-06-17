@@ -36,6 +36,8 @@ EventManager::EventManager()
     for (int i=0;i<5;i++)
         m_ClicAncien[i]=0;
 
+    PressAnyKey = false;
+
     m_positionSouris.x=450;
     m_positionSouris.y=300;
 
@@ -50,6 +52,9 @@ EventManager::EventManager()
 
 void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tailleMap)
 {
+
+    PressAnyKey = false;
+
     m_molette = 0;
     Event Event;
     while (moteurGraphique->getEvent(Event))
@@ -58,7 +63,7 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         {
         case Event::KeyPressed:
             if (Event.Key.Code>=0&&Event.Key.Code<500)
-                m_EventTableau[Event.Key.Code] = 1;
+                m_EventTableau[Event.Key.Code] = 1, PressAnyKey = true;
 
             if(Event.Key.Code >= 0 && Event.Key.Code < 128)
                 m_char = Event.Key.Code;
@@ -77,7 +82,7 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
             break;
         case Event::MouseButtonPressed:
             m_Clic[Event.MouseButton.Button]=1;
-            m_ClicAncien[Event.MouseButton.Button]=1;
+            m_ClicAncien[Event.MouseButton.Button]=1, PressAnyKey = true;
             break;
         case Event::MouseButtonReleased:
             m_Clic[Event.MouseButton.Button]=0;
