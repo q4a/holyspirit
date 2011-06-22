@@ -562,7 +562,7 @@ void Map::Animer(Hero *hero,float temps)
 
                 m_decor[i][j][k].AnimerObjets(temps);
 
-                for (int z=0;z<(int)m_decor[i][j][k].getMonstre().size();z++)
+                /*for (int z=0;z<(int)m_decor[i][j][k].getMonstre().size();z++)
                 {
                     int monstre=m_decor[i][j][k].getMonstre()[z];
                     if (monstre>=0&&monstre<(int)m_monstre.size())
@@ -625,7 +625,7 @@ void Map::Animer(Hero *hero,float temps)
                         if(m_monstre[monstre].m_doitMourir && m_monstre[monstre].EnVie() )
                             InfligerDegats(&m_monstre[monstre], NULL, m_monstre[monstre].getCaracteristique().vie, 4, hero, 0);
                     }
-                }
+                }*/
             }
 }
 
@@ -863,8 +863,69 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 if(&m_monstre[m_decor[1][y][x].getMonstre()[o]] == &*Iter_monstre)
                     monstre = m_decor[1][y][x].getMonstre()[o];
 
-        if(monstre >= 0)
+        if (monstre>=0&&monstre<(int)m_monstre.size())
         {
+            m_monstre[monstre].m_vientDeFrapper = NULL;
+            m_monstre[monstre].m_vientDAttaquer.x = -1;
+            m_monstre[monstre].m_degatsInflige  = 0;
+
+            int degats = m_monstre[monstre].Gerer(&m_ModeleMonstre[m_monstre[monstre].getModele()],temps);
+            if (degats>0)
+            {
+                if (m_monstre[monstre].m_miracleALancer == -1)
+                {
+                    if (m_monstre[monstre].m_cible != NULL)
+                    {
+                        if (m_monstre[monstre].m_shooter||(!m_monstre[monstre].m_shooter&&fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)<=1
+                                                           &&fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)<=1))
+                            if ((!m_monstre[monstre].m_friendly && rand() % 100 < (float)((float)(m_monstre[monstre].getCaracteristique().dexterite + 100)/(float)(m_monstre[monstre].m_cible->getCaracteristique().dexterite + 100))*25 )
+                            ||  ( m_monstre[monstre].m_friendly && rand() % 100 < (float)((float)(m_monstre[monstre].getCaracteristique().dexterite + 100)/(float)(m_monstre[monstre].m_cible->getCaracteristique().dexterite + 100))*50 ))
+                            {
+                                m_monstre[monstre].m_vientDeFrapper = m_monstre[monstre].m_cible;
+                                m_monstre[monstre].m_vientDAttaquer = m_monstre[monstre].m_cible->getCoordonnee();
+                                m_monstre[monstre].m_degatsInflige  = degats;
+
+                                m_monstre[monstre].m_cible->m_vientDetreTouche = &m_monstre[monstre];
+                                InfligerDegats(m_monstre[monstre].m_cible, &m_monstre[monstre], degats, 0, hero, 0);
+
+                                m_monstre[monstre].InfligerDegats(-degats * m_monstre[monstre].getCaracteristique().volVie, 4);
+                            }
+                    }
+                }
+                else
+                {
+                    m_monstre[monstre].m_miracleEnCours.push_back(EntiteMiracle ());
+                    m_monstre[monstre].m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
+
+                    m_monstre[monstre].m_miracleEnCours.back().m_modele=m_monstre[monstre].m_miracleALancer;
+
+                    m_monstre[monstre].m_miracleALancer = -1;
+
+                    m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_position.x=m_monstre[monstre].getCoordonneePixel().x;
+                    m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_position.y=m_monstre[monstre].getCoordonneePixel().y;
+
+                    m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_position.x += m_monstre[monstre].m_entite_graphique.m_decalage.y*2 + m_monstre[monstre].m_entite_graphique.m_decalage.x;
+                    m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_position.y += m_monstre[monstre].m_entite_graphique.m_decalage.y*2 - m_monstre[monstre].m_entite_graphique.m_decalage.x;
+
+                    m_monstre[monstre].m_miracleEnCours.back().m_coordonneeCible = hero->m_personnage.getProchaineCase();
+                    m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_cible = m_monstre[monstre].m_cible;
+                }
+
+            }
+            m_monstre[monstre].m_nombreInvocation=0;
+
+            if(configuration->Lumiere)
+                moteurGraphique->LightManager->Generate(m_monstre[monstre].m_entite_graphique.m_light);
+
+            if(!m_monstre[monstre].m_noDistanceRestriction)
+                GererMiracle(&m_monstre[monstre],m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles,temps,hero);
+
+            if(m_monstre[monstre].m_doitMourir && m_monstre[monstre].EnVie() )
+                InfligerDegats(&m_monstre[monstre], NULL, m_monstre[monstre].getCaracteristique().vie, 4, hero, 0);
+        /*}
+
+        if(monstre >= 0)
+        {*/
             if(Iter_monstre->m_noDistanceRestriction)
                 GererMiracle(&m_monstre[monstre],m_ModeleMonstre[m_monstre[monstre].getModele()].m_miracles,temps,hero);
 

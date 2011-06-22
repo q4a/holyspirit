@@ -163,7 +163,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
 void c_Jeu::GererTemps(Jeu *jeu)
 {
     tempsSauvergarde                        += tempsEcoule;
-    configuration->minute                   += tempsEcoule /*VERSION JE*/ * 2;
+    configuration->minute                   += tempsEcoule;
     tempsNbrTourBoucle                      += tempsEcoule;
 
     if (configuration->minute>=60)

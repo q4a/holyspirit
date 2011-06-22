@@ -8,8 +8,8 @@
 		<Build>
 			<Target title="Release">
 				<Option platforms="Windows;" />
-				<Option output="..\Holyspirit_demoJE\Holyspirit" prefix_auto="0" extension_auto="1" />
-				<Option working_dir="..\Holyspirit_demoJE" />
+				<Option output="..\Holyspirit_demo\Holyspirit" prefix_auto="0" extension_auto="1" />
+				<Option working_dir="..\Holyspirit_demo" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />

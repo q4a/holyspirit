@@ -357,6 +357,7 @@ void c_Chargement::PostLoad(Jeu *jeu)
     jeu->hero.m_personnage.Animer(&jeu->hero.m_modelePersonnage[0], 0);
     jeu->hero.m_personnage.m_entite_graphique.Initialiser(pos);
     jeu->map->Animer(&jeu->hero,0);
+    jeu->map->GererMonstres(jeu,&jeu->hero,0,&jeu->menu);
 
     moteurGraphique->LightManager->SetQuality(jeu->hero.m_personnage.m_entite_graphique.m_light,24);
     moteurGraphique->LightManager->SetMovingLight(jeu->hero.m_personnage.m_entite_graphique.m_light,true);
