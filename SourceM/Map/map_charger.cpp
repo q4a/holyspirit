@@ -476,6 +476,7 @@ void Map::ChargerEntites(ifstream *fichier2, const std::string &chemin)
                 vector <Objet> objets;
                 std::vector <int> variables;
                 m_monstre.push_back(Monstre ());
+                m_monstre.back().m_no = m_monstre.size() - 1;
 
                 int pos;
 
@@ -835,6 +836,7 @@ void Map::AddMonstre(vector <int> &monstre, vector <int> &monstreFinal, std::vec
         if (monstreFinal.back()>=0&&monstreFinal.back()<(int)m_ModeleMonstre.size())
         {
             m_monstre.push_back(Monstre ());
+            m_monstre.back().m_no = m_monstre.size() - 1;
             m_monstre.back().Charger(monstreFinal.back(),&m_ModeleMonstre[monstreFinal.back()]);
             m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
             m_monstre.back().m_ID = id;

@@ -211,6 +211,8 @@ public:
 
     bool            m_heroic;
 
+    int             m_no;
+
 protected:
     int m_etat,m_angle,m_next_angle;
     float m_time_next_angle;

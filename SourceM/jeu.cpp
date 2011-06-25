@@ -111,7 +111,7 @@ void Jeu::Demarrer()
 
         GlobalMutex.Unlock();
 
-        if(m_contexte != m_mainMenu && configuration->multi)
+        if(/*m_contexte != m_mainMenu && */configuration->multi)
             GererMultijoueur();
     }
 

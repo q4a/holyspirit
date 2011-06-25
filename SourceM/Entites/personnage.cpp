@@ -132,6 +132,8 @@ Personnage::Personnage()
     m_materiau = M_VAPOREUX;
 
     m_heroic = false;
+
+    m_no = -1;
 }
 Modele_Personnage::Modele_Personnage()
 {

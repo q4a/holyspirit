@@ -655,23 +655,23 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
                 if(configuration->hote || jeu->m_host->Send(packet) == sf::TcpSocket::Done)
                 {
-                    if(jeu->hero.m_last_potale >= 0 && jeu->hero.m_last_potale < (int)jeu->hero.m_potales.size() )
+                    if(configuration->hote)
                     {
-                        std::string nomMap=jeu->hero.m_potales[jeu->hero.m_last_potale].chemin;
+                        if(jeu->hero.m_last_potale >= 0 && jeu->hero.m_last_potale < (int)jeu->hero.m_potales.size() )
+                        {
+                            std::string nomMap=jeu->hero.m_potales[jeu->hero.m_last_potale].chemin;
 
-                        coordonnee coordonneePerso;
-                        coordonneePerso.x=jeu->hero.m_potales[jeu->hero.m_last_potale].position.x;
-                        coordonneePerso.y=jeu->hero.m_potales[jeu->hero.m_last_potale].position.y;
+                            coordonnee coordonneePerso;
+                            coordonneePerso.x=jeu->hero.m_potales[jeu->hero.m_last_potale].position.x;
+                            coordonneePerso.y=jeu->hero.m_potales[jeu->hero.m_last_potale].position.y;
 
-                        jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
+                            jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
+                        }
+                        else
+                            jeu->m_chargement->setC_Chargement(configuration->map_start,configuration->map_start_pos);
+
+                        jeu->m_contexte = jeu->m_chargement;
                     }
-                    else
-                        jeu->m_chargement->setC_Chargement(configuration->map_start,configuration->map_start_pos);
-
-
-                    //jeu->hero.Sauvegarder();
-
-                    jeu->m_contexte = jeu->m_chargement;
 
                     eventManager->StopEvenement(Mouse::Left,EventClic);
                     no_ecran = E_PRINCIPAL;

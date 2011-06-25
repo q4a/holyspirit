@@ -64,6 +64,11 @@ class Jeu
     void CheckPacket(sf::Packet &packet, int no, std::list<sf::TcpSocket*>::iterator it);
 
     void SendSkin();
+    void SendChangeMap(const std::string &prochaineMap,const coordonnee &coordonneePerso);
+    void SendInfosMonstre(int, Monstre &);
+    void SendDegats(Hero *hero, float degats, int type, float temps = 0);
+    void SendDegats(int no, float degats, int type, float temps = 0);
+    void SendKillMonstre(int no, int angle, float degats);
 
     Menu menu;
     Map *map;

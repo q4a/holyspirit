@@ -31,19 +31,22 @@ sf::Packet& operator >>(sf::Packet& Packet, coordonnee& C)
 
 sf::Packet& operator <<(sf::Packet& Packet,  Personnage& C)
 {
-    return Packet << C.getCoordonneePixel() << C.getCoordonnee() << (sf::Int8)C.getEtat()  << (sf::Int8)C.m_entite_graphique.m_noAnimation << (sf::Int16)C.getAngle();
+    return Packet << C.getCaracteristique() << C.getCoordonneePixel() << C.getCoordonnee() << (sf::Int8)C.getEtat()  << (sf::Int8)C.m_entite_graphique.m_noAnimation << (sf::Int16)C.getAngle();
 }
 sf::Packet& operator >>(sf::Packet& Packet, Personnage& C)
 {
-    coordonneeDecimal pos;
     coordonnee pos2;
+    coordonneeDecimal pos;
     sf::Int8 etat, anim, pose;
     sf::Int16 angle;
 
-    Packet >> pos >> pos2 >> etat >> pose >> angle;
-    C.setJustCoordonnee(pos2,pos);
+    Caracteristique caract = C.getCaracteristique();
+
+    Packet >> caract >> pos >> pos2 >> etat >> pose >> angle;
+    C.setJustCoordonnee(pos2, pos);
     C.setEtat(etat,pose);
     C.setForcedAngle(angle);
+    C.setCaracteristique(caract);
 
     return Packet;
 }
@@ -102,8 +105,43 @@ void GererReseauClientTCP(void* UserData)
                         {
                             for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
                                 packet>>p->m_cheminModeleNouveau[i]>>p->m_pasEquipe[i];
+
+                            jeu->GlobalMutex.Lock();
                             p->ChargerGraphics();
+                            jeu->GlobalMutex.Unlock();
                         }
+                 }
+                 else if(type == P_CHANGEMAP)
+                 {
+                     std::string prochaineMap;
+                     coordonnee coordonneePerso;
+                     packet>>prochaineMap>>coordonneePerso;
+
+
+                     jeu->GlobalMutex.Lock();
+
+                     jeu->m_chargement->setC_Chargement(prochaineMap,coordonneePerso);
+                     jeu->m_contexte = jeu->m_chargement;
+
+                     jeu->GlobalMutex.Unlock();
+                 }
+                 else if(type == P_DEGATS)
+                 {
+                    sf::Uint16 degats;
+                    sf::Int8  type;
+                    sf::Uint16 temps;
+                    packet>>degats>>type>>temps;
+                    jeu->hero.m_personnage.InfligerDegats(degats, type, temps);
+                 }
+                 else if(type == P_KILLMONSTRE && jeu->map)
+                 {
+                    sf::Int16 no;
+                    sf::Int16 angle;
+                    sf::Uint16 degats;
+                    packet>>no>>angle>>degats;
+
+                    if(jeu->map->m_loaded)
+                        jeu->map->KillMonstre(jeu->map->getEntiteMonstre(no),angle,degats,jeu);
                  }
             }
         }
@@ -145,6 +183,19 @@ void GererReseauClientUDP(void* UserData)
                         p->m_personnage.setCaracteristique(p->m_caracteristiques);
                         packet>>p->m_personnage;
                     }
+             }
+             else if(type == P_INFOSMONSTRE && jeu->map)
+             {
+                sf::Int16 no;
+                packet>>no;
+
+                if(jeu->map->m_loaded)
+                {
+                    int x = (int)((jeu->map->getEntiteMonstre(no))->getCoordonneePixel().x/COTE_TILE + 0.5);
+                    int y = (int)((jeu->map->getEntiteMonstre(no))->getCoordonneePixel().y/COTE_TILE + 0.5);
+                    packet>>*(jeu->map->getEntiteMonstre(no));
+                    jeu->map->DeplacerMonstreCase(no,x,y);
+                }
              }
         }
      }
@@ -431,6 +482,10 @@ void Jeu::CheckPacket(sf::Packet &packet, int no, std::list<sf::TcpSocket*>::ite
                 sf::TcpSocket& client2 = **it2;
                 client2.Send(packet2);
          }
+
+         packet.Clear();
+         packet<<(sf::Int8)P_CHANGEMAP<<map->getNom()<<hero.m_personnage.getCoordonnee();
+         (*it)->Send(packet);
      }
      else if(type == P_PLAYERSKIN)
      {
@@ -443,6 +498,35 @@ void Jeu::CheckPacket(sf::Packet &packet, int no, std::list<sf::TcpSocket*>::ite
                     packet>>p->m_cheminModeleNouveau[i]>>p->m_pasEquipe[i];
                 p->ChargerGraphics();
             }
+     }
+     else if(type == P_CHANGEMAP)
+     {
+         std::string prochaineMap;
+         coordonnee coordonneePerso;
+         packet>>prochaineMap>>coordonneePerso;
+         SendChangeMap(prochaineMap, coordonneePerso);
+
+
+         GlobalMutex.Lock();
+
+         m_chargement->setC_Chargement(prochaineMap,coordonneePerso);
+         m_contexte = m_chargement;
+
+         GlobalMutex.Unlock();
+     }
+     else if(type == P_DEGATS && map && map->m_loaded)
+     {
+        sf::Int16  no2;
+        sf::Uint16 degats;
+        sf::Int8  type;
+        sf::Uint16 temps;
+        packet>>no2>>degats>>type>>temps;
+
+        int i = 0;
+         for (std::list<Hero>::iterator p = m_personnageClients.begin();
+            p != m_personnageClients.end() && i <= no; ++p, ++i)
+            if(i == no)
+                map->InfligerDegats((int)no2,&p->m_personnage,(float)degats,(int)type,this,(float)temps);
      }
 }
 
@@ -481,8 +565,7 @@ void Jeu::SendSkin()
 
         if(configuration->hote)
         {
-             int no = 0;
-             for (std::list<sf::TcpSocket*>::iterator it = m_clients.begin(); it != m_clients.end(); ++it, ++no)
+             for (std::list<sf::TcpSocket*>::iterator it = m_clients.begin(); it != m_clients.end(); ++it)
              {
                 sf::TcpSocket& client = **it;
                 client.Send(packet);
@@ -492,4 +575,89 @@ void Jeu::SendSkin()
             m_host->Send(packet);
     }
 }
+
+void Jeu::SendChangeMap(const std::string &prochaineMap,const coordonnee &coordonneePerso)
+{
+    if(configuration->multi)
+    {
+        sf::Packet packet;
+        packet<<(sf::Int8)P_CHANGEMAP<<prochaineMap<<coordonneePerso;
+
+        if(configuration->hote)
+        {
+             for (std::list<sf::TcpSocket*>::iterator it = m_clients.begin(); it != m_clients.end(); ++it)
+             {
+                sf::TcpSocket& client = **it;
+                client.Send(packet);
+             }
+        }
+        else
+            m_host->Send(packet);
+    }
+}
+
+void Jeu::SendInfosMonstre(int no, Monstre &monstre)
+{
+    if(configuration->multi && configuration->hote)
+    {
+        sf::Packet packet;
+        packet<<(sf::Int8)P_INFOSMONSTRE<<(sf::Int16)no<<monstre;
+        for (std::list<sf::TcpSocket*>::iterator it = m_clients.begin(); it != m_clients.end(); ++it)
+        {
+            sf::TcpSocket& client = **it;
+
+            sf::UdpSocket upd;
+            sf::IpAddress ip = client.GetRemoteAddress();
+            short unsigned int port = 6667;
+            upd.Send(packet, ip, port);
+        }
+    }
+}
+
+void Jeu::SendDegats(Hero *hero, float degats, int type, float temps)
+{
+    if(configuration->multi && configuration->hote)
+    {
+        sf::Packet packet;
+        packet<<(sf::Int8)P_DEGATS<<(sf::Uint16)degats<<(sf::Int8)type<<(sf::Uint16)temps;
+
+        int no = 0;
+        for (std::list<Hero>::iterator p = m_personnageClients.begin();
+                p != m_personnageClients.end() && &*p != hero; ++p, ++no) {}
+
+        int no2 = 0;
+        for (std::list<sf::TcpSocket*>::iterator it = m_clients.begin(); it != m_clients.end() && no2 < no; ++it, ++no2)
+        if(no == no2 + 1)
+        {
+            sf::TcpSocket& client = **it;
+            client.Send(packet);
+        }
+    }
+}
+
+void Jeu::SendDegats(int no, float degats, int type, float temps)
+{
+    if(configuration->multi && !configuration->hote)
+    {
+        sf::Packet packet;
+        packet<<(sf::Int8)P_DEGATS<<(sf::Int16)no<<(sf::Uint16)degats<<(sf::Int8)type<<(sf::Uint16)temps;
+        m_host->Send(packet);
+    }
+}
+
+void Jeu::SendKillMonstre(int no, int angle, float degats)
+{
+    if(configuration->multi && configuration->hote)
+    {
+        sf::Packet packet;
+        packet<<(sf::Int8)P_KILLMONSTRE<<(sf::Int16)no<<(sf::Int16)angle<<(sf::Uint16)degats;
+
+        for (std::list<sf::TcpSocket*>::iterator it = m_clients.begin(); it != m_clients.end(); ++it)
+        {
+            sf::TcpSocket& client = **it;
+            client.Send(packet);
+        }
+    }
+}
+
 

@@ -11,7 +11,7 @@ using namespace sf;
 #include "../globale.h"
 #include "../jeu.h"
 
-bool Map::Miracle_Aura           (Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Aura           (Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     if (info.m_IDObjet == -1)
     {
@@ -54,7 +54,7 @@ bool Map::Miracle_Aura           (Hero *hero, Personnage *personnage, Miracle &m
     return 1;
 }
 
-bool Map::Miracle_Declencheur    (Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Declencheur    (Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     if(effet.m_informations[0] == D_PERMANENT)
     {
@@ -201,7 +201,7 @@ bool Map::Miracle_Declencheur    (Hero *hero, Personnage *personnage, Miracle &m
     return 1;
 }
 
-bool Map::Miracle_Effet  (Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Effet  (Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     if(info.m_IDObjet == -1)
     {
@@ -285,7 +285,7 @@ bool Map::Miracle_Effet  (Hero *hero, Personnage *personnage, Miracle &modele, E
     return 1;
 }
 
-bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Charme (Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     if(info.m_IDObjet == -1)
     {
@@ -304,8 +304,8 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
 
             info.m_IDObjet    = 1;
 
-            if(personnage == &hero->m_personnage)
-                hero->m_amis.push_back(info.m_cible);
+            if(personnage == &jeu->hero.m_personnage)
+                jeu->hero.m_amis.push_back(info.m_cible);
 
             for (int p=0;p<(int)effet.m_lien.size();p++)
             {
@@ -329,10 +329,10 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
 
         if (!info.m_cible->EnVie())
         {
-            if(personnage == &hero->m_personnage)
-                for(unsigned p = 0 ; p < hero->m_amis.size() ;  ++p)
-                    if(hero->m_amis[p] == info.m_cible)
-                        hero->m_amis.erase(hero->m_amis.begin() + p);
+            if(personnage == &jeu->hero.m_personnage)
+                for(unsigned p = 0 ; p < jeu->hero.m_amis.size() ;  ++p)
+                    if(jeu->hero.m_amis[p] == info.m_cible)
+                        jeu->hero.m_amis.erase(jeu->hero.m_amis.begin() + p);
 
             miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
 
@@ -405,7 +405,7 @@ bool Map::Miracle_Charme (Hero *hero, Personnage *personnage, Miracle &modele, E
     return 1;
 }
 
-bool Map::Miracle_CorpsACorps (Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_CorpsACorps (Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     if (info.m_cible || miracleEnCours.m_forced_maj)
     {
@@ -473,7 +473,7 @@ bool Map::Miracle_CorpsACorps (Hero *hero, Personnage *personnage, Miracle &mode
     return 1;
 }
 
-bool Map::Miracle_Repetition(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Repetition(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     info.m_informations[3] += temps * 100;
     if (info.m_informations[3] > effet.m_informations[2])
@@ -508,7 +508,7 @@ bool Map::Miracle_Repetition(Hero *hero, Personnage *personnage, Miracle &modele
     return 1;
 }
 
-bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Projectile(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     if (info.m_IDObjet >= 0 && info.m_IDObjet < (int)m_projectile.size())
     {
@@ -619,7 +619,7 @@ bool Map::Miracle_Projectile(Hero *hero, Personnage *personnage, Miracle &modele
     return 1;
 }
 
-bool Map::Miracle_EffetGraphique(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_EffetGraphique(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     if (info.m_IDObjet >= 0)
     {
@@ -682,7 +682,7 @@ bool Map::Miracle_EffetGraphique(Hero *hero, Personnage *personnage, Miracle &mo
     return 1;
 }
 
-bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Invocation(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     if (info.m_IDObjet==-1)
     {
@@ -717,7 +717,7 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
         if (positionCase.y>=m_dimensions.y)
             positionCase.y=m_dimensions.y - 1;
 
-        while ((getCollision(positionCase.x,positionCase.y) || ( positionCase.x==hero->m_personnage.getCoordonnee().x && positionCase.y==hero->m_personnage.getCoordonnee().y )) && invoquer )
+        while ((getCollision(positionCase.x,positionCase.y) || ( positionCase.x==jeu->hero.m_personnage.getCoordonnee().x && positionCase.y==jeu->hero.m_personnage.getCoordonnee().y )) && invoquer )
         {
             positionCase.x++;
             x++;
@@ -791,8 +791,8 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
 
            // m_monstre.back().m_friendly = personnage->m_friendly;
 
-            if(personnage == &hero->m_personnage)
-                hero->m_amis.push_back(&m_monstre.back());
+            if(personnage == &jeu->hero.m_personnage)
+                jeu->hero.m_amis.push_back(&m_monstre.back());
 
             info.m_cible = &m_monstre.back();
 
@@ -887,10 +887,10 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
                 miracleEnCours.m_infos.back()->m_cible           = info.m_cible;
             }
 
-            if(personnage == &hero->m_personnage)
-                for(unsigned p = 0 ; p < hero->m_amis.size() ;  ++p)
-                    if(hero->m_amis[p] == info.m_cible)
-                        hero->m_amis.erase(hero->m_amis.begin() + p);
+            if(personnage == &jeu->hero.m_personnage)
+                for(unsigned p = 0 ; p < jeu->hero.m_amis.size() ;  ++p)
+                    if(jeu->hero.m_amis[p] == info.m_cible)
+                        jeu->hero.m_amis.erase(jeu->hero.m_amis.begin() + p);
 
             miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
             return 0;
@@ -959,7 +959,7 @@ bool Map::Miracle_Invocation(Hero *hero, Personnage *personnage, Miracle &modele
     return 1;
 }
 
-bool Map::Miracle_Pose(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Pose(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     if (effet.m_informations[0] != -1)
         personnage->setJustEtat(effet.m_informations[0]);
@@ -1001,7 +1001,7 @@ bool Map::Miracle_Pose(Hero *hero, Personnage *personnage, Miracle &modele, Effe
     return 0;
 }
 
-bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Charge(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     info.m_informations[3] += temps * 1000;
     if (info.m_informations[3] > effet.m_informations[2])
@@ -1106,7 +1106,7 @@ bool Map::Miracle_Charge(Hero *hero, Personnage *personnage, Miracle &modele, Ef
 }
 
 
-bool Map::Miracle_Teleport(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Teleport(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     coordonnee enCours = miracleEnCours.m_coordonneeCible;
 
@@ -1172,7 +1172,7 @@ bool Map::Miracle_Teleport(Hero *hero, Personnage *personnage, Miracle &modele, 
     return 0;
 }
 
-bool Map::Miracle_EffetEcran(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_EffetEcran(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     moteurGraphique->m_effetsEcran.push_back(Effet_ecran ());
     moteurGraphique->m_effetsEcran.back().type      = effet.m_informations[0];
@@ -1195,7 +1195,7 @@ bool Map::Miracle_EffetEcran(Hero *hero, Personnage *personnage, Miracle &modele
     return 0;
 }
 
-bool Map::Miracle_Degats(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Degats(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     int deg = 0;
 
@@ -1212,9 +1212,9 @@ bool Map::Miracle_Degats(Hero *hero, Personnage *personnage, Miracle &modele, Ef
            // {
                 if(deg != 0)
                 {
-                    InfligerDegats(info.m_cible, personnage, deg, effet.m_informations[2], hero, effet.m_informations[3]);
-                    if(personnage == &hero->m_personnage && effet.m_informations[3] == 0 && effet.m_informations[2] == 0)
-                        hero->JouerSonAttaque(info.m_cible->m_materiau);
+                    InfligerDegats(info.m_cible, personnage, deg, effet.m_informations[2], jeu, effet.m_informations[3]);
+                    if(personnage == &jeu->hero.m_personnage && effet.m_informations[3] == 0 && effet.m_informations[2] == 0)
+                        jeu->hero.JouerSonAttaque(info.m_cible->m_materiau);
                 }
            // }
     }
@@ -1232,7 +1232,7 @@ bool Map::Miracle_Degats(Hero *hero, Personnage *personnage, Miracle &modele, Ef
     return 0;
 }
 
-bool Map::Miracle_Souffle(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Souffle(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     if (info.m_cible != NULL)
     {
@@ -1272,7 +1272,7 @@ bool Map::Miracle_Souffle(Hero *hero, Personnage *personnage, Miracle &modele, E
     return 0;
 }
 
-bool Map::Miracle_Zone(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Zone(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     coordonnee buf( (int)((int)(info.m_position.x+COTE_TILE*0.25f)/COTE_TILE),
                     (int)((int)(info.m_position.y+COTE_TILE*0.25f)/COTE_TILE));
@@ -1288,7 +1288,7 @@ bool Map::Miracle_Zone(Hero *hero, Personnage *personnage, Miracle &modele, Effe
                     if (m_decor[1][y][x].getMonstre()[z]>=0&&m_decor[1][y][x].getMonstre()[z]<(int)m_monstre.size())
                         if (m_monstre[m_decor[1][y][x].getMonstre()[z]].EnVie()
                         && ((m_monstre[m_decor[1][y][x].getMonstre()[z]].m_friendly != personnage->m_friendly)
-                         || (m_monstre[m_decor[1][y][x].getMonstre()[z]].m_friendly == personnage->m_friendly && effet.m_informations[5]/*&& y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x*/ /*&& ((!personnage->m_friendly) || effet.m_informations[5]))*/))
+                         || (m_monstre[m_decor[1][y][x].getMonstre()[z]].m_friendly == personnage->m_friendly && effet.m_informations[5]/*&& y==jeu->hero.m_personnage.getCoordonnee().y&&x==jeu->hero.m_personnage.getCoordonnee().x*/ /*&& ((!personnage->m_friendly) || effet.m_informations[5]))*/))
                         &&m_monstre[m_decor[1][y][x].getMonstre()[z]].getCaracteristique().rang>=0
                         &&m_monstre[m_decor[1][y][x].getMonstre()[z]].m_actif
                         &&m_monstre[m_decor[1][y][x].getMonstre()[z]].getCaracteristique().niveau>=0)
@@ -1299,12 +1299,12 @@ bool Map::Miracle_Zone(Hero *hero, Personnage *personnage, Miracle &modele, Effe
                             miracleEnCours.m_infos.back()->m_cible           = &m_monstre[m_decor[1][y][x].getMonstre()[z]];
                         }
 
-                if (y==hero->m_personnage.getCoordonnee().y&&x==hero->m_personnage.getCoordonnee().x && ((!personnage->m_friendly) || effet.m_informations[5]))
+                if (y==jeu->hero.m_personnage.getCoordonnee().y&&x==jeu->hero.m_personnage.getCoordonnee().x && ((!personnage->m_friendly) || effet.m_informations[5]))
                 {
                     miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
                     miracleEnCours.m_infos.back()->m_effetEnCours    =  effet.m_informations[0];
                     miracleEnCours.m_infos.back()->m_position        =  info.m_position;
-                    miracleEnCours.m_infos.back()->m_cible           = &hero->m_personnage;
+                    miracleEnCours.m_infos.back()->m_cible           = &jeu->hero.m_personnage;
                 }
             }
 
@@ -1326,7 +1326,7 @@ bool Map::Miracle_Zone(Hero *hero, Personnage *personnage, Miracle &modele, Effe
     return 0;
 }
 
-bool Map::Miracle_Conditions(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Conditions(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     bool oui = false;
     if(effet.m_informations[1] == C_ANGLE)
@@ -1334,7 +1334,7 @@ bool Map::Miracle_Conditions(Hero *hero, Personnage *personnage, Miracle &modele
             oui = true;
 
     if(effet.m_informations[1] == C_EQUIPEMENT)
-        if((int)(hero->m_cas) == effet.m_informations[2])
+        if((int)(jeu->hero.m_cas) == effet.m_informations[2])
             oui = true;
 
     if(effet.m_informations[1] == C_VARIABLE)
@@ -1393,7 +1393,7 @@ bool Map::Miracle_Conditions(Hero *hero, Personnage *personnage, Miracle &modele
     return 0;
 }
 
-bool Map::Miracle_Bloquer(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Bloquer(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     personnage->m_miracleBloquant = effet.m_informations[0];
 
@@ -1411,7 +1411,7 @@ bool Map::Miracle_Bloquer(Hero *hero, Personnage *personnage, Miracle &modele, E
 }
 
 
-bool Map::Miracle_Variable(Hero *hero, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
+bool Map::Miracle_Variable(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     if((int)personnage->m_variables_miracles.size() <=  effet.m_informations[0])
         personnage->m_variables_miracles.resize(effet.m_informations[0] + 1,0);
@@ -1431,7 +1431,7 @@ bool Map::Miracle_Variable(Hero *hero, Personnage *personnage, Miracle &modele, 
     return 0;
 }
 
-void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,float temps,Hero *hero)
+void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,float temps,Jeu *jeu)
 {
     bool continuerb = true;
     for (int i=0;i<(int)personnage->m_miracleEnCours.size() && continuerb;++i)
@@ -1475,49 +1475,49 @@ void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,fl
                 }
 
                 if (type == AURA)
-                    continuer = Miracle_Aura(       hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Aura(       jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type == DECLENCHEUR)
-                    continuer = Miracle_Declencheur(hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Declencheur(jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type == EFFET)
-                    continuer = Miracle_Effet(      hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Effet(      jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type == CHARME)
-                    continuer = Miracle_Charme(     hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Charme(     jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type==CORPS_A_CORPS)
-                    continuer = Miracle_CorpsACorps(hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_CorpsACorps(jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type==REPETITION)
-                    continuer = Miracle_Repetition( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Repetition( jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type==PROJECTILE)
-                    continuer = Miracle_Projectile( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Projectile( jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type == EFFET_GRAPHIQUE)
-                    continuer = Miracle_EffetGraphique( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_EffetGraphique( jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
@@ -1528,72 +1528,72 @@ void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,fl
                     for(unsigned k = 0 ; k < m_monstre.size() ; ++k)
                         if(&m_monstre[k] == personnage)
                             no = k;
-                    continuer = Miracle_Invocation( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Invocation( jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
-                    if(personnage != &hero->m_personnage)
+                    if(personnage != &jeu->hero.m_personnage)
                         personnage = &m_monstre[no];
                 }
 
                 else if (type == CHANGEMENT_POSE)
-                    continuer = Miracle_Pose(       hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Pose(       jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type == CHARGE)
-                    continuer = Miracle_Charge(     hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Charge(     jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type == EFFET_ECRAN)
-                    continuer = Miracle_EffetEcran( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_EffetEcran( jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type == DEGATS)
-                    continuer = Miracle_Degats( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Degats( jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type == SOUFFLE)
-                    continuer = Miracle_Souffle( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Souffle( jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type == ZONE)
-                    continuer = Miracle_Zone(       hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Zone(       jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type == CONDITION)
-                    continuer = Miracle_Conditions( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Conditions( jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type == BLOQUER)
-                    continuer = Miracle_Bloquer   ( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Bloquer   ( jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
                 else if (type == VARIABLE_MIRACLE)
-                    continuer = Miracle_Variable  ( hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Variable  ( jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);
 
 
                 else if (type == TELEPORT)
-                    continuer = Miracle_Teleport(   hero,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
+                    continuer = Miracle_Teleport(   jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
                                                     personnage->m_miracleEnCours[i], *personnage->m_miracleEnCours[i].m_infos[o],
                                                     temps, o, detruire);

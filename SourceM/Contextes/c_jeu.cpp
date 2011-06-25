@@ -380,7 +380,7 @@ void c_Jeu::Animation(Jeu *jeu)
 
                                 jeu->hero.m_personnage.m_cible->m_vientDetreTouche = &jeu->hero.m_personnage;
 
-                                jeu->map->InfligerDegats(jeu->hero.m_personnage.m_cible,&jeu->hero.m_personnage,degats,PHYSIQUE,&jeu->hero,0);
+                                jeu->map->InfligerDegats(jeu->hero.m_personnage.m_cible,&jeu->hero.m_personnage,degats,PHYSIQUE,jeu,0);
 
                                 jeu->hero.m_personnage.InfligerDegats(-degats * jeu->hero.m_caracteristiques.volVie, 4,0);
                                 jeu->hero.m_caracteristiques.foi += degats *jeu->hero.m_caracteristiques.volFoi;
@@ -433,7 +433,7 @@ void c_Jeu::Animation(Jeu *jeu)
     if(jeu->hero.m_personnage.m_vientDeToucher != NULL)
         jeu->hero.m_personnage.m_vientDeFrapper = jeu->hero.m_personnage.m_vientDeToucher, jeu->hero.m_personnage.m_vientDeToucher = NULL;
 
-    jeu->map->GererMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsEcoule,&jeu->hero);
+    jeu->map->GererMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsEcoule,jeu);
 }
 void c_Jeu::Lumieres(Jeu *jeu)
 {

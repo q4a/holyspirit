@@ -313,15 +313,15 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
     {
         if (script->m_instructions[noInstruction].nom=="fight" && monstre != -1 && configuration->hote)
             Script_Fight(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
-        else if (script->m_instructions[noInstruction].nom=="evasion" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="evasion" && monstre != -1 && !configuration->hote)
             Script_Evasion(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
-        else if (script->m_instructions[noInstruction].nom=="followHero" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="followHero" && monstre != -1 && (configuration->hote || !configuration->hote))
             Script_Follow(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
-        else if (script->m_instructions[noInstruction].nom=="teleport" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="teleport" && monstre != -1 && (configuration->hote || !configuration->hote))
             Script_Teleport(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
-        else if (script->m_instructions[noInstruction].nom=="useMiracle" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="useMiracle" && monstre != -1 && (configuration->hote || !configuration->hote))
             Script_UseMiracle(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
-        else if (script->m_instructions[noInstruction].nom=="stopMiracle" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="stopMiracle" && monstre != -1 && (configuration->hote || !configuration->hote))
         {
             for (int i=0;i<(int)m_monstre[monstre].m_miracleEnCours.size();++i)
             if(m_monstre[monstre].m_miracleEnCours[i].m_modele == script->getValeur(noInstruction, 0))
@@ -333,15 +333,15 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             }
 
         }
-        else if (script->m_instructions[noInstruction].nom=="setState" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="setState" && monstre != -1 && (configuration->hote || !configuration->hote))
             Script_SetState(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
-        else if (script->m_instructions[noInstruction].nom=="dammages" && monstre != -1 && configuration->hote)
-            InfligerDegats(monstre, NULL, script->getValeur(noInstruction, 0), 4, hero, false);
-        else if (script->m_instructions[noInstruction].nom=="shoot" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="dammages" && monstre != -1 && (configuration->hote || !configuration->hote))
+            InfligerDegats(monstre, NULL, script->getValeur(noInstruction, 0), 4, jeu, false);
+        else if (script->m_instructions[noInstruction].nom=="shoot" && monstre != -1 && (configuration->hote || !configuration->hote))
             Script_Shoot(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="randomDisplace" && monstre != -1 && configuration->hote)
             Script_RandomDisplace(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
-        else if (script->m_instructions[noInstruction].nom=="setInvocationID" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="setInvocationID" && monstre != -1 && (configuration->hote || !configuration->hote))
         {
             if(script->getValeur(noInstruction, 0) >= 0)
             for (int i=0;i<(int)m_monstre[monstre].m_miracleEnCours.size();++i)
@@ -363,17 +363,17 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                             }
             }
         }
-        else if (script->m_instructions[noInstruction].nom=="setActif" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="setActif" && monstre != -1 && (configuration->hote || !configuration->hote))
         {
             m_monstre[monstre].m_actif = script->getValeur(noInstruction, 0);
         }
-        else if (script->m_instructions[noInstruction].nom=="setSpeed" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="setSpeed" && monstre != -1 && (configuration->hote || !configuration->hote))
         {
             Caracteristique temp = m_monstre[monstre].getCaracteristique();
             temp.vitesse = script->getValeur(noInstruction, 0)/100;
             m_monstre[monstre].setCaracteristique(temp);
         }
-        else if (script->m_instructions[noInstruction].nom=="look_hero" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="look_hero" && monstre != -1 && (configuration->hote || !configuration->hote))
         {
             float m=atan2(-(double)(hero->m_personnage.getCoordonneePixel().y-m_monstre[monstre].getCoordonneePixel().y),
                            (double)(hero->m_personnage.getCoordonneePixel().x-m_monstre[monstre].getCoordonneePixel().x));
@@ -390,7 +390,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                 for (int i=0;i<(int)m_monstre[monstre].getObjets().size();++i)
                     m_decor[1][m_monstre[monstre].getCoordonnee().y][m_monstre[monstre].getCoordonnee().x].AjouterObjet(m_monstre[monstre].getObjets()[i]);
         }
-        else if (script->m_instructions[noInstruction].nom=="set_entityActif" && monstre == -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="set_entityActif" && monstre == -1 && (configuration->hote || !configuration->hote))
         {
             if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < m_monstre.size())
                 m_monstre[(int)script->getValeur(noInstruction, 0)].m_actif = (bool)script->getValeur(noInstruction, 1);
@@ -403,7 +403,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             Script_Craft(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="bless" && monstre != -1)
             Script_Bless(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
-        else  if (script->m_instructions[noInstruction].nom=="setFriendly" && monstre != -1 && configuration->hote)
+        else  if (script->m_instructions[noInstruction].nom=="setFriendly" && monstre != -1 && (configuration->hote || !configuration->hote))
         {
             m_monstre[monstre].m_friendly = script->getValeur(noInstruction, 0);
         }
@@ -418,12 +418,12 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="if")
             GererConditions(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
-        else if (script->m_instructions[noInstruction].nom=="variable" && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="variable" && (configuration->hote || !configuration->hote))
             script->setVariable((int)script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1));
-        else if (script->m_instructions[noInstruction].nom=="incrementVariable" && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="incrementVariable" && (configuration->hote || !configuration->hote))
             script->setVariable((int)script->getValeur(noInstruction, 0),
                                 script->getVariable((int)script->getValeur(noInstruction, 0)) + script->getValeur(noInstruction, 1));
-        else if (script->m_instructions[noInstruction].nom=="setCollision" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="setCollision" && monstre != -1 && (configuration->hote || !configuration->hote))
         {
             m_monstre[monstre].m_collision = script->getValeur(noInstruction, 0);
             m_monstre[monstre].m_impenetrable = script->getValeur(noInstruction, 0);
@@ -542,13 +542,13 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                 temp.miracles_restant += hero->m_lvl_miracles[i],hero->m_lvl_miracles[i] = 0;
             hero->m_personnage.setCaracteristique(temp);
         }
-        else if (script->m_instructions[noInstruction].nom=="entity_variable" && monstre == -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="entity_variable" && monstre == -1 && (configuration->hote || !configuration->hote))
         {
             if(script->getValeur(noInstruction, 0) < m_listID.size())
                 for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)
                     m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].m_scriptAI.setVariable((int)script->getValeur(noInstruction, 1), script->getValeur(noInstruction, 2));
         }
-        else if (script->m_instructions[noInstruction].nom=="entity_name" && monstre == -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="entity_name" && monstre == -1 && (configuration->hote || !configuration->hote))
         {
             if(script->getValeur(noInstruction, 0) < m_listID.size())
                 for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)
@@ -558,17 +558,17 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                     m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].setCaracteristique(temp);
                 }
         }
-        else if (script->m_instructions[noInstruction].nom=="goto" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="goto" && monstre != -1 && (configuration->hote || !configuration->hote))
         {
             m_monstre[monstre].setArrivee(
                         coordonnee((int)script->getValeur(noInstruction, 0), (int)script->getValeur(noInstruction, 1)));
         }
-        else if (script->m_instructions[noInstruction].nom=="stop" && monstre != -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="stop" && monstre != -1 && (configuration->hote || !configuration->hote))
         {
             m_monstre[monstre].setArrivee(
                         coordonnee(m_monstre[monstre].getProchaineCase().x, m_monstre[monstre].getProchaineCase().y));
         }
-        else if (script->m_instructions[noInstruction].nom=="entity_goto" && monstre == -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="entity_goto" && monstre == -1 && (configuration->hote || !configuration->hote))
         {
             if(script->getValeur(noInstruction, 0) < m_listID.size())
                 for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)
@@ -577,7 +577,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                         coordonnee((int)script->getValeur(noInstruction, 1), (int)script->getValeur(noInstruction, 2)));
                 }
         }
-        else if (script->m_instructions[noInstruction].nom=="entity_setState" && monstre == -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="entity_setState" && monstre == -1 && (configuration->hote || !configuration->hote))
         {
             if(script->getValeur(noInstruction, 0) < m_listID.size())
                 for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)
@@ -590,7 +590,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                         m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].setAngle((int)script->getValeur(noInstruction, 3));
                 }
         }
-        else if (script->m_instructions[noInstruction].nom=="entity_setFriend" && monstre == -1 && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="entity_setFriend" && monstre == -1 && (configuration->hote || !configuration->hote))
         {
             if(script->getValeur(noInstruction, 0) < m_listID.size())
                 for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)
@@ -624,7 +624,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                         m_decor[z][y][x].m_entite_graphique.m_noAnimation = (int)script->getValeur(noInstruction, 3);
                     }
         }
-        else if (script->m_instructions[noInstruction].nom=="setClimate" && configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="setClimate" && (configuration->hote || !configuration->hote))
         {
             if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < m_climates.size())
             {
@@ -656,6 +656,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
 
             jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
             jeu->m_contexte = jeu->m_chargement;
+            jeu->SendChangeMap(nomMap, coordonneePerso);
         }
         else if (script->m_instructions[noInstruction].nom=="playMusic")
         {

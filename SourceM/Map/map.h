@@ -73,28 +73,28 @@ public:
     void GererScript(Jeu *jeu,Hero *hero,float temps,Menu *menu);
     void GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
 
-    void GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles,float temps,Hero *hero);
+    void GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles,float temps,Jeu *jeu);
 
-    bool Miracle_Aura           (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Declencheur    (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Effet          (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Charme         (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_CorpsACorps    (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Repetition     (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Projectile     (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_EffetGraphique (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Invocation     (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Pose           (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Charge         (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_EffetEcran     (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Degats         (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Souffle        (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Zone           (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Conditions     (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Bloquer        (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Variable       (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Interchangement(Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
-    bool Miracle_Teleport       (Hero *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Aura           (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Declencheur    (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Effet          (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Charme         (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_CorpsACorps    (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Repetition     (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Projectile     (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_EffetGraphique (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Invocation     (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Pose           (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Charge         (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_EffetEcran     (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Degats         (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Souffle        (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Zone           (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Conditions     (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Bloquer        (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Variable       (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Interchangement(Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
+    bool Miracle_Teleport       (Jeu *, Personnage *, Miracle &, Effet &, EntiteMiracle &, InfosEntiteMiracle &, float , int , bool);
 
 
     void Script_Trade           (Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
@@ -112,13 +112,16 @@ public:
     void Script_RandomDisplace  (Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
 
 
-    void TestVisionMonstre(int numero, Hero *hero);
+    void TestVisionMonstre(int numero, Hero *hero,std::list<Hero> &players);
     bool TileVisible(int x,int y, coordonnee pos);
+
+    bool DistanceWithHeros(Jeu *jeu, coordonnee , int);
 
     //void InfligerDegatsMasse(coordonnee position,int rayon,int degats,bool sourceConcernee, Hero *hero, bool pousser = true, bool heroCompris = true, bool monstre = true);
 
-    bool InfligerDegats(int numeroMontre, Personnage *cible, float degats, int type, Hero *hero, float temps = 0);
-    bool InfligerDegats(Personnage *monstre, Personnage *cible, float degats, int type, Hero *hero, float temps = 0);
+    bool InfligerDegats(int numeroMontre, Personnage *cible, float degats, int type, Jeu *jeu, float temps = 0);
+    bool InfligerDegats(Personnage *monstre, Personnage *cible, float degats, int type, Jeu *jeu, float temps = 0);
+    void KillMonstre(Personnage *monstre, int angle, float degats, Jeu *jeu);
 
     void MusiquePlay();
     void GererAmbiance(float temps);
@@ -142,6 +145,8 @@ public:
     int     getNombreModeleMonstres();
     const   coordonnee &getDimensions();
     const   std::string &getNom();
+
+    void    DeplacerMonstreCase(int,int,int);
 
     bool    getCollisionPousse(int positionX,int positionY, int id = -1);
     void    TesterPoussable(Personnage &, float temps, int id = -1);
