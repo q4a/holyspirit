@@ -108,3 +108,6 @@ Arme à une main
 Arme à deux mains
 Clic gauche
 Clic droit
+Multijoueur
+Rejoindre partie
+Créer partie
