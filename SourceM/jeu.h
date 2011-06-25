@@ -51,12 +51,19 @@ class Jeu
     Jeu();
     void Demarrer();
     void Next();
+
+
     void GererMultijoueur();
     bool Connect(sf::IpAddress);
     void Disconnect();
     void LaunchServer();
     void CloseServer();
     bool DeletePersonnageClient(int no);
+
+    void AddClient(sf::TcpSocket* client);
+    void CheckPacket(sf::Packet &packet, int no, std::list<sf::TcpSocket*>::iterator it);
+
+    void SendSkin();
 
     Menu menu;
     Map *map;

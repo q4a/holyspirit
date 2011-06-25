@@ -840,13 +840,10 @@ void Hero::ChargerModele(bool tout)
                         m_cas=2;
 
             if (m_inventaire[i].m_useMiracle)
-              /*  if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL
-                 || m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==BOUCLIER)*/
-                {
-                    m_classe.miracles.push_back(m_inventaire[i].m_miracle);
-
-                    m_weaponMiracle.push_back(m_classe.miracles.size()-1);
-                }
+            {
+                m_classe.miracles.push_back(m_inventaire[i].m_miracle);
+                m_weaponMiracle.push_back(m_classe.miracles.size()-1);
+            }
         }
     }
 
@@ -854,8 +851,6 @@ void Hero::ChargerModele(bool tout)
     if (nombreArme==2)
         m_cas=1;
 
-
-    bool pasEquipe[NOMBRE_MORCEAU_PERSONNAGE];
     int ordre[NOMBRE_MORCEAU_PERSONNAGE];
 
     int priorite[NOMBRE_MORCEAU_PERSONNAGE];
@@ -863,7 +858,7 @@ void Hero::ChargerModele(bool tout)
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
     {
         priorite[i] = -1;
-        pasEquipe[i]=true,m_cheminModeleNouveau[i]="";
+        m_pasEquipe[i]=true,m_cheminModeleNouveau[i]="";
         if (tout)
             m_cheminModele[i]="";
     }
@@ -899,32 +894,12 @@ void Hero::ChargerModele(bool tout)
                         if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME)
                             m_weaponModel = m_inventaire[i].m_emplacementImageHero[temp];
                     }
-                    pasEquipe[m_inventaire[i].m_emplacementImageHero[temp]]=false;
+                    m_pasEquipe[m_inventaire[i].m_emplacementImageHero[temp]]=false;
                 }
             }
         }
 
-    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
-    {
-        if (m_cheminModeleNouveau[i]!="" && m_cheminModeleNouveau[i]!=m_cheminModele[i])
-            m_modelePersonnage[i].Charger(m_classe.chemin_modele+m_cheminModeleNouveau[i]);
-        else if (m_cheminModeleNouveau[i]=="")
-            m_modelePersonnage[i].Reinitialiser();
-
-        m_cheminModele[i]=m_cheminModeleNouveau[i];
-    }
-
-    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE ;++i)
-    {
-        if (pasEquipe[i] && !m_classe.modeleNu[i][m_cas].empty())
-        {
-            if (m_cheminModele[i]!=m_classe.modeleNu[i][m_cas])
-            {
-                m_modelePersonnage[i].Charger(m_classe.chemin_modele+m_classe.modeleNu[i][m_cas]);
-                m_cheminModele[i]=m_classe.modeleNu[i][m_cas];
-            }
-        }
-    }
+    ChargerGraphics();
 
     for (unsigned i = 0 ; i < m_personnage.m_miracleEnCours.size() ; ++i)
     {
@@ -944,10 +919,34 @@ void Hero::ChargerModele(bool tout)
         m_personnage.m_miracleEnCours.back().m_infos.back()->m_position.y=m_personnage.getCoordonneePixel().y;
     }
 
+    CalculerOrdreAffichage();
+}
 
+void Hero::ChargerGraphics()
+{
+    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
+    {
+        if (m_cheminModeleNouveau[i]!="" && m_cheminModeleNouveau[i]!=m_cheminModele[i])
+            m_modelePersonnage[i].Charger(m_classe.chemin_modele+m_cheminModeleNouveau[i]);
+        else if (m_cheminModeleNouveau[i]=="")
+            m_modelePersonnage[i].Reinitialiser();
+
+        m_cheminModele[i]=m_cheminModeleNouveau[i];
+    }
+
+    for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE ;++i)
+    {
+        if (m_pasEquipe[i] && !m_classe.modeleNu[i][m_cas].empty())
+        {
+            if (m_cheminModele[i]!=m_classe.modeleNu[i][m_cas])
+            {
+                m_modelePersonnage[i].Charger(m_classe.chemin_modele+m_classe.modeleNu[i][m_cas]);
+                m_cheminModele[i]=m_classe.modeleNu[i][m_cas];
+            }
+        }
+    }
 
     CalculerOrdreAffichage();
-
 }
 
 void Hero::CalculerOrdreAffichage()
@@ -989,7 +988,6 @@ void Hero::Afficher()
             m_personnage.Afficher(&m_modelePersonnage[m_ordreAffichage[i]], m_classe.border,
                                   false, i!=plusHaut,i!=plusBas);
         }
-    AfficherRaccourcis();
 }
 
 void Hero::AfficherCaracteristiques(float decalage, bool trader)
@@ -1602,6 +1600,9 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
 void Hero::AfficherAmisEtCraft()
 {
+
+    AfficherRaccourcis();
+
     bool hover_friend = false;
 
     for(unsigned i = 0 ; i < m_amis.size() ; ++i)

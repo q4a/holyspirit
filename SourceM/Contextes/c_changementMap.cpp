@@ -223,15 +223,16 @@ void c_Chargement::PreLoad(Jeu *jeu)
     jeu->map=new Map();
 
     jeu->hero.ChargerModele(true);
+    jeu->SendSkin();
 }
 
 void c_Chargement::PostLoad(Jeu *jeu)
 {
     m_thread_charger->Wait();
 
+    //for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+    //p->ChargerModele(true);
 
-    for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
-    p->ChargerModele(true);
 
     jeu->map->Initialiser(&jeu->hero);
 
@@ -371,6 +372,16 @@ void c_Chargement::PostLoad(Jeu *jeu)
 
     jeu->hero.m_personnage.Animer(&jeu->hero.m_modelePersonnage[0], 0);
     jeu->hero.m_personnage.m_entite_graphique.Initialiser(pos);
+
+
+    for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+    {
+        pos.x=(int)(((p->m_personnage.getCoordonneePixel().x-p->m_personnage.getCoordonneePixel().y)*64/COTE_TILE));
+        pos.y=(int)(((p->m_personnage.getCoordonneePixel().x+p->m_personnage.getCoordonneePixel().y)*32/COTE_TILE)/2+64);
+        p->m_personnage.Animer(&p->m_modelePersonnage[0], 0);
+        p->m_personnage.m_entite_graphique.Initialiser(pos);
+    }
+
     jeu->map->Animer(&jeu->hero,0);
     jeu->map->GererMonstres(jeu,&jeu->hero,0,&jeu->menu);
 

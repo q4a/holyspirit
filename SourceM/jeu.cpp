@@ -101,9 +101,6 @@ void Jeu::Demarrer()
             eventManager->StopEvenement(Key::P,EventKey);
         }
 
-        if(m_contexte != m_mainMenu && configuration->multi)
-            GererMultijoueur();
-
         m_contexte->Utiliser(this);
 
         if(m_display)
@@ -113,6 +110,9 @@ void Jeu::Demarrer()
         MusicClock.Reset();
 
         GlobalMutex.Unlock();
+
+        if(m_contexte != m_mainMenu && configuration->multi)
+            GererMultijoueur();
     }
 
     if(m_jeu->m_thread_sauvegarde)

@@ -1451,6 +1451,14 @@ void Personnage::setCoordonneePixel2(const coordonneeDecimal &position)
     m_positionPixel.y=position.y;
 }
 
+void Personnage::setJustCoordonnee(const coordonnee &position, const coordonneeDecimal &positionD)
+{
+    m_positionCase.x=position.x;
+    m_positionCase.y=position.y;
+    m_positionPixel.x=positionD.x;
+    m_positionPixel.y=positionD.y;
+}
+
 void Personnage::setDepart()
 {
     m_depart=m_positionCase;

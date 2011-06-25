@@ -124,6 +124,7 @@ public:
     void setVitesse(float vitesse);
     void setCoordonneePixel(const coordonnee &position);
     void setCoordonneePixel2(const coordonneeDecimal &position);
+    void setJustCoordonnee(const coordonnee &position, const coordonneeDecimal &positionD);
     void setProchaineCase(const coordonnee &position);
     void setCaracteristique(const Caracteristique &caracteristique);
     void regenererVie(float vie);

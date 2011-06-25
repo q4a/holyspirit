@@ -272,7 +272,6 @@ void c_Jeu::Deplacements(Jeu *jeu)
 
     jeu->map->TesterPoussable(jeu->hero.m_personnage, tempsEcoule);
 
-
     bool seDeplacer = jeu->hero.m_personnage.SeDeplacer(tempsEcoule*100);
 
     IA(jeu);
@@ -338,7 +337,12 @@ void c_Jeu::Animation(Jeu *jeu)
         temps2=0.12f;
 
     for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
-        p->m_personnage.Animer(&p->m_modelePersonnage[0],temps2, true);
+    {
+        p->m_personnage.m_entite_graphique.NextTile(true);
+        p->m_personnage.m_entite_graphique.Generer();
+        p->CalculerOrdreAffichage();
+        p->m_personnage.Animer(&p->m_modelePersonnage[0],0, true);
+    }
 
     int retour = -2;
     retour = jeu->hero.m_personnage.Gerer(&jeu->hero.m_modelePersonnage[0],temps2, true);
@@ -641,6 +645,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         jeu->hero.m_weaponsSet = (jeu->hero.m_weaponsSet == 1) ? 0 : 1;
         jeu->hero.RecalculerCaracteristiques(true);
         jeu->hero.ChargerModele();
+        jeu->SendSkin();
     }
 
     if(choix == B_MAP)
@@ -739,6 +744,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
                 jeu->hero.m_weaponsSet = jeu->hero.m_classe.boutons_menus_weapons_t[i].lien;
 
                 jeu->hero.ChargerModele();
+                jeu->SendSkin();
                 jeu->hero.RecalculerCaracteristiques(true);
             }
         }

@@ -76,6 +76,7 @@ public:
     void SauvegarderApercu();
     void Charger(const std::string &chemin);
     void ChargerModele(bool tout=false);
+    void ChargerGraphics();
     bool ChargerPresentation(const std::string &chemin);
 
     void Afficher();
@@ -152,8 +153,10 @@ public:
     Classe m_classe;
 
     Personnage m_personnage;
+
     Modele_Personnage m_modelePersonnage[NOMBRE_MORCEAU_PERSONNAGE];
     std::string m_cheminModele[NOMBRE_MORCEAU_PERSONNAGE],m_cheminModeleNouveau[NOMBRE_MORCEAU_PERSONNAGE];
+    bool m_pasEquipe[NOMBRE_MORCEAU_PERSONNAGE];
 
     Caracteristique m_caracteristiques;
 
