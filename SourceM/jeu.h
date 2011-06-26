@@ -104,10 +104,13 @@ class Jeu
 
     sf::Mutex GlobalMutex;
 
+    bool m_ready;
+
     private:
     sf::Thread *m_thread_clientTCP;
     sf::Thread *m_thread_clientUDP;
-    sf::Thread *m_thread_host;
+    sf::Thread *m_thread_hostTCP;
+    std::list<sf::Thread*> m_thread_hostUDP;
 };
 
 #endif

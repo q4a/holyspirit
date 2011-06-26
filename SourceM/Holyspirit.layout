@@ -5,7 +5,7 @@
 		<Cursor position="1772" topLine="51" />
 	</File>
 	<File name="Contextes\c_changementMap.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="3573" topLine="111" />
+		<Cursor position="3437" topLine="116" />
 	</File>
 	<File name="Contextes\c_changementMap.h" open="0" top="0" tabpos="0">
 		<Cursor position="2235" topLine="53" />
@@ -26,13 +26,13 @@
 		<Cursor position="1647" topLine="42" />
 	</File>
 	<File name="Contextes\c_mainMenu.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="29273" topLine="655" />
+		<Cursor position="29632" topLine="655" />
 	</File>
 	<File name="Contextes\c_mainMenu.h" open="0" top="0" tabpos="2">
 		<Cursor position="2217" topLine="71" />
 	</File>
-	<File name="Contextes\c_menuInGame.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="2256" topLine="79" />
+	<File name="Contextes\c_menuInGame.cpp" open="1" top="0" tabpos="15">
+		<Cursor position="9324" topLine="191" />
 	</File>
 	<File name="Contextes\c_miracles.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1786" topLine="54" />
@@ -65,7 +65,7 @@
 		<Cursor position="2683" topLine="90" />
 	</File>
 	<File name="Map\map.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="61556" topLine="1180" />
+		<Cursor position="50977" topLine="971" />
 	</File>
 	<File name="Map\map.h" open="1" top="0" tabpos="9">
 		<Cursor position="2659" topLine="62" />
@@ -92,12 +92,12 @@
 		<Cursor position="2307" topLine="74" />
 	</File>
 	<File name="jeu.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="4003" topLine="142" />
+		<Cursor position="3168" topLine="95" />
 	</File>
 	<File name="jeu.h" open="1" top="0" tabpos="2">
-		<Cursor position="1946" topLine="57" />
+		<Cursor position="1946" topLine="64" />
 	</File>
 	<File name="jeu_network.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="17249" topLine="258" />
+		<Cursor position="1560" topLine="51" />
 	</File>
 </CodeBlocks_layout_file>

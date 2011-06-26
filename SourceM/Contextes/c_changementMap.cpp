@@ -116,8 +116,10 @@ void c_Chargement::setC_Chargement(const std::string &prochaineMap,const coordon
 
     delete fichier;
 
-    if(cheminFond.size() > 0)
-        m_fond=moteurGraphique->AjouterImage(cheminFond.at(rand()%cheminFond.size()));
+    cout<<cheminFond.size()<<endl;
+
+    if(!cheminFond.empty())
+        m_fond=moteurGraphique->AjouterImage(cheminFond.at(rand()%cheminFond.size()),-1);
 
     cheminFond.clear();
 

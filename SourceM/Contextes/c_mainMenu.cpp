@@ -310,7 +310,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     if(m_chemin_saves.empty())
     {
         moteurGraphique->special_typo.Draw(configuration->getText(0,110), sf::Vector2f(configuration->Resolution.w/2,
-                                                                                      buttons_principal[0].position.y), 72, 19, true,
+                                                                                      buttons_principal[5].position.y), 72, 19, true,
                                            sf::Color(128,128,128));
     }
     else
@@ -649,7 +649,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
                 sf::Packet packet;
 
                 if(!configuration->hote)
-                    packet << sf::Int8(P_NEWPLAYER) << jeu->hero.m_caracteristiques << jeu->hero.m_cheminClasse;
+                    packet << sf::Int8(P_NEWPLAYER) << jeu->hero.m_caracteristiques.nom << jeu->hero.m_caracteristiques << jeu->hero.m_cheminClasse;
                 else if(configuration->multi)
                     jeu->LaunchServer();
 

@@ -56,7 +56,7 @@ Jeu::Jeu()
     m_host = NULL;
     m_thread_clientTCP = NULL;
     m_thread_clientUDP = NULL;
-    m_thread_host = NULL;
+    m_thread_hostTCP = NULL;
 }
 
 
@@ -109,14 +109,18 @@ void Jeu::Demarrer()
         moteurSons->Gerer(MusicClock.GetElapsedTime()*0.001);
         MusicClock.Reset();
 
-        GlobalMutex.Unlock();
-
         if(/*m_contexte != m_mainMenu && */configuration->multi)
             GererMultijoueur();
+
+        GlobalMutex.Unlock();
+
     }
 
     if(m_jeu->m_thread_sauvegarde)
         m_jeu->m_thread_sauvegarde->Wait(),delete m_jeu->m_thread_sauvegarde;
+
+    Disconnect();
+    CloseServer();
 
     m_contexte=NULL;
 
