@@ -30,6 +30,10 @@ using namespace sf;
 #include "../globale.h"
 #include "../jeu.h"
 
+
+sf::Packet& operator <<(sf::Packet& Packet,  Personnage& C);
+sf::Packet& operator >>(sf::Packet& Packet, Personnage& C);
+
 inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
 {
     sf::Vector2f temp;
@@ -839,6 +843,8 @@ bool Map::DistanceWithHeros(Jeu *jeu, coordonnee pos, int t)
 
 void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 {
+    sf::Packet packet;
+
     for(std::vector<Monstre>::iterator Iter_monstre = m_monstre.begin();Iter_monstre!=m_monstre.end();++Iter_monstre) {
     /*if((fabs(hero->m_personnage.getCoordonnee().x - Iter_monstre->getCoordonnee().x) < 20
      && fabs(hero->m_personnage.getCoordonnee().y - Iter_monstre->getCoordonnee().y) < 20)*/
@@ -982,7 +988,9 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 DeplacerMonstreCase(monstre, x, y);
             }
 
-            jeu->SendInfosMonstre(monstre, m_monstre[monstre]);
+            //jeu->SendInfosMonstre(monstre, m_monstre[monstre]);
+
+            packet<<(sf::Int8)P_INFOSMONSTRE<<(sf::Int16)monstre<<m_monstre[monstre];
         }
     }
     else
@@ -993,6 +1001,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
     }
 
     }
+    jeu->SendInfosMonstre(packet);
 }
 
 

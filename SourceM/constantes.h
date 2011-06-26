@@ -285,6 +285,14 @@ struct Caracteristique
 sf::Packet& operator >>(sf::Packet& Packet, Caracteristique& C);
 sf::Packet& operator <<(sf::Packet& Packet, const Caracteristique& C);
 
+sf::Packet& operator <<(sf::Packet& Packet, const coordonneeDecimal& C);
+sf::Packet& operator >>(sf::Packet& Packet, coordonneeDecimal& C);
+
+sf::Packet& operator <<(sf::Packet& Packet, const coordonnee& C);
+sf::Packet& operator >>(sf::Packet& Packet, coordonnee& C);
+
+
+
 sf::FloatRect GetViewRect(const sf::View& view);
 
 

@@ -65,7 +65,7 @@ class Jeu
 
     void SendSkin();
     void SendChangeMap(const std::string &prochaineMap,const coordonnee &coordonneePerso);
-    void SendInfosMonstre(int, Monstre &);
+    void SendInfosMonstre(sf::Packet &packet);
     void SendDegats(Hero *hero, float degats, int type, float temps = 0);
     void SendDegats(int no, float degats, int type, float temps = 0);
     void SendKillMonstre(int no, int angle, float degats);

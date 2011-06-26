@@ -195,16 +195,25 @@ void GererReseauClientUDP(void* UserData)
             }
             else if(type == P_INFOSMONSTRE && jeu->map)
             {
-                sf::Int16 no;
-                packet>>no;
-
-                if(jeu->map->m_loaded)
+                do
                 {
-                    int x = (int)((jeu->map->getEntiteMonstre(no))->getCoordonneePixel().x/COTE_TILE + 0.5);
-                    int y = (int)((jeu->map->getEntiteMonstre(no))->getCoordonneePixel().y/COTE_TILE + 0.5);
-                    packet>>*(jeu->map->getEntiteMonstre(no));
-                    jeu->map->DeplacerMonstreCase(no,x,y);
-                }
+                    sf::Int16 no;
+                    packet>>no;
+
+                    if(jeu->map->m_loaded)
+                    {
+                        int x = (int)((jeu->map->getEntiteMonstre(no))->getCoordonneePixel().x/COTE_TILE + 0.5);
+                        int y = (int)((jeu->map->getEntiteMonstre(no))->getCoordonneePixel().y/COTE_TILE + 0.5);
+                        packet>>*(jeu->map->getEntiteMonstre(no));
+                        jeu->map->DeplacerMonstreCase(no,x,y);
+                    }
+
+                    if(!packet.EndOfPacket())
+                        packet>>type;
+                    else
+                        type = -1;
+
+                }while(type == P_INFOSMONSTRE);
             }
         }
     }
@@ -666,12 +675,10 @@ void Jeu::SendChangeMap(const std::string &prochaineMap,const coordonnee &coordo
     }
 }
 
-void Jeu::SendInfosMonstre(int no, Monstre &monstre)
+void Jeu::SendInfosMonstre(sf::Packet &packet)
 {
     if(configuration->multi && configuration->hote)
     {
-        sf::Packet packet;
-        packet<<(sf::Int8)P_INFOSMONSTRE<<(sf::Int16)no<<monstre;
         for (std::list<sf::TcpSocket*>::iterator it = m_clients.begin(); it != m_clients.end(); ++it)
         {
             sf::TcpSocket& client = **it;
