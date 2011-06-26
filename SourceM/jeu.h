@@ -44,6 +44,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Contextes/c_demarrage.h"
 #include "Contextes/c_mainMenu.h"
 
+struct ClientUDP
+{
+    sf::UdpSocket socket;
+    sf::Thread* thread;
+    bool running;
+};
+
 class Jeu
 {
     public:
@@ -80,9 +87,13 @@ class Jeu
 	sf::SocketSelector  m_selector;
     sf::TcpListener     m_listener;
     std::list<sf::TcpSocket*> m_clients;
+    std::list<ClientUDP*> m_clients_udp;
     std::list<Hero> m_personnageClients;
 
     sf::TcpSocket *m_host;
+    sf::UdpSocket m_udp;
+
+    bool m_runTCPHost;
 
 	bool m_run,m_display,m_no_printscreen;
 
@@ -110,7 +121,6 @@ class Jeu
     sf::Thread *m_thread_clientTCP;
     sf::Thread *m_thread_clientUDP;
     sf::Thread *m_thread_hostTCP;
-    std::list<sf::Thread*> m_thread_hostUDP;
 };
 
 #endif

@@ -160,9 +160,6 @@ void GererReseauClientUDP(void* UserData)
 {
     Jeu *jeu = static_cast<Jeu*>(UserData);
 
-    sf::UdpSocket udp;
-    udp.Bind(6667);
-
     sf::IpAddress ip;// = jeu->m_host->GetRemoteAddress();
     short unsigned int port;// = 6666;
 
@@ -170,7 +167,7 @@ void GererReseauClientUDP(void* UserData)
         // if(jeu->m_contexte != jeu->m_mainMenu)
     {
         sf::Packet packet;
-        if(udp.Receive(packet, ip, port) == sf::Socket::Done)
+        if(jeu->m_udp.Receive(packet, ip, port) == sf::Socket::Done)
         {
             sf::Int8 type;
             packet>>type;
@@ -224,11 +221,11 @@ void GererReseauHostTCP(void* UserData)
     sf::Context context;
     Jeu *jeu = static_cast<Jeu*>(UserData);
 
-    while(1)
+    while(jeu->m_runTCPHost)
     {
         //  if(jeu->m_contexte != jeu->m_mainMenu)
         {
-            if (jeu->m_selector.Wait())
+            if (jeu->m_selector.Wait(1000))
             {
                 if (jeu->m_selector.IsReady(jeu->m_listener))
                 {
@@ -265,12 +262,15 @@ void GererReseauHostUDP(void* UserData)
     Jeu *jeu = o->jeu;
     sf::TcpSocket *client = o->client;
 
-    sf::UdpSocket udp;
-    udp.Bind(6668);
+    sf::UdpSocket *udp = &jeu->m_clients_udp.back()->socket;
+    bool *run = &jeu->m_clients_udp.back()->running;
+
+    udp->Bind(6668);
+    udp->SetBlocking(false);
 
     jeu->m_ready = true;
 
-    while(1)
+    while(*run)
     {
         int no = 0;
         for (std::list<sf::TcpSocket*>::iterator it = jeu->m_clients.begin(); it != jeu->m_clients.end(); ++it, ++no)
@@ -284,7 +284,7 @@ void GererReseauHostUDP(void* UserData)
         short unsigned int port = 6668;
         sf::Packet packet;
 
-        if(udp.Receive(packet, ip, port) == sf::Socket::Done)
+        if(udp->Receive(packet, ip, port) == sf::Socket::Done)
         {
             sf::Int8 type;
             packet>>type;
@@ -345,13 +345,19 @@ void Jeu::GererMultijoueur()
                 //delete *&*it;
 
                 int i = 0;
-                for (std::list<sf::Thread*>::iterator p = m_thread_hostUDP.begin();
-                        p != m_thread_hostUDP.end() && i <= no; ++p, ++i)
+
+                for (std::list<ClientUDP*>::iterator p = m_clients_udp.begin() ;
+                     p != m_clients_udp.end()&& i <= no; ++p, ++i)
                     if(i == no)
                     {
-                        (*p)->Terminate();
+                        (*p)->running = false;
+                        (*p)->socket.Unbind();
+
+                        (*p)->thread->Wait();
+                        delete (*p)->thread;
+
                         delete *p;
-                        m_thread_hostUDP.erase(p);
+                        m_clients_udp.erase(p);
                     }
 
                 if(!DeletePersonnageClient(no))
@@ -381,13 +387,6 @@ void Jeu::GererMultijoueur()
     }
     else if(m_host)
     {
-        sf::Packet packet;
-        sf::UdpSocket upd;
-        packet<<(sf::Int8)P_PLAYERCARACT<<hero.m_caracteristiques<<hero.m_personnage;
-        sf::IpAddress ip = m_host->GetRemoteAddress();
-        short unsigned int port = 6668;
-        upd.Send(packet, ip, port);
-
         sf::Packet ping;
         ping<<(sf::Int8)(-1);
         if(!(m_host->Send(ping) == sf::TcpSocket::Done))
@@ -400,12 +399,22 @@ void Jeu::GererMultijoueur()
             Disconnect();
             CloseServer();
         }
+        else
+        {
+            sf::Packet packet;
+            sf::UdpSocket upd;
+            packet<<(sf::Int8)P_PLAYERCARACT<<hero.m_caracteristiques<<hero.m_personnage;
+            sf::IpAddress ip = m_host->GetRemoteAddress();
+            short unsigned int port = 6668;
+            upd.Send(packet, ip, port);
+        }
     }
 }
 
 void Jeu::LaunchServer()
 {
     CloseServer();
+    m_runTCPHost = true;
     m_thread_hostTCP = new sf::Thread(&GererReseauHostTCP, this);
     m_thread_hostTCP->Launch();
 }
@@ -414,7 +423,9 @@ void Jeu::CloseServer()
 {
     if(m_thread_hostTCP)
     {
-        m_thread_hostTCP->Terminate();
+        m_runTCPHost = false;
+        m_listener.Close();
+        m_thread_hostTCP->Wait();
 
       //  m_thread_host->Wait();
         delete m_thread_hostTCP;
@@ -422,14 +433,18 @@ void Jeu::CloseServer()
     m_thread_hostTCP = NULL;
 
 
-    for (std::list<sf::Thread*>::iterator p = m_thread_hostUDP.begin();
-            p != m_thread_hostUDP.end(); ++p)
+    for (std::list<ClientUDP*>::iterator p = m_clients_udp.begin();
+            p != m_clients_udp.end(); ++p)
         {
-            (*p)->Terminate();
-            delete *p;
+            (*p)->running = false;
+            (*p)->socket.Unbind();
+            (*p)->thread->Wait();
+
+            delete (*p)->thread;
+            delete (*p);
         }
 
-    m_thread_hostUDP.clear();
+    m_clients_udp.clear();
 
     m_personnageClients.clear();
 
@@ -449,6 +464,8 @@ bool Jeu::Connect(sf::IpAddress ServerAddress)
         return false;
     }
 
+    m_udp.Bind(6667);
+
     m_thread_clientTCP = new sf::Thread(&GererReseauClientTCP, this);
     m_thread_clientTCP->Launch();
 
@@ -462,23 +479,26 @@ void Jeu::Disconnect()
 {
     std::cout<<"Vous avez ete deconnecte"<<std::endl;
 
-    GlobalMutex.Lock();
+   // GlobalMutex.Lock();
+    if(m_host)
+    m_host->Disconnect();
     if(m_host)
         delete m_host;
     m_host = NULL;
-    GlobalMutex.Unlock();
+    m_udp.Unbind();
+   // GlobalMutex.Unlock();
 
     if(m_thread_clientTCP)
     {
-        m_thread_clientTCP->Terminate();
-        //m_thread_clientTCP->Wait();
+        //m_thread_clientTCP->Terminate();
+        m_thread_clientTCP->Wait();
         delete m_thread_clientTCP;
     }
 
     if(m_thread_clientUDP)
     {
-        m_thread_clientUDP->Terminate();
-        //m_thread_clientUDP->Wait();
+        //m_thread_clientUDP->Terminate();
+        m_thread_clientUDP->Wait();
         delete m_thread_clientUDP;
     }
 
@@ -497,8 +517,13 @@ void Jeu::AddClient(sf::TcpSocket* client)
 
     m_ready = false;
 
-    m_thread_hostUDP.push_back(new sf::Thread(&GererReseauHostUDP, &temp));
-    m_thread_hostUDP.back()->Launch();
+    m_clients_udp.push_back(new ClientUDP ());
+    m_clients_udp.back()->running = true;
+    m_clients_udp.back()->thread = new sf::Thread(&GererReseauHostUDP, &temp);
+    m_clients_udp.back()->thread->Launch();
+
+    //m_thread_hostUDP.push_back(new sf::Thread(&GererReseauHostUDP, &temp));
+    //m_thread_hostUDP.back()->Launch();
 
     while(!m_ready)
     std::cout<<m_ready<<std::endl;

@@ -106,13 +106,18 @@ void Jeu::Demarrer()
         if(m_display)
             moteurGraphique->Afficher();
 
-        moteurSons->Gerer(MusicClock.GetElapsedTime()*0.001);
-        MusicClock.Reset();
 
         if(/*m_contexte != m_mainMenu && */configuration->multi)
             GererMultijoueur();
 
         GlobalMutex.Unlock();
+
+        moteurSons->Gerer(MusicClock.GetElapsedTime()*0.001);
+
+        if(MusicClock.GetElapsedTime() < 0.01)
+            Sleep(0.01 - MusicClock.GetElapsedTime());
+
+        MusicClock.Reset();
 
     }
 
