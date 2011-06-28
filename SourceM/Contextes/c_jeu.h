@@ -56,8 +56,6 @@ public:
 
     sf::Thread *m_thread_sauvegarde;
 
-private:
-
     //! Incrémente les compteurs de temps avec le temps écoulé depuis la dernière boucle
     /**
     Va aussi s'occuper de faire appelle aux fonctions pour régénerer la vie, la foi, les points d'ames
@@ -114,6 +112,8 @@ private:
     */
     void Affichage(Jeu *jeu);
     void FPS();
+
+    private:
 
     bool continuer,lumiere,augmenter;
     int nbrTourBoucle;

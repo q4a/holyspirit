@@ -723,8 +723,8 @@ void Hero::Charger(const std::string &chemin_save)
         Caracteristique charTemp;
         charTemp=m_personnage.getCaracteristique();
 
-        charTemp.niveau = 3;
-        charTemp.pointAme = 100;
+        charTemp.niveau = 1;
+        charTemp.pointAme = 0;
         charTemp.force=m_classe.caracteristique.force;
         charTemp.vitalite=m_classe.caracteristique.vitalite;
         charTemp.dexterite=m_classe.caracteristique.dexterite;
@@ -734,13 +734,13 @@ void Hero::Charger(const std::string &chemin_save)
 
         m_personnage.setCaracteristique(charTemp);
 
-        int k = 0;
+        /*int k = 0;
         for(unsigned i = 0 ; i < m_lvl_miracles.size() ; ++i)
         {
             m_lvl_miracles[i] = 1;
             if(i > 0 && k < 8 && m_classe.miracles[i].m_buf == -1)
                 m_raccourcis[k].no = i, m_raccourcis[k++].miracle = true;
-        }
+        }*/
 
         RecalculerCaracteristiques();
 

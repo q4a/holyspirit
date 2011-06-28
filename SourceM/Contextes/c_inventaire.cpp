@@ -149,7 +149,12 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     //jeu->map->Animer(&jeu->hero,0);
     jeu->map->Afficher(&jeu->hero,jeu->m_personnageClients,0,jeu->m_jeu->alpha_map);
     jeu->hero.AfficherAmisEtCraft();
-   // jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);
+   // jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);->
+    if(configuration->multi)
+    {
+        jeu->m_jeu->IA(jeu);
+        jeu->m_jeu->Animation(jeu);
+    }
 
     if (m_afficher)
         m_decalage+=temps_ecoule*2000;

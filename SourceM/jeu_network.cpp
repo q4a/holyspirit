@@ -112,6 +112,9 @@ void GererReseauClientTCP(void* UserData)
                             p != jeu->m_personnageClients.end() && i <= no; ++p, ++i)
                         if(i == no)
                         {
+                            sf::Int8 cas;
+                            packet>>cas;
+                            p->m_cas = cas;
                             for (int k=0; k<NOMBRE_MORCEAU_PERSONNAGE; ++k)
                                 packet>>p->m_cheminModeleNouveau[k]>>p->m_pasEquipe[k];
 
@@ -177,17 +180,13 @@ void GererReseauClientUDP(void* UserData)
                 sf::Int8 no;
                 packet>>no;
 
-                Caracteristique caract;
-                packet>>caract;
-
                 int i = 0;
                 for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin();
                         p != jeu->m_personnageClients.end() && i <= no; ++p, ++i)
                     if(i == no)
                     {
-                        p->m_caracteristiques.vie = caract.vie;
-                        p->m_personnage.setCaracteristique(p->m_caracteristiques);
                         packet>>p->m_personnage;
+                        p->m_caracteristiques.vie = p->m_personnage.getCaracteristique().vie;
                     }
             }
             else if(type == P_INFOSMONSTRE && jeu->map)
@@ -291,19 +290,16 @@ void GererReseauHostUDP(void* UserData)
 
             if(type == P_PLAYERCARACT)
             {
-                Caracteristique caract;
-                packet>>caract;
-
                 Personnage *perso = NULL;
                 int i = 0;
                 for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin();
                         p != jeu->m_personnageClients.end() && i <= no; ++p, ++i)
                     if(i == no)
                     {
-                        p->m_caracteristiques.vie = caract.vie;
-                        p->m_personnage.setCaracteristique(p->m_caracteristiques);
                         packet>>p->m_personnage;
                         perso = &p->m_personnage;
+
+                        p->m_caracteristiques.vie =  p->m_personnage.getCaracteristique().vie;
                     }
 
                 int no2 = 1;
@@ -314,7 +310,7 @@ void GererReseauHostUDP(void* UserData)
                         {
                             sf::TcpSocket& client2 = **it2;
                             sf::Packet packet2;
-                            packet2<<(sf::Int8)P_PLAYERCARACT<<(sf::Int8)(no+(no<no2))<<caract<<*perso;
+                            packet2<<(sf::Int8)P_PLAYERCARACT<<(sf::Int8)(no+(no<no2))<<*perso;
 
                             sf::UdpSocket updS;
                             sf::IpAddress ip2 = client2.GetRemoteAddress();
@@ -378,7 +374,7 @@ void Jeu::GererMultijoueur()
             {
                 sf::Packet packet2;
                 sf::UdpSocket upd;
-                packet2<<(sf::Int8)P_PLAYERCARACT<<(sf::Int8)0<<hero.m_caracteristiques<<hero.m_personnage;
+                packet2<<(sf::Int8)P_PLAYERCARACT<<(sf::Int8)0<<hero.m_personnage;
                 sf::IpAddress ip = client.GetRemoteAddress();
                 short unsigned int port = 6667;
                 upd.Send(packet2, ip, port);
@@ -403,7 +399,7 @@ void Jeu::GererMultijoueur()
         {
             sf::Packet packet;
             sf::UdpSocket upd;
-            packet<<(sf::Int8)P_PLAYERCARACT<<hero.m_caracteristiques<<hero.m_personnage;
+            packet<<(sf::Int8)P_PLAYERCARACT<<hero.m_personnage;
             sf::IpAddress ip = m_host->GetRemoteAddress();
             short unsigned int port = 6668;
             upd.Send(packet, ip, port);
@@ -536,7 +532,7 @@ void Jeu::AddClient(sf::TcpSocket* client)
     client->Send(packet);
 
     packet.Clear();
-    packet<<(sf::Int8)P_PLAYERSKIN<<(sf::Int8)0;
+    packet<<(sf::Int8)P_PLAYERSKIN<<(sf::Int8)0<<(sf::Int8)hero.m_cas;
     for (int i=0; i<NOMBRE_MORCEAU_PERSONNAGE; ++i)
         packet<<hero.m_cheminModele[i]<<hero.m_pasEquipe[i];
     client->Send(packet);
@@ -550,7 +546,7 @@ void Jeu::AddClient(sf::TcpSocket* client)
         client->Send(packet);
 
         packet.Clear();
-        packet<<(sf::Int8)P_PLAYERSKIN<<(sf::Int8)no2;
+        packet<<(sf::Int8)P_PLAYERSKIN<<(sf::Int8)no2<<(sf::Int8)p->m_cas;
         for (int i=0; i<NOMBRE_MORCEAU_PERSONNAGE; ++i)
             packet<<p->m_cheminModele[i]<<p->m_pasEquipe[i];
         client->Send(packet);
@@ -598,6 +594,9 @@ void Jeu::CheckPacket(sf::Packet &packet, int no, std::list<sf::TcpSocket*>::ite
                 p != m_personnageClients.end() && i <= no; ++p, ++i)
             if(i == no)
             {
+                sf::Int8 cas;
+                packet>>cas;
+                p->m_cas = cas;
                 for (int k=0; k<NOMBRE_MORCEAU_PERSONNAGE; ++k)
                     packet>>p->m_cheminModeleNouveau[k]>>p->m_pasEquipe[k];
                 p->ChargerGraphics();
@@ -661,8 +660,11 @@ void Jeu::SendSkin()
     {
         sf::Packet packet;
         packet<<(sf::Int8)P_PLAYERSKIN;
+
         if(configuration->hote)
             packet<<(sf::Int8)0;
+
+        packet<<(sf::Int8)hero.m_cas;
 
         for (int i=0; i<NOMBRE_MORCEAU_PERSONNAGE; ++i)
             packet<<hero.m_cheminModele[i]<<hero.m_pasEquipe[i];

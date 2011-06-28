@@ -338,10 +338,10 @@ void c_Jeu::Animation(Jeu *jeu)
 
     for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
     {
-        p->m_personnage.m_entite_graphique.NextTile(true);
+       /* p->m_personnage.m_entite_graphique.NextTile(true);
         p->m_personnage.m_entite_graphique.Generer();
+        p->m_personnage.Animer(&p->m_modelePersonnage[0],0, true);*/
         p->CalculerOrdreAffichage();
-        p->m_personnage.Animer(&p->m_modelePersonnage[0],0, true);
     }
 
     int retour = -2;
