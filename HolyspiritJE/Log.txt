@@ -68,140 +68,6 @@
          Chargement de : Data/User/Temps/Image.png
          Destruction du héro ...
          Chargement de : Data/Musics/Menu.ogg
-         Destruction du héro ...
-         Chargement de : Data/Sounds/Entities/Crusader/Crusader_death0.wav
-         Chargement de : Data/Graphics/Menus/UI/Inventory.png
-         Chargement de : Data/Graphics/Menus/UI/Skill.png
-         Chargement de : Data/Graphics/Menus/UI/Trader.png
-         Chargement de : Data/Graphics/Menus/UI/Hud.png
-         Chargement de : Data/Graphics/Menus/UI/Life_bar.png
-         Chargement de : Data/Graphics/Menus/UI/Faith_bar.png
-         Chargement de : Data/Graphics/Menus/UI/Plus_button.png
-         Chargement de : Data/Graphics/Menus/UI/Scroll_button.png
-         Chargement de : Data/Graphics/Menus/UI/SortInventory.png
-         Chargement de : Data/Graphics/Menus/UI/Bullet_off.png
-         Chargement de : Data/Graphics/Menus/UI/Bullet_on.png
-         Chargement de : Data/Graphics/Menus/UI/Quest.png
-         Chargement de : Data/Graphics/Menus/UI/Documents.png
-         Chargement de : Data/Graphics/Menus/UI/Craft.png
-         Chargement de : Data/Graphics/Menus/UI/MinimapIcones.png
-         Chargement de : Data/Graphics/Menus/UI/Soul_bar.png
-         Chargement de : Data/Graphics/Menus/UI/PlusMiracle.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_miracle.png
-         Chargement de : Data/Graphics/Menus/UI/Life_monster.png
-         Chargement de : Data/Graphics/Menus/UI/Life_monster_blank.png
-         Chargement de : Data/Graphics/Menus/UI/Attack.png
-         Chargement de : Data/Graphics/Menus/UI/hud_button.png
-         Chargement de : Data/Graphics/Menus/UI/hud_button_2.png
-         Chargement de : Data/Graphics/Menus/UI/Weapons_button_2.png
-         Chargement de : Data/Graphics/Menus/UI/Weapons_button.png
-         Chargement de : Data/Graphics/Menus/UI/Slot2x2.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_scroll.png
-         Chargement de : Data/Graphics/Menus/UI/Slot3x5.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_craft.png
-         Chargement de : Data/Graphics/Menus/UI/Craft_button.png
-         Chargement de : Data/Graphics/Menus/UI/Craft_button_ok.png
-         Chargement de : Data/Graphics/Menus/UI/Slot2x5.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_hand1crusader.png
-         Chargement de : Data/Graphics/Menus/UI/Slot3x3.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_hand2crusader.png
-         Chargement de : Data/Graphics/Menus/UI/Slot2x3.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_lightarmor.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_helmet.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_boots.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_armband.png
-         Chargement de : Data/Graphics/Menus/UI/Slot1x1.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_ring.png
-         Chargement de : Data/Graphics/Menus/UI/Slot_necklage.png
-         Chargement de : Data/Graphics/Menus/UI/Crusader/CrusaderPath1.png
-         Chargement de : Data/Graphics/Menus/UI/Crusader/CrusaderPath2.png
-         Chargement de : Data/Graphics/Menus/UI/Crusader/CrusaderPath3.png
-         Chargement de : Data/Graphics/Menus/UI/Miracle_tab.png
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement de : Data/Graphics/Miracles/LevelUp0.png
-         Chargement de : Data/Graphics/Miracles/LevelUp1.png
-         Chargement de : Data/Sounds/Miracles/LevelUp.wav
-         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement de : Data/Graphics/Miracles/Tornado.png
-         Chargement de : Data/Sounds/Miracles/Tornado.wav
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement de : Data/Graphics/Miracles/PowerfulSlash.png
-         Chargement de : Data/Sounds/Miracles/PowerfulSlash0.wav
-         Chargement de : Data/Sounds/Miracles/PowerfulSlash1.wav
-         Chargement de : Data/Sounds/Miracles/PowerfulSlash2.wav
-         Chargement de : Data/Sounds/Miracles/PowerfulSlash3.wav
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement de : Data/Graphics/Miracles/LastJudgement.png
-         Chargement de : Data/Graphics/Miracles/Explosion0.png
-         Chargement de : Data/Sounds/Miracles/Explosion0.wav
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement de : Data/Graphics/Miracles/Burn0.png
-         Chargement de : Data/Sounds/Landscapes/Fire.wav
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement de : Data/Graphics/Miracles/Blast.png
-         Chargement de : Data/Graphics/Miracles/CineticEffect.png
-         Chargement de : Data/Sounds/Miracles/Speed_effect.wav
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement de : Data/Graphics/Miracles/FaithArmor.png
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement de : Data/Graphics/Miracles/Lazare.png
-         Chargement de : Data/Sounds/Miracles/Aura.wav
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-         Chargement de : Data/Graphics/Miracles/Barbe.png
-         Chargement de : Data/Graphics/Miracles/FireEffect.png
-         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
-ERREUR : Impossible de charger : 
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
-         Chargement de : Crusader_Nude_1H_Wait0.png
-         Chargement de : Crusader_Nude_1H_Walk0.png
-         Chargement de : Crusader_Nude_1H_Attack0.png
-         Chargement de : Crusader_Nude_1H_Attack1.png
-         Chargement de : Data/Sounds/Entities/Footstep0.wav
-         Chargement de : Data/Sounds/Entities/Attack0.wav
-         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt0.wav
-         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt1.wav
-         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt2.wav
-         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt3.wav
-         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt4.wav
-         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt5.wav
-         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt6.wav
-         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt7.wav
-         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt8.wav
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
-         Chargement de : Crusader_SmallSword_R_Wait0.png
-         Chargement de : Crusader_SmallSword_R_Walk0.png
-         Chargement de : Crusader_SmallSword_R_Attack0.png
-         Chargement de : Data/Sounds/Weapons/Sword_org_0.wav
-         Chargement de : Data/Sounds/Weapons/Sword_org_1.wav
-         Chargement de : Data/Sounds/Weapons/Sword_org_2.wav
-         Chargement de : Data/Sounds/Weapons/Sword_org_3.wav
-         Chargement de : Data/Sounds/Weapons/Sword_org_4.wav
-         Chargement de : Data/Sounds/Weapons/Sword_org_5.wav
-         Chargement de : Data/Sounds/Weapons/Sword_vap_0.wav
-         Chargement de : Data/Sounds/Weapons/Sword_vap_1.wav
-         Chargement de : Data/Sounds/Weapons/Sword_vap_2.wav
-         Chargement de : Data/Sounds/Weapons/Sword_vap_3.wav
-         Chargement de : Data/Sounds/Weapons/Sword_vap_4.wav
-         Chargement de : Data/Sounds/Weapons/Sword_vap_5.wav
-         
-         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Shields/Small_shield.rs.hs
-         Chargement de : Crusader_SmallShield_Wait0.png
-         Chargement de : Crusader_SmallShield_Walk0.png
-         Chargement de : Crusader_SmallShield_Attack0.png
          Chargement du hero.
          /Lectures des caracteristiques.
          
@@ -249,6 +115,7 @@ ERREUR : Impossible de charger :
          Chargement de : Data/Graphics/Items/Daggers.png
          Chargement de : Data/Sounds/UI/DropItem1.wav
          Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement de : Data/Graphics/Miracles/FireEffect.png
          
          Chargement de l'objet : Armband_leather.item.hs
          Chargement de : Data/Graphics/Items/Armbands.png
@@ -320,13 +187,57 @@ ERREUR : Impossible de charger :
          /Lectures des quêtes.
          /Lectures des potales.
          Chargement de : Data/Sounds/Entities/Concubine/Concubine_death0.wav
+         Chargement de : Data/Graphics/Menus/UI/Inventory.png
+         Chargement de : Data/Graphics/Menus/UI/Skill.png
+         Chargement de : Data/Graphics/Menus/UI/Trader.png
+         Chargement de : Data/Graphics/Menus/UI/Hud.png
+         Chargement de : Data/Graphics/Menus/UI/Life_bar.png
+         Chargement de : Data/Graphics/Menus/UI/Faith_bar.png
+         Chargement de : Data/Graphics/Menus/UI/Plus_button.png
+         Chargement de : Data/Graphics/Menus/UI/Scroll_button.png
+         Chargement de : Data/Graphics/Menus/UI/SortInventory.png
+         Chargement de : Data/Graphics/Menus/UI/Bullet_off.png
+         Chargement de : Data/Graphics/Menus/UI/Bullet_on.png
+         Chargement de : Data/Graphics/Menus/UI/Quest.png
+         Chargement de : Data/Graphics/Menus/UI/Documents.png
+         Chargement de : Data/Graphics/Menus/UI/Craft.png
+         Chargement de : Data/Graphics/Menus/UI/MinimapIcones.png
+         Chargement de : Data/Graphics/Menus/UI/Soul_bar.png
+         Chargement de : Data/Graphics/Menus/UI/PlusMiracle.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_miracle.png
+         Chargement de : Data/Graphics/Menus/UI/Life_monster.png
+         Chargement de : Data/Graphics/Menus/UI/Life_monster_blank.png
+         Chargement de : Data/Graphics/Menus/UI/Attack.png
+         Chargement de : Data/Graphics/Menus/UI/hud_button.png
+         Chargement de : Data/Graphics/Menus/UI/hud_button_2.png
+         Chargement de : Data/Graphics/Menus/UI/Weapons_button_2.png
+         Chargement de : Data/Graphics/Menus/UI/Weapons_button.png
+         Chargement de : Data/Graphics/Menus/UI/Slot2x2.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_scroll.png
+         Chargement de : Data/Graphics/Menus/UI/Slot3x5.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_craft.png
+         Chargement de : Data/Graphics/Menus/UI/Craft_button.png
+         Chargement de : Data/Graphics/Menus/UI/Craft_button_ok.png
+         Chargement de : Data/Graphics/Menus/UI/Slot3x3.png
          Chargement de : Data/Graphics/Menus/UI/Slot_hand1concubine.png
+         Chargement de : Data/Graphics/Menus/UI/Slot2x3.png
          Chargement de : Data/Graphics/Menus/UI/Slot_hand2concubine.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_lightarmor.png
          Chargement de : Data/Graphics/Menus/UI/Slot_robe.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_helmet.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_boots.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_armband.png
+         Chargement de : Data/Graphics/Menus/UI/Slot1x1.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_ring.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_necklage.png
          Chargement de : Data/Graphics/Menus/UI/Concubine/ConcubinePath1.png
          Chargement de : Data/Graphics/Menus/UI/Concubine/ConcubinePath2.png
          Chargement de : Data/Graphics/Menus/UI/Concubine/ConcubinePath3.png
+         Chargement de : Data/Graphics/Menus/UI/Miracle_tab.png
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement de : Data/Graphics/Miracles/LevelUp0.png
+         Chargement de : Data/Graphics/Miracles/LevelUp1.png
+         Chargement de : Data/Sounds/Miracles/LevelUp.wav
          Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
          Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
          Chargement de : Data/Graphics/Miracles/Toxic0.png
@@ -378,6 +289,8 @@ ERREUR : Impossible de charger : Data/Sounds/Miracles/PowerfulSlash.wav
          Chargement de : Concubine_Nude_1H_Attack0.png
          Chargement de : Concubine_Nude_1H_Attack1.png
          Chargement de : Concubine_Nude_1H_Attack2.png
+         Chargement de : Data/Sounds/Entities/Footstep0.wav
+         Chargement de : Data/Sounds/Entities/Attack0.wav
          Chargement de : Data/Sounds/Entities/Concubine/Concubine_hurt0.wav
          Chargement de : Data/Sounds/Entities/Concubine/Concubine_hurt1.wav
          Chargement de : Data/Sounds/Entities/Concubine/Concubine_hurt2.wav
@@ -485,6 +398,18 @@ ERREUR : Impossible de charger : Data/Sounds/Miracles/PowerfulSlash.wav
          Chargement de : Concubine_Dagger_R_Wait0.png
          Chargement de : Concubine_Dagger_R_Walk0.png
          Chargement de : Concubine_Dagger_R_Attack0.png
+         Chargement de : Data/Sounds/Weapons/Sword_org_0.wav
+         Chargement de : Data/Sounds/Weapons/Sword_org_1.wav
+         Chargement de : Data/Sounds/Weapons/Sword_org_2.wav
+         Chargement de : Data/Sounds/Weapons/Sword_org_3.wav
+         Chargement de : Data/Sounds/Weapons/Sword_org_4.wav
+         Chargement de : Data/Sounds/Weapons/Sword_org_5.wav
+         Chargement de : Data/Sounds/Weapons/Sword_vap_0.wav
+         Chargement de : Data/Sounds/Weapons/Sword_vap_1.wav
+         Chargement de : Data/Sounds/Weapons/Sword_vap_2.wav
+         Chargement de : Data/Sounds/Weapons/Sword_vap_3.wav
+         Chargement de : Data/Sounds/Weapons/Sword_vap_4.wav
+         Chargement de : Data/Sounds/Weapons/Sword_vap_5.wav
          
          Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Weapons_OneHand/Dagger_l.rs.hs
          Chargement de : Concubine_Dagger_L_Wait0.png
@@ -932,39 +857,41 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement de : Data/Entities/Resources/Miscs/Abbey_door1.char.hs terminé
          /Lectures des monstres.
          
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
          /Lectures des cases.
          Chargement de la map terminé.
          Initialisation de l'herbe terminée.
          Initialisation des décors terminée.
          Initialisation des entités terminée.
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
          Chargement de : Data/Musics/Abbey.ogg
-         Destruction du héro ...
          /Génération de l'image...
          /Image affichée.
          /Image générée.
