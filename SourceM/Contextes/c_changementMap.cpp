@@ -390,7 +390,7 @@ void c_Chargement::PostLoad(Jeu *jeu)
     moteurGraphique->LightManager->SetQuality(jeu->hero.m_personnage.m_entite_graphique.m_light,24);
     moteurGraphique->LightManager->SetMovingLight(jeu->hero.m_personnage.m_entite_graphique.m_light,true);
     moteurGraphique->LightManager->SetIntensity(jeu->hero.m_personnage.m_entite_graphique.m_light,jeu->hero.getPorteeLumineuse().intensite);
-    moteurGraphique->LightManager->SetRadius(jeu->hero.m_personnage.m_entite_graphique.m_light,jeu->hero.getPorteeLumineuse().intensite * 3);
+    moteurGraphique->LightManager->SetRadius(jeu->hero.m_personnage.m_entite_graphique.m_light,jeu->hero.getPorteeLumineuse().intensite * 4);
     moteurGraphique->LightManager->SetColor(jeu->hero.m_personnage.m_entite_graphique.m_light,sf::Color(
             jeu->hero.getPorteeLumineuse().rouge,
             jeu->hero.getPorteeLumineuse().vert,

@@ -50,13 +50,11 @@ Jeu::Jeu()
     m_menuInGame    = NULL;
     m_mainMenu      = NULL;
 
-    m_listener.Listen(6666);
-    m_selector.Add(m_listener);
     configuration->multi = false;
     m_host = NULL;
     m_thread_clientTCP = NULL;
     m_thread_clientUDP = NULL;
-    m_thread_hostTCP = NULL;
+    m_thread_host = NULL;
 }
 
 

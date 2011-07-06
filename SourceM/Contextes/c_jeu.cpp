@@ -771,19 +771,6 @@ void c_Jeu::Evenements(Jeu *jeu)
             configuration->volume = debug_oldSound;
         else
             configuration->volume = 100;
-
-    }
-    if(eventManager->getEvenement(sf::Key::O,EventKey))
-    {
-        eventManager->StopEvenement(sf::Key::O,EventKey);
-        jeu->map->m_climates[0].m_actif = true;
-        jeu->map->m_climates[1].m_actif = true;
-    }
-    if(eventManager->getEvenement(sf::Key::K,EventKey))
-    {
-        eventManager->StopEvenement(sf::Key::K,EventKey);
-        jeu->map->m_climates[0].Stop();
-        jeu->map->m_climates[1].Stop();
     }
 
     GestionRaccourcis(jeu, m_diplace_mode);

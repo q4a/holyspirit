@@ -44,13 +44,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Contextes/c_demarrage.h"
 #include "Contextes/c_mainMenu.h"
 
-struct ClientUDP
-{
-    sf::UdpSocket socket;
-    sf::Thread* thread;
-    bool running;
-};
-
 class Jeu
 {
     public:
@@ -67,8 +60,10 @@ class Jeu
     void CloseServer();
     bool DeletePersonnageClient(int no);
 
-    void AddClient(sf::TcpSocket* client);
-    void CheckPacket(sf::Packet &packet, int no, std::list<sf::TcpSocket*>::iterator it);
+    void AddClient(sf::TcpSocket* clientTCP);
+    void CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSocket* tcp);
+
+    int  GetNoClient(const sf::IpAddress &address);
 
     void SendSkin();
     void SendChangeMap(const std::string &prochaineMap,const coordonnee &coordonneePerso);
@@ -86,8 +81,7 @@ class Jeu
 
 	sf::SocketSelector  m_selector;
     sf::TcpListener     m_listener;
-    std::list<sf::TcpSocket*> m_clients;
-    std::list<ClientUDP*> m_clients_udp;
+    std::list<sf::TcpSocket*> m_clientsTCP;
     std::list<Hero> m_personnageClients;
 
     sf::TcpSocket *m_host;
@@ -120,7 +114,7 @@ class Jeu
     private:
     sf::Thread *m_thread_clientTCP;
     sf::Thread *m_thread_clientUDP;
-    sf::Thread *m_thread_hostTCP;
+    sf::Thread *m_thread_host;
 };
 
 #endif
