@@ -589,8 +589,8 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
         m_images_saves[i].SetPosition(configuration->Resolution.w/2 - 336 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
                                       configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224);
-        m_images_saves[i].Resize(160,256);
         m_images_saves[i].SetSubRect(sf::IntRect(48,0,160,256));
+        m_images_saves[i].Resize(160,256);
         moteurGraphique->AjouterCommande(&m_images_saves[i],18,0);
 
         m_backtext_hero.SetPosition(configuration->Resolution.w/2 - 331 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
@@ -1148,7 +1148,8 @@ void  c_MainMenu::E_Multi(Jeu *jeu)
         //if(jeu->Connect("192.168.1.5"))
        // if(jeu->Connect("84.103.40.122"))
        // if(jeu->Connect("82.232.147.48"))
-        if(jeu->Connect("91.178.155.76"))
+        if(jeu->Connect("82.232.147.48"))
+        //if(jeu->Connect("91.178.155.76"))
         //if(jeu->Connect(sf::IpAddress::GetPublicAddress()))
             no_ecran = E_CONTINUER;
     }

@@ -4,14 +4,6 @@
 
 #define NET_PORT 4570
 
-/*struct jeu_client
-{
-    jeu_client(Jeu *j,sf::TcpSocket *c) : jeu(j), client(c) {}
-
-    Jeu *jeu;
-    sf::TcpSocket *client;
-};*/
-
 sf::Packet& operator <<(sf::Packet& Packet, const Caracteristique& C)
 {
     return Packet << (sf::Uint32)C.vie << (sf::Uint32)C.maxVie << (sf::Int16)C.niveau;
@@ -183,7 +175,6 @@ void GererReseauClientTCP(void* UserData)
                 }
                 else if(type == P_KILLMONSTRE && jeu->map)
                 {
-                    std::cout<<"MOUAHAHA"<<std::endl;
                     sf::Int16 no;
                     sf::Int16 angle;
                     sf::Uint16 degats;
@@ -338,74 +329,6 @@ void GererReseauHost(void* UserData)
     }
 }
 
-/*void GererReseauHostUDP(void* UserData)
-{
-    sf::Context context;
-    jeu_client *o = static_cast<jeu_client*>(UserData);
-
-    Jeu *jeu = o->jeu;
-    sf::TcpSocket *client = o->client;
-
-    sf::UdpSocket *udp = &jeu->m_clients_udp.back()->socket;
-    bool *run = &jeu->m_clients_udp.back()->running;
-
-    udp->Bind(NET_PORT);
-    udp->SetBlocking(false);
-
-    jeu->m_ready = true;
-
-    while(*run)
-    {
-        int no = 0;
-        for (std::list<sf::TcpSocket*>::iterator it = jeu->m_clients.begin(); it != jeu->m_clients.end(); ++it, ++no)
-            if(*it == client)
-            {
-                it = jeu->m_clients.end();
-                break;
-            }
-
-        sf::IpAddress ip = client->GetRemoteAddress();
-        short unsigned int port = NET_PORT;
-        sf::Packet packet;
-
-        if(udp->Receive(packet, ip, port) == sf::Socket::Done)
-        {
-            sf::Int8 type;
-            packet>>type;
-
-            if(type == P_PLAYERCARACT)
-            {
-                Personnage *perso = NULL;
-                int i = 0;
-                for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin();
-                        p != jeu->m_personnageClients.end() && i <= no; ++p, ++i)
-                    if(i == no)
-                    {
-                        packet>>p->m_personnage;
-                        perso = &p->m_personnage;
-
-                        p->m_caracteristiques.vie =  p->m_personnage.getCaracteristique().vie;
-                    }
-
-                int no2 = 1;
-
-                if(perso)
-                    for (std::list<sf::TcpSocket*>::iterator it2 = jeu->m_clients.begin(); it2 != jeu->m_clients.end(); ++it2,++no2)
-                        if(*it2 != client)
-                        {
-                            sf::TcpSocket& client2 = **it2;
-                            sf::Packet packet2;
-                            packet2<<(sf::Int8)P_PLAYERCARACT<<(sf::Int8)(no+(no<no2))<<*perso;
-
-                            sf::UdpSocket updS;
-                            sf::IpAddress ip2 = client2.GetRemoteAddress();
-                            updS.Send(packet, ip2, NET_PORT);
-                        }
-            }
-        }
-    }
-}*/
-
 
 
 void Jeu::GererMultijoueur()
@@ -425,8 +348,6 @@ void Jeu::GererMultijoueur()
                 m_clientsTCP.erase(it);
                 //delete *&*it;
 
-                int i = 0;
-
                 if(!DeletePersonnageClient(no))
                     std::cout<<"Un joueur est partit"<<std::endl;
                 int no2 = 1;
@@ -444,12 +365,12 @@ void Jeu::GererMultijoueur()
             else
             {
                 sf::Packet packet2;
-                sf::UdpSocket upd;
+               // sf::UdpSocket upd;
                 packet2<<(sf::Int8)P_PLAYERCARACT<<(sf::Int8)0<<hero.m_personnage;
-                client.Send(packet2);
-                /*sf::IpAddress ip = client.GetRemoteAddress();
+                //client.Send(packet2);
+                sf::IpAddress ip = client.GetRemoteAddress();
                 short unsigned int port = NET_PORT;
-                upd.Send(packet2, ip, port);*/
+                m_udp.Send(packet2, ip, port);
             }
         }
     }
@@ -470,11 +391,11 @@ void Jeu::GererMultijoueur()
         else
         {
             sf::Packet packet;
-            sf::UdpSocket upd;
+            //sf::UdpSocket upd;
             packet<<(sf::Int8)P_PLAYERCARACT<<hero.m_personnage;
             sf::IpAddress ip = m_host->GetRemoteAddress();
             short unsigned int port = NET_PORT;
-            upd.Send(packet, ip, port);
+            m_udp.Send(packet, ip, port);
         }
     }
 }
@@ -507,20 +428,6 @@ void Jeu::CloseServer()
         delete m_thread_host;
     }
     m_thread_host = NULL;
-
-
-    /*for (std::list<ClientUDP*>::iterator p = m_clients_udp.begin();
-            p != m_clients_udp.end(); ++p)
-        {
-            (*p)->running = false;
-            (*p)->socket.Unbind();
-            (*p)->thread->Wait();
-
-            delete (*p)->thread;
-            delete (*p);
-        }*/
-
-   // m_clients_udp.clear();
 
     m_personnageClients.clear();
 
@@ -591,25 +498,9 @@ void Jeu::AddClient(sf::TcpSocket* clientTCP)
 
     m_clientsTCP.push_back(clientTCP);
 
-    //jeu_client temp(this, client);
-
-    //m_ready = false;
-
-    /*m_clients_udp.push_back(new ClientUDP ());
-    m_clients_udp.back()->running = true;
-    m_clients_udp.back()->thread = new sf::Thread(&GererReseauHostUDP, &temp);
-    m_clients_udp.back()->thread->Launch();*/
-
-    //m_thread_hostUDP.push_back(new sf::Thread(&GererReseauHostUDP, &temp));
-    //m_thread_hostUDP.back()->Launch();
-
-  //  while(!m_ready)
-    //std::cout<<m_ready<<std::endl;
-
     std::cout<<"Un joueur arrive !"<<std::endl;
 
     m_selector.Add(*clientTCP);
-    //m_selector.Add(*clientUDP);
 
     packet<<(sf::Int8)P_NEWPLAYER<<hero.m_caracteristiques.nom<<hero.m_caracteristiques<<hero.m_cheminClasse;
     clientTCP->Send(packet);
@@ -738,9 +629,9 @@ void Jeu::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSoc
                     sf::Packet packet2;
                     packet2<<(sf::Int8)P_PLAYERCARACT<<(sf::Int8)(no+(no<no2))<<*perso;
 
-                    sf::UdpSocket updS;
+                    //sf::UdpSocket updS;
                     sf::IpAddress ip2 = client2.GetRemoteAddress();
-                    updS.Send(packet, ip2, NET_PORT);
+                    m_udp.Send(packet, ip2, NET_PORT);
                 }
     }
 }
@@ -821,12 +712,12 @@ void Jeu::SendInfosMonstre(sf::Packet &packet)
         for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
         {
             sf::TcpSocket& client = **it;
-            client.Send(packet);
+            //client.Send(packet);
 
-            /*sf::UdpSocket upd;
+           // sf::UdpSocket upd;
             sf::IpAddress ip = client.GetRemoteAddress();
             short unsigned int port = NET_PORT;
-            upd.Send(packet, ip, port);*/
+            m_udp.Send(packet, ip, port);
         }
     }
 }
