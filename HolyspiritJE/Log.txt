@@ -189,6 +189,11 @@ ERREUR : Impossible de charger :
          Chargement de : Crusader_Leather_1H_Attack0.png
          Chargement de : Crusader_Leather_1H_Attack1.png
          
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Leather_cap_1h.rs.hs
+         Chargement de : Crusader_LeatherCap_1h_Wait0.png
+         Chargement de : Crusader_LeatherCap_1h_Walk0.png
+         Chargement de : Crusader_LeatherCap_1h_Attack0.png
+         
          Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Small_sword_r.rs.hs
          Chargement de : Crusader_SmallSword_R_Wait0.png
          Chargement de : Crusader_SmallSword_R_Walk0.png
@@ -827,17 +832,12 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement de : Data/Entities/Resources/Miscs/Abbey_door1.char.hs terminé
          /Lectures des monstres.
          
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
          Chargement de : Data/Graphics/Miracles/HolyEffect.png
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
          /Lectures des cases.
@@ -846,11 +846,35 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Initialisation des décors terminée.
          Initialisation des entités terminée.
          Chargement de : Data/Musics/Abbey.ogg
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Armors/Nude/OneHand.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Helmets/Hair_1h.rs.hs
          
          ---------------------------------------------------------------------------------
          EVENEMENT : Changement de map
          ---------------------------------------------------------------------------------
          Chargement de : Data/Maps/Loading_screens/Forest0.jpg
+         
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
          
          Sauvegarde de la map : Data/User/Temps/Abbey.map.hs
          Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey.map.hs.emap.hs
@@ -915,20 +939,23 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Potion_faith0.item.hs
          /Sauvegarde de Necklage_necklage.item.hs
+         /Sauvegarde de Necklage_necklage.item.hs
+         /Sauvegarde de Ring_ring.item.hs
          /Sauvegarde de Ring_ring.item.hs
          /Sauvegarde de Ring_ring.item.hs
          /Sauvegarde de Ring_ring.item.hs
          /Sauvegarde de Drawing_helmet_horned_barbute.item.hs
-         /Sauvegarde de Drawing_shield_bronze.item.hs
+         /Sauvegarde de Craft_coal.item.hs
+         /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_coal.item.hs
          /Sauvegarde de Craft_ore_copper.item.hs
          /Sauvegarde de Craft_ore_copper.item.hs
          /Sauvegarde de Craft_ore_copper.item.hs
          /Sauvegarde de Craft_ore_iron.item.hs
-         /Sauvegarde de Craft_ore_iron.item.hs
          /Sauvegarde de Craft_ore_gold.item.hs
          /Sauvegarde de Craft_ore_gold.item.hs
-         /Sauvegarde de Craft_wood_plank.item.hs
+         /Sauvegarde de Craft_gem_emerald.item.hs
+         /Sauvegarde de Craft_gem_ruby.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          /Sauvegarde de Craft_wood_plank.item.hs
          Sauvegarde de la map terminée !
@@ -1628,72 +1655,10 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement de : Data/Entities/Resources/Miscs/Trigger_selectable.char.hs terminé
          /Lectures des monstres.
          
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
          /Lectures des cases.
          Chargement de la map terminé.
-         Initialisation de l'herbe terminée.
-         Initialisation des décors terminée.
-         Initialisation des entités terminée.
-         Chargement de : Data/Musics/AgrarianLands0.ogg
-         Destruction du héro ...
-         /Génération de l'image...
-         /Image affichée.
-         /Image générée.
-         
-         Sauvegarde du héro...
-         Ouverture du fichier.
-         /Ecriture des caracterstiques.
-         /Sauvegarde de Dagger_dagger.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Sauvegarde de Potion_heal0.item.hs
-         /Ecriture des objets.
-         /Ecriture des objets du coffre.
-         /Ecriture des miracles.
-         /Ecriture des docs.
-         /Ecriture des quetes.
-         /Ecriture des potales.
-         Sauvegarde du héro terminée !
-         
-         Destruction de la map...
-         Destruction des cases...
-         Cases détruites !
-         Modèles monstres détruits !
-         Monstres détruits !
-         Fonds détruits !
-         Chemins musiques détruits !
-         Projectiles détruits !
-         Effets détruits !
-         Map détruite !
-         Chargement de : Data/User/Temps/Image.png
-         Destruction du héro ...
-         Chargement de : Data/User/Temps/Image.png
-         Destruction du héro ...
-         Chargement de : Data/User/Temps/Image.png
-         Destruction du héro ...
-         Chargement de : Data/User/Temps/Image.png
-         Destruction du héro ...
-         Chargement de : Data/User/Temps/Image.png
-         Destruction du héro ...
-         Chargement de : Data/User/Temps/Image.png
-         Destruction du héro ...
-         Chargement de : Data/User/Temps/Image.png
-         Destruction du héro ...
-         Chargement de : Data/User/Temps/Image.png
-         Destruction du héro ...
-         Chargement de : Data/User/Temps/Image.png
-         Destruction du héro ...
-         
-         Fermeture des contextes effectuée avec succès.
-         Destruction du héro ...
-         Destruction du menu ...
-         
-         Sauvegarde de la configuration
-         
-         Destruction des moteurs
-         
-         EXIT_SUCCESS
