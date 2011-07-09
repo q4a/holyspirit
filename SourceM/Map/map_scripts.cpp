@@ -315,7 +315,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             Script_Fight(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="evasion" && monstre != -1 && !configuration->hote)
             Script_Evasion(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
-        else if (script->m_instructions[noInstruction].nom=="followHero" && monstre != -1 && (configuration->hote || !configuration->hote))
+        else if (script->m_instructions[noInstruction].nom=="followHero" && monstre != -1 && configuration->hote)
             Script_Follow(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="teleport" && monstre != -1 && (configuration->hote || !configuration->hote))
             Script_Teleport(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
@@ -333,11 +333,11 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             }
 
         }
-        else if (script->m_instructions[noInstruction].nom=="setState" && monstre != -1 && (configuration->hote || !configuration->hote))
+        else if (script->m_instructions[noInstruction].nom=="setState" && monstre != -1 && configuration->hote)
             Script_SetState(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="dammages" && monstre != -1 && (configuration->hote || !configuration->hote))
             InfligerDegats(monstre, NULL, script->getValeur(noInstruction, 0), 4, jeu, false);
-        else if (script->m_instructions[noInstruction].nom=="shoot" && monstre != -1 && (configuration->hote || !configuration->hote))
+        else if (script->m_instructions[noInstruction].nom=="shoot" && monstre != -1 && configuration->hote)
             Script_Shoot(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="randomDisplace" && monstre != -1 && configuration->hote)
             Script_RandomDisplace(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);

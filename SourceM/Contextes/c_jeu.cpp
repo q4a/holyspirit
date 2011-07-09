@@ -342,6 +342,7 @@ void c_Jeu::Animation(Jeu *jeu)
         p->m_personnage.m_entite_graphique.Generer();
         p->m_personnage.Animer(&p->m_modelePersonnage[0],0, true);*/
         p->CalculerOrdreAffichage();
+        p->m_personnage.EmulerDeplacement(tempsEcoule);
     }
 
     int retour = -2;
@@ -481,6 +482,7 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
 
     int newmiracle = -1;
 
+    if(!configuration->entering_text)
     for(int i = 0 ; i < 8 ; ++i)
     {
         if (eventManager->getEvenement(configuration->m_key_actions[K_SHORTCUT_1+i],EventKey))
@@ -540,6 +542,45 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
 {
     jeu->hero.GererRaccourcisMiracles();
     jeu->hero.GererRaccourcisObjets(inventory, hideLeft);
+
+    if(eventManager->getEvenement(sf::Key::Return,EventKey))
+    {
+        eventManager->StopEvenement(sf::Key::Return,EventKey);
+        if(!configuration->entering_text)
+        {
+            configuration->entering_text = true;
+            jeu->hero.m_personnage.m_speak.clear();
+        }
+        else
+        {
+            configuration->entering_text = false;
+            jeu->hero.m_personnage.m_speak_time = 5000;
+            jeu->SendMessage(jeu->hero.m_personnage.m_speak);
+
+            console->Ajouter(jeu->hero.m_caracteristiques.nom + " : "+jeu->hero.m_personnage.m_speak);
+        }
+    }
+
+    if(eventManager->getEvenement(sf::Key::Escape,EventKey) && configuration->entering_text)
+    {
+        eventManager->StopEvenement(sf::Key::Escape,EventKey);
+        configuration->entering_text = false;
+        jeu->hero.m_personnage.m_speak.clear();
+        jeu->hero.m_personnage.m_speak_time = 0;
+    }
+
+    if(configuration->entering_text)
+    {
+        jeu->hero.m_personnage.m_speak_time = 1000;
+
+        if(eventManager->IsEnteredText())
+            jeu->hero.m_personnage.m_speak += eventManager->getChar();
+
+        if(eventManager->getEvenement(sf::Key::Back,EventKey))
+            if(!jeu->hero.m_personnage.m_speak.empty())
+                jeu->hero.m_personnage.m_speak.erase(jeu->hero.m_personnage.m_speak.begin() + jeu->hero.m_personnage.m_speak.size() - 1);
+        eventManager->StopEvenement(sf::Key::Back,EventKey);
+    }
 
     if (   eventManager->getPositionSouris().x > AutoScreenAdjust(775,0).x
         && eventManager->getPositionSouris().x < AutoScreenAdjust(800,0).x
@@ -623,29 +664,32 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         }
     }
 
-    if(eventManager->getEvenement(configuration->m_key_actions[K_MAP],EventKey))
-        eventManager->StopEvenement(configuration->m_key_actions[K_MAP],EventKey), choix = B_MAP;
-    if(eventManager->getEvenement(configuration->m_key_actions[K_MIRACLES],EventKey))
-        eventManager->StopEvenement(configuration->m_key_actions[K_MIRACLES],EventKey), choix = B_MIRACLES;
-    if(eventManager->getEvenement(configuration->m_key_actions[K_INVENTORY],EventKey))
-        eventManager->StopEvenement(configuration->m_key_actions[K_INVENTORY],EventKey), choix = B_INVENTAIRE;
-    if(eventManager->getEvenement(configuration->m_key_actions[K_QUESTS],EventKey))
-        eventManager->StopEvenement(configuration->m_key_actions[K_QUESTS],EventKey), choix = B_QUETES;
-    if(eventManager->getEvenement(configuration->m_key_actions[K_DOCS],EventKey))
-        eventManager->StopEvenement(configuration->m_key_actions[K_DOCS],EventKey), choix = B_DOCS;
-    if(eventManager->getEvenement(configuration->m_key_actions[K_MENU],EventKey))
-        eventManager->StopEvenement(configuration->m_key_actions[K_MENU],EventKey), choix = B_MENU;
-    if(eventManager->getEvenement(Key::Tab,EventKey))
-        eventManager->StopEvenement(Key::Tab,EventKey), choix = B_CHAT;
-
-
-    if(eventManager->getEvenement(configuration->m_key_actions[K_CHANGE_WEAPONS],EventKey))
+    if(!configuration->entering_text)
     {
-        eventManager->StopEvenement(configuration->m_key_actions[K_CHANGE_WEAPONS],EventKey);
-        jeu->hero.m_weaponsSet = (jeu->hero.m_weaponsSet == 1) ? 0 : 1;
-        jeu->hero.RecalculerCaracteristiques(true);
-        jeu->hero.ChargerModele();
-        jeu->SendSkin();
+        if(eventManager->getEvenement(configuration->m_key_actions[K_MAP],EventKey))
+            eventManager->StopEvenement(configuration->m_key_actions[K_MAP],EventKey), choix = B_MAP;
+        if(eventManager->getEvenement(configuration->m_key_actions[K_MIRACLES],EventKey))
+            eventManager->StopEvenement(configuration->m_key_actions[K_MIRACLES],EventKey), choix = B_MIRACLES;
+        if(eventManager->getEvenement(configuration->m_key_actions[K_INVENTORY],EventKey))
+            eventManager->StopEvenement(configuration->m_key_actions[K_INVENTORY],EventKey), choix = B_INVENTAIRE;
+        if(eventManager->getEvenement(configuration->m_key_actions[K_QUESTS],EventKey))
+            eventManager->StopEvenement(configuration->m_key_actions[K_QUESTS],EventKey), choix = B_QUETES;
+        if(eventManager->getEvenement(configuration->m_key_actions[K_DOCS],EventKey))
+            eventManager->StopEvenement(configuration->m_key_actions[K_DOCS],EventKey), choix = B_DOCS;
+        if(eventManager->getEvenement(configuration->m_key_actions[K_MENU],EventKey))
+            eventManager->StopEvenement(configuration->m_key_actions[K_MENU],EventKey), choix = B_MENU;
+        if(eventManager->getEvenement(Key::Tab,EventKey))
+            eventManager->StopEvenement(Key::Tab,EventKey), choix = B_CHAT;
+
+
+        if(eventManager->getEvenement(configuration->m_key_actions[K_CHANGE_WEAPONS],EventKey))
+        {
+            eventManager->StopEvenement(configuration->m_key_actions[K_CHANGE_WEAPONS],EventKey);
+            jeu->hero.m_weaponsSet = (jeu->hero.m_weaponsSet == 1) ? 0 : 1;
+            jeu->hero.RecalculerCaracteristiques(true);
+            jeu->hero.ChargerModele();
+            jeu->SendSkin();
+        }
     }
 
     if(choix == B_MAP)
@@ -689,7 +733,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
     }
 
     if(!jeu->menu.m_forced_dialogue)
-    if (eventManager->getEvenement(Key::Return,EventKey)
+    if (eventManager->getEvenement(Key::Escape,EventKey)
      ||(eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x,0).x
      && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x + jeu->hero.m_classe.position_bouton_dialogue.w,0).x
      && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.talk.position.h - jeu->menu.m_hauteur).y
@@ -757,7 +801,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
 
 void c_Jeu::Evenements(Jeu *jeu)
 {
-    if(eventManager->getEvenement(sf::Key::S,EventKey))
+    /*if(eventManager->getEvenement(sf::Key::S,EventKey))
         moteurSons->DebugRefreshSound();
     if(eventManager->getEvenement(sf::Key::L,EventKey))
     {
@@ -771,7 +815,7 @@ void c_Jeu::Evenements(Jeu *jeu)
             configuration->volume = debug_oldSound;
         else
             configuration->volume = 100;
-    }
+    }*/
 
     GestionRaccourcis(jeu, m_diplace_mode);
     jeu->next_screen = GestionBoutons(jeu, m_diplace_mode);

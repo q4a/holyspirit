@@ -62,6 +62,7 @@ class Jeu
 
     void AddClient(sf::TcpSocket* clientTCP);
     void CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSocket* tcp);
+    void CheckPacketClient(sf::Packet &packet);
 
     int  GetNoClient(const sf::IpAddress &address);
 
@@ -71,6 +72,7 @@ class Jeu
     void SendDegats(Hero *hero, float degats, int type, float temps = 0);
     void SendDegats(int no, float degats, int type, float temps = 0);
     void SendKillMonstre(int no, int angle, float degats);
+    void SendMessage(std::string msg);
 
     Menu menu;
     Map *map;
@@ -89,7 +91,7 @@ class Jeu
 
     bool m_runTCPHost;
 
-	bool m_run,m_display,m_no_printscreen;
+	bool m_run,m_display;
 
 	c_Demarrage     *m_demarrage;
     c_Jeu           *m_jeu;
@@ -109,12 +111,14 @@ class Jeu
 
     sf::Mutex GlobalMutex;
 
-    bool m_ready;
+    bool m_net_send;
 
     private:
     sf::Thread *m_thread_clientTCP;
     sf::Thread *m_thread_clientUDP;
     sf::Thread *m_thread_host;
+
+    sf::Clock m_net_clock;
 };
 
 #endif

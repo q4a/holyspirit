@@ -45,8 +45,8 @@ class EventManager : public CSingleton<EventManager>
 	const coordonnee &getCasePointee();
 	const coordonnee &getPositionSouris();
 	int getMolette();
-	char getChar();
-	void stopChar();
+	sf::Uint32 getChar();
+	bool IsEnteredText();
 
 	void arreterClique();
 
@@ -57,7 +57,9 @@ class EventManager : public CSingleton<EventManager>
 	coordonnee m_positionSouris,m_casePointee;
 	int idcurseur;
 	int m_molette;
-	char m_char;
+	sf::Uint32 m_char;
+
+	bool isEnteredText;
 
 };
 

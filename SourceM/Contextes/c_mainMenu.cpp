@@ -490,17 +490,13 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
 
 void  c_MainMenu::E_Continuer(Jeu *jeu)
 {
-    jeu->m_no_printscreen = true;
+    configuration->entering_text = true;
     defilement_saves -= eventManager->getMolette();
 
     if(defilement_saves > (int)m_chemin_saves.size() - 8)
         defilement_saves = (int)m_chemin_saves.size() - 8;
     if(defilement_saves < 0)
         defilement_saves = 0;
-
-    if(eventManager->getEvenement(sf::Key::Escape, EventKey))
-        no_ecran = E_PRINCIPAL, m_supprimer_heros = false,nom_hero.clear(),jeu->m_no_printscreen = false,jeu->Disconnect();
-
 
     buttons_continuer[0].no_opacity = true;
     buttons_continuer[0].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,0), 72);
@@ -522,13 +518,14 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     if(m_supprimer_heros)
         buttons_continuer[0].m_hover = false;
 
-    if(buttons_continuer[0].m_action)
+    if(buttons_continuer[0].m_action || eventManager->getEvenement(sf::Key::Escape, EventKey))
     {
         buttons_continuer[0].m_action = false;
         no_ecran = E_PRINCIPAL;
-        jeu->m_no_printscreen = false;
+        configuration->entering_text = false;
         m_supprimer_heros = false;
         eventManager->StopEvenement(Mouse::Left,EventClic);
+        eventManager->StopEvenement(sf::Key::Escape, EventKey);
         jeu->Disconnect();
     }
 
@@ -675,7 +672,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
                     eventManager->StopEvenement(Mouse::Left,EventClic);
                     no_ecran = E_PRINCIPAL;
-                    jeu->m_no_printscreen = false;
+                    configuration->entering_text = false;
                     jeu->m_display = false;
                 }
             }
@@ -759,12 +756,12 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         moteurGraphique->AjouterTexte(&texte,19,0);
 
 
-
+        if(eventManager->IsEnteredText())
         if(((eventManager->getChar() >= 'a' && eventManager->getChar() <= 'z')
          || (eventManager->getChar() >= 'A' && eventManager->getChar() <= 'Z')
          || (eventManager->getChar() >= '0' && eventManager->getChar() <= '9'))
         && nom_hero.size() < 16)
-            nom_hero += eventManager->getChar(), eventManager->stopChar();
+            nom_hero += eventManager->getChar();
 
         if(eventManager->getEvenement(sf::Key::Back,EventKey))
             if(!nom_hero.empty())
@@ -827,16 +824,14 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 }
 void  c_MainMenu::E_Nouveau(Jeu *jeu)
 {
-    jeu->m_no_printscreen = true;
+    configuration->entering_text = true;
 
-    if(eventManager->getEvenement(sf::Key::Escape, EventKey))
-        no_ecran = E_PRINCIPAL,nom_hero.clear(),jeu->m_no_printscreen = false,ChargerListeSaves();
-
+    if(eventManager->IsEnteredText())
     if(((eventManager->getChar() >= 'a' && eventManager->getChar() <= 'z')
      || (eventManager->getChar() >= 'A' && eventManager->getChar() <= 'Z')
      || (eventManager->getChar() >= '0' && eventManager->getChar() <= '9'))
     && nom_hero.size() < 16)
-        nom_hero += eventManager->getChar(), eventManager->stopChar();
+        nom_hero += eventManager->getChar();
 
     if(eventManager->getEvenement(sf::Key::Back,EventKey))
         if(!nom_hero.empty())
@@ -987,7 +982,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
             jeu->hero.m_caracteristiques.nom = nom_hero;
 
             no_ecran = E_PRINCIPAL;
-            jeu->m_no_printscreen = false;
+            configuration->entering_text = false;
 
             jeu->m_contexte = jeu->m_chargement;
         }
@@ -1011,9 +1006,11 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
         moteurGraphique->special_typo.Draw(configuration->getText(0,0), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_nouveau[0].position.y), 72, 19, true);
 
-    if(buttons_nouveau[0].m_action)
+    if(buttons_nouveau[0].m_action || eventManager->getEvenement(sf::Key::Escape, EventKey))
     {
+        configuration->entering_text = false;
         buttons_nouveau[0].m_action = false;
+        eventManager->StopEvenement(sf::Key::Escape, EventKey);
         no_ecran = E_PRINCIPAL;
         ChargerListeSaves();
     }
@@ -1148,8 +1145,9 @@ void  c_MainMenu::E_Multi(Jeu *jeu)
         //if(jeu->Connect("192.168.1.5"))
        // if(jeu->Connect("84.103.40.122"))
        // if(jeu->Connect("82.232.147.48"))
-        if(jeu->Connect("82.232.147.48"))
-        //if(jeu->Connect("91.178.155.76"))
+        //if(jeu->Connect("84.103.40.234"))
+        if(jeu->Connect("5.115.202.109"))
+        //if(jeu->Connect("84.103.40.234"))
         //if(jeu->Connect(sf::IpAddress::GetPublicAddress()))
             no_ecran = E_CONTINUER;
     }

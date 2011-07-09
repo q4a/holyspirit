@@ -40,6 +40,8 @@ void Configuration::Charger()
 
     jour = 0;
 
+    entering_text = 0;
+
     if (!Lumiere)
         Ombre=0;
 }
@@ -109,6 +111,8 @@ void Configuration::ChargerConf()
                 fichier>>desactivate_console;
             if (chaine== "language:")
                 fichier>>language;
+            if (chaine== "net_rate:")
+                fichier>>net_rate;
         }
 
         fichier.close();
@@ -520,6 +524,7 @@ void Configuration::Sauvegarder()
         fichier<<std::endl;
         fichier<<"OTHERS"<<std::endl;
         fichier<<"saving_frequency: " <<frequence_sauvegarde<<std::endl;
+        fichier<<"net_rate: " <<net_rate<<std::endl;
         fichier<<"debug_mod: "<<debug<<std::endl;
         fichier<<"desactivate_console: "<<desactivate_console<<std::endl;
         fichier<<"language: "<<language<<std::endl;

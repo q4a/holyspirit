@@ -52,8 +52,8 @@ EventManager::EventManager()
 
 void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tailleMap)
 {
-
     PressAnyKey = false;
+    isEnteredText = false;
 
     m_molette = 0;
     Event Event;
@@ -64,18 +64,16 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         case Event::KeyPressed:
             if (Event.Key.Code>=0&&Event.Key.Code<500)
                 m_EventTableau[Event.Key.Code] = 1, PressAnyKey = true;
-
-            if(Event.Key.Code >= 0 && Event.Key.Code < 128)
-                m_char = Event.Key.Code;
-
             break;
         case Event::KeyReleased:
             if (Event.Key.Code>=0&&Event.Key.Code<500)
                 m_EventTableau[Event.Key.Code] = 0;
-
-            if(m_char == Event.Key.Code)
-                    m_char = -1;
             break;
+
+        case sf::Event::TextEntered:
+            m_char = Event.Text.Unicode, isEnteredText = true;
+            break;
+
         case Event::MouseMoved:
             m_positionSouris.x=Event.MouseMove.X;
             m_positionSouris.y=Event.MouseMove.Y;
@@ -114,6 +112,11 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
             break;
         }
     }
+
+    if(m_EventTableau[sf::Key::Back])
+        isEnteredText = false;
+    if(m_EventTableau[sf::Key::Return])
+        isEnteredText = false;
 
     if (m_EventTableau[Key::PageDown])
         configuration->zoom_or*=(1+(0.5*temps));
@@ -164,6 +167,7 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         m_EventTableau[Key::Down]=false;
     }
 
+    if(!configuration->entering_text)
     if (m_EventTableau[Key::Space])
         configuration->minute+=200*temps;
 
@@ -260,17 +264,13 @@ void EventManager::arreterClique()
     m_Clic[Mouse::Left]=false;
 }
 
-char EventManager::getChar()
+sf::Uint32 EventManager::getChar()
 {
-    if(m_EventTableau[sf::Key::LShift])
-        return (m_char - 32);
-    else
-        return (m_char);
+    return (m_char);
 }
 
-void EventManager::stopChar()
+bool EventManager::IsEnteredText()
 {
-    m_char = -1;
+    return (isEnteredText);
 }
-
 

@@ -134,6 +134,14 @@ Personnage::Personnage()
     m_heroic = false;
 
     m_no = -1;
+
+    m_clock.Reset();
+
+    m_positionPixelPrev.x = -1;
+    m_positionPixelPrev.y = -1;
+    m_deplacement_time = 0;
+
+    dejaMort = false;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -431,7 +439,7 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
                 }
 
 
-    if(m_speak_time > 0 && !m_speak.empty())
+    if(m_speak_time > 0)
     {
         int alpha = 255;
         if(m_speak_time < 2550)
@@ -441,6 +449,11 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
         pos.x = (int)(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE - GetViewRect(moteurGraphique->m_camera).Left)/configuration->zoom);
         pos.y = (int)(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE - m_positionPixel.h - 128 - GetViewRect(moteurGraphique->m_camera).Top)/configuration->zoom);
 
+        bool empty = m_speak.empty();
+
+        if(empty)
+            m_speak = "Entrez votre message...";
+
         sf::Text text;
         text.SetFont(moteurGraphique->m_font);
         text.SetCharacterSize(12);
@@ -448,6 +461,9 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
         pos.x -= (int)text.GetRect().Width/2;
 
         moteurGraphique->AjouterTexte(m_speak, pos, border, 14, 0, 12, sf::Color(224,224,224,alpha));
+
+        if(empty)
+            m_speak.clear();
     }
 }
 void Personnage::regenererVie(float vie)
@@ -838,6 +854,25 @@ bool Personnage::SeDeplacer(float tempsEcoule)
         return 1;
 
     return 0;
+}
+
+void Personnage::EmulerDeplacement(float time)
+{
+    m_speak_time -= time * 1000;
+
+    if(m_deplacement_time != 0)
+    {
+        m_positionPixel.x += (m_positionPixelNext.x - m_positionPixelPrev.x)*time/m_deplacement_time;
+        m_positionPixel.y += (m_positionPixelNext.y - m_positionPixelPrev.y)*time/m_deplacement_time;
+        m_positionPixel.h += (m_positionPixelNext.h - m_positionPixelPrev.h)*time/m_deplacement_time;
+
+        m_cur_d_time += time;
+        if(m_cur_d_time > m_deplacement_time)
+            m_positionPixel = m_positionPixelNext;
+
+        m_positionCase.x = (int)((float)m_positionPixel.x/(float)COTE_TILE + 0.5);
+        m_positionCase.y = (int)((float)m_positionPixel.y/(float)COTE_TILE + 0.5);
+    }
 }
 
 void Personnage::InfligerDegats(float degats, int type, float temps)
@@ -1453,12 +1488,18 @@ void Personnage::setCoordonneePixel2(const coordonneeDecimal &position)
     m_positionPixel.y=position.y;
 }
 
-void Personnage::setJustCoordonnee(const coordonnee &position, const coordonneeDecimal &positionD)
+void Personnage::setJustCoordonnee(const coordonneeDecimal &positionD)
 {
-    m_positionCase.x=position.x;
-    m_positionCase.y=position.y;
-    m_positionPixel.x=positionD.x;
-    m_positionPixel.y=positionD.y;
+    if(m_positionPixelPrev.x == -1 && m_positionPixelPrev.y == -1)
+        m_positionPixel = positionD;
+
+    m_positionPixelNext = positionD;
+    m_positionPixelPrev = m_positionPixel;
+
+
+    m_deplacement_time = m_clock.GetElapsedTime()*0.001;
+    m_cur_d_time = 0;
+    m_clock.Reset();
 }
 
 void Personnage::setDepart()

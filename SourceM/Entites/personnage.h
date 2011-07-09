@@ -92,6 +92,7 @@ public:
     void Pousser(coordonneeDecimal vecteur);
 
     bool SeDeplacer(float);
+    void EmulerDeplacement(float);
 
     void Afficher(Modele_Personnage *modele, Border &border,bool surbrillance=false, bool plusHaut=false, bool plusBas=false);
 
@@ -124,7 +125,7 @@ public:
     void setVitesse(float vitesse);
     void setCoordonneePixel(const coordonnee &position);
     void setCoordonneePixel2(const coordonneeDecimal &position);
-    void setJustCoordonnee(const coordonnee &position, const coordonneeDecimal &positionD);
+    void setJustCoordonnee(const coordonneeDecimal &positionD);
     void setProchaineCase(const coordonnee &position);
     void setCaracteristique(const Caracteristique &caracteristique);
     void regenererVie(float vie);
@@ -212,6 +213,7 @@ public:
     bool            m_heroic;
 
     int             m_no;
+    bool dejaMort;
 
 protected:
     int m_etat,m_angle,m_next_angle;
@@ -219,7 +221,9 @@ protected:
     bool m_erreurPathfinding;
     Caracteristique m_caracteristique;
     coordonnee m_cheminFinal,m_arrivee,m_ancienneArrivee,m_mauvaiseArrivee, m_positionCase,m_positionAffichage,m_positionPixelPrecedente;
-    coordonneeDecimal m_positionPixel;
+    coordonneeDecimal m_positionPixel, m_positionPixelNext,m_positionPixelPrev;
+    sf::Clock m_clock;
+    float m_deplacement_time, m_cur_d_time;
 
     int m_modele;
     std::vector<Objet> m_objets;

@@ -137,5 +137,9 @@ class Configuration : public CSingleton<Configuration>
 
     bool hote;
     bool multi;
+
+    int net_rate;
+
+    bool entering_text;
 };
 #endif
