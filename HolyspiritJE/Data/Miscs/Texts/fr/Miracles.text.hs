@@ -1,5 +1,5 @@
 Incarnation de Sainte Barbe
-Le croisé appelle Sainte Barbe pour venir à son aide.\Celle-ci permet au croisé d'infliger des dégâts de feu.
+Le croisé appelle Sainte Barbe pour venir à son aide.\Celle-ci permet au croisé d'infliger des dégâts de feu.\Non cumulable avec les autres incarnations.
 Dégâts de feu : %1-%2
 Charge
 Le croisé charge un adversaire en renversant tout sur son passage.\Utilisable uniquement avec un bouclier.
@@ -12,7 +12,7 @@ Incarnation de Saint Lazare : Vampirisme
 En plus de soigner le croisé, Saint Lazare\lui permet de voler la vie de ses adversaires.
 Vol de vie : %1\%
 Incarnation de Saint Lazare
-Le croisé appelle Saint Lazare pour venir à son aide.\Celui-ci améliore la régénération de santé du croisé.
+Le croisé appelle Saint Lazare pour venir à son aide.\Celui-ci améliore la régénération de santé du croisé.\Non cumulable avec les autres incarnations.
 Régénération de vie : +%1
 Charme
 La courtisane charme un adversaire\afin qu'il combatte pour elle.
