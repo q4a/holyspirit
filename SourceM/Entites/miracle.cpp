@@ -864,6 +864,8 @@ void Miracle::Concatenencer(const std::string &chemin, const Caracteristique &ca
 {
     Miracle miracle(chemin, caract, level) ;
     m_chemin_concatene.push_back(chemin);
+
+    if(!m_effets.empty())
     m_effets.back().m_lien.push_back((int)m_effets.size());
 
     int tailleEffets    = m_effets.size();

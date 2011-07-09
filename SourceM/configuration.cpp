@@ -194,8 +194,8 @@ void Configuration::ChargerKeyMapping()
 
         fichier.close();
     }
-    else
-        throw std::string("Impossible de charger la configuration : key_mapping.conf");
+   /* else
+        throw std::string("Impossible de charger la configuration : key_mapping.conf");*/
 }
 
 void Configuration::ChargerInit()
