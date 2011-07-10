@@ -554,6 +554,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         else
         {
             configuration->entering_text = false;
+            if(!jeu->hero.m_personnage.m_speak.empty())
             jeu->hero.m_personnage.m_speak_time = 5000;
             jeu->SendMessage(jeu->hero.m_personnage.m_speak);
 
