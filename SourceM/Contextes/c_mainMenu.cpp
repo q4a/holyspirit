@@ -43,6 +43,7 @@ c_MainMenu::c_MainMenu()
     m_supprimer_heros = false;
     classe_choisie = 0;
     nom_hero = "";
+    entered_ip = configuration->last_ip;
     moteurSons->PlayNewMusic(configuration->music_menu);
 
     m_mainscreen.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->mainscreen_menu, -1)));
@@ -1119,6 +1120,34 @@ void  c_MainMenu::E_Story(Jeu *jeu)
 
 void  c_MainMenu::E_Multi(Jeu *jeu)
 {
+    configuration->entering_text = true;
+
+    if(eventManager->IsEnteredText())
+    if(/*((eventManager->getChar() >= 'a' && eventManager->getChar() <= 'z')
+     || (eventManager->getChar() >= 'A' && eventManager->getChar() <= 'Z')
+     || (eventManager->getChar() >= '0' && eventManager->getChar() <= '9'))
+    && */entered_ip.size() <= 16)
+        entered_ip += eventManager->getChar();
+
+    if(eventManager->getEvenement(sf::Key::Back,EventKey))
+        if(!entered_ip.empty())
+            entered_ip.erase(entered_ip.begin() + entered_ip.size() - 1);
+    eventManager->StopEvenement(sf::Key::Back,EventKey);
+
+    moteurGraphique->special_typo.Draw(entered_ip + (time > 0.5 ? "|" : ""), sf::Vector2f(configuration->Resolution.w/2,
+                                                              configuration->Resolution.h/2 + 52 + 48), 48, 19, true);
+
+    time += temps_ecoule;
+    if(time > 1)
+        time = 0;
+
+
+    jeu->menu.border.Afficher(coordonnee(configuration->Resolution.w/2 - 192,
+                                         configuration->Resolution.h/2 + 52 + 48),
+                              coordonnee(384,40), 18);
+
+
+
     buttons_multi[1].no_opacity = true;
     buttons_multi[1].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,111), 72);
     buttons_multi[1].position.h = 64;
@@ -1148,10 +1177,11 @@ void  c_MainMenu::E_Multi(Jeu *jeu)
         //if(jeu->Connect("84.103.40.234"))
         //if(jeu->Connect("5.115.202.109"))
        // if(jeu->Connect("5.195.6.227"))
-        if(jeu->Connect("5.41.188.147"))
-        //if(jeu->Connect("82.232.147.48"))
-        //if(jeu->Connect(sf::IpAddress::GetPublicAddress()))
+        if(jeu->Connect(entered_ip))
+        {
             no_ecran = E_CONTINUER;
+            configuration->last_ip = entered_ip;
+        }
     }
 
     buttons_multi[2].no_opacity = true;

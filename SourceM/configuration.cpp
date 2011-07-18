@@ -113,6 +113,8 @@ void Configuration::ChargerConf()
                 fichier>>language;
             if (chaine== "net_rate:")
                 fichier>>net_rate;
+            if (chaine== "ip:")
+                fichier>>last_ip;
         }
 
         fichier.close();
@@ -528,6 +530,7 @@ void Configuration::Sauvegarder()
         fichier<<"debug_mod: "<<debug<<std::endl;
         fichier<<"desactivate_console: "<<desactivate_console<<std::endl;
         fichier<<"language: "<<language<<std::endl;
+        fichier<<"ip: "<<last_ip<<std::endl;
 
 
         fichier.close();

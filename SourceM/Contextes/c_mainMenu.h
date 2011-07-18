@@ -61,7 +61,7 @@ private:
     std::vector <std::string> m_chemin_saves;
     std::vector <sf::Sprite> m_apercu_classe;
     std::vector <sf::Sprite> m_images_saves;
-    std::string nom_hero;
+    std::string nom_hero, entered_ip;
 
     sf::Text texte;
 

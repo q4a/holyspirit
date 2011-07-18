@@ -25,8 +25,8 @@
 	<File name="Contextes\c_jeu.h" open="0" top="0" tabpos="18">
 		<Cursor position="3788" topLine="98" />
 	</File>
-	<File name="Contextes\c_mainMenu.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="51894" topLine="1133" />
+	<File name="Contextes\c_mainMenu.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="52025" topLine="1133" />
 	</File>
 	<File name="Contextes\c_mainMenu.h" open="0" top="0" tabpos="2">
 		<Cursor position="2217" topLine="71" />
@@ -109,7 +109,7 @@
 	<File name="jeu.h" open="1" top="0" tabpos="2">
 		<Cursor position="2709" topLine="82" />
 	</File>
-	<File name="jeu_network.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="25385" topLine="801" />
+	<File name="jeu_network.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="25455" topLine="801" />
 	</File>
 </CodeBlocks_layout_file>

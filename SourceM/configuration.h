@@ -113,6 +113,7 @@ class Configuration : public CSingleton<Configuration>
     coordonnee  map_start_pos;
 
     std::string language;
+    std::string last_ip;
 
     std::string error;
     std::vector<std::string> text_menus;

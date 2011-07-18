@@ -97,7 +97,9 @@ void Typo::Draw(const std::string &text, sf::Vector2f pos, int size, int layer, 
             sprites.back().Scale(1.15,1.15), sprites.back().Move(0,-(float)size*0.1);
 
         if(text[i] == 'v' && i+1 < text.size() && text[i+1] == 'a')
-          cur_pos.x -=  buf.space * ((float)size/72) * (maj ? 1.1 : 1.0) * 0.25;
+            cur_pos.x -=  buf.space * ((float)size/72) * (maj ? 1.1 : 1.0) * 0.25;
+        if(i+1 < text.size() && text[i+1] == '.')
+            cur_pos.x -= 8 * ((float)size/72) * (maj ? 1.1 : 1.0);
 
         cur_pos.x += buf.space * ((float)size/72) * (maj ? 1.1 : 1.0);
     }
@@ -219,8 +221,10 @@ Character &Typo::getCharacter(char car, bool &maj)
         return m_chars[42];
     if(car == ':')
         return m_chars[43];
-    if(car == 'ê')
+    if(car == '.')
         return m_chars[44];
+    if(car == 'ê')
+        return m_chars[45];
 
     return m_chars.front();
 }

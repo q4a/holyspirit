@@ -436,7 +436,7 @@
 	<iostream>
 	"../constantes.h"
 
-1310214063 c:\c++\holyspirit\sourcem\configuration.h
+1310990377 c:\c++\holyspirit\sourcem\configuration.h
 	"singleton.h"
 	"constantes.h"
 
@@ -601,7 +601,7 @@
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1308761736 c:\c++\holyspirit\sourcem\contextes\c_mainmenu.h
+1310990377 c:\c++\holyspirit\sourcem\contextes\c_mainmenu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
@@ -884,12 +884,12 @@
 	"../globale.h"
 	<iostream>
 
-1297105364 source:c:\c++\holyspirit\sourcem\moteurs\typo.cpp
+1310991174 source:c:\c++\holyspirit\sourcem\moteurs\typo.cpp
 	"typo.h"
 	"../globale.h"
 	<fstream>
 
-1310218660 source:c:\c++\holyspirit\sourcem\configuration.cpp
+1310990377 source:c:\c++\holyspirit\sourcem\configuration.cpp
 	"configuration.h"
 	"globale.h"
 	<stdio.h>
@@ -936,7 +936,7 @@
 	<libavformat/avformat.h>
 	<libavcodec/avcodec.h>
 
-1310224847 source:c:\c++\holyspirit\sourcem\contextes\c_mainmenu.cpp
+1310990563 source:c:\c++\holyspirit\sourcem\contextes\c_mainmenu.cpp
 	"../jeu.h"
 	"../globale.h"
 	<iostream>
