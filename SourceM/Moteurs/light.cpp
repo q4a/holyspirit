@@ -313,9 +313,9 @@ void Light::AddTriangle(sf::Vector3f pt1,sf::Vector3f pt2, std::list<int> deja_w
 
                 m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity3*m_color.r/255),(int)(intensity3*m_color.g/255),(int)(intensity3*m_color.b/255),LIGHT_ALPHA),sf::Color(255,0,0));
                 if(pt1.z > 0)
-                    m_shape.back().AddPoint(pt1.x,pt1.y/2-pt1.z * sin(intensity3 /m_intensity*M_PI_2),  sf::Color(0,0,0),sf::Color(255,0,0));
+                    m_shape.back().AddPoint(pt1.x,pt1.y/2-pt1.z /* sin(intensity3 /m_intensity*M_PI_2)*/,  sf::Color(0,0,0),sf::Color(255,0,0));
                 if(pt2.z > 0)
-                    m_shape.back().AddPoint(pt2.x,pt2.y/2-pt2.z * sin(intensity4/m_intensity*M_PI_2),  sf::Color(0,0,0),sf::Color(255,0,0));
+                    m_shape.back().AddPoint(pt2.x,pt2.y/2-pt2.z /* sin(intensity4/m_intensity*M_PI_2)*/,  sf::Color(0,0,0),sf::Color(255,0,0));
                 m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity4*m_color.r/255),(int)(intensity4*m_color.g/255),(int)(intensity4*m_color.b/255),LIGHT_ALPHA),sf::Color(255,0,0));
 
                 m_shape.back().SetBlendMode(sf::Blend::Add);

@@ -44,6 +44,23 @@ struct Degats
     int     type;
 };
 
+struct Emulate_pos
+{
+    coordonneeDecimal getCurPos()
+    {
+        coordonneeDecimal t;
+        t.x = prevPos.x + (nextPos.x - prevPos.x) * time / maxTime;
+        t.y = prevPos.y + (nextPos.y - prevPos.y) * time / maxTime;
+        t.h = prevPos.h + (nextPos.h - prevPos.h) * time / maxTime;
+        return t;
+    }
+
+    float time;
+    float maxTime;
+    coordonneeDecimal nextPos;
+    coordonneeDecimal prevPos;
+};
+
 class Modele_Personnage
 {
 public:
@@ -125,7 +142,7 @@ public:
     void setVitesse(float vitesse);
     void setCoordonneePixel(const coordonnee &position);
     void setCoordonneePixel2(const coordonneeDecimal &position);
-    void setJustCoordonnee(const coordonneeDecimal &positionD);
+    void setEmulatePos(const coordonneeDecimal &positionD, float time);
     void setProchaineCase(const coordonnee &position);
     void setCaracteristique(const Caracteristique &caracteristique);
     void regenererVie(float vie);
@@ -150,6 +167,7 @@ public:
     const coordonnee &getProchaineCase();
     const coordonnee &getDepart();
     bool getErreurPathfinding();
+    float getTime();
 
     int getOrdre(Modele_Personnage *modele);
 
@@ -233,6 +251,9 @@ protected:
     bool m_pousseEnCours;
 
     bool m_stunned;
+
+    std::vector<Emulate_pos> m_emul_pos;
+    bool notyetemulate;
 };
 
 

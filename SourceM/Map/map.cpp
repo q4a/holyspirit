@@ -262,6 +262,7 @@ void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
                 if (j>=0&&j<(int)m_decor[couche].size()
                  && k>=0&&k<(int)m_decor[couche][j].size())
                 {
+                    //if(m_decor[couche][j][k].added_minimap)
                     if(m_decor[couche][j][k].m_entite_graphique.m_tileset != NULL)
                     {
                         if (m_decor[couche][j][k].m_entite_graphique.m_tileset->getTransparentDuTile(m_decor[couche][j][k].m_entite_graphique.m_noAnimation))
@@ -344,6 +345,7 @@ void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
                         if(configuration->Herbes)
                             moteurGraphique->AjouterEntiteGraphique(&m_decor[0][j][k].m_entite_herbe);
 
+                        //if(TileVisible(k,j,hero->m_personnage.getCoordonnee()))
                         for (unsigned o = 0 ; o < m_decor[1][j][k].getMonstre().size() ; ++o)
                             if (m_decor[1][j][k].getMonstre()[o]>=0&&m_decor[1][j][k].getMonstre()[o]<(int)m_monstre.size())
                             if (m_monstre[m_decor[1][j][k].getMonstre()[o]].getModele()>=0

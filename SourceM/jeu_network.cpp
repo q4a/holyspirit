@@ -62,22 +62,24 @@ sf::Packet& operator >>(sf::Packet& Packet, coordonnee& C)
 
 sf::Packet& operator <<(sf::Packet& Packet,  Personnage& C)
 {
-    return Packet << C.getCaracteristique() << C.getCoordonneePixel() << (sf::Int8)C.getEtat()  << (sf::Int16)C.m_entite_graphique.m_noAnimation << (sf::Int16)C.getAngle();
+    return Packet << C.getCaracteristique() << C.getCoordonneePixel() << (sf::Int32)(C.getTime()*1000) << (sf::Int8)C.getEtat()  << (sf::Int16)C.m_entite_graphique.m_noAnimation << (sf::Int32)(C.m_entite_graphique.m_animation*1000) << (sf::Int16)C.getAngle();
 }
 sf::Packet& operator >>(sf::Packet& Packet, Personnage& C)
 {
     coordonneeDecimal pos;
     sf::Int8 etat;
     sf::Int16 angle,pose;
+    sf::Int32 anim, time;
 
     Caracteristique caract = C.getCaracteristique();
 
-    if((Packet >> caract >> pos >> etat >> pose >> angle))
+    if((Packet >> caract >> pos >> time >> etat >> pose >> anim >> angle))
     {
-        C.setJustCoordonnee(pos);
+        C.setEmulatePos(pos,(float)(time)/1000000);
         C.setEtat(etat,pose);
         C.setForcedAngle(angle);
         C.setCaracteristique(caract);
+        C.m_entite_graphique.m_animation = (float)anim/1000;
     }
 
     return Packet;

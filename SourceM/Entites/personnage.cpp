@@ -140,8 +140,10 @@ Personnage::Personnage()
     m_positionPixelPrev.x = -1;
     m_positionPixelPrev.y = -1;
     m_deplacement_time = 0;
+    m_cur_d_time = 0;
 
     dejaMort = false;
+    notyetemulate = true;
 }
 Modele_Personnage::Modele_Personnage()
 {
@@ -860,19 +862,54 @@ void Personnage::EmulerDeplacement(float time)
 {
     m_speak_time -= time * 1000;
 
-    if(m_deplacement_time != 0)
+    if(!m_emul_pos.empty())
     {
-        m_positionPixel.x += (m_positionPixelNext.x - m_positionPixelPrev.x)*time/m_deplacement_time;
-        m_positionPixel.y += (m_positionPixelNext.y - m_positionPixelPrev.y)*time/m_deplacement_time;
-        m_positionPixel.h += (m_positionPixelNext.h - m_positionPixelPrev.h)*time/m_deplacement_time;
+        m_emul_pos.front().time += time;
+        if(m_emul_pos.size() >= 5)
+            m_emul_pos.front().time += time;
 
+        while(!m_emul_pos.empty() && m_emul_pos.front().time > m_emul_pos.front().maxTime)
+        {
+            float buf = m_emul_pos.front().time - m_emul_pos.front().maxTime;
+
+            m_positionPixel.x = m_emul_pos.front().nextPos.x;
+            m_positionPixel.y = m_emul_pos.front().nextPos.y;
+            m_positionPixel.h = m_emul_pos.front().nextPos.h;
+
+            m_emul_pos.erase(m_emul_pos.begin());
+
+            if(!m_emul_pos.empty())
+                m_emul_pos.front().time += buf;
+        }
+    }
+
+    if(!m_emul_pos.empty())
+    {
+        m_positionPixel.x = m_emul_pos.front().getCurPos().x;
+        m_positionPixel.y = m_emul_pos.front().getCurPos().y;
+        m_positionPixel.h = m_emul_pos.front().getCurPos().h;
+    }
+
+
+    /*if(m_deplacement_time != 0)
+    {
         m_cur_d_time += time;
+
+        m_positionPixel.x = (m_positionPixelNext.x - m_positionPixelPrev.x)*m_cur_d_time/m_deplacement_time;
+        m_positionPixel.y = (m_positionPixelNext.y - m_positionPixelPrev.y)*m_cur_d_time/m_deplacement_time;
+        m_positionPixel.h = (m_positionPixelNext.h - m_positionPixelPrev.h)*m_cur_d_time/m_deplacement_time;
+
         if(m_cur_d_time > m_deplacement_time)
+        {
             m_positionPixel = m_positionPixelNext;
+            m_positionPixelPrev = m_positionPixel;
+            m_deplacement_time = 0;
+            m_cur_d_time = 0;
+        }
 
         m_positionCase.x = (int)((float)m_positionPixel.x/(float)COTE_TILE + 0.5);
         m_positionCase.y = (int)((float)m_positionPixel.y/(float)COTE_TILE + 0.5);
-    }
+    }*/
 }
 
 void Personnage::InfligerDegats(float degats, int type, float temps)
@@ -1488,18 +1525,43 @@ void Personnage::setCoordonneePixel2(const coordonneeDecimal &position)
     m_positionPixel.y=position.y;
 }
 
-void Personnage::setJustCoordonnee(const coordonneeDecimal &positionD)
+void Personnage::setEmulatePos(const coordonneeDecimal &positionD, float time)
 {
-    if(m_positionPixelPrev.x == -1 && m_positionPixelPrev.y == -1)
+    if(notyetemulate)
+    {
+        notyetemulate = false;
         m_positionPixel = positionD;
+    }
+    else
+    {
+        coordonneeDecimal prevPos = m_positionPixel;
+
+        if(!m_emul_pos.empty())
+            prevPos = m_emul_pos.back().nextPos;
+
+        if(!(prevPos.x == positionD.x && prevPos.y == positionD.y))
+        {
+            m_emul_pos.push_back(Emulate_pos ());
+            m_emul_pos.back().nextPos = positionD;
+            m_emul_pos.back().prevPos = prevPos;
+            m_emul_pos.back().time = 0;
+            m_emul_pos.back().maxTime = time;
+        }
+    }
+
+
+
+    /*if(m_positionPixelPrev.x == -1 && m_positionPixelPrev.y == -1)
+    {
+        m_positionPixel = positionD;
+        m_positionPixelPrev = m_positionPixel;
+    }
 
     m_positionPixelNext = positionD;
-    m_positionPixelPrev = m_positionPixel;
 
-
-    m_deplacement_time = m_clock.GetElapsedTime()*0.001;
-    m_cur_d_time = 0;
-    m_clock.Reset();
+    m_deplacement_time += m_clock.GetElapsedTime()*0.001;
+    //m_cur_d_time = 0;
+    m_clock.Reset();*/
 }
 
 void Personnage::setDepart()
@@ -1560,6 +1622,13 @@ bool Personnage::EnVie()
     if (m_caracteristique.vie>0)
         return 1;
     return 0;
+}
+
+float Personnage::getTime()
+{
+    float t = m_clock.GetElapsedTime();
+    m_clock.Reset();
+    return t;
 }
 
 const coordonnee &Personnage::getDepart()
