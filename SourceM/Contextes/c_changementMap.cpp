@@ -378,6 +378,7 @@ void c_Chargement::PostLoad(Jeu *jeu)
 
     for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
     {
+        p->m_personnage.ClearEmulate();
         pos.x=(int)(((p->m_personnage.getCoordonneePixel().x-p->m_personnage.getCoordonneePixel().y)*64/COTE_TILE));
         pos.y=(int)(((p->m_personnage.getCoordonneePixel().x+p->m_personnage.getCoordonneePixel().y)*32/COTE_TILE)/2+64);
         p->m_personnage.Animer(&p->m_modelePersonnage[0], 0);

@@ -867,6 +867,8 @@ void Personnage::EmulerDeplacement(float time)
         m_emul_pos.front().time += time;
         if(m_emul_pos.size() >= 5)
             m_emul_pos.front().time += time;
+        if(m_emul_pos.front().maxTime > 1)
+            m_emul_pos.front().time = m_emul_pos.front().maxTime;
 
         while(!m_emul_pos.empty() && m_emul_pos.front().time > m_emul_pos.front().maxTime)
         {
@@ -889,6 +891,9 @@ void Personnage::EmulerDeplacement(float time)
         m_positionPixel.y = m_emul_pos.front().getCurPos().y;
         m_positionPixel.h = m_emul_pos.front().getCurPos().h;
     }
+
+    m_positionCase.x = (int)((float)m_positionPixel.x/(float)COTE_TILE + 0.5);
+    m_positionCase.y = (int)((float)m_positionPixel.y/(float)COTE_TILE + 0.5);
 
 
     /*if(m_deplacement_time != 0)
@@ -1562,6 +1567,12 @@ void Personnage::setEmulatePos(const coordonneeDecimal &positionD, float time)
     m_deplacement_time += m_clock.GetElapsedTime()*0.001;
     //m_cur_d_time = 0;
     m_clock.Reset();*/
+}
+
+void Personnage::ClearEmulate()
+{
+    notyetemulate = true;
+    m_emul_pos.clear();
 }
 
 void Personnage::setDepart()

@@ -846,6 +846,7 @@ bool Map::DistanceWithHeros(Jeu *jeu, coordonnee pos, int t)
 void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 {
     sf::Packet packet;
+    int nbr = 0;
 
     for(std::vector<Monstre>::iterator Iter_monstre = m_monstre.begin();Iter_monstre!=m_monstre.end();++Iter_monstre) {
     /*if((fabs(hero->m_personnage.getCoordonnee().x - Iter_monstre->getCoordonnee().x) < 20
@@ -994,7 +995,19 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 
             //jeu->SendInfosMonstre(monstre, m_monstre[monstre]);
 
-            packet<<(sf::Int8)P_INFOSMONSTRE<<(sf::Int16)monstre<<*Iter_monstre;
+            if(jeu->m_net_send)
+            {
+                packet<<(sf::Int8)P_INFOSMONSTRE<<(sf::Int16)monstre<<*Iter_monstre;
+
+                nbr++;
+                if(nbr >= 50)
+                {
+                    jeu->SendInfosMonstre(packet);
+
+                    nbr = 0;
+                    packet.Clear();
+                }
+            }
         }
     }
     else
@@ -1006,7 +1019,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 
     }
 
-    if(jeu->m_net_send)
+    if(jeu->m_net_send && !packet.EndOfPacket())
         jeu->SendInfosMonstre(packet);
 
     jeu->m_net_send = false;

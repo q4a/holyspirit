@@ -62,7 +62,7 @@ sf::Packet& operator >>(sf::Packet& Packet, coordonnee& C)
 
 sf::Packet& operator <<(sf::Packet& Packet,  Personnage& C)
 {
-    return Packet << C.getCaracteristique() << C.getCoordonneePixel() << (sf::Int32)(C.getTime()*1000) << (sf::Int8)C.getEtat()  << (sf::Int16)C.m_entite_graphique.m_noAnimation << (sf::Int32)(C.m_entite_graphique.m_animation*1000) << (sf::Int16)C.getAngle();
+    return Packet << C.getCaracteristique() << C.getCoordonneePixel() << (sf::Int32)C.getTime() << (sf::Int8)C.getEtat()  << (sf::Int16)C.m_entite_graphique.m_noAnimation/* << (sf::Int32)(C.m_entite_graphique.m_animation*1000)*/ << (sf::Int16)C.getAngle();
 }
 sf::Packet& operator >>(sf::Packet& Packet, Personnage& C)
 {
@@ -73,13 +73,18 @@ sf::Packet& operator >>(sf::Packet& Packet, Personnage& C)
 
     Caracteristique caract = C.getCaracteristique();
 
-    if((Packet >> caract >> pos >> time >> etat >> pose >> anim >> angle))
+    if((Packet >> caract >> pos >> time >> etat >> pose /*>> anim*/ >> angle))
     {
-        C.setEmulatePos(pos,(float)(time)/1000000);
+        C.setEmulatePos(pos,(float)(time)/1000);
+
+        if(fabs(pose - C.m_entite_graphique.m_noAnimation) <= 1
+        && etat == C.getEtat())
+            pose = C.m_entite_graphique.m_noAnimation;
+
         C.setEtat(etat,pose);
         C.setForcedAngle(angle);
         C.setCaracteristique(caract);
-        C.m_entite_graphique.m_animation = (float)anim/1000;
+      //  C.m_entite_graphique.m_animation = (float)anim/1000;
     }
 
     return Packet;
@@ -117,6 +122,9 @@ void GererReseauClientUDP(void* UserData)
 
     while(jeu->m_host)
     {
+
+      //  sf::Sleep(0.001);
+
         sf::Packet packet;
         if(jeu->m_udp.Receive(packet, ip, port) == sf::Socket::Done)
             jeu->CheckPacketClient(packet);
@@ -181,6 +189,9 @@ void Jeu::GererMultijoueur()
 
         if(configuration->hote)
         {
+            sf::Packet packet2;
+            packet2<<(sf::Int8)P_PLAYERCARACT<<(sf::Int8)0<<hero.m_personnage;
+
             int no = 0;
             for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it, ++no)
             {
@@ -199,10 +210,10 @@ void Jeu::GererMultijoueur()
                     int no2 = 1;
                     for (std::list<sf::TcpSocket*>::iterator it2 = m_clientsTCP.begin(); it2 != m_clientsTCP.end(); ++it2,++no2)
                     {
-                        sf::Packet packet2;
-                        packet2<<(sf::Int8)P_DELETEPLAYER<<(sf::Int8)(no+(no>no2));
+                        sf::Packet packet3;
+                        packet3<<(sf::Int8)P_DELETEPLAYER<<(sf::Int8)(no+(no>no2));
                         sf::TcpSocket& client2 = **it2;
-                        client2.Send(packet2);
+                        client2.Send(packet3);
                     }
 
                     it = m_clientsTCP.begin();
@@ -210,8 +221,6 @@ void Jeu::GererMultijoueur()
                 }
                 else
                 {
-                    sf::Packet packet2;
-                    packet2<<(sf::Int8)P_PLAYERCARACT<<(sf::Int8)0<<hero.m_personnage;
                     sf::IpAddress ip = client.GetRemoteAddress();
                     short unsigned int port = NET_PORT;
                     m_udp.Send(packet2, ip, port);
@@ -522,8 +531,10 @@ void Jeu::CheckPacketClient(sf::Packet &packet)
     sf::Int8 type;
     if((packet>>type))
     {
+           // std::cout<<(int)type<<std::endl;
         if(type == P_PLAYERCARACT)
         {
+            //std::cout<<"BON"<<std::endl;
             sf::Int8 no;
             if((packet>>no))
             {

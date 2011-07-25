@@ -148,6 +148,8 @@ public:
     void regenererVie(float vie);
     void setModele(int);
 
+    void ClearEmulate();
+
     void setPousse(const coordonneeDecimal &pousse);
 
     void AjouterPointAme(int pointAme);
