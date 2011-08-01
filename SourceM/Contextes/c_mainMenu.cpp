@@ -519,14 +519,14 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     if(m_supprimer_heros)
         buttons_continuer[0].m_hover = false;
 
-    if(buttons_continuer[0].m_action || eventManager->getEvenement(sf::Key::Escape, EventKey))
+    if(buttons_continuer[0].m_action || eventManager->getEvenement(sf::Keyboard::Escape, EventKey))
     {
         buttons_continuer[0].m_action = false;
         no_ecran = E_PRINCIPAL;
         configuration->entering_text = false;
         m_supprimer_heros = false;
         eventManager->StopEvenement(Mouse::Left,EventClic);
-        eventManager->StopEvenement(sf::Key::Escape, EventKey);
+        eventManager->StopEvenement(sf::Keyboard::Escape, EventKey);
         jeu->Disconnect();
     }
 
@@ -764,10 +764,10 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         && nom_hero.size() < 16)
             nom_hero += eventManager->getChar();
 
-        if(eventManager->getEvenement(sf::Key::Back,EventKey))
+        if(eventManager->getEvenement(sf::Keyboard::Back,EventKey))
             if(!nom_hero.empty())
                 nom_hero.erase(nom_hero.begin() + nom_hero.size() - 1);
-        eventManager->StopEvenement(sf::Key::Back,EventKey);
+        eventManager->StopEvenement(sf::Keyboard::Back,EventKey);
 
 
         texte.SetString(nom_hero);
@@ -834,10 +834,10 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     && nom_hero.size() < 16)
         nom_hero += eventManager->getChar();
 
-    if(eventManager->getEvenement(sf::Key::Back,EventKey))
+    if(eventManager->getEvenement(sf::Keyboard::Back,EventKey))
         if(!nom_hero.empty())
             nom_hero.erase(nom_hero.begin() + nom_hero.size() - 1);
-    eventManager->StopEvenement(sf::Key::Back,EventKey);
+    eventManager->StopEvenement(sf::Keyboard::Back,EventKey);
 
     texte.SetCharacterSize(20);
 
@@ -1007,11 +1007,11 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
         moteurGraphique->special_typo.Draw(configuration->getText(0,0), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_nouveau[0].position.y), 72, 19, true);
 
-    if(buttons_nouveau[0].m_action || eventManager->getEvenement(sf::Key::Escape, EventKey))
+    if(buttons_nouveau[0].m_action || eventManager->getEvenement(sf::Keyboard::Escape, EventKey))
     {
         configuration->entering_text = false;
         buttons_nouveau[0].m_action = false;
-        eventManager->StopEvenement(sf::Key::Escape, EventKey);
+        eventManager->StopEvenement(sf::Keyboard::Escape, EventKey);
         no_ecran = E_PRINCIPAL;
         ChargerListeSaves();
     }
@@ -1129,10 +1129,10 @@ void  c_MainMenu::E_Multi(Jeu *jeu)
     && */entered_ip.size() <= 16)
         entered_ip += eventManager->getChar();
 
-    if(eventManager->getEvenement(sf::Key::Back,EventKey))
+    if(eventManager->getEvenement(sf::Keyboard::Back,EventKey))
         if(!entered_ip.empty())
             entered_ip.erase(entered_ip.begin() + entered_ip.size() - 1);
-    eventManager->StopEvenement(sf::Key::Back,EventKey);
+    eventManager->StopEvenement(sf::Keyboard::Back,EventKey);
 
     moteurGraphique->special_typo.Draw(entered_ip + (time > 0.5 ? "|" : ""), sf::Vector2f(configuration->Resolution.w/2,
                                                               configuration->Resolution.h/2 + 52 + 48), 48, 19, true);

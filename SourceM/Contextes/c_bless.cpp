@@ -91,7 +91,7 @@ void c_Bless::Utiliser(Jeu *jeu)
         jeu->hero.m_max_defilement_trader=0;
         m_afficher=0;
         jeu->Clock.Reset();
-        eventManager->StopEvenement(Key::I,EventKey);
+        eventManager->StopEvenement(sf::Keyboard::I,EventKey);
 
         if (jeu->hero.m_objetEnMain>=0)
         {

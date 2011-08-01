@@ -293,9 +293,10 @@ void c_Jeu::Deplacements(Jeu *jeu)
             jeu->hero.m_personnage.SeDeplacer(0);
         }
 
-        if (eventManager->getEvenement(Mouse::Left,EventClicA)&&eventManager->getEvenement(Key::LShift,EventKey))
+        if (eventManager->getEvenement(Mouse::Left,EventClicA)&&eventManager->getEvenement(Keyboard::LShift,EventKey))
         {
-            coordonnee temp2((int)(eventManager->getCasePointee().x*COTE_TILE),(int)(eventManager->getCasePointee().y*COTE_TILE));
+            coordonnee temp2((int)(eventManager->getCasePointee().x*COTE_TILE),
+                             (int)(eventManager->getCasePointee().y*COTE_TILE));
             jeu->hero.m_personnage.Frappe(jeu->hero.m_personnage.getCoordonneePixel(),temp2);
 
             jeu->hero.m_case_visee = eventManager->getCasePointee();
@@ -544,9 +545,9 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
     jeu->hero.GererRaccourcisMiracles();
     jeu->hero.GererRaccourcisObjets(inventory, hideLeft);
 
-    if(eventManager->getEvenement(sf::Key::Return,EventKey))
+    if(eventManager->getEvenement(sf::Keyboard::Return,EventKey))
     {
-        eventManager->StopEvenement(sf::Key::Return,EventKey);
+        eventManager->StopEvenement(sf::Keyboard::Return,EventKey);
         if(!configuration->entering_text)
         {
             configuration->entering_text = true;
@@ -563,9 +564,9 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         }
     }
 
-    if(eventManager->getEvenement(sf::Key::Escape,EventKey) && configuration->entering_text)
+    if(eventManager->getEvenement(sf::Keyboard::Escape,EventKey) && configuration->entering_text)
     {
-        eventManager->StopEvenement(sf::Key::Escape,EventKey);
+        eventManager->StopEvenement(sf::Keyboard::Escape,EventKey);
         configuration->entering_text = false;
         jeu->hero.m_personnage.m_speak.clear();
         jeu->hero.m_personnage.m_speak_time = 0;
@@ -578,10 +579,10 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         if(eventManager->IsEnteredText())
             jeu->hero.m_personnage.m_speak += eventManager->getChar();
 
-        if(eventManager->getEvenement(sf::Key::Back,EventKey))
+        if(eventManager->getEvenement(sf::Keyboard::Back,EventKey))
             if(!jeu->hero.m_personnage.m_speak.empty())
                 jeu->hero.m_personnage.m_speak.erase(jeu->hero.m_personnage.m_speak.begin() + jeu->hero.m_personnage.m_speak.size() - 1);
-        eventManager->StopEvenement(sf::Key::Back,EventKey);
+        eventManager->StopEvenement(sf::Keyboard::Back,EventKey);
     }
 
     if (   eventManager->getPositionSouris().x > AutoScreenAdjust(775,0).x
@@ -680,8 +681,8 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
             eventManager->StopEvenement(configuration->m_key_actions[K_DOCS],EventKey), choix = B_DOCS;
         if(eventManager->getEvenement(configuration->m_key_actions[K_MENU],EventKey))
             eventManager->StopEvenement(configuration->m_key_actions[K_MENU],EventKey), choix = B_MENU;
-        if(eventManager->getEvenement(Key::Tab,EventKey))
-            eventManager->StopEvenement(Key::Tab,EventKey), choix = B_CHAT;
+        if(eventManager->getEvenement(Keyboard::Tab,EventKey))
+            eventManager->StopEvenement(Keyboard::Tab,EventKey), choix = B_CHAT;
 
 
         if(eventManager->getEvenement(configuration->m_key_actions[K_CHANGE_WEAPONS],EventKey))
@@ -712,7 +713,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
     }
     else if(choix >= 0)
     {
-        eventManager->StopEvenement(Key::I,EventKey);
+        eventManager->StopEvenement(Keyboard::I,EventKey);
         eventManager->StopEvenement(Mouse::Left,EventClicA);
         eventManager->StopEvenement(Mouse::Left,EventClic);
         jeu->map->m_defilerObjets=0;
@@ -735,7 +736,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
     }
 
     if(!jeu->menu.m_forced_dialogue)
-    if (eventManager->getEvenement(Key::Escape,EventKey)
+    if (eventManager->getEvenement(Keyboard::Escape,EventKey)
      ||(eventManager->getPositionSouris().x > AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x,0).x
      && eventManager->getPositionSouris().x < AutoScreenAdjust(jeu->hero.m_classe.position_bouton_dialogue.x + jeu->hero.m_classe.position_bouton_dialogue.w,0).x
      && eventManager->getPositionSouris().y > AutoScreenAdjust(0,jeu->hero.m_classe.position_bouton_dialogue.y + jeu->hero.m_classe.talk.position.h - jeu->menu.m_hauteur).y
@@ -744,7 +745,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
     {
         if(!jeu->menu.m_dialogue.empty() /* && jeu->m_jeu->alpha_dialog > 192*/)
         {
-            eventManager->StopEvenement(Key::Escape,EventKey);
+            eventManager->StopEvenement(Keyboard::Escape,EventKey);
             eventManager->StopEvenement(Mouse::Left,EventClicA);
             eventManager->StopEvenement(Mouse::Left,EventClic);
             jeu->menu.m_dialogue.clear();
@@ -803,11 +804,11 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
 
 void c_Jeu::Evenements(Jeu *jeu)
 {
-    /*if(eventManager->getEvenement(sf::Key::S,EventKey))
+    /*if(eventManager->getEvenement(sf::Keyboard::S,EventKey))
         moteurSons->DebugRefreshSound();
-    if(eventManager->getEvenement(sf::Key::L,EventKey))
+    if(eventManager->getEvenement(sf::Keyboard::L,EventKey))
     {
-        eventManager->StopEvenement(sf::Key::L,EventKey);
+        eventManager->StopEvenement(sf::Keyboard::L,EventKey);
         if(configuration->volume > 0)
         {
             debug_oldSound = configuration->volume;
@@ -932,7 +933,7 @@ void c_Jeu::Evenements(Jeu *jeu)
 
                         jeu->hero.m_personnage.m_cible = NULL;
                     }
-                  /*  else if(!eventManager->getEvenement(Key::LShift,EventKey))
+                  /*  else if(!eventManager->getEvenement(Keyboard::LShift,EventKey))
                         jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
                     else
                         jeu->hero.m_personnage.setArrivee(jeu->hero.m_personnage.getProchaineCase());*/
@@ -982,7 +983,7 @@ void c_Jeu::Evenements(Jeu *jeu)
             }
 
             if((eventManager->getEvenement(Mouse::Left,EventClic) || eventManager->getEvenement(Mouse::Right,EventClic))
-            && !eventManager->getEvenement(Key::LShift,EventKey))
+            && !eventManager->getEvenement(Keyboard::LShift,EventKey))
             {
                 m_diplace_mode = true;
 
@@ -1067,7 +1068,7 @@ void c_Jeu::Affichage(Jeu *jeu)
     else
         jeu->menu.AfficherDynamique(jeu->hero.m_caracteristiques,0,jeu->hero.m_caracteristiques,&jeu->hero.m_classe);
 
-    if(!eventManager->getEvenement(sf::Key::C,EventKey))
+    if(!eventManager->getEvenement(sf::Keyboard::C,EventKey))
         eventManager->AfficherCurseur();
 
     if (configuration->effetMort&&configuration->postFX&&tempsEffetMort!=0.0f)

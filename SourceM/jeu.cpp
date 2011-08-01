@@ -91,10 +91,10 @@ void Jeu::Demarrer()
             eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime()*0.001,buf);
         }
 
-        if (!configuration->entering_text && eventManager->getEvenement(Key::P,EventKey))
+        if (!configuration->entering_text && eventManager->getEvenement(Keyboard::P,EventKey))
         {
             moteurGraphique->Printscreen();
-            eventManager->StopEvenement(Key::P,EventKey);
+            eventManager->StopEvenement(Keyboard::P,EventKey);
         }
 
         m_contexte->Utiliser(this);

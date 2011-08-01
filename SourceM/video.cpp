@@ -181,7 +181,7 @@ void lireVideo(std::string Chemin)
           if (Event.Type == sf::Event::Closed)
             Running = false;
 
-          if ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Key::Escape))
+          if ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Keyboard::Escape))
             Running = false;
         }
 

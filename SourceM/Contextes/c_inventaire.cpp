@@ -217,7 +217,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->hero.RecalculerCaracteristiques(true);
         m_afficher=0;
         jeu->Clock.Reset();
-        eventManager->StopEvenement(Key::I,EventKey);
+        eventManager->StopEvenement(Keyboard::I,EventKey);
 
         /*if (jeu->hero.m_objetEnMain>=0)
         {

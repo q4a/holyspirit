@@ -809,8 +809,8 @@ void Jeu::SendKillMonstre(int no, int angle, float degats)
         for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
         {
             sf::TcpSocket& client = **it;
-           // client.Send(packet);
-            m_udp.Send(packet,client.GetRemoteAddress(),NET_PORT);
+            client.Send(packet);
+           // m_udp.Send(packet,client.GetRemoteAddress(),NET_PORT);
         }
     }
 }

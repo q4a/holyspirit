@@ -25,7 +25,7 @@
 					<Add option="-DNDEBUG" />
 					<Add option="-D_WINDOWS" />
 					<Add option="-DSFML_STATIC" />
-					<Add directory="..\..\LaurentGomila-SFML-e4c6c30\include" />
+					<Add directory="..\..\LaurentGomila-SFML-732b789\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -56,7 +56,7 @@
 					<Add option="-DDEBUG" />
 					<Add option="-D_WINDOWS" />
 					<Add option="-DSFML_STATIC" />
-					<Add directory="..\..\LaurentGomila-SFML-e4c6c30\include" />
+					<Add directory="..\..\LaurentGomila-SFML-732b789\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-lsfml-audio-s" />

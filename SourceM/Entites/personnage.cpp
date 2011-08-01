@@ -862,6 +862,17 @@ void Personnage::EmulerDeplacement(float time)
 {
     m_speak_time -= time * 1000;
 
+    int totalTime = 0;
+    for(unsigned i = 0 ; i < m_emul_pos.size() ; ++i)
+        totalTime += m_emul_pos[i].maxTime;
+    if(totalTime > 1)
+    {
+        m_positionPixel.x = m_emul_pos.back().nextPos.x;
+        m_positionPixel.y = m_emul_pos.back().nextPos.y;
+        m_positionPixel.h = m_emul_pos.back().nextPos.h;
+        m_emul_pos.clear();
+    }
+
     if(!m_emul_pos.empty())
     {
         m_emul_pos.front().time += time;

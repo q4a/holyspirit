@@ -398,7 +398,7 @@ void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
                                 m_sacPointe.x=k;
                                 m_sacPointe.y=j;
 
-                                if (eventManager->getEvenement(sf::Key::LControl,EventKey))
+                                if (eventManager->getEvenement(sf::Keyboard::LControl,EventKey))
                                     m_decor[1][j][k].getObjet(objetPointe)->AfficherCaracteristiques(eventManager->getPositionSouris(),hero->m_classe.border,hero->m_caracteristiques,&hero->m_coffre,hero->m_cheminClasse);
 
                                 m_objetPointe=objetPointe;
@@ -1172,7 +1172,15 @@ bool Map::InfligerDegats(int numero, Personnage *cible, float degats, int type, 
 
 bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, int type, Jeu *jeu, float temps)
 {
-    if(configuration->hote)
+    if(!configuration->hote)
+    {
+        if(cible == &jeu->hero.m_personnage)
+            jeu->SendDegats(monstre->m_no,degats, type, temps);
+        if(monstre == &jeu->hero.m_personnage)
+            monstre->InfligerDegats(degats, type, temps);
+    }
+
+    //if(configuration->hote)
     {
         float viePrecedente = monstre->getCaracteristique().vie;
 
@@ -1218,13 +1226,6 @@ bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, i
             KillMonstre(monstre, (int)angle, degats, jeu);
             return 1;
         }
-    }
-    else
-    {
-        if(cible == &jeu->hero.m_personnage)
-            jeu->SendDegats(monstre->m_no,degats, type, temps);
-        if(monstre == &jeu->hero.m_personnage)
-            monstre->InfligerDegats(degats, type, temps);
     }
 
     return 0;

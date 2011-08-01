@@ -113,14 +113,14 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         }
     }
 
-    if(m_EventTableau[sf::Key::Back])
+    if(m_EventTableau[sf::Keyboard::Back])
         isEnteredText = false;
-    if(m_EventTableau[sf::Key::Return])
+    if(m_EventTableau[sf::Keyboard::Return])
         isEnteredText = false;
 
-    if (m_EventTableau[Key::PageDown])
+    if (m_EventTableau[Keyboard::PageDown])
         configuration->zoom_or*=(1+(0.5*temps));
-    if (m_EventTableau[Key::PageUp])
+    if (m_EventTableau[Keyboard::PageUp])
         configuration->zoom_or*=((1-(0.5*temps)));
 
     if (configuration->zoom_or<0.75-((float)configuration->Resolution.y/600-1)/2)
@@ -128,22 +128,22 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
     if (configuration->zoom_or>1.5-((float)configuration->Resolution.y/600-1))
         configuration->zoom_or=1.5-((float)configuration->Resolution.y/600-1);
 
-    if (m_EventTableau[Key::Add])
+    if (m_EventTableau[Keyboard::Add])
     {
-        if (m_EventTableau[Key::S])
+        if (m_EventTableau[Keyboard::S])
             configuration->volume+=temps*50;
-        if (m_EventTableau[Key::L])
+        if (m_EventTableau[Keyboard::L])
             configuration->luminosite+=temps*50;
-        if (m_EventTableau[Key::C])
+        if (m_EventTableau[Keyboard::C])
             configuration->contrastes+=temps*2;
     }
-    if (m_EventTableau[Key::Subtract])
+    if (m_EventTableau[Keyboard::Subtract])
     {
-        if (m_EventTableau[Key::S])
+        if (m_EventTableau[Keyboard::S])
             configuration->volume-=temps*50;
-        if (m_EventTableau[Key::L])
+        if (m_EventTableau[Keyboard::L])
             configuration->luminosite-=temps*50;
-        if (m_EventTableau[Key::C])
+        if (m_EventTableau[Keyboard::C])
             configuration->contrastes-=temps*2;
     }
 
@@ -156,19 +156,19 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         configuration->luminosite=0;
     if (configuration->luminosite>64)
         configuration->luminosite=64;
-    if (m_EventTableau[Key::Up])
+    if (m_EventTableau[Keyboard::Up])
     {
         console->Defiler(0);
-        m_EventTableau[Key::Up]=false;
+        m_EventTableau[Keyboard::Up]=false;
     }
-    if (m_EventTableau[Key::Down])
+    if (m_EventTableau[Keyboard::Down])
     {
         console->Defiler(1);
-        m_EventTableau[Key::Down]=false;
+        m_EventTableau[Keyboard::Down]=false;
     }
 
     if(!configuration->entering_text)
-    if (m_EventTableau[Key::Space])
+    if (m_EventTableau[Keyboard::Space])
         configuration->minute+=200*temps;
 
     sf::Vector2f positionSourisTotale = moteurGraphique->getPositionSouris();

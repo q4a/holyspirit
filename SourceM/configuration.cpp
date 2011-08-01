@@ -773,19 +773,19 @@ bool Configuration::Options()
               &&eventManager->getPositionSouris().y < Resolution.h/2 - 144+48)
               {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic)
-                || eventManager->getEvenement(sf::Key::Add,EventKey))
+                || eventManager->getEvenement(sf::Keyboard::Add,EventKey))
                 {
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
-                    eventManager->StopEvenement(sf::Key::Add,EventKey);
+                    eventManager->StopEvenement(sf::Keyboard::Add,EventKey);
                     luminosite += 1;
                     if(luminosite > 50)
                         luminosite = 50;
                 }
                 if(eventManager->getEvenement(sf::Mouse::Right,EventClic)
-                || eventManager->getEvenement(sf::Key::Subtract,EventKey))
+                || eventManager->getEvenement(sf::Keyboard::Subtract,EventKey))
                 {
                     eventManager->StopEvenement(sf::Mouse::Right,EventClic);
-                    eventManager->StopEvenement(sf::Key::Subtract,EventKey);
+                    eventManager->StopEvenement(sf::Keyboard::Subtract,EventKey);
                     luminosite -= 1;
                     if(luminosite < 0)
                         luminosite = 0;
@@ -804,19 +804,19 @@ bool Configuration::Options()
               {
 
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic)
-                || eventManager->getEvenement(sf::Key::Add,EventKey))
+                || eventManager->getEvenement(sf::Keyboard::Add,EventKey))
                 {
                     eventManager->StopEvenement(sf::Mouse::Left,EventClic);
-                    eventManager->StopEvenement(sf::Key::Add,EventKey);
+                    eventManager->StopEvenement(sf::Keyboard::Add,EventKey);
                     contrastes += 0.1;
                     if(contrastes > 5)
                         contrastes = 5;
                 }
                 if(eventManager->getEvenement(sf::Mouse::Right,EventClic)
-                || eventManager->getEvenement(sf::Key::Subtract,EventKey))
+                || eventManager->getEvenement(sf::Keyboard::Subtract,EventKey))
                 {
                     eventManager->StopEvenement(sf::Mouse::Right,EventClic);
-                    eventManager->StopEvenement(sf::Key::Subtract,EventKey);
+                    eventManager->StopEvenement(sf::Keyboard::Subtract,EventKey);
                     contrastes -= 0.1;
                     if(contrastes < 0)
                         contrastes = 0;
@@ -1045,7 +1045,7 @@ bool Configuration::Options()
               &&eventManager->getPositionSouris().y < Resolution.h/2-240+48)
               {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic)
-                || eventManager->getEvenement(sf::Key::Add,EventKey))
+                || eventManager->getEvenement(sf::Keyboard::Add,EventKey))
                 {
                     //eventManager->StopEvenement(sf::Mouse::Left,EventClic);
                     volume += 1;
@@ -1055,7 +1055,7 @@ bool Configuration::Options()
                     sf::Sleep(0.1);
                 }
                 if(eventManager->getEvenement(sf::Mouse::Right,EventClic)
-                || eventManager->getEvenement(sf::Key::Subtract,EventKey))
+                || eventManager->getEvenement(sf::Keyboard::Subtract,EventKey))
                 {
                     //eventManager->StopEvenement(sf::Mouse::Right,EventClic);
                     volume -= 1;
@@ -1081,7 +1081,7 @@ bool Configuration::Options()
               &&eventManager->getPositionSouris().y < Resolution.h/2-192+48)
               {
                 if(eventManager->getEvenement(sf::Mouse::Left,EventClic)
-                || eventManager->getEvenement(sf::Key::Add,EventKey))
+                || eventManager->getEvenement(sf::Keyboard::Add,EventKey))
                 {
                     music_volume += 1;
                     if(music_volume > 100)
@@ -1090,7 +1090,7 @@ bool Configuration::Options()
                     sf::Sleep(0.1);
                 }
                 if(eventManager->getEvenement(sf::Mouse::Right,EventClic)
-                || eventManager->getEvenement(sf::Key::Subtract,EventKey))
+                || eventManager->getEvenement(sf::Keyboard::Subtract,EventKey))
                 {
                     music_volume -= 1;
                     if(music_volume < 0)
@@ -1130,107 +1130,107 @@ bool Configuration::Options()
 
 void Configuration::InitKeys()
 {
-    key_mapping_converter[sf::Key::A] = "A";
-    key_mapping_converter[sf::Key::B] = "B";
-    key_mapping_converter[sf::Key::C] = "C";
-    key_mapping_converter[sf::Key::D] = "D";
-    key_mapping_converter[sf::Key::E] = "E";
-    key_mapping_converter[sf::Key::F] = "F";
-    key_mapping_converter[sf::Key::G] = "G";
-    key_mapping_converter[sf::Key::H] = "H";
-    key_mapping_converter[sf::Key::I] = "I";
-    key_mapping_converter[sf::Key::J] = "J";
-    key_mapping_converter[sf::Key::K] = "K";
-    key_mapping_converter[sf::Key::L] = "L";
-    key_mapping_converter[sf::Key::M] = "M";
-    key_mapping_converter[sf::Key::N] = "N";
-    key_mapping_converter[sf::Key::O] = "O";
-    key_mapping_converter[sf::Key::P] = "P";
-    key_mapping_converter[sf::Key::Q] = "Q";
-    key_mapping_converter[sf::Key::R] = "R";
-    key_mapping_converter[sf::Key::S] = "S";
-    key_mapping_converter[sf::Key::T] = "T";
-    key_mapping_converter[sf::Key::U] = "U";
-    key_mapping_converter[sf::Key::V] = "V";
-    key_mapping_converter[sf::Key::W] = "W";
-    key_mapping_converter[sf::Key::X] = "X";
-    key_mapping_converter[sf::Key::Y] = "Y";
-    key_mapping_converter[sf::Key::Z] = "Z";
-    key_mapping_converter[sf::Key::Num0] = "Num0";
-    key_mapping_converter[sf::Key::Num1] = "Num1";
-    key_mapping_converter[sf::Key::Num2] = "Num2";
-    key_mapping_converter[sf::Key::Num3] = "Num3";
-    key_mapping_converter[sf::Key::Num4] = "Num4";
-    key_mapping_converter[sf::Key::Num5] = "Num5";
-    key_mapping_converter[sf::Key::Num6] = "Num6";
-    key_mapping_converter[sf::Key::Num7] = "Num7";
-    key_mapping_converter[sf::Key::Num8] = "Num8";
-    key_mapping_converter[sf::Key::Num9] = "Num9";
-    key_mapping_converter[sf::Key::Escape] = "Escape";
-    key_mapping_converter[sf::Key::LControl] = "LControl";
-    key_mapping_converter[sf::Key::LShift] = "LShift";
-    key_mapping_converter[sf::Key::LAlt] = "LAlt";
-    key_mapping_converter[sf::Key::LSystem] = "LSystem";
-    key_mapping_converter[sf::Key::RControl] = "RControl";
-    key_mapping_converter[sf::Key::RShift] = "RShift";
-    key_mapping_converter[sf::Key::RAlt] = "RAlt";
-    key_mapping_converter[sf::Key::RSystem] = "RSystem";
-    key_mapping_converter[sf::Key::Menu] = "Menu";
-    key_mapping_converter[sf::Key::LBracket] = "LBracket";
-    key_mapping_converter[sf::Key::RBracket] = "RBracket";
-    key_mapping_converter[sf::Key::SemiColon] = "SemiColon";
-    key_mapping_converter[sf::Key::Comma] = "Comma";
-    key_mapping_converter[sf::Key::Period] = "Period";
-    key_mapping_converter[sf::Key::Quote] = "Quote";
-    key_mapping_converter[sf::Key::Slash] = "Slash";
-    key_mapping_converter[sf::Key::BackSlash] = "BackSlash";
-    key_mapping_converter[sf::Key::Tilde] = "Tilde";
-    key_mapping_converter[sf::Key::Equal] = "Equal";
-    key_mapping_converter[sf::Key::Dash] = "Dash";
-    key_mapping_converter[sf::Key::Space] = "Space";
-    key_mapping_converter[sf::Key::Return] = "Return";
-    key_mapping_converter[sf::Key::Back] = "Back";
-    key_mapping_converter[sf::Key::Tab] = "Tab";
-    key_mapping_converter[sf::Key::PageUp] = "PageUp";
-    key_mapping_converter[sf::Key::PageDown] = "PageDown";
-    key_mapping_converter[sf::Key::End] = "End";
-    key_mapping_converter[sf::Key::Home] = "Home";
-    key_mapping_converter[sf::Key::Insert] = "Insert";
-    key_mapping_converter[sf::Key::Delete] = "Delete";
-    key_mapping_converter[sf::Key::Add] = "Add";
-    key_mapping_converter[sf::Key::Subtract] = "Subtract";
-    key_mapping_converter[sf::Key::Multiply] = "Multiply";
-    key_mapping_converter[sf::Key::Divide] = "Divide";
-    key_mapping_converter[sf::Key::Left] = "Left";
-    key_mapping_converter[sf::Key::Right] = "Right";
-    key_mapping_converter[sf::Key::Up] = "Up";
-    key_mapping_converter[sf::Key::Down] = "Down";
-    key_mapping_converter[sf::Key::Numpad0] = "Numpad0";
-    key_mapping_converter[sf::Key::Numpad1] = "Numpad1";
-    key_mapping_converter[sf::Key::Numpad2] = "Numpad2";
-    key_mapping_converter[sf::Key::Numpad3] = "Numpad3";
-    key_mapping_converter[sf::Key::Numpad4] = "Numpad4";
-    key_mapping_converter[sf::Key::Numpad5] = "Numpad5";
-    key_mapping_converter[sf::Key::Numpad6] = "Numpad6";
-    key_mapping_converter[sf::Key::Numpad7] = "Numpad7";
-    key_mapping_converter[sf::Key::Numpad8] = "Numpad8";
-    key_mapping_converter[sf::Key::Numpad9] = "Numpad9";
-    key_mapping_converter[sf::Key::F1] = "F1";
-    key_mapping_converter[sf::Key::F2] = "F2";
-    key_mapping_converter[sf::Key::F3] = "F3";
-    key_mapping_converter[sf::Key::F4] = "F4";
-    key_mapping_converter[sf::Key::F5] = "F5";
-    key_mapping_converter[sf::Key::F6] = "F6";
-    key_mapping_converter[sf::Key::F7] = "F7";
-    key_mapping_converter[sf::Key::F8] = "F8";
-    key_mapping_converter[sf::Key::F9] = "F9";
-    key_mapping_converter[sf::Key::F10] = "F10";
-    key_mapping_converter[sf::Key::F11] = "F11";
-    key_mapping_converter[sf::Key::F12] = "F12";
-    key_mapping_converter[sf::Key::F13] = "F13";
-    key_mapping_converter[sf::Key::F14] = "F14";
-    key_mapping_converter[sf::Key::F15] = "F15";
-    key_mapping_converter[sf::Key::Pause] = "Pause";
+    key_mapping_converter[sf::Keyboard::A] = "A";
+    key_mapping_converter[sf::Keyboard::B] = "B";
+    key_mapping_converter[sf::Keyboard::C] = "C";
+    key_mapping_converter[sf::Keyboard::D] = "D";
+    key_mapping_converter[sf::Keyboard::E] = "E";
+    key_mapping_converter[sf::Keyboard::F] = "F";
+    key_mapping_converter[sf::Keyboard::G] = "G";
+    key_mapping_converter[sf::Keyboard::H] = "H";
+    key_mapping_converter[sf::Keyboard::I] = "I";
+    key_mapping_converter[sf::Keyboard::J] = "J";
+    key_mapping_converter[sf::Keyboard::K] = "K";
+    key_mapping_converter[sf::Keyboard::L] = "L";
+    key_mapping_converter[sf::Keyboard::M] = "M";
+    key_mapping_converter[sf::Keyboard::N] = "N";
+    key_mapping_converter[sf::Keyboard::O] = "O";
+    key_mapping_converter[sf::Keyboard::P] = "P";
+    key_mapping_converter[sf::Keyboard::Q] = "Q";
+    key_mapping_converter[sf::Keyboard::R] = "R";
+    key_mapping_converter[sf::Keyboard::S] = "S";
+    key_mapping_converter[sf::Keyboard::T] = "T";
+    key_mapping_converter[sf::Keyboard::U] = "U";
+    key_mapping_converter[sf::Keyboard::V] = "V";
+    key_mapping_converter[sf::Keyboard::W] = "W";
+    key_mapping_converter[sf::Keyboard::X] = "X";
+    key_mapping_converter[sf::Keyboard::Y] = "Y";
+    key_mapping_converter[sf::Keyboard::Z] = "Z";
+    key_mapping_converter[sf::Keyboard::Num0] = "Num0";
+    key_mapping_converter[sf::Keyboard::Num1] = "Num1";
+    key_mapping_converter[sf::Keyboard::Num2] = "Num2";
+    key_mapping_converter[sf::Keyboard::Num3] = "Num3";
+    key_mapping_converter[sf::Keyboard::Num4] = "Num4";
+    key_mapping_converter[sf::Keyboard::Num5] = "Num5";
+    key_mapping_converter[sf::Keyboard::Num6] = "Num6";
+    key_mapping_converter[sf::Keyboard::Num7] = "Num7";
+    key_mapping_converter[sf::Keyboard::Num8] = "Num8";
+    key_mapping_converter[sf::Keyboard::Num9] = "Num9";
+    key_mapping_converter[sf::Keyboard::Escape] = "Escape";
+    key_mapping_converter[sf::Keyboard::LControl] = "LControl";
+    key_mapping_converter[sf::Keyboard::LShift] = "LShift";
+    key_mapping_converter[sf::Keyboard::LAlt] = "LAlt";
+    key_mapping_converter[sf::Keyboard::LSystem] = "LSystem";
+    key_mapping_converter[sf::Keyboard::RControl] = "RControl";
+    key_mapping_converter[sf::Keyboard::RShift] = "RShift";
+    key_mapping_converter[sf::Keyboard::RAlt] = "RAlt";
+    key_mapping_converter[sf::Keyboard::RSystem] = "RSystem";
+    key_mapping_converter[sf::Keyboard::Menu] = "Menu";
+    key_mapping_converter[sf::Keyboard::LBracket] = "LBracket";
+    key_mapping_converter[sf::Keyboard::RBracket] = "RBracket";
+    key_mapping_converter[sf::Keyboard::SemiColon] = "SemiColon";
+    key_mapping_converter[sf::Keyboard::Comma] = "Comma";
+    key_mapping_converter[sf::Keyboard::Period] = "Period";
+    key_mapping_converter[sf::Keyboard::Quote] = "Quote";
+    key_mapping_converter[sf::Keyboard::Slash] = "Slash";
+    key_mapping_converter[sf::Keyboard::BackSlash] = "BackSlash";
+    key_mapping_converter[sf::Keyboard::Tilde] = "Tilde";
+    key_mapping_converter[sf::Keyboard::Equal] = "Equal";
+    key_mapping_converter[sf::Keyboard::Dash] = "Dash";
+    key_mapping_converter[sf::Keyboard::Space] = "Space";
+    key_mapping_converter[sf::Keyboard::Return] = "Return";
+    key_mapping_converter[sf::Keyboard::Back] = "Back";
+    key_mapping_converter[sf::Keyboard::Tab] = "Tab";
+    key_mapping_converter[sf::Keyboard::PageUp] = "PageUp";
+    key_mapping_converter[sf::Keyboard::PageDown] = "PageDown";
+    key_mapping_converter[sf::Keyboard::End] = "End";
+    key_mapping_converter[sf::Keyboard::Home] = "Home";
+    key_mapping_converter[sf::Keyboard::Insert] = "Insert";
+    key_mapping_converter[sf::Keyboard::Delete] = "Delete";
+    key_mapping_converter[sf::Keyboard::Add] = "Add";
+    key_mapping_converter[sf::Keyboard::Subtract] = "Subtract";
+    key_mapping_converter[sf::Keyboard::Multiply] = "Multiply";
+    key_mapping_converter[sf::Keyboard::Divide] = "Divide";
+    key_mapping_converter[sf::Keyboard::Left] = "Left";
+    key_mapping_converter[sf::Keyboard::Right] = "Right";
+    key_mapping_converter[sf::Keyboard::Up] = "Up";
+    key_mapping_converter[sf::Keyboard::Down] = "Down";
+    key_mapping_converter[sf::Keyboard::Numpad0] = "Numpad0";
+    key_mapping_converter[sf::Keyboard::Numpad1] = "Numpad1";
+    key_mapping_converter[sf::Keyboard::Numpad2] = "Numpad2";
+    key_mapping_converter[sf::Keyboard::Numpad3] = "Numpad3";
+    key_mapping_converter[sf::Keyboard::Numpad4] = "Numpad4";
+    key_mapping_converter[sf::Keyboard::Numpad5] = "Numpad5";
+    key_mapping_converter[sf::Keyboard::Numpad6] = "Numpad6";
+    key_mapping_converter[sf::Keyboard::Numpad7] = "Numpad7";
+    key_mapping_converter[sf::Keyboard::Numpad8] = "Numpad8";
+    key_mapping_converter[sf::Keyboard::Numpad9] = "Numpad9";
+    key_mapping_converter[sf::Keyboard::F1] = "F1";
+    key_mapping_converter[sf::Keyboard::F2] = "F2";
+    key_mapping_converter[sf::Keyboard::F3] = "F3";
+    key_mapping_converter[sf::Keyboard::F4] = "F4";
+    key_mapping_converter[sf::Keyboard::F5] = "F5";
+    key_mapping_converter[sf::Keyboard::F6] = "F6";
+    key_mapping_converter[sf::Keyboard::F7] = "F7";
+    key_mapping_converter[sf::Keyboard::F8] = "F8";
+    key_mapping_converter[sf::Keyboard::F9] = "F9";
+    key_mapping_converter[sf::Keyboard::F10] = "F10";
+    key_mapping_converter[sf::Keyboard::F11] = "F11";
+    key_mapping_converter[sf::Keyboard::F12] = "F12";
+    key_mapping_converter[sf::Keyboard::F13] = "F13";
+    key_mapping_converter[sf::Keyboard::F14] = "F14";
+    key_mapping_converter[sf::Keyboard::F15] = "F15";
+    key_mapping_converter[sf::Keyboard::Pause] = "Pause";
 
 
     m_key_actions[K_SHORTCUT_1] = '1';
@@ -1244,11 +1244,11 @@ void Configuration::InitKeys()
     m_key_actions[K_INVENTORY]  = 'i';
     m_key_actions[K_MIRACLES]   = 't';
     m_key_actions[K_QUESTS]     = 'q';
-    m_key_actions[K_MENU]       = sf::Key::Escape;
+    m_key_actions[K_MENU]       = sf::Keyboard::Escape;
     m_key_actions[K_MAP]        = 'm';
     m_key_actions[K_DOCS]       = 'd';
-    m_key_actions[K_STAND]      = sf::Key::LShift;
-    m_key_actions[K_PICKITEMS]  = sf::Key::LAlt;
+    m_key_actions[K_STAND]      = sf::Keyboard::LShift;
+    m_key_actions[K_PICKITEMS]  = sf::Keyboard::LAlt;
     m_key_actions[K_CHANGE_WEAPONS]  = 'w';
 }
 

@@ -1151,7 +1151,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
             Caracteristique temp = m_personnage.getCaracteristique();
 
-            if(eventManager->getEvenement(sf::Key::LControl, EventKey))
+            if(eventManager->getEvenement(sf::Keyboard::LControl, EventKey))
             {
                 temp.pts_restant-=5;
                 temp.force+=5;
@@ -1212,7 +1212,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
             Caracteristique temp = m_personnage.getCaracteristique();
 
-            if(eventManager->getEvenement(sf::Key::LControl, EventKey))
+            if(eventManager->getEvenement(sf::Keyboard::LControl, EventKey))
             {
                 temp.pts_restant-=5;
                 temp.dexterite+=5;
@@ -1274,7 +1274,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
             Caracteristique temp = m_personnage.getCaracteristique();
 
-            if(eventManager->getEvenement(sf::Key::LControl, EventKey))
+            if(eventManager->getEvenement(sf::Keyboard::LControl, EventKey))
             {
                 temp.pts_restant-=5;
                 temp.vitalite+=5;
@@ -1334,7 +1334,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
             Caracteristique temp = m_personnage.getCaracteristique();
 
-            if(eventManager->getEvenement(sf::Key::LControl, EventKey))
+            if(eventManager->getEvenement(sf::Keyboard::LControl, EventKey))
             {
                 temp.pts_restant-=5;
                 temp.piete+=5;
@@ -1392,7 +1392,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
             Caracteristique temp = m_personnage.getCaracteristique();
 
-            if(eventManager->getEvenement(sf::Key::LControl, EventKey))
+            if(eventManager->getEvenement(sf::Keyboard::LControl, EventKey))
             {
                 temp.pts_restant-=5;
                 temp.charisme+=5;
@@ -3569,7 +3569,7 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                     {
                         if ((cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS)
                          || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS
-                         || eventManager->getEvenement(sf::Key::LShift, EventKey))
+                         || eventManager->getEvenement(sf::Keyboard::LShift, EventKey))
                         {
 
                             if(m_classe.miracles[miracle].m_unique)
@@ -4140,7 +4140,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                       &&caseVisee.y >= m_inventaire[z].getPosition().y
                       &&caseVisee.y <  m_inventaire[z].getPosition().y+m_inventaire[z].getTaille().y)
                     {
-                        if (eventManager->getEvenement(Key::LControl,EventKey) && m_inventaire[z].getPrix() >= 0)
+                        if (eventManager->getEvenement(Keyboard::LControl,EventKey) && m_inventaire[z].getPrix() >= 0)
                         {
                             if(trader)
                             if((trader->empty() && (trader == &m_coffre || craft || bless)) || !trader->empty())
@@ -4159,7 +4159,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                                     AutoTrierCoffre();
                             }
                         }
-                        else if (eventManager->getEvenement(Key::LShift,EventKey) && m_inventaire[z].getPrix() >= 0)
+                        else if (eventManager->getEvenement(Keyboard::LShift,EventKey) && m_inventaire[z].getPrix() >= 0)
                         {
                             if(craft || bless)
                             {
@@ -4246,7 +4246,7 @@ bool Hero::PrendreEnMain(std::vector<Objet> *trader, bool craft, bool bless )
                     {
                         m_achat=true;
 
-                        if (AjouterObjet((*trader)[z],!eventManager->getEvenement(Key::LControl,EventKey)))
+                        if (AjouterObjet((*trader)[z],!eventManager->getEvenement(Keyboard::LControl,EventKey)))
                         {
                             if(trader != &m_coffre && !craft && !bless)
                             {

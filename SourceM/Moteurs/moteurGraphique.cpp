@@ -185,10 +185,10 @@ void MoteurGraphique::Gerer(float temps)
 {
     if(!configuration->mode_fenetre)
     {
-        if(m_ecran.GetInput().GetMouseX() > configuration->Resolution.x - 1)
-            m_ecran.SetCursorPosition(configuration->Resolution.x - 1,m_ecran.GetInput().GetMouseY());
-        if(m_ecran.GetInput().GetMouseY() > configuration->Resolution.y - 1)
-            m_ecran.SetCursorPosition(m_ecran.GetInput().GetMouseX(),configuration->Resolution.y - 1);
+        if(sf::Mouse::GetPosition(m_ecran).x > configuration->Resolution.x - 1)
+            sf::Mouse::SetPosition(sf::Vector2i(configuration->Resolution.x - 1,sf::Mouse::GetPosition(m_ecran).y),m_ecran);
+        if(sf::Mouse::GetPosition(m_ecran).y > configuration->Resolution.y - 1)
+            sf::Mouse::SetPosition(sf::Vector2i(sf::Mouse::GetPosition(m_ecran).x,configuration->Resolution.y - 1),m_ecran);
     }
 
 
@@ -1035,12 +1035,12 @@ bool MoteurGraphique::getEvent(sf::Event &EventReceived)
 
 sf::Vector2f MoteurGraphique::getPositionSouris()
 {
-    return m_ecran.ConvertCoords(m_ecran.GetInput().GetMouseX(), m_ecran.GetInput().GetMouseY(), m_camera);
+    return m_ecran.ConvertCoords(sf::Mouse::GetPosition(m_ecran).x, sf::Mouse::GetPosition(m_ecran).y, m_camera);
 }
 
 sf::Vector2f MoteurGraphique::getPositionSourisEcran()
 {
-    return sf::Vector2f(m_ecran.GetInput().GetMouseX(), m_ecran.GetInput().GetMouseY());
+    return sf::Vector2f(sf::Mouse::GetPosition(m_ecran).x, sf::Mouse::GetPosition(m_ecran).y);
 }
 
 void MoteurGraphique::Printscreen()
