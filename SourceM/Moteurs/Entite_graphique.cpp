@@ -292,7 +292,7 @@ void Entite_graphique::Generer()
         {
             coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_noAnimation);
 
-            SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
+            SetTexture(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
             SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
                                    positionPartieDecor.w, positionPartieDecor.h - 1));
 
@@ -331,7 +331,7 @@ void Entite_graphique::Generer()
             {
                 coordonnee positionPartieDecor2 = m_tileset->getPositionDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1);
 
-                m_sprite_distortion.SetImage(*moteurGraphique->getImage(m_tileset->getImage(m_tileset->getDistortionDuTile(m_noAnimation), 1)));
+                m_sprite_distortion.SetTexture(*moteurGraphique->getImage(m_tileset->getImage(m_tileset->getDistortionDuTile(m_noAnimation), 1)));
                 m_sprite_distortion.SetSubRect(sf::IntRect(positionPartieDecor2.x, positionPartieDecor2.y,
                                                            positionPartieDecor2.w, positionPartieDecor2.h));
 
@@ -360,7 +360,7 @@ void Entite_graphique::Generer()
                 coordonnee positionPartieDecor2 = m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCoordonnee();
 
 
-                m_sprite_shadowmap.back().SetImage(*moteurGraphique->getImage(m_tileset->getImageShadowmap(m_noAnimation,i)));
+                m_sprite_shadowmap.back().SetTexture(*moteurGraphique->getImage(m_tileset->getImageShadowmap(m_noAnimation,i)));
                 m_sprite_shadowmap.back().SetSubRect(sf::IntRect(positionPartieDecor2.x,
                                                                  positionPartieDecor2.y,
                                                                  positionPartieDecor2.w,

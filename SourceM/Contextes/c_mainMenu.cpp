@@ -46,17 +46,17 @@ c_MainMenu::c_MainMenu()
     entered_ip = configuration->last_ip;
     moteurSons->PlayNewMusic(configuration->music_menu);
 
-    m_mainscreen.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->mainscreen_menu, -1)));
+    m_mainscreen.SetTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->mainscreen_menu, -1)));
     m_mainscreen.Resize(configuration->Resolution.x, configuration->Resolution.y);
 
-    m_background_hero.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot, -1)));
-    m_backtext_hero.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot_text, -1)));
+    m_background_hero.SetTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot, -1)));
+    m_backtext_hero.SetTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot_text, -1)));
     //m_background_hero.Resize(150, 192);
 
-    m_delete_heros.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_del, -1)));
+    m_delete_heros.SetTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_del, -1)));
     m_delete_heros.SetPosition(configuration->Resolution.x/2 - 400, configuration->Resolution.y - 160);
 
-    m_hs_logo.SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_logo, -1)));
+    m_hs_logo.SetTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_logo, -1)));
 
     m_light = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,255,255));
     m_light_logo = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,192,0));
@@ -249,7 +249,7 @@ void c_MainMenu::ChargerListeSaves()
             cDAT reader;
             reader.Read(configuration->chemin_saves+m_chemin_saves.back());
             int img  = moteurGraphique->AjouterImage(reader.GetFile(chemin_image), reader.GetFileSize(chemin_image), chemin_image, 1, 1);
-            sprite.SetImage(*moteurGraphique->getImage(img));
+            sprite.SetTexture(*moteurGraphique->getImage(img));
             m_images_saves.push_back(sprite);
 
             Hero temp;
@@ -405,7 +405,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
                     {
                         std::string temp;
                         fichier2>>temp;
-                        m_apercu_classe.back().SetImage(*moteurGraphique->getImage(moteurGraphique->AjouterImage(temp,-1)));
+                        m_apercu_classe.back().SetTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(temp,-1)));
                     }
                     if (fichier2.eof())
                         caractere2='$';

@@ -249,7 +249,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
         sf::Sprite sprite;
 
-        sprite.SetImage(*moteurGraphique->getImage(bouton->image.image));
+        sprite.SetTexture(*moteurGraphique->getImage(bouton->image.image));
         sprite.SetSubRect(sf::IntRect(bouton->image.position.x,
                                       bouton->image.position.y,
                                       bouton->image.position.w,

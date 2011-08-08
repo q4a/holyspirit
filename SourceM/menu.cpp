@@ -86,7 +86,7 @@ void Menu::AfficherHUD(Classe *classe)
     Sprite sprite2;
 
     //On affiche l'HUD
-    sprite2.SetImage(*moteurGraphique->getImage(classe->hud.image));
+    sprite2.SetTexture(*moteurGraphique->getImage(classe->hud.image));
     sprite2.SetX(classe->hud.position.x + (configuration->Resolution.x - 800) * 0.5);
     sprite2.SetY(classe->hud.position.y + (configuration->Resolution.y - 600));
     sprite2.Resize(classe->hud.position.w, classe->hud.position.h);
@@ -97,7 +97,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
 {
     Sprite sprite2;
 
-    sprite2.SetImage(*moteurGraphique->getImage(classe->talk.image));
+    sprite2.SetTexture(*moteurGraphique->getImage(classe->talk.image));
     sprite2.SetX(classe->talk.position.x + (configuration->Resolution.x - 800) * 0.5);
     sprite2.SetY(AutoScreenAdjust(0,classe->talk.position.y).y + m_cur_talk_hauteur);
     sprite2.Resize(classe->talk.position.w, classe->talk.position.h);
@@ -166,7 +166,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
             pos = texte.GetRect().Top + texte.GetRect().Height + 4;
 
 
-            bullet1.SetImage(*moteurGraphique->getImage(classe->bullet_off.image));
+            bullet1.SetTexture(*moteurGraphique->getImage(classe->bullet_off.image));
             bullet1.SetX(minX);
             texte.SetColor(sf::Color(224,224,224));
 
@@ -264,8 +264,8 @@ void Menu::AfficherDialogue(float time,Classe *classe)
                     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 }
-                bullet1.SetImage(*moteurGraphique->getImage(classe->bullet_on.image));
-                bullet2.SetImage(*moteurGraphique->getImage(classe->bullet_on.image));
+                bullet1.SetTexture(*moteurGraphique->getImage(classe->bullet_on.image));
+                bullet2.SetTexture(*moteurGraphique->getImage(classe->bullet_on.image));
                 bullet1.SetX(minX + 16);
                 bullet2.SetX(maxX - 16);
 
@@ -273,8 +273,8 @@ void Menu::AfficherDialogue(float time,Classe *classe)
              }
              else
              {
-                bullet1.SetImage(*moteurGraphique->getImage(classe->bullet_off.image));
-                bullet2.SetImage(*moteurGraphique->getImage(classe->bullet_off.image));
+                bullet1.SetTexture(*moteurGraphique->getImage(classe->bullet_off.image));
+                bullet2.SetTexture(*moteurGraphique->getImage(classe->bullet_off.image));
                 bullet1.SetX(minX);
                 bullet2.SetX(maxX);
                 texte.SetColor(sf::Color(224,224,224));
@@ -328,8 +328,8 @@ void Menu::AfficherDialogue(float time,Classe *classe)
                     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 }
-                bullet1.SetImage(*moteurGraphique->getImage(classe->bullet_on.image));
-                //bullet2.SetImage(*moteurGraphique->getImage(classe->bullet_on.image));
+                bullet1.SetTexture(*moteurGraphique->getImage(classe->bullet_on.image));
+                //bullet2.SetTexture(*moteurGraphique->getImage(classe->bullet_on.image));
                 bullet1.SetX(minX + 16);
               //  bullet2.SetX(maxX - 16);
 
@@ -340,8 +340,8 @@ void Menu::AfficherDialogue(float time,Classe *classe)
              }
              else
              {
-                bullet1.SetImage(*moteurGraphique->getImage(classe->bullet_off.image));
-                //bullet2.SetImage(*moteurGraphique->getImage(classe->bullet_off.image));
+                bullet1.SetTexture(*moteurGraphique->getImage(classe->bullet_off.image));
+                //bullet2.SetTexture(*moteurGraphique->getImage(classe->bullet_off.image));
                 bullet1.SetX(minX);
                // bullet2.SetX(maxX);
                 texte.SetColor(sf::Color(224,224,224));
@@ -381,7 +381,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     if (caracteristique.vie>0)
     {
         Sprite sprite;
-        sprite.SetImage(*moteurGraphique->getImage(classe->orbe_vie.image));
+        sprite.SetTexture(*moteurGraphique->getImage(classe->orbe_vie.image));
 
         sprite.SetY(classe->orbe_vie.position.y + (configuration->Resolution.y - 600));
 
@@ -450,7 +450,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     if (caracteristique.foi>0)
     {
         Sprite sprite;
-        sprite.SetImage(*moteurGraphique->getImage(classe->orbe_foi.image));
+        sprite.SetTexture(*moteurGraphique->getImage(classe->orbe_foi.image));
 
         sprite.SetY(classe->orbe_foi.position.y + (configuration->Resolution.y - 600));
         sprite.SetX(classe->orbe_foi.position.x + (configuration->Resolution.x - 800) * 0.5);
@@ -505,7 +505,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     {
         Sprite sprite;
 
-        sprite.SetImage(*moteurGraphique->getImage(classe->soul_bar.image));
+        sprite.SetTexture(*moteurGraphique->getImage(classe->soul_bar.image));
        // sprite.Resize(344*configuration->Resolution.w/800, 16*configuration->Resolution.w/800);
 
         int temp= (int) ( (caracteristique.ancienPointAme-((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)) * 344 / (((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10) - ((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)));
@@ -537,13 +537,13 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     {
         Sprite sprite,sprite2;
 
-        sprite.SetImage(*moteurGraphique->getImage(classe->barre_vie_monstre_vide.image));
+        sprite.SetTexture(*moteurGraphique->getImage(classe->barre_vie_monstre_vide.image));
         sprite.SetX(configuration->Resolution.w/2+classe->barre_vie_monstre_vide.position.x);
         sprite.SetY(classe->barre_vie_monstre_vide.position.y);
 
         moteurGraphique->AjouterCommande(&sprite,16,0);
 
-        sprite2.SetImage(*moteurGraphique->getImage(classe->barre_vie_monstre.image));
+        sprite2.SetTexture(*moteurGraphique->getImage(classe->barre_vie_monstre.image));
 
         float vie = (int)caracteristiqueMonstre.vie;
         if(vie == 0)
@@ -589,7 +589,7 @@ void Menu::AfficherChargement(string nom,int fond,int z=50)
 {
     Sprite sprite;
 
-    sprite.SetImage(*moteurGraphique->getImage(fond));
+    sprite.SetTexture(*moteurGraphique->getImage(fond));
     sprite.SetColor(Color(255,255,255,z*255/50));
     sprite.SetX(0);
     sprite.SetY(0);
@@ -615,7 +615,7 @@ void Menu::AfficherQuetes(float decalage,Classe *classe)
 {
     Sprite sprite;
 
-    sprite.SetImage(*moteurGraphique->getImage(classe->quest.image));
+    sprite.SetTexture(*moteurGraphique->getImage(classe->quest.image));
     sprite.SetX(classe->quest.position.x + (configuration->Resolution.x - 800) * 0.5);
     sprite.SetY(classe->quest.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
     sprite.Resize(classe->quest.position.w, classe->quest.position.h);
@@ -633,7 +633,7 @@ void Menu::AfficherDocs(float decalage,Classe *classe)
 {
     Sprite sprite;
 
-    sprite.SetImage(*moteurGraphique->getImage(classe->documents.image));
+    sprite.SetTexture(*moteurGraphique->getImage(classe->documents.image));
     sprite.SetX(classe->documents.position.x + (configuration->Resolution.x - 800) * 0.5);
     sprite.SetY(classe->documents.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
     sprite.Resize(classe->documents.position.w, classe->documents.position.h);
@@ -652,7 +652,7 @@ void Menu::AfficherCraft(float decalage,Classe *classe)
 {
     Sprite sprite;
 
-    sprite.SetImage(*moteurGraphique->getImage(classe->craft.image));
+    sprite.SetTexture(*moteurGraphique->getImage(classe->craft.image));
     sprite.SetX(classe->craft.position.x + (configuration->Resolution.x - 800) * 0.5);
     sprite.SetY(classe->craft.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
     sprite.Resize(classe->craft.position.w, classe->craft.position.h);
@@ -674,7 +674,7 @@ void Menu::AfficherMiracles(float decalage, Classe *classe)
 {
     Sprite sprite;
 
-    sprite.SetImage(*moteurGraphique->getImage(classe->interface_miracles.image));
+    sprite.SetTexture(*moteurGraphique->getImage(classe->interface_miracles.image));
     sprite.SetX(classe->interface_miracles.position.x + (configuration->Resolution.x - 800) * 0.5);
     sprite.SetY(classe->interface_miracles.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
     sprite.Resize(classe->interface_miracles.position.w, classe->interface_miracles.position.h);
@@ -692,7 +692,7 @@ void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)
 {
     Sprite sprite;
 
-    sprite.SetImage(*moteurGraphique->getImage(classe->inventaire.image));
+    sprite.SetTexture(*moteurGraphique->getImage(classe->inventaire.image));
     sprite.SetX(classe->inventaire.position.x + (configuration->Resolution.x - 800) * 0.5);
     sprite.SetY(classe->inventaire.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
     sprite.Resize(classe->inventaire.position.w, classe->inventaire.position.h);
@@ -708,7 +708,7 @@ void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)
     if (!noTrader)
     {
         Sprite sprite2;
-        sprite2.SetImage(*moteurGraphique->getImage(classe->menu_marchand.image));
+        sprite2.SetTexture(*moteurGraphique->getImage(classe->menu_marchand.image));
         sprite2.SetX(classe->menu_marchand.position.x + (configuration->Resolution.x - 800) * 0.5);
         sprite2.SetY(classe->menu_marchand.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
         sprite2.Resize(classe->menu_marchand.position.w, classe->menu_marchand.position.h);

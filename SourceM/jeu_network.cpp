@@ -329,14 +329,12 @@ void Jeu::Disconnect()
 
     if(m_thread_clientTCP)
     {
-        //m_thread_clientTCP->Terminate();
         m_thread_clientTCP->Wait();
         delete m_thread_clientTCP;
     }
 
     if(m_thread_clientUDP)
     {
-        //m_thread_clientUDP->Terminate();
         m_thread_clientUDP->Wait();
         delete m_thread_clientUDP;
     }
@@ -531,10 +529,8 @@ void Jeu::CheckPacketClient(sf::Packet &packet)
     sf::Int8 type;
     if((packet>>type))
     {
-           // std::cout<<(int)type<<std::endl;
         if(type == P_PLAYERCARACT)
         {
-            //std::cout<<"BON"<<std::endl;
             sf::Int8 no;
             if((packet>>no))
             {
@@ -557,6 +553,7 @@ void Jeu::CheckPacketClient(sf::Packet &packet)
                 if((packet>>no))
                 {
                     if(map->m_loaded)
+                    if(map->getEntiteMonstre(no))
                     {
                         GlobalMutex.Lock();
 
@@ -840,6 +837,4 @@ void Jeu::SendMessage(std::string msg)
             m_host->Send(packet);
     }
 }
-
-
 

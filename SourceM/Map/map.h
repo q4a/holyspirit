@@ -195,8 +195,8 @@ private:
     std::vector <Projectile> m_projectile;
     std::vector <EffetGraphique> m_effets;
 
-    sf::RenderImage m_render_minimap[MINIMAP_SIZE][MINIMAP_SIZE];
-    //sf::Image       m_minimap;
+    sf::RenderTexture m_render_minimap[MINIMAP_SIZE][MINIMAP_SIZE];
+    //sf::Texture       m_minimap;
 
     std::vector<Decor>::iterator IterY;
     std::vector<Decor>::iterator Iter;

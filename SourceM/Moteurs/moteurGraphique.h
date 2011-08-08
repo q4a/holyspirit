@@ -66,7 +66,7 @@ struct Image_moteur
         nom         = "";
         img         =  NULL;
     }
-    sf::Image *img;
+    sf::Texture *img;
     std::string nom;
     int importance;
 };
@@ -118,7 +118,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	void Gerer(float);
 
 	int AjouterImage(std::string,int importance = 5, bool = false);
-	int AjouterImage(const sf::Image &,int importance = 5);
+	int AjouterImage(const sf::Texture &,int importance = 5);
 	int AjouterImage(const char *Data, std::size_t SizeInBytes, std::string nom,int importance =5, bool = false);
 	int AjouterTileset(std::string,int importance = 5);
 	int AjouterTileset(std::ifstream &fichier, std::string nom = "",int importance = 5);
@@ -148,7 +148,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	void Printscreen();
 	int GetFPS();
 
-	sf::Image*  getImage(int);
+	sf::Texture*  getImage(int);
 	Tileset*    getTileset(int );
 
 	ModeleParticuleSysteme* getModeleMoteurParticules(int ID);
@@ -156,11 +156,11 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	std::string getCheminImage(int IDimage);
 
 	sf::Shader  EffectBlur,EffectBlur2,EffectBlurScreen,EffectMort,EffectFiltre, EffectWater, EffectDistortion;
-	sf::RenderImage bufferImage;
-	sf::RenderImage m_water_screen;
-	sf::RenderImage m_distortion_screen;
-	sf::RenderImage m_light_screen;
-    sf::RenderImage m_light_screen2;
+	sf::RenderTexture bufferImage;
+	sf::RenderTexture m_water_screen;
+	sf::RenderTexture m_distortion_screen;
+	sf::RenderTexture m_light_screen;
+    sf::RenderTexture m_light_screen2;
 
 	sf::Font m_font,m_font_titre;
 

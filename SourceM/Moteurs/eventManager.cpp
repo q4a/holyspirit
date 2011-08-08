@@ -193,7 +193,7 @@ void EventManager::AfficherCurseur(bool transparent)
     m_positionSouris.y = moteurGraphique->getPositionSourisEcran().y;
 
     Sprite Sprite;
-    Sprite.SetImage(*moteurGraphique->getImage(idcurseur));
+    Sprite.SetTexture(*moteurGraphique->getImage(idcurseur));
     if (configuration->Resolution.x > 0)
         Sprite.SetX(m_positionSouris.x*configuration->Resolution.w/configuration->Resolution.x-2);
     if (configuration->Resolution.y > 0)

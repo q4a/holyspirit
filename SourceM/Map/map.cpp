@@ -148,7 +148,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
                 && eventManager->getPositionSouris().y > AutoScreenAdjust(0,position_sac_inventaire.y  + (z - m_defilerObjets) * 20).y
                 && eventManager->getPositionSouris().y < AutoScreenAdjust(0,position_sac_inventaire.y  + (z - m_defilerObjets) * 20 + 20).y)
                 {
-                    Sprite.SetImage(*moteurGraphique->getImage(0));
+                    Sprite.SetTexture(*moteurGraphique->getImage(0));
                     Sprite.SetColor(sf::Color(255,255,255,128));
                     Sprite.Resize(position_sac_inventaire.w,20);
                     Sprite.SetPosition(AutoScreenAdjust(position_sac_inventaire.x,
@@ -206,7 +206,7 @@ void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
         for(int x = 0 ; x < MINIMAP_SIZE ; ++x)
         {
             sf::Sprite map;
-            map.SetImage(m_render_minimap[y][x].GetImage());
+            map.SetTexture(m_render_minimap[y][x].GetTexture());
             map.SetPosition(configuration->Resolution.x*0.5f + (-positionHero.x) * 0.125f + x * 1024 - MINIMAP_SIZE * 512,
                             configuration->Resolution.y*0.5f + (-positionHero.y) * 0.125f + y * 1024);
             map.SetColor(sf::Color(255,255,255,(int)(alpha * 0.5f)));
@@ -215,7 +215,7 @@ void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
 
 
         sf::Sprite minimap;
-        minimap.SetImage(*moteurGraphique->getImage(hero->m_classe.icone_mm.image));
+        minimap.SetTexture(*moteurGraphique->getImage(hero->m_classe.icone_mm.image));
         minimap.SetSubRect(sf::IntRect(hero->m_classe.icone_mm.position.x, hero->m_classe.icone_mm.position.y,
                                        hero->m_classe.icone_mm.position.w, hero->m_classe.icone_mm.position.h));
 
@@ -242,7 +242,7 @@ void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
     if(m_img_sky >= 0)
     {
         sf::Sprite sky;
-        sky.SetImage(*moteurGraphique->getImage(m_img_sky));
+        sky.SetTexture(*moteurGraphique->getImage(m_img_sky));
         sky.Resize(configuration->Resolution.x,configuration->Resolution.y);
         moteurGraphique->AjouterCommande(&sky,0,0);
     }
@@ -851,6 +851,10 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
     for(std::vector<Monstre>::iterator Iter_monstre = m_monstre.begin();Iter_monstre!=m_monstre.end();++Iter_monstre) {
     /*if((fabs(hero->m_personnage.getCoordonnee().x - Iter_monstre->getCoordonnee().x) < 20
      && fabs(hero->m_personnage.getCoordonnee().y - Iter_monstre->getCoordonnee().y) < 20)*/
+
+    if(!configuration->hote)
+        Iter_monstre->EmulerDeplacement(temps);
+
     if(DistanceWithHeros(jeu,Iter_monstre->getCoordonnee(),20)
     || Iter_monstre->m_noDistanceRestriction)
     {
@@ -961,8 +965,8 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 
                     if(Iter_monstre->m_actif && configuration->hote)
                         seDeplacer = Iter_monstre->SeDeplacer(temps*100);
-                    else
-                        Iter_monstre->EmulerDeplacement(temps);
+                   /* else
+                        Iter_monstre->EmulerDeplacement(temps);*/
 
                     Script *script=&Iter_monstre->m_scriptAI;
                     if ((int)script->m_instructions.size()>0)
@@ -1180,7 +1184,7 @@ bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, i
             monstre->InfligerDegats(degats, type, temps);
     }
 
-    //if(configuration->hote)
+    if(configuration->hote || temps == 0)
     {
         float viePrecedente = monstre->getCaracteristique().vie;
 

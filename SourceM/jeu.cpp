@@ -114,7 +114,6 @@ void Jeu::Demarrer()
             Sleep(0.01 - MusicClock.GetElapsedTime());
 
         MusicClock.Reset();
-
     }
 
     if(m_jeu->m_thread_sauvegarde)

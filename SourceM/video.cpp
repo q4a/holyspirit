@@ -22,7 +22,7 @@ AVFrame         *pFrameRGB;
 uint8_t         *buffer;
 AVPacket        packet;
 
-sf::Image im_video;
+sf::Texture im_video;
 sf::Sprite sp_video;
 sf::Uint8 *Data;
 
@@ -166,7 +166,7 @@ void lireVideo(std::string Chemin)
     	// J'aime bien ne pas mettre le smooth, ça dépend de la qualité de la video :)
       im_video.SetSmooth(false);
     	// On crée notre sprite
-      sp_video.SetImage(im_video);
+      sp_video.SetTexture(im_video);
     	// Vous pouvez utiliser les fonctionnalité du sprite sur la video,
     	// comme le scale, de la même manière qu'une simple image fixe
 

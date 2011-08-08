@@ -146,7 +146,7 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage, b
 
         moteurGraphique->AjouterTexteNonChevauchable(&texte,12);
 
-        sprite.SetImage(*moteurGraphique->getImage(0));
+        sprite.SetTexture(*moteurGraphique->getImage(0));
 
         sprite.SetY(texte.GetPosition().y);
         sprite.SetX(texte.GetPosition().x-4);

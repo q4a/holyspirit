@@ -55,7 +55,7 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
                 if (Iter->numero>=0&&Iter->numero<(int)modele->m_particules.size())
                 {
                     sf::Sprite sprite;
-                    sprite.SetImage(*moteurGraphique->getImage(modele->m_image));
+                    sprite.SetTexture(*moteurGraphique->getImage(modele->m_image));
                     sprite.SetSubRect(sf::IntRect(modele->m_particules[Iter->numero].positionImage.x,
                                                   modele->m_particules[Iter->numero].positionImage.y,
                                                   modele->m_particules[Iter->numero].positionImage.w,

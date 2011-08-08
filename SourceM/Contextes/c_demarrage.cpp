@@ -53,7 +53,7 @@ void c_Demarrage::Utiliser(Jeu *jeu)
 
     Sprite sprite;
 
-    sprite.SetImage(*moteurGraphique->getImage(m_image));
+    sprite.SetTexture(*moteurGraphique->getImage(m_image));
 
     //configuration->effetNoir=1;
 

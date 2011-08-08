@@ -339,9 +339,6 @@ void c_Jeu::Animation(Jeu *jeu)
 
     for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
     {
-       /* p->m_personnage.m_entite_graphique.NextTile(true);
-        p->m_personnage.m_entite_graphique.Generer();
-        p->m_personnage.Animer(&p->m_modelePersonnage[0],0, true);*/
         p->CalculerOrdreAffichage();
         p->m_personnage.EmulerDeplacement(tempsEcoule);
         p->m_personnage.Animer(&p->m_modelePersonnage[0],tempsEcoule, true);
@@ -437,6 +434,9 @@ void c_Jeu::Animation(Jeu *jeu)
         jeu->hero.m_personnage.m_vientDeFrapper = jeu->hero.m_personnage.m_vientDeToucher, jeu->hero.m_personnage.m_vientDeToucher = NULL;
 
     jeu->map->GererMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsEcoule,jeu);
+
+    for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+        jeu->map->GererMiracle(&p->m_personnage,p->m_classe.miracles,tempsEcoule,jeu);
 }
 void c_Jeu::Lumieres(Jeu *jeu)
 {
@@ -615,7 +615,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
 
         sf::Sprite sprite;
 
-        sprite.SetImage(*moteurGraphique->getImage(bouton->image.image));
+        sprite.SetTexture(*moteurGraphique->getImage(bouton->image.image));
         sprite.SetSubRect(sf::IntRect(bouton->image.position.x,
                                       bouton->image.position.y,
                                       bouton->image.position.w,
@@ -765,7 +765,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
 
         sf::Sprite sprite;
 
-        sprite.SetImage(*moteurGraphique->getImage(bouton->image.image));
+        sprite.SetTexture(*moteurGraphique->getImage(bouton->image.image));
         sprite.SetSubRect(sf::IntRect(bouton->image.position.x,
                                       bouton->image.position.y,
                                       bouton->image.position.w,

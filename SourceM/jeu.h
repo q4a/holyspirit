@@ -73,7 +73,6 @@ class Jeu
     void SendDegats(int no, float degats, int type, float temps = 0);
     void SendKillMonstre(int no, int angle, float degats);
     void SendMessage(std::string msg);
-    void SendEffetGraphique(EffetGraphique &effet);
 
     Menu menu;
     Map *map;

@@ -1033,7 +1033,7 @@ void Map::CreerSprite(sf::Vector3f position_case)
      &&m_decor[z][y][x].getTileset() < (int)m_tileset.size())
     {
         positionPartieDecor=moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getPositionMinimap(m_decor[z][y][x].getTile());
-        m_decor[z][y][x].m_spriteMinimap.SetImage(*moteurGraphique->getImage(moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getMinimap(m_decor[z][y][x].getTile())));
+        m_decor[z][y][x].m_spriteMinimap.SetTexture(*moteurGraphique->getImage(moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getMinimap(m_decor[z][y][x].getTile())));
         m_decor[z][y][x].m_spriteMinimap.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y,
                                                             positionPartieDecor.w, positionPartieDecor.h));
         m_decor[z][y][x].m_spriteMinimap.SetX(position.x);

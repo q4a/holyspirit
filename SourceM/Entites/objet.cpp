@@ -1972,7 +1972,7 @@ std::string getTextBenediction(const benediction &bene)
 void Objet::Afficher(const coordonnee &position)
 {
     sf::Sprite sprite;
-    sprite.SetImage(*moteurGraphique->getImage(m_image));
+    sprite.SetTexture(*moteurGraphique->getImage(m_image));
     sprite.SetSubRect(IntRect(m_positionImage.x,
                               m_positionImage.y,
                               m_positionImage.w,

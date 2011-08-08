@@ -29,8 +29,11 @@ MoteurGraphique::MoteurGraphique()
     LightManager = Light_Manager::GetInstance();
 
     m_images.push_back(Image_moteur ());
-    m_images.front().img = new sf::Image();
-    m_images.front().img->Create(8, 8, sf::Color(255, 255, 255));
+    m_images.front().img = new sf::Texture();
+    sf::Image img;
+    img.Create(8, 8, sf::Color(255, 255, 255));
+    m_images.front().img->LoadFromImage(img);
+
 
     m_images.front().nom         = "O";
     m_images.front().importance  = -1;
@@ -91,7 +94,7 @@ void MoteurGraphique::CreateNewWindow()
         EffectWater.SetCurrentTexture("framebuffer");
         EffectDistortion.SetCurrentTexture("framebuffer");
 
-        EffectDistortion.SetTexture("distortion_map",m_distortion_screen.GetImage());
+        EffectDistortion.SetTexture("distortion_map",m_distortion_screen.GetTexture());
     }
 
     m_ecran.SetActive();
@@ -341,7 +344,7 @@ void MoteurGraphique::Afficher()
         m_light_screen2.SetView(m_light_screen2.GetDefaultView());
 
         sf::Sprite sprite3;
-        sprite3.SetImage(*getImage(0));
+        sprite3.SetTexture(*getImage(0));
         sprite3.Resize(configuration->Resolution.w+64,configuration->Resolution.h+64);
         sprite3.SetColor(sf::Color(sf::Color((int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5))));
         sprite3.SetBlendMode(sf::Blend::Add);
@@ -354,7 +357,7 @@ void MoteurGraphique::Afficher()
         {
             EffectBlur2.SetParameter("direction_x", 1.0);
             sf::Sprite buf;
-            buf.SetImage(m_light_screen2.GetImage());
+            buf.SetTexture(m_light_screen2.GetTexture());
             m_light_screen2.SetView(m_light_screen2.GetDefaultView());
             m_light_screen2.Draw(buf, EffectBlur2);
             m_light_screen2.Display();
@@ -395,7 +398,7 @@ void MoteurGraphique::Afficher()
         {
             EffectBlur.SetParameter("direction_x", 1.0);
             sf::Sprite buf;
-            buf.SetImage(m_light_screen.GetImage());
+            buf.SetTexture(m_light_screen.GetTexture());
             m_light_screen.SetView(m_light_screen.GetDefaultView());
             m_light_screen.Draw(buf, EffectBlur);
             m_light_screen.Display();
@@ -427,7 +430,7 @@ void MoteurGraphique::Afficher()
     {
         if (k==12 && configuration->Lumiere)
         {
-            sf::Sprite screen(m_light_screen.GetImage());
+            sf::Sprite screen(m_light_screen.GetTexture());
 
             screen.SetBlendMode(sf::Blend::Multiply);
 
@@ -444,7 +447,7 @@ void MoteurGraphique::Afficher()
 
         if (k==10 && configuration->Ombre && m_soleil.intensite>32)
         {
-            sf::Sprite screen(m_light_screen2.GetImage());
+            sf::Sprite screen(m_light_screen2.GetTexture());
 
             screen.SetBlendMode(sf::Blend::Multiply);
 
@@ -466,11 +469,11 @@ void MoteurGraphique::Afficher()
             m_distortion_screen.Display();
 
             EffectDistortion.SetCurrentTexture("framebuffer");
-            EffectDistortion.SetTexture("distortion_map", m_distortion_screen.GetImage());
+            EffectDistortion.SetTexture("distortion_map", m_distortion_screen.GetTexture());
 
             bufferImage.Display();
 
-            bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectDistortion);
+            bufferImage.Draw(sf::Sprite(bufferImage.GetTexture()), EffectDistortion);
         }
 
         if (k!=9)
@@ -513,7 +516,7 @@ void MoteurGraphique::Afficher()
             m_water_screen.Display();
             EffectWater.SetParameter("translation", m_transWater.x, m_transWater.y);
             EffectWater.SetParameter("offset", 1/configuration->zoom , 1/configuration->zoom );
-            bufferImage.Draw(sf::Sprite (m_water_screen.GetImage()), EffectWater);
+            bufferImage.Draw(sf::Sprite (m_water_screen.GetTexture()), EffectWater);
         }
 
         for (IterTextes=m_textes[k].begin();IterTextes!=m_textes[k].end();++IterTextes)
@@ -529,7 +532,7 @@ void MoteurGraphique::Afficher()
             {
                 bufferImage.SetView(bufferImage.GetDefaultView());
                 bufferImage.Display();
-                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectMort);
+                bufferImage.Draw(sf::Sprite(bufferImage.GetTexture()), EffectMort);
             }
         }
 
@@ -541,14 +544,14 @@ void MoteurGraphique::Afficher()
                 bufferImage.SetView(bufferImage.GetDefaultView());
                 EffectBlurScreen.SetParameter("offset",(float)m_blur);
                 bufferImage.Display();
-                bufferImage.Draw(sf::Sprite(bufferImage.GetImage()), EffectBlurScreen);
+                bufferImage.Draw(sf::Sprite(bufferImage.GetTexture()), EffectBlurScreen);
             }
         }
 
         if (configuration->effetNoir>0 && k == 18)
         {
             sf::Sprite sprite2;
-            sprite2.SetImage(*getImage(0));
+            sprite2.SetTexture(*getImage(0));
             sprite2.Resize(configuration->Resolution.x,configuration->Resolution.y);
             sprite2.SetColor(sf::Color((int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),255));
             sprite2.SetBlendMode(sf::Blend::Multiply);
@@ -560,7 +563,7 @@ void MoteurGraphique::Afficher()
     }
 
     bufferImage.Display();
-    m_ecran.Draw(sf::Sprite(bufferImage.GetImage()));
+    m_ecran.Draw(sf::Sprite(bufferImage.GetTexture()));
     m_ecran.Display();
 }
 
@@ -582,7 +585,7 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
             {
                 m_images[i].nom=nom;
 
-                m_images[i].img = new sf::Image();
+                m_images[i].img = new sf::Texture();
                 m_images[i].img->SetSmooth(true);
 
                 if (!configuration->lissage)
@@ -607,7 +610,7 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
     m_images.push_back(Image_moteur ());
     m_images.back().nom=nom;
 
-    m_images.back().img = new sf::Image();
+    m_images.back().img = new sf::Texture();
     m_images.back().img->SetSmooth(true);
 
     if (!configuration->lissage)
@@ -644,7 +647,7 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance,bool newimag
             {
                 m_images[i].nom=chemin;
 
-                m_images[i].img = new sf::Image();
+                m_images[i].img = new sf::Texture();
                 m_images[i].img->SetSmooth(true);
 
                 if (!configuration->lissage)
@@ -669,7 +672,7 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance,bool newimag
     m_images.push_back(Image_moteur ());
     m_images.back().nom=chemin;
 
-    m_images.back().img = new sf::Image();
+    m_images.back().img = new sf::Texture();
     m_images.back().img->SetSmooth(true);
 
     if (!configuration->lissage)
@@ -689,12 +692,12 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance,bool newimag
 }
 
 
-int MoteurGraphique::AjouterImage(const sf::Image &img,int importance)
+int MoteurGraphique::AjouterImage(const sf::Texture &img,int importance)
 {
     m_images.push_back(Image_moteur ());
     m_images.back().nom="";
 
-    m_images.back().img = new sf::Image();
+    m_images.back().img = new sf::Texture();
     (*m_images.back().img) = img;
     m_images.back().img->SetSmooth(true);
 
@@ -788,7 +791,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             sf::Sprite sprite2;
             coordonnee positionPartieDecor = m_ambientShadowTileset.getPositionDuTile(entite->m_ambientShadow);
 
-            sprite2.SetImage(*moteurGraphique->getImage(m_ambientShadowTileset.getImage(entite->m_ambientShadow)));
+            sprite2.SetTexture(*moteurGraphique->getImage(m_ambientShadowTileset.getImage(entite->m_ambientShadow)));
             sprite2.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
                                           positionPartieDecor.w, positionPartieDecor.h - 1));
 
@@ -999,7 +1002,7 @@ Entite_graphique MoteurGraphique::getEntiteGraphique(int noTileset, int noTile, 
     return entite;
 }
 
-sf::Image* MoteurGraphique::getImage(int IDimage)
+sf::Texture* MoteurGraphique::getImage(int IDimage)
 {
     if (IDimage>=0&&IDimage<(int)m_images.size())
         return m_images[(unsigned)IDimage].img;
@@ -1047,9 +1050,7 @@ void MoteurGraphique::Printscreen()
 {
     std::ostringstream buf;
     buf<<"screenshot"<<configuration->numero_screen<<".png";
-    sf::Image Screen;
-    Screen.CopyScreen(m_ecran);
-    Screen.SaveToFile(buf.str());
+    m_ecran.Capture().SaveToFile(buf.str());
     configuration->numero_screen++;
 }
 
