@@ -26,17 +26,12 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define _CONTEXTEH
 
 class Jeu;
-class c_Jeu;
+//class c_Jeu;
 
 class Contexte
 {
 public:
-    //~Contexte();
-
     virtual void Utiliser(Jeu *jeu) = 0;
-
-
-    //Contexte operator=(const c_Jeu &c_jeu);
 
 };
 

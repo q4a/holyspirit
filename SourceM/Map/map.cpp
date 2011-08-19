@@ -1237,6 +1237,7 @@ bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, i
 
 void Map::KillMonstre(Personnage *monstre, int angle, float degats, Jeu *jeu)
 {
+    if(monstre)
     if(degats != 0)
     {
         float force=((degats*3)/monstre->getCaracteristique().maxVie)*10;
