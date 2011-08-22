@@ -4,6 +4,7 @@
 *Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_ground3.png
 *Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_decals.png
 *Data/Graphics/Landscapes/AgrarianLands/Fields.png
+*Data/Graphics/Landscapes/AgrarianLands/Flagstones_decals.png
 $
 $
 *x0 y0 w160 h96 i0 ey48 vHerbe1 z0 $
@@ -36,5 +37,16 @@ $
 *x0 y0 w512 h256 i5 vChamps z0 $
 
 *x0 y400 w180 h96 i0 ey48 vTerreBerge z0 $
+
+*x0 y0 w352 h128 i6 vDecalDallage1 z0 $
+*x0 y128 w352 h160 i6 vDecalDallage2 z0 $
+*x0 y288 w256 h192 i6 vDecalDallage3 z0 $
+*x0 y480 w256 h256 i6 vDecalDallage4 z0 $
+
+*x352 y0 w160 h128 i6 vDecalDallage5 z0 $
+*x352 y128 w160 h160 i6 vDecalDallage6 z0 $
+*x256 y288 w256 h192 i6 vDecalDallage7 z0 $
+*x256 y480 w256 h128 i6 vDecalDallage8 z0 $
+*x256 y608 w256 h128 i6 vDecalDallage9 z0 $
 
 $
