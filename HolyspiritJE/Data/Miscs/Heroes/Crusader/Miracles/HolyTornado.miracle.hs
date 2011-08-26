@@ -59,10 +59,9 @@ $
 	*
 			*Data/Graphics/Miracles/Tornado.png
 		$
-			* mData/Sounds/Miracles/Tornado.wav  $
 		$
 		* x0 y0 w256 h256 ey160 i0 a1 s0 n0.04 p0 $
-		* x256 y0 w256 h256 ey160 i0 a2 n0.04 p32 $
+		* x256 y0 w256 h256 ey160 i0 a2 n0.04 p32  $
 		* x512 y0 w256 h256 ey160 i0 a3 n0.04 p64 $
 		* x768 y0 w256 h256 ey160 i0 a4 n0.04 p96 $
 		* x0 y0 w256 h256 ey160 i0 a5 n0.04 p128 $
