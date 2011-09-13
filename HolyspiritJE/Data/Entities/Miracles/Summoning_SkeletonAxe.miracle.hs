@@ -3,9 +3,10 @@ $
 $
 $
 $
-	* t-1 l1 $ 
+	* t-1 l1 l2 $ 
 	
-	* t3 s0 l2 ia32 $
+	* t3 s0 l3 ia32 $
+	* t3 s1 ia32 $
 	
 	* t4 ia1 mData/Entities/Resources/Monsters/Skeletons/Axe.char.hs $
 $
@@ -47,5 +48,42 @@ $
 		* x469 y209 w30 h108 i0 ex22 ey78 n0.06 a30  q0 $
 		* x499 y209 w30 h108 i0 ex22 ey78 n0.06 a31  q0 $
 		* x529 y209 w30 h109 i0 ex22 ey79 n0.06 a31  q0 $
+	$
+	*
+			*Data/Graphics/Miracles/TornadoDust.png
+		$
+		$
+		* x0 y0 w256 h256 ey160 i0 a1 s0 n0.4 p0 $
+		* x256 y0 w256 h256 ey160 i0 a2 n0.06 p32  $
+		* x512 y0 w256 h256 ey160 i0 a3 n0.06 p64 $
+		* x768 y0 w256 h256 ey160 i0 a4 n0.06 p96 $
+		* x0 y0 w256 h256 ey160 i0 a5 n0.06 p128 $
+		* x256 y0 w256 h256 ey160 i0 a6 n0.06 p160 $
+		* x512 y0 w256 h256 ey160 i0 a7 n0.06 p192 $
+		* x768 y0 w256 h256 ey160 i0 a8 n0.06 p224 $
+		* x0 y0 w256 h256 ey160 i0 a9 n0.06 $
+		* x256 y0 w256 h256 ey160 i0 a10 n0.06 $
+		* x512 y0 w256 h256 ey160 i0 a11 n0.06 $
+		* x768 y0 w256 h256 ey160 i0 a12 n0.06 $
+		* x0 y0 w256 h256 ey160 i0 a13 n0.06 $
+		* x256 y0 w256 h256 ey160 i0 a14 n0.06 $
+		* x512 y0 w256 h256 ey160 i0 a15 n0.06 $
+		* x768 y0 w256 h256 ey160 i0 a16 n0.06 $
+		* x0 y0 w256 h256 ey160 i0 a17 n0.06 $
+		* x256 y0 w256 h256 ey160 i0 a18 n0.06 $
+		* x512 y0 w256 h256 ey160 i0 a19 n0.06 $
+		* x768 y0 w256 h256 ey160 i0 a20 n0.06 $
+		* x0 y0 w256 h256 ey160 i0 a21 n0.06 $
+		* x256 y0 w256 h256 ey160 i0 a22 n0.06 $
+		* x512 y0 w256 h256 ey160 i0 a23 n0.06 $
+		* x768 y0 w256 h256 ey160 i0 a24 n0.06 $
+		* x0 y0 w256 h256 ey160 i0 a25 n0.06 p224 $
+		* x256 y0 w256 h256 ey160 i0 a26 n0.06 p192 $
+		* x512 y0 w256 h256 ey160 i0 a27 n0.06 p160 $
+		* x768 y0 w256 h256 ey160 i0 a28 n0.06 p128 $
+		* x0 y0 w256 h256 ey160 i0 a29 n0.06 p96 $
+		* x256 y0 w256 h256 ey160 i0 a30 n0.06 p64 $
+		* x512 y0 w256 h256 ey160 i0 a31 n0.06 p32 $
+		* x768 y0 w256 h256 ey160 i0 a31 n0.06 p0 $
 	$
 $
