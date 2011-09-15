@@ -718,6 +718,12 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         eventManager->StopEvenement(Mouse::Left,EventClic);
         jeu->map->m_defilerObjets=0;
 
+        if((choix == B_INVENTAIRE && jeu->m_contexte == jeu->m_inventaire)
+        || (choix == B_QUETES && jeu->m_contexte == jeu->m_quetes)
+        || (choix == B_DOCS && jeu->m_contexte == jeu->m_docs)
+        || (choix == B_MIRACLES && jeu->m_contexte == jeu->m_miracles))
+        moteurSons->JouerSon(configuration->sound_menu_close,coordonnee (0,0),0);
+
         if(choix == B_INVENTAIRE)
             return 2;
         if(choix == B_QUETES)

@@ -3554,7 +3554,6 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
             {
                     if((m_cas == m_classe.miracles[miracle].m_cas1 || m_cas == m_classe.miracles[miracle].m_cas2)
                      || m_classe.miracles[miracle].m_cas1 == -1)
-
                     {
                         if ((cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS)
                          || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS
@@ -3616,6 +3615,8 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                         m_personnage.m_speak_time = 2000;
                     }
                 }
+                else
+                    moteurSons->JouerSon(configuration->sound_nofaith,coordonnee (0,0),0);
         }
     return 0;
 }

@@ -97,7 +97,8 @@ class Configuration : public CSingleton<Configuration>
     std::string music_menu;
     std::string mainscreen_menu;
     int sound_menu,sound_dialog,sound_create_item,sound_bless_item, sound_select_miracle,sound_book,
-        sound_quest_start, sound_quest_step, sound_quest_end, sound_trade, sound_trade_i;
+        sound_quest_start, sound_quest_step, sound_quest_end, sound_trade, sound_trade_i,
+        sound_menu_open, sound_menu_close, sound_nofaith;
     std::string ambientShadow_tileset;
 
     std::string miracle_item_physic,miracle_item_fire, miracle_item_holy, miracle_item_poison,

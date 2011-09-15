@@ -31,8 +31,6 @@ MoteurGraphique *moteurGraphique;
 MoteurSons *moteurSons;
 EventManager *eventManager;
 
-
-
 int main (  )
 {
     srand(time(NULL));

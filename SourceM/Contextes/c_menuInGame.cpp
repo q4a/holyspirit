@@ -50,15 +50,14 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     configuration->effetNoir = 1 - m_alpha/255*0.75;
 
     jeu->m_display=true;
+    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
+    jeu->Clock.Reset();
 
     if (configuration->Lumiere)
         jeu->map->CalculerOmbresEtLumieres();
 
-    jeu->map->GererAmbiance(temps_ecoule);
 
-    temps_ecoule=0;
-    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
-    jeu->Clock.Reset();
+    jeu->map->GererAmbiance(temps_ecoule);
 
     if (retour)
     {

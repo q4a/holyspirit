@@ -150,20 +150,20 @@ void Jeu::Demarrer()
 void Jeu::Next()
 {
     if(next_screen == 2)
-        m_contexte = m_inventaire;
+        m_contexte = m_inventaire, moteurSons->JouerSon(configuration->sound_menu_open,coordonnee (0,0),0);
     else if(next_screen == 3)
         m_contexte = m_jeu;
     else if(next_screen == 4)
         m_contexte = m_menuInGame, m_menuInGame->options = false;
     else if(next_screen == 5)
-        m_contexte = m_miracles;
+        m_contexte = m_miracles, moteurSons->JouerSon(configuration->sound_menu_open,coordonnee (0,0),0);
     else if(next_screen == 6)
-        m_contexte = m_quetes;
+        m_contexte = m_quetes, moteurSons->JouerSon(configuration->sound_menu_open,coordonnee (0,0),0);
     else if(next_screen == 7)
-        m_contexte = m_potales;
+        m_contexte = m_potales, moteurSons->JouerSon(configuration->sound_menu_open,coordonnee (0,0),0);
     else if(next_screen == 8)
         m_contexte = m_chargement;
     else if(next_screen == 9)
-        m_contexte = m_docs;
+        m_contexte = m_docs, moteurSons->JouerSon(configuration->sound_menu_open,coordonnee (0,0),0);
 }
 

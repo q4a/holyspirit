@@ -699,11 +699,14 @@ void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)
 
     moteurGraphique->AjouterCommande(&sprite,15,0);
 
+    sprite.SetTexture(*moteurGraphique->getImage(0));
     sprite.SetColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
     sprite.SetX(0);
     sprite.SetY(0);
-    sprite.Resize(configuration->Resolution.w, configuration->Resolution.h);
+    sprite.Resize(configuration->Resolution.x, configuration->Resolution.y);
     moteurGraphique->AjouterCommande(&sprite,14,0);
+
+    //configuration->effetNoir = decalage/600;
 
     if (!noTrader)
     {

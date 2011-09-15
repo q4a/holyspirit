@@ -193,6 +193,10 @@ bool MoteurSons::IsPlayingSound(int ID)
 
 bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,int volume)
 {
+    coordonnee positionHero;
+    positionHero.x = (int)(sf::Listener::GetPosition().x);
+    positionHero.y = (int)(sf::Listener::GetPosition().y);
+
     if (volume>100)
         volume=100;
     if (volume<0)
@@ -205,23 +209,32 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,in
             for (int i=0;i<NOMBRE_SONS && creerNouveauSon;i++)
                 if (m_IDSons[i]==ID && m_sons[i].GetStatus() != 0)
                 {
-                    coordonnee positionHero;
-                    positionHero.x = (int)(sf::Listener::GetPosition().x);
-                    positionHero.y = (int)(sf::Listener::GetPosition().y);
 
                     //m_sons[i].SetVolume(volume);
                     float x,y,z;
                     x=m_sons[i].GetPosition().x;
                     y=m_sons[i].GetPosition().y;
                     z=m_sons[i].GetPosition().z;
+
+                 /*   m_sons[i].SetVolume(volume * m_buffers[ID]->volume / 100);*/
+
                     // Je test voir si le nouveau son du même type est plus près du perso que l'ancien, si oui, je mets la position du nouveau à la place de l'ancien
-                    if ((double)(((positionHero.x+x)*(positionHero.x+x)+(positionHero.y-y)*(positionHero.y-y)))>
+                    if ((double)(((positionHero.x-x)*(positionHero.x-x)+(positionHero.y-y)*(positionHero.y-y)))>
                         (double)(((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))))
-                        m_sons[i].SetPosition(position.x,0,position.y);
+                            m_sons[i].SetPosition(position.x,0,position.y);
+
+
+
+                   /* float attenuation = 100 - ((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y))/50;
+                    if(attenuation < 0)
+                        attenuation = 0;
+
+                    if(m_buffers[ID]->buffer.GetChannelsCount() == 2)
+                        m_sons[i].SetVolume(volume * m_buffers[ID]->volume / 100 * attenuation / 100);*/
                         //m_sons[i].SetPosition(sf::Listener::GetPosition());
 
                    // if(volume > m_sons[i].GetVolume())
-                        m_sons[i].SetVolume(volume * m_buffers[ID]->volume / 100);
+
 
                     if((position.x==-1&&position.y==-1)
                     || (position.x==0&&position.y==0))
@@ -254,6 +267,14 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,in
                 m_sons[sonEnCours].Play();
 
             m_sons[sonEnCours].SetPosition(position.x,0,position.y);
+
+
+            /*float attenuation = 100 - ((positionHero.x-position.x)*(positionHero.x-position.x)+(positionHero.y-position.y)*(positionHero.y-position.y));
+            if(attenuation < 0)
+                attenuation = 0;
+
+            if(m_buffers[ID]->buffer.GetChannelsCount() == 2)
+                m_sons[sonEnCours].SetVolume(volume * m_buffers[ID]->volume / 100 * attenuation / 100);*/
 
             if((position.x==-1&&position.y==-1)
             || (position.x==0&&position.y==0))

@@ -166,6 +166,8 @@ void Configuration::ChargerKeyMapping()
                 std::string buf; fichier>>buf; m_key_actions[K_SHORTCUT_2] = convert_string_to_key(buf); }
             if (chaine== "K_SHORTCUT_3:") {
                 std::string buf; fichier>>buf; m_key_actions[K_SHORTCUT_3] = convert_string_to_key(buf); }
+            if (chaine== "K_SHORTCUT_4:") {
+                std::string buf; fichier>>buf; m_key_actions[K_SHORTCUT_4] = convert_string_to_key(buf); }
             if (chaine== "K_SHORTCUT_5:") {
                 std::string buf; fichier>>buf; m_key_actions[K_SHORTCUT_5] = convert_string_to_key(buf); }
             if (chaine== "K_SHORTCUT_6:") {
@@ -299,6 +301,24 @@ void Configuration::ChargerInit()
                 std::string temp;
                 fichier>>temp;
                 sound_quest_end = moteurSons->AjouterBuffer(temp);
+            }
+            if (chaine== "sound_menu_open:")
+            {
+                std::string temp;
+                fichier>>temp;
+                sound_menu_open = moteurSons->AjouterBuffer(temp);
+            }
+            if (chaine== "sound_menu_close:")
+            {
+                std::string temp;
+                fichier>>temp;
+                sound_menu_close = moteurSons->AjouterBuffer(temp);
+            }
+            if (chaine== "sound_nofaith:")
+            {
+                std::string temp;
+                fichier>>temp;
+                sound_nofaith = moteurSons->AjouterBuffer(temp);
             }
 
 
@@ -1052,7 +1072,7 @@ bool Configuration::Options()
                     if(volume > 100)
                         volume = 100;
 
-                    sf::Sleep(0.1);
+                    sf::Sleep(100);
                 }
                 if(eventManager->getEvenement(sf::Mouse::Right,EventClic)
                 || eventManager->getEvenement(sf::Keyboard::Subtract,EventKey))
@@ -1062,7 +1082,7 @@ bool Configuration::Options()
                     if(volume < 0)
                         volume = 0;
 
-                    sf::Sleep(0.1);
+                    sf::Sleep(100);
                 }
 
                 sf::Listener::SetGlobalVolume(volume);
@@ -1087,7 +1107,7 @@ bool Configuration::Options()
                     if(music_volume > 100)
                         music_volume = 100;
 
-                    sf::Sleep(0.1);
+                    sf::Sleep(100);
                 }
                 if(eventManager->getEvenement(sf::Mouse::Right,EventClic)
                 || eventManager->getEvenement(sf::Keyboard::Subtract,EventKey))
@@ -1096,7 +1116,7 @@ bool Configuration::Options()
                     if(music_volume < 0)
                         music_volume = 0;
 
-                    sf::Sleep(0.1);
+                    sf::Sleep(100);
                 }
 
                 moteurSons->setVolumeMusique((int)music_volume);
