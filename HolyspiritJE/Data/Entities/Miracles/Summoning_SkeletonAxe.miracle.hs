@@ -15,9 +15,14 @@ $
 	*
 		*Data/Graphics/Miracles/Skeleton_summoning.png
 		$
+			* mData/Sounds/Entities/Skeletons/Skeleton_rise0.wav u1 $
+			* mData/Sounds/Entities/Skeletons/Skeleton_rise1.wav u1 $
+			* mData/Sounds/Entities/Skeletons/Skeleton_rise2.wav u1 $
+			* mData/Sounds/Entities/Skeletons/Skeleton_rise3.wav u1 $
+			* mData/Sounds/Entities/Skeletons/Skeleton_rise4.wav u1 $
 		$
 		* x0 y0 w83 h70 i0 ex41 ey-4 n0.06 a1  q0 $
-		* x83 y0 w84 h56 i0 ex41 ey-4 n0.06 a2  q0 $
+		* x83 y0 w84 h56 i0 ex41 ey-4 n0.06 a2  q0 s0 s1 s2 s3 s4 $
 		* x167 y0 w84 h47 i0 ex42 ey-4 n0.06 a3  q0 $
 		* x251 y0 w86 h92 i0 ex43 ey-4 n0.06 a4  q0 $
 		* x337 y0 w86 h69 i0 ex43 ey-3 n0.06 a5  q0 $
