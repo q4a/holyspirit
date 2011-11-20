@@ -37,7 +37,6 @@ main
 				end
 			else
 				followHero
-				teleport
 			end
 		end
 		
