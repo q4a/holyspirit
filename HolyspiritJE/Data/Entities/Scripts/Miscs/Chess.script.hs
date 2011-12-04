@@ -4,7 +4,7 @@ main
 	then
 		if alive
 		then
-			if talk
+			if interact
 			variable * 0 * 0
 			then
 				gift_all_items
@@ -25,10 +25,10 @@ main
 			setState * 0 * 0
 		end
 	else
-		if talk
+		if interact
 		then
 			tell * 175 * 5000
-			stop_talk
+			stop_interact
 		end
 	end
 end 

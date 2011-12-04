@@ -5,7 +5,7 @@ main
 		setActif * 1
 
 		variable * 0 * 0
-		if talk 
+		if interact
 		then
 			if variable * 0 * 0
 			then

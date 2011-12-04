@@ -9,7 +9,7 @@ main
 		if distance * 1
 		then else
 
-			if talk
+			if interact
 			then
 				if variable * 0 * 1
 				then
@@ -22,7 +22,7 @@ main
 					variable * 4 * 0
 				end
 			
-				stop_talk
+				stop_interact
 			end
 		end
 	else 
@@ -38,12 +38,12 @@ main
 				setActif * 0
 			end
 
-			if talk
+			if interact
 				variable * 1 * 2
 			then
 				tell * 174 * 5000
 
-				stop_talk
+				stop_interact
 			end
 		end
 	end

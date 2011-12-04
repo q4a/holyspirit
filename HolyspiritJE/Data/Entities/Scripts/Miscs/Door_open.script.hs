@@ -6,9 +6,9 @@ main
 		setCollision * 0
 	end
 
-	if talk
+	if interact
 	then
-		stop_talk
+		stop_interact
 		setActif * 0
 		setState * 1 * 0
 		setCollision * 0

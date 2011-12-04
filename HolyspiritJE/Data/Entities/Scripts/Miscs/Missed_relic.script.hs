@@ -1,6 +1,6 @@
 
 main 
-	if talk
+	if interact
 	then
 		tell * 178 * 5000
 		setState * 3

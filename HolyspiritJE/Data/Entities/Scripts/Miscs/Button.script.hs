@@ -1,15 +1,15 @@
 main 
 	if variable * 1 * 0
 	then
-		if talk
+		if interact
 		then
 			if variable * 0 * 1
 			then	
 				variable * 0 * 0
-				stop_talk
+				stop_interact
 			else
 				variable * 0 * 1
-				stop_talk
+				stop_interact
 			end
 		end
 	end
