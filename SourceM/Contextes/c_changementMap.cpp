@@ -476,7 +476,18 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
     if(jeu->map)
         if(m_chargement && jeu->map->m_loaded)
-            PostLoad(jeu);
+        {
+            if(!jeu->hero.m_ready)
+                jeu->SendReady();
+
+            bool ready = true;
+            for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+                if(!p->m_ready)
+                    ready = false;
+
+            if(ready)
+                PostLoad(jeu);
+        }
 
     if (!m_chargement&&
         ((allerVersImageChargement&&z<49&&augmenterNoir)||(!allerVersImageChargement&&z>0&&!augmenterNoir)))

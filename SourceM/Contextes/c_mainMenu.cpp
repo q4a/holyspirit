@@ -1171,12 +1171,6 @@ void  c_MainMenu::E_Multi(Jeu *jeu)
         configuration->multi = true;
         configuration->hote = false;
 
-        //if(jeu->Connect("192.168.1.5"))
-       // if(jeu->Connect("84.103.40.122"))
-       // if(jeu->Connect("82.232.147.48"))
-        //if(jeu->Connect("84.103.40.234"))
-        //if(jeu->Connect("5.115.202.109"))
-       // if(jeu->Connect("5.195.6.227"))
         if(jeu->Connect(entered_ip))
         {
             no_ecran = E_CONTINUER;

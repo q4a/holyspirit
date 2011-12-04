@@ -72,7 +72,10 @@ class Jeu
     void SendDegats(Hero *hero, float degats, int type, float temps = 0);
     void SendDegats(int no, float degats, int type, float temps = 0);
     void SendKillMonstre(int no, int angle, float degats);
+    void SendInteract();
+    void SendQuest(int id, int type, int info1 = -1, int info2 = -1);
     void SendMessage(std::string msg);
+    void SendReady();
 
     Menu menu;
     Map *map;

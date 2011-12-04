@@ -412,7 +412,11 @@ void Jeu::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSoc
                     }
 
                 sf::Packet packet3;
-                packet3<<(sf::Int8)P_CHANGEMAP<<map->getNom()<<hero.m_personnage.getCoordonnee();
+                packet3<<(sf::Int8)P_CHANGEMAP<<map->getNom()<<hero.m_personnage.getCoordonnee()<<(sf::Int8)configuration->heure<<(sf::Int8)configuration->minute;
+                tcp->Send(packet3);
+
+                packet3.Clear();
+                packet3<<(sf::Int8)P_READY<<(sf::Int8)0;
                 tcp->Send(packet3);
             }
         }
@@ -435,15 +439,21 @@ void Jeu::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSoc
         }
         else if(type == P_CHANGEMAP)
         {
+            sf::Int8 h, m;
             std::string prochaineMap;
             coordonnee coordonneePerso;
-            if((packet>>prochaineMap>>coordonneePerso))
+            if((packet>>prochaineMap>>coordonneePerso>>h>>m))
             {
                 SendChangeMap(prochaineMap, coordonneePerso);
 
                 GlobalMutex.Lock();
                 m_chargement->setC_Chargement(prochaineMap,coordonneePerso);
                 m_contexte = m_chargement;
+                for (std::list<Hero>::iterator p = m_personnageClients.begin(); p != m_personnageClients.end(); ++p)
+                    p->m_ready = false;
+
+                configuration->heure = h;
+                configuration->minute = m;
                 GlobalMutex.Unlock();
             }
         }
@@ -465,6 +475,7 @@ void Jeu::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSoc
         else if(type == P_PLAYERCARACT)
         {
             Personnage *perso = NULL;
+
             int i = 0;
             for (std::list<Hero>::iterator p = m_personnageClients.begin();
                     p != m_personnageClients.end() && i <= no; ++p, ++i)
@@ -484,11 +495,61 @@ void Jeu::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSoc
                     {
                         sf::TcpSocket& client2 = **it2;
                         sf::Packet packet2;
-                        packet2<<(sf::Int8)P_PLAYERCARACT<<(sf::Int8)(no+(no<no2))<<*perso;
+                        packet2<<(sf::Int8)P_PLAYERCARACT<<(sf::Int8)(no+(no<no2))<<*perso;//<<n;
 
                         sf::IpAddress ip2 = client2.GetRemoteAddress();
                         m_udp.Send(packet, ip2, NET_PORT);
                     }
+        }
+        else if(type == P_INTERACT)
+        {
+            sf::Int16 n;
+
+            GlobalMutex.Lock();
+
+            int i = 0;
+            for (std::list<Hero>::iterator p = m_personnageClients.begin();
+                    p != m_personnageClients.end() && i <= no; ++p, ++i)
+                if(i == no)
+                {
+                    packet>>n;
+                    p->m_cibleInt =  n;
+                }
+
+            int no2 = 0;
+
+            for (std::list<sf::TcpSocket*>::iterator it2 = m_clientsTCP.begin(); it2 != m_clientsTCP.end(); ++it2,++no2)
+                if(*it2 != it)
+                {
+                    sf::TcpSocket& client2 = **it2;
+                    sf::Packet packet2;
+                    packet2<<(sf::Int8)P_INTERACT<<(sf::Int8)(no+(no<no2))<<n;
+
+                    client2.Send(packet);
+                }
+
+            GlobalMutex.Unlock();
+        }
+        else if(type == P_QUEST)
+        {
+            GlobalMutex.Lock();
+
+            sf::Int16 id, i1, i2;
+            sf::Int8  t;
+            if(packet>>id>>t>>i1>>i2)
+            {
+                if(t == 0)
+                    hero.NewQuest(id);
+                if(t == 1)
+                    hero.SetQuestName(id, i1);
+                if(t == 2)
+                    hero.SetQuestState(id, i1, i2);
+                if(t == 3)
+                    hero.SetQuestActif(id, i1);
+                SendQuest(id,t,i1,i2);
+            }
+
+            GlobalMutex.Unlock();
         }
         else if(type == P_MSGCHAT)
         {
@@ -516,6 +577,30 @@ void Jeu::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSoc
                     sf::TcpSocket& client2 = **it2;
                     sf::Packet packet2;
                     packet2<<(sf::Int8)P_MSGCHAT<<(sf::Int8)(no+(no<no2))<<msg;
+
+                    client2.Send(packet);
+                }
+
+            GlobalMutex.Unlock();
+        }
+        else if(type == P_READY)
+        {
+            GlobalMutex.Lock();
+
+            int i = 0;
+            for (std::list<Hero>::iterator p = m_personnageClients.begin();
+                    p != m_personnageClients.end() && i <= no; ++p, ++i)
+                if(i == no)
+                    p->m_ready = true;
+
+            int no2 = 0;
+
+            for (std::list<sf::TcpSocket*>::iterator it2 = m_clientsTCP.begin(); it2 != m_clientsTCP.end(); ++it2,++no2)
+                if(*it2 != it)
+                {
+                    sf::TcpSocket& client2 = **it2;
+                    sf::Packet packet2;
+                    packet2<<(sf::Int8)P_READY<<(sf::Int8)(no+(no<no2));
 
                     client2.Send(packet);
                 }
@@ -629,13 +714,18 @@ void Jeu::CheckPacketClient(sf::Packet &packet)
         }
         else if(type == P_CHANGEMAP)
         {
+            sf::Int8 h,m;
             std::string prochaineMap;
             coordonnee coordonneePerso;
-            if((packet>>prochaineMap>>coordonneePerso))
+            if((packet>>prochaineMap>>coordonneePerso>>h>>m))
             {
-               GlobalMutex.Lock();
+                GlobalMutex.Lock();
                 m_chargement->setC_Chargement(prochaineMap,coordonneePerso);
                 m_contexte = m_chargement;
+                for (std::list<Hero>::iterator p = m_personnageClients.begin(); p != m_personnageClients.end(); ++p)
+                    p->m_ready = false;
+                configuration->heure = h;
+                configuration->minute = m;
                 GlobalMutex.Unlock();
             }
         }
@@ -672,6 +762,60 @@ void Jeu::CheckPacketClient(sf::Packet &packet)
                     p->m_personnage.m_speak_time = 5000;
                     console->Ajouter(p->m_caracteristiques.nom + " : "+p->m_personnage.m_speak);
                 }
+
+            GlobalMutex.Unlock();
+        }
+        else if(type == P_INTERACT)
+        {
+            int i = 0;
+            sf::Int8 no;
+
+            GlobalMutex.Lock();
+
+            if((packet>>no))
+            for (std::list<Hero>::iterator p = m_personnageClients.begin();
+                    p != m_personnageClients.end() && i <= no; ++p, ++i)
+                if(i == no)
+                {
+                    sf::Int16 n;
+                    packet>>n;
+                    p->m_cibleInt = n;
+                }
+
+            GlobalMutex.Unlock();
+        }
+        else if(type == P_QUEST)
+        {
+            GlobalMutex.Lock();
+
+            sf::Int16 id, i1, i2;
+            sf::Int8  t;
+            if(packet>>id>>t>>i1>>i2)
+            {
+                if(t == 0)
+                    hero.NewQuest(id);
+                if(t == 1)
+                    hero.SetQuestName(id, i1);
+                if(t == 2)
+                    hero.SetQuestState(id, i1, i2);
+                if(t == 3)
+                    hero.SetQuestActif(id, i1);
+            }
+
+            GlobalMutex.Unlock();
+        }
+        else if(type == P_READY)
+        {
+            int i = 0;
+            sf::Int8 no;
+
+            GlobalMutex.Lock();
+
+            if((packet>>no))
+            for (std::list<Hero>::iterator p = m_personnageClients.begin();
+                    p != m_personnageClients.end() && i <= no; ++p, ++i)
+                if(i == no)
+                    p->m_ready = true;
 
             GlobalMutex.Unlock();
         }
@@ -733,7 +877,7 @@ void Jeu::SendChangeMap(const std::string &prochaineMap,const coordonnee &coordo
     if(configuration->multi)
     {
         sf::Packet packet;
-        packet<<(sf::Int8)P_CHANGEMAP<<prochaineMap<<coordonneePerso;
+        packet<<(sf::Int8)P_CHANGEMAP<<prochaineMap<<coordonneePerso<<(sf::Int8)configuration->heure<<(sf::Int8)configuration->minute;
 
         if(configuration->hote)
         {
@@ -813,6 +957,53 @@ void Jeu::SendKillMonstre(int no, int angle, float degats)
     }
 }
 
+void Jeu::SendInteract()
+{
+    if(configuration->multi)
+    {
+        sf::Packet packet;
+        packet<<(sf::Int8)P_INTERACT;
+
+        if(configuration->hote)
+            packet<<(sf::Int8)0;
+
+        packet<<(sf::Int16)hero.m_cibleInt;
+
+        if(configuration->hote)
+        {
+            for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
+            {
+                sf::TcpSocket& client = **it;
+                client.Send(packet);
+            }
+        }
+        else
+            m_host->Send(packet);
+    }
+}
+
+void Jeu::SendQuest(int id, int type, int info1, int info2)
+{
+    if(configuration->multi)
+    {
+        sf::Packet packet;
+        packet<<(sf::Int8)P_QUEST;
+
+        packet<<(sf::Int16)id<<(sf::Int8)type<<(sf::Int16)info1<<(sf::Int16)info2;
+
+        if(configuration->hote)
+        {
+            for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
+            {
+                sf::TcpSocket& client = **it;
+                client.Send(packet);
+            }
+        }
+        else
+            m_host->Send(packet);
+    }
+}
+
 void Jeu::SendMessage(std::string msg)
 {
     if(!msg.empty())
@@ -825,6 +1016,30 @@ void Jeu::SendMessage(std::string msg)
             packet<<(sf::Int8)0;
 
         packet<<msg;
+
+        if(configuration->hote)
+        {
+            for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
+            {
+                sf::TcpSocket& client = **it;
+                client.Send(packet);
+            }
+        }
+        else
+            m_host->Send(packet);
+    }
+}
+
+
+void Jeu::SendReady()
+{
+    if(configuration->multi)
+    {
+        sf::Packet packet;
+        packet<<(sf::Int8)P_READY;
+
+        if(configuration->hote)
+            packet<<(sf::Int8)0;
 
         if(configuration->hote)
         {

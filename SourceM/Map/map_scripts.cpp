@@ -475,45 +475,32 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="newQuest")
         {
-            bool ok = true;
-            for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
-                if (hero->m_quetes[i].m_id == script->getValeur(noInstruction, 0))
-                    ok = false;
-            if (ok)
-            {
-                hero->m_quetes.push_back(Quete ((int)script->getValeur(noInstruction, 0)));
-                hero->m_queteSelectionnee = hero->m_quetes.size() - 1;
-                hero->newQuest = true;
-
-                moteurSons->JouerSon(configuration->sound_quest_start,coordonnee (0,0),0);
-            }
+            hero->NewQuest((int)script->getValeur(noInstruction, 0));
+            jeu->SendQuest((int)script->getValeur(noInstruction, 0), 0);
         }
         else if (script->m_instructions[noInstruction].nom=="setQuestName")
         {
-            for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
-                if (hero->m_quetes[i].m_id == (int)script->getValeur(noInstruction, 0))
-                    hero->m_quetes[i].m_nom = DecouperTexte(configuration->getText(8, (int)script->getValeur(noInstruction, 1)),
-                                                                                   hero->m_classe.position_contenu_quetes.w, 16);
+            hero->SetQuestName((int)script->getValeur(noInstruction, 0),
+                           (int)script->getValeur(noInstruction, 1));
+            jeu->SendQuest((int)script->getValeur(noInstruction, 0), 1,
+                           (int)script->getValeur(noInstruction, 1));
         }
         else if (script->m_instructions[noInstruction].nom=="setQuestState")
         {
-            for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
-                if (hero->m_quetes[i].m_id == (int)script->getValeur(noInstruction, 0))
-                {
-                    hero->m_quetes[i].m_description = DecouperTexte(configuration->getText(8, (int)script->getValeur(noInstruction, 2)),
-                                                                                            hero->m_classe.position_contenu_description_quete.w, 14);
-                    hero->m_quetes[i].m_statut = (int)script->getValeur(noInstruction, 1);
-                }
+            hero->SetQuestState((int)script->getValeur(noInstruction, 0),
+                           (int)script->getValeur(noInstruction, 1),
+                           (int)script->getValeur(noInstruction, 2));
+
+            jeu->SendQuest((int)script->getValeur(noInstruction, 0), 2,
+                           (int)script->getValeur(noInstruction, 1),
+                           (int)script->getValeur(noInstruction, 2));
         }
         else if (script->m_instructions[noInstruction].nom=="setQuestActif")
         {
-            for (int i = 0;i < (int)hero->m_quetes.size(); ++i)
-                if (hero->m_quetes[i].m_id == (int)script->getValeur(noInstruction, 0))
-                {
-                    hero->m_quetes[i].m_actif = (int)script->getValeur(noInstruction, 1);
-                    if(!hero->m_quetes[i].m_actif)
-                        moteurSons->JouerSon(configuration->sound_quest_end,coordonnee (0,0),0);
-                }
+            hero->SetQuestActif((int)script->getValeur(noInstruction, 0),
+                           (int)script->getValeur(noInstruction, 1));
+            jeu->SendQuest((int)script->getValeur(noInstruction, 0), 3,
+                           (int)script->getValeur(noInstruction, 1));
         }
         else if (script->m_instructions[noInstruction].nom=="giftItem" && monstre != -1)
         {
@@ -526,6 +513,20 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             jeu->hero.m_personnage.m_cible = NULL;
             eventManager->StopEvenement(Mouse::Left,EventClic);
             eventManager->StopEvenement(Mouse::Left,EventClicA);
+        }
+        else if (script->m_instructions[noInstruction].nom=="stop_interact")
+        {
+            if(hero->m_cibleInt == monstre)
+            {
+                jeu->hero.m_personnage.m_cible = NULL;
+                eventManager->StopEvenement(Mouse::Left,EventClic);
+                eventManager->StopEvenement(Mouse::Left,EventClicA);
+                hero->m_cibleInt = -1;
+            }
+
+            for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+                if (p->m_cibleInt == monstre)
+                        p->m_cibleInt = -1;
         }
         else if (script->m_instructions[noInstruction].nom=="addCash")
         {
@@ -836,6 +837,24 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                     if (!(hero->m_personnage.m_cible == &m_monstre[monstre]
                     &&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1
                     &&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1))
+                        ok=false;
+                }
+                else if (script->m_instructions[no].nom=="interact" && monstre != -1)
+                {
+                    bool b = false;
+
+                    if (hero->m_personnage.m_cible == &m_monstre[monstre]
+                    &&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1
+                    &&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1)
+                        b = true, hero->m_cibleInt = monstre, jeu->SendInteract();
+
+                    for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+                        if (p->m_cibleInt == monstre
+                        &&fabs(m_monstre[monstre].getCoordonnee().x-p->m_personnage.getCoordonnee().x)<=1
+                        &&fabs(m_monstre[monstre].getCoordonnee().y-p->m_personnage.getCoordonnee().y)<=1)
+                            b = true;
+
+                    if(!b)
                         ok=false;
                 }
                 else if (script->m_instructions[no].nom=="clicOver" && monstre != -1)

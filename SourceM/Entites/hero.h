@@ -140,6 +140,11 @@ public:
     void StopMiraclesFrappe();
     void StopMiraclesCharme();
 
+    void NewQuest(int id);
+    void SetQuestName(int id, int n);
+    void SetQuestState(int id, int s, int d);
+    void SetQuestActif(int id, int a);
+
     void setChercherSac(coordonnee);
     void setSacVise(coordonnee);
 
@@ -217,6 +222,9 @@ public:
     int m_weaponsSet;
 
     int m_weaponModel;
+
+    bool m_ready;
+    int  m_cibleInt;
 
 private:
     coordonnee m_chercherSac,m_sacVise;

@@ -846,6 +846,8 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
     sf::Packet packet;
     int nbr = 0;
 
+    //hero->m_cibleInt = -1;
+
     for(std::vector<Monstre>::iterator Iter_monstre = m_monstre.begin();Iter_monstre!=m_monstre.end();++Iter_monstre) {
     /*if((fabs(hero->m_personnage.getCoordonnee().x - Iter_monstre->getCoordonnee().x) < 20
      && fabs(hero->m_personnage.getCoordonnee().y - Iter_monstre->getCoordonnee().y) < 20)*/
@@ -862,6 +864,9 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
             for (unsigned o = 0 ; o < m_decor[1][y][x].getMonstre().size() ; o++)
                 if(&m_monstre[m_decor[1][y][x].getMonstre()[o]] == &*Iter_monstre)
                     monstre = m_decor[1][y][x].getMonstre()[o];
+
+        //if(hero->m_personnage.m_cible == &*Iter_monstre)
+          //  hero->m_cibleInt = monstre;
 
         if(!configuration->hote)
             Iter_monstre->EmulerDeplacement(temps);

@@ -218,15 +218,9 @@ void Hero::Reset()
     newDoc = false;
 
     m_lastRaccourcis = -1;
-}
 
-void Hero::ResetQuests()
-{
-    m_quetes.clear();
-
-    for(unsigned i = 0 ; i < m_inventaire.size(); ++i)
-        if(m_inventaire[i].m_type == AUCUN && m_inventaire[i].getRarete() == QUETE)
-           m_inventaire.erase(m_inventaire.begin() + i--);
+    m_ready = false;
+    m_cibleInt = -1;
 }
 
 void Hero::Sauvegarder()
@@ -4926,6 +4920,63 @@ void Hero::RegenererMiracles(float time)
             m_items_cooldown.erase(m_items_cooldown.begin() + i--);
     }
 }
+
+
+
+void Hero::ResetQuests()
+{
+    m_quetes.clear();
+
+    for(unsigned i = 0 ; i < m_inventaire.size(); ++i)
+        if(m_inventaire[i].m_type == AUCUN && m_inventaire[i].getRarete() == QUETE)
+           m_inventaire.erase(m_inventaire.begin() + i--);
+}
+
+void Hero::NewQuest(int id)
+{
+    bool ok = true;
+    for (int i = 0;i < (int)m_quetes.size(); ++i)
+        if (m_quetes[i].m_id == id)
+            ok = false;
+    if (ok)
+    {
+        m_quetes.push_back(Quete (id));
+        m_queteSelectionnee = m_quetes.size() - 1;
+        newQuest = true;
+
+        moteurSons->JouerSon(configuration->sound_quest_start,coordonnee (0,0),0);
+    }
+}
+
+void Hero::SetQuestName(int id, int n)
+{
+    for (int i = 0;i < (int)m_quetes.size(); ++i)
+        if (m_quetes[i].m_id == id)
+            m_quetes[i].m_nom = DecouperTexte(configuration->getText(8, n), m_classe.position_contenu_quetes.w, 16);
+}
+
+void Hero::SetQuestState(int id, int s, int d)
+{
+    for (int i = 0;i < (int)m_quetes.size(); ++i)
+        if (m_quetes[i].m_id == id)
+        {
+            m_quetes[i].m_description = DecouperTexte(configuration->getText(8, d),
+                                                                                    m_classe.position_contenu_description_quete.w, 14);
+            m_quetes[i].m_statut = s;
+        }
+}
+
+void Hero::SetQuestActif(int id, int a)
+{
+    for (int i = 0;i < (int)m_quetes.size(); ++i)
+        if (m_quetes[i].m_id == id)
+        {
+            m_quetes[i].m_actif = a;
+            if(!m_quetes[i].m_actif)
+                moteurSons->JouerSon(configuration->sound_quest_end,coordonnee (0,0),0);
+        }
+}
+
 
 void Hero::setChercherSac(coordonnee a)
 {
