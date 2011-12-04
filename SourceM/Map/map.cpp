@@ -616,9 +616,7 @@ void Map::MusiquePlay()
 {
     if (m_musiqueEnCours>=0 && m_musiqueEnCours<(int)m_musiques.size())
     {
-        Sound::Status Status = moteurSons->GetMusicStatus();
-
-        if (Status==0)
+        if (moteurSons->GetMusicStatus()==0)
         {
             m_musiqueEnCours++;
             if (m_musiqueEnCours >= (int)m_musiques.size())
@@ -852,9 +850,6 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
     /*if((fabs(hero->m_personnage.getCoordonnee().x - Iter_monstre->getCoordonnee().x) < 20
      && fabs(hero->m_personnage.getCoordonnee().y - Iter_monstre->getCoordonnee().y) < 20)*/
 
-    if(!configuration->hote)
-        Iter_monstre->EmulerDeplacement(temps);
-
     if(DistanceWithHeros(jeu,Iter_monstre->getCoordonnee(),20)
     || Iter_monstre->m_noDistanceRestriction)
     {
@@ -868,13 +863,16 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 if(&m_monstre[m_decor[1][y][x].getMonstre()[o]] == &*Iter_monstre)
                     monstre = m_decor[1][y][x].getMonstre()[o];
 
+        if(!configuration->hote)
+            Iter_monstre->EmulerDeplacement(temps);
+
         if (monstre>=0&&monstre<(int)m_monstre.size())
         {
             m_monstre[monstre].m_vientDeFrapper = NULL;
             m_monstre[monstre].m_vientDAttaquer.x = -1;
             m_monstre[monstre].m_degatsInflige  = 0;
 
-            int degats = m_monstre[monstre].Gerer(&m_ModeleMonstre[m_monstre[monstre].getModele()],temps);
+            int degats = m_monstre[monstre].Gerer(&m_ModeleMonstre[m_monstre[monstre].getModele()],temps,true);
             if (degats>0)
             {
                 if (m_monstre[monstre].m_miracleALancer == -1)

@@ -313,7 +313,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
     {
         if (script->m_instructions[noInstruction].nom=="fight" && monstre != -1 && configuration->hote)
             Script_Fight(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
-        else if (script->m_instructions[noInstruction].nom=="evasion" && monstre != -1 && !configuration->hote)
+        else if (script->m_instructions[noInstruction].nom=="evasion" && monstre != -1 && configuration->hote)
             Script_Evasion(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="followHero" && monstre != -1 && configuration->hote)
             Script_Follow(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
@@ -577,7 +577,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                         coordonnee((int)script->getValeur(noInstruction, 1), (int)script->getValeur(noInstruction, 2)));
                 }
         }
-        else if (script->m_instructions[noInstruction].nom=="entity_setState" && monstre == -1 && (configuration->hote || !configuration->hote))
+        else if (script->m_instructions[noInstruction].nom=="entity_setState" && monstre == -1 && (configuration->hote /*|| !configuration->hote*/))
         {
             if(script->getValeur(noInstruction, 0) < m_listID.size())
                 for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)

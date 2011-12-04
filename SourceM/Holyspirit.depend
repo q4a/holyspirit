@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
-1295531562 source:c:\c++\holyspirit\sourcem\ressource.rc
+1295527962 source:c:\c++\holyspirit\sourcem\ressource.rc
 
-1312109639 source:c:\c++\holyspirit\sourcem\contextes\c_bless.cpp
+1312106039 source:c:\c++\holyspirit\sourcem\contextes\c_bless.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -11,7 +11,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1309163071 c:\c++\holyspirit\sourcem\contextes\c_jeu.h
+1309159471 c:\c++\holyspirit\sourcem\contextes\c_jeu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
@@ -279,7 +279,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<string>
 
-1313592917 c:\c++\holyspirit\sourcem\contextes\contexte.h
+1313589317 c:\c++\holyspirit\sourcem\contextes\contexte.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -334,13 +334,13 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1295531562 c:\c++\holyspirit\sourcem\globale.h
+1295527962 c:\c++\holyspirit\sourcem\globale.h
 	"Moteurs/moteurGraphique.h"
 	"Moteurs/moteurSons.h"
 	"Moteurs/eventManager.h"
 	"configuration.h"
 
-1312710843 c:\c++\holyspirit\sourcem\moteurs\moteurgraphique.h
+1312707243 c:\c++\holyspirit\sourcem\moteurs\moteurgraphique.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -352,13 +352,13 @@
 	"Entite_graphique.h"
 	"../Map/tileset.h"
 
-1295531558 c:\c++\holyspirit\sourcem\moteurs\commande.h
+1295527958 c:\c++\holyspirit\sourcem\moteurs\commande.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"../constantes.h"
 
-1312194067 c:\c++\holyspirit\sourcem\constantes.h
+1312190467 c:\c++\holyspirit\sourcem\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -368,56 +368,56 @@
 	"datFile.h"
 	"Moteurs/console.h"
 
-1295531562 c:\c++\holyspirit\sourcem\datfile.h
+1295527962 c:\c++\holyspirit\sourcem\datfile.h
 	<iostream>
 	<fstream>
 	<vector>
 	<SFML/System.hpp>
 
-1295531558 c:\c++\holyspirit\sourcem\moteurs\console.h
+1295527958 c:\c++\holyspirit\sourcem\moteurs\console.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"../singleton.h"
 	<fstream>
 
-1304350350 c:\c++\holyspirit\sourcem\singleton.h
+1304346750 c:\c++\holyspirit\sourcem\singleton.h
 	<iostream>
 
-1297014718 c:\c++\holyspirit\sourcem\moteurs\typo.h
+1297011118 c:\c++\holyspirit\sourcem\moteurs\typo.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1299426502 c:\c++\holyspirit\sourcem\moteurs\moteurparticule.h
+1299422902 c:\c++\holyspirit\sourcem\moteurs\moteurparticule.h
 	"../constantes.h"
 	"modeleMoteurParticule.h"
 
-1299426052 c:\c++\holyspirit\sourcem\moteurs\modelemoteurparticule.h
+1299422452 c:\c++\holyspirit\sourcem\moteurs\modelemoteurparticule.h
 	"../constantes.h"
 	"moteurSons.h"
 
-1307634002 c:\c++\holyspirit\sourcem\moteurs\moteursons.h
+1321797298 c:\c++\holyspirit\sourcem\moteurs\moteursons.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"../constantes.h"
 
-1305290718 c:\c++\holyspirit\sourcem\moteurs\lightmanager.h
+1305287118 c:\c++\holyspirit\sourcem\moteurs\lightmanager.h
 	"light.h"
 	"../singleton.h"
 
-1305294603 c:\c++\holyspirit\sourcem\moteurs\light.h
+1305291003 c:\c++\holyspirit\sourcem\moteurs\light.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Window.hpp>
 	"../constantes.h"
 	<list>
 
-1306858083 c:\c++\holyspirit\sourcem\moteurs\entite_graphique.h
+1306854483 c:\c++\holyspirit\sourcem\moteurs\entite_graphique.h
 	"../Map/tileset.h"
 	"light.h"
 
-1307634002 c:\c++\holyspirit\sourcem\map\tileset.h
+1307630402 c:\c++\holyspirit\sourcem\map\tileset.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -426,21 +426,21 @@
 	"tile.h"
 	"../Moteurs/moteurSons.h"
 
-1306858082 c:\c++\holyspirit\sourcem\map\tile.h
+1306854482 c:\c++\holyspirit\sourcem\map\tile.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"../constantes.h"
 
-1310215157 c:\c++\holyspirit\sourcem\moteurs\eventmanager.h
+1310211557 c:\c++\holyspirit\sourcem\moteurs\eventmanager.h
 	<iostream>
 	"../constantes.h"
 
-1314376011 c:\c++\holyspirit\sourcem\configuration.h
+1314372411 c:\c++\holyspirit\sourcem\configuration.h
 	"singleton.h"
 	"constantes.h"
 
-1312194345 c:\c++\holyspirit\sourcem\jeu.h
+1312190745 c:\c++\holyspirit\sourcem\jeu.h
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 	<SFML/Network.hpp>
@@ -461,7 +461,7 @@
 	"Contextes/c_demarrage.h"
 	"Contextes/c_mainMenu.h"
 
-1312710843 c:\c++\holyspirit\sourcem\map\map.h
+1312707243 c:\c++\holyspirit\sourcem\map\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -472,7 +472,7 @@
 	"../Entites/monstre.h"
 	"Climate.h"
 
-1312194066 c:\c++\holyspirit\sourcem\entites\hero.h
+1312190466 c:\c++\holyspirit\sourcem\entites\hero.h
 	<iostream>
 	<string>
 	<list>
@@ -481,16 +481,16 @@
 	"monstre.h"
 	"quete.h"
 
-1307360448 c:\c++\holyspirit\sourcem\entites\classe.h
+1307356848 c:\c++\holyspirit\sourcem\entites\classe.h
 	"miracle.h"
 	"../Moteurs/moteurGraphique.h"
 
-1306491386 c:\c++\holyspirit\sourcem\entites\miracle.h
+1306487786 c:\c++\holyspirit\sourcem\entites\miracle.h
 	"../constantes.h"
 	"../Map/tile.h"
 	"../Moteurs/moteurGraphique.h"
 
-1311604441 c:\c++\holyspirit\sourcem\entites\personnage.h
+1311600841 c:\c++\holyspirit\sourcem\entites\personnage.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -503,32 +503,32 @@
 	"script.h"
 	"../Map/tileset.h"
 
-1307203025 c:\c++\holyspirit\sourcem\entites\objet.h
+1307199425 c:\c++\holyspirit\sourcem\entites\objet.h
 	<iostream>
 	"../constantes.h"
 	<fstream>
 	"miracle.h"
 	"../Moteurs/moteurGraphique.h"
 
-1295531562 c:\c++\holyspirit\sourcem\entites\liste_case.h
+1295527962 c:\c++\holyspirit\sourcem\entites\liste_case.h
 	"../constantes.h"
 	"case.h"
 
-1295531562 c:\c++\holyspirit\sourcem\entites\case.h
+1295527962 c:\c++\holyspirit\sourcem\entites\case.h
 	"../constantes.h"
 
-1306322506 c:\c++\holyspirit\sourcem\entites\script.h
+1306318906 c:\c++\holyspirit\sourcem\entites\script.h
 	<iostream>
 	"../constantes.h"
 
-1295531562 c:\c++\holyspirit\sourcem\entites\monstre.h
+1295527962 c:\c++\holyspirit\sourcem\entites\monstre.h
 	"personnage.h"
 	"../constantes.h"
 
-1299417098 c:\c++\holyspirit\sourcem\entites\quete.h
+1299413498 c:\c++\holyspirit\sourcem\entites\quete.h
 	"../constantes.h"
 
-1306509754 c:\c++\holyspirit\sourcem\map\decor.h
+1306506154 c:\c++\holyspirit\sourcem\map\decor.h
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
@@ -537,76 +537,76 @@
 	"../Entites/objet.h"
 	"../Moteurs/Entite_graphique.h"
 
-1306061440 c:\c++\holyspirit\sourcem\menu.h
+1306057840 c:\c++\holyspirit\sourcem\menu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"constantes.h"
 	"Entites/classe.h"
 
-1306938725 c:\c++\holyspirit\sourcem\map\climate.h
+1306935125 c:\c++\holyspirit\sourcem\map\climate.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"tileset.h"
 	"../globale.h"
 
-1295531562 c:\c++\holyspirit\sourcem\contextes\c_changementmap.h
+1295527962 c:\c++\holyspirit\sourcem\contextes\c_changementmap.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1295531562 c:\c++\holyspirit\sourcem\contextes\c_inventaire.h
+1295527962 c:\c++\holyspirit\sourcem\contextes\c_inventaire.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1295531562 c:\c++\holyspirit\sourcem\contextes\c_quetes.h
+1295527962 c:\c++\holyspirit\sourcem\contextes\c_quetes.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1295531562 c:\c++\holyspirit\sourcem\contextes\c_documents.h
+1295527962 c:\c++\holyspirit\sourcem\contextes\c_documents.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1295531562 c:\c++\holyspirit\sourcem\contextes\c_potales.h
+1295527962 c:\c++\holyspirit\sourcem\contextes\c_potales.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1295531562 c:\c++\holyspirit\sourcem\contextes\c_craft.h
+1295527962 c:\c++\holyspirit\sourcem\contextes\c_craft.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1295531562 c:\c++\holyspirit\sourcem\contextes\c_bless.h
+1295527962 c:\c++\holyspirit\sourcem\contextes\c_bless.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1295531562 c:\c++\holyspirit\sourcem\contextes\c_miracles.h
+1295527962 c:\c++\holyspirit\sourcem\contextes\c_miracles.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1297014520 c:\c++\holyspirit\sourcem\contextes\c_menuingame.h
+1297010920 c:\c++\holyspirit\sourcem\contextes\c_menuingame.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1295531562 c:\c++\holyspirit\sourcem\contextes\c_demarrage.h
+1295527962 c:\c++\holyspirit\sourcem\contextes\c_demarrage.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1310990377 c:\c++\holyspirit\sourcem\contextes\c_mainmenu.h
+1310986777 c:\c++\holyspirit\sourcem\contextes\c_mainmenu.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1312710817 source:c:\c++\holyspirit\sourcem\contextes\c_changementmap.cpp
+1318505005 source:c:\c++\holyspirit\sourcem\contextes\c_changementmap.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -616,7 +616,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1312109652 source:c:\c++\holyspirit\sourcem\contextes\c_craft.cpp
+1312106052 source:c:\c++\holyspirit\sourcem\contextes\c_craft.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -626,7 +626,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1312710817 source:c:\c++\holyspirit\sourcem\contextes\c_demarrage.cpp
+1312707217 source:c:\c++\holyspirit\sourcem\contextes\c_demarrage.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -636,7 +636,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1308840955 source:c:\c++\holyspirit\sourcem\contextes\c_documents.cpp
+1308837355 source:c:\c++\holyspirit\sourcem\contextes\c_documents.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -646,7 +646,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1312710817 source:c:\c++\holyspirit\sourcem\contextes\c_inventaire.cpp
+1312707217 source:c:\c++\holyspirit\sourcem\contextes\c_inventaire.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -656,7 +656,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1314376376 source:c:\c++\holyspirit\sourcem\contextes\c_jeu.cpp
+1314372776 source:c:\c++\holyspirit\sourcem\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -665,7 +665,7 @@
 	<SFML/Audio.hpp>
 	<sstream>
 
-1314970876 source:c:\c++\holyspirit\sourcem\contextes\c_menuingame.cpp
+1314967276 source:c:\c++\holyspirit\sourcem\contextes\c_menuingame.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -675,7 +675,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1308840978 source:c:\c++\holyspirit\sourcem\contextes\c_miracles.cpp
+1308837378 source:c:\c++\holyspirit\sourcem\contextes\c_miracles.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -685,7 +685,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1309162604 source:c:\c++\holyspirit\sourcem\contextes\c_potales.cpp
+1309159004 source:c:\c++\holyspirit\sourcem\contextes\c_potales.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"c_potales.h"
@@ -696,7 +696,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1308840990 source:c:\c++\holyspirit\sourcem\contextes\c_quetes.cpp
+1308837390 source:c:\c++\holyspirit\sourcem\contextes\c_quetes.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -706,19 +706,19 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1313592917 source:c:\c++\holyspirit\sourcem\contextes\contexte.cpp
+1313589317 source:c:\c++\holyspirit\sourcem\contextes\contexte.cpp
 	"c_jeu.h"
 
-1295531562 source:c:\c++\holyspirit\sourcem\entites\case.cpp
+1295527962 source:c:\c++\holyspirit\sourcem\entites\case.cpp
 	"case.h"
 	<iostream>
 
-1312806329 source:c:\c++\holyspirit\sourcem\entites\classe.cpp
+1312802729 source:c:\c++\holyspirit\sourcem\entites\classe.cpp
 	"classe.h"
 	"../globale.h"
 	<sstream>
 
-1314968457 source:c:\c++\holyspirit\sourcem\entites\hero.cpp
+1314964857 source:c:\c++\holyspirit\sourcem\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -731,12 +731,12 @@
 	<dirent.h>
 	<sstream>
 
-1295531562 source:c:\c++\holyspirit\sourcem\entites\liste_case.cpp
+1295527962 source:c:\c++\holyspirit\sourcem\entites\liste_case.cpp
 	"liste_case.h"
 	"../globale.h"
 	<iostream>
 
-1310220423 source:c:\c++\holyspirit\sourcem\entites\miracle.cpp
+1310216823 source:c:\c++\holyspirit\sourcem\entites\miracle.cpp
 	"miracle.h"
 	"../globale.h"
 	"objet.h"
@@ -744,20 +744,20 @@
 	<fstream>
 	<sstream>
 
-1308818196 source:c:\c++\holyspirit\sourcem\entites\monstre.cpp
+1308814596 source:c:\c++\holyspirit\sourcem\entites\monstre.cpp
 	<iostream>
 	<fstream>
 	"monstre.h"
 	"../constantes.h"
 	"../globale.h"
 
-1312710817 source:c:\c++\holyspirit\sourcem\entites\objet.cpp
+1312707217 source:c:\c++\holyspirit\sourcem\entites\objet.cpp
 	"objet.h"
 	"../globale.h"
 	<fstream>
 	<sstream>
 
-1312125792 source:c:\c++\holyspirit\sourcem\entites\personnage.cpp
+1312122192 source:c:\c++\holyspirit\sourcem\entites\personnage.cpp
 	"personnage.h"
 	"../globale.h"
 	<iostream>
@@ -765,29 +765,29 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1299417098 source:c:\c++\holyspirit\sourcem\entites\quete.cpp
+1299413498 source:c:\c++\holyspirit\sourcem\entites\quete.cpp
 	<iostream>
 	<fstream>
 	"quete.h"
 	"../constantes.h"
 	"../globale.h"
 
-1307794528 source:c:\c++\holyspirit\sourcem\entites\script.cpp
+1307790928 source:c:\c++\holyspirit\sourcem\entites\script.cpp
 	<fstream>
 	<sstream>
 	"script.h"
 	"../globale.h"
 
-1306939359 source:c:\c++\holyspirit\sourcem\map\climate.cpp
+1306935759 source:c:\c++\holyspirit\sourcem\map\climate.cpp
 	"Climate.h"
 	<iostream>
 	<fstream>
 
-1312710817 source:c:\c++\holyspirit\sourcem\map\decor.cpp
+1312707217 source:c:\c++\holyspirit\sourcem\map\decor.cpp
 	"decor.h"
 	"../globale.h"
 
-1313572923 source:c:\c++\holyspirit\sourcem\map\map.cpp
+1323007997 source:c:\c++\holyspirit\sourcem\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -795,7 +795,7 @@
 	"../globale.h"
 	"../jeu.h"
 
-1312710817 source:c:\c++\holyspirit\sourcem\map\map_charger.cpp
+1312707217 source:c:\c++\holyspirit\sourcem\map\map_charger.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -803,7 +803,7 @@
 	"../globale.h"
 	"../jeu.h"
 
-1312189238 source:c:\c++\holyspirit\sourcem\map\map_miracles.cpp
+1312185638 source:c:\c++\holyspirit\sourcem\map\map_miracles.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -811,7 +811,7 @@
 	"../globale.h"
 	"../jeu.h"
 
-1310125960 source:c:\c++\holyspirit\sourcem\map\map_scripts.cpp
+1323007200 source:c:\c++\holyspirit\sourcem\map\map_scripts.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -819,14 +819,14 @@
 	"../globale.h"
 	"../jeu.h"
 
-1306858082 source:c:\c++\holyspirit\sourcem\map\tile.cpp
+1306854482 source:c:\c++\holyspirit\sourcem\map\tile.cpp
 	"tile.h"
 	<iostream>
 	<fstream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1308844163 source:c:\c++\holyspirit\sourcem\map\tileset.cpp
+1308840563 source:c:\c++\holyspirit\sourcem\map\tileset.cpp
 	"tileset.h"
 	"../globale.h"
 	<iostream>
@@ -834,18 +834,18 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1312710817 source:c:\c++\holyspirit\sourcem\moteurs\entite_graphique.cpp
+1312707217 source:c:\c++\holyspirit\sourcem\moteurs\entite_graphique.cpp
 	"Entite_graphique.h"
 	"../globale.h"
 
-1295531558 source:c:\c++\holyspirit\sourcem\moteurs\console.cpp
+1295527958 source:c:\c++\holyspirit\sourcem\moteurs\console.cpp
 	"console.h"
 	"../constantes.h"
 	"../globale.h"
 	<iostream>
 	<sstream>
 
-1312710817 source:c:\c++\holyspirit\sourcem\moteurs\eventmanager.cpp
+1312707217 source:c:\c++\holyspirit\sourcem\moteurs\eventmanager.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<math.h>
@@ -853,71 +853,71 @@
 	"../globale.h"
 	<iostream>
 
-1310998447 source:c:\c++\holyspirit\sourcem\moteurs\light.cpp
+1310994847 source:c:\c++\holyspirit\sourcem\moteurs\light.cpp
 	<iostream>
 	<math.h>
 	"light.h"
 	"../globale.h"
 
-1307300795 source:c:\c++\holyspirit\sourcem\moteurs\lightmanager.cpp
+1307297195 source:c:\c++\holyspirit\sourcem\moteurs\lightmanager.cpp
 	"lightManager.h"
 	"../globale.h"
 
-1299426132 source:c:\c++\holyspirit\sourcem\moteurs\modelemoteurparticule.cpp
+1299422532 source:c:\c++\holyspirit\sourcem\moteurs\modelemoteurparticule.cpp
 	"modeleMoteurParticule.h"
 	"../globale.h"
 	<fstream>
 
-1314266405 source:c:\c++\holyspirit\sourcem\moteurs\moteurgraphique.cpp
+1314262805 source:c:\c++\holyspirit\sourcem\moteurs\moteurgraphique.cpp
 	"moteurGraphique.h"
 	"../globale.h"
 	<iostream>
 	<sstream>
 
-1312710817 source:c:\c++\holyspirit\sourcem\moteurs\moteurparticule.cpp
+1314968877 source:c:\c++\holyspirit\sourcem\moteurs\moteurparticule.cpp
 	"moteurParticule.h"
 	"../globale.h"
 	<fstream>
 
-1314968836 source:c:\c++\holyspirit\sourcem\moteurs\moteursons.cpp
+1321797298 source:c:\c++\holyspirit\sourcem\moteurs\moteursons.cpp
 	"moteurSons.h"
 	"../globale.h"
 	<iostream>
 
-1312710817 source:c:\c++\holyspirit\sourcem\moteurs\typo.cpp
+1312707217 source:c:\c++\holyspirit\sourcem\moteurs\typo.cpp
 	"typo.h"
 	"../globale.h"
 	<fstream>
 
-1314969159 source:c:\c++\holyspirit\sourcem\configuration.cpp
+1314965559 source:c:\c++\holyspirit\sourcem\configuration.cpp
 	"configuration.h"
 	"globale.h"
 	<stdio.h>
 	<sstream>
 
-1295531562 source:c:\c++\holyspirit\sourcem\datfile.cpp
+1295527962 source:c:\c++\holyspirit\sourcem\datfile.cpp
 	"globale.h"
 	<stdio.h>
 	<string.h>
 
-1314376011 source:c:\c++\holyspirit\sourcem\jeu.cpp
+1318065329 source:c:\c++\holyspirit\sourcem\jeu.cpp
 	"constantes.h"
 	"globale.h"
 	"jeu.h"
 	"datFile.h"
 	<dirent.h>
 
-1314102808 source:c:\c++\holyspirit\sourcem\main.cpp
+1314099208 source:c:\c++\holyspirit\sourcem\main.cpp
 	<iostream>
 	<sstream>
 	<dirent.h>
 	"main.h"
 
-1295531562 c:\c++\holyspirit\sourcem\main.h
+1295527962 c:\c++\holyspirit\sourcem\main.h
 	"jeu.h"
 	"constantes.h"
 
-1314266400 source:c:\c++\holyspirit\sourcem\menu.cpp
+1314262800 source:c:\c++\holyspirit\sourcem\menu.cpp
 	"menu.h"
 	"globale.h"
 	<iostream>
@@ -926,7 +926,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1312710843 source:c:\c++\holyspirit\sourcem\video.cpp
+1312707243 source:c:\c++\holyspirit\sourcem\video.cpp
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -936,7 +936,7 @@
 	<libavformat/avformat.h>
 	<libavcodec/avcodec.h>
 
-1312710817 source:c:\c++\holyspirit\sourcem\contextes\c_mainmenu.cpp
+1312707217 source:c:\c++\holyspirit\sourcem\contextes\c_mainmenu.cpp
 	"../jeu.h"
 	"../globale.h"
 	<iostream>
@@ -1006,7 +1006,7 @@
 1308764653 source:c:\c++\holyspirit\sourcem\socketoperator.cpp
 	"constantes.h"
 
-1312634814 source:c:\c++\holyspirit\sourcem\jeu_network.cpp
+1323007496 source:c:\c++\holyspirit\sourcem\jeu_network.cpp
 	"constantes.h"
 	"globale.h"
 	"jeu.h"
@@ -1394,7 +1394,7 @@
 	<SFML/Network/Socket.hpp>
 	<vector>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Clock.hpp>
 	<SFML/System/Err.hpp>
@@ -1410,56 +1410,56 @@
 	<SFML/System/Vector2.hpp>
 	<SFML/System/Vector3.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\config.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\config.hpp
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\clock.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\clock.hpp
 	<SFML/Config.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\err.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\err.hpp
 	<SFML/Config.hpp>
 	<ostream>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\inputstream.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\inputstream.hpp
 	<SFML/Config.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\lock.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\lock.hpp
 	<SFML/System/NonCopyable.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\noncopyable.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\noncopyable.hpp
 	<SFML/Config.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\mutex.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\mutex.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\sleep.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\sleep.hpp
 	<SFML/Config.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\string.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\string.hpp
 	<SFML/Config.hpp>
 	<locale>
 	<string>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\thread.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\thread.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 	<SFML/System/Thread.inl>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\thread.inl
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\thread.inl
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\threadlocal.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\threadlocal.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\threadlocalptr.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\threadlocalptr.hpp
 	<SFML/System/ThreadLocal.hpp>
 	<SFML/System/ThreadLocalPtr.inl>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\threadlocalptr.inl
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\threadlocalptr.inl
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\utf.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\utf.hpp
 	<SFML/Config.hpp>
 	<algorithm>
 	<locale>
@@ -1467,19 +1467,19 @@
 	<cstdlib>
 	<SFML/System/Utf.inl>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\utf.inl
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\utf.inl
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\vector2.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\vector2.hpp
 	<SFML/System/Vector2.inl>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\vector2.inl
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\vector2.inl
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\vector3.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\vector3.hpp
 	<SFML/System/Vector3.inl>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\vector3.inl
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\vector3.inl
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Font.hpp>
@@ -1495,7 +1495,7 @@
 	<SFML/Graphics/Texture.hpp>
 	<SFML/Graphics/View.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window.hpp
 	<SFML/System.hpp>
 	<SFML/Window/Context.hpp>
 	<SFML/Window/ContextSettings.hpp>
@@ -1507,38 +1507,38 @@
 	<SFML/Window/Window.hpp>
 	<SFML/Window/WindowStyle.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\context.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\context.hpp
 	<SFML/Config.hpp>
 	<SFML/Window/GlResource.hpp>
 	<SFML/Window/ContextSettings.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\glresource.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\glresource.hpp
 	<SFML/Config.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\contextsettings.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\contextsettings.hpp
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\event.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\event.hpp
 	<SFML/Config.hpp>
 	<SFML/Window/Joystick.hpp>
 	<SFML/Window/Keyboard.hpp>
 	<SFML/Window/Mouse.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\joystick.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\joystick.hpp
 	<SFML/Config.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\keyboard.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\keyboard.hpp
 	<SFML/Config.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\mouse.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\mouse.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Vector2.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\videomode.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\videomode.hpp
 	<SFML/Config.hpp>
 	<vector>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\window.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\window.hpp
 	<SFML/Window/ContextSettings.hpp>
 	<SFML/Window/VideoMode.hpp>
 	<SFML/Window/WindowHandle.hpp>
@@ -1549,15 +1549,15 @@
 	<SFML/System/NonCopyable.hpp>
 	<string>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\windowhandle.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\windowhandle.hpp
 	<SFML/Config.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\windowstyle.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\window\windowstyle.hpp
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\color.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\color.hpp
 	<SFML/Config.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\font.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\font.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/System/Vector2.hpp>
 	<SFML/System/String.hpp>
@@ -1568,7 +1568,7 @@
 	<string>
 	<vector>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\resource.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\resource.hpp
 	<SFML/System/Lock.hpp>
 	<SFML/System/Mutex.hpp>
 	<set>
@@ -1576,34 +1576,34 @@
 	<SFML/System/Resource.inl>
 	<SFML/System/ResourcePtr.inl>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\resource.inl
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\resource.inl
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\resourceptr.inl
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\system\resourceptr.inl
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\glyph.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\glyph.hpp
 	<SFML/Config.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\rect.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\rect.hpp
 	<SFML/System/Vector2.hpp>
 	<algorithm>
 	<SFML/Graphics/Rect.inl>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\rect.inl
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\rect.inl
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\texture.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\texture.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/Window/GlResource.hpp>
 	<SFML/Graphics/Image.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\image.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\image.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<string>
 	<vector>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\renderer.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\renderer.hpp
 	<SFML/Config.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Window/GlResource.hpp>
@@ -1611,44 +1611,44 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Matrix3.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\drawable.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\drawable.hpp
 	<SFML/System/Vector2.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Matrix3.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\matrix3.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\matrix3.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Vector2.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<cmath>
 	<SFML/Graphics/Matrix3.inl>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\matrix3.inl
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\matrix3.inl
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\rendertexture.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\rendertexture.hpp
 	<SFML/Graphics/Texture.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\rendertarget.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\rendertarget.hpp
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Renderer.hpp>
 	<SFML/Graphics/View.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\view.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\view.hpp
 	<SFML/Config.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Matrix3.hpp>
 	<SFML/System/Vector2.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\renderwindow.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\renderwindow.hpp
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Window/Window.hpp>
 	<string>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\shader.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\shader.hpp
 	<SFML/Config.hpp>
 	<SFML/Graphics/Texture.hpp>
 	<SFML/Window/GlResource.hpp>
@@ -1657,17 +1657,17 @@
 	<map>
 	<string>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\shape.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\shape.hpp
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/System/Vector2.hpp>
 	<vector>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\sprite.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\sprite.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\text.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\graphics\text.hpp
 	<SFML/System/Resource.hpp>
 	<SFML/System/String.hpp>
 	<SFML/Graphics/Drawable.hpp>
@@ -1675,7 +1675,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<string>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio.hpp
 	<SFML/System.hpp>
 	<SFML/Audio/Listener.hpp>
 	<SFML/Audio/Music.hpp>
@@ -1685,47 +1685,47 @@
 	<SFML/Audio/SoundRecorder.hpp>
 	<SFML/Audio/SoundStream.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\listener.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\listener.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Vector3.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\music.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\music.hpp
 	<SFML/Audio/SoundStream.hpp>
 	<SFML/System/Mutex.hpp>
 	<string>
 	<vector>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\soundstream.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\soundstream.hpp
 	<SFML/Audio/SoundSource.hpp>
 	<SFML/System/Thread.hpp>
 	<cstdlib>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\soundsource.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\soundsource.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Vector3.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\sound.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\sound.hpp
 	<SFML/Audio/SoundSource.hpp>
 	<SFML/System/Resource.hpp>
 	<cstdlib>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\soundbuffer.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\soundbuffer.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Resource.hpp>
 	<string>
 	<vector>
 	<set>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\soundbufferrecorder.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\soundbufferrecorder.hpp
 	<SFML/Audio/SoundBuffer.hpp>
 	<SFML/Audio/SoundRecorder.hpp>
 	<vector>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\soundrecorder.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\audio\soundrecorder.hpp
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network.hpp
 	<SFML/System.hpp>
 	<SFML/Network/Ftp.hpp>
 	<SFML/Network/Http.hpp>
@@ -1736,49 +1736,63 @@
 	<SFML/Network/TcpSocket.hpp>
 	<SFML/Network/UdpSocket.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\ftp.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\ftp.hpp
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Network/TcpSocket.hpp>
 	<string>
 	<vector>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\tcpsocket.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\tcpsocket.hpp
 	<SFML/Network/Socket.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\socket.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\socket.hpp
 	<SFML/Network/SocketHandle.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<vector>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\sockethandle.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\sockethandle.hpp
 	<SFML/Config.hpp>
 	<basetsd.h>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\http.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\http.hpp
 	<SFML/System/NonCopyable.hpp>
 	<SFML/Network/IpAddress.hpp>
 	<SFML/Network/TcpSocket.hpp>
 	<map>
 	<string>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\ipaddress.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\ipaddress.hpp
 	<SFML/Config.hpp>
 	<istream>
 	<ostream>
 	<string>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\packet.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\packet.hpp
 	<SFML/Config.hpp>
 	<string>
 	<vector>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\socketselector.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\socketselector.hpp
 	<SFML/Config.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\tcplistener.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\tcplistener.hpp
 	<SFML/Network/Socket.hpp>
 
-1312672962 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\udpsocket.hpp
+1312669362 c:\c++\laurentgomila-sfml-550ef63\include\sfml\network\udpsocket.hpp
 	<SFML/Network/Socket.hpp>
 	<vector>
+
+1316046894 c:\program files (x86)\fmod soundsystem\fmod programmers api win32\api\inc\fmod.h
+	"fmod_codec.h"
+	"fmod_dsp.h"
+	"fmod_memoryinfo.h"
+
+1316046894 c:\program files (x86)\fmod soundsystem\fmod programmers api win32\api\inc\fmod_codec.h
+
+1316046894 c:\program files (x86)\fmod soundsystem\fmod programmers api win32\api\inc\fmod_dsp.h
+
+1316046894 c:\program files (x86)\fmod soundsystem\fmod programmers api win32\api\inc\fmod_memoryinfo.h
+
+1316050482 c:\program files (x86)\fmod soundsystem\fmod programmers api win32\api\inc\fmod.hpp
+	"fmod.h"
 

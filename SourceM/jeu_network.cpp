@@ -62,7 +62,7 @@ sf::Packet& operator >>(sf::Packet& Packet, coordonnee& C)
 
 sf::Packet& operator <<(sf::Packet& Packet,  Personnage& C)
 {
-    return Packet << C.getCaracteristique() << C.getCoordonneePixel() << (sf::Int32)C.getTime() << (sf::Int8)C.getEtat()  << (sf::Int16)C.m_entite_graphique.m_noAnimation/* << (sf::Int32)(C.m_entite_graphique.m_animation*1000)*/ << (sf::Int16)C.getAngle();
+    return Packet << C.getCaracteristique() << C.getCoordonneePixel() << (sf::Int32)C.getTime() << (sf::Int8)C.getEtat()  << (sf::Int16)C.m_entite_graphique.m_noAnimation /*<< (sf::Int32)(C.m_entite_graphique.m_animation*1000)*/ << (sf::Int16)C.getAngle();
 }
 sf::Packet& operator >>(sf::Packet& Packet, Personnage& C)
 {
@@ -77,14 +77,15 @@ sf::Packet& operator >>(sf::Packet& Packet, Personnage& C)
     {
         C.setEmulatePos(pos,(float)(time)/1000);
 
-        if(fabs(pose - C.m_entite_graphique.m_noAnimation) <= 1
+        if(fabs(pose - C.m_entite_graphique.m_noAnimation) <= 2
         && etat == C.getEtat())
             pose = C.m_entite_graphique.m_noAnimation;
+       // else
+         //   C.m_entite_graphique.m_animation = (float)anim/1000;
 
         C.setEtat(etat,pose);
         C.setForcedAngle(angle);
         C.setCaracteristique(caract);
-      //  C.m_entite_graphique.m_animation = (float)anim/1000;
     }
 
     return Packet;

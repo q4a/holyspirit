@@ -258,7 +258,7 @@ void c_Chargement::PostLoad(Jeu *jeu)
             }
 
     cout<<"BOUH !"<<endl;
-    /*for(unsigned i = 0 ; i < jeu->hero.m_amis.size() ; ++i)
+    for(unsigned i = 0 ; i < jeu->hero.m_amis.size() ; ++i)
     if(!buffer[i].m_heroic)
     {
         coordonnee temp;
@@ -335,7 +335,7 @@ void c_Chargement::PostLoad(Jeu *jeu)
             }
 
         jeu->hero.m_amis[i] = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
-    }*/
+    }
     cout<<"DIN !"<<endl;
 
     for (unsigned i = 0; i < jeu->hero.m_personnage.m_miracleEnCours.size(); ++i)
