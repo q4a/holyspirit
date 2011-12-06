@@ -111,3 +111,4 @@ Clic droit
 Multijoueur
 Rejoindre partie
 Créer partie
+Nouvelle quête

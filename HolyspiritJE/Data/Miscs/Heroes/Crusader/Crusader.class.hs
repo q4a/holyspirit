@@ -143,8 +143,6 @@ $
 	* e0 x37 y18 w29 h15 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
 	* e1 x66 y18 w29 h15 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $ 
 $
-
-
 	* e0 x179 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
 	* e1 x202 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $  
 	* e0 x575 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
@@ -155,8 +153,6 @@ $
 	* e0 x575 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
 	* e1 x598 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $  
 $
-
-
 	* x56 y88 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_scroll.png $
 $
 	* x258 y45 w96 h160 m Data/Graphics/Menus/UI/Slot3x5.png n Data/Graphics/Menus/UI/Slot_craft.png $
@@ -174,9 +170,7 @@ $
 	
 	* e8 x138 y240 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
 	* e8 x203 y240 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_ring.png $
-	* e9 x243 y76 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_necklage.png $
-	
-	
+	* e9 x243 y76 w32 h32 m Data/Graphics/Menus/UI/Slot1x1.png n Data/Graphics/Menus/UI/Slot_necklage.png $	
 $
 	* x738 y60 w24 h32 $
 $
