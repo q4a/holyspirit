@@ -103,6 +103,8 @@ bool AjouterObjetInventaire(Objet newObj, std::vector<Objet>* inventaire, coordo
 Hero::Hero()
 {
     Reset();
+
+    m_newQuest_label.SetText(configuration->getText(0,113));
 }
 
 Hero::~Hero()
@@ -961,6 +963,8 @@ void Hero::CalculerOrdreAffichage()
 
 void Hero::Afficher()
 {
+    m_newQuest_label.Draw();
+
     if(m_personnage.getEtat() == 3)
         m_personnage.setEtat(0,0);
 
@@ -4943,6 +4947,8 @@ void Hero::NewQuest(int id)
         m_quetes.push_back(Quete (id));
         m_queteSelectionnee = m_quetes.size() - 1;
         newQuest = true;
+
+        m_newQuest_label.Reset();
 
         moteurSons->JouerSon(configuration->sound_quest_start,coordonnee (0,0),0);
     }

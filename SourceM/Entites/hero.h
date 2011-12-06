@@ -31,6 +31,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "personnage.h"
 #include "monstre.h"
 #include "quete.h"
+#include "../Moteurs/label.h"
 
 bool AjouterObjetInventaire(Objet newObj, std::vector<Objet>* inventaire, coordonnee taille, bool infini);
 
@@ -240,6 +241,8 @@ private:
 
 
     bool m_trier_en_hauteur;
+
+    Label m_newQuest_label;
 };
 
 #endif

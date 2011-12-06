@@ -767,11 +767,21 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 }
                 else if (script->m_instructions[no].nom=="distance" && monstre != -1)
                 {
+                    bool oldok = ok;
+
+                    ok = false;
                     if (((m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)
                         *(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)
                     +    (m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)
-                        *(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) >= script->getValeur(no, 0)*script->getValeur(no, 0))
-                        ok=false;
+                        *(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) <= script->getValeur(no, 0)*script->getValeur(no, 0))
+                        ok=oldok;
+
+                    for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+                    if (((m_monstre[monstre].getCoordonnee().x-p->m_personnage.getCoordonnee().x)
+                        *(m_monstre[monstre].getCoordonnee().x-p->m_personnage.getCoordonnee().x)
+                    +    (m_monstre[monstre].getCoordonnee().y-p->m_personnage.getCoordonnee().y)
+                        *(m_monstre[monstre].getCoordonnee().y-p->m_personnage.getCoordonnee().y)) <= script->getValeur(no, 0)*script->getValeur(no, 0))
+                        ok=oldok;
                 }
                 else if (script->m_instructions[no].nom=="exist_item")
                 {

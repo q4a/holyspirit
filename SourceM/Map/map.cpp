@@ -1007,7 +1007,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 packet<<(sf::Int8)P_INFOSMONSTRE<<(sf::Int16)monstre<<*Iter_monstre;
 
                 nbr++;
-                if(nbr >= 50)
+                if(nbr >= 100)
                 {
                     jeu->SendInfosMonstre(packet);
 

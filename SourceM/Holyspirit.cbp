@@ -146,6 +146,8 @@
 		<Unit filename="Moteurs\console.h" />
 		<Unit filename="Moteurs\eventManager.cpp" />
 		<Unit filename="Moteurs\eventManager.h" />
+		<Unit filename="Moteurs\label.cpp" />
+		<Unit filename="Moteurs\label.h" />
 		<Unit filename="Moteurs\light.cpp" />
 		<Unit filename="Moteurs\light.h" />
 		<Unit filename="Moteurs\lightManager.cpp" />

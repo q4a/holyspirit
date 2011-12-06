@@ -472,7 +472,7 @@
 	"../Entites/monstre.h"
 	"Climate.h"
 
-1323016287 c:\c++\holyspirit\sourcem\entites\hero.h
+1323092808 c:\c++\holyspirit\sourcem\entites\hero.h
 	<iostream>
 	<string>
 	<list>
@@ -480,6 +480,7 @@
 	"personnage.h"
 	"monstre.h"
 	"quete.h"
+	"../Moteurs/label.h"
 
 1307356848 c:\c++\holyspirit\sourcem\entites\classe.h
 	"miracle.h"
@@ -718,7 +719,7 @@
 	"../globale.h"
 	<sstream>
 
-1323016472 source:c:\c++\holyspirit\sourcem\entites\hero.cpp
+1323092808 source:c:\c++\holyspirit\sourcem\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -787,7 +788,7 @@
 	"decor.h"
 	"../globale.h"
 
-1323014685 source:c:\c++\holyspirit\sourcem\map\map.cpp
+1323090151 source:c:\c++\holyspirit\sourcem\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -811,7 +812,7 @@
 	"../globale.h"
 	"../jeu.h"
 
-1323016404 source:c:\c++\holyspirit\sourcem\map\map_scripts.cpp
+1323090567 source:c:\c++\holyspirit\sourcem\map\map_scripts.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -1006,7 +1007,7 @@
 1308764653 source:c:\c++\holyspirit\sourcem\socketoperator.cpp
 	"constantes.h"
 
-1323014854 source:c:\c++\holyspirit\sourcem\jeu_network.cpp
+1323016604 source:c:\c++\holyspirit\sourcem\jeu_network.cpp
 	"constantes.h"
 	"globale.h"
 	"jeu.h"
@@ -1795,4 +1796,8 @@
 
 1316050482 c:\program files (x86)\fmod soundsystem\fmod programmers api win32\api\inc\fmod.hpp
 	"fmod.h"
+
+1323092866 c:\c++\holyspirit\sourcem\moteurs\label.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
 
