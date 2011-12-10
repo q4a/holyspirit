@@ -69,7 +69,7 @@ public:
     void GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
     void GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
 
-    void GererProjectilesEtEffets(Hero *hero,float temps);
+    void GererProjectilesEtEffets(Jeu *jeu,Hero *hero,float temps);
     void GererScript(Jeu *jeu,Hero *hero,float temps,Menu *menu);
     void GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu);
 
@@ -154,7 +154,7 @@ public:
     Monstre *getEntiteMonstre (int numeroMonstre);
     Modele_Monstre &getModeleMonstre(int numeroMonstre);
     const coordonnee &getPositionMonstre(int numeroMonstre);
-    casePathfinding ** getAlentourDuPersonnage(coordonnee positionPersonnage); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
+    casePathfinding ** getAlentourDuPersonnage(Jeu *jeu, coordonnee positionPersonnage, bool monstre); // Retourne un tableau de bool contenant toutes les collitions dans les alentour du héro, pour le pathfinding
 
     int m_defilerObjets,m_objetPointe,m_monstreIllumine;
     std::vector<std::string> m_musiques;

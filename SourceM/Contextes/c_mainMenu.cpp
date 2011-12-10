@@ -647,7 +647,12 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
                 sf::Packet packet;
 
                 if(!configuration->hote)
-                    packet << sf::Int8(P_NEWPLAYER) << jeu->hero.m_caracteristiques.nom << jeu->hero.m_caracteristiques << jeu->hero.m_cheminClasse;
+                {
+                    packet << sf::Int8(P_NEWPLAYER) << jeu->hero.m_caracteristiques.nom << jeu->hero.m_caracteristiques << jeu->hero.m_cheminClasse<<(sf::Int8)jeu->hero.m_lvl_miracles.size();
+                    for(int i = 0 ; i < jeu->hero.m_lvl_miracles.size() ; ++i)
+                        packet<<(sf::Int8)jeu->hero.m_lvl_miracles[i];
+                }
+
                 else if(configuration->multi)
                     jeu->LaunchServer();
 

@@ -475,7 +475,7 @@ void Personnage::regenererVie(float vie)
         m_caracteristique.vie=m_caracteristique.maxVie;
 }
 
-int Personnage::Pathfinding(casePathfinding** map, coordonnee exception, bool noDelete)
+int Personnage::Pathfinding(casePathfinding** map, bool noDelete)
 {
     //if(!(m_arrivee.x==m_mauvaiseArrivee.x&&m_arrivee.y==m_mauvaiseArrivee.y))
     if (!(m_arrivee.x==m_positionCase.x&&m_arrivee.y==m_positionCase.y))
@@ -492,11 +492,6 @@ int Personnage::Pathfinding(casePathfinding** map, coordonnee exception, bool no
         depart.y=m_positionCase.y-decalage.y;
         arrivee.x=m_arrivee.x-decalage.x;
         arrivee.y=m_arrivee.y-decalage.y;
-        exception.x=exception.x-decalage.x;
-        exception.y=exception.y-decalage.y;
-
-        if (exception.x>=0&&exception.x<10&&exception.y>=0&&exception.y<10)
-            map[exception.y][exception.x].collision=1;
 
         casesVisitee.setTailleListe(0);
 
@@ -627,7 +622,7 @@ int Personnage::Pathfinding(casePathfinding** map, coordonnee exception, bool no
                 for(int j = 0 ; j < 10 ; ++j)
                     map[i][j].valeur = -1, map[i][j].dist = 3, map[i][j].cases = -1;
 
-                Pathfinding(map, exception, true);
+                Pathfinding(map, true);
             }
             else
             {
@@ -906,6 +901,7 @@ void Personnage::EmulerDeplacement(float time)
     m_positionCase.x = (int)((float)m_positionPixel.x/(float)COTE_TILE + 0.5);
     m_positionCase.y = (int)((float)m_positionPixel.y/(float)COTE_TILE + 0.5);
 
+    m_cheminFinal = m_positionCase;
 
     /*if(m_deplacement_time != 0)
     {

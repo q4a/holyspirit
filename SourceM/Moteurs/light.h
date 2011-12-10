@@ -121,6 +121,7 @@ public :
     Light();
     Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color, bool = false);
     ~Light();
+    void Clear();
 
     // Afficher la lumière
     void Draw(sf::RenderTarget *App);
@@ -168,6 +169,11 @@ private :
     std::vector <sf::Shape> m_shape;
 
     bool m_movinglight;
+
+    void GenerateSinCos();
+
+    float *m_sin_table;
+    float *m_cos_table;
 };
 
 #endif

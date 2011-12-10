@@ -108,6 +108,8 @@ int main (  )
 
     console->Kill();
 
+    cout<<"Console fermée"<<endl;
+
     return EXIT_SUCCESS;
 }
 

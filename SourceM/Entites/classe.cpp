@@ -50,7 +50,8 @@ bool Bouton_pressoire::Survol()
     && eventManager->getPositionSouris().y < position.y + position.h)
         return (true);
 
-    else if(eventManager->getPositionSouris().x > AutoScreenAdjust(position.x,0).x
+    else if(!no_opacity
+    && eventManager->getPositionSouris().x > AutoScreenAdjust(position.x,0).x
     && eventManager->getPositionSouris().x < AutoScreenAdjust(position.x,0).x + position.w
     && eventManager->getPositionSouris().y > AutoScreenAdjust(0,position.y).y
     && eventManager->getPositionSouris().y < AutoScreenAdjust(0,position.y).y + position.h)

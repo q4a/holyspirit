@@ -93,7 +93,7 @@ void Map::Script_Teleport(Jeu *jeu,Script *script,int noInstruction,int monstre,
 
 void Map::Script_UseMiracle(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
-    if (m_monstre[monstre].EnVie())
+    /*if (m_monstre[monstre].EnVie())
     {
         if (seDeplacer)
         {
@@ -109,10 +109,13 @@ void Map::Script_UseMiracle(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else
             m_monstre[monstre].setArrivee(m_monstre[monstre].getProchaineCase());
-    }
+    }*/
 
     if (m_monstre[monstre].m_miracleALancer == -1)
+    {
         m_monstre[monstre].m_miracleALancer = (int)script->getValeur(noInstruction, 0);
+        jeu->SendUseMiracle(monstre,(int)script->getValeur(noInstruction, 0));
+    }
 }
 
 void Map::Script_SetState(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
@@ -319,7 +322,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             Script_Follow(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="teleport" && monstre != -1 && (configuration->hote || !configuration->hote))
             Script_Teleport(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
-        else if (script->m_instructions[noInstruction].nom=="useMiracle" && monstre != -1 && (configuration->hote || !configuration->hote))
+        else if (script->m_instructions[noInstruction].nom=="useMiracle" && monstre != -1 && (configuration->hote /*|| !configuration->hote*/))
             Script_UseMiracle(jeu,script,noInstruction,monstre,hero,temps,menu,seDeplacer);
         else if (script->m_instructions[noInstruction].nom=="stopMiracle" && monstre != -1 && (configuration->hote || !configuration->hote))
         {
@@ -851,20 +854,20 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 }
                 else if (script->m_instructions[no].nom=="interact" && monstre != -1)
                 {
-                    bool b = false;
+                    bool newok = false;
 
                     if (hero->m_personnage.m_cible == &m_monstre[monstre]
                     &&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1
                     &&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1)
-                        b = true, hero->m_cibleInt = monstre, jeu->SendInteract();
+                        newok = true, hero->m_cibleInt = monstre, jeu->SendInteract();
 
                     for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
                         if (p->m_cibleInt == monstre
                         &&fabs(m_monstre[monstre].getCoordonnee().x-p->m_personnage.getCoordonnee().x)<=1
                         &&fabs(m_monstre[monstre].getCoordonnee().y-p->m_personnage.getCoordonnee().y)<=1)
-                            b = true;
+                            newok = true;
 
-                    if(!b)
+                    if(!newok)
                         ok=false;
                 }
                 else if (script->m_instructions[no].nom=="clicOver" && monstre != -1)

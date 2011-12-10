@@ -137,7 +137,7 @@ public:
     void AutoTrierInventaire();
     void AutoTrierCoffre();
 
-    bool UtiliserMiracle(int, Personnage*, coordonnee , Jeu *);
+    bool UtiliserMiracle(int, Personnage*, coordonnee , Jeu *, bool forced = false);
     void StopMiraclesFrappe();
     void StopMiraclesCharme();
 

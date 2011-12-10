@@ -3500,11 +3500,11 @@ void Hero::StopMiraclesCharme()
             }
 }
 
-bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coord, Jeu *jeu)
+bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coord, Jeu *jeu, bool forced)
 {
     if(!m_personnage.m_miracleBloquant)
     if (miracle>=0&&miracle<(int)m_classe.miracles.size())
-        if (m_lvl_miracles[miracle] > 0)
+        if (m_lvl_miracles[miracle] > 0 || forced)
         {
             for (unsigned k = 0 ; k < m_classe.miracles[miracle].m_effets.size() ; ++k)
                 if (m_classe.miracles[miracle].m_effets[k].m_type == AURA)
@@ -3544,18 +3544,18 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                         return 1;
                 }
 
-            if(m_classe.miracles[miracle].m_cur_time == m_classe.miracles[miracle].m_cooldown)
-            if (m_classe.miracles[miracle].m_coutFoi + m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.foi
+            if(m_classe.miracles[miracle].m_cur_time == m_classe.miracles[miracle].m_cooldown || forced)
+            if ((m_classe.miracles[miracle].m_coutFoi + m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.foi
              && m_classe.miracles[miracle].m_reserveFoi <= m_caracteristiques.maxFoi - m_caracteristiques.reserveFoi
             && m_classe.miracles[miracle].m_coutVie + m_classe.miracles[miracle].m_reserveVie
-            <= m_caracteristiques.vie && m_classe.miracles[miracle].m_reserveVie <= m_caracteristiques.maxVie - m_caracteristiques.reserveVie)
+            <= m_caracteristiques.vie && m_classe.miracles[miracle].m_reserveVie <= m_caracteristiques.maxVie - m_caracteristiques.reserveVie) || forced)
             {
                     if((m_cas == m_classe.miracles[miracle].m_cas1 || m_cas == m_classe.miracles[miracle].m_cas2)
-                     || m_classe.miracles[miracle].m_cas1 == -1)
+                     || m_classe.miracles[miracle].m_cas1 == -1 || forced)
                     {
                         if ((cible != NULL && m_classe.miracles[miracle].m_effets[0].m_type == CORPS_A_CORPS)
                          || m_classe.miracles[miracle].m_effets[0].m_type != CORPS_A_CORPS
-                         || eventManager->getEvenement(sf::Keyboard::LShift, EventKey))
+                         || (eventManager->getEvenement(sf::Keyboard::LShift, EventKey)&&!forced))
                         {
 
                             if(m_classe.miracles[miracle].m_unique)

@@ -259,7 +259,7 @@ void c_Jeu::GererTemps(Jeu *jeu)
 void c_Jeu::IA(Jeu *jeu)
 {
     jeu->map->GererMonstres(jeu,&jeu->hero,tempsEcoule,&jeu->menu);
-    jeu->map->GererProjectilesEtEffets(&jeu->hero,tempsEcoule);
+    jeu->map->GererProjectilesEtEffets(jeu,&jeu->hero,tempsEcoule);
     jeu->map->GererScript(jeu,&jeu->hero,tempsEcoule,&jeu->menu);
 }
 void c_Jeu::Deplacements(Jeu *jeu)
@@ -289,7 +289,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
 
         if (ok)
         {
-            jeu->hero.m_personnage.Pathfinding(jeu->map->getAlentourDuPersonnage(jeu->hero.m_personnage.getCoordonnee()),temp);
+            jeu->hero.m_personnage.Pathfinding(jeu->map->getAlentourDuPersonnage(jeu,jeu->hero.m_personnage.getCoordonnee(),false));
             jeu->hero.m_personnage.SeDeplacer(0);
         }
 
@@ -526,10 +526,10 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
                 if (jeu->hero.UtiliserMiracle(newmiracle, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
                 {
                     jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
-
-                    coordonnee positionHero;
+                    jeu->SendUseMiracle(newmiracle,jeu->map->getMonstreIllumine(),cible);
+                    /*coordonnee positionHero;
                     positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
-                    positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
+                    positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;*/
                 }
                 else
                     jeu->hero.m_personnage.setArrivee(eventManager->getCasePointee());
@@ -886,6 +886,8 @@ void c_Jeu::Evenements(Jeu *jeu)
                     if(ok)
                     if (jeu->hero.UtiliserMiracle(jeu->hero.m_miracle_gauche[jeu->hero.m_weaponsSet], jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
                     {
+                        jeu->SendUseMiracle(jeu->hero.m_miracle_gauche[jeu->hero.m_weaponsSet],jeu->map->getMonstreIllumine(),cible);
+
                         attaque_normale_g = false;
                         eventManager->StopEvenement(Mouse::Left,EventClicA);
 
@@ -923,6 +925,8 @@ void c_Jeu::Evenements(Jeu *jeu)
 
                     if (jeu->hero.UtiliserMiracle(jeu->hero.m_miracle_droite[jeu->hero.m_weaponsSet], jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
                     {
+                        jeu->SendUseMiracle(jeu->hero.m_miracle_droite[jeu->hero.m_weaponsSet],jeu->map->getMonstreIllumine(),cible);
+
                         attaque_normale_d = false;
                         eventManager->StopEvenement(Mouse::Right,EventClic);
 

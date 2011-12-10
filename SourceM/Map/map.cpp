@@ -659,7 +659,7 @@ void Map::DelEffet(int no)
         m_effets[no].m_actif = false;
 }
 
-void Map::GererProjectilesEtEffets(Hero *hero,float temps)
+void Map::GererProjectilesEtEffets(Jeu *jeu,Hero *hero,float temps)
 {
     coordonnee vueMin,vueMax;
 
@@ -736,6 +736,16 @@ void Map::GererProjectilesEtEffets(Hero *hero,float temps)
                                 if(rand()%100 > projectile->m_transperce)
                                     projectile->m_actif=false;
                                 projectile->m_entite_cible = &hero->m_personnage;
+                            }
+
+                            for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+                            if (p->m_personnage.getCoordonnee().x==(int)((projectile->m_position.x+32)/COTE_TILE)
+                             && p->m_personnage.getCoordonnee().y==(int)((projectile->m_position.y+32)/COTE_TILE)
+                             && projectile->m_monstre)
+                            {
+                                if(rand()%100 > projectile->m_transperce)
+                                    projectile->m_actif=false;
+                                projectile->m_entite_cible = &p->m_personnage;
                             }
                         }
                         else
@@ -915,7 +925,11 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                     m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_position.x += m_monstre[monstre].m_entite_graphique.m_decalage.y*2 + m_monstre[monstre].m_entite_graphique.m_decalage.x;
                     m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_position.y += m_monstre[monstre].m_entite_graphique.m_decalage.y*2 - m_monstre[monstre].m_entite_graphique.m_decalage.x;
 
-                    m_monstre[monstre].m_miracleEnCours.back().m_coordonneeCible = hero->m_personnage.getProchaineCase();
+                    if (m_monstre[monstre].m_cible != NULL)
+                        m_monstre[monstre].m_miracleEnCours.back().m_coordonneeCible = m_monstre[monstre].m_cible->getProchaineCase();
+                    else
+                        m_monstre[monstre].m_miracleEnCours.back().m_coordonneeCible = m_monstre[monstre].getProchaineCase();
+
                     m_monstre[monstre].m_miracleEnCours.back().m_infos.back()->m_cible = m_monstre[monstre].m_cible;
                 }
 
@@ -968,8 +982,20 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 
                     if(Iter_monstre->m_actif && configuration->hote)
                         seDeplacer = Iter_monstre->SeDeplacer(temps*100);
-                   /* else
-                        Iter_monstre->EmulerDeplacement(temps);*/
+
+                    if(configuration->hote)
+                    if(m_monstre[monstre].m_miracleALancer >= 0)
+                    if (m_monstre[monstre].EnVie())
+                    {
+                        if (seDeplacer)
+                        {
+                            m_monstre[monstre].setArrivee(m_monstre[monstre].getCoordonnee());
+                            if(m_monstre[monstre].m_cible)
+                                m_monstre[monstre].Frappe(m_monstre[monstre].getCoordonneePixel(),m_monstre[monstre].m_cible->getCoordonneePixel());
+                        }
+                        else
+                            m_monstre[monstre].setArrivee(m_monstre[monstre].getProchaineCase());
+                    }
 
                     Script *script=&Iter_monstre->m_scriptAI;
                     if ((int)script->m_instructions.size()>0)
@@ -981,10 +1007,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                         Script_RandomDisplace(jeu,script,0,monstre,hero,temps,menu,seDeplacer);
 
                     if (seDeplacer)
-                    {
-                        coordonnee tempCoord(hero->m_personnage.getProchaineCase().x,hero->m_personnage.getProchaineCase().y,-1,-1);
-                        Iter_monstre->Pathfinding(getAlentourDuPersonnage(Iter_monstre->getCoordonnee()),tempCoord);
-                    }
+                        Iter_monstre->Pathfinding(getAlentourDuPersonnage(jeu,Iter_monstre->getCoordonnee(),true));
 
                     Iter_monstre->m_touche = false;
                 }
@@ -1007,13 +1030,13 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 packet<<(sf::Int8)P_INFOSMONSTRE<<(sf::Int16)monstre<<*Iter_monstre;
 
                 nbr++;
-                if(nbr >= 100)
+               /* if(nbr >= 100)
                 {
                     jeu->SendInfosMonstre(packet);
 
                     nbr = 0;
                     packet.Clear();
-                }
+                }*/
             }
         }
     }
@@ -1395,7 +1418,7 @@ Modele_Monstre &Map::getModeleMonstre(int numeroMonstre)
         return m_ModeleMonstre[0];
 }
 
-casePathfinding** Map::getAlentourDuPersonnage(coordonnee positionPersonnage)
+casePathfinding** Map::getAlentourDuPersonnage(Jeu *jeu, coordonnee positionPersonnage, bool monstre)
 {
     casePathfinding **grille = new casePathfinding* [10];
 
@@ -1412,6 +1435,15 @@ casePathfinding** Map::getAlentourDuPersonnage(coordonnee positionPersonnage)
                 grille[y-positionPersonnage.y+5][x-positionPersonnage.x+5].hauteur=m_decor[0][y][x].getHauteur();
                 // else
                 // grille[y-positionPersonnage.y+10][x-positionPersonnage.x+10].hauteur=m_decor[1][y][x].getHauteur();
+
+                if(monstre)
+                {
+                    if(jeu->hero.m_personnage.getProchaineCase().x == x && jeu->hero.m_personnage.getProchaineCase().y == y)
+                        grille[y-positionPersonnage.y+5][x-positionPersonnage.x+5].collision = true;
+                    for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+                        if(p->m_personnage.getProchaineCase().x == x && p->m_personnage.getProchaineCase().y == y)
+                            grille[y-positionPersonnage.y+5][x-positionPersonnage.x+5].collision = true;
+                }
             }
             else
                 grille[y-positionPersonnage.y+5][x-positionPersonnage.x+5].collision=1;

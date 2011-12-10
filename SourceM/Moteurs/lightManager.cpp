@@ -28,8 +28,15 @@ Light_Manager::Light_Manager()
 Light_Manager::~Light_Manager()
 {
     m_wall.clear();
+
+    for (Iter=m_StaticLight.begin();Iter!=m_StaticLight.end();++Iter)
+        Iter->Clear();
+    for (Iter=m_DynamicLight.begin();Iter!=m_DynamicLight.end();++Iter)
+        Iter->Clear();
+
     m_StaticLight.clear();
     m_DynamicLight.clear();
+
 
 }
 
@@ -256,7 +263,14 @@ void Light_Manager::Delete_All_Wall()
 void Light_Manager::Delete_All_Light(bool justDynamic)
 {
     if (!justDynamic)
+    {
+        for (Iter=m_StaticLight.begin();Iter!=m_StaticLight.end();++Iter)
+            Iter->Clear();
         m_StaticLight.clear();
+    }
+
+    for (Iter=m_DynamicLight.begin();Iter!=m_DynamicLight.end();++Iter)
+        Iter->Clear();
     m_DynamicLight.clear();
 }
 

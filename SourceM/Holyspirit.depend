@@ -358,7 +358,7 @@
 	<SFML/Audio.hpp>
 	"../constantes.h"
 
-1323016404 c:\c++\holyspirit\sourcem\constantes.h
+1323531994 c:\c++\holyspirit\sourcem\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -406,7 +406,7 @@
 	"light.h"
 	"../singleton.h"
 
-1305291003 c:\c++\holyspirit\sourcem\moteurs\light.h
+1323523004 c:\c++\holyspirit\sourcem\moteurs\light.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Window.hpp>
@@ -440,7 +440,7 @@
 	"singleton.h"
 	"constantes.h"
 
-1323015551 c:\c++\holyspirit\sourcem\jeu.h
+1323533578 c:\c++\holyspirit\sourcem\jeu.h
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 	<SFML/Network.hpp>
@@ -461,7 +461,7 @@
 	"Contextes/c_demarrage.h"
 	"Contextes/c_mainMenu.h"
 
-1312707243 c:\c++\holyspirit\sourcem\map\map.h
+1323530920 c:\c++\holyspirit\sourcem\map\map.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -472,7 +472,7 @@
 	"../Entites/monstre.h"
 	"Climate.h"
 
-1323092808 c:\c++\holyspirit\sourcem\entites\hero.h
+1323533578 c:\c++\holyspirit\sourcem\entites\hero.h
 	<iostream>
 	<string>
 	<list>
@@ -491,7 +491,7 @@
 	"../Map/tile.h"
 	"../Moteurs/moteurGraphique.h"
 
-1311600841 c:\c++\holyspirit\sourcem\entites\personnage.h
+1323530920 c:\c++\holyspirit\sourcem\entites\personnage.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -607,7 +607,7 @@
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1323011261 source:c:\c++\holyspirit\sourcem\contextes\c_changementmap.cpp
+1323530307 source:c:\c++\holyspirit\sourcem\contextes\c_changementmap.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -657,7 +657,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1314372776 source:c:\c++\holyspirit\sourcem\contextes\c_jeu.cpp
+1323538123 source:c:\c++\holyspirit\sourcem\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -714,12 +714,12 @@
 	"case.h"
 	<iostream>
 
-1312802729 source:c:\c++\holyspirit\sourcem\entites\classe.cpp
+1323537969 source:c:\c++\holyspirit\sourcem\entites\classe.cpp
 	"classe.h"
 	"../globale.h"
 	<sstream>
 
-1323092808 source:c:\c++\holyspirit\sourcem\entites\hero.cpp
+1323538081 source:c:\c++\holyspirit\sourcem\entites\hero.cpp
 	"../constantes.h"
 	"hero.h"
 	"../globale.h"
@@ -758,7 +758,7 @@
 	<fstream>
 	<sstream>
 
-1312122192 source:c:\c++\holyspirit\sourcem\entites\personnage.cpp
+1323530999 source:c:\c++\holyspirit\sourcem\entites\personnage.cpp
 	"personnage.h"
 	"../globale.h"
 	<iostream>
@@ -788,7 +788,7 @@
 	"decor.h"
 	"../globale.h"
 
-1323090151 source:c:\c++\holyspirit\sourcem\map\map.cpp
+1323534676 source:c:\c++\holyspirit\sourcem\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -812,7 +812,7 @@
 	"../globale.h"
 	"../jeu.h"
 
-1323090567 source:c:\c++\holyspirit\sourcem\map\map_scripts.cpp
+1323534676 source:c:\c++\holyspirit\sourcem\map\map_scripts.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -854,13 +854,13 @@
 	"../globale.h"
 	<iostream>
 
-1310994847 source:c:\c++\holyspirit\sourcem\moteurs\light.cpp
+1323523184 source:c:\c++\holyspirit\sourcem\moteurs\light.cpp
 	<iostream>
 	<math.h>
 	"light.h"
 	"../globale.h"
 
-1307297195 source:c:\c++\holyspirit\sourcem\moteurs\lightmanager.cpp
+1323523004 source:c:\c++\holyspirit\sourcem\moteurs\lightmanager.cpp
 	"lightManager.h"
 	"../globale.h"
 
@@ -869,7 +869,7 @@
 	"../globale.h"
 	<fstream>
 
-1314262805 source:c:\c++\holyspirit\sourcem\moteurs\moteurgraphique.cpp
+1323525330 source:c:\c++\holyspirit\sourcem\moteurs\moteurgraphique.cpp
 	"moteurGraphique.h"
 	"../globale.h"
 	<iostream>
@@ -880,7 +880,7 @@
 	"../globale.h"
 	<fstream>
 
-1321797298 source:c:\c++\holyspirit\sourcem\moteurs\moteursons.cpp
+1323523557 source:c:\c++\holyspirit\sourcem\moteurs\moteursons.cpp
 	"moteurSons.h"
 	"../globale.h"
 	<iostream>
@@ -901,14 +901,14 @@
 	<stdio.h>
 	<string.h>
 
-1318065329 source:c:\c++\holyspirit\sourcem\jeu.cpp
+1323521758 source:c:\c++\holyspirit\sourcem\jeu.cpp
 	"constantes.h"
 	"globale.h"
 	"jeu.h"
 	"datFile.h"
 	<dirent.h>
 
-1314099208 source:c:\c++\holyspirit\sourcem\main.cpp
+1323524574 source:c:\c++\holyspirit\sourcem\main.cpp
 	<iostream>
 	<sstream>
 	<dirent.h>
@@ -918,7 +918,7 @@
 	"jeu.h"
 	"constantes.h"
 
-1314262800 source:c:\c++\holyspirit\sourcem\menu.cpp
+1323521659 source:c:\c++\holyspirit\sourcem\menu.cpp
 	"menu.h"
 	"globale.h"
 	<iostream>
@@ -937,7 +937,7 @@
 	<libavformat/avformat.h>
 	<libavcodec/avcodec.h>
 
-1323010676 source:c:\c++\holyspirit\sourcem\contextes\c_mainmenu.cpp
+1323537969 source:c:\c++\holyspirit\sourcem\contextes\c_mainmenu.cpp
 	"../jeu.h"
 	"../globale.h"
 	<iostream>
@@ -1007,7 +1007,7 @@
 1308764653 source:c:\c++\holyspirit\sourcem\socketoperator.cpp
 	"constantes.h"
 
-1323016604 source:c:\c++\holyspirit\sourcem\jeu_network.cpp
+1323537969 source:c:\c++\holyspirit\sourcem\jeu_network.cpp
 	"constantes.h"
 	"globale.h"
 	"jeu.h"
@@ -1800,4 +1800,9 @@
 1323092866 c:\c++\holyspirit\sourcem\moteurs\label.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
+
+1323093649 source:c:\c++\holyspirit\sourcem\moteurs\label.cpp
+	"label.h"
+	"../globale.h"
+	<fstream>
 

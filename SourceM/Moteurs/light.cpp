@@ -30,6 +30,8 @@ Light::Light()
     m_quality=0;
     m_actif=false;
     m_movinglight = false;
+    m_sin_table = NULL;
+    m_cos_table = NULL;
 }
 
 Light::Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color, bool movinglight)
@@ -49,11 +51,23 @@ Light::Light(sf::Vector2f position, float intensity, float radius, int quality, 
     else
         m_actif=false;
     m_movinglight = movinglight;
+
+    m_sin_table = NULL;
+    m_cos_table = NULL;
+    GenerateSinCos();
 }
 
 Light::~Light()
 {
     m_shape.clear();
+}
+
+void Light::Clear()
+{
+    if(m_sin_table)
+        delete[] m_sin_table;
+    if(m_cos_table)
+        delete[] m_cos_table;
 }
 
 
@@ -333,20 +347,19 @@ void Light::Generate(std::vector<Wall>& m_wall, std::vector <std::vector <std::v
     m_shape.clear();
 
     // buf est l'angle de chaque triangle, c'est donc 2pi divisé par le nombre de triangles
-    float buf=(M_PI*2)/(float)m_quality;
-
-
+    //float buf=(M_PI*2)/(float)m_quality;
 
     // On ajoute tous les triangles qui composent la lumière
     std::list <int> list;
+    if(m_cos_table && m_sin_table)
     for (int i=0;i<m_quality;i++)
     {
         list.clear();
-        AddTriangle(sf::Vector3f((int)((float)m_radius*cos((float)i*buf)),
-                                 (int)((float)m_radius*sin((float)i*buf)),
+        AddTriangle(sf::Vector3f((int)((float)m_radius*m_cos_table[i]/*cos((float)i*buf)*/),
+                                 (int)((float)m_radius*m_sin_table[i]/*sin((float)i*buf)*/),
                                  0) ,
-                    sf::Vector3f((int)((float)m_radius*cos((float)(i+1)*buf)),
-                                 (int)((float)m_radius*sin((float)(i+1)*buf)),
+                    sf::Vector3f((int)((float)m_radius*m_cos_table[i+1]/*cos((float)(i+1)*buf)*/),
+                                 (int)((float)m_radius*m_sin_table[i+1]/*sin((float)(i+1)*buf)*/),
                                  0),list,m_wall, m_sectors, m_origin_sector);
     }
 
@@ -372,6 +385,7 @@ void Light::SetRadius(float radius)
 void Light::SetQuality(int quality)
 {
     m_quality=quality;
+    GenerateSinCos();
 }
 void Light::SetColor(sf::Color color)
 {
@@ -410,7 +424,24 @@ sf::Color Light::GetColor()
 
 
 
+void Light::GenerateSinCos()
+{
+    if(m_sin_table)
+        delete[] m_sin_table;
+    if(m_cos_table)
+        delete[] m_cos_table;
 
+    m_sin_table = new float[m_quality + 1];
+    m_cos_table = new float[m_quality + 1];
+
+    float buf=(M_PI*2)/(float)m_quality;
+
+    for (int i=0;i<=m_quality;i++)
+    {
+        m_sin_table[i] = sin((float)i*buf);
+        m_cos_table[i] = cos((float)i*buf);
+    }
+}
 
 
 

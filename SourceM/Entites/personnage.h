@@ -113,7 +113,7 @@ public:
 
     void Afficher(Modele_Personnage *modele, Border &border,bool surbrillance=false, bool plusHaut=false, bool plusBas=false);
 
-    int Pathfinding(casePathfinding** map,coordonnee exception, bool noDelete = false);
+    int Pathfinding(casePathfinding** map, bool noDelete = false);
 
     void Frappe(const coordonnee &direction,const coordonnee &position);
 

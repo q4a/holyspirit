@@ -72,6 +72,8 @@ class Jeu
     void SendDegats(Hero *hero, float degats, int type, float temps = 0);
     void SendDegats(int no, float degats, int type, float temps = 0);
     void SendKillMonstre(int no, int angle, float degats);
+    void SendUseMiracle(int monstre, int no);
+    void SendUseMiracle(int no, int monstre, coordonnee cible);
     void SendInteract();
     void SendQuest(int id, int type, int info1 = -1, int info2 = -1);
     void SendMessage(std::string msg);

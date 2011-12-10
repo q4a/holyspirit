@@ -62,14 +62,17 @@ MoteurGraphique::~MoteurGraphique()
 {
     LightManager->Kill();
     Vider();
-    for (unsigned i = 0; i < m_images.size(); ++i)
-        if(m_images[i].img != NULL)
-            delete m_images[i].img;
-    m_images.clear();
+    for (unsigned i = 0; i < m_tileset.size(); ++i)
+        if(m_tileset[i].tileset)
+            delete m_tileset[i].tileset;
     m_systemeParticules.clear();
     m_modeleSystemeParticules.clear();
-
     m_ecran.Close();
+
+    for (unsigned i = 0; i < m_images.size(); ++i)
+        if(m_images[i].img)
+            delete m_images[i].img;
+    m_images.clear();
 }
 
 void MoteurGraphique::CreateNewWindow()
@@ -761,6 +764,10 @@ void MoteurGraphique::DecrementerImportance()
             }
         }
 
+
+    for (unsigned i = 0; i < m_tileset.size(); ++i)
+        if(m_tileset[i].tileset)
+            delete m_tileset[i].tileset;
     m_tileset.clear();
 }
 
