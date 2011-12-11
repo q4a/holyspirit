@@ -653,6 +653,25 @@ void Map::GererAmbiance(float temps)
     }
 }
 
+void Map::SetClimate(int no, bool actif)
+{
+    if(no >= 0 && no < m_climates.size())
+    {
+        if(actif)
+        {
+            if(m_climates[no].m_actif)
+            {
+                if(m_climates[no].GetState() == 1.0)
+                    m_climates[no].Continue();
+            }
+            else
+                m_climates[no].m_actif = true;
+        }
+        else
+            m_climates[no].Stop();
+    }
+}
+
 void Map::DelEffet(int no)
 {
     if(no >= 0 && no < (int)m_effets.size())
@@ -888,7 +907,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
             m_monstre[monstre].m_degatsInflige  = 0;
 
             int degats = m_monstre[monstre].Gerer(&m_ModeleMonstre[m_monstre[monstre].getModele()],temps,true);
-            if (degats>0)
+            if (degats>0 || (!configuration->hote && m_monstre[monstre].m_miracleALancer >= 0))
             {
                 if (m_monstre[monstre].m_miracleALancer == -1)
                 {
@@ -912,6 +931,8 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 }
                 else
                 {
+                    jeu->SendUseMiracle(monstre,m_monstre[monstre].m_miracleALancer);
+
                     m_monstre[monstre].m_miracleEnCours.push_back(EntiteMiracle ());
                     m_monstre[monstre].m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
 
@@ -1288,6 +1309,7 @@ void Map::KillMonstre(Personnage *monstre, int angle, float degats, Jeu *jeu)
                                                sin((float)angle*M_PI/180) * force * 0.1f));
     }
 
+    if(monstre)
     if(!monstre->dejaMort)
     {
         monstre->dejaMort = true;

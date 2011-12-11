@@ -787,6 +787,7 @@ bool Map::Miracle_Invocation(Jeu *jeu, Personnage *personnage, Miracle &modele, 
             pos.x=(int)(((m_monstre.back().getCoordonneePixel().x-m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE*64));
             pos.y=(int)(((m_monstre.back().getCoordonneePixel().x+m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
+            m_monstre.back().Animer(&m_ModeleMonstre[numero],0);
             m_monstre.back().m_entite_graphique.Initialiser(pos);
 
            // m_monstre.back().m_friendly = personnage->m_friendly;
@@ -1034,12 +1035,12 @@ bool Map::Miracle_Charge(Jeu *jeu, Personnage *personnage, Miracle &modele, Effe
             miracleEnCours.m_coordonneeCible.y  = personnage->getCoordonnee().y;
         }
 
-        if((((  miracleEnCours.m_coordonneeDepart.x  < miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x>miracleEnCours.m_coordonneeCible.x*COTE_TILE)
-            ||( miracleEnCours.m_coordonneeDepart.x  > miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x<miracleEnCours.m_coordonneeCible.x*COTE_TILE)
+        if((((  miracleEnCours.m_coordonneeDepart.x  < miracleEnCours.m_coordonneeCible.x&&personnage->getCoordonneePixel().x+1>miracleEnCours.m_coordonneeCible.x*COTE_TILE)
+            ||( miracleEnCours.m_coordonneeDepart.x  > miracleEnCours.m_coordonneeCible.x&&(int)personnage->getCoordonneePixel().x<miracleEnCours.m_coordonneeCible.x*COTE_TILE)
             ||  miracleEnCours.m_coordonneeDepart.x  == miracleEnCours.m_coordonneeCible.x)
 
-           &&((  miracleEnCours.m_coordonneeDepart.y   > miracleEnCours.m_coordonneeCible.y&&personnage->getCoordonneePixel().y<miracleEnCours.m_coordonneeCible.y*COTE_TILE)
-           ||(   miracleEnCours.m_coordonneeDepart.y   < miracleEnCours.m_coordonneeCible.y&&personnage->getCoordonneePixel().y>miracleEnCours.m_coordonneeCible.y*COTE_TILE)
+           &&((  miracleEnCours.m_coordonneeDepart.y   > miracleEnCours.m_coordonneeCible.y&&(int)personnage->getCoordonneePixel().y<miracleEnCours.m_coordonneeCible.y*COTE_TILE)
+           ||(   miracleEnCours.m_coordonneeDepart.y   < miracleEnCours.m_coordonneeCible.y&&personnage->getCoordonneePixel().y+1>miracleEnCours.m_coordonneeCible.y*COTE_TILE)
            ||    miracleEnCours.m_coordonneeDepart.y   == miracleEnCours.m_coordonneeCible.y))
 
             ||(personnage->getPousse().x == 0 && personnage->getPousse().y == 0))
@@ -1212,7 +1213,8 @@ bool Map::Miracle_Degats(Jeu *jeu, Personnage *personnage, Miracle &modele, Effe
            // {
                 if(deg != 0)
                 {
-                    InfligerDegats(info.m_cible, personnage, deg, effet.m_informations[2], jeu, effet.m_informations[3]);
+                    if(!miracleEnCours.m_miracle_client)
+                        InfligerDegats(info.m_cible, personnage, deg, effet.m_informations[2], jeu, effet.m_informations[3]);
                     if(personnage == &jeu->hero.m_personnage && effet.m_informations[3] == 0 && effet.m_informations[2] == 0)
                         jeu->hero.JouerSonAttaque(info.m_cible->m_materiau);
                 }

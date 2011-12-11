@@ -328,17 +328,22 @@ void Jeu::Disconnect()
     m_udp.Unbind();
     GlobalMutex.Unlock();
 
+    std::cout<<"Vous avez ete deconnecte 2"<<std::endl;
+
     if(m_thread_clientTCP)
     {
         m_thread_clientTCP->Wait();
         delete m_thread_clientTCP;
     }
+    std::cout<<"Vous avez ete deconnecte 3"<<std::endl;
 
     if(m_thread_clientUDP)
     {
         m_thread_clientUDP->Wait();
         delete m_thread_clientUDP;
     }
+
+    std::cout<<"Vous avez ete deconnecte 4"<<std::endl;
 
     m_thread_clientTCP = NULL;
     m_thread_clientUDP = NULL;
@@ -356,7 +361,7 @@ void Jeu::AddClient(sf::TcpSocket* clientTCP)
     m_selector.Add(*clientTCP);
 
     packet<<(sf::Int8)P_NEWPLAYER<<hero.m_caracteristiques.nom<<hero.m_caracteristiques<<hero.m_cheminClasse<<(sf::Int8)hero.m_lvl_miracles.size();
-    for(int i = 0 ; i < hero.m_lvl_miracles.size() ; ++i)
+    for(unsigned i = 0 ; i < hero.m_lvl_miracles.size() ; ++i)
         packet<<(sf::Int8)hero.m_lvl_miracles[i];
     clientTCP->Send(packet);
 
@@ -372,7 +377,7 @@ void Jeu::AddClient(sf::TcpSocket* clientTCP)
     {
         packet.Clear();
         packet<<(sf::Int8)P_NEWPLAYER<<p->m_caracteristiques.nom<<p->m_caracteristiques<<p->m_cheminClasse<<(sf::Int8)p->m_lvl_miracles.size();
-        for(int i = 0 ; i < p->m_lvl_miracles.size() ; ++i)
+        for(unsigned i = 0 ; i < p->m_lvl_miracles.size() ; ++i)
             packet<<(sf::Int8)p->m_lvl_miracles[i];
         clientTCP->Send(packet);
 
@@ -409,6 +414,7 @@ void Jeu::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSoc
                     sf::Int8 v;
                     packet>>v;
                     m_personnageClients.back().m_lvl_miracles.push_back(v);
+                    m_personnageClients.back().m_lvl_miracles_new.push_back(v);
                 }
 
                 m_personnageClients.back().m_classe.Charger(cheminclasse,m_personnageClients.back().m_lvl_miracles,caract);
@@ -418,7 +424,7 @@ void Jeu::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSoc
 
                 sf::Packet packet2;
                 packet2<<(sf::Int8)P_NEWPLAYER<<caract.nom<<caract<<cheminclasse<<(sf::Int8)m_personnageClients.back().m_lvl_miracles.size();
-                for(int i = 0 ; i < m_personnageClients.back().m_lvl_miracles.size() ; ++i)
+                for(unsigned i = 0 ; i < m_personnageClients.back().m_lvl_miracles.size() ; ++i)
                     packet2<<(sf::Int8)m_personnageClients.back().m_lvl_miracles[i];
 
                 for (std::list<sf::TcpSocket*>::iterator it2 = m_clientsTCP.begin(); it2 != m_clientsTCP.end(); ++it2)
@@ -524,6 +530,10 @@ void Jeu::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSoc
             sf::Int16 monstre;
             coordonnee cible;
 
+            bool heroic;
+            packet>>heroic;
+
+            if(heroic)
             if((packet>>noMiracle>>monstre>>cible))
             {
                 int i = 0;
@@ -532,7 +542,10 @@ void Jeu::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSoc
                     if(i == no)
                     {
                         if (p->UtiliserMiracle(noMiracle, map->getEntiteMonstre(monstre), cible, this, true))
+                        {
+                            p->m_personnage.m_miracleEnCours.back().m_miracle_client = true;
                             p->m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = map->getEntiteMonstre(monstre);
+                        }
                     }
             }
         }
@@ -716,6 +729,7 @@ void Jeu::CheckPacketClient(sf::Packet &packet)
                     sf::Int8 v;
                     packet>>v;
                     m_personnageClients.back().m_lvl_miracles.push_back(v);
+                    m_personnageClients.back().m_lvl_miracles_new.push_back(v);
                 }
 
                 m_personnageClients.back().m_classe.Charger(cheminclasse,m_personnageClients.back().m_lvl_miracles,caract);
@@ -795,10 +809,14 @@ void Jeu::CheckPacketClient(sf::Packet &packet)
             sf::Int16 monstre;
             sf::Int8 no;
 
+            bool heroic;
+            packet>>heroic;
+
+            if(!heroic)
             if((packet>>monstre>>no))
                 if(map->m_loaded)
                 {
-                    Monstre *m = map->getEntiteMonstre(no);
+                    Monstre *m = map->getEntiteMonstre(monstre);
                     if(m)
                         m->m_miracleALancer = no;
                 }
@@ -860,6 +878,13 @@ void Jeu::CheckPacketClient(sf::Packet &packet)
             }
 
             GlobalMutex.Unlock();
+        }
+        else if(type == P_CLIMATE && map)
+        {
+            sf::Int8 no;
+            bool actif;
+            if(packet>>no>>actif)
+                map->SetClimate(no, actif);
         }
         else if(type == P_READY)
         {
@@ -1040,7 +1065,7 @@ void Jeu::SendUseMiracle(int no, int monstre, coordonnee cible)
 
         if(!configuration->hote)
         {
-            packet<<(sf::Int8)P_MIRACLE<<(sf::Int8)no<<(sf::Int16)monstre<<cible;
+            packet<<(sf::Int8)P_MIRACLE<<(bool)true<<(sf::Int8)no<<(sf::Int16)monstre<<cible;
             m_host->Send(packet);
         }
     }
@@ -1068,6 +1093,26 @@ void Jeu::SendInteract()
         }
         else
             m_host->Send(packet);
+    }
+}
+
+void Jeu::SendClimate(int no, bool actif)
+{
+    if(configuration->multi && configuration->hote)
+    {
+        sf::Packet packet;
+        packet<<(sf::Int8)P_CLIMATE;
+
+        packet<<(sf::Int8)no<<(bool)actif;
+
+        for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
+        {
+            sf::TcpSocket& client = **it;
+
+            sf::IpAddress ip = client.GetRemoteAddress();
+            short unsigned int port = NET_PORT;
+            m_udp.Send(packet, ip, port);
+        }
     }
 }
 

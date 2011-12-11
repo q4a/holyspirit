@@ -4948,6 +4948,7 @@ void Hero::NewQuest(int id)
         m_queteSelectionnee = m_quetes.size() - 1;
         newQuest = true;
 
+        m_newQuest_label.SetText(configuration->getText(0,113));
         m_newQuest_label.Reset();
 
         moteurSons->JouerSon(configuration->sound_quest_start,coordonnee (0,0),0);
@@ -4979,7 +4980,12 @@ void Hero::SetQuestActif(int id, int a)
         {
             m_quetes[i].m_actif = a;
             if(!m_quetes[i].m_actif)
+            {
                 moteurSons->JouerSon(configuration->sound_quest_end,coordonnee (0,0),0);
+
+                m_newQuest_label.SetText(configuration->getText(0,114));
+                m_newQuest_label.Reset();
+            }
         }
 }
 

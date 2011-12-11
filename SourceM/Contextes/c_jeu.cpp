@@ -340,6 +340,7 @@ void c_Jeu::Animation(Jeu *jeu)
     for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
     {
         p->CalculerOrdreAffichage();
+        //p->m_personnage.SeDeplacer(tempsEcoule);
         p->m_personnage.EmulerDeplacement(tempsEcoule);
         p->m_personnage.Animer(&p->m_modelePersonnage[0],tempsEcoule, true);
     }
@@ -387,7 +388,6 @@ void c_Jeu::Animation(Jeu *jeu)
 
                                 jeu->hero.m_personnage.m_miracleFrappeEnCours = false;
                             }
-
                 }
             }
             else

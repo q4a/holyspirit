@@ -939,7 +939,7 @@ void Map::Initialiser(Hero *hero)
         console->Ajouter("Initialisation des décors terminée.");
 
     for (int i=0;i<(int)m_monstre.size();++i)
-        if (m_monstre[i].getCaracteristique().rang>=0)
+       // if (m_monstre[i].getCaracteristique().rang>=0)
         {
             coordonnee pos;
 

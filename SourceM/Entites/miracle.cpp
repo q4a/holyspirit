@@ -138,6 +138,7 @@ Miracle::~Miracle()
 EntiteMiracle::EntiteMiracle(){
     m_dejaConsommeFoi = false;
     m_forced_maj = false;
+    m_miracle_client = false;
 }
 
 float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int level, char priorite, bool *cont);

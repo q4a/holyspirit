@@ -76,6 +76,7 @@ class Jeu
     void SendUseMiracle(int no, int monstre, coordonnee cible);
     void SendInteract();
     void SendQuest(int id, int type, int info1 = -1, int info2 = -1);
+    void SendClimate(int no, bool actif);
     void SendMessage(std::string msg);
     void SendReady();
 

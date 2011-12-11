@@ -97,7 +97,7 @@ void Entite_graphique::Animer(float temps)
             while (m_animation >= tempsAnimation && tempsAnimation > 0)
             {
                 //if(m_tileset->getAnimationTile(m_noAnimation) != m_noAnimation)
-                    NextTile();
+                NextTile();
                 Generer();
 
                 m_animation -= tempsAnimation;

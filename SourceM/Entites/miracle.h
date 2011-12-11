@@ -236,6 +236,7 @@ public:
     Objet                               *m_source;
 
     bool                                m_forced_maj;
+    bool                                m_miracle_client;
 };
 
 #endif

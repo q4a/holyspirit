@@ -112,10 +112,7 @@ void Map::Script_UseMiracle(Jeu *jeu,Script *script,int noInstruction,int monstr
     }*/
 
     if (m_monstre[monstre].m_miracleALancer == -1)
-    {
         m_monstre[monstre].m_miracleALancer = (int)script->getValeur(noInstruction, 0);
-        jeu->SendUseMiracle(monstre,(int)script->getValeur(noInstruction, 0));
-    }
 }
 
 void Map::Script_SetState(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
@@ -628,24 +625,10 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                         m_decor[z][y][x].m_entite_graphique.m_noAnimation = (int)script->getValeur(noInstruction, 3);
                     }
         }
-        else if (script->m_instructions[noInstruction].nom=="setClimate" && (configuration->hote || !configuration->hote))
+        else if (script->m_instructions[noInstruction].nom=="setClimate" && (configuration->hote/* || !configuration->hote*/))
         {
-            if(script->getValeur(noInstruction, 0) >= 0 && script->getValeur(noInstruction, 0) < m_climates.size())
-            {
-                if((bool)script->getValeur(noInstruction, 1))
-                {
-                    if(m_climates[(unsigned)script->getValeur(noInstruction, 0)].m_actif)
-                    {
-                        if(m_climates[(unsigned)script->getValeur(noInstruction, 0)].GetState() == 1.0)
-                            m_climates[(unsigned)script->getValeur(noInstruction, 0)].Continue();
-                    }
-                    else
-                        m_climates[(unsigned)script->getValeur(noInstruction, 0)].m_actif = true;
-                }
-                else
-                    m_climates[(unsigned)script->getValeur(noInstruction, 0)].Stop();
-
-            }
+            SetClimate(script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1));
+            jeu->SendClimate(script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1));
         }
         else if (script->m_instructions[noInstruction].nom=="change_map")
         {

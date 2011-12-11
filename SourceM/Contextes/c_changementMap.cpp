@@ -224,6 +224,14 @@ void c_Chargement::PreLoad(Jeu *jeu)
 
     jeu->map=new Map();
 
+    for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+    {
+       // p->ChargerModele();
+        p->m_classe.miracles.clear();
+        p->m_classe.Charger(p->m_cheminClasse, p->m_lvl_miracles_new, p->m_caracteristiques);
+    }
+
+
     jeu->hero.ChargerModele(true);
     jeu->SendSkin();
 }

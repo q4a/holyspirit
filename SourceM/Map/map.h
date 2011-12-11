@@ -111,6 +111,7 @@ public:
     void Script_Evasion         (Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
     void Script_RandomDisplace  (Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer);
 
+    void SetClimate(int no, bool actif);
 
     void TestVisionMonstre(int numero, Hero *hero,std::list<Hero> &players);
     bool TileVisible(int x,int y, coordonnee pos);

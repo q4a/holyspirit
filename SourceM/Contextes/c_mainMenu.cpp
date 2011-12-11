@@ -649,8 +649,8 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
                 if(!configuration->hote)
                 {
                     packet << sf::Int8(P_NEWPLAYER) << jeu->hero.m_caracteristiques.nom << jeu->hero.m_caracteristiques << jeu->hero.m_cheminClasse<<(sf::Int8)jeu->hero.m_lvl_miracles.size();
-                    for(int i = 0 ; i < jeu->hero.m_lvl_miracles.size() ; ++i)
-                        packet<<(sf::Int8)jeu->hero.m_lvl_miracles[i];
+                    for(unsigned j = 0 ; j < jeu->hero.m_lvl_miracles.size() ; ++j)
+                        packet<<(sf::Int8)jeu->hero.m_lvl_miracles[j];
                 }
 
                 else if(configuration->multi)
