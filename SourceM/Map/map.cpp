@@ -383,7 +383,7 @@ void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
 
                             int objetPointe=-1;
 
-                            objetPointe=m_decor[1][j][k].AfficherTexteObjets(position,m_monstreIllumine==-1/*,alt*/);
+                            objetPointe=m_decor[1][j][k].AfficherTexteObjets(hero->m_classe.border, position,m_monstreIllumine==-1/*,alt*/);
 
                             if (alt || objetPointe >= 0
                                     || (eventManager->getCasePointee().x == k

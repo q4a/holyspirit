@@ -118,7 +118,7 @@ void Decor::setDecor(int tileset,int tile,const std::vector<int> &monstre,int he
     m_objets=objets;
 }
 
-bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage, bool selectable)
+bool Decor::AfficherTexteObjet(Border &border, coordonnee position,int objet, float *decalage, bool selectable)
 {
     bool retour=false;
     if(objet>=0&&objet<(int)m_objets.size())
@@ -148,12 +148,17 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage, b
 
         sprite.SetTexture(*moteurGraphique->getImage(0));
 
-        sprite.SetY(texte.GetPosition().y);
-        sprite.SetX(texte.GetPosition().x-4);
+        sprite.SetY(texte.GetPosition().y-1);
+        sprite.SetX(texte.GetPosition().x-5);
         sprite.SetColor(sf::Color(0,0,0,(int)(224.0f*alpha)));
-        sprite.Resize(texte.GetRect().Width +8 , texte.GetRect().Height+4);
+        sprite.Resize(texte.GetRect().Width +9 , texte.GetRect().Height+5);
 
-     //   if(eventManager->getEvenement(configuration->m_key_actions[K_PICKITEMS],EventKey))
+        border.Afficher(coordonnee(texte.GetPosition().x-4, texte.GetPosition().y),
+                        coordonnee(texte.GetRect().Width +8, texte.GetRect().Height+4), 12, sf::Color(  GetItemColor(m_objets[objet].getRarete()).r,
+                                                                                                        GetItemColor(m_objets[objet].getRarete()).g,
+                                                                                                        GetItemColor(m_objets[objet].getRarete()).b,
+                                                                                                        (int)(255.0f*alpha)));
+
         if(selectable)
             if(eventManager->getPositionSouris().x>sprite.GetPosition().x
              &&eventManager->getPositionSouris().y>sprite.GetPosition().y
@@ -164,12 +169,13 @@ bool Decor::AfficherTexteObjet(coordonnee position,int objet, float *decalage, b
         moteurGraphique->AjouterCommande(&sprite,12,0);
 
         if(decalage != NULL)
-            *decalage = (sprite.GetPosition().y*configuration->zoom + GetViewRect(moteurGraphique->m_camera).Top) - sprite.GetSize().y;
+            *decalage = (sprite.GetPosition().y*configuration->zoom + GetViewRect(moteurGraphique->m_camera).Top)
+                        - sprite.GetSize().y - 3 - border.image_u.position.h - border.image_d.position.h;
     }
     return (retour);
 }
 
-int Decor::AfficherTexteObjets(coordonnee position, bool selectable)
+int Decor::AfficherTexteObjets(Border &border, coordonnee position, bool selectable)
 {
     int retour = -1;
     float decalage = position.y-18;
@@ -177,7 +183,7 @@ int Decor::AfficherTexteObjets(coordonnee position, bool selectable)
     for (int z=0;z<(int)m_objets.size();z++)
     {
         if(m_objets[z].m_alpha > 0)
-            if(AfficherTexteObjet(coordonnee ((int)position.x, (int)decalage), z, &decalage, selectable))
+            if(AfficherTexteObjet(border, coordonnee ((int)position.x, (int)decalage), z, &decalage, selectable))
                 retour=z;
     }
 

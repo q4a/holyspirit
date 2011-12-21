@@ -44,8 +44,8 @@ public:
 
     void AjouterObjet(Objet);
 
-    int AfficherTexteObjets(coordonnee positionn, bool selectable);
-    bool AfficherTexteObjet(coordonnee position,int, float *decalage = NULL, bool selectable = true);
+    int AfficherTexteObjets(Border &border, coordonnee positionn, bool selectable);
+    bool AfficherTexteObjet(Border &border, coordonnee position,int, float *decalage = NULL, bool selectable = true);
     void AlphaObjets(int alpha);
 
     void AnimerObjets(float temps);

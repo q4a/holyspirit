@@ -934,11 +934,11 @@ void MoteurGraphique::AjouterTexteNonChevauchable(sf::Text* string, int couche, 
     {
         for (IterTextes=m_textes[couche].begin();IterTextes!=m_textes[couche].end();++IterTextes)
         {
-            if(string->GetRect().Left + string->GetRect().Width > IterTextes->GetRect().Left
-            && string->GetRect().Left                           < IterTextes->GetRect().Left + IterTextes->GetRect().Width
-            && string->GetRect().Top  + string->GetRect().Height> IterTextes->GetRect().Top - 3
-            && string->GetRect().Top                            < IterTextes->GetRect().Top + IterTextes->GetRect().Height)
-                string->SetPosition(string->GetPosition().x, IterTextes->GetRect().Top - string->GetRect().Height - 5), IterTextes=m_textes[couche].begin();
+            if(string->GetRect().Left + string->GetRect().Width > IterTextes->GetRect().Left - 8
+            && string->GetRect().Left                           < IterTextes->GetRect().Left + IterTextes->GetRect().Width + 8
+            && string->GetRect().Top  + string->GetRect().Height> IterTextes->GetRect().Top - 11
+            && string->GetRect().Top                            < IterTextes->GetRect().Top + IterTextes->GetRect().Height + 8)
+                string->SetPosition(string->GetPosition().x, IterTextes->GetRect().Top - string->GetRect().Height - 11), IterTextes=m_textes[couche].begin();
         }
 
         AjouterTexte(string, couche, titre);
