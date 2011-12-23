@@ -653,7 +653,7 @@ void Map::GererAmbiance(float temps)
     }
 }
 
-void Map::SetClimate(int no, bool actif)
+bool Map::SetClimate(int no, bool actif)
 {
     if(no >= 0 && no < m_climates.size())
     {
@@ -662,14 +662,25 @@ void Map::SetClimate(int no, bool actif)
             if(m_climates[no].m_actif)
             {
                 if(m_climates[no].GetState() == 1.0)
+                {
                     m_climates[no].Continue();
+                    return (true);
+                }
             }
             else
+            {
                 m_climates[no].m_actif = true;
+                return (true);
+            }
         }
         else
+        {
             m_climates[no].Stop();
+            return (true);
+        }
     }
+
+    return (false);
 }
 
 void Map::DelEffet(int no)

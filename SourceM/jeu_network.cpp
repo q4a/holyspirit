@@ -547,6 +547,18 @@ void Jeu::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSoc
                             p->m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = map->getEntiteMonstre(monstre);
                         }
                     }
+
+                int no2 = 0;
+                for (std::list<sf::TcpSocket*>::iterator it2 = m_clientsTCP.begin(); it2 != m_clientsTCP.end(); ++it2,++no2)
+                    if(*it2 != it)
+                    {
+                        sf::TcpSocket& client2 = **it2;
+
+                        sf::Packet packet2;
+                        packet2<<(sf::Int8)P_MIRACLE<<(bool)true<<(sf::Int8)(no+(no<no2))<<(sf::Int8)noMiracle<<(sf::Int16)monstre<<cible;
+
+                        client2.Send(packet2);
+                    }
             }
         }
         else if(type == P_INTERACT)
@@ -807,19 +819,36 @@ void Jeu::CheckPacketClient(sf::Packet &packet)
         else if(type == P_MIRACLE && map)
         {
             sf::Int16 monstre;
-            sf::Int8 no;
+            sf::Int8 no,noMiracle;
+            coordonnee cible;
 
             bool heroic;
             packet>>heroic;
 
             if(!heroic)
-            if((packet>>monstre>>no))
+            if((packet>>monstre>>noMiracle))
                 if(map->m_loaded)
                 {
                     Monstre *m = map->getEntiteMonstre(monstre);
                     if(m)
-                        m->m_miracleALancer = no;
+                        m->m_miracleALancer = noMiracle;
                 }
+
+            if(heroic)
+            if((packet>>no>>noMiracle>>monstre>>cible))
+            {
+                int i = 0;
+                for (std::list<Hero>::iterator p = m_personnageClients.begin();
+                        p != m_personnageClients.end() && i <= no; ++p, ++i)
+                    if(i == no)
+                    {
+                        if (p->UtiliserMiracle(noMiracle, map->getEntiteMonstre(monstre), cible, this, true))
+                        {
+                            p->m_personnage.m_miracleEnCours.back().m_miracle_client = true;
+                            p->m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = map->getEntiteMonstre(monstre);
+                        }
+                    }
+            }
         }
         else if(type == P_MSGCHAT)
         {
@@ -1063,7 +1092,17 @@ void Jeu::SendUseMiracle(int no, int monstre, coordonnee cible)
     {
         sf::Packet packet;
 
-        if(!configuration->hote)
+        if(configuration->hote)
+        {
+            packet<<(sf::Int8)P_MIRACLE<<(bool)true<<(sf::Int8)0<<(sf::Int8)no<<(sf::Int16)monstre<<cible;
+
+            for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
+            {
+                sf::TcpSocket& client = **it;
+                client.Send(packet);
+            }
+        }
+        else
         {
             packet<<(sf::Int8)P_MIRACLE<<(bool)true<<(sf::Int8)no<<(sf::Int16)monstre<<cible;
             m_host->Send(packet);
@@ -1108,10 +1147,11 @@ void Jeu::SendClimate(int no, bool actif)
         for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
         {
             sf::TcpSocket& client = **it;
+            client.Send(packet);
 
-            sf::IpAddress ip = client.GetRemoteAddress();
+            /*sf::IpAddress ip = client.GetRemoteAddress();
             short unsigned int port = NET_PORT;
-            m_udp.Send(packet, ip, port);
+            m_udp.Send(packet, ip, port);*/
         }
     }
 }

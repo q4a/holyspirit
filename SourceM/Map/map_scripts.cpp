@@ -627,8 +627,8 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="setClimate" && (configuration->hote/* || !configuration->hote*/))
         {
-            SetClimate(script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1));
-            jeu->SendClimate(script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1));
+            if(SetClimate(script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1)))
+                jeu->SendClimate(script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1));
         }
         else if (script->m_instructions[noInstruction].nom=="change_map")
         {
