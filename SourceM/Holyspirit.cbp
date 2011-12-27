@@ -162,6 +162,11 @@
 		<Unit filename="Moteurs\moteurSons.h" />
 		<Unit filename="Moteurs\typo.cpp" />
 		<Unit filename="Moteurs\typo.h" />
+		<Unit filename="Network\network.cpp" />
+		<Unit filename="Network\network.h" />
+		<Unit filename="Network\receive_client.cpp" />
+		<Unit filename="Network\receive_host.cpp" />
+		<Unit filename="Network\send.cpp" />
 		<Unit filename="configuration.cpp" />
 		<Unit filename="configuration.h" />
 		<Unit filename="constantes.h" />

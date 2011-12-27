@@ -99,7 +99,7 @@ void Jeu::Demarrer()
             moteurGraphique->Afficher();
 
 
-        if(/*m_contexte != m_mainMenu && */configuration->multi)
+       // if(/*m_contexte != m_mainMenu && */configuration->multi)
             net->GererMultijoueur(this);
 
         net->GlobalMutex.Unlock();

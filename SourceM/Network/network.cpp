@@ -216,6 +216,7 @@ void Network::GererMultijoueur(Jeu* p_jeu)
 {
     jeu = p_jeu;
    // m_net_send = false;
+    if(configuration->multi)
     if(m_net_clock.GetElapsedTime() > (float)configuration->net_rate)
     {
         jeu->m_net_send = true;

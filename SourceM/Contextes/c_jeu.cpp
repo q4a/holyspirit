@@ -341,8 +341,9 @@ void c_Jeu::Animation(Jeu *jeu)
     {
         p->CalculerOrdreAffichage();
         //p->m_personnage.SeDeplacer(tempsEcoule);
-        p->m_personnage.EmulerDeplacement(tempsEcoule);
-        p->m_personnage.Animer(&p->m_modelePersonnage[0],tempsEcoule, true);
+        p->m_personnage.EmulerDeplacement(temps2);
+        p->m_personnage.GererEffets(temps2);
+        p->m_personnage.Animer(&p->m_modelePersonnage[0],temps2, true);
     }
 
     int retour = -2;

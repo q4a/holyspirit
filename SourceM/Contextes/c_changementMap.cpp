@@ -230,10 +230,6 @@ void c_Chargement::PreLoad(Jeu *jeu)
         p->m_classe.miracles.clear();
         p->m_classe.Charger(p->m_cheminClasse, p->m_lvl_miracles_new, p->m_caracteristiques);
     }
-
-
-    jeu->hero.ChargerModele(true);
-    net->SendSkin();
 }
 
 void c_Chargement::PostLoad(Jeu *jeu)
@@ -265,7 +261,6 @@ void c_Chargement::PostLoad(Jeu *jeu)
                 jeu->map->m_climates[i].m_cur_time = climatsTimeEnCours[j];
             }
 
-    cout<<"BOUH !"<<endl;
     for(unsigned i = 0 ; i < jeu->hero.m_amis.size() ; ++i)
     if(!buffer[i].m_heroic)
     {
@@ -340,11 +335,15 @@ void c_Chargement::PostLoad(Jeu *jeu)
                         jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->setCoordonnee(jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->getCoordonnee());
                         jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible->setDepart();
                     }
+                if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[j].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == EFFET)
+                   if(jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible == jeu->hero.m_amis[i])
+                    {
+                        jeu->hero.m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
+                    }
             }
 
         jeu->hero.m_amis[i] = jeu->map->getEntiteMonstre(jeu->map->getNombreMonstres() - 1);
     }
-    cout<<"DIN !"<<endl;
 
     for (unsigned i = 0; i < jeu->hero.m_personnage.m_miracleEnCours.size(); ++i)
         for (int o = 0; o <  (int)jeu->hero.m_personnage.m_miracleEnCours[i].m_infos.size() ; ++o)
@@ -360,6 +359,10 @@ void c_Chargement::PostLoad(Jeu *jeu)
                 jeu->hero.m_personnage.m_miracleEnCours[i].m_infos.erase(jeu->hero.m_personnage.m_miracleEnCours[i].m_infos.begin() + o) ,o = -1;
             }
         }
+
+
+    jeu->hero.ChargerModele(true);
+    net->SendSkin();
 
     jeu->hero.m_personnage.setPousse(coordonneeDecimal(0,0));
     jeu->hero.m_personnage.frappeEnCours = false;

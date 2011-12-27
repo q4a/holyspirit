@@ -902,6 +902,36 @@ void Hero::ChargerModele(bool tout)
         m_personnage.m_miracleEnCours[i].m_modele = m_classe.miracles.size();
         m_classe.miracles.push_back(miraclesLances[i]);
         m_classe.miracles.back().RechargerTileset();
+
+        for(std::vector <InfosEntiteMiracle*>::iterator m = m_personnage.m_miracleEnCours[i].m_infos.begin() ;
+            m != m_personnage.m_miracleEnCours[i].m_infos.end() ; ++m)
+        {
+            Effet &e = m_classe.miracles.back().m_effets[(*m)->m_effetEnCours];
+
+            if(e.m_type == EFFET)
+            {
+                Personnage *temp;
+                if (e.m_informations[0])
+                    temp = &m_personnage;
+                else
+                    temp = (*m)->m_cible;
+
+                temp->m_effets[(*m)->m_IDObjet].m_effet.m_tileset = moteurGraphique->getTileset(m_classe.miracles.back().m_tileset[e.m_sequence]);
+            }
+        }
+
+        /*for(std::vector<Effet>::iterator e = m_classe.miracles.back().m_effets.begin() ;
+            e != m_classe.miracles.back().m_effets.end() ; ++e)
+        {
+            if(e->m_type == EFFET)
+            {
+                Personnage *temp;
+                if (e->m_informations[0])
+                    temp = personnage;
+                else
+                    temp = info.m_cible;
+            }
+        }*/
     }
 
     for (unsigned i = 0 ; i < m_weaponMiracle.size() ; ++i)
