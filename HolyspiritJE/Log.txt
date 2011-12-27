@@ -65,6 +65,1058 @@
          Chargement de : Data/User/Temps/Image.png
          Chargement de : Data/User/Temps/Image.png
          Chargement de : Data/Musics/Menu.ogg
+         Chargement de : Data/Sounds/Entities/Crusader/Crusader_death0.wav
+         Chargement de : Data/Graphics/Menus/UI/Inventory.png
+         Chargement de : Data/Graphics/Menus/UI/Skill.png
+         Chargement de : Data/Graphics/Menus/UI/Trader.png
+         Chargement de : Data/Graphics/Menus/UI/Hud.png
+         Chargement de : Data/Graphics/Menus/UI/Life_bar.png
+         Chargement de : Data/Graphics/Menus/UI/Faith_bar.png
+         Chargement de : Data/Graphics/Menus/UI/Plus_button.png
+         Chargement de : Data/Graphics/Menus/UI/Scroll_button.png
+         Chargement de : Data/Graphics/Menus/UI/SortInventory.png
+         Chargement de : Data/Graphics/Menus/UI/Bullet_off.png
+         Chargement de : Data/Graphics/Menus/UI/Bullet_on.png
+         Chargement de : Data/Graphics/Menus/UI/Quest.png
+         Chargement de : Data/Graphics/Menus/UI/Documents.png
+         Chargement de : Data/Graphics/Menus/UI/Craft.png
+         Chargement de : Data/Graphics/Menus/UI/MinimapIcones.png
+         Chargement de : Data/Graphics/Menus/UI/Soul_bar.png
+         Chargement de : Data/Graphics/Menus/UI/PlusMiracle.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_miracle.png
+         Chargement de : Data/Graphics/Menus/UI/Life_monster.png
+         Chargement de : Data/Graphics/Menus/UI/Life_monster_blank.png
+         Chargement de : Data/Graphics/Menus/UI/Attack.png
+         Chargement de : Data/Graphics/Menus/UI/hud_button.png
+         Chargement de : Data/Graphics/Menus/UI/hud_button_2.png
+         Chargement de : Data/Graphics/Menus/UI/Weapons_button_2.png
+         Chargement de : Data/Graphics/Menus/UI/Weapons_button.png
+         Chargement de : Data/Graphics/Menus/UI/Slot2x2.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_scroll.png
+         Chargement de : Data/Graphics/Menus/UI/Slot3x5.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_craft.png
+         Chargement de : Data/Graphics/Menus/UI/Craft_button.png
+         Chargement de : Data/Graphics/Menus/UI/Craft_button_ok.png
+         Chargement de : Data/Graphics/Menus/UI/Slot2x5.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_hand1crusader.png
+         Chargement de : Data/Graphics/Menus/UI/Slot3x3.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_hand2crusader.png
+         Chargement de : Data/Graphics/Menus/UI/Slot2x3.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_lightarmor.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_helmet.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_boots.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_armband.png
+         Chargement de : Data/Graphics/Menus/UI/Slot1x1.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_ring.png
+         Chargement de : Data/Graphics/Menus/UI/Slot_necklage.png
+         Chargement de : Data/Graphics/Menus/UI/Crusader/CrusaderPath1.png
+         Chargement de : Data/Graphics/Menus/UI/Crusader/CrusaderPath2.png
+         Chargement de : Data/Graphics/Menus/UI/Crusader/CrusaderPath3.png
+         Chargement de : Data/Graphics/Menus/UI/Miracle_tab.png
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement de : Data/Graphics/Miracles/LevelUp0.png
+         Chargement de : Data/Graphics/Miracles/LevelUp1.png
+         Chargement de : Data/Sounds/Miracles/LevelUp.wav
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Tornado.png
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement de : Data/Sounds/Miracles/Tornado.wav
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement de : Data/Graphics/Miracles/PowerfulSlash.png
+         Chargement de : Data/Sounds/Miracles/PowerfulSlash0.wav
+         Chargement de : Data/Sounds/Miracles/PowerfulSlash1.wav
+         Chargement de : Data/Sounds/Miracles/PowerfulSlash2.wav
+         Chargement de : Data/Sounds/Miracles/PowerfulSlash3.wav
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement de : Data/Graphics/Miracles/LastJudgement.png
+         Chargement de : Data/Graphics/Miracles/Explosion0.png
+         Chargement de : Data/Sounds/Miracles/Explosion0.wav
+         Chargement de : Data/Graphics/Miracles/Explosion_trace0.png
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Burn0.png
+         Chargement de : Data/Sounds/Landscapes/Fire.wav
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Blast.png
+         Chargement de : Data/Graphics/Miracles/CineticEffect.png
+         Chargement de : Data/Sounds/Miracles/Speed_effect.wav
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement de : Data/Graphics/Miracles/FaithArmor.png
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Lazare.png
+         Chargement de : Data/Sounds/Miracles/Aura.wav
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Barbe.png
+         Chargement de : Data/Graphics/Miracles/FireEffect.png
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
+         Chargement de : Crusader_Nude_1H_Wait0.png
+         Chargement de : Crusader_Nude_1H_Walk0.png
+         Chargement de : Crusader_Nude_1H_Attack0.png
+         Chargement de : Crusader_Nude_1H_Attack1.png
+         Chargement de : Data/Sounds/Entities/Footstep0.wav
+         Chargement de : Data/Sounds/Entities/Attack0.wav
+         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt0.wav
+         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt1.wav
+         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt2.wav
+         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt3.wav
+         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt4.wav
+         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt5.wav
+         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt6.wav
+         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt7.wav
+         Chargement de : Data/Sounds/Entities/Crusader/Crusader_hurt8.wav
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Barbarian/TwoWeapons.rs.hs
+         Chargement de : Crusader_Barbarian_2W_Wait0.png
+         Chargement de : Crusader_Barbarian_2W_Walk0.png
+         Chargement de : Crusader_Barbarian_2W_Attack0.png
+         Chargement de : Crusader_Barbarian_2W_Attack1.png
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Crowl_teuderic_1h.rs.hs
+         Chargement de : Crusader_CrowlTeuderic_1H_Wait0.png
+         Chargement de : Crusader_CrowlTeuderic_1H_Walk0.png
+         Chargement de : Crusader_CrowlTeuderic_1H_Attack0.png
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Bone_sword_r.rs.hs
+         Chargement de : Crusader_BoneSword_R_Wait0.png
+         Chargement de : Crusader_BoneSword_R_Walk0.png
+         Chargement de : Crusader_BoneSword_R_Attack0.png
+         Chargement de : Data/Sounds/Weapons/Sword_org_0.wav
+         Chargement de : Data/Sounds/Weapons/Sword_org_1.wav
+         Chargement de : Data/Sounds/Weapons/Sword_org_2.wav
+         Chargement de : Data/Sounds/Weapons/Sword_org_3.wav
+         Chargement de : Data/Sounds/Weapons/Sword_org_4.wav
+         Chargement de : Data/Sounds/Weapons/Sword_org_5.wav
+         Chargement de : Data/Sounds/Weapons/Sword_vap_0.wav
+         Chargement de : Data/Sounds/Weapons/Sword_vap_1.wav
+         Chargement de : Data/Sounds/Weapons/Sword_vap_2.wav
+         Chargement de : Data/Sounds/Weapons/Sword_vap_3.wav
+         Chargement de : Data/Sounds/Weapons/Sword_vap_4.wav
+         Chargement de : Data/Sounds/Weapons/Sword_vap_5.wav
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Long_sword_l.rs.hs
+         Chargement de : Crusader_LongSword_L_Wait0.png
+         Chargement de : Crusader_LongSword_L_Walk0.png
+         Chargement de : Crusader_LongSword_L_Attack0.png
+         Chargement du hero.
+         
+         Chargement de l'objet : Sword_2h_two_hands_sword.item.hs
+         Chargement de : Data/Graphics/Items/TwoHands_swords.png
+         Chargement de : Data/Sounds/UI/DropItem0.wav
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         
+         Chargement de l'objet : Sword_1h_long_sword.item.hs
+         Chargement de : Data/Graphics/Items/Swords.png
+         Chargement de : Data/Sounds/UI/DropItem1.wav
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         
+         Chargement de l'objet : Sword_1h_small_sword.item.hs
+         
+         Chargement de l'objet : Sword_1h_holy_sword.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement de : Data/Graphics/Miracles/HolyEffect.png
+         
+         Chargement de l'objet : Sword_1h_holy_sword.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         
+         Chargement de l'objet : Dagger_dagger.item.hs
+         Chargement de : Data/Graphics/Items/Daggers.png
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement de : Data/Graphics/Miracles/PoisonEffect.png
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         
+         Chargement de l'objet : Helmet_horned_barbute.item.hs
+         Chargement de : Data/Graphics/Items/Helmets.png
+         
+         Chargement de l'objet : Helmet_iron_cap.item.hs
+         
+         Chargement de l'objet : Helmet_leather_cap.item.hs
+         
+         Chargement de l'objet : Golem_coal.item.hs
+         Chargement de : Data/Graphics/Items/Golems.png
+         Chargement du miracle : Data/Miscs/Miracles/Golems/Coal_golem_summoning.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         
+         Chargement de l'objet : Doc_redimus.item.hs
+         Chargement de : Data/Graphics/Items/Books.png
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         Chargement de : Data/Graphics/Items/Crafts.png
+         
+         Chargement de l'objet : Ring_ring.item.hs
+         Chargement de : Data/Graphics/Items/Rings.png
+         Chargement de : Data/Sounds/UI/DropItem3.wav
+         
+         Chargement de l'objet : Ring_ring.item.hs
+         
+         Chargement de l'objet : Ring_ring.item.hs
+         
+         Chargement de l'objet : Necklage_necklage.item.hs
+         Chargement de : Data/Graphics/Items/Necklages.png
+         Chargement de : Data/Sounds/UI/DropItem5.wav
+         
+         Chargement de l'objet : Set_Teuderic_ring.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_crowl.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_ring.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         
+         Chargement de l'objet : Set_Teuderic_breastplate.item.hs
+         Chargement de : Data/Graphics/Items/Armors.png
+         Chargement de : Data/Sounds/UI/DropItem7.wav
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement de : Data/Graphics/Items/Potions.png
+         Chargement de : Data/Sounds/UI/DropItem6.wav
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
+         Chargement de : Data/Sounds/Miracles/Potion_drink0.wav
+         
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
+         
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
+         
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
+         
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
+         
+         Chargement de l'objet : Sword_1h_long_sword.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         
+         Chargement de l'objet : Ring_ring.item.hs
+         
+         Chargement de l'objet : Armor_barbarian.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_ring.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_crowl.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_ring.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         
+         Chargement de l'objet : Set_Teuderic_breastplate.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         
+         Chargement de l'objet : Armband_gauntlet.item.hs
+         Chargement de : Data/Graphics/Items/Armbands.png
+         
+         Chargement de l'objet : Boots_leather.item.hs
+         Chargement de : Data/Graphics/Items/Boots.png
+         
+         Chargement de l'objet : Necklage_necklage.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_crowl.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_crowl.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_ring.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         
+         Chargement de l'objet : Set_Teuderic_breastplate.item.hs
+         
+         Chargement de l'objet : Sword_2h_katzbalger.item.hs
+         
+         Chargement de l'objet : Sword_1h_long_sword.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
+         
+         Chargement de l'objet : Armband_leather.item.hs
+         
+         Chargement de l'objet : Sword_1h_bone_sword.item.hs
+         
+         Chargement de l'objet : Sword_1h_bone_sword.item.hs
+         
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
+         
+         Chargement de l'objet : Sword_1h_small_sword.item.hs
+         
+         Chargement de l'objet : Potion_heal0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
+         
+         Chargement de l'objet : Dagger_dagger.item.hs
+         
+         Chargement de l'objet : Necklage_necklage.item.hs
+         
+         Chargement de l'objet : Necklage_necklage.item.hs
+         
+         Chargement de l'objet : Potion_heal0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
+         
+         Chargement de l'objet : Armband_leather.item.hs
+         
+         Chargement de l'objet : Armor_leather.item.hs
+         
+         Chargement de l'objet : Helmet_leather_cap.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         
+         Chargement de l'objet : Craft_gem_emerald.item.hs
+         Chargement de : Data/Sounds/UI/DropItem4.wav
+         
+         Chargement de l'objet : Craft_gem_emerald.item.hs
+         
+         Chargement de l'objet : Craft_gem_emerald.item.hs
+         
+         Chargement de l'objet : Craft_gem_emerald.item.hs
+         
+         Chargement de l'objet : Craft_gem_emerald.item.hs
+         
+         Chargement de l'objet : Craft_gem_emerald.item.hs
+         
+         Chargement de l'objet : Craft_gem_emerald.item.hs
+         
+         Chargement de l'objet : Craft_gem_emerald.item.hs
+         
+         Chargement de l'objet : Craft_coal.item.hs
+         
+         Chargement de l'objet : Craft_coal.item.hs
+         
+         Chargement de l'objet : Craft_coal.item.hs
+         
+         Chargement de l'objet : Craft_coal.item.hs
+         
+         Chargement de l'objet : Craft_coal.item.hs
+         
+         Chargement de l'objet : Craft_coal.item.hs
+         
+         Chargement de l'objet : Craft_ore_iron.item.hs
+         
+         Chargement de l'objet : Craft_ore_iron.item.hs
+         
+         Chargement de l'objet : Craft_ore_iron.item.hs
+         
+         Chargement de l'objet : Craft_gem_ruby.item.hs
+         
+         Chargement de l'objet : Craft_gem_ruby.item.hs
+         
+         Chargement de l'objet : Craft_gem_ruby.item.hs
+         
+         Chargement de l'objet : Craft_ore_gold.item.hs
+         
+         Chargement de l'objet : Craft_ore_gold.item.hs
+         
+         Chargement de l'objet : Armor_gambeson.item.hs
+         
+         Chargement de l'objet : Armor_gambeson.item.hs
+         
+         Chargement de l'objet : Armor_gambeson.item.hs
+         
+         Chargement de l'objet : Armor_chainmail.item.hs
+         
+         Chargement de l'objet : Armor_chainmail.item.hs
+         
+         Chargement de l'objet : Armor_chainmail.item.hs
+         
+         Chargement de l'objet : Armor_chainmail.item.hs
+         
+         Chargement de l'objet : Shield_great_shield.item.hs
+         Chargement de : Data/Graphics/Items/Shields.png
+         
+         Chargement de l'objet : Shield_great_shield.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_breastplate.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_crowl.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_ring.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         
+         Chargement de l'objet : Set_Teuderic_breastplate.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_breastplate.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_crowl.item.hs
+         
+         Chargement de l'objet : Set_Teuderic_ring.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         
+         Chargement de l'objet : Set_Teuderic_breastplate.item.hs
+         
+         Chargement de l'objet : Helmet_circlet.item.hs
+         
+         Chargement de l'objet : Helmet_circlet.item.hs
+         
+         Chargement de l'objet : Helmet_iron_cap.item.hs
+         
+         Chargement de l'objet : Dagger_dagger.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
+         
+         Chargement de l'objet : Dagger_dagger.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         
+         Chargement de l'objet : Crossbow_crossbow_fire.item.hs
+         Chargement de : Data/Graphics/Items/Crossbows.png
+         Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt_explosive0.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Bolt.png
+         
+         Chargement de l'objet : Dagger_scarifier.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         
+         Chargement de l'objet : Doc_redimus.item.hs
+         
+         Chargement de l'objet : Doc_abbey.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Nude/OneHand.rs.hs
+         
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         Chargement de : Data/Maps/Loading_screens/Forest0.png
+         
+         Sauvegarde du héro...
+         Sauvegarde du héro terminée !
+         Creation minimap :
+         
+         Chargements d'images diverses :
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         
+         Chargement de la map : Abbey.map.hs
+         Chargement de : Data/Sounds/Ambiances/Abbey0.wav
+         Chargement de : Data/Sounds/Ambiances/Outdoor_night0.wav
+         Chargement de : Data/Maps/Skies/Day_sky0.png
+         Chargement de : Data/Graphics/Climates/FullRain.png
+         Chargement de : Data/Sounds/Climates/FullRain.wav
+         Chargement de : Data/Graphics/Climates/FullRain.ts.hs
+         Chargement de : Data/Graphics/Climates/FullRain_water.png
+         Chargement de : Data/Graphics/Climates/FullRain_water.ts.hs
+         Chargement de : Data/Graphics/Climates/Thunder.png
+         Chargement de : Data/Sounds/Climates/Thunder_0_0.wav
+         Chargement de : Data/Sounds/Climates/Thunder_0_1.wav
+         Chargement de : Data/Sounds/Climates/Thunder_0_2.wav
+         Chargement de : Data/Sounds/Climates/Thunder_2_0.wav
+         Chargement de : Data/Sounds/Climates/Thunder_2_1.wav
+         Chargement de : Data/Sounds/Climates/Thunder_2_2.wav
+         Chargement de : Data/Sounds/Climates/Thunder_2_3.wav
+         Chargement de : Data/Sounds/Climates/Thunder_2_4.wav
+         Chargement de : Data/Sounds/Climates/Thunder_2_5.wav
+         Chargement de : Data/Sounds/Climates/Thunder_1_0.wav
+         Chargement de : Data/Sounds/Climates/Thunder_1_1.wav
+         Chargement de : Data/Sounds/Climates/Thunder_1_2.wav
+         Chargement de : Data/Graphics/Climates/Thunder.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbaye0.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbaye1.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbaye2.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbaye3.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbaye4.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbaye5.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbaye6.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbaye7.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbaye8.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbaye9.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbaye10.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbaye12.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbaye11.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_ao0.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Abbey/Well.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Well.ts.hs
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_ground.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_ground2.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_ground3.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_decals.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Fields.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Flagstones_decals.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/AgrarianLands_ground.ts.hs
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Rocks.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Rocks.ts.hs
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Trees.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Trees_noEffect.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Miscs/Carts.png
+         Chargement de : Data/Graphics/Landscapes/Miscs/Carts.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Miscs/Lantern.png
+         Chargement de : Data/Graphics/Landscapes/Miscs/Lantern.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Miscs/Wood_stack.png
+         Chargement de : Data/Graphics/Landscapes/Miscs/Wood_stack.ts.hs
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Path_decals.png
+         Chargement de : Data/Graphics/Landscapes/AgrarianLands/Path.ts.hs
+         Chargement de : Data/Graphics/Grass/Grass0.png
+         Chargement de : Data/Graphics/Grass/Grass0.ts.hs
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Potale0.char.hs
+         Chargement du script : " Data/Entities/Scripts/Potales/Potale0.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Potale.rs.hs
+         Chargement de : Potale.png
+         Chargement de : Data/Entities/Resources/Miscs/Potale0.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Abbe.char.hs
+         Chargement du script : " Data/Entities/Scripts/NPC/Abbe.script.hs "
+         
+         Chargement de l'objet : Litanie_toxic_0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/Toxic_0.miracle.hs
+ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
+         Chargement de : Data/Sounds/Miracles/Toxic.wav
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
+         Chargement de : Data/Graphics/Miracles/Quest.png
+         
+         Chargement du personnage : Data/Entities/Resources/NPC/Abbe.rs.hs
+         Chargement de : Abbe_Wait0.png
+         Chargement de : Abbe_Walk0.png
+         Chargement de : Data/Sounds/Entities/Talk0.wav
+         Chargement de : Data/Entities/Resources/NPC/Abbe.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Blacksmith.char.hs
+         Chargement du script : " Data/Entities/Scripts/NPC/Blacksmith.script.hs "
+         
+         Chargement de l'objet : Drawing_sword_1h_small_sword.item.hs
+         
+         Chargement de l'objet : Craft_ore_iron.item.hs
+         
+         Chargement de l'objet : Drawing_crossbow_crossbow.item.hs
+         
+         Chargement de l'objet : Craft_ore_iron.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         
+         Chargement de l'objet : Armband_leather.item.hs
+         
+         Chargement de l'objet : Armband_leather.item.hs
+         
+         Chargement de l'objet : Armband_leather.item.hs
+         
+         Chargement de l'objet : Armband_gauntlet.item.hs
+         
+         Chargement de l'objet : Armband_gauntlet.item.hs
+         
+         Chargement de l'objet : Armband_gauntlet.item.hs
+         
+         Chargement de l'objet : Boots_leather.item.hs
+         
+         Chargement de l'objet : Boots_leather.item.hs
+         
+         Chargement de l'objet : Boots_leather.item.hs
+         
+         Chargement de l'objet : Armor_gambeson.item.hs
+         
+         Chargement de l'objet : Armor_gambeson.item.hs
+         
+         Chargement de l'objet : Armor_gambeson.item.hs
+         
+         Chargement de l'objet : Armor_chainmail.item.hs
+         
+         Chargement de l'objet : Armor_chainmail.item.hs
+         
+         Chargement de l'objet : Armor_chainmail.item.hs
+         
+         Chargement de l'objet : Crossbow_crossbow.item.hs
+         Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
+         
+         Chargement de l'objet : Crossbow_crossbow.item.hs
+         Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
+         
+         Chargement de l'objet : Crossbow_crossbow.item.hs
+         Chargement du miracle : Data\Miscs\Miracles\Bolt\Bolt.miracle.hs
+         
+         Chargement de l'objet : Dagger_ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Dagger_ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Dagger_ceremonial_dagger.item.hs
+         
+         Chargement de l'objet : Dagger_dagger.item.hs
+         
+         Chargement de l'objet : Dagger_dagger.item.hs
+         
+         Chargement de l'objet : Dagger_dagger.item.hs
+         
+         Chargement de l'objet : Helmet_leather_cap.item.hs
+         
+         Chargement de l'objet : Helmet_leather_cap.item.hs
+         
+         Chargement de l'objet : Helmet_leather_cap.item.hs
+         
+         Chargement de l'objet : Helmet_iron_cap.item.hs
+         
+         Chargement de l'objet : Helmet_iron_cap.item.hs
+         
+         Chargement de l'objet : Helmet_iron_cap.item.hs
+         
+         Chargement de l'objet : Shield_great_shield.item.hs
+         
+         Chargement de l'objet : Shield_great_shield.item.hs
+         
+         Chargement de l'objet : Shield_great_shield.item.hs
+         
+         Chargement de l'objet : Shield_small_shield.item.hs
+         
+         Chargement de l'objet : Shield_small_shield.item.hs
+         
+         Chargement de l'objet : Shield_small_shield.item.hs
+         
+         Chargement de l'objet : Sword_1h_small_sword.item.hs
+         
+         Chargement de l'objet : Sword_1h_small_sword.item.hs
+         
+         Chargement de l'objet : Sword_1h_small_sword.item.hs
+         
+         Chargement de l'objet : Sword_1h_long_sword.item.hs
+         
+         Chargement de l'objet : Sword_1h_long_sword.item.hs
+         
+         Chargement de l'objet : Sword_1h_long_sword.item.hs
+         
+         Chargement de l'objet : Sword_2h_two_hands_sword.item.hs
+         
+         Chargement de l'objet : Sword_2h_two_hands_sword.item.hs
+         
+         Chargement de l'objet : Sword_2h_two_hands_sword.item.hs
+         
+         Chargement de l'objet : Mace_2h_timber_axe.item.hs
+         Chargement de : Data/Graphics/Items/TwoHands_maces.png
+         
+         Chargement de l'objet : Mace_2h_timber_axe.item.hs
+         
+         Chargement de l'objet : Mace_2h_timber_axe.item.hs
+         
+         Chargement du personnage : Data/Entities/Resources/NPC/Blacksmith.rs.hs
+         Chargement de : Blacksmith_standing0.png
+         Chargement de : Blacksmith_walk_empty0.png
+         Chargement de : Blacksmith_walk_bar0.png
+         Chargement de : Blacksmith_pick_bar0.png
+         Chargement de : Blacksmith_pick_hammer0.png
+         Chargement de : Blacksmith_hammer0.png
+         Chargement de : Blacksmith_bellows0.png
+         Chargement de : Data/Sounds/Entities/Blacksmith_bellows0.wav
+         Chargement de : Data/Sounds/Entities/Blacksmith_pick_bar0.wav
+         Chargement de : Data/Sounds/Entities/Blacksmith_hammer0.wav
+         Chargement de : Data/Entities/Resources/NPC/Blacksmith.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Trader.char.hs
+         Chargement du script : " Data/Entities/Scripts/NPC/Trader.script.hs "
+         
+         Chargement de l'objet : Potion_heal0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
+         
+         Chargement de l'objet : Potion_heal0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
+         
+         Chargement de l'objet : Potion_heal0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
+         
+         Chargement de l'objet : Potion_heal0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
+         
+         Chargement de l'objet : Potion_heal0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
+         
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
+         
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
+         
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
+         
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
+         
+         Chargement de l'objet : Potion_faith0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Potions/Faith0.miracle.hs
+         
+         Chargement de l'objet : Necklage_necklage.item.hs
+         
+         Chargement de l'objet : Necklage_necklage.item.hs
+         
+         Chargement de l'objet : Ring_ring.item.hs
+         
+         Chargement de l'objet : Ring_ring.item.hs
+         
+         Chargement de l'objet : Ring_ring.item.hs
+         
+         Chargement de l'objet : Ring_ring.item.hs
+         
+         Chargement de l'objet : Drawing_golem_coal.item.hs
+         
+         Chargement de l'objet : Craft_coal.item.hs
+         
+         Chargement de l'objet : Craft_gem_ruby.item.hs
+         
+         Chargement de l'objet : Drawing_helmet_circlet.item.hs
+         
+         Chargement de l'objet : Craft_ore_gold.item.hs
+         
+         Chargement de l'objet : Craft_gem_emerald.item.hs
+         
+         Chargement de l'objet : Drawing_helmet_horned_barbute.item.hs
+         
+         Chargement de l'objet : Craft_ore_iron.item.hs
+         
+         Chargement de l'objet : Craft_ore_copper.item.hs
+         
+         Chargement de l'objet : Craft_gem_ruby.item.hs
+         
+         Chargement de l'objet : Drawing_shield_bronze.item.hs
+         
+         Chargement de l'objet : Craft_ore_iron.item.hs
+         
+         Chargement de l'objet : Craft_ore_copper.item.hs
+         
+         Chargement de l'objet : Drawing_crossbow_crossbow.item.hs
+         
+         Chargement de l'objet : Craft_ore_iron.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         
+         Chargement de l'objet : Craft_coal.item.hs
+         
+         Chargement de l'objet : Craft_coal.item.hs
+         
+         Chargement de l'objet : Craft_coal.item.hs
+         
+         Chargement de l'objet : Craft_ore_copper.item.hs
+         
+         Chargement de l'objet : Craft_ore_copper.item.hs
+         
+         Chargement de l'objet : Craft_ore_copper.item.hs
+         
+         Chargement de l'objet : Craft_ore_iron.item.hs
+         
+         Chargement de l'objet : Craft_ore_iron.item.hs
+         
+         Chargement de l'objet : Craft_ore_iron.item.hs
+         
+         Chargement de l'objet : Craft_ore_gold.item.hs
+         
+         Chargement de l'objet : Craft_ore_gold.item.hs
+         
+         Chargement de l'objet : Craft_ore_gold.item.hs
+         
+         Chargement de l'objet : Craft_gem_emerald.item.hs
+         
+         Chargement de l'objet : Craft_gem_ruby.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/NPC/Trader.rs.hs
+         Chargement de : Trader0.png
+         Chargement de : Data/Entities/Resources/NPC/Trader.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Forge.char.hs
+         
+         Chargement du personnage : Data/Entities/Resources/NPC/Forge.rs.hs
+         Chargement de : Forge_action.png
+         Chargement de : Forge_empty.png
+         Chargement de : Data/Entities/Resources/NPC/Forge.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Anvil.char.hs
+         
+         Chargement du personnage : Data/Entities/Resources/NPC/Anvil.rs.hs
+         Chargement de : Anvil_hammer.png
+         Chargement de : Data/Entities/Resources/NPC/Anvil.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Guard.char.hs
+         Chargement du script : " Data/Entities/Scripts/NPC/Standing.script.hs "
+         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/NPC/Guard.rs.hs
+         Chargement de : Guard_Wait0.png
+         Chargement de : Guard_Walk0.png
+         Chargement de : Guard_Walk1.png
+         Chargement de : Data/Entities/Resources/NPC/Guard.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Sergeant.char.hs
+         Chargement du script : " Data/Entities/Scripts/NPC/Sergeant.script.hs "
+         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/NPC/Sergeant.rs.hs
+         Chargement de : Sergeant_Wait0.png
+         Chargement de : Data/Entities/Resources/NPC/Sergeant.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Lantern.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Lantern.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Lantern.rs.hs
+         Chargement de : Lantern_dark.png
+         Chargement de : Lantern_light.png
+         Chargement de : Data/Entities/Resources/Miscs/Lantern.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger_clickable.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Torch.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Lantern.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Torch.rs.hs
+         Chargement de : Torch.png
+         Chargement de : Data/Entities/Resources/Miscs/Torch.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Torch_up.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Lantern.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Torch_up.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Torch_up.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger_selectable.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Trigger_selectable.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Abbey_door0.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Door_open.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Abbey_door0.rs.hs
+         Chargement de : Abbey_door0.png
+         Chargement de : Data/Sounds/Entities/OldDoor_open.wav
+         Chargement de : Data/Entities/Resources/Miscs/Abbey_door0.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Abbey_door1.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger_clickable.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Abbey_door1.rs.hs
+         Chargement de : Abbey_door1.png
+         Chargement de : Data/Entities/Resources/Miscs/Abbey_door1.char.hs terminé
+         
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement de la map terminé.
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Armors/Barbarian/TwoWeapons.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Helmets/Crowl_teuderic_1h.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Bone_sword_r.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Crusader/Weapons_OneHand/Long_sword_l.rs.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement de : Data/Musics/Abbey.ogg
+         
+         Sauvegarde du héro...
+         Sauvegarde du héro terminée !
+         
+         Destruction de la map...
+         Map détruite !
+         Chargement de : Data/User/Temps/Image.png
+         Chargement de : Data/User/Temps/Image.png
+         Chargement de : Data/User/Temps/Image.png
+         Chargement de : Data/User/Temps/Image.png
+         Chargement de : Data/User/Temps/Image.png
+         Chargement de : Data/User/Temps/Image.png
+         Chargement de : Data/User/Temps/Image.png
+         Chargement de : Data/User/Temps/Image.png
+         Chargement de : Data/User/Temps/Image.png
+         Chargement de : Data/Musics/Menu.ogg
          
          Fermeture des contextes effectuée avec succès.
          
