@@ -1677,24 +1677,11 @@ void Hero::AfficherAmisEtCraft()
                 if(eventManager->getEvenement(Mouse::Left,EventClicA) && m_select_friend == (int)i)
                 if(!m_amis[i]->m_heroic)
                 {
-                    bool charme = false;
                     eventManager->StopEvenement(Mouse::Left,EventClic);
                     eventManager->StopEvenement(Mouse::Left,EventClicA);
-                    for(unsigned j = 0 ; j < m_personnage.m_miracleEnCours.size() ; ++j)
-                        for(unsigned k = 0 ; k < m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)
-                        {
-                            if(m_classe.miracles[m_personnage.m_miracleEnCours[j].m_modele].m_effets[m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == CHARME)
-                                if(m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible == m_amis[i])
-                                   m_amis[i]->m_friendly = false, charme = true;
-                            if(m_classe.miracles[m_personnage.m_miracleEnCours[j].m_modele].m_effets[m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == INVOCATION)
-                                if(m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible == m_amis[i])
-                                   m_amis[i]->m_friendly = false, charme = false;
-                        }
 
-                    if(!charme)
-                        m_amis[i]->Kill();
-
-                    m_amis.erase(m_amis.begin() + i);
+                    net->SendEraseFriend(i);
+                    EraseFriend(i);
                     i--;
                 }
             }
@@ -1768,6 +1755,26 @@ void Hero::AfficherAmisEtCraft()
         text.SetPosition(configuration->Resolution.x - 150 - text.GetRect().Width,80 + 32);
         moteurGraphique->AjouterTexte(&text,14);
     }
+}
+
+void Hero::EraseFriend(int i)
+{
+    bool charme = false;
+    for(unsigned j = 0 ; j < m_personnage.m_miracleEnCours.size() ; ++j)
+        for(unsigned k = 0 ; k < m_personnage.m_miracleEnCours[j].m_infos.size() ; ++k)
+        {
+            if(m_classe.miracles[m_personnage.m_miracleEnCours[j].m_modele].m_effets[m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == CHARME)
+                if(m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible == m_amis[i])
+                   m_amis[i]->m_friendly = false, charme = true;
+            if(m_classe.miracles[m_personnage.m_miracleEnCours[j].m_modele].m_effets[m_personnage.m_miracleEnCours[j].m_infos[k]->m_effetEnCours].m_type == INVOCATION)
+                if(m_personnage.m_miracleEnCours[j].m_infos[k]->m_cible == m_amis[i])
+                   m_amis[i]->m_friendly = false, charme = false;
+        }
+
+    if(!charme)
+        m_amis[i]->Kill();
+
+    m_amis.erase(m_amis.begin() + i);
 }
 
 void Hero::AfficherQuetes(float decalage)

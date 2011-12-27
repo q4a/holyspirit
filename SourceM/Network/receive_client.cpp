@@ -243,6 +243,17 @@ void Network::CheckPacketClient(sf::Packet &packet)
 
             GlobalMutex.Unlock();
         }
+        else if(type == P_ERASEFRIEND)
+        {
+            sf::Int16 no;
+
+            GlobalMutex.Lock();
+
+            if((packet>>no))
+                jeu->hero.EraseFriend(no);
+
+            GlobalMutex.Unlock();
+        }
         else if(type == P_QUEST)
         {
             GlobalMutex.Lock();

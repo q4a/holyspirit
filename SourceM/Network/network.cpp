@@ -23,17 +23,19 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 sf::Packet& operator <<(sf::Packet& Packet, const Caracteristique& C)
 {
-    return Packet << (sf::Int32)C.vie << (sf::Int32)C.maxVie << (sf::Int16)C.niveau;
+    return Packet << (sf::Int32)C.vie << (sf::Int32)C.maxVie << (sf::Int32)C.foi << (sf::Int32)C.maxFoi << (sf::Int16)C.niveau;
 }
 sf::Packet& operator >>(sf::Packet& Packet, Caracteristique& C)
 {
-    sf::Int32 vie, maxVie;
+    sf::Int32 vie, maxVie, foi, maxFoi;
     sf::Int16 niveau;
 
-    if((Packet >> vie >> maxVie >> niveau))
+    if((Packet >> vie >> maxVie >> foi >> maxFoi >> niveau))
     {
         C.vie = vie;
         C.maxVie = maxVie;
+        C.foi = foi;
+        C.maxFoi = maxFoi;
         C.niveau = niveau;
     }
 

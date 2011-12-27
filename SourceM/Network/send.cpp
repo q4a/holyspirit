@@ -178,6 +178,29 @@ void Network::SendUseMiracle(int no, int monstre, coordonnee cible)
     }
 }
 
+void Network::SendEraseFriend(int no)
+{
+    if(configuration->multi)
+    {
+        sf::Packet packet;
+        packet<<(sf::Int8)P_ERASEFRIEND;
+
+        packet<<(sf::Int16)no;
+
+        if(configuration->hote)
+        {
+            for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
+            {
+                sf::TcpSocket& client = **it;
+                client.Send(packet);
+            }
+        }
+        else
+            m_host->Send(packet);
+    }
+}
+
+
 void Network::SendInteract()
 {
     if(configuration->multi)

@@ -25,7 +25,6 @@ bool Map::Miracle_Aura           (Jeu *jeu, Personnage *personnage, Miracle &mod
     else
         info.m_position = personnage->getCoordonneePixel();
 
-
     if(detruire)
     {
         for (int r = o; r < (int) miracleEnCours.m_infos.size() ; ++r)
@@ -307,6 +306,10 @@ bool Map::Miracle_Charme (Jeu *jeu, Personnage *personnage, Miracle &modele, Eff
             if(personnage == &jeu->hero.m_personnage)
                 jeu->hero.m_amis.push_back(info.m_cible);
 
+            for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+                if(personnage == &p->m_personnage)
+                    jeu->hero.m_amis.push_back(info.m_cible);
+
             for (int p=0;p<(int)effet.m_lien.size();p++)
             {
                 miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
@@ -333,6 +336,12 @@ bool Map::Miracle_Charme (Jeu *jeu, Personnage *personnage, Miracle &modele, Eff
                 for(unsigned p = 0 ; p < jeu->hero.m_amis.size() ;  ++p)
                     if(jeu->hero.m_amis[p] == info.m_cible)
                         jeu->hero.m_amis.erase(jeu->hero.m_amis.begin() + p);
+
+            for (std::list<Hero>::iterator h = jeu->m_personnageClients.begin(); h != jeu->m_personnageClients.end(); ++h)
+                if(personnage == &h->m_personnage)
+                    for(unsigned p = 0 ; p < jeu->hero.m_amis.size() ;  ++p)
+                        if(jeu->hero.m_amis[p] == info.m_cible)
+                            jeu->hero.m_amis.erase(jeu->hero.m_amis.begin() + p);
 
             miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
 
@@ -795,6 +804,10 @@ bool Map::Miracle_Invocation(Jeu *jeu, Personnage *personnage, Miracle &modele, 
             if(personnage == &jeu->hero.m_personnage)
                 jeu->hero.m_amis.push_back(&m_monstre.back());
 
+            for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+                if(personnage == &p->m_personnage)
+                    jeu->hero.m_amis.push_back(&m_monstre.back());
+
             info.m_cible = &m_monstre.back();
 
 
@@ -892,6 +905,12 @@ bool Map::Miracle_Invocation(Jeu *jeu, Personnage *personnage, Miracle &modele, 
                 for(unsigned p = 0 ; p < jeu->hero.m_amis.size() ;  ++p)
                     if(jeu->hero.m_amis[p] == info.m_cible)
                         jeu->hero.m_amis.erase(jeu->hero.m_amis.begin() + p);
+
+            for (std::list<Hero>::iterator h = jeu->m_personnageClients.begin(); h != jeu->m_personnageClients.end(); ++h)
+                if(personnage == &h->m_personnage)
+                    for(unsigned p = 0 ; p < jeu->hero.m_amis.size() ;  ++p)
+                        if(jeu->hero.m_amis[p] == info.m_cible)
+                            jeu->hero.m_amis.erase(jeu->hero.m_amis.begin() + p);
 
             miracleEnCours.m_infos.erase(miracleEnCours.m_infos.begin()+o);
             return 0;

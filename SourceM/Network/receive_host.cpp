@@ -160,7 +160,7 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
 
                         //sf::IpAddress ip2 = client2.GetRemoteAddress();
                         //m_udp.Send(packet, ip2, NET_PORT);
-                        client2.Send(packet);
+                        client2.Send(packet2);
                     }
         }
         else if(type == P_MIRACLE)
@@ -224,8 +224,31 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
                     sf::Packet packet2;
                     packet2<<(sf::Int8)P_INTERACT<<(sf::Int8)(no+(no<no2))<<n;
 
-                    client2.Send(packet);
+                    client2.Send(packet2);
                 }
+
+            GlobalMutex.Unlock();
+        }
+        else if(type == P_ERASEFRIEND)
+        {
+            sf::Int16 no;
+
+            GlobalMutex.Lock();
+
+            if((packet>>no))
+            {
+                jeu->hero.EraseFriend(no);
+
+                for (std::list<sf::TcpSocket*>::iterator it2 = m_clientsTCP.begin(); it2 != m_clientsTCP.end(); ++it2)
+                if(*it2 != it)
+                {
+                    sf::TcpSocket& client2 = **it2;
+                    sf::Packet packet2;
+                    packet2<<(sf::Int8)P_ERASEFRIEND<<no;
+
+                    client2.Send(packet2);
+                }
+            }
 
             GlobalMutex.Unlock();
         }
@@ -277,7 +300,7 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
                     sf::Packet packet2;
                     packet2<<(sf::Int8)P_MSGCHAT<<(sf::Int8)(no+(no<no2))<<msg;
 
-                    client2.Send(packet);
+                    client2.Send(packet2);
                 }
 
             GlobalMutex.Unlock();
@@ -301,7 +324,7 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
                     sf::Packet packet2;
                     packet2<<(sf::Int8)P_READY<<(sf::Int8)(no+(no<no2));
 
-                    client2.Send(packet);
+                    client2.Send(packet2);
                 }
 
             GlobalMutex.Unlock();

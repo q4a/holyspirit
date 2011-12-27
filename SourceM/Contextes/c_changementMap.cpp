@@ -230,6 +230,8 @@ void c_Chargement::PreLoad(Jeu *jeu)
         p->m_classe.miracles.clear();
         p->m_classe.Charger(p->m_cheminClasse, p->m_lvl_miracles_new, p->m_caracteristiques);
     }
+
+    net->SendSkin();
 }
 
 void c_Chargement::PostLoad(Jeu *jeu)
@@ -350,7 +352,15 @@ void c_Chargement::PostLoad(Jeu *jeu)
         {
             if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[i].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == EFFET)
             {
-                if(jeu->hero.m_personnage.m_miracleEnCours[i].m_infos[o]->m_cible != &jeu->hero.m_personnage)
+                bool del = true;
+                if(jeu->hero.m_personnage.m_miracleEnCours[i].m_infos[o]->m_cible == &jeu->hero.m_personnage)
+                    del = false;
+
+                for(unsigned j = 0 ; j < jeu->hero.m_amis.size() ; ++j)
+                    if(jeu->hero.m_personnage.m_miracleEnCours[i].m_infos[o]->m_cible == jeu->hero.m_amis[j])
+                        del = false;
+
+                if(del)
                     jeu->hero.m_personnage.m_miracleEnCours[i].m_infos.erase(jeu->hero.m_personnage.m_miracleEnCours[i].m_infos.begin() + o) ,o = -1;
             }
             else if(jeu->hero.m_classe.miracles[jeu->hero.m_personnage.m_miracleEnCours[i].m_modele].m_effets[jeu->hero.m_personnage.m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type == CHARGE)

@@ -141,6 +141,8 @@ public:
     void StopMiraclesFrappe();
     void StopMiraclesCharme();
 
+    void EraseFriend(int no);
+
     void NewQuest(int id);
     void SetQuestName(int id, int n);
     void SetQuestState(int id, int s, int d);
