@@ -527,7 +527,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         m_supprimer_heros = false;
         eventManager->StopEvenement(Mouse::Left,EventClic);
         eventManager->StopEvenement(sf::Keyboard::Escape, EventKey);
-        jeu->Disconnect();
+        net->Disconnect();
     }
 
     texte.SetCharacterSize(18);
@@ -654,9 +654,9 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
                 }
 
                 else if(configuration->multi)
-                    jeu->LaunchServer();
+                    net->LaunchServer();
 
-                if(configuration->hote || jeu->m_host->Send(packet) == sf::TcpSocket::Done)
+                if(configuration->hote || net->m_host->Send(packet) == sf::TcpSocket::Done)
                 {
                     if(configuration->hote)
                     {
@@ -1176,7 +1176,7 @@ void  c_MainMenu::E_Multi(Jeu *jeu)
         configuration->multi = true;
         configuration->hote = false;
 
-        if(jeu->Connect(entered_ip))
+        if(net->Connect(entered_ip))
         {
             no_ecran = E_CONTINUER;
             configuration->last_ip = entered_ip;

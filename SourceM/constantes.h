@@ -52,6 +52,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #define VERSION_SAVE 10
 
+#define NET_PORT 4570
+
 #include <cmath>
 #include <utility>
 #include <iostream>
@@ -291,8 +293,6 @@ sf::Packet& operator >>(sf::Packet& Packet, coordonneeDecimal& C);
 
 sf::Packet& operator <<(sf::Packet& Packet, const coordonnee& C);
 sf::Packet& operator >>(sf::Packet& Packet, coordonnee& C);
-
-
 
 sf::FloatRect GetViewRect(const sf::View& view);
 

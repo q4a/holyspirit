@@ -233,7 +233,7 @@ void c_Chargement::PreLoad(Jeu *jeu)
 
 
     jeu->hero.ChargerModele(true);
-    jeu->SendSkin();
+    net->SendSkin();
 }
 
 void c_Chargement::PostLoad(Jeu *jeu)
@@ -486,7 +486,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         if(m_chargement && jeu->map->m_loaded)
         {
             if(!jeu->hero.m_ready)
-                jeu->SendReady();
+                net->SendReady();
 
             bool ready = true;
             for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)

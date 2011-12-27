@@ -49,10 +49,6 @@ Jeu::Jeu()
     m_mainMenu      = NULL;
 
     configuration->multi = false;
-    m_host = NULL;
-    m_thread_clientTCP = NULL;
-    m_thread_clientUDP = NULL;
-    m_thread_host = NULL;
 }
 
 
@@ -81,7 +77,7 @@ void Jeu::Demarrer()
     m_display = true;
     while (m_run)
     {
-        GlobalMutex.Lock();
+        net->GlobalMutex.Lock();
 
         if(map != NULL && map->m_loaded)
             eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime()*0.001,map->getDimensions());
@@ -104,9 +100,9 @@ void Jeu::Demarrer()
 
 
         if(/*m_contexte != m_mainMenu && */configuration->multi)
-            GererMultijoueur();
+            net->GererMultijoueur(this);
 
-        GlobalMutex.Unlock();
+        net->GlobalMutex.Unlock();
 
         moteurSons->Gerer(MusicClock.GetElapsedTime()*0.001);
 
@@ -119,8 +115,8 @@ void Jeu::Demarrer()
     if(m_jeu->m_thread_sauvegarde)
         m_jeu->m_thread_sauvegarde->Wait(),delete m_jeu->m_thread_sauvegarde;
 
-    Disconnect();
-    CloseServer();
+    net->Disconnect();
+    net->CloseServer();
 
     m_contexte=NULL;
 

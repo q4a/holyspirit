@@ -52,34 +52,6 @@ class Jeu
     void Demarrer();
     void Next();
 
-
-    void GererMultijoueur();
-    bool Connect(sf::IpAddress);
-    void Disconnect();
-    void LaunchServer();
-    void CloseServer();
-    bool DeletePersonnageClient(int no);
-
-    void AddClient(sf::TcpSocket* clientTCP);
-    void CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::TcpSocket* tcp);
-    void CheckPacketClient(sf::Packet &packet);
-
-    int  GetNoClient(const sf::IpAddress &address);
-
-    void SendSkin();
-    void SendChangeMap(const std::string &prochaineMap,const coordonnee &coordonneePerso);
-    void SendInfosMonstre(sf::Packet &packet);
-    void SendDegats(Hero *hero, float degats, int type, float temps = 0);
-    void SendDegats(int no, float degats, int type, float temps = 0);
-    void SendKillMonstre(int no, int angle, float degats);
-    void SendUseMiracle(int monstre, int no);
-    void SendUseMiracle(int no, int monstre, coordonnee cible);
-    void SendInteract();
-    void SendQuest(int id, int type, int info1 = -1, int info2 = -1);
-    void SendClimate(int no, bool actif);
-    void SendMessage(std::string msg);
-    void SendReady();
-
     Menu menu;
     Map *map;
     Hero hero;
@@ -87,15 +59,7 @@ class Jeu
     sf::SoundBuffer bufferSonMort;
 	sf::Sound  sonMort;
 
-	sf::SocketSelector  m_selector;
-    sf::TcpListener     m_listener;
-    std::list<sf::TcpSocket*> m_clientsTCP;
     std::list<Hero> m_personnageClients;
-
-    sf::TcpSocket *m_host;
-    sf::UdpSocket m_udp;
-
-    bool m_runTCPHost;
 
 	bool m_run,m_display;
 
@@ -115,16 +79,7 @@ class Jeu
 
     int next_screen;
 
-    sf::Mutex GlobalMutex;
-
     bool m_net_send;
-
-    private:
-    sf::Thread *m_thread_clientTCP;
-    sf::Thread *m_thread_clientUDP;
-    sf::Thread *m_thread_host;
-
-    sf::Clock m_net_clock;
 };
 
 #endif

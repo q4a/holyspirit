@@ -942,7 +942,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 }
                 else
                 {
-                    jeu->SendUseMiracle(monstre,m_monstre[monstre].m_miracleALancer);
+                    net->SendUseMiracle(monstre,m_monstre[monstre].m_miracleALancer);
 
                     m_monstre[monstre].m_miracleEnCours.push_back(EntiteMiracle ());
                     m_monstre[monstre].m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
@@ -1055,7 +1055,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 DeplacerMonstreCase(monstre, x, y);
             }
 
-            //jeu->SendInfosMonstre(monstre, m_monstre[monstre]);
+            //net->SendInfosMonstre(monstre, m_monstre[monstre]);
 
             if(jeu->m_net_send)
             {
@@ -1064,7 +1064,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 nbr++;
                /* if(nbr >= 100)
                 {
-                    jeu->SendInfosMonstre(packet);
+                    net->SendInfosMonstre(packet);
 
                     nbr = 0;
                     packet.Clear();
@@ -1082,7 +1082,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
     }
 
     if(jeu->m_net_send && !packet.EndOfPacket())
-        jeu->SendInfosMonstre(packet);
+        net->SendPacket(packet);
 
     jeu->m_net_send = false;
 }
@@ -1237,7 +1237,7 @@ bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, i
     if(!configuration->hote)
     {
         if(cible == &jeu->hero.m_personnage)
-            jeu->SendDegats(monstre->m_no,degats, type, temps);
+            net->SendDegats(monstre->m_no,degats, type, temps);
         if(monstre == &jeu->hero.m_personnage)
             monstre->InfligerDegats(degats, type, temps);
     }
@@ -1252,7 +1252,7 @@ bool Map::InfligerDegats(Personnage *monstre, Personnage *cible, float degats, i
             if(monstre == &p->m_personnage)
             {
                 noMulti = false;
-                jeu->SendDegats(&*p, degats, type, temps);
+                net->SendDegats(&*p, degats, type, temps);
             }
 
         if(noMulti)
@@ -1344,7 +1344,7 @@ void Map::KillMonstre(Personnage *monstre, int angle, float degats, Jeu *jeu)
                 m_decor[1][monstre->getCoordonnee().y][monstre->getCoordonnee().x].AjouterObjet(monstre->getObjets()[i]);
 
         if(configuration->hote)
-            jeu->SendKillMonstre(monstre->m_no,angle,degats);
+            net->SendKillMonstre(monstre->m_no,angle,degats);
     }
 }
 

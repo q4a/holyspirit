@@ -213,7 +213,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         jeu->hero.m_max_defilement_trader=0;
         m_trader=NULL;
         jeu->hero.ChargerModele();
-        jeu->SendSkin();
+        net->SendSkin();
         jeu->hero.RecalculerCaracteristiques(true);
         m_afficher=0;
         jeu->Clock.Reset();

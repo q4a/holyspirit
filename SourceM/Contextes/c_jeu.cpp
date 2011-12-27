@@ -526,7 +526,7 @@ void GestionRaccourcis(Jeu *jeu, bool diplace_mode = false)
                 if (jeu->hero.UtiliserMiracle(newmiracle, jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
                 {
                     jeu->hero.m_personnage.m_miracleEnCours.back().m_infos.back()->m_cible = jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine());
-                    jeu->SendUseMiracle(newmiracle,jeu->map->getMonstreIllumine(),cible);
+                    net->SendUseMiracle(newmiracle,jeu->map->getMonstreIllumine(),cible);
                     /*coordonnee positionHero;
                     positionHero.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
                     positionHero.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;*/
@@ -558,7 +558,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
             configuration->entering_text = false;
             if(!jeu->hero.m_personnage.m_speak.empty())
             jeu->hero.m_personnage.m_speak_time = 5000;
-            jeu->SendMessage(jeu->hero.m_personnage.m_speak);
+            net->SendMessage(jeu->hero.m_personnage.m_speak);
 
             console->Ajouter(jeu->hero.m_caracteristiques.nom + " : "+jeu->hero.m_personnage.m_speak);
         }
@@ -691,7 +691,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
             jeu->hero.m_weaponsSet = (jeu->hero.m_weaponsSet == 1) ? 0 : 1;
             jeu->hero.RecalculerCaracteristiques(true);
             jeu->hero.ChargerModele();
-            jeu->SendSkin();
+            net->SendSkin();
         }
     }
 
@@ -797,7 +797,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
                 jeu->hero.m_weaponsSet = jeu->hero.m_classe.boutons_menus_weapons_t[i].lien;
 
                 jeu->hero.ChargerModele();
-                jeu->SendSkin();
+                net->SendSkin();
                 jeu->hero.RecalculerCaracteristiques(true);
             }
         }
@@ -886,7 +886,7 @@ void c_Jeu::Evenements(Jeu *jeu)
                     if(ok)
                     if (jeu->hero.UtiliserMiracle(jeu->hero.m_miracle_gauche[jeu->hero.m_weaponsSet], jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
                     {
-                        jeu->SendUseMiracle(jeu->hero.m_miracle_gauche[jeu->hero.m_weaponsSet],jeu->map->getMonstreIllumine(),cible);
+                        net->SendUseMiracle(jeu->hero.m_miracle_gauche[jeu->hero.m_weaponsSet],jeu->map->getMonstreIllumine(),cible);
 
                         attaque_normale_g = false;
                         eventManager->StopEvenement(Mouse::Left,EventClicA);
@@ -925,7 +925,7 @@ void c_Jeu::Evenements(Jeu *jeu)
 
                     if (jeu->hero.UtiliserMiracle(jeu->hero.m_miracle_droite[jeu->hero.m_weaponsSet], jeu->map->getEntiteMonstre(jeu->map->getMonstreIllumine()), cible, jeu))
                     {
-                        jeu->SendUseMiracle(jeu->hero.m_miracle_droite[jeu->hero.m_weaponsSet],jeu->map->getMonstreIllumine(),cible);
+                        net->SendUseMiracle(jeu->hero.m_miracle_droite[jeu->hero.m_weaponsSet],jeu->map->getMonstreIllumine(),cible);
 
                         attaque_normale_d = false;
                         eventManager->StopEvenement(Mouse::Right,EventClic);

@@ -334,10 +334,11 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1295527962 c:\c++\holyspirit\sourcem\globale.h
+1324990161 c:\c++\holyspirit\sourcem\globale.h
 	"Moteurs/moteurGraphique.h"
 	"Moteurs/moteurSons.h"
 	"Moteurs/eventManager.h"
+	"Network/network.h"
 	"configuration.h"
 
 1312707243 c:\c++\holyspirit\sourcem\moteurs\moteurgraphique.h
@@ -358,7 +359,7 @@
 	<SFML/Audio.hpp>
 	"../constantes.h"
 
-1323619345 c:\c++\holyspirit\sourcem\constantes.h
+1324992578 c:\c++\holyspirit\sourcem\constantes.h
 	<cmath>
 	<utility>
 	<iostream>
@@ -440,7 +441,7 @@
 	"singleton.h"
 	"constantes.h"
 
-1323619345 c:\c++\holyspirit\sourcem\jeu.h
+1324992115 c:\c++\holyspirit\sourcem\jeu.h
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 	<SFML/Network.hpp>
@@ -607,7 +608,7 @@
 	<SFML/Graphics.hpp>
 	"contexte.h"
 
-1323614509 source:c:\c++\holyspirit\sourcem\contextes\c_changementmap.cpp
+1324990607 source:c:\c++\holyspirit\sourcem\contextes\c_changementmap.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -647,7 +648,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1312707217 source:c:\c++\holyspirit\sourcem\contextes\c_inventaire.cpp
+1324990637 source:c:\c++\holyspirit\sourcem\contextes\c_inventaire.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -657,7 +658,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1323617615 source:c:\c++\holyspirit\sourcem\contextes\c_jeu.cpp
+1324990681 source:c:\c++\holyspirit\sourcem\contextes\c_jeu.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -666,7 +667,7 @@
 	<SFML/Audio.hpp>
 	<sstream>
 
-1314967276 source:c:\c++\holyspirit\sourcem\contextes\c_menuingame.cpp
+1324990744 source:c:\c++\holyspirit\sourcem\contextes\c_menuingame.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"../globale.h"
@@ -686,7 +687,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1309159004 source:c:\c++\holyspirit\sourcem\contextes\c_potales.cpp
+1324990757 source:c:\c++\holyspirit\sourcem\contextes\c_potales.cpp
 	"c_jeu.h"
 	"../jeu.h"
 	"c_potales.h"
@@ -788,7 +789,7 @@
 	"decor.h"
 	"../globale.h"
 
-1324134363 source:c:\c++\holyspirit\sourcem\map\map.cpp
+1324990898 source:c:\c++\holyspirit\sourcem\map\map.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -812,7 +813,7 @@
 	"../globale.h"
 	"../jeu.h"
 
-1323619345 source:c:\c++\holyspirit\sourcem\map\map_scripts.cpp
+1324990967 source:c:\c++\holyspirit\sourcem\map\map_scripts.cpp
 	"map.h"
 	<iostream>
 	<fstream>
@@ -901,7 +902,7 @@
 	<stdio.h>
 	<string.h>
 
-1323521758 source:c:\c++\holyspirit\sourcem\jeu.cpp
+1324993448 source:c:\c++\holyspirit\sourcem\jeu.cpp
 	"constantes.h"
 	"globale.h"
 	"jeu.h"
@@ -937,7 +938,7 @@
 	<libavformat/avformat.h>
 	<libavcodec/avcodec.h>
 
-1323614242 source:c:\c++\holyspirit\sourcem\contextes\c_mainmenu.cpp
+1324990718 source:c:\c++\holyspirit\sourcem\contextes\c_mainmenu.cpp
 	"../jeu.h"
 	"../globale.h"
 	<iostream>
@@ -1805,4 +1806,28 @@
 	"label.h"
 	"../globale.h"
 	<fstream>
+
+1324992115 c:\c++\holyspirit\sourcem\network\network.h
+	<SFML/System.hpp>
+	<SFML/Network.hpp>
+
+1324993430 source:c:\c++\holyspirit\sourcem\network\network.cpp
+	"../constantes.h"
+	"../globale.h"
+	"../jeu.h"
+
+1324993169 source:c:\c++\holyspirit\sourcem\network\receive_client.cpp
+	"../constantes.h"
+	"../globale.h"
+	"../jeu.h"
+
+1324993307 source:c:\c++\holyspirit\sourcem\network\receive_host.cpp
+	"../constantes.h"
+	"../globale.h"
+	"../jeu.h"
+
+1324993400 source:c:\c++\holyspirit\sourcem\network\send.cpp
+	"../constantes.h"
+	"../globale.h"
+	"../jeu.h"
 

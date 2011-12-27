@@ -171,8 +171,8 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
             jeu->m_mainMenu->m_save=true;
             jeu->m_mainMenu->m_reset=false;
             jeu->m_contexte = jeu->m_mainMenu;
-            jeu->Disconnect();
-            jeu->CloseServer();
+            net->Disconnect();
+            net->CloseServer();
         }
 
 
@@ -199,8 +199,8 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
             jeu->m_mainMenu->m_save=true;
             jeu->m_mainMenu->m_reset=true;
             jeu->m_contexte = jeu->m_mainMenu;
-            jeu->Disconnect();
-            jeu->CloseServer();
+            net->Disconnect();
+            net->CloseServer();
         }
 
 

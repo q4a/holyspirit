@@ -30,6 +30,7 @@ Configuration *configuration;
 MoteurGraphique *moteurGraphique;
 MoteurSons *moteurSons;
 EventManager *eventManager;
+Network *net;
 
 int main (  )
 {
@@ -57,6 +58,9 @@ int main (  )
 
     console->Ajouter("Initialisation du moteur sonore");
     moteurSons = MoteurSons::GetInstance();
+
+    console->Ajouter("Initialisation du moteur réseau");
+    net = Network::GetInstance();
 
     console->Ajouter("");
 
@@ -98,6 +102,7 @@ int main (  )
     console->Ajouter("");
     console->Ajouter("Destruction des moteurs");
 
+    net->Kill();
     moteurGraphique->Kill();
     moteurSons->Kill();
     configuration->Kill();

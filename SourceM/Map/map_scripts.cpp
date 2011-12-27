@@ -476,13 +476,13 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         else if (script->m_instructions[noInstruction].nom=="newQuest")
         {
             hero->NewQuest((int)script->getValeur(noInstruction, 0));
-            jeu->SendQuest((int)script->getValeur(noInstruction, 0), 0);
+            net->SendQuest((int)script->getValeur(noInstruction, 0), 0);
         }
         else if (script->m_instructions[noInstruction].nom=="setQuestName")
         {
             hero->SetQuestName((int)script->getValeur(noInstruction, 0),
                            (int)script->getValeur(noInstruction, 1));
-            jeu->SendQuest((int)script->getValeur(noInstruction, 0), 1,
+            net->SendQuest((int)script->getValeur(noInstruction, 0), 1,
                            (int)script->getValeur(noInstruction, 1));
         }
         else if (script->m_instructions[noInstruction].nom=="setQuestState")
@@ -491,7 +491,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                            (int)script->getValeur(noInstruction, 1),
                            (int)script->getValeur(noInstruction, 2));
 
-            jeu->SendQuest((int)script->getValeur(noInstruction, 0), 2,
+            net->SendQuest((int)script->getValeur(noInstruction, 0), 2,
                            (int)script->getValeur(noInstruction, 1),
                            (int)script->getValeur(noInstruction, 2));
         }
@@ -499,7 +499,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         {
             hero->SetQuestActif((int)script->getValeur(noInstruction, 0),
                            (int)script->getValeur(noInstruction, 1));
-            jeu->SendQuest((int)script->getValeur(noInstruction, 0), 3,
+            net->SendQuest((int)script->getValeur(noInstruction, 0), 3,
                            (int)script->getValeur(noInstruction, 1));
         }
         else if (script->m_instructions[noInstruction].nom=="giftItem" && monstre != -1)
@@ -628,7 +628,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         else if (script->m_instructions[noInstruction].nom=="setClimate" && (configuration->hote/* || !configuration->hote*/))
         {
             if(SetClimate(script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1)))
-                jeu->SendClimate(script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1));
+                net->SendClimate(script->getValeur(noInstruction, 0), script->getValeur(noInstruction, 1));
         }
         else if (script->m_instructions[noInstruction].nom=="change_map")
         {
@@ -643,7 +643,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
 
             jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
             jeu->m_contexte = jeu->m_chargement;
-            jeu->SendChangeMap(nomMap, coordonneePerso);
+            net->SendChangeMap(nomMap, coordonneePerso);
         }
         else if (script->m_instructions[noInstruction].nom=="playMusic")
         {
@@ -842,7 +842,7 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                     if (hero->m_personnage.m_cible == &m_monstre[monstre]
                     &&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1
                     &&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1)
-                        newok = true, hero->m_cibleInt = monstre, jeu->SendInteract();
+                        newok = true, hero->m_cibleInt = monstre, net->SendInteract();
 
                     for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
                         if (p->m_cibleInt == monstre

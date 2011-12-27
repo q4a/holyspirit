@@ -20,6 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Moteurs/moteurGraphique.h"
 #include "Moteurs/moteurSons.h"
 #include "Moteurs/eventManager.h"
+#include "Network/network.h"
 #include "configuration.h"
 
 extern Configuration *configuration;
@@ -27,5 +28,6 @@ extern Console *console;
 extern MoteurGraphique *moteurGraphique;
 extern MoteurSons *moteurSons;
 extern EventManager *eventManager;
+extern Network *net;
 
 

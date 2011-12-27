@@ -91,7 +91,7 @@ void c_Potales::Utiliser(Jeu *jeu)
         Clock.Reset();
 
         jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
-        jeu->SendChangeMap(nomMap,coordonneePerso);
+        net->SendChangeMap(nomMap,coordonneePerso);
         temp = 8;
     }
 
