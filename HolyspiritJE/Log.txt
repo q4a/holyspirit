@@ -1128,23 +1128,21 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement de l'objet : Mace_2h_timber_axe.item.hs
          
          Chargement de l'objet : Mace_2h_timber_axe.item.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
          Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
-         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
          
          Chargement de l'objet : Potion_heal0.item.hs
          Chargement du miracle : Data/Miscs/Miracles/Potions/Heal0.miracle.hs
@@ -1207,3 +1205,279 @@ ERREUR : Impossible de charger : Data/Graphics/Miracles/Toxic.png
          Chargement de l'objet : Craft_ore_gold.item.hs
          
          Chargement de l'objet : Craft_gem_ruby.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         
+         Chargement de l'objet : Craft_wood_plank.item.hs
+         Chargement de la map terminé.
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Armors/Leather/TwoWeapons.rs.hs
+         Chargement de : Concubine_Leather_1H_Wait0.png
+         Chargement de : Concubine_Leather_1H_Walk0.png
+         Chargement de : Concubine_Leather_2W_Attack0.png
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Helmets/Iron_cap_1h.rs.hs
+         Chargement de : Concubine_IronCap_1H_Wait0.png
+         Chargement de : Concubine_IronCap_1H_Walk0.png
+         Chargement de : Concubine_IronCap_1H_Attack0.png
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Weapons_OneHand/Dagger_r.rs.hs
+         Chargement de : Concubine_Dagger_R_Wait0.png
+         Chargement de : Concubine_Dagger_R_Walk0.png
+         Chargement de : Concubine_Dagger_R_Attack0.png
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Weapons_OneHand/Dagger_l.rs.hs
+         Chargement de : Concubine_Dagger_L_Wait0.png
+         Chargement de : Concubine_Dagger_L_Walk0.png
+         Chargement de : Concubine_Dagger_L_Attack0.png
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+         Chargement de : Data/Musics/Abbey.ogg
+         
+         ---------------------------------------------------------------------------------
+         EVENEMENT : Changement de map
+         ---------------------------------------------------------------------------------
+         
+         Sauvegarde de la map : Data/User/Temps/Abbey.map.hs
+         Sauvegarde de la map_entite : Data/User/Temps/entites_map_Abbey.map.hs.emap.hs
+         Sauvegarde de la map terminée !
+         
+         Sauvegarde du héro...
+         Sauvegarde du héro terminée !
+         
+         Destruction de la map...
+         Map détruite !
+         Creation minimap :
+         
+         Chargements d'images diverses :
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/HolyTornado_projection.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/PowerfulSlash.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/LastJudgement_burn.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Charge.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/FaithArmor.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Lazare_vampirism.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Crusader/Miracles/Barbe.miracle.hs
+         
+         Chargement de la map : Abbey_indoor.map.hs
+         Map sauvée existante.
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_floor.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_floor.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_walls.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_walls.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_miscs.png
+         Chargement de : Data/Graphics/Landscapes/Abbey/Abbey_miscs.ts.hs
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_monks.png
+         Chargement de : Data/Graphics/Landscapes/Catacombs/Catacombs_monks.ts.hs
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger_clickable.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
+         Chargement de : Data/Entities/Resources/Miscs/Trigger_clickable.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Farmer.char.hs
+         Chargement du script : " Data/Entities/Scripts/NPC/Farmer.script.hs "
+         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/NPC/Farmer.rs.hs
+         Chargement de : Farmer_wait0.png
+         Chargement de : Farmer_cry0.png
+         Chargement de : Data/Entities/Resources/NPC/Farmer.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Abbe.char.hs
+         Chargement du script : " Data/Entities/Scripts/NPC/Abbe.script.hs "
+         
+         Chargement de l'objet : Litanie_toxic_0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/Toxic_0.miracle.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/NPC/Abbe.rs.hs
+         Chargement de : Data/Entities/Resources/NPC/Abbe.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Monk.char.hs
+         Chargement du script : " Data/Entities/Scripts/NPC/Follower.script.hs "
+         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/NPC/Abbe.rs.hs
+         Chargement de : Data/Entities/Resources/NPC/Monk.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Monk_summoner.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Summoning.script.hs "
+         Chargement du miracle : Data/Entities/Miracles/Summoning_Monk.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/NULL.rs.hs
+         Chargement de : Data/Entities/Resources/NPC/Monk_summoner.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/NPC/Monk2.char.hs
+         Chargement du script : " Data/Entities/Scripts/NPC/Monk2.script.hs "
+         Chargement du miracle : Data/Miscs/Miracles/Quest/Quest.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/NPC/Monk2.rs.hs
+         Chargement de : Monk2_Wait0.png
+         Chargement de : Data/Entities/Resources/NPC/Monk2.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Invisible_door.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger_clickable_sound.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Invisible_door.rs.hs
+         Chargement de : Data/Sounds/Miscs/Door_and_footsteps.wav
+         Chargement de : Data/Entities/Resources/Miscs/Invisible_door.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Containers/Writing_case_abbey.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Chess.script.hs "
+         
+         Chargement de l'objet : Doc_abbey.item.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Containers/Writing_case.rs.hs
+         Chargement de : Writing_case.png
+         Chargement de : Data/Sounds/Entities/Book0.wav
+         Chargement de : Data/Entities/Resources/Containers/Writing_case_abbey.char.hs terminé
+         
+         Chargement du monstre : Data/Entities/Resources/Miscs/Abbey_door2.char.hs
+         Chargement du script : " Data/Entities/Scripts/Miscs/Trigger_clickable.script.hs "
+         
+         Chargement du personnage : Data/Entities/Resources/Miscs/Abbey_door2.rs.hs
+         Chargement de : Abbey_door2.png
+         Chargement de : Data/Entities/Resources/Miscs/Abbey_door2.char.hs terminé
+         
+         Une map des entités est déjà existante.
+         
+         Chargement de l'objet : Doc_abbey.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         
+         Chargement de l'objet : Litanie_0.item.hs
+         Chargement de la map terminé.
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/LevelUp/LevelUp.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Toxic.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Venom.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/SplinterShot.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Charmed_life.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Shadow.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
+         Chargement du miracle : Data/Miscs/Heroes/Concubine/Miracles/Murder.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+         Chargement du miracle : Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Armors/Leather/TwoWeapons.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Helmets/Iron_cap_1h.rs.hs
+         
+         Chargement du personnage : Data/Entities/Resources/Heroes/Concubine/Weapons_OneHand/Dagger_r.rs.hs
