@@ -113,3 +113,5 @@ Rejoindre partie
 Créer partie
 Nouvelle quête
 Quête terminée
+Niveau requis : 
+
