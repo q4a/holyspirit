@@ -52,3 +52,4 @@ Tourment de Teudéric
 Johannes le Déchu
 Dépouille
 Goule
+Tas de pierres
