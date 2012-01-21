@@ -51,5 +51,5 @@ Roi Teudéric
 Tourment de Teudéric
 Johannes le Déchu
 Dépouille
-Goule
+Suceur de Moelle
 Tas de pierres

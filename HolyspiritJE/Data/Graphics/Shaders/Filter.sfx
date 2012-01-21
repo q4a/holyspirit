@@ -10,7 +10,7 @@ void main()
 	
 	float gray = pixel.r * 0.39 + pixel.g * 0.50 + pixel.b * 0.11;
 	
-	vec4 temp2 = vec4(gray * vec3(1.0,1.0,1.0), 1.0) * 0.5 + pixel * 0.5;
+	vec4 temp2 = vec4(gray * vec3(1.0,1.0,1.0), 1.0) * 0.45 + pixel * 0.55;
 	
 	temp2 += vec4(temp2 - vec4( 0.1,0.1,0.1,1.0)) * vec4(0.25,0.25,0.25,1.0)  + vec4(luminosity, luminosity,luminosity,0.0);
 	
