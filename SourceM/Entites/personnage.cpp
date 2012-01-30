@@ -419,8 +419,7 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
                 if(surbrillance)
                 {
                     Entite_graphique temp = m_entite_graphique;
-                    temp.SetBlendMode(sf::Blend::Add);
-                    moteurGraphique->AjouterEntiteGraphique(&temp);
+                    moteurGraphique->AjouterEntiteGraphique(&temp,sf::BlendAdd);
                 }
 
                 if(modele->m_ombre && m_entite_graphique.m_couche + m_entite_graphique.m_decalCouche >= 10)
@@ -460,7 +459,7 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
         text.SetFont(moteurGraphique->m_font);
         text.SetCharacterSize(12);
         text.SetString(m_speak);
-        pos.x -= (int)text.GetRect().Width/2;
+        pos.x -= (int)text.GetGlobalBounds().Width/2;
 
         moteurGraphique->AjouterTexte(m_speak, pos, border, 14, 0, 12, sf::Color(224,224,224,alpha));
 

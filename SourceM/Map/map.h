@@ -56,7 +56,7 @@ public:
     void CreerSprite(sf::Vector3f position_case);
     void Sauvegarder(Hero *hero);
 
-    void Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha=255);
+    void Afficher(std::list<Hero*> &players,bool alt,float alpha=255);
     void AfficherSac(coordonnee ,float ,coordonnee ,Caracteristique , std::string, Border &);
 
     void Animer(Hero *hero,float temps);
@@ -113,7 +113,7 @@ public:
 
     bool SetClimate(int no, bool actif);
 
-    void TestVisionMonstre(int numero, Hero *hero,std::list<Hero> &players);
+    void TestVisionMonstre(int numero, std::list<Hero*> &players);
     bool TileVisible(int x,int y, coordonnee pos);
 
     bool DistanceWithHeros(Jeu *jeu, coordonnee , int);

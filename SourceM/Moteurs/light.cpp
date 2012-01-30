@@ -75,7 +75,7 @@ void Light::Draw(sf::RenderTarget *App)
 {
     // On boucle sur m_shape pour afficher tous les triangles.
     for (int i=0;i<(int)m_shape.size();i++)
-        App->Draw(m_shape[i]);
+        App->Draw(m_shape[i], sf::BlendAdd);
 }
 
 
@@ -260,25 +260,30 @@ void Light::AddTriangle(sf::Vector3f pt1,sf::Vector3f pt2, std::list<int> deja_w
 
     if(!(pt1.x == pt2.x && pt1.y == pt2.y))
     {
-        m_shape.push_back(sf::Shape ());
+        m_shape.push_back(sf::VertexArray ());
+        m_shape.back().SetPrimitiveType(sf::Triangles);
 
         // On lui donne comme point de départ (0,0), le centre de la lumière, avec la couleur et intensité maximal
-        m_shape.back().AddPoint(0, 0,  sf::Color((int)(m_intensity*m_color.r/255),(int)(m_intensity*m_color.g/255),(int)(m_intensity*m_color.b/255),255), sf::Color(0,255,0));
+        m_shape.back().Append(sf::Vertex(sf::Vector2f(m_position.x, m_position.y/2),
+                                         sf::Color((int)(m_intensity*m_color.r/255),
+                                                   (int)(m_intensity*m_color.g/255),
+                                                   (int)(m_intensity*m_color.b/255),255)));
 
         // On calcul ou l'on se trouve par rapport au centre, pour savoir à quel intensité on est
         intensity=m_intensity-gpl::sqrt(pt1.x*pt1.x + pt1.y*pt1.y)*m_intensity/m_radius;
         // Et on ajoute un  point au shape
-        m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity*m_color.r/255),(int)(intensity*m_color.g/255),(int)(intensity*m_color.b/255),255), sf::Color(0,255,0));
+        m_shape.back().Append(sf::Vertex(sf::Vector2f(m_position.x + pt1.x,(m_position.y + pt1.y)/2),
+                                         sf::Color((int)(intensity*m_color.r/255),
+                                                   (int)(intensity*m_color.g/255),
+                                                   (int)(intensity*m_color.b/255),255)));
 
         // Idem
         intensity2=m_intensity-gpl::sqrt(pt2.x*pt2.x + pt2.y*pt2.y)*m_intensity/m_radius;
 
-        m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity2*m_color.r/255),(int)(intensity2*m_color.g/255),(int)(intensity2*m_color.b/255),255), sf::Color(0,255,0));
-
-        // On met que le shape soit en Add et on lui donne sa position
-        m_shape.back().SetBlendMode(sf::Blend::Add);
-        //m_shape.back().EnableOutline(true);
-        //m_shape.back().SetOutlineThickness(2);
+        m_shape.back().Append(sf::Vertex(sf::Vector2f(m_position.x + pt2.x,(m_position.y + pt2.y)/2),
+                                         sf::Color((int)(intensity2*m_color.r/255),
+                                                   (int)(intensity2*m_color.g/255),
+                                                   (int)(intensity2*m_color.b/255),255)));
 
         if(pt1.z > 160)
             pt1.z = 160;
@@ -290,7 +295,7 @@ void Light::AddTriangle(sf::Vector3f pt1,sf::Vector3f pt2, std::list<int> deja_w
             pt2.z = -pt2.z;
 
 
-        m_shape.back().SetPosition(m_position.x,m_position.y/2);
+        //m_shape.back().SetPosition(m_position.x,m_position.y/2);
 
         float a = ((pt1.x)-(pt2.x) != 0) ? (((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x))) : 1;
         float b = (pt2.y) - a*pt2.x;
@@ -323,20 +328,27 @@ void Light::AddTriangle(sf::Vector3f pt1,sf::Vector3f pt2, std::list<int> deja_w
         if (pt2.z > 0 || pt1.z > 0)
             if ( 0 > (pt1.y) - (pt1.x)*(((pt1.y)-(pt2.y))/((pt1.x)-(pt2.x))))
             {
-                m_shape.push_back(sf::Shape ());
+                m_shape.push_back(sf::VertexArray ());
 
-                m_shape.back().AddPoint(pt1.x,pt1.y/2,  sf::Color((int)(intensity3*m_color.r/255),(int)(intensity3*m_color.g/255),(int)(intensity3*m_color.b/255),LIGHT_ALPHA),sf::Color(255,0,0));
+                m_shape.back().Append(sf::Vertex(sf::Vector2f(m_position.x+pt1.x,(m_position.y+pt1.y)/2),
+                                                 sf::Color((int)(intensity3*m_color.r/255),
+                                                           (int)(intensity3*m_color.g/255),
+                                                           (int)(intensity3*m_color.b/255),LIGHT_ALPHA)));
                 if(pt1.z > 0)
-                    m_shape.back().AddPoint(pt1.x,pt1.y/2-pt1.z /* sin(intensity3 /m_intensity*M_PI_2)*/,  sf::Color(0,0,0),sf::Color(255,0,0));
+                    m_shape.back().Append(sf::Vertex(sf::Vector2f(m_position.x+pt1.x,(m_position.y+pt1.y)/2-pt1.z) /* sin(intensity3 /m_intensity*M_PI_2)*/,
+                                                     sf::Color(0,0,0)));
                 if(pt2.z > 0)
-                    m_shape.back().AddPoint(pt2.x,pt2.y/2-pt2.z /* sin(intensity4/m_intensity*M_PI_2)*/,  sf::Color(0,0,0),sf::Color(255,0,0));
-                m_shape.back().AddPoint(pt2.x,pt2.y/2,  sf::Color((int)(intensity4*m_color.r/255),(int)(intensity4*m_color.g/255),(int)(intensity4*m_color.b/255),LIGHT_ALPHA),sf::Color(255,0,0));
+                    m_shape.back().Append(sf::Vertex(sf::Vector2f(m_position.x+pt2.x,(m_position.y+pt2.y)/2-pt2.z) /* sin(intensity4/m_intensity*M_PI_2)*/,
+                                                     sf::Color(0,0,0)));
+                m_shape.back().Append(sf::Vertex(sf::Vector2f(m_position.x+pt2.x,(m_position.y+pt2.y)/2),
+                                                 sf::Color((int)(intensity4*m_color.r/255),
+                                                           (int)(intensity4*m_color.g/255),
+                                                           (int)(intensity4*m_color.b/255),LIGHT_ALPHA)));
 
-                m_shape.back().SetBlendMode(sf::Blend::Add);
-
-                m_shape.back().SetPosition(m_position.x,m_position.y/2);
-               // m_shape.back().EnableOutline(true);
-               // m_shape.back().SetOutlineThickness(2);
+                if(m_shape.back().GetVertexCount() == 3)
+                    m_shape.back().SetPrimitiveType(sf::Triangles);
+                else
+                    m_shape.back().SetPrimitiveType(sf::Quads);
             }
     }
 }

@@ -288,7 +288,7 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
             bufMot += texte[p];
 
             temp.SetString(buf + bufMot);
-            if (temp.GetRect().Width > tailleCadran)
+            if (temp.GetGlobalBounds().Width > tailleCadran)
                 bufMot = '\n' + bufMot.substr(1,bufMot.size()-1);
         }
         else
@@ -756,17 +756,12 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                     bool oldok = ok;
 
                     ok = false;
-                    if (((m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)
-                        *(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)
-                    +    (m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)
-                        *(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)) <= script->getValeur(no, 0)*script->getValeur(no, 0))
-                        ok=oldok;
 
-                    for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
-                    if (((m_monstre[monstre].getCoordonnee().x-p->m_personnage.getCoordonnee().x)
-                        *(m_monstre[monstre].getCoordonnee().x-p->m_personnage.getCoordonnee().x)
-                    +    (m_monstre[monstre].getCoordonnee().y-p->m_personnage.getCoordonnee().y)
-                        *(m_monstre[monstre].getCoordonnee().y-p->m_personnage.getCoordonnee().y)) <= script->getValeur(no, 0)*script->getValeur(no, 0))
+                    for (std::list<Hero*>::iterator p = jeu->m_listHeroes.begin(); p != jeu->m_listHeroes.end(); ++p)
+                    if (((m_monstre[monstre].getCoordonnee().x-(*p)->m_personnage.getCoordonnee().x)
+                        *(m_monstre[monstre].getCoordonnee().x-(*p)->m_personnage.getCoordonnee().x)
+                    +    (m_monstre[monstre].getCoordonnee().y-(*p)->m_personnage.getCoordonnee().y)
+                        *(m_monstre[monstre].getCoordonnee().y-(*p)->m_personnage.getCoordonnee().y)) <= script->getValeur(no, 0)*script->getValeur(no, 0))
                         ok=oldok;
                 }
                 else if (script->m_instructions[no].nom=="exist_item")

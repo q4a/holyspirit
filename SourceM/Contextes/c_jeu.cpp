@@ -434,10 +434,10 @@ void c_Jeu::Animation(Jeu *jeu)
     if(jeu->hero.m_personnage.m_vientDeToucher != NULL)
         jeu->hero.m_personnage.m_vientDeFrapper = jeu->hero.m_personnage.m_vientDeToucher, jeu->hero.m_personnage.m_vientDeToucher = NULL;
 
-    jeu->map->GererMiracle(&jeu->hero.m_personnage,jeu->hero.m_classe.miracles,tempsEcoule,jeu);
+    for (std::list<Hero*>::iterator h = jeu->m_listHeroes.begin();
+                                    h != jeu->m_listHeroes.end(); ++h)
+        jeu->map->GererMiracle(&(*h)->m_personnage,(*h)->m_classe.miracles,tempsEcoule,jeu);
 
-    for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
-        jeu->map->GererMiracle(&p->m_personnage,p->m_classe.miracles,tempsEcoule,jeu);
 }
 void c_Jeu::Lumieres(Jeu *jeu)
 {
@@ -617,7 +617,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         sf::Sprite sprite;
 
         sprite.SetTexture(*moteurGraphique->getImage(bouton->image.image));
-        sprite.SetSubRect(sf::IntRect(bouton->image.position.x,
+        sprite.SetTextureRect(sf::IntRect(bouton->image.position.x,
                                       bouton->image.position.y,
                                       bouton->image.position.w,
                                       bouton->image.position.h));
@@ -773,7 +773,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         sf::Sprite sprite;
 
         sprite.SetTexture(*moteurGraphique->getImage(bouton->image.image));
-        sprite.SetSubRect(sf::IntRect(bouton->image.position.x,
+        sprite.SetTextureRect(sf::IntRect(bouton->image.position.x,
                                       bouton->image.position.y,
                                       bouton->image.position.w,
                                       bouton->image.position.h));
@@ -1059,7 +1059,7 @@ void c_Jeu::Affichage(Jeu *jeu)
 {
     moteurGraphique->Gerer(tempsEcoule);
 
-    jeu->map->Afficher(&jeu->hero,jeu->m_personnageClients,eventManager->getEvenement(configuration->m_key_actions[K_PICKITEMS],EventKey),alpha_map);
+    jeu->map->Afficher(jeu->m_listHeroes,eventManager->getEvenement(configuration->m_key_actions[K_PICKITEMS],EventKey),alpha_map);
 
     jeu->hero.AfficherAmisEtCraft();
 

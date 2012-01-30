@@ -1032,15 +1032,15 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.niveau;
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(171,322,decalage));
-        string.Move(14 - string.GetRect().Width * 0.5, 0);
+        string.Move(14 - string.GetGlobalBounds().Width * 0.5, 0);
         string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
 
         if(!trader
-         &&eventManager->getPositionSouris().x > string.GetRect().Left
-         &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
-         &&eventManager->getPositionSouris().y > string.GetRect().Top
-         &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
+         &&eventManager->getPositionSouris().x > string.GetGlobalBounds().Left
+         &&eventManager->getPositionSouris().x < string.GetGlobalBounds().Left + string.GetGlobalBounds().Width
+         &&eventManager->getPositionSouris().y > string.GetGlobalBounds().Top
+         &&eventManager->getPositionSouris().y < string.GetGlobalBounds().Top + string.GetGlobalBounds().Height)
             moteurGraphique->AjouterTexte(configuration->getText(0,49),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,
@@ -1055,10 +1055,10 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         moteurGraphique->AjouterTexte(&string,15);
 
         if(!trader
-         &&eventManager->getPositionSouris().x > string.GetRect().Left
-         &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
-         &&eventManager->getPositionSouris().y > string.GetRect().Top
-         &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
+         &&eventManager->getPositionSouris().x > string.GetGlobalBounds().Left
+         &&eventManager->getPositionSouris().x < string.GetGlobalBounds().Left + string.GetGlobalBounds().Width
+         &&eventManager->getPositionSouris().y > string.GetGlobalBounds().Top
+         &&eventManager->getPositionSouris().y < string.GetGlobalBounds().Top + string.GetGlobalBounds().Height)
             moteurGraphique->AjouterTexte(configuration->getText(0,50),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,
@@ -1074,10 +1074,10 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         moteurGraphique->AjouterTexte(&string,15);
 
         if(!trader
-         &&eventManager->getPositionSouris().x > string.GetRect().Left
-         &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
-         &&eventManager->getPositionSouris().y > string.GetRect().Top
-         &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
+         &&eventManager->getPositionSouris().x > string.GetGlobalBounds().Left
+         &&eventManager->getPositionSouris().x < string.GetGlobalBounds().Left + string.GetGlobalBounds().Width
+         &&eventManager->getPositionSouris().y > string.GetGlobalBounds().Top
+         &&eventManager->getPositionSouris().y < string.GetGlobalBounds().Top + string.GetGlobalBounds().Height)
             moteurGraphique->AjouterTexte(configuration->getText(0,62),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,
@@ -1097,24 +1097,24 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
     string.SetCharacterSize(14);
 
-    if ((string.GetRect().Width)>94)
+    if ((string.GetGlobalBounds().Width)>94)
     {
         string.SetCharacterSize(13);
-        if (string.GetRect().Width>94)
+        if (string.GetGlobalBounds().Width>94)
             string.SetCharacterSize(12);
     }
 
     string.SetPosition(AutoScreenAdjust(267,319,decalage));
-    string.Move(47 - string.GetRect().Width * 0.5, 0);
+    string.Move(47 - string.GetGlobalBounds().Width * 0.5, 0);
 
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
     if(!trader
-         &&eventManager->getPositionSouris().x > string.GetRect().Left
-         &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
-         &&eventManager->getPositionSouris().y > string.GetRect().Top
-         &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
+         &&eventManager->getPositionSouris().x > string.GetGlobalBounds().Left
+         &&eventManager->getPositionSouris().x < string.GetGlobalBounds().Left + string.GetGlobalBounds().Width
+         &&eventManager->getPositionSouris().y > string.GetGlobalBounds().Top
+         &&eventManager->getPositionSouris().y < string.GetGlobalBounds().Top + string.GetGlobalBounds().Height)
         moteurGraphique->AjouterTexte(configuration->getText(0,3),coordonnee(   eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,
@@ -1134,23 +1134,23 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         string.SetString(buf.str());
     }
 
-    if (string.GetRect().Width > 94)
+    if (string.GetGlobalBounds().Width > 94)
     {
         string.SetCharacterSize(13);
-        if (string.GetRect().Width > 94)
+        if (string.GetGlobalBounds().Width > 94)
         string.SetCharacterSize(12);
     }
 
     string.SetPosition(AutoScreenAdjust(267,347,decalage));
-    string.Move(47 - string.GetRect().Width * 0.5, 0);
+    string.Move(47 - string.GetGlobalBounds().Width * 0.5, 0);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
     if(!trader
-         &&eventManager->getPositionSouris().x > string.GetRect().Left
-         &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
-         &&eventManager->getPositionSouris().y > string.GetRect().Top
-         &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
+         &&eventManager->getPositionSouris().x > string.GetGlobalBounds().Left
+         &&eventManager->getPositionSouris().x < string.GetGlobalBounds().Left + string.GetGlobalBounds().Width
+         &&eventManager->getPositionSouris().y > string.GetGlobalBounds().Top
+         &&eventManager->getPositionSouris().y < string.GetGlobalBounds().Top + string.GetGlobalBounds().Height)
         moteurGraphique->AjouterTexte(configuration->getText(0,4),coordonnee(   eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,19,0,12,sf::Color(224,224,224));
@@ -1162,7 +1162,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.force;
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(132,376,decalage));
-        string.Move(17 - string.GetRect().Width * 0.5, 0);
+        string.Move(17 - string.GetGlobalBounds().Width * 0.5, 0);
         string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
     }
@@ -1206,10 +1206,10 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     moteurGraphique->AjouterTexte(&string,15);
 
     if(!trader
-     &&eventManager->getPositionSouris().x > string.GetRect().Left
-     &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
-     &&eventManager->getPositionSouris().y > string.GetRect().Top
-     &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
+     &&eventManager->getPositionSouris().x > string.GetGlobalBounds().Left
+     &&eventManager->getPositionSouris().x < string.GetGlobalBounds().Left + string.GetGlobalBounds().Width
+     &&eventManager->getPositionSouris().y > string.GetGlobalBounds().Top
+     &&eventManager->getPositionSouris().y < string.GetGlobalBounds().Top + string.GetGlobalBounds().Height) {
         moteurGraphique->AjouterTexte(configuration->getText(0,90),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,19,0,12,sf::Color(224,224,224)); }
@@ -1220,7 +1220,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.dexterite;
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(132,404,decalage));
-        string.Move(17 - string.GetRect().Width * 0.5, 0);
+        string.Move(17 - string.GetGlobalBounds().Width * 0.5, 0);
         /*if (m_caracteristiques.dexterite!=m_personnage.getCaracteristique().dexterite)
             string.SetColor(sf::Color(0,128,255));
         else*/
@@ -1266,10 +1266,10 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     moteurGraphique->AjouterTexte(&string,15);
 
     if(!trader
-     &&eventManager->getPositionSouris().x > string.GetRect().Left
-     &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
-     &&eventManager->getPositionSouris().y > string.GetRect().Top
-     &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
+     &&eventManager->getPositionSouris().x > string.GetGlobalBounds().Left
+     &&eventManager->getPositionSouris().x < string.GetGlobalBounds().Left + string.GetGlobalBounds().Width
+     &&eventManager->getPositionSouris().y > string.GetGlobalBounds().Top
+     &&eventManager->getPositionSouris().y < string.GetGlobalBounds().Top + string.GetGlobalBounds().Height) {
         moteurGraphique->AjouterTexte(configuration->getText(0,91),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,19,0,12,sf::Color(224,224,224)); }
@@ -1279,10 +1279,10 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         std::ostringstream  buf;
         buf<<m_caracteristiques.vitalite;
         string.SetString(buf.str());
-        //string.SetX((132 + (configuration->Resolution.x - 800) * 0.5)+17-string.GetRect().Width/2);
+        //string.SetX((132 + (configuration->Resolution.x - 800) * 0.5)+17-string.GetGlobalBounds().Width/2);
        // string.SetY(429 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
         string.SetPosition(AutoScreenAdjust(132,432,decalage));
-        string.Move(17 - string.GetRect().Width * 0.5, 0);
+        string.Move(17 - string.GetGlobalBounds().Width * 0.5, 0);
         /*if (m_caracteristiques.vitalite!=m_personnage.getCaracteristique().vitalite)
             string.SetColor(sf::Color(0,128,255));
         else*/
@@ -1328,10 +1328,10 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     moteurGraphique->AjouterTexte(&string,15);
 
     if(!trader
-     &&eventManager->getPositionSouris().x > string.GetRect().Left
-     &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
-     &&eventManager->getPositionSouris().y > string.GetRect().Top
-     &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
+     &&eventManager->getPositionSouris().x > string.GetGlobalBounds().Left
+     &&eventManager->getPositionSouris().x < string.GetGlobalBounds().Left + string.GetGlobalBounds().Width
+     &&eventManager->getPositionSouris().y > string.GetGlobalBounds().Top
+     &&eventManager->getPositionSouris().y < string.GetGlobalBounds().Top + string.GetGlobalBounds().Height) {
         moteurGraphique->AjouterTexte(configuration->getText(0,92),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,19,0,12,sf::Color(224,224,224)); }
@@ -1342,7 +1342,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.piete;
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(132,460,decalage));
-        string.Move(17 - string.GetRect().Width * 0.5, 0);
+        string.Move(17 - string.GetGlobalBounds().Width * 0.5, 0);
         /*if (m_caracteristiques.piete!=m_personnage.getCaracteristique().piete)
             string.SetColor(sf::Color(0,128,255));
         else*/
@@ -1386,10 +1386,10 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     moteurGraphique->AjouterTexte(&string,15);
 
     if(!trader
-     &&eventManager->getPositionSouris().x > string.GetRect().Left
-     &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
-     &&eventManager->getPositionSouris().y > string.GetRect().Top
-     &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
+     &&eventManager->getPositionSouris().x > string.GetGlobalBounds().Left
+     &&eventManager->getPositionSouris().x < string.GetGlobalBounds().Left + string.GetGlobalBounds().Width
+     &&eventManager->getPositionSouris().y > string.GetGlobalBounds().Top
+     &&eventManager->getPositionSouris().y < string.GetGlobalBounds().Top + string.GetGlobalBounds().Height) {
         moteurGraphique->AjouterTexte(configuration->getText(0,93),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,19,0,12,sf::Color(224,224,224)); }
@@ -1400,7 +1400,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.charisme;
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(132,488,decalage));
-        string.Move(17 - string.GetRect().Width * 0.5, 0);
+        string.Move(17 - string.GetGlobalBounds().Width * 0.5, 0);
         /*if (m_caracteristiques.charisme!=m_personnage.getCaracteristique().charisme)
             string.SetColor(sf::Color(0,128,255));
         else*/
@@ -1446,10 +1446,10 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     moteurGraphique->AjouterTexte(&string,15);
 
     if(!trader
-     &&eventManager->getPositionSouris().x > string.GetRect().Left
-     &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
-     &&eventManager->getPositionSouris().y > string.GetRect().Top
-     &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height) {
+     &&eventManager->getPositionSouris().x > string.GetGlobalBounds().Left
+     &&eventManager->getPositionSouris().x < string.GetGlobalBounds().Left + string.GetGlobalBounds().Width
+     &&eventManager->getPositionSouris().y > string.GetGlobalBounds().Top
+     &&eventManager->getPositionSouris().y < string.GetGlobalBounds().Top + string.GetGlobalBounds().Height) {
         moteurGraphique->AjouterTexte(configuration->getText(0,94),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,19,0,12,sf::Color(224,224,224)); }
@@ -1464,7 +1464,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.pts_restant;
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(132,516,decalage));
-        string.Move(17 - string.GetRect().Width * 0.5, 0);
+        string.Move(17 - string.GetGlobalBounds().Width * 0.5, 0);
        // string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
     }
@@ -1476,7 +1476,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.degatsMin[PHYSIQUE]<<" - "<<m_caracteristiques.degatsMax[PHYSIQUE];
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(208,405,decalage));
-        string.Move(32 - string.GetRect().Width * 0.5, 0);
+        string.Move(32 - string.GetGlobalBounds().Width * 0.5, 0);
         //string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
     }
@@ -1485,7 +1485,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.degatsMin[FEU]<<" - "<<m_caracteristiques.degatsMax[FEU];
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(208,433,decalage));
-        string.Move(32 - string.GetRect().Width * 0.5, 0);
+        string.Move(32 - string.GetGlobalBounds().Width * 0.5, 0);
        // string.SetColor(sf::Color(255,128,128));
         moteurGraphique->AjouterTexte(&string,15);
     }
@@ -1494,7 +1494,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.degatsMin[FOI]<<" - "<<m_caracteristiques.degatsMax[FOI];
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(208,461,decalage));
-        string.Move(32 - string.GetRect().Width * 0.5, 0);
+        string.Move(32 - string.GetGlobalBounds().Width * 0.5, 0);
        // string.SetColor(sf::Color(128,128,255));
         moteurGraphique->AjouterTexte(&string,15);
     }
@@ -1503,14 +1503,14 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.degatsMin[CORROSION]<<" - "<<m_caracteristiques.degatsMax[CORROSION];
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(208,489,decalage));
-        string.Move(32 - string.GetRect().Width * 0.5, 0);
+        string.Move(32 - string.GetGlobalBounds().Width * 0.5, 0);
         //string.SetColor(sf::Color(128,255,128));
         moteurGraphique->AjouterTexte(&string,15);
     }
 
     string.SetString(configuration->getText(0,10).c_str());
     string.SetPosition(AutoScreenAdjust(208,376,decalage));
-    string.Move(32 - string.GetRect().Width * 0.5, 0);
+    string.Move(32 - string.GetGlobalBounds().Width * 0.5, 0);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
@@ -1519,7 +1519,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.armure[PHYSIQUE];
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(307,405,decalage));
-        string.Move(28 - string.GetRect().Width * 0.5, 0);
+        string.Move(28 - string.GetGlobalBounds().Width * 0.5, 0);
       //  string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
     }
@@ -1528,7 +1528,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.armure[FEU];
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(307,433,decalage));
-        string.Move(28 - string.GetRect().Width * 0.5, 0);
+        string.Move(28 - string.GetGlobalBounds().Width * 0.5, 0);
         //string.SetColor(sf::Color(255,128,128));
         moteurGraphique->AjouterTexte(&string,15);
     }
@@ -1537,7 +1537,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.armure[FOI];
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(307,461,decalage));
-        string.Move(28 - string.GetRect().Width * 0.5, 0);
+        string.Move(28 - string.GetGlobalBounds().Width * 0.5, 0);
        // string.SetColor(sf::Color(128,128,255));
         moteurGraphique->AjouterTexte(&string,15);
     }
@@ -1546,14 +1546,14 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         buf<<m_caracteristiques.armure[CORROSION];
         string.SetString(buf.str());
         string.SetPosition(AutoScreenAdjust(307,489,decalage));
-        string.Move(28 - string.GetRect().Width * 0.5, 0);
+        string.Move(28 - string.GetGlobalBounds().Width * 0.5, 0);
         //string.SetColor(sf::Color(128,255,128));
         moteurGraphique->AjouterTexte(&string,15);
     }
 
     string.SetString(configuration->getText(0,11).c_str());
     string.SetPosition(AutoScreenAdjust(307,376,decalage));
-    string.Move(28 - string.GetRect().Width * 0.5, 0);
+    string.Move(28 - string.GetGlobalBounds().Width * 0.5, 0);
     string.SetColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
 
@@ -1590,14 +1590,14 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         string.SetString(buf.str());
         string.SetCharacterSize(12);
         string.SetPosition(AutoScreenAdjust(732,508,decalage));
-        string.Move(-string.GetRect().Width, 0);
+        string.Move(-string.GetGlobalBounds().Width, 0);
         string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
 
-        if(    eventManager->getPositionSouris().x > string.GetRect().Left
-             &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
-             &&eventManager->getPositionSouris().y > string.GetRect().Top
-             &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
+        if(    eventManager->getPositionSouris().x > string.GetGlobalBounds().Left
+             &&eventManager->getPositionSouris().x < string.GetGlobalBounds().Left + string.GetGlobalBounds().Width
+             &&eventManager->getPositionSouris().y > string.GetGlobalBounds().Top
+             &&eventManager->getPositionSouris().y < string.GetGlobalBounds().Top + string.GetGlobalBounds().Height)
                 moteurGraphique->AjouterTexte(configuration->getText(0,48),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,19,0,14,sf::Color(224,224,224));
@@ -1612,10 +1612,10 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         string.SetColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
 
-        if(    eventManager->getPositionSouris().x > string.GetRect().Left
-             &&eventManager->getPositionSouris().x < string.GetRect().Left + string.GetRect().Width
-             &&eventManager->getPositionSouris().y > string.GetRect().Top
-             &&eventManager->getPositionSouris().y < string.GetRect().Top + string.GetRect().Height)
+        if(    eventManager->getPositionSouris().x > string.GetGlobalBounds().Left
+             &&eventManager->getPositionSouris().x < string.GetGlobalBounds().Left + string.GetGlobalBounds().Width
+             &&eventManager->getPositionSouris().y > string.GetGlobalBounds().Top
+             &&eventManager->getPositionSouris().y < string.GetGlobalBounds().Top + string.GetGlobalBounds().Height)
                 moteurGraphique->AjouterTexte(configuration->getText(0,34),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,19,0,12,sf::Color(224,224,224));
@@ -1650,7 +1650,7 @@ void Hero::AfficherAmisEtCraft()
 
         temp.SetTexture(*moteurGraphique->getImage(m_classe.barre_vie_monstre.image));
 
-        temp.SetSubRect(sf::IntRect(0,0,(int)(m_amis[i]->getCaracteristique().vie*m_classe.barre_vie_monstre.position.w/m_amis[i]->getCaracteristique().maxVie),
+        temp.SetTextureRect(sf::IntRect(0,0,(int)(m_amis[i]->getCaracteristique().vie*m_classe.barre_vie_monstre.position.w/m_amis[i]->getCaracteristique().maxVie),
                                          m_classe.barre_vie_monstre.position.h));
 
         temp.Resize(m_amis[i]->getCaracteristique().vie/m_amis[i]->getCaracteristique().maxVie * 144,16);
@@ -1705,7 +1705,7 @@ void Hero::AfficherAmisEtCraft()
         moteurGraphique->AjouterCommande(&temp, 14, 0);
 
         temp.SetTexture(*moteurGraphique->getImage(m_classe.barre_vie_monstre.image));
-        temp.SetSubRect(sf::IntRect(0,0,(int)((m_craft_time_max - m_craft_time)* m_classe.barre_vie_monstre.position.w / m_craft_time_max) ,
+        temp.SetTextureRect(sf::IntRect(0,0,(int)((m_craft_time_max - m_craft_time)* m_classe.barre_vie_monstre.position.w / m_craft_time_max) ,
                                          m_classe.barre_vie_monstre.position.h));
         temp.Resize((m_craft_time_max - m_craft_time) / m_craft_time_max * 144,16);
 
@@ -1720,7 +1720,7 @@ void Hero::AfficherAmisEtCraft()
         buf<<(float)((int)((m_craft_time_max - m_craft_time) * 100 / m_craft_time_max))<<" %";
         text.SetCharacterSize(10);
         text.SetString(buf.str());
-        text.SetPosition(configuration->Resolution.x - 150 - text.GetRect().Width,80);
+        text.SetPosition(configuration->Resolution.x - 150 - text.GetGlobalBounds().Width,80);
         moteurGraphique->AjouterTexte(&text,14);
     }
 
@@ -1737,7 +1737,7 @@ void Hero::AfficherAmisEtCraft()
         moteurGraphique->AjouterCommande(&temp, 14, 0);
 
         temp.SetTexture(*moteurGraphique->getImage(m_classe.barre_vie_monstre.image));
-        temp.SetSubRect(sf::IntRect(0,0,(int)((m_bless_time_max - m_bless_time) * m_classe.barre_vie_monstre.position.w / m_bless_time_max),
+        temp.SetTextureRect(sf::IntRect(0,0,(int)((m_bless_time_max - m_bless_time) * m_classe.barre_vie_monstre.position.w / m_bless_time_max),
                                          m_classe.barre_vie_monstre.position.h));
         temp.Resize((m_bless_time_max - m_bless_time) / m_bless_time_max * 144,16);
 
@@ -1752,7 +1752,7 @@ void Hero::AfficherAmisEtCraft()
         buf<<(float)((int)((m_bless_time_max - m_bless_time) * 100 / m_bless_time_max))<<" %";
         text.SetCharacterSize(10);
         text.SetString(buf.str());
-        text.SetPosition(configuration->Resolution.x - 150 - text.GetRect().Width,80 + 32);
+        text.SetPosition(configuration->Resolution.x - 150 - text.GetGlobalBounds().Width,80 + 32);
         moteurGraphique->AjouterTexte(&text,14);
     }
 }
@@ -1803,8 +1803,8 @@ void Hero::AfficherQuetes(float decalage)
 
             if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_contenu_quetes.x,0).x
              &&eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_contenu_quetes.x + m_classe.position_contenu_quetes.w,0).x
-             &&eventManager->getPositionSouris().y > texte.GetRect().Top
-             &&eventManager->getPositionSouris().y < texte.GetRect().Top + 19)
+             &&eventManager->getPositionSouris().y > texte.GetGlobalBounds().Top
+             &&eventManager->getPositionSouris().y < texte.GetGlobalBounds().Top + 19)
             {
                 sf::Sprite sprite;
                 sprite.SetTexture(*moteurGraphique->getImage(0));
@@ -1868,8 +1868,8 @@ void Hero::AfficherDocs(float decalage)
 
         if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_list_docs.x,0).x
          &&eventManager->getPositionSouris().x < AutoScreenAdjust(m_classe.position_list_docs.x + m_classe.position_list_docs.w,0).x
-         &&eventManager->getPositionSouris().y > texte.GetRect().Top
-         &&eventManager->getPositionSouris().y < texte.GetRect().Top + 19)
+         &&eventManager->getPositionSouris().y > texte.GetGlobalBounds().Top
+         &&eventManager->getPositionSouris().y < texte.GetGlobalBounds().Top + 19)
         {
             sf::Sprite sprite;
             sprite.SetTexture(*moteurGraphique->getImage(0));
@@ -1955,12 +1955,12 @@ void Hero::AfficherPotales(float decalage, std::string chemin)
         else
         if(eventManager->getPositionSouris().x > m_classe.position_contenu_description_quete.x + (configuration->Resolution.x - 800) * 0.5
         && eventManager->getPositionSouris().x < m_classe.position_contenu_description_quete.x + m_classe.position_contenu_description_quete.w  + (configuration->Resolution.x - 800) * 0.5
-        && eventManager->getPositionSouris().y > texte.GetRect().Top
-        && eventManager->getPositionSouris().y < texte.GetRect().Top + texte.GetRect().Height)
+        && eventManager->getPositionSouris().y > texte.GetGlobalBounds().Top
+        && eventManager->getPositionSouris().y < texte.GetGlobalBounds().Top + texte.GetGlobalBounds().Height)
         {
             sf::Sprite sprite;
             sprite.SetTexture(*moteurGraphique->getImage(0));
-            sprite.Resize(m_classe.position_contenu_description_quete.w, texte.GetRect().Height+2);
+            sprite.Resize(m_classe.position_contenu_description_quete.w, texte.GetGlobalBounds().Height+2);
             sprite.SetPosition(AutoScreenAdjust(position.x,
                                                 position.y,decalage));
             sprite.SetColor(sf::Color(255, 255, 255, 128));
@@ -1992,7 +1992,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
     texte.SetString(buf.str());
     texte.SetPosition(AutoScreenAdjust(m_classe.position_points_miracles.x,
                                        m_classe.position_points_miracles.y,decalage));
-    texte.Move((m_classe.position_points_miracles.w - texte.GetRect().Width) * 0.5,0);
+    texte.Move((m_classe.position_points_miracles.w - texte.GetGlobalBounds().Width) * 0.5,0);
 
     moteurGraphique->AjouterTexte(&texte,15,0);
 
@@ -2013,7 +2013,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             texte.SetString(buf2.str());
             texte.SetPosition(AutoScreenAdjust(m_classe.position_miracles[i].x,
                                                m_classe.position_miracles[i].y + 39,decalage));
-            texte.Move((m_classe.position_miracles[i].w - texte.GetRect().Width) * 0.5,0);
+            texte.Move((m_classe.position_miracles[i].w - texte.GetGlobalBounds().Width) * 0.5,0);
 
             moteurGraphique->AjouterTexte(&texte,15,0);
         }
@@ -2023,7 +2023,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
         sf::Sprite sprite;
 
         sprite.SetTexture(*moteurGraphique->getImage(m_classe.boutons_miracles[i].image.image));
-        sprite.SetSubRect(sf::IntRect(m_classe.boutons_miracles[i].image.position.x,
+        sprite.SetTextureRect(sf::IntRect(m_classe.boutons_miracles[i].image.position.x,
                                       m_classe.boutons_miracles[i].image.position.y,
                                       m_classe.boutons_miracles[i].image.position.w,
                                       m_classe.boutons_miracles[i].image.position.h));
@@ -2041,7 +2041,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
                 sf::Sprite sprite2;
 
                 sprite2.SetTexture(*moteurGraphique->getImage(m_classe.onglets_miracles[i].image.image));
-                sprite2.SetSubRect(sf::IntRect(m_classe.onglets_miracles[i].image.position.x,
+                sprite2.SetTextureRect(sf::IntRect(m_classe.onglets_miracles[i].image.position.x,
                                               m_classe.onglets_miracles[i].image.position.y,
                                               m_classe.onglets_miracles[i].image.position.w,
                                               m_classe.onglets_miracles[i].image.position.h));
@@ -2072,7 +2072,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
             moteurGraphique->AjouterCommande(&sprite, 15,0);
 
             sprite.SetTexture(*moteurGraphique->getImage(m_classe.icone_miracles[i].image));
-            sprite.SetSubRect(sf::IntRect(m_classe.icone_miracles[i].position.x,
+            sprite.SetTextureRect(sf::IntRect(m_classe.icone_miracles[i].position.x,
                                           m_classe.icone_miracles[i].position.y,
                                           m_classe.icone_miracles[i].position.w,
                                           m_classe.icone_miracles[i].position.h));
@@ -2254,7 +2254,7 @@ void Hero::GererRaccourcisMiracles()
         sf::Sprite sprite;
         sprite.SetTexture(*moteurGraphique->getImage(m_classe.icone_miracles[m_miracleEnMain].image));
 
-        sprite.SetSubRect(IntRect(  m_classe.icone_miracles[m_miracleEnMain].position.x,
+        sprite.SetTextureRect(IntRect(  m_classe.icone_miracles[m_miracleEnMain].position.x,
                                     m_classe.icone_miracles[m_miracleEnMain].position.y,
                                     m_classe.icone_miracles[m_miracleEnMain].position.w,
                                     m_classe.icone_miracles[m_miracleEnMain].position.h));
@@ -2373,7 +2373,7 @@ void Hero::GererRaccourcisObjets(bool inventory, bool hideLeft)
         sprite.SetColor(sf::Color(255,255,255,255));
 
         sprite.SetTexture(*moteurGraphique->getImage(m_inventaire[m_objetEnMain].getImage()));
-        sprite.SetSubRect(IntRect(m_inventaire[m_objetEnMain].getPositionImage().x,
+        sprite.SetTextureRect(IntRect(m_inventaire[m_objetEnMain].getPositionImage().x,
                                   m_inventaire[m_objetEnMain].getPositionImage().y,
                                   m_inventaire[m_objetEnMain].getPositionImage().w,
                                   m_inventaire[m_objetEnMain].getPositionImage().h));
@@ -2442,9 +2442,9 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
                 if(m_objetEnMain==-1
                 &&!m_classe.sort_inventory.m_hover
                 && eventManager->getPositionSouris().x > sprite.GetPosition().x
-                && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
+                && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetGlobalBounds().Width
                 && eventManager->getPositionSouris().y > sprite.GetPosition().y
-                && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
+                && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetGlobalBounds().Height)
                 {
                     m_objetVise = i;
                     coordonnee temp=eventManager->getPositionSouris();
@@ -2502,9 +2502,9 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
 
                     if(m_objetEnMain==-1
                     && eventManager->getPositionSouris().x > sprite.GetPosition().x
-                    && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
+                    && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetGlobalBounds().Width
                     && eventManager->getPositionSouris().y > sprite.GetPosition().y
-                    && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
+                    && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetGlobalBounds().Height)
                         m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+ m_classe.emplacements[m_inventaire[i].m_equipe].position.w),
                                                                              (int)(position.y+position.h),0,0),m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse), retour = true;
                 }
@@ -2522,9 +2522,9 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
 
                 if(m_objetEnMain==-1
                 && eventManager->getPositionSouris().x > sprite.GetPosition().x
-                && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
+                && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetGlobalBounds().Width
                 && eventManager->getPositionSouris().y > sprite.GetPosition().y
-                && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
+                && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetGlobalBounds().Height)
                     m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+64),(int)(position.y+position.h),0,0),m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse), retour = true;
             }
             else
@@ -2549,16 +2549,16 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
 
                 if(m_objetEnMain==-1
                 && eventManager->getPositionSouris().x > sprite.GetPosition().x
-                && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
+                && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetGlobalBounds().Width
                 && eventManager->getPositionSouris().y > sprite.GetPosition().y
-                && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
+                && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetGlobalBounds().Height)
                     m_inventaire[i].AfficherCaracteristiques(coordonnee ((int)(position.x+160),(int)(position.y+position.h),0,0),m_classe.border,m_caracteristiques,&m_inventaire,m_cheminClasse), retour = true;
             }
 
 
 
         //    m_classe.border.Afficher(coordonnee (sprite.GetPosition().x+4,sprite.GetPosition().y+4),
-            //                         coordonnee (sprite.GetSize().x-8,sprite.GetSize().y-8), 16, GetItemColor(m_inventaire[i].getRarete()));
+            //                         coordonnee (sprite.GetGlobalBounds().Width-8,sprite.GetGlobalBounds().Height-8), 16, GetItemColor(m_inventaire[i].getRarete()));
 
 
 
@@ -2628,9 +2628,6 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
             moteurGraphique->AjouterCommande(&sprite,16,0);
 
 
-
-
-            sprite.SetBlendMode(sf::Blend::Alpha);
             sprite.SetColor(sf::Color(255,255,255,255));
 
 
@@ -2640,7 +2637,7 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
             sprite.SetY(position.y+m_inventaire[i].getPositionImage().h/2);
 
             sprite.SetTexture(*moteurGraphique->getImage(m_inventaire[i].getImage()));
-            sprite.SetSubRect(IntRect(  m_inventaire[i].getPositionImage().x,
+            sprite.SetTextureRect(IntRect(  m_inventaire[i].getPositionImage().x,
                                         m_inventaire[i].getPositionImage().y,
                                         m_inventaire[i].getPositionImage().w,
                                         m_inventaire[i].getPositionImage().h));
@@ -2702,21 +2699,21 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
 
             if ((*trader)[i].getPosition().y+(*trader)[i].getTaille().y-m_defilement_trader>m_classe.position_contenu_marchand.h)
             {
-                sprite.SetSubRect(sf::IntRect(0,0,160,(m_defilement_trader+m_classe.position_contenu_marchand.h-(*trader)[i].getPosition().y)*32));
+                sprite.SetTextureRect(sf::IntRect(0,0,160,(m_defilement_trader+m_classe.position_contenu_marchand.h-(*trader)[i].getPosition().y)*32));
                 sprite.Resize((*trader)[i].getTaille().x*32,(m_defilement_trader+m_classe.position_contenu_marchand.h-(*trader)[i].getPosition().y)*32);
             }
             if ((*trader)[i].getPosition().y-m_defilement_trader<0)
             {
-                sprite.SetSubRect(sf::IntRect(0,(-(*trader)[i].getPosition().y+m_defilement_trader)*32,160,160-(-(*trader)[i].getPosition().y+m_defilement_trader)*32));
+                sprite.SetTextureRect(sf::IntRect(0,(-(*trader)[i].getPosition().y+m_defilement_trader)*32,160,160-(-(*trader)[i].getPosition().y+m_defilement_trader)*32));
                 sprite.Resize((*trader)[i].getTaille().x*32,(*trader)[i].getTaille().y*32-(-(*trader)[i].getPosition().y+m_defilement_trader)*32);
                 sprite.Move(0,(-(*trader)[i].getPosition().y+m_defilement_trader)*32);
             }
 
             if(m_objetEnMain==-1
             && eventManager->getPositionSouris().x > sprite.GetPosition().x
-            && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
+            && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetGlobalBounds().Width
             && eventManager->getPositionSouris().y > sprite.GetPosition().y
-            && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
+            && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetGlobalBounds().Height)
             {
                 coordonnee temp=eventManager->getPositionSouris();
                 //temp.y-=256;
@@ -2761,12 +2758,12 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
 
                 if(sprite2.GetPosition().y < AutoScreenAdjust(0, m_classe.position_contenu_marchand.y - 32, decalage).y)
                 {
-                    sprite2.SetSubRect(sf::IntRect(0,(int)(((AutoScreenAdjust(0, m_classe.position_contenu_marchand.y - 32, decalage).y)-sprite2.GetPosition().y)*128/(taille)),128,128-(int)(((AutoScreenAdjust(0, m_classe.position_contenu_marchand.y - 32, decalage).y)-sprite2.GetPosition().y)*128/(taille))));
+                    sprite2.SetTextureRect(sf::IntRect(0,(int)(((AutoScreenAdjust(0, m_classe.position_contenu_marchand.y - 32, decalage).y)-sprite2.GetPosition().y)*128/(taille)),128,128-(int)(((AutoScreenAdjust(0, m_classe.position_contenu_marchand.y - 32, decalage).y)-sprite2.GetPosition().y)*128/(taille))));
                     sprite2.Move(0,(int)((AutoScreenAdjust(0, m_classe.position_contenu_marchand.y - 32, decalage).y)-sprite2.GetPosition().y));
                 }
                 if(sprite2.GetPosition().y + taille > AutoScreenAdjust(0, m_classe.position_contenu_marchand.y - 32, decalage).y + m_classe.position_contenu_marchand.h * 32 )
                 {
-                    sprite2.SetSubRect(sf::IntRect(0,0,128,128 - (int)((sprite2.GetPosition().y + taille -
+                    sprite2.SetTextureRect(sf::IntRect(0,0,128,128 - (int)((sprite2.GetPosition().y + taille -
                                                                         (AutoScreenAdjust(0, m_classe.position_contenu_marchand.y - 32, decalage).y+m_classe.position_contenu_marchand.h*32))*128/taille)));
                 }
 
@@ -2792,18 +2789,18 @@ bool Hero::AfficherInventaire(float decalage, std::vector<Objet> *trader, bool h
             sprite.SetColor(sf::Color(255,255,255,255));
 
             sprite.SetTexture(*moteurGraphique->getImage((*trader)[i].getImage()));
-            sprite.SetSubRect(IntRect((*trader)[i].getPositionImage().x, (*trader)[i].getPositionImage().y, (*trader)[i].getPositionImage().w, (*trader)[i].getPositionImage().h));
+            sprite.SetTextureRect(IntRect((*trader)[i].getPositionImage().x, (*trader)[i].getPositionImage().y, (*trader)[i].getPositionImage().w, (*trader)[i].getPositionImage().h));
             sprite.Resize((*trader)[i].getTaille().x*32,(*trader)[i].getTaille().y*32);
 
             if ((*trader)[i].getPosition().y+(*trader)[i].getTaille().y-m_defilement_trader>=m_classe.position_contenu_marchand.h)
             {
-                sprite.SetSubRect(sf::IntRect((*trader)[i].getPositionImage().x,(*trader)[i].getPositionImage().y,(*trader)[i].getTaille().x*32,(m_defilement_trader+m_classe.position_contenu_marchand.h-(*trader)[i].getPosition().y)*32));
+                sprite.SetTextureRect(sf::IntRect((*trader)[i].getPositionImage().x,(*trader)[i].getPositionImage().y,(*trader)[i].getTaille().x*32,(m_defilement_trader+m_classe.position_contenu_marchand.h-(*trader)[i].getPosition().y)*32));
                 sprite.Resize((*trader)[i].getTaille().x*32,(m_defilement_trader+m_classe.position_contenu_marchand.h-(*trader)[i].getPosition().y)*32);
             }
 
             if ((*trader)[i].getPosition().y-m_defilement_trader<0)
             {
-                sprite.SetSubRect(sf::IntRect((*trader)[i].getPositionImage().x,(*trader)[i].getPositionImage().y+(-(*trader)[i].getPosition().y+m_defilement_trader)*32,(*trader)[i].getTaille().x*32,(*trader)[i].getTaille().y*32-(-(*trader)[i].getPosition().y+m_defilement_trader)*32));
+                sprite.SetTextureRect(sf::IntRect((*trader)[i].getPositionImage().x,(*trader)[i].getPositionImage().y+(-(*trader)[i].getPosition().y+m_defilement_trader)*32,(*trader)[i].getTaille().x*32,(*trader)[i].getTaille().y*32-(-(*trader)[i].getPosition().y+m_defilement_trader)*32));
                 sprite.Resize((*trader)[i].getTaille().x*32,(*trader)[i].getTaille().y*32-(-(*trader)[i].getPosition().y+m_defilement_trader)*32);
                 sprite.Move(0,(-(*trader)[i].getPosition().y+m_defilement_trader)*32);
             }
@@ -2866,7 +2863,7 @@ void Hero::AfficherRaccourcis()
             if(m_raccourcis[i].miracle)
             {
                 sprite.SetTexture(*moteurGraphique->getImage(m_classe.icone_miracles[m_raccourcis[i].no].image));
-                sprite.SetSubRect(IntRect(  m_classe.icone_miracles[m_raccourcis[i].no].position.x,
+                sprite.SetTextureRect(IntRect(  m_classe.icone_miracles[m_raccourcis[i].no].position.x,
                                             m_classe.icone_miracles[m_raccourcis[i].no].position.y,
                                             m_classe.icone_miracles[m_raccourcis[i].no].position.w,
                                             m_classe.icone_miracles[m_raccourcis[i].no].position.h));
@@ -2885,7 +2882,7 @@ void Hero::AfficherRaccourcis()
             {
                 sprite.SetTexture(*moteurGraphique->getImage(m_inventaire[m_raccourcis[i].no].getImage()));
 
-                sprite.SetSubRect(IntRect(  m_inventaire[m_raccourcis[i].no].getPositionImage().x,
+                sprite.SetTextureRect(IntRect(  m_inventaire[m_raccourcis[i].no].getPositionImage().x,
                                             m_inventaire[m_raccourcis[i].no].getPositionImage().y,
                                             m_inventaire[m_raccourcis[i].no].getPositionImage().w,
                                             m_inventaire[m_raccourcis[i].no].getPositionImage().h));
@@ -2911,17 +2908,17 @@ void Hero::AfficherRaccourcis()
 
                 text.SetPosition(AutoScreenAdjust(m_classe.position_raccourcis[i].x,
                                                   m_classe.position_raccourcis[i].y));
-                text.Move(26 - text.GetRect().Width,
-                          26 - text.GetRect().Height);
+                text.Move(26 - text.GetGlobalBounds().Width,
+                          26 - text.GetGlobalBounds().Height);
 
                 moteurGraphique->AjouterTexte(&text,18);
             }
 
 
             if( eventManager->getPositionSouris().x > sprite.GetPosition().x
-             && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
+             && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetGlobalBounds().Width
              && eventManager->getPositionSouris().y > sprite.GetPosition().y
-             && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y && m_objetEnMain < 0)
+             && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetGlobalBounds().Height && m_objetEnMain < 0)
             {
                 if(m_raccourcis[i].miracle)
                     m_classe.miracles[m_raccourcis[i].no].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false);
@@ -2989,15 +2986,13 @@ void Hero::AfficherRaccourcis()
 
         sprite.SetTexture(*moteurGraphique->getImage(m_classe.icone_miracles[m_miracle_droite[m_weaponsSet]].image));
 
-        sprite.SetSubRect(IntRect(  m_classe.icone_miracles[m_miracle_droite[m_weaponsSet]].position.x,
+        sprite.SetTextureRect(IntRect(  m_classe.icone_miracles[m_miracle_droite[m_weaponsSet]].position.x,
                                     m_classe.icone_miracles[m_miracle_droite[m_weaponsSet]].position.y,
                                     m_classe.icone_miracles[m_miracle_droite[m_weaponsSet]].position.w,
                                     m_classe.icone_miracles[m_miracle_droite[m_weaponsSet]].position.h));
 
         sprite.SetPosition(AutoScreenAdjust(m_classe.p_miracleD.position.x,
                                             m_classe.p_miracleD.position.y - 2));
-
-        sprite.SetBlendMode(sf::Blend::Alpha);
 
         sprite.Resize(m_classe.p_miracleD.position.w,m_classe.p_miracleD.position.h);
 
@@ -3010,9 +3005,9 @@ void Hero::AfficherRaccourcis()
         moteurGraphique->AjouterCommande(&sprite,18,0);
 
         if(eventManager->getPositionSouris().x > sprite.GetPosition().x
-        && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
+        && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetGlobalBounds().Width
         && eventManager->getPositionSouris().y > sprite.GetPosition().y
-        && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
+        && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetGlobalBounds().Height)
             m_classe.miracles[m_miracle_droite[m_weaponsSet]].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false,2);
 
 
@@ -3040,15 +3035,13 @@ void Hero::AfficherRaccourcis()
 
         sprite.SetTexture(*moteurGraphique->getImage(m_classe.icone_miracles[m_miracle_gauche[m_weaponsSet]].image));
 
-        sprite.SetSubRect(IntRect(  m_classe.icone_miracles[m_miracle_gauche[m_weaponsSet]].position.x,
+        sprite.SetTextureRect(IntRect(  m_classe.icone_miracles[m_miracle_gauche[m_weaponsSet]].position.x,
                                     m_classe.icone_miracles[m_miracle_gauche[m_weaponsSet]].position.y,
                                     m_classe.icone_miracles[m_miracle_gauche[m_weaponsSet]].position.w,
                                     m_classe.icone_miracles[m_miracle_gauche[m_weaponsSet]].position.h));
 
         sprite.SetPosition(AutoScreenAdjust(m_classe.p_miracleG.position.x,
                                             m_classe.p_miracleG.position.y - 2));
-
-        sprite.SetBlendMode(sf::Blend::Alpha);
 
         sprite.Resize(m_classe.p_miracleG.position.w,m_classe.p_miracleG.position.h);
 
@@ -3062,9 +3055,9 @@ void Hero::AfficherRaccourcis()
 
 
         if(eventManager->getPositionSouris().x > sprite.GetPosition().x
-        && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
+        && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetGlobalBounds().Width
         && eventManager->getPositionSouris().y > sprite.GetPosition().y
-        && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
+        && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetGlobalBounds().Height)
             m_classe.miracles[m_miracle_gauche[m_weaponsSet]].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false,1);
 
 
@@ -3097,19 +3090,19 @@ void Hero::AfficherIconeAttaque(Image_interface &img)
     sprite.SetPosition(AutoScreenAdjust(img.position.x,
                                         img.position.y - 2));
 
-    sprite.SetBlendMode(sf::Blend::Alpha);
-
     sprite.Resize(img.position.w,img.position.h);
 
+    ///FLIP OU PAS FLIP NEW API ???
     if(&img == &m_classe.p_miracleD)
-        sprite.FlipX(true);
+        sprite.Scale(-1,1);
+        //sprite.FlipX(true);
 
     moteurGraphique->AjouterCommande(&sprite,18,0);
 
     if(eventManager->getPositionSouris().x > sprite.GetPosition().x
-    && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetSize().x
+    && eventManager->getPositionSouris().x < sprite.GetPosition().x + sprite.GetGlobalBounds().Width
     && eventManager->getPositionSouris().y > sprite.GetPosition().y
-    && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetSize().y)
+    && eventManager->getPositionSouris().y < sprite.GetPosition().y + sprite.GetGlobalBounds().Height)
     {
         if(&img == &m_classe.p_miracleG)
             m_classe.miracles[0].AfficherDescription(eventManager->getPositionSouris(), m_classe.border, false,1);
@@ -3228,6 +3221,9 @@ void Hero::GererTemps(float temps)
         m_caracteristiques.foi=m_caracteristiques.maxFoi;
 
         UtiliserMiracle(0,NULL,coordonnee (),NULL);
+
+        m_newQuest_label.SetText(configuration->getText(0,116));
+        m_newQuest_label.Reset();
     }
 
     m_personnage.setCaracteristique(temp);

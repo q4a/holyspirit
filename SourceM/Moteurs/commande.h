@@ -32,14 +32,16 @@ struct Commande
 {
 	public:
 
-	Commande(sf::Sprite *sprite,bool utiliserCamera)
+	Commande(sf::Sprite *sprite,bool utiliserCamera, const sf::RenderStates &s)
 	{
 	    m_sprite=*sprite;
 	    m_utiliserCamera=utiliserCamera;
+	    m_states = s;
     }
 
 	sf::Sprite m_sprite;
 	bool m_utiliserCamera;
+	sf::RenderStates m_states;
 };
 
 #endif

@@ -263,7 +263,7 @@ void c_MainMenu::ChargerListeSaves()
 
 void  c_MainMenu::E_Principal(Jeu *jeu)
 {
-    m_hs_logo.SetPosition((configuration->Resolution.x - m_hs_logo.GetSize().x)/2,-16);
+    m_hs_logo.SetPosition((configuration->Resolution.x - m_hs_logo.GetGlobalBounds().Width)/2,-16);
     moteurGraphique->AjouterCommande(&m_hs_logo, 19, 0);
 
     buttons_principal[0].no_opacity = true;
@@ -579,15 +579,15 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
         texte.SetString(str.c_str());
 
-        if(texte.GetRect().Width > 128)
+        if(texte.GetGlobalBounds().Width > 128)
             texte.SetCharacterSize(12);
 
-        texte.SetPosition((int)(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte.GetRect().Width/2),
+        texte.SetPosition((int)(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte.GetGlobalBounds().Width/2),
                           (int)(configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224 + 140));
 
         m_images_saves[i].SetPosition(configuration->Resolution.w/2 - 336 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
                                       configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224);
-        m_images_saves[i].SetSubRect(sf::IntRect(48,0,160,256));
+        m_images_saves[i].SetTextureRect(sf::IntRect(48,0,160,256));
         m_images_saves[i].Resize(160,256);
         moteurGraphique->AjouterCommande(&m_images_saves[i],18,0);
 
@@ -608,23 +608,21 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         texte_niv.SetString(buf.str());
         texte_niv.SetCharacterSize(12);
 
-        texte_niv.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte_niv.GetRect().Width/2,
+        texte_niv.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte_niv.GetGlobalBounds().Width/2,
                               configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224 + 158);
 
         if(!m_supprimer_heros
-        &&((eventManager->getPositionSouris().y > texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + texte.GetRect().Height)
-          &&eventManager->getPositionSouris().x > texte.GetRect().Left
-          &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width)) ||
+        &&((eventManager->getPositionSouris().y > texte.GetGlobalBounds().Top
+          &&eventManager->getPositionSouris().y < (texte.GetGlobalBounds().Top + texte.GetGlobalBounds().Height)
+          &&eventManager->getPositionSouris().x > texte.GetGlobalBounds().Left
+          &&eventManager->getPositionSouris().x < (texte.GetGlobalBounds().Left + texte.GetGlobalBounds().Width)) ||
 
            (eventManager->getPositionSouris().y > m_images_saves[i].GetPosition().y
           &&eventManager->getPositionSouris().y < m_images_saves[i].GetPosition().y + 192
           &&eventManager->getPositionSouris().x > m_images_saves[i].GetPosition().x
           &&eventManager->getPositionSouris().x < m_images_saves[i].GetPosition().x + 160)))
         {
-            m_images_saves[i].SetBlendMode(sf::Blend::Add);
-            moteurGraphique->AjouterCommande(&m_images_saves[i],19,0);
-            m_images_saves[i].SetBlendMode(sf::Blend::Alpha);
+            moteurGraphique->AjouterCommande(&m_images_saves[i],19,0,sf::BlendAdd);
 
             texte.SetColor(Color(224,224,224));
             texte_niv.SetColor(Color(224,224,224));
@@ -694,15 +692,15 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     {
         texte.SetString("- + -");
         texte.SetY((int)configuration->Resolution.h/2 + 160);
-        texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2 + 32);
+        texte.SetX((int)configuration->Resolution.w/2-texte.GetGlobalBounds().Width/2 + 32);
 
         if(i < m_chemin_saves.size())
         {
             if(!m_supprimer_heros
-              &&eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < texte.GetRect().Top + 32
-              &&eventManager->getPositionSouris().x > texte.GetRect().Left
-              &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
+              &&eventManager->getPositionSouris().y > texte.GetGlobalBounds().Top
+              &&eventManager->getPositionSouris().y < texte.GetGlobalBounds().Top + 32
+              &&eventManager->getPositionSouris().x > texte.GetGlobalBounds().Left
+              &&eventManager->getPositionSouris().x < (texte.GetGlobalBounds().Left + texte.GetGlobalBounds().Width))
             {
                 texte.SetColor(Color(100,50,0));
                 if(eventManager->getEvenement(Mouse::Left,EventClic))
@@ -721,15 +719,15 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     {
         texte.SetString("- - -");
         texte.SetY((int)configuration->Resolution.h/2 + 160 );
-        texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2 - 32);
+        texte.SetX((int)configuration->Resolution.w/2-texte.GetGlobalBounds().Width/2 - 32);
 
         if(defilement_saves > 0)
         {
             if (!m_supprimer_heros
-              &&eventManager->getPositionSouris().y > texte.GetRect().Top
-              &&eventManager->getPositionSouris().y < (texte.GetRect().Top + 32)
-              && eventManager->getPositionSouris().x > texte.GetRect().Left
-              &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
+              &&eventManager->getPositionSouris().y > texte.GetGlobalBounds().Top
+              &&eventManager->getPositionSouris().y < (texte.GetGlobalBounds().Top + 32)
+              && eventManager->getPositionSouris().x > texte.GetGlobalBounds().Left
+              &&eventManager->getPositionSouris().x < (texte.GetGlobalBounds().Left + texte.GetGlobalBounds().Width))
             {
                 texte.SetColor(Color(100,50,0));
                 if(eventManager->getEvenement(Mouse::Left,EventClic))
@@ -756,7 +754,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
         texte.SetString(configuration->getText(0,96));
         texte.SetY((int)configuration->Resolution.h - 128 );
-        texte.SetX((int)configuration->Resolution.w/2 - texte.GetRect().Width/2);
+        texte.SetX((int)configuration->Resolution.w/2 - texte.GetGlobalBounds().Width/2);
 
         texte.SetColor(Color(224,224,224));
         moteurGraphique->AjouterTexte(&texte,19,0);
@@ -776,7 +774,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
 
         texte.SetString(nom_hero);
-        texte.SetX((int)configuration->Resolution.w/2 - texte.GetRect().Width/2);
+        texte.SetX((int)configuration->Resolution.w/2 - texte.GetGlobalBounds().Width/2);
 
         if(time > 0.5)
             texte.SetString(nom_hero + "|");
@@ -792,12 +790,12 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
         texte.SetString(configuration->getText(0,95));
         texte.SetY((int)configuration->Resolution.h - 64 );
-        texte.SetX((int)configuration->Resolution.w/2 - texte.GetRect().Width/2);
+        texte.SetX((int)configuration->Resolution.w/2 - texte.GetGlobalBounds().Width/2);
 
-        if (eventManager->getPositionSouris().y >  texte.GetRect().Top
-          &&eventManager->getPositionSouris().y < (texte.GetRect().Top + 32)
-          &&eventManager->getPositionSouris().x >  texte.GetRect().Left
-          &&eventManager->getPositionSouris().x < (texte.GetRect().Left + texte.GetRect().Width))
+        if (eventManager->getPositionSouris().y >  texte.GetGlobalBounds().Top
+          &&eventManager->getPositionSouris().y < (texte.GetGlobalBounds().Top + 32)
+          &&eventManager->getPositionSouris().x >  texte.GetGlobalBounds().Left
+          &&eventManager->getPositionSouris().x < (texte.GetGlobalBounds().Left + texte.GetGlobalBounds().Width))
         {
             texte.SetColor(Color(160,128,128));
             if(eventManager->getEvenement(Mouse::Left,EventClic))
@@ -851,8 +849,8 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
 
     for(unsigned i = 0 ; i < configuration->player_class.size(); ++i)
     {
-        m_background_hero.SetPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetSize().x + 4) * 0.5
-                                        + i * (m_background_hero.GetSize().x + 4),
+        m_background_hero.SetPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetGlobalBounds().Width + 4) * 0.5
+                                        + i * (m_background_hero.GetGlobalBounds().Width + 4),
                                       configuration->Resolution.h/2 - 208 - 16);
 
         if((int)i != classe_choisie)
@@ -862,8 +860,8 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
 
         m_background_hero.SetColor(sf::Color(255,255,255));
 
-        m_backtext_hero.SetPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetSize().x + 4) * 0.5
-                                        + i * (m_background_hero.GetSize().x + 4),
+        m_backtext_hero.SetPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetGlobalBounds().Width + 4) * 0.5
+                                        + i * (m_background_hero.GetGlobalBounds().Width + 4),
                                     configuration->Resolution.h/2 - 208 + 136 - 16);
 
         moteurGraphique->AjouterCommande(&m_backtext_hero,19,0);
@@ -871,24 +869,24 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
         texte.SetString(configuration->getText(3,m_nom_classes[i]));
         texte.SetFont(moteurGraphique->m_font_titre);
 
-        texte.SetPosition((int)(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetSize().x + 4) * 0.5
-                                        + i * (m_background_hero.GetSize().x + 4) + 75 - texte.GetRect().Width/2),
+        texte.SetPosition((int)(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetGlobalBounds().Width + 4) * 0.5
+                                        + i * (m_background_hero.GetGlobalBounds().Width + 4) + 75 - texte.GetGlobalBounds().Width/2),
                           (int)(configuration->Resolution.h/2 - 208 + 145 - 16));
 
         moteurGraphique->AjouterTexte(&texte,19,1);
 
-        m_apercu_classe[i].SetPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetSize().x + 4) * 0.5
-                                        + i * (m_background_hero.GetSize().x + 4),
+        m_apercu_classe[i].SetPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetGlobalBounds().Width + 4) * 0.5
+                                        + i * (m_background_hero.GetGlobalBounds().Width + 4),
                                       configuration->Resolution.h/2 - 208 - 16);
         m_apercu_classe[i].Resize(160,256);
-        m_apercu_classe[i].SetSubRect(sf::IntRect(48,0,160,256));
+        m_apercu_classe[i].SetTextureRect(sf::IntRect(48,0,160,256));
         moteurGraphique->AjouterCommande(&m_apercu_classe[i],18,0);
 
 
         if (eventManager->getPositionSouris().y > m_background_hero.GetPosition().y
-          &&eventManager->getPositionSouris().y < m_background_hero.GetPosition().y + m_background_hero.GetSize().y
+          &&eventManager->getPositionSouris().y < m_background_hero.GetPosition().y + m_background_hero.GetGlobalBounds().Height
           &&eventManager->getPositionSouris().x > m_background_hero.GetPosition().x
-          &&eventManager->getPositionSouris().x < m_background_hero.GetPosition().x + m_background_hero.GetSize().x)
+          &&eventManager->getPositionSouris().x < m_background_hero.GetPosition().x + m_background_hero.GetGlobalBounds().Width)
         {
             if(eventManager->getEvenement(Mouse::Left,EventClic))
             {
@@ -906,13 +904,13 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
         texte.SetCharacterSize(12);
         texte.SetString(m_description_classes[classe_choisie]);
         texte.SetFont(moteurGraphique->m_font);
-        texte.SetPosition((int)(configuration->Resolution.w/2 - texte.GetRect().Width/2),
+        texte.SetPosition((int)(configuration->Resolution.w/2 - texte.GetGlobalBounds().Width/2),
                           (int)(configuration->Resolution.h/2 - 24));
         moteurGraphique->AjouterTexte(&texte,19);
 
-        jeu->menu.border.Afficher(coordonnee(configuration->Resolution.w/2 - texte.GetRect().Width/2 - 4,
+        jeu->menu.border.Afficher(coordonnee(configuration->Resolution.w/2 - texte.GetGlobalBounds().Width/2 - 4,
                                          configuration->Resolution.h/2 - 24),
-                              coordonnee(texte.GetRect().Width + 8,texte.GetRect().Height + 4), 18);
+                              coordonnee(texte.GetGlobalBounds().Width + 8,texte.GetGlobalBounds().Height + 4), 18);
     }
 
 
@@ -1055,7 +1053,7 @@ void  c_MainMenu::E_Credits(Jeu *jeu)
 
         texte.SetString(txt);
         texte.SetY((int)configuration->Resolution.h/2 - 256 + i * 24 - m_credit_defil);
-        texte.SetX((int)configuration->Resolution.w/2-texte.GetRect().Width/2);
+        texte.SetX((int)configuration->Resolution.w/2-texte.GetGlobalBounds().Width/2);
         moteurGraphique->AjouterTexte(&texte,19,1);
     }
 
@@ -1090,11 +1088,11 @@ void  c_MainMenu::E_Story(Jeu *jeu)
     texte.SetColor(Color(192,160,128));
     texte.SetString(m_story);
     texte.SetY((int)(configuration->Resolution.h/2 - 256));
-    texte.SetX((int)(configuration->Resolution.w/2-texte.GetRect().Width/2));
+    texte.SetX((int)(configuration->Resolution.w/2-texte.GetGlobalBounds().Width/2));
     moteurGraphique->AjouterTexte(&texte,19);
 
     jeu->menu.border.Afficher(coordonnee(texte.GetPosition().x - 8,texte.GetPosition().y),
-                              coordonnee(texte.GetRect().Width + 16,texte.GetRect().Height + 12), 18,
+                              coordonnee(texte.GetGlobalBounds().Width + 16,texte.GetGlobalBounds().Height + 12), 18,
                               sf::Color(224,224,224,192));
 
 

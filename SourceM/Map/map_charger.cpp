@@ -982,9 +982,9 @@ void Map::InitialiserMinimap()
                             minimap.Move(0, -1024), cur_y ++;
                         while(minimap.GetPosition().x > 1024)
                             minimap.Move(-1024, 0), cur_x ++;
-                        while(minimap.GetPosition().x - minimap.GetSize().x / 2 < 0)
+                        while(minimap.GetPosition().x - minimap.GetGlobalBounds().Width / 2 < 0)
                             minimap.Move(1024, 0), cur_x --;
-                        while(minimap.GetPosition().y - minimap.GetSize().y / 2 < 0)
+                        while(minimap.GetPosition().y - minimap.GetGlobalBounds().Height / 2 < 0)
                             minimap.Move(0, 1024), cur_y --;
 
 
@@ -997,9 +997,9 @@ void Map::InitialiserMinimap()
 
                         bool redraw = false;
 
-                        if(minimap.GetPosition().y + minimap.GetSize().y > 1024)
+                        if(minimap.GetPosition().y + minimap.GetGlobalBounds().Height > 1024)
                             cur_y++, minimap.Move(0,-1024), redraw = true;
-                        if(minimap.GetPosition().x + minimap.GetSize().x > 1024)
+                        if(minimap.GetPosition().x + minimap.GetGlobalBounds().Width > 1024)
                             cur_x++, minimap.Move(-1024,0), redraw = true;
 
 
@@ -1034,7 +1034,7 @@ void Map::CreerSprite(sf::Vector3f position_case)
     {
         positionPartieDecor=moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getPositionMinimap(m_decor[z][y][x].getTile());
         m_decor[z][y][x].m_spriteMinimap.SetTexture(*moteurGraphique->getImage(moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getMinimap(m_decor[z][y][x].getTile())));
-        m_decor[z][y][x].m_spriteMinimap.SetSubRect(IntRect(positionPartieDecor.x, positionPartieDecor.y,
+        m_decor[z][y][x].m_spriteMinimap.SetTextureRect(IntRect(positionPartieDecor.x, positionPartieDecor.y,
                                                             positionPartieDecor.w, positionPartieDecor.h));
         m_decor[z][y][x].m_spriteMinimap.SetX(position.x);
         m_decor[z][y][x].m_spriteMinimap.SetY(position.y);

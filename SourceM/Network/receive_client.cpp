@@ -84,6 +84,7 @@ void Network::CheckPacketClient(sf::Packet &packet)
             if((packet>>caract.nom>>caract>>cheminclasse>>nbr_mir))
             {
                 jeu->m_personnageClients.push_back(Hero ());
+                jeu->m_listHeroes.push_back(&jeu->m_personnageClients.back());
                 jeu->m_personnageClients.back().m_cheminClasse = cheminclasse;
                 jeu->m_personnageClients.back().m_caracteristiques = caract;
                 jeu->m_personnageClients.back().m_personnage.setCaracteristique(caract);

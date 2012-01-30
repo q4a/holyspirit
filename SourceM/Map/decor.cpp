@@ -148,13 +148,13 @@ bool Decor::AfficherTexteObjet(Border &border, coordonnee position,int objet, fl
 
         sprite.SetTexture(*moteurGraphique->getImage(0));
 
-        sprite.SetY(texte.GetPosition().y-1);
+        sprite.SetY(texte.GetPosition().y+1);
         sprite.SetX(texte.GetPosition().x-5);
         sprite.SetColor(sf::Color(0,0,0,(int)(224.0f*alpha)));
-        sprite.Resize(texte.GetRect().Width +9 , texte.GetRect().Height+5);
+        sprite.Resize(texte.GetGlobalBounds().Width +9 , texte.GetGlobalBounds().Height+5);
 
-        border.Afficher(coordonnee(texte.GetPosition().x-4, texte.GetPosition().y),
-                        coordonnee(texte.GetRect().Width +8, texte.GetRect().Height+4), 12, sf::Color(  GetItemColor(m_objets[objet].getRarete()).r,
+        border.Afficher(coordonnee(texte.GetPosition().x-4, texte.GetPosition().y+2),
+                        coordonnee(texte.GetGlobalBounds().Width +8, texte.GetGlobalBounds().Height+4), 12, sf::Color(  GetItemColor(m_objets[objet].getRarete()).r,
                                                                                                         GetItemColor(m_objets[objet].getRarete()).g,
                                                                                                         GetItemColor(m_objets[objet].getRarete()).b,
                                                                                                         (int)(255.0f*alpha)));
@@ -162,15 +162,15 @@ bool Decor::AfficherTexteObjet(Border &border, coordonnee position,int objet, fl
         if(selectable)
             if(eventManager->getPositionSouris().x>sprite.GetPosition().x
              &&eventManager->getPositionSouris().y>sprite.GetPosition().y
-             &&eventManager->getPositionSouris().x<sprite.GetPosition().x + texte.GetRect().Width +8
-             &&eventManager->getPositionSouris().y<sprite.GetPosition().y + texte.GetRect().Height +4)
+             &&eventManager->getPositionSouris().x<sprite.GetPosition().x + texte.GetGlobalBounds().Width +8
+             &&eventManager->getPositionSouris().y<sprite.GetPosition().y + texte.GetGlobalBounds().Height +4)
                 retour = true,sprite.SetColor(sf::Color(32,32,32,224));
 
         moteurGraphique->AjouterCommande(&sprite,12,0);
 
         if(decalage != NULL)
             *decalage = (sprite.GetPosition().y*configuration->zoom + GetViewRect(moteurGraphique->m_camera).Top)
-                        - sprite.GetSize().y - 3 - border.image_u.position.h - border.image_d.position.h;
+                        - sprite.GetGlobalBounds().Height - 1 - border.image_u.position.h - border.image_d.position.h;
     }
     return (retour);
 }

@@ -56,7 +56,7 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
                 {
                     sf::Sprite sprite;
                     sprite.SetTexture(*moteurGraphique->getImage(modele->m_image));
-                    sprite.SetSubRect(sf::IntRect(modele->m_particules[Iter->numero].positionImage.x,
+                    sprite.SetTextureRect(sf::IntRect(modele->m_particules[Iter->numero].positionImage.x,
                                                   modele->m_particules[Iter->numero].positionImage.y,
                                                   modele->m_particules[Iter->numero].positionImage.w,
                                                   modele->m_particules[Iter->numero].positionImage.h));
@@ -82,9 +82,9 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
                     sprite.Move(0,Iter->position.z);
                     moteurGraphique->AjouterCommande(&sprite,9,1);
 
-                    if(sprite.GetPosition().x + sprite.GetSize().x < GetViewRect(moteurGraphique->m_camera).Left
+                    if(sprite.GetPosition().x + sprite.GetGlobalBounds().Width < GetViewRect(moteurGraphique->m_camera).Left
                     || sprite.GetPosition().x > GetViewRect(moteurGraphique->m_camera).Left + GetViewRect(moteurGraphique->m_camera).Width
-                    || sprite.GetPosition().y + sprite.GetSize().y < GetViewRect(moteurGraphique->m_camera).Top
+                    || sprite.GetPosition().y + sprite.GetGlobalBounds().Height < GetViewRect(moteurGraphique->m_camera).Top
                     || sprite.GetPosition().y > GetViewRect(moteurGraphique->m_camera).Top + GetViewRect(moteurGraphique->m_camera).Height)
                         Iter->vie = 0, Iter->alpha = 0;
                 }

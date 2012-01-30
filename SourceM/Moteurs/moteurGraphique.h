@@ -125,8 +125,8 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	int AjouterModeleSystemeParticules(std::string);
 
 	void AjouterSystemeParticules(int ID,coordonnee position,sf::Color color,float force,float angle);
-	void AjouterCommande(sf::Sprite*,int=0, bool=0);
-	void AjouterEntiteGraphique(Entite_graphique*);
+	void AjouterCommande(sf::Sprite*,int=0, bool=0,  const sf::RenderStates& states = sf::BlendAlpha);
+	void AjouterEntiteGraphique(Entite_graphique*,  const sf::RenderStates& states = sf::BlendAlpha);
 	void AjouterTexte(sf::Text*, int couche=0,bool titre=false);
 	void AjouterTexteNonChevauchable(sf::Text*, int couche=0,bool titre=false);
 	void AjouterTexte(const std::string &, coordonnee, int couche=0, bool titre=false, int size = 14, sf::Color color = sf::Color(224,224,224));

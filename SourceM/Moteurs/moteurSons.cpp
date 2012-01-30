@@ -30,7 +30,10 @@ MoteurSons::MoteurSons()
     sonEnCours=0;
 
     for (int i=0;i<NOMBRE_SONS;i++)
-        m_IDSons[i]=-1,m_sons_preserv[i]=false;
+    {
+        m_IDSons[i]=-1;
+        m_sons_preserv[i]=false;
+    }
 }
 MoteurSons::~MoteurSons()
 {
@@ -256,7 +259,6 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,in
                 if (sonEnCours>=NOMBRE_SONS)
                     sonEnCours=0;
             }
-
 
             m_sons[sonEnCours].SetVolume(volume * m_buffers[ID]->volume / 100);
             m_IDSons[sonEnCours]=ID;

@@ -49,6 +49,8 @@ Jeu::Jeu()
     m_mainMenu      = NULL;
 
     configuration->multi = false;
+
+    m_listHeroes.push_back(&hero);
 }
 
 
@@ -99,17 +101,16 @@ void Jeu::Demarrer()
             moteurGraphique->Afficher();
 
 
-       // if(/*m_contexte != m_mainMenu && */configuration->multi)
-            net->GererMultijoueur(this);
+        net->GererMultijoueur(this);
 
         net->GlobalMutex.Unlock();
 
         moteurSons->Gerer(MusicClock.GetElapsedTime()*0.001);
 
-        if(MusicClock.GetElapsedTime() < 0.01)
-            Sleep(0.01 - MusicClock.GetElapsedTime());
+        //if(MusicClock.GetElapsedTime() < 0.01)
+          //  Sleep(0.01 - MusicClock.GetElapsedTime());
 
-        MusicClock.Reset();
+      //  MusicClock.Reset();
     }
 
     if(m_jeu->m_thread_sauvegarde)

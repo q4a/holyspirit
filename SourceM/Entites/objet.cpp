@@ -1873,8 +1873,8 @@ sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *
     string.SetCharacterSize(14);
     string.SetString(chaine);
 
-    if (tailleCadran->x<(int)string.GetRect().Width)
-        tailleCadran->x=(int)string.GetRect().Width;
+    if (tailleCadran->x<(int)string.GetGlobalBounds().Width)
+        tailleCadran->x=(int)string.GetGlobalBounds().Width;
 
     std::string c(chaine);
     if(c.compare("_") != 0)
@@ -1973,7 +1973,7 @@ void Objet::Afficher(const coordonnee &position)
 {
     sf::Sprite sprite;
     sprite.SetTexture(*moteurGraphique->getImage(m_image));
-    sprite.SetSubRect(IntRect(m_positionImage.x,
+    sprite.SetTextureRect(IntRect(m_positionImage.x,
                               m_positionImage.y,
                               m_positionImage.w,
                               m_positionImage.h));
@@ -2415,7 +2415,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
             else
             {
                 temp[i].SetY((position.y+decalY));
-                temp[i].SetX(position.x+(tailleCadran.x-(int)temp[i].GetRect().Width)*0.5-tailleCadran.x);
+                temp[i].SetX(position.x+(tailleCadran.x-(int)temp[i].GetGlobalBounds().Width)*0.5-tailleCadran.x);
 
                 if(temp[i].GetString() == "")
                     decalY+=2;
@@ -2433,7 +2433,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         {
             if(temp[i].GetString() == "_")
             {
-                sf::Sprite bar;
+                sf::Sprite bar(*moteurGraphique->getImage(0));
                 bar.Resize(tailleCadran.x + 22, 1);
                 bar.SetColor(sf::Color(72 * GetItemColor(m_rarete).r / 255,
                                        67 * GetItemColor(m_rarete).g / 255,
@@ -2447,7 +2447,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
             else
             {
                 temp[i].SetY((position.y+decalY+4));
-                temp[i].SetX(position.x+(tailleCadran.x-(int)temp[i].GetRect().Width)*0.5-tailleCadran.x);
+                temp[i].SetX(position.x+(tailleCadran.x-(int)temp[i].GetGlobalBounds().Width)*0.5-tailleCadran.x);
 
                 if(temp[i].GetString() == "")
                     decalY+=2;

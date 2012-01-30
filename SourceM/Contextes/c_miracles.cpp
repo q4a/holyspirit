@@ -63,7 +63,7 @@ void c_Miracles::Utiliser(Jeu *jeu)
     moteurGraphique->Gerer(0);
     jeu->map->GererAmbiance(temps_ecoule);
     //jeu->map->Animer(&jeu->hero,0);
-    jeu->map->Afficher(&jeu->hero,jeu->m_personnageClients,0,jeu->m_jeu->alpha_map);
+    jeu->map->Afficher(jeu->m_listHeroes,0,jeu->m_jeu->alpha_map);
     jeu->hero.AfficherAmisEtCraft();
 
     if (m_afficher)

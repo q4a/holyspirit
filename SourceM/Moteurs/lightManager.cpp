@@ -352,16 +352,14 @@ void Light_Manager::DrawWallShadow(sf::RenderTarget *App,sf::View *camera,float 
     for (std::vector<int>::iterator IterWall=m_sectors[y][x].begin();
                                     IterWall!=m_sectors[y][x].end();++IterWall)
      {
-        m_wall[*IterWall].m_shadow = sf::Shape();
+        m_wall[*IterWall].m_shadow[0] = sf::Vertex(sf::Vector2f(m_wall[*IterWall].pt2.x,m_wall[*IterWall].pt2.y*0.5),sf::Color(0,0,0,(int)(255)));
+        m_wall[*IterWall].m_shadow[1] = sf::Vertex(sf::Vector2f(m_wall[*IterWall].pt1.x,m_wall[*IterWall].pt1.y*0.5),sf::Color(0,0,0,(int)(255)));
 
-        m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt2.x,m_wall[*IterWall].pt2.y*0.5),sf::Color(0,0,0,(int)(255)));
-        m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt1.x,m_wall[*IterWall].pt1.y*0.5),sf::Color(0,0,0,(int)(255)));
-
-        m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt1.x-m_wall[*IterWall].hauteur1 * vect.x,
+        m_wall[*IterWall].m_shadow[2] = sf::Vertex(sf::Vector2f(m_wall[*IterWall].pt1.x-m_wall[*IterWall].hauteur1 * vect.x,
                                                  m_wall[*IterWall].pt1.y*0.5+m_wall[*IterWall].hauteur1 * vect.y),sf::Color(0,0,0,(int)(255)));
-        m_wall[*IterWall].m_shadow.AddPoint(sf::Vector2f(m_wall[*IterWall].pt2.x-m_wall[*IterWall].hauteur2 * vect.x,
+        m_wall[*IterWall].m_shadow[3] = sf::Vertex(sf::Vector2f(m_wall[*IterWall].pt2.x-m_wall[*IterWall].hauteur2 * vect.x,
                                                  m_wall[*IterWall].pt2.y*0.5+m_wall[*IterWall].hauteur2 * vect.y),sf::Color(0,0,0,(int)(255)));
-        App->Draw(m_wall[*IterWall].m_shadow);
+        App->Draw(m_wall[*IterWall].m_shadow, 4, sf::Quads);
      }
 }
 

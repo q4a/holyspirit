@@ -61,6 +61,8 @@ class Jeu
 
     std::list<Hero> m_personnageClients;
 
+    std::list<Hero*> m_listHeroes;
+
 	bool m_run,m_display;
 
 	c_Demarrage     *m_demarrage;

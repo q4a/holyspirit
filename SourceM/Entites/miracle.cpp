@@ -928,12 +928,12 @@ sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee
     string.SetCharacterSize(14*(int)(configuration->Resolution.h/600));
     string.SetString(chaine);
 
-    if (tailleCadran->x < string.GetRect().Width)
-        tailleCadran->x = (int)string.GetRect().Width;
+    if (tailleCadran->x < string.GetGlobalBounds().Width)
+        tailleCadran->x = (int)string.GetGlobalBounds().Width;
 
     std::string c(chaine);
     if (c.compare("_") != 0)
-        decalage->y += (int)string.GetRect().Height + 2;
+        decalage->y += (int)string.GetGlobalBounds().Height + 2;
 
     return string;
 }
@@ -1033,6 +1033,13 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,41).c_str()));
         temp.back().SetCharacterSize(12);
+
+        {
+            std::ostringstream buf;
+            buf<<configuration->getText(0,115)<<m_level*3+1;
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
+        }
+
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
 
         for (int i=0;i<(int)m_description_effets_suivant.size();i++)
@@ -1078,7 +1085,7 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
     {
         if(temp[i].GetString() == "_")
         {
-            sf::Sprite bar;
+            sf::Sprite bar(*moteurGraphique->getImage(0));
             bar.Resize(tailleCadran.x + 22, 1);
 
             bar.SetColor(sf::Color(72,67,42));
@@ -1091,9 +1098,9 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
         else
         {
             temp[i].SetY((position.y+decalY));
-            temp[i].SetX(position.x+20+(tailleCadran.x-temp[i].GetRect().Width) * 0.5);
+            temp[i].SetX(position.x+20+(tailleCadran.x-temp[i].GetGlobalBounds().Width) * 0.5);
 
-            decalY += (int)temp[i].GetRect().Height + 2;
+            decalY += (int)temp[i].GetGlobalBounds().Height + 2;
 
             moteurGraphique->AjouterTexte(&temp[i],19);
         }

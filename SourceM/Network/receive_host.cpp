@@ -42,6 +42,7 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
 
                 std::cout<<caract.nom<<" s'est connecte a la partie"<<std::endl;
                 jeu->m_personnageClients.push_back(Hero ());
+                jeu->m_listHeroes.push_back(&jeu->m_personnageClients.back());
                 jeu->m_personnageClients.back().m_cheminClasse = cheminclasse;
                 jeu->m_personnageClients.back().m_caracteristiques = caract;
                 jeu->m_personnageClients.back().m_personnage.setCaracteristique(caract);
@@ -76,9 +77,15 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
                 packet3<<(sf::Int8)P_CHANGEMAP<<jeu->map->getNom()<<jeu->hero.m_personnage.getCoordonnee()<<(sf::Int8)configuration->heure<<(sf::Int8)configuration->minute;
                 tcp->Send(packet3);
 
-                packet3.Clear();
-                packet3<<(sf::Int8)P_READY<<(sf::Int8)0;
-                tcp->Send(packet3);
+                int no2 = 0;
+                for (std::list<sf::TcpSocket*>::iterator it2 = m_clientsTCP.begin(); it2 != m_clientsTCP.end(); ++it2, ++no2)
+                {
+                    packet3.Clear();
+                    packet3<<(sf::Int8)P_READY<<(sf::Int8)no2;
+                    tcp->Send(packet3);
+                }
+
+
             }
         }
         else if(type == P_PLAYERSKIN)

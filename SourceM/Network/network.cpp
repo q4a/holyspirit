@@ -323,6 +323,7 @@ void Network::CloseServer()
     m_thread_host = NULL;
 
     jeu->m_personnageClients.clear();
+    jeu->m_listHeroes.resize(1);
 
     for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
         delete *it;
@@ -441,6 +442,9 @@ bool Network::DeletePersonnageClient(int no)
             for(unsigned j = 0 ; j < jeu->hero.m_amis.size() ; ++j)
                 if(jeu->hero.m_amis[j] == &p->m_personnage)
                     jeu->hero.m_amis.erase(jeu->hero.m_amis.begin() + j);
+
+            jeu->m_listHeroes.remove(&*p);
+
             jeu->m_personnageClients.erase(p);
             GlobalMutex.Unlock();
 

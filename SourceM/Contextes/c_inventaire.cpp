@@ -147,7 +147,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     jeu->map->GererAmbiance(temps_ecoule);
 
     //jeu->map->Animer(&jeu->hero,0);
-    jeu->map->Afficher(&jeu->hero,jeu->m_personnageClients,0,jeu->m_jeu->alpha_map);
+    jeu->map->Afficher(jeu->m_listHeroes,0,jeu->m_jeu->alpha_map);
     jeu->hero.AfficherAmisEtCraft();
    // jeu->menu.Afficher(2,jeu->m_jeu->alpha_map,&jeu->hero.m_classe);->
     if(configuration->multi)
@@ -250,7 +250,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         sf::Sprite sprite;
 
         sprite.SetTexture(*moteurGraphique->getImage(bouton->image.image));
-        sprite.SetSubRect(sf::IntRect(bouton->image.position.x,
+        sprite.SetTextureRect(sf::IntRect(bouton->image.position.x,
                                       bouton->image.position.y,
                                       bouton->image.position.w,
                                       bouton->image.position.h));

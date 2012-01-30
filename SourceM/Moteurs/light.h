@@ -60,7 +60,7 @@ struct Wall
     sf::Vector2f position;
 
     // Ombre du mur
-    sf::Shape m_shadow;
+    sf::Vertex m_shadow[4];
 };
 
 // Wall_Entity est une variable qui permet de représenter dans le programme un mur
@@ -166,7 +166,7 @@ private :
     int m_quality;
 
     //Tableau dynamique de Shape, ce sont ces shapes de type triangle qui compose la lumière
-    std::vector <sf::Shape> m_shape;
+    std::vector <sf::VertexArray> m_shape;
 
     bool m_movinglight;
 

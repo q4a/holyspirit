@@ -179,19 +179,21 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
 
                 texte.SetPosition(AutoScreenAdjust(position_sac_inventaire.x,
                                                    position_sac_inventaire.y+(z-m_defilerObjets)*20, decalage));
-                texte.Move((position_sac_inventaire.w-texte.GetRect().Width)*0.5,0);
+                texte.Move((position_sac_inventaire.w-texte.GetGlobalBounds().Width)*0.5,0);
 
                 moteurGraphique->AjouterTexte(&texte,16);
             }
         }
 }
 
-void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
+void Map::Afficher(std::list<Hero*> &players,bool alt,float alpha)
 {
     coordonnee positionHero;
 
     Sprite sprite;
     String texte;
+
+    Hero *hero = players.front();
 
     positionHero.y=(int)((hero->m_personnage.getCoordonneePixel().x+hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE*32);
     positionHero.x=(int)(((hero->m_personnage.getCoordonneePixel().x-hero->m_personnage.getCoordonneePixel().y)*DIVISEUR_COTE_TILE-1)*64);
@@ -216,7 +218,7 @@ void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
 
         sf::Sprite minimap;
         minimap.SetTexture(*moteurGraphique->getImage(hero->m_classe.icone_mm.image));
-        minimap.SetSubRect(sf::IntRect(hero->m_classe.icone_mm.position.x, hero->m_classe.icone_mm.position.y,
+        minimap.SetTextureRect(sf::IntRect(hero->m_classe.icone_mm.position.x, hero->m_classe.icone_mm.position.y,
                                        hero->m_classe.icone_mm.position.w, hero->m_classe.icone_mm.position.h));
 
         minimap.SetColor(sf::Color(255,255,255,(int)(alpha * 0.5f)));
@@ -289,7 +291,7 @@ void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
                         if(fabs(j-hero->m_personnage.getCoordonnee().y) < 8 && fabs(k-hero->m_personnage.getCoordonnee().x) < 8)
                             if(TileVisible(k,j,hero->m_personnage.getCoordonnee()))
                             {
-                                if(m_decor[couche][j][k].m_spriteMinimap.GetSize().x> 1)
+                                if(m_decor[couche][j][k].m_spriteMinimap.GetGlobalBounds().Width> 1)
                                 {
                                     int cur_y = 0;
                                     int cur_x = MINIMAP_SIZE / 2;
@@ -303,9 +305,9 @@ void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
                                         minimap.Move(0, -1024), cur_y ++;
                                     while(minimap.GetPosition().x > 1024)
                                         minimap.Move(-1024, 0), cur_x ++;
-                                    while(minimap.GetPosition().x - minimap.GetSize().x / 2 < 0)
+                                    while(minimap.GetPosition().x - minimap.GetGlobalBounds().Width / 2 < 0)
                                         minimap.Move(1024, 0), cur_x --;
-                                    while(minimap.GetPosition().y - minimap.GetSize().y / 2 < 0)
+                                    while(minimap.GetPosition().y - minimap.GetGlobalBounds().Height / 2 < 0)
                                         minimap.Move(0, 1024), cur_y --;
 
 
@@ -318,9 +320,9 @@ void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
 
                                     bool redraw = false;
 
-                                    if(minimap.GetPosition().y + minimap.GetSize().y > 1024)
+                                    if(minimap.GetPosition().y + minimap.GetGlobalBounds().Height > 1024)
                                         cur_y++, minimap.Move(0,-1024), redraw = true;
-                                    if(minimap.GetPosition().x + minimap.GetSize().x > 1024)
+                                    if(minimap.GetPosition().x + minimap.GetGlobalBounds().Width > 1024)
                                         cur_x++, minimap.Move(-1024,0), redraw = true;
 
 
@@ -354,14 +356,11 @@ void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
                                                                                      hero->m_classe.border,
                                                                                      m_decor[1][j][k].getMonstre()[o]==m_monstreIllumine);
 
-                        if ((int)((hero->m_personnage.getCoordonneePixel().x + COTE_TILE * 0.5f) / COTE_TILE) == k
-                        &&  (int)((hero->m_personnage.getCoordonneePixel().y + COTE_TILE * 0.5f) / COTE_TILE) == j)
-                                hero->Afficher();
 
-                        for (std::list<Hero>::iterator p = players.begin(); p != players.end(); ++p)
-                        if ((int)((p->m_personnage.getCoordonneePixel().x + COTE_TILE * 0.5f) / COTE_TILE) == k
-                        &&  (int)((p->m_personnage.getCoordonneePixel().y + COTE_TILE * 0.5f) / COTE_TILE) == j)
-                                p->Afficher();
+                        for (std::list<Hero*>::iterator p = players.begin(); p != players.end(); ++p)
+                        if ((int)(((*p)->m_personnage.getCoordonneePixel().x + COTE_TILE * 0.5f) / COTE_TILE) == k
+                        &&  (int)(((*p)->m_personnage.getCoordonneePixel().y + COTE_TILE * 0.5f) / COTE_TILE) == j)
+                                (*p)->Afficher();
 
                         if(configuration->Herbes)
                             moteurGraphique->AjouterEntiteGraphique(&m_decor[1][j][k].m_entite_herbe);
@@ -425,10 +424,10 @@ void Map::Afficher(Hero *hero,std::list<Hero> &players,bool alt,float alpha)
                     buffer.SetX((k-j)*64);
                     buffer.SetY((k+j+1)*32);
 
-                    if (buffer.GetSize().x>0)
-                        if(buffer.GetPosition().x+buffer.GetSize().x - buffer.GetOrigin().x>=GetViewRect(moteurGraphique->m_camera).Left
+                    if (buffer.GetGlobalBounds().Width>0)
+                        if(buffer.GetPosition().x+buffer.GetGlobalBounds().Width - buffer.GetOrigin().x>=GetViewRect(moteurGraphique->m_camera).Left
                         && buffer.GetPosition().x-buffer.GetOrigin().x < GetViewRect(moteurGraphique->m_camera).Left + GetViewRect(moteurGraphique->m_camera).Width
-                        && buffer.GetPosition().y+buffer.GetSize().y - buffer.GetOrigin().y>=GetViewRect(moteurGraphique->m_camera).Top
+                        && buffer.GetPosition().y+buffer.GetGlobalBounds().Height - buffer.GetOrigin().y>=GetViewRect(moteurGraphique->m_camera).Top
                         && buffer.GetPosition().y-buffer.GetOrigin().y < GetViewRect(moteurGraphique->m_camera).Top  + GetViewRect(moteurGraphique->m_camera).Height)
                             moteurGraphique->AjouterCommande(&buffer,m_decor[couche][w][z].getCouche(),1);
                 }
@@ -759,23 +758,15 @@ void Map::GererProjectilesEtEffets(Jeu *jeu,Hero *hero,float temps)
 
                             projectile->m_positionCase = temp_pos;
 
-                            if (hero->m_personnage.getCoordonnee().x==(int)((projectile->m_position.x+32)/COTE_TILE)
-                             && hero->m_personnage.getCoordonnee().y==(int)((projectile->m_position.y+32)/COTE_TILE)
+                            for (std::list<Hero*>::iterator p = jeu->m_listHeroes.begin();
+                                                            p != jeu->m_listHeroes.end(); ++p)
+                            if ((*p)->m_personnage.getCoordonnee().x==(int)((projectile->m_position.x+32)/COTE_TILE)
+                             && (*p)->m_personnage.getCoordonnee().y==(int)((projectile->m_position.y+32)/COTE_TILE)
                              && projectile->m_monstre)
                             {
                                 if(rand()%100 > projectile->m_transperce)
                                     projectile->m_actif=false;
-                                projectile->m_entite_cible = &hero->m_personnage;
-                            }
-
-                            for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
-                            if (p->m_personnage.getCoordonnee().x==(int)((projectile->m_position.x+32)/COTE_TILE)
-                             && p->m_personnage.getCoordonnee().y==(int)((projectile->m_position.y+32)/COTE_TILE)
-                             && projectile->m_monstre)
-                            {
-                                if(rand()%100 > projectile->m_transperce)
-                                    projectile->m_actif=false;
-                                projectile->m_entite_cible = &p->m_personnage;
+                                projectile->m_entite_cible = &(*p)->m_personnage;
                             }
                         }
                         else
@@ -868,14 +859,10 @@ void Map::GererProjectilesEtEffets(Jeu *jeu,Hero *hero,float temps)
 
 bool Map::DistanceWithHeros(Jeu *jeu, coordonnee pos, int t)
 {
-    if(fabs(jeu->hero.m_personnage.getCoordonnee().x - pos.x) < t
-    && fabs(jeu->hero.m_personnage.getCoordonnee().y - pos.y) < t)
-        return true;
-
-    for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin();
-         p != jeu->m_personnageClients.end(); ++p)
-    if(fabs(p->m_personnage.getCoordonnee().x - pos.x) < t
-    && fabs(p->m_personnage.getCoordonnee().y - pos.y) < t)
+    for (std::list<Hero*>::iterator p = jeu->m_listHeroes.begin();
+         p != jeu->m_listHeroes.end(); ++p)
+    if(fabs((*p)->m_personnage.getCoordonnee().x - pos.x) < t
+    && fabs((*p)->m_personnage.getCoordonnee().y - pos.y) < t)
         return true;
 
     return false;
@@ -1001,7 +988,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                     Iter_monstre->setVu(0);
 
                 if (Iter_monstre->getVu() == 0)
-                    TestVisionMonstre(monstre, hero, jeu->m_personnageClients);
+                    TestVisionMonstre(monstre, jeu->m_listHeroes);
 
                 if (Iter_monstre->m_cible != NULL)
                     Iter_monstre->TesterVision(Iter_monstre->m_cible->getCoordonnee());
@@ -1111,7 +1098,7 @@ void Map::GererScript(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 GererInstructions(jeu,&m_script,(int)m_script.m_instructions[0].m_valeurs[a],-1,hero,temps,menu,0);
 }
 
-void Map::TestVisionMonstre(int numero, Hero *hero,std::list<Hero> &players)
+void Map::TestVisionMonstre(int numero, std::list<Hero*> &players)
 {
     if (numero >= 0 && numero < (int)m_monstre.size())
         for (int y = m_monstre[numero].getCoordonnee().y - 5 ;
@@ -1147,11 +1134,12 @@ void Map::TestVisionMonstre(int numero, Hero *hero,std::list<Hero> &players)
                     }
                     else
                     {
-                        if(hero->m_personnage.EnVie())
-                            if (hero->m_personnage.getCoordonnee().y == y && hero->m_personnage.getCoordonnee().x == x)
+                        for (std::list<Hero*>::iterator p = players.begin(); p != players.end(); ++p)
+                        if((*p)->m_personnage.EnVie())
+                            if ((*p)->m_personnage.getCoordonnee().y == y && (*p)->m_personnage.getCoordonnee().x == x)
                             {
                                 if (m_monstre[numero].m_cible == NULL)
-                                    m_monstre[numero].m_cible = &hero->m_personnage;
+                                    m_monstre[numero].m_cible = &(*p)->m_personnage;
                                 else
                                 {
                                     int x1 = m_monstre[numero].m_cible->getCoordonnee().x - m_monstre[numero].getCoordonnee().x;
@@ -1160,25 +1148,7 @@ void Map::TestVisionMonstre(int numero, Hero *hero,std::list<Hero> &players)
                                     int x2 = x - m_monstre[numero].getCoordonnee().x;
                                     int y2 = y - m_monstre[numero].getCoordonnee().y;
                                     if ( x1 * x1 + y1 * y1 > x2 * x2 + y2 * y2)
-                                        m_monstre[numero].m_cible = &hero->m_personnage;
-                                }
-                            }
-
-                        for (std::list<Hero>::iterator p = players.begin(); p != players.end(); ++p)
-                        if(p->m_personnage.EnVie())
-                            if (p->m_personnage.getCoordonnee().y == y && p->m_personnage.getCoordonnee().x == x)
-                            {
-                                if (m_monstre[numero].m_cible == NULL)
-                                    m_monstre[numero].m_cible = &p->m_personnage;
-                                else
-                                {
-                                    int x1 = m_monstre[numero].m_cible->getCoordonnee().x - m_monstre[numero].getCoordonnee().x;
-                                    int y1 = m_monstre[numero].m_cible->getCoordonnee().y - m_monstre[numero].getCoordonnee().y;
-
-                                    int x2 = x - m_monstre[numero].getCoordonnee().x;
-                                    int y2 = y - m_monstre[numero].getCoordonnee().y;
-                                    if ( x1 * x1 + y1 * y1 > x2 * x2 + y2 * y2)
-                                        m_monstre[numero].m_cible = &p->m_personnage;
+                                        m_monstre[numero].m_cible = &(*p)->m_personnage;
                                 }
                             }
 
@@ -1471,10 +1441,8 @@ casePathfinding** Map::getAlentourDuPersonnage(Jeu *jeu, coordonnee positionPers
 
                 if(monstre)
                 {
-                    if(jeu->hero.m_personnage.getProchaineCase().x == x && jeu->hero.m_personnage.getProchaineCase().y == y)
-                        grille[y-positionPersonnage.y+5][x-positionPersonnage.x+5].collision = true;
-                    for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
-                        if(p->m_personnage.getProchaineCase().x == x && p->m_personnage.getProchaineCase().y == y)
+                    for (std::list<Hero*>::iterator p = jeu->m_listHeroes.begin(); p != jeu->m_listHeroes.end(); ++p)
+                        if((*p)->m_personnage.getProchaineCase().x == x && (*p)->m_personnage.getProchaineCase().y == y)
                             grille[y-positionPersonnage.y+5][x-positionPersonnage.x+5].collision = true;
                 }
             }

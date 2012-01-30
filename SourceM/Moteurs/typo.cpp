@@ -89,7 +89,7 @@ void Typo::Draw(const std::string &text, sf::Vector2f pos, int size, int layer, 
         sprites.back().SetColor(color);
         sprites.back().SetTexture(*moteurGraphique->getImage(m_img));
         sprites.back().SetPosition(cur_pos);
-        sprites.back().SetSubRect(sf::IntRect(buf.pos, buf.size));
+        sprites.back().SetTextureRect(sf::IntRect(buf.pos, buf.size));
 
         sprites.back().Scale((float)size/72,(float)size/72);
 

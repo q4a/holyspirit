@@ -36,7 +36,7 @@ Entite_graphique::Entite_graphique() : sf::Sprite()
     m_decalCouche   = 0;
     m_noAnimation   = 0;
 
-    SetSubRect(sf::IntRect(0,0,0,0));
+    SetTextureRect(sf::IntRect(0,0,0,0));
 
     m_animation = 0;
     m_nextAnimation = 0;
@@ -258,8 +258,6 @@ void Entite_graphique::AddWallLight(const coordonnee &pos2)
 
 void Entite_graphique::Initialiser(const coordonnee &pos)
 {
-    SetBlendMode(sf::Blend::Alpha);
-
     if(m_tileset != NULL)
     {
         NextTile(true, true);
@@ -293,7 +291,7 @@ void Entite_graphique::Generer()
             coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_noAnimation);
 
             SetTexture(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
-            SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
+            SetTextureRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
                                    positionPartieDecor.w, positionPartieDecor.h - 1));
 
             SetOrigin(m_tileset->getCentreDuTile(m_noAnimation).x,m_tileset->getCentreDuTile(m_noAnimation).y);
@@ -303,9 +301,7 @@ void Entite_graphique::Generer()
                                         m_color.b,
                                         m_tileset->getOpacityDuTile(m_noAnimation) * m_color.a / 255));
 
-            SetScale(fabs((float)m_scale.x*0.01), fabs((float)m_scale.y*0.01));
-            FlipX(m_scale.x < 0);
-            FlipY(m_scale.y < 0);
+            SetScale((float)m_scale.x*0.01, (float)m_scale.y*0.01);
 
             if(m_scale.x < 0)
             SetOrigin(positionPartieDecor.w - m_tileset->getCentreDuTile(m_noAnimation).x,
@@ -332,7 +328,7 @@ void Entite_graphique::Generer()
                 coordonnee positionPartieDecor2 = m_tileset->getPositionDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1);
 
                 m_sprite_distortion.SetTexture(*moteurGraphique->getImage(m_tileset->getImage(m_tileset->getDistortionDuTile(m_noAnimation), 1)));
-                m_sprite_distortion.SetSubRect(sf::IntRect(positionPartieDecor2.x, positionPartieDecor2.y,
+                m_sprite_distortion.SetTextureRect(sf::IntRect(positionPartieDecor2.x, positionPartieDecor2.y,
                                                            positionPartieDecor2.w, positionPartieDecor2.h));
 
                 m_sprite_distortion.SetOrigin(m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1).x,m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1).y);
@@ -361,7 +357,7 @@ void Entite_graphique::Generer()
 
 
                 m_sprite_shadowmap.back().SetTexture(*moteurGraphique->getImage(m_tileset->getImageShadowmap(m_noAnimation,i)));
-                m_sprite_shadowmap.back().SetSubRect(sf::IntRect(positionPartieDecor2.x,
+                m_sprite_shadowmap.back().SetTextureRect(sf::IntRect(positionPartieDecor2.x,
                                                                  positionPartieDecor2.y,
                                                                  positionPartieDecor2.w,
                                                                  positionPartieDecor2.h));
@@ -433,6 +429,11 @@ void Entite_graphique::LoadParameters(std::ifstream &fichier)
                 fichier>>m_scale.x;
             if(caractere == 'y')
                 fichier>>m_scale.y;
+
+            if(m_scale.x == 0)
+                m_scale.x = 100;
+            if(m_scale.y == 0)
+                m_scale.y = 100;
         }
         if(caractere == 'r')
         {

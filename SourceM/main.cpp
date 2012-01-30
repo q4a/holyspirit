@@ -40,14 +40,6 @@ int main (  )
     configuration=Configuration::GetInstance();
     console=Console::GetInstance();
 
-   /* for(int x = 0 ; x < 16 ; ++x)
-    for(int y = 0 ; y < 16 ; ++y)
-    {
-        std::ostringstream buf;
-        buf<<"* s1 t"<<rand()%17<<" x"<<(x*800/16+rand()%(800/16))*2<<" y"<<(y*600/16+rand()%(600/16))*2<<" f1 $";
-        console->Ajouter(buf.str());
-    }*/
-
     console->Ajouter("--------------------------------------------------------------------------------");
     console->Ajouter("Demarrage du jeu",0);
     console->Ajouter("--------------------------------------------------------------------------------");
@@ -63,7 +55,6 @@ int main (  )
     net = Network::GetInstance();
 
     console->Ajouter("");
-
 
     try
     {

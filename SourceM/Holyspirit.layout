@@ -2,28 +2,28 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Release" />
 	<File name="Contextes\c_bless.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="1772" topLine="51" />
+		<Cursor1 position="1709" topLine="51" />
 	</File>
-	<File name="Contextes\c_changementMap.cpp" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="13252" topLine="344" />
+	<File name="Contextes\c_changementMap.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="21043" topLine="566" />
 	</File>
 	<File name="Contextes\c_changementMap.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="2235" topLine="53" />
 	</File>
 	<File name="Contextes\c_craft.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="1744" topLine="50" />
+		<Cursor1 position="1686" topLine="50" />
 	</File>
 	<File name="Contextes\c_demarrage.cpp" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="1452" topLine="37" />
 	</File>
 	<File name="Contextes\c_documents.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="1793" topLine="51" />
+		<Cursor1 position="1758" topLine="51" />
 	</File>
-	<File name="Contextes\c_inventaire.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="7603" topLine="203" />
+	<File name="Contextes\c_inventaire.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="4831" topLine="136" />
 	</File>
-	<File name="Contextes\c_jeu.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="20122" topLine="515" />
+	<File name="Contextes\c_jeu.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="16147" topLine="426" />
 	</File>
 	<File name="Contextes\c_jeu.h" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="3788" topLine="0" />
@@ -35,16 +35,16 @@
 		<Cursor1 position="2264" topLine="61" />
 	</File>
 	<File name="Contextes\c_menuInGame.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="6704" topLine="153" />
+		<Cursor1 position="2200" topLine="76" />
 	</File>
 	<File name="Contextes\c_miracles.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="1786" topLine="54" />
+		<Cursor1 position="1752" topLine="54" />
 	</File>
 	<File name="Contextes\c_potales.cpp" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="2816" topLine="80" />
+		<Cursor1 position="1435" topLine="41" />
 	</File>
 	<File name="Contextes\c_quetes.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="1461" topLine="42" />
+		<Cursor1 position="1233" topLine="42" />
 	</File>
 	<File name="Contextes\contexte.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="402" topLine="0" />
@@ -58,17 +58,17 @@
 	<File name="Entites\classe.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="3651" topLine="131" />
 	</File>
-	<File name="Entites\hero.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="29611" topLine="905" />
+	<File name="Entites\hero.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="82162" topLine="2087" />
 	</File>
-	<File name="Entites\hero.h" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="5367" topLine="182" />
+	<File name="Entites\hero.h" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="3830" topLine="120" />
 	</File>
-	<File name="Entites\miracle.cpp" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="3718" topLine="124" />
+	<File name="Entites\miracle.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="33805" topLine="1029" />
 	</File>
-	<File name="Entites\miracle.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="6605" topLine="203" />
+	<File name="Entites\miracle.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="5338" topLine="134" />
 	</File>
 	<File name="Entites\monstre.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="2328" topLine="74" />
@@ -79,35 +79,35 @@
 	<File name="Entites\objet.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="80972" topLine="2456" />
 	</File>
-	<File name="Entites\personnage.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="41256" topLine="1096" />
+	<File name="Entites\personnage.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="47477" topLine="1260" />
 	</File>
 	<File name="Entites\personnage.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="6320" topLine="210" />
+		<Cursor1 position="6320" topLine="174" />
 	</File>
 	<File name="Entites\script.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="0" topLine="300" />
 	</File>
-	<File name="Map\decor.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="6025" topLine="153" />
+	<File name="Map\decor.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="4718" topLine="148" />
 	</File>
 	<File name="Map\decor.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="1397" topLine="34" />
 	</File>
-	<File name="Map\map.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="33148" topLine="655" />
+	<File name="Map\map.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="57341" topLine="1123" />
 	</File>
-	<File name="Map\map.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="7253" topLine="109" />
+	<File name="Map\map.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="7264" topLine="105" />
 	</File>
-	<File name="Map\map_charger.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="33850" topLine="955" />
+	<File name="Map\map_charger.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="4409" topLine="157" />
 	</File>
-	<File name="Map\map_miracles.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="51215" topLine="199" />
+	<File name="Map\map_miracles.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="12781" topLine="321" />
 	</File>
-	<File name="Map\map_scripts.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="35432" topLine="616" />
+	<File name="Map\map_scripts.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="45929" topLine="831" />
 	</File>
 	<File name="Map\tileset.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="18567" topLine="670" />
@@ -131,25 +131,25 @@
 		<Cursor1 position="917" topLine="15" />
 	</File>
 	<File name="Moteurs\light.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="13803" topLine="353" />
+		<Cursor1 position="15437" topLine="386" />
 	</File>
-	<File name="Moteurs\light.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="2540" topLine="115" />
+	<File name="Moteurs\light.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="4190" topLine="43" />
 	</File>
-	<File name="Moteurs\lightManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="9197" topLine="252" />
+	<File name="Moteurs\lightManager.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="13446" topLine="344" />
 	</File>
-	<File name="Moteurs\lightManager.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="1451" topLine="88" />
+	<File name="Moteurs\lightManager.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1451" topLine="71" />
 	</File>
-	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="2721" topLine="77" />
+	<File name="Moteurs\moteurGraphique.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="36415" topLine="928" />
 	</File>
 	<File name="Moteurs\moteurGraphique.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="3350" topLine="121" />
 	</File>
-	<File name="Moteurs\moteurParticule.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="3052" topLine="68" />
+	<File name="Moteurs\moteurParticule.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="3639" topLine="82" />
 	</File>
 	<File name="Moteurs\moteurParticule.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="0" topLine="0" />
@@ -166,23 +166,35 @@
 	<File name="Moteurs\typo.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="0" topLine="0" />
 	</File>
+	<File name="Network\network.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="10779" topLine="371" />
+	</File>
+	<File name="Network\network.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1889" topLine="40" />
+	</File>
+	<File name="Network\receive_client.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="3531" topLine="75" />
+	</File>
+	<File name="Network\receive_host.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1556" topLine="33" />
+	</File>
+	<File name="Network\send.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="9123" topLine="294" />
+	</File>
 	<File name="configuration.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="20085" topLine="97" />
 	</File>
 	<File name="configuration.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="3214" topLine="114" />
 	</File>
-	<File name="constantes.h" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="2357" topLine="66" />
+	<File name="constantes.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1852" topLine="66" />
 	</File>
 	<File name="jeu.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="3347" topLine="110" />
+		<Cursor1 position="1424" topLine="40" />
 	</File>
 	<File name="jeu.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="1950" topLine="62" />
-	</File>
-	<File name="jeu_network.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="36852" topLine="1135" />
+		<Cursor1 position="1649" topLine="47" />
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="2869" topLine="92" />

@@ -89,15 +89,15 @@ void MoteurGraphique::CreateNewWindow()
 
     if (configuration->postFX)
     {
-        EffectBlur.SetCurrentTexture("texture");
+        /*EffectBlur.SetCurrentTexture("texture");
         EffectBlur2.SetCurrentTexture("texture");
         EffectBlurScreen.SetCurrentTexture("texture");
         EffectMort.SetCurrentTexture("framebuffer");
         EffectFiltre.SetCurrentTexture("framebuffer");
         EffectWater.SetCurrentTexture("framebuffer");
-        EffectDistortion.SetCurrentTexture("framebuffer");
+        EffectDistortion.SetCurrentTexture("framebuffer");*/
 
-        EffectDistortion.SetTexture("distortion_map",m_distortion_screen.GetTexture());
+        EffectDistortion.SetParameter("distortion_map",m_distortion_screen.GetTexture());
     }
 
     m_ecran.SetActive();
@@ -117,17 +117,17 @@ void MoteurGraphique::Charger()
         console->Ajouter("");
         console->Ajouter("Chargement des postFX :");
 
-        if (!EffectBlur.LoadFromFile(configuration->chemin_fx+configuration->nom_effetBlur))
+        if (!EffectBlur.LoadFromFile(configuration->chemin_fx+configuration->nom_effetBlur, sf::Shader::Fragment))
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
 
-        if (!EffectBlur2.LoadFromFile(configuration->chemin_fx+configuration->nom_effetBlur))
+        if (!EffectBlur2.LoadFromFile(configuration->chemin_fx+configuration->nom_effetBlur, sf::Shader::Fragment))
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
 
-        if (!EffectBlurScreen.LoadFromFile(configuration->chemin_fx+configuration->nom_effetBlur))
+        if (!EffectBlurScreen.LoadFromFile(configuration->chemin_fx+configuration->nom_effetBlur, sf::Shader::Fragment))
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
@@ -135,7 +135,7 @@ void MoteurGraphique::Charger()
         EffectBlur.SetParameter("offset",0.02);
         EffectBlur2.SetParameter("offset",0.005);
 
-        if (!EffectMort.LoadFromFile(configuration->chemin_fx+configuration->nom_effetMort))
+        if (!EffectMort.LoadFromFile(configuration->chemin_fx+configuration->nom_effetMort, sf::Shader::Fragment))
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetMort,1);
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetMort,0);
@@ -145,23 +145,23 @@ void MoteurGraphique::Charger()
 
 
 
-        if (!EffectFiltre.LoadFromFile(configuration->chemin_fx+configuration->nom_effetFiltre))
+        if (!EffectFiltre.LoadFromFile(configuration->chemin_fx+configuration->nom_effetFiltre, sf::Shader::Fragment))
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetFiltre,1);
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetFiltre,0);
 
-        if (!EffectWater.LoadFromFile(configuration->chemin_fx+configuration->nom_effetWater))
+        if (!EffectWater.LoadFromFile(configuration->chemin_fx+configuration->nom_effetWater, sf::Shader::Fragment))
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetWater,1);
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetWater,0);
 
-        if (!EffectDistortion.LoadFromFile(configuration->chemin_fx+configuration->nom_effetDistortion))
+        if (!EffectDistortion.LoadFromFile(configuration->chemin_fx+configuration->nom_effetDistortion, sf::Shader::Fragment))
             console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetDistortion,1);
         else
             console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetDistortion,0);
 
         m_img_water = AjouterImage(configuration->water_map,-1);
-        EffectWater.SetTexture("water_map", *getImage(m_img_water));
+        EffectWater.SetParameter("water_map", *getImage(m_img_water));
     }
 
     console->Ajouter("");
@@ -350,8 +350,7 @@ void MoteurGraphique::Afficher()
         sprite3.SetTexture(*getImage(0));
         sprite3.Resize(configuration->Resolution.w+64,configuration->Resolution.h+64);
         sprite3.SetColor(sf::Color(sf::Color((int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5))));
-        sprite3.SetBlendMode(sf::Blend::Add);
-        m_light_screen2.Draw(sprite3);
+        m_light_screen2.Draw(sprite3, sf::BlendAdd);
 
         m_light_screen2.Display();
 
@@ -362,7 +361,7 @@ void MoteurGraphique::Afficher()
             sf::Sprite buf;
             buf.SetTexture(m_light_screen2.GetTexture());
             m_light_screen2.SetView(m_light_screen2.GetDefaultView());
-            m_light_screen2.Draw(buf, EffectBlur2);
+            m_light_screen2.Draw(buf, &EffectBlur2);
             m_light_screen2.Display();
             EffectBlur2.SetParameter("direction_x", 0);
         }
@@ -370,19 +369,11 @@ void MoteurGraphique::Afficher()
 
     if (configuration->Lumiere > 0 && configuration->RafraichirLumiere)
     {
-
-        /*m_light_screen.Clear(sf::Color(m_soleil.rouge * m_soleil.intensite/255,
-                                       m_soleil.vert  * m_soleil.intensite/255,
-                                       m_soleil.bleu  * m_soleil.intensite/255,255));*/
-
-
         m_light_screen.SetView(m_light_screen.GetDefaultView());
-        sf::Sprite sprite_b;
-        sprite_b.SetColor(sf::Color(m_soleil.rouge * m_soleil.intensite/255,
+
+        m_light_screen.Clear(sf::Color(m_soleil.rouge * m_soleil.intensite/255,
                                        m_soleil.vert  * m_soleil.intensite/255,
                                        m_soleil.bleu  * m_soleil.intensite/255,LIGHT_ALPHA));
-        sprite_b.Resize(m_light_screen.GetWidth(),m_light_screen.GetHeight());
-        m_light_screen.Draw(sprite_b);
 
 
         sf::View temp = m_camera;
@@ -403,7 +394,7 @@ void MoteurGraphique::Afficher()
             sf::Sprite buf;
             buf.SetTexture(m_light_screen.GetTexture());
             m_light_screen.SetView(m_light_screen.GetDefaultView());
-            m_light_screen.Draw(buf, EffectBlur);
+            m_light_screen.Draw(buf, &EffectBlur);
             m_light_screen.Display();
             EffectBlur.SetParameter("direction_x", 0);
         }
@@ -435,7 +426,7 @@ void MoteurGraphique::Afficher()
         {
             sf::Sprite screen(m_light_screen.GetTexture());
 
-            screen.SetBlendMode(sf::Blend::Multiply);
+            sf::RenderStates r(sf::BlendMultiply);
 
             screen.SetX(decalageLumiere.x-m_camera.GetCenter().x-32);
             screen.SetY(decalageLumiere.y-m_camera.GetCenter().y-32);
@@ -443,16 +434,16 @@ void MoteurGraphique::Afficher()
             bufferImage.SetView(bufferImage.GetDefaultView());
 
             if(configuration->postFX)
-                bufferImage.Draw(screen, EffectBlur);
-            else
-                bufferImage.Draw(screen);
+                r.Shader = &EffectBlur;
+
+            bufferImage.Draw(screen, r);
         }
 
         if (k==10 && configuration->Ombre && m_soleil.intensite>32)
         {
             sf::Sprite screen(m_light_screen2.GetTexture());
 
-            screen.SetBlendMode(sf::Blend::Multiply);
+            sf::RenderStates r(sf::BlendMultiply);
 
             screen.SetX(decalageOmbre.x-m_camera.GetCenter().x-32);
             screen.SetY(decalageOmbre.y-m_camera.GetCenter().y-32);
@@ -460,9 +451,9 @@ void MoteurGraphique::Afficher()
             bufferImage.SetView(bufferImage.GetDefaultView());
 
             if(configuration->postFX)
-                bufferImage.Draw(screen, EffectBlur2);
-            else
-                bufferImage.Draw(screen);
+                r.Shader = &EffectBlur2;
+
+            bufferImage.Draw(screen,r);
         }
 
         if (k==12 && configuration->postFX && configuration->Distortion)
@@ -471,12 +462,12 @@ void MoteurGraphique::Afficher()
 
             m_distortion_screen.Display();
 
-            EffectDistortion.SetCurrentTexture("framebuffer");
-            EffectDistortion.SetTexture("distortion_map", m_distortion_screen.GetTexture());
+           // EffectDistortion.SetCurrentTexture("framebuffer");
+            EffectDistortion.SetParameter("distortion_map", m_distortion_screen.GetTexture());
 
             bufferImage.Display();
 
-            bufferImage.Draw(sf::Sprite(bufferImage.GetTexture()), EffectDistortion);
+            bufferImage.Draw(sf::Sprite(bufferImage.GetTexture()), &EffectDistortion);
         }
 
         if (k!=9)
@@ -495,7 +486,10 @@ void MoteurGraphique::Afficher()
                     else
                         m_water_screen.SetView(m_water_screen.GetDefaultView());
 
-                    m_water_screen.Draw(IterCommande->m_sprite,EffectFiltre);
+                    sf::RenderStates r(IterCommande->m_states);
+                    r.Shader = &EffectFiltre;
+
+                    m_water_screen.Draw(IterCommande->m_sprite,r);
                 }
                 else
                 {
@@ -504,10 +498,13 @@ void MoteurGraphique::Afficher()
                     else
                         bufferImage.SetView(bufferImage.GetDefaultView());
 
+
+                    sf::RenderStates r(IterCommande->m_states);
+
                     if(k < 12 && configuration->postFX)
-                        bufferImage.Draw(IterCommande->m_sprite,EffectFiltre);
-                    else
-                        bufferImage.Draw(IterCommande->m_sprite);
+                        r.Shader = &EffectFiltre;
+
+                    bufferImage.Draw(IterCommande->m_sprite,r);
                 }
             }
         }
@@ -519,7 +516,7 @@ void MoteurGraphique::Afficher()
             m_water_screen.Display();
             EffectWater.SetParameter("translation", m_transWater.x, m_transWater.y);
             EffectWater.SetParameter("offset", 1/configuration->zoom , 1/configuration->zoom );
-            bufferImage.Draw(sf::Sprite (m_water_screen.GetTexture()), EffectWater);
+            bufferImage.Draw(sf::Sprite (m_water_screen.GetTexture()), &EffectWater);
         }
 
         for (IterTextes=m_textes[k].begin();IterTextes!=m_textes[k].end();++IterTextes)
@@ -535,7 +532,7 @@ void MoteurGraphique::Afficher()
             {
                 bufferImage.SetView(bufferImage.GetDefaultView());
                 bufferImage.Display();
-                bufferImage.Draw(sf::Sprite(bufferImage.GetTexture()), EffectMort);
+                bufferImage.Draw(sf::Sprite(bufferImage.GetTexture()), &EffectMort);
             }
         }
 
@@ -547,7 +544,7 @@ void MoteurGraphique::Afficher()
                 bufferImage.SetView(bufferImage.GetDefaultView());
                 EffectBlurScreen.SetParameter("offset",(float)m_blur);
                 bufferImage.Display();
-                bufferImage.Draw(sf::Sprite(bufferImage.GetTexture()), EffectBlurScreen);
+                bufferImage.Draw(sf::Sprite(bufferImage.GetTexture()), &EffectBlurScreen);
             }
         }
 
@@ -557,8 +554,7 @@ void MoteurGraphique::Afficher()
             sprite2.SetTexture(*getImage(0));
             sprite2.Resize(configuration->Resolution.x,configuration->Resolution.y);
             sprite2.SetColor(sf::Color((int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),255));
-            sprite2.SetBlendMode(sf::Blend::Multiply);
-            bufferImage.Draw(sprite2);
+            bufferImage.Draw(sprite2,sf::BlendMultiply);
         }
 
         m_commandes[k].clear();
@@ -789,7 +785,7 @@ void MoteurGraphique::AjouterSystemeParticules(int ID,coordonnee position,sf::Co
         m_systemeParticules.push_back(ParticuleSysteme (ID,&m_modeleSystemeParticules[ID],position,color,force,angle));
 }
 
-void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
+void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite,  const sf::RenderStates& states)
 {
     if(entite->m_tileset != NULL)
     {
@@ -799,7 +795,7 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             coordonnee positionPartieDecor = m_ambientShadowTileset.getPositionDuTile(entite->m_ambientShadow);
 
             sprite2.SetTexture(*moteurGraphique->getImage(m_ambientShadowTileset.getImage(entite->m_ambientShadow)));
-            sprite2.SetSubRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
+            sprite2.SetTextureRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
                                           positionPartieDecor.w, positionPartieDecor.h - 1));
 
             sprite2.SetOrigin(m_ambientShadowTileset.getCentreDuTile(entite->m_ambientShadow).x,
@@ -812,18 +808,18 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
             AjouterCommande(&sprite2, 10 + entite->m_decalCouche, !entite->m_fixed);
         }
 
-        if(entite->GetSize().x > 0 && entite->GetSize().y > 0)
+        if(entite->GetGlobalBounds().Width > 0 && entite->GetGlobalBounds().Height > 0)
         {
             {
                 sf::Sprite sprite = *entite;
                 sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
 
-                if((sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
+                if((sprite.GetPosition().x + sprite.GetGlobalBounds().Width - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
                  && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
-                 && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
+                 && sprite.GetPosition().y + sprite.GetGlobalBounds().Height - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
                  && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height)
                 || sprite.GetRotation() != 0 || entite->m_fixed)
-                    AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, !entite->m_fixed);
+                    AjouterCommande(&sprite, entite->m_couche + entite->m_decalCouche, !entite->m_fixed, states);
             }
 
             if(entite->m_shadow && configuration->Ombre && entite->m_couche + entite->m_decalCouche >= 10)
@@ -844,13 +840,13 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
                 sprite = *entite;
                 sprite.Move(entite->m_decalage.x,entite->m_decalage.y);
 
-                sprite.FlipY(true);
+                sprite.Scale(1,-1);
                 //sprite.FlipX(true);
-                sprite.SetOrigin(sprite.GetOrigin().x, sprite.GetSize().y - sprite.GetOrigin().y);
+                sprite.SetOrigin(sprite.GetOrigin().x, sprite.GetGlobalBounds().Height - sprite.GetOrigin().y);
 
-                if(sprite.GetPosition().x + sprite.GetSize().x - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
+                if(sprite.GetPosition().x + sprite.GetGlobalBounds().Width - sprite.GetOrigin().x     >= GetViewRect(m_camera).Left
                 && sprite.GetPosition().x - sprite.GetOrigin().x                          <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
-                && sprite.GetPosition().y + sprite.GetSize().y - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
+                && sprite.GetPosition().y + sprite.GetGlobalBounds().Height - sprite.GetOrigin().y     >= GetViewRect(m_camera).Top
                 && sprite.GetPosition().y - sprite.GetOrigin().y                          <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height)
                     AjouterCommande(&sprite, 0, !entite->m_fixed);
             }
@@ -860,12 +856,12 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
 
         if(entite->m_distort && configuration->Distortion)
         {
-           if((entite->m_sprite_distortion.GetPosition().x + entite->m_sprite_distortion.GetSize().x - entite->m_sprite_distortion.GetOrigin().x    >= GetViewRect(m_camera).Left
+           if((entite->m_sprite_distortion.GetPosition().x + entite->m_sprite_distortion.GetGlobalBounds().Width - entite->m_sprite_distortion.GetOrigin().x    >= GetViewRect(m_camera).Left
             && entite->m_sprite_distortion.GetPosition().x - entite->m_sprite_distortion.GetOrigin().x                                              <  GetViewRect(m_camera).Left + GetViewRect(m_camera).Width
-            && entite->m_sprite_distortion.GetPosition().y + entite->m_sprite_distortion.GetSize().y - entite->m_sprite_distortion.GetOrigin().y    >= GetViewRect(m_camera).Top
+            && entite->m_sprite_distortion.GetPosition().y + entite->m_sprite_distortion.GetGlobalBounds().Height - entite->m_sprite_distortion.GetOrigin().y    >= GetViewRect(m_camera).Top
             && entite->m_sprite_distortion.GetPosition().y - entite->m_sprite_distortion.GetOrigin().y)                                           <  GetViewRect(m_camera).Top + GetViewRect(m_camera).Height
             || entite->m_sprite_distortion.GetRotation() != 0)
-                m_distortion_commandes.push_back(Commande (&entite->m_sprite_distortion, !entite->m_fixed));
+                m_distortion_commandes.push_back(Commande (&entite->m_sprite_distortion, !entite->m_fixed, sf::BlendAlpha));
         }
 
 
@@ -892,10 +888,10 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite)
     }
 }
 
-void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camera)
+void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camera, const sf::RenderStates &s)
 {
     if (couche>=0&&couche<=20)
-        m_commandes[couche].push_back(Commande (sprite,camera));
+        m_commandes[couche].push_back(Commande (sprite,camera,s));
 }
 
 void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, Border &border, int couche, bool titre, int size, sf::Color color)
@@ -912,8 +908,8 @@ void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, Borde
     pos.y -= 2;
 
     coordonnee s;
-    s.x = (int)temp.GetRect().Width + 13;
-    s.y = (int)temp.GetRect().Height + 6;
+    s.x = (int)temp.GetGlobalBounds().Width + 13;
+    s.y = (int)temp.GetGlobalBounds().Height + 6;
     border.Afficher(pos, s, couche, sf::Color(224,224,224,color.a));
 }
 
@@ -934,11 +930,11 @@ void MoteurGraphique::AjouterTexteNonChevauchable(sf::Text* string, int couche, 
     {
         for (IterTextes=m_textes[couche].begin();IterTextes!=m_textes[couche].end();++IterTextes)
         {
-            if(string->GetRect().Left + string->GetRect().Width > IterTextes->GetRect().Left - 8
-            && string->GetRect().Left                           < IterTextes->GetRect().Left + IterTextes->GetRect().Width + 8
-            && string->GetRect().Top  + string->GetRect().Height> IterTextes->GetRect().Top - 11
-            && string->GetRect().Top                            < IterTextes->GetRect().Top + IterTextes->GetRect().Height + 8)
-                string->SetPosition(string->GetPosition().x, IterTextes->GetRect().Top - string->GetRect().Height - 11), IterTextes=m_textes[couche].begin();
+            if(string->GetGlobalBounds().Left + string->GetGlobalBounds().Width > IterTextes->GetGlobalBounds().Left - 8
+            && string->GetGlobalBounds().Left                           < IterTextes->GetGlobalBounds().Left + IterTextes->GetGlobalBounds().Width + 8
+            && string->GetGlobalBounds().Top  + string->GetGlobalBounds().Height> IterTextes->GetGlobalBounds().Top - 8
+            && string->GetGlobalBounds().Top                            < IterTextes->GetGlobalBounds().Top + IterTextes->GetGlobalBounds().Height + 8)
+                string->SetPosition(string->GetPosition().x, IterTextes->GetGlobalBounds().Top - string->GetGlobalBounds().Height - 17), IterTextes=m_textes[couche].begin();
         }
 
         AjouterTexte(string, couche, titre);

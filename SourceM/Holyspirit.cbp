@@ -20,12 +20,8 @@
 					<Add option="-fexpensive-optimizations" />
 					<Add option="-Os" />
 					<Add option="-O3" />
-					<Add option="-O" />
-					<Add option="-DWIN32" />
-					<Add option="-DNDEBUG" />
-					<Add option="-D_WINDOWS" />
 					<Add option="-DSFML_STATIC" />
-					<Add directory="..\..\LaurentGomila-SFML-550ef63\include" />
+					<Add directory="C:\C++\SFML2_newAPI\SFML\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -34,9 +30,7 @@
 					<Add option="-lsfml-graphics-s" />
 					<Add option="-lsfml-window-s" />
 					<Add option="-lsfml-system-s" />
-					<Add library="opengl32" />
-					<Add library="glu32" />
-					<Add directory="..\..\SFML_BUILD_GIT\lib" />
+					<Add directory="C:\C++\SFML2_newAPI\SFML\lib" />
 				</Linker>
 			</Target>
 			<Target title="Debug">
@@ -73,13 +67,6 @@
 		<VirtualTargets>
 			<Add alias="All" targets="Release;" />
 		</VirtualTargets>
-		<Compiler>
-			<Add directory="..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Win32\api\inc" />
-		</Compiler>
-		<Linker>
-			<Add option="-lfmodex" />
-			<Add directory="..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Win32\api\lib" />
-		</Linker>
 		<Unit filename="Contextes\c_bless.cpp" />
 		<Unit filename="Contextes\c_bless.h" />
 		<Unit filename="Contextes\c_changementMap.cpp" />
@@ -175,7 +162,6 @@
 		<Unit filename="globale.h" />
 		<Unit filename="jeu.cpp" />
 		<Unit filename="jeu.h" />
-		<Unit filename="jeu_network.cpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
 		<Unit filename="menu.cpp" />
