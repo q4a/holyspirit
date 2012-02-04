@@ -114,4 +114,4 @@ Créer partie
 Nouvelle quête
 Quête terminée
 Niveau requis : 
-
+Niveau supérieur !
