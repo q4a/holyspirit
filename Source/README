@@ -1,0 +1,27 @@
+HolySpirit README FILE
+
+To build the game you will need next 3dparty software
+
+1. SFML v2.0 (development snapshot 9163d04517 from Mar 14, 2012)
+
+1.1 Development files (includes)
+
+1.2 Libraries (static preferred)
+
+2. Latest MinGW (default C++ compiler) 
+
+3. Code::Blocks IDE for building game core (default IDE)
+
+5. CMake if you want to use another compiler/IDE for building game core
+
+RUNTIME DEPENDENCIES:
+
+MinGW:
+
+1. libgcc_s_dw2-1.dll
+
+2. libsndfile-1.dll
+
+3. libstdc++-6.dll
+
+4. mingwm10.dll
