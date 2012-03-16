@@ -1,0 +1,59 @@
+*Data/Entities/Resources/Monsters/Skeletons/Shooter.rs.hs
+$
+* n4 $
+$
+* 0
+$
+*v30 di30 da60 m0.35 o1 a15 n2 t1 x60 s0 $
+$
+*Data/Entities/Scripts/Monsters/Shooter.script.hs
+$
+	*
+		*Gold.item.hs
+		r10000
+		i25
+		a100
+	$
+	*
+		*Craft_coal.item.hs
+		r5000
+	$
+	
+	*
+		*Armband_leather.item.hs
+		r5000
+	$
+	*
+		*Boots_leather.item.hs
+		r5000
+	$
+	*
+		*Armor_gambeson.item.hs
+		r5000
+	$
+	*
+		*Helmet_leather_cap.item.hs
+		r5000
+	$
+	*
+		*Crossbow_crossbow.item.hs
+		r5000
+		*Crossbow_crossbow_fire.item.hs
+		r25
+	$
+	*
+		*Gun_arquebuse.item.hs
+		r5000
+	$
+	*
+		*Necklage_necklage.item.hs
+		r1000
+	$
+	*
+		*Ring_ring.item.hs
+		r1000
+	$
+$
+*Data/Entities/Particles/Human_bones.ps.hs
+$
+$

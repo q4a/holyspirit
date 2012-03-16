@@ -1,0 +1,51 @@
+*Data/Graphics/Landscapes/AgrarianLands/Duck.png
+$
+$
+* x0 y0 w32 h32 i0 ex16 ey16 n0.1 a1 $
+* x32 y0 w32 h32 i0 ex16 ey16 n0.1 a2 $
+* x64 y0 w32 h32 i0 ex16 ey16 n0.1 a3 $
+* x96 y0 w32 h32 i0 ex16 ey16 n0.1 a4 $
+* x128 y0 w32 h32 i0 ex16 ey16 n0.1 a5 $
+* x160 y0 w32 h32 i0 ex16 ey16 n0.1 a6 $
+* x192 y0 w32 h32 i0 ex16 ey16 n0.1 a7 $
+* x224 y0 w32 h32 i0 ex16 ey16 n0.1 a8 $
+* x256 y0 w32 h32 i0 ex16 ey16 n0.1 a9 $
+* x288 y0 w32 h32 i0 ex16 ey16 n0.1 a10 $
+* x320 y0 w32 h32 i0 ex16 ey16 n0.1 a11 $
+* x352 y0 w32 h32 i0 ex16 ey16 n0.1 a12 $
+* x384 y0 w32 h32 i0 ex16 ey16 n0.1 a13 $
+* x416 y0 w32 h32 i0 ex16 ey16 n0.1 a14 $
+* x448 y0 w32 h32 i0 ex16 ey16 n0.1 a15 $
+* x480 y0 w32 h32 i0 ex16 ey16 n0.1 a16 $
+* x512 y0 w32 h32 i0 ex16 ey16 n0.1 a17 $
+* x544 y0 w32 h32 i0 ex16 ey16 n0.1 a18 $
+* x576 y0 w32 h32 i0 ex16 ey16 n0.1 a19 $
+* x608 y0 w32 h32 i0 ex16 ey16 n0.1 a20 $
+* x640 y0 w32 h32 i0 ex16 ey16 n0.1 a21 $
+* x672 y0 w32 h32 i0 ex16 ey16 n0.1 a22 $
+* x704 y0 w32 h32 i0 ex16 ey16 n0.1 a23 $
+* x736 y0 w32 h32 i0 ex16 ey16 n0.1 a24 $
+* x768 y0 w32 h32 i0 ex16 ey16 n0.1 a25 $
+* x800 y0 w32 h32 i0 ex16 ey16 n0.1 a26 $
+* x832 y0 w32 h32 i0 ex16 ey16 n0.1 a27 $
+* x864 y0 w32 h32 i0 ex16 ey16 n0.1 a28 $
+* x896 y0 w32 h32 i0 ex16 ey16 n0.1 a29 $
+* x928 y0 w32 h32 i0 ex16 ey16 n0.1 a30 $
+* x960 y0 w32 h32 i0 ex16 ey16 n0.1 a31 $
+* x992 y0 w32 h32 i0 ex16 ey16 n0.1 a32 $
+* x0 y31 w32 h32 i0 ex16 ey16 n0.1 a33 $
+* x32 y31 w32 h32 i0 ex16 ey16 n0.1 a34 $
+* x64 y31 w32 h32 i0 ex16 ey16 n0.1 a35 $
+* x96 y31 w32 h32 i0 ex16 ey16 n0.1 a36 $
+* x128 y31 w32 h32 i0 ex16 ey16 n0.1 a37 $
+* x160 y31 w32 h32 i0 ex16 ey16 n0.1 a38 $
+* x192 y31 w32 h32 i0 ex16 ey16 n0.1 a39 $
+* x224 y31 w32 h32 i0 ex16 ey16 n0.1 a40 $
+* x256 y31 w32 h32 i0 ex16 ey16 n0.1 a41 $
+* x288 y31 w32 h32 i0 ex16 ey16 n0.1 a42 $
+* x320 y31 w32 h32 i0 ex16 ey16 n0.1 a43 $
+* x352 y31 w32 h32 i0 ex16 ey16 n0.1 a44 $
+* x384 y31 w32 h32 i0 ex16 ey16 n0.1 a45 $
+* x416 y31 w32 h32 i0 ex16 ey16 n0.1 a46 $
+* x448 y31 w32 h32 i0 ex16 ey16 n0.1 a0 $
+$

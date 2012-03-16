@@ -1,0 +1,55 @@
+Tonneau
+Coffre
+Urne
+Porte
+Arquebusier morbide
+Pantin morbide
+Gardien squelette
+Ombre ténébreuse
+Prêtre démoniaque
+Milice Corrompue : Brute
+Errant des roches
+Borlor le fermier
+Reliquaire
+Molosse décharné
+Paysan zombie
+Dépouille putride
+Romulus le marchand
+Marchand rare
+Le Grand Questeur
+Levier
+Zombie massier
+Frère
+Le Faucheur
+Chef de meute
+Alcuin l'archiviste
+Molosse infernal
+Abbé Hademar
+Potale de l'Abbaye
+Potale des Catacombes
+Potale du cimetière
+Tenancier derrière la porte
+Croisé
+Courtisane
+Pistolero
+Seigneur squelette
+Golem de charbon ardent
+Tas d'os
+Rognorak le forgeron
+Sarcophage
+Errant des cimetières
+Fosse commune (Crée des errants)
+Passage
+Ame damnée
+Garde
+Sergent Waldemar
+Ecritoire
+Paysan corrompu
+Rejeton
+Tombeau du Roi Teudéric
+Roi Teudéric
+Tourment de Teudéric
+Johannes le Déchu
+Dépouille
+Suceur de Moelle
+Tas de pierres
