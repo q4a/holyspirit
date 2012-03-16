@@ -1,0 +1,9 @@
+In this folder are located SFML (Simple and Fast Multimedia Library) static libraries built using
+SFML v2.0 development snapshot 9163d04517 from Mar 14, 2012
+To build the game use include files ONLY from corresponding version. You can download them from
+
+https://github.com/LaurentGomila/SFML
+
+and searching for needed date and revision.
+
+Also this folder contains libsndfile-1.dll from SFML dependencies, which will be needed when running the game.
