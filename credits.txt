@@ -1,0 +1,129 @@
+
+
+
+-HOLYSPIRIT
+
+
++Alpha-arts
+
+*Project Leader & Programmer
+Gregouar (Naisse Grégoire)
+
+*3D & 2D Artists
+Bravach (Naisse Corentin)
+Stilobique (Vaillant Aurélien)
+Gregouar (Naisse Grégoire)
+The Cleaner (Pierre Mazan)
+
+*Game Designers
+Bravach (Naisse Corentin)
+Gregouar (Naisse Grégoire)
+
+*Texts
+Roger (Izard Jérome)
+
+*Compositors
+Andrasia (Martin Cap)
+SpotLine (Clément Duquesne)
+Color Harmony (Moquay Quentin)
+http://colorharmonymusic.fr.mu/
+
+*Sound Designers
+Martin Bussy-Pâris
+Julien Renoux
+Marine Desmolin
+SpotLine (Clément Duquesne)
+
+*Artworkers (Loading screens & playintro)
+Labolab (http://lab0lab.blogspot.com/)
+Sabine van Apeldoorn (http://tiphereth.ultra-book.com/)
+Towy (towarlock@hotmail.com)
+
+*Webmasters
+Schnafon (Xavier Lambein)
+EnTraversDesNéons (Adam Santoro)
+
+
++Externs
+
+*Linux programmer
+Merwin (Gabriel Pichot)
+
+*Helper programmer
+Bmauet (Baptiste Careil)
+
+*Webdesigner
+Angelis
+
+*Translators
+Bravach (English)
+Gonze Philippe (English)
+Derycke Valérie (Nederlands)
+Richard Jim (Spanish)
+
+*2D GUI Artist
+Cremuss (http://cremuss.free.fr/)
+
+*Beta-testers
+Darktib
+King Kadelfek
+Gavos
+Emixam62
+Julien Thevenard
+Yann Tisseyre
+
+
++Specials thanks for
+
+Le site du zéro (http://www.siteduzero.com/)
+
+Game-Corp (http://www.game-corp.net/)
+
+Games Creators Network (http://games-creators.org/)
+
+Digital-Coproductions (http://www.digital-coproductions.com/)
+
+*Donors
+
+Alexandre Fabre
+
+*All VIP 
+
+Chaoxys
+Mickael002
+Leonsulivan
+Bananios
+Archeadon
+Wissam
+
+
+*And Céline Floriot for make me laugh with H2G2 !
+
+
++Tools
+
+*IDE
+Code::Block (http://www.codeblocks.org/)
+
+*Libraries
+SFML (http://www.sfml-dev.org/)
+QT (http://qt.nokia.com/)
+
+*3D Softwares
+Autodesk 3D Studio Max
+Blender (http://www.blender.org/)
+
+*2D Softwares
+Adobe Photoshop CS4
+The Gimp (http://www.gimp.org/)
+
+*SVN
+TortoiseSVN (http://tortoisesvn.tigris.org/)
+
+*Textures
+CGTextures (http://www.cgtextures.com/)
+
+
+
+****
+
