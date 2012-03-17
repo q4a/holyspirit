@@ -146,12 +146,12 @@ void c_Chargement::PreLoad(Jeu *jeu)
 {
     if(jeu->m_jeu->m_thread_sauvegarde && ! m_debut)
     {
-        jeu->m_jeu->m_thread_sauvegarde->Wait();
+        jeu->m_jeu->m_thread_sauvegarde->wait();
         delete jeu->m_jeu->m_thread_sauvegarde;
         jeu->m_jeu->m_thread_sauvegarde = NULL;
     }
 
-    jeu->Clock.Reset();
+    jeu->Clock.restart();
     jeu->hero.m_personnage.setCoordonnee(m_coordonneePerso);
 
     moteurGraphique->ViderParticules();
@@ -236,7 +236,7 @@ void c_Chargement::PreLoad(Jeu *jeu)
 
 void c_Chargement::PostLoad(Jeu *jeu)
 {
-    m_thread_charger->Wait();
+    m_thread_charger->wait();
 
     //for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
     //p->ChargerModele(true);
@@ -440,7 +440,7 @@ void c_Chargement::PostLoad(Jeu *jeu)
 
     jeu->map->Animer(&jeu->hero,1);
 
-    jeu->Clock.Reset();
+    jeu->Clock.restart();
 
     jeu->map->GererMonstres(jeu,&jeu->hero,0,&jeu->menu);
     jeu->map->GererScript(jeu,&jeu->hero,0,&jeu->menu);
@@ -458,9 +458,9 @@ void c_Chargement::Utiliser(Jeu *jeu)
     }
 
     temps_ecoule=0;
-    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
     tempsEcouleDepuisDernierAffichage+=temps_ecoule;
-    jeu->Clock.Reset();
+    jeu->Clock.restart();
 
     if(!m_chargement)
     if ((z>=49 && !augmenterNoir && allerVersImageChargement) || (m_debut && jeu->m_display))
@@ -474,7 +474,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         }
 
         m_thread_charger = new sf::Thread(&Charger, jeu);
-        m_thread_charger->Launch();
+        m_thread_charger->launch();
 
         m_chargement = true;
     }
@@ -551,18 +551,18 @@ void c_Chargement::Utiliser(Jeu *jeu)
 
         Sprite sprite,sprite2;
 
-        sprite.SetTexture(*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre_vide.image));
-        sprite.SetPosition( configuration->Resolution.w/2+jeu->hero.m_classe.barre_vie_monstre_vide.position.x,
+        sprite.setTexture(*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre_vide.image));
+        sprite.setPosition( configuration->Resolution.w/2+jeu->hero.m_classe.barre_vie_monstre_vide.position.x,
                             configuration->Resolution.h - 48);
 
         moteurGraphique->AjouterCommande(&sprite,16,0);
 
         if(jeu->map)
         {
-            sprite2.SetTexture(*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre.image));
+            sprite2.setTexture(*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre.image));
 
-            sprite2.SetTextureRect(sf::IntRect(0, 0,(int)((float)jeu->map->m_etat_chargement/5*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre.image)->GetWidth()), 32));
-            sprite2.SetPosition(configuration->Resolution.w/2 + jeu->hero.m_classe.barre_vie_monstre.position.x,
+            sprite2.setTextureRect(sf::IntRect(0, 0,(int)((float)jeu->map->m_etat_chargement/5*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre.image)->getWidth()), 32));
+            sprite2.setPosition(configuration->Resolution.w/2 + jeu->hero.m_classe.barre_vie_monstre.position.x,
                                 configuration->Resolution.h - 48);
 
             moteurGraphique->AjouterCommande(&sprite2,17,0);
@@ -577,7 +577,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         mort = false;
         z = 0;
         configuration->effetNoir=0;
-        jeu->Clock.Reset();
+        jeu->Clock.restart();
         jeu->m_contexte = jeu->m_jeu;
 
         jeu->map->m_etat_chargement = 0;

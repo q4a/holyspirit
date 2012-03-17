@@ -89,7 +89,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
 {
     for(int y = 0 ; y < MINIMAP_SIZE ; ++y)
     for(int x = 0 ; x < MINIMAP_SIZE ; ++x)
-        m_render_minimap[y][x].Clear(sf::Color(0,0,0,0));
+        m_render_minimap[y][x].clear(sf::Color(0,0,0,0));
 
     m_dimensions.x=0;
     m_dimensions.y=0;
@@ -890,8 +890,8 @@ void Map::Initialiser(Hero *hero)
                         position.x+=m_decor[0][i][j].getDecalageHerbe().x;
 
                         m_decor[couche][i][j].m_entite_herbe = moteurGraphique->getEntiteGraphique(m_herbe[m_decor[couche][i][j].getHerbe()], numeroHerbe, 10);
-                        m_decor[couche][i][j].m_entite_herbe.SetPosition(position.x, position.y - m_decor[0][i][j].getHauteur());
-                        m_decor[couche][i][j].m_entite_herbe.SetScale((float)m_decor[couche][i][j].getTailleHerbe()/100,(float)m_decor[couche][i][j].getTailleHerbe()/100);
+                        m_decor[couche][i][j].m_entite_herbe.setPosition(position.x, position.y - m_decor[0][i][j].getHauteur());
+                        m_decor[couche][i][j].m_entite_herbe.setScale((float)m_decor[couche][i][j].getTailleHerbe()/100,(float)m_decor[couche][i][j].getTailleHerbe()/100);
                         m_decor[couche][i][j].m_entite_herbe.m_color = m_decor[couche][i][j].getCouleurHerbe();
 
                         m_decor[couche][i][j].m_entite_herbe.Initialiser(coordonnee ());
@@ -919,13 +919,13 @@ void Map::Initialiser(Hero *hero)
 
                     Entite_graphique temp = m_decor[i][j][k].m_entite_graphique;
                     m_decor[i][j][k].m_entite_graphique = moteurGraphique->getEntiteGraphique(m_tileset[m_decor[i][j][k].getTileset()], m_decor[i][j][k].getTile(), m_decor[i][j][k].getCouche());
-                    m_decor[i][j][k].m_entite_graphique.SetPosition(position.x, position.y);
+                    m_decor[i][j][k].m_entite_graphique.setPosition(position.x, position.y);
 
-                    m_decor[i][j][k].m_entite_graphique.SetColor(
-                            sf::Color(m_decor[i][j][k].m_entite_graphique.GetColor().r * m_decor[i][j][k].m_entite_graphique.m_color.r / 255,
-                                      m_decor[i][j][k].m_entite_graphique.GetColor().g * m_decor[i][j][k].m_entite_graphique.m_color.g / 255,
-                                      m_decor[i][j][k].m_entite_graphique.GetColor().b * m_decor[i][j][k].m_entite_graphique.m_color.b / 255,
-                                      m_decor[i][j][k].m_entite_graphique.GetColor().a * m_decor[i][j][k].m_entite_graphique.m_color.a / 255));
+                    m_decor[i][j][k].m_entite_graphique.setColor(
+                            sf::Color(m_decor[i][j][k].m_entite_graphique.getColor().r * m_decor[i][j][k].m_entite_graphique.m_color.r / 255,
+                                      m_decor[i][j][k].m_entite_graphique.getColor().g * m_decor[i][j][k].m_entite_graphique.m_color.g / 255,
+                                      m_decor[i][j][k].m_entite_graphique.getColor().b * m_decor[i][j][k].m_entite_graphique.m_color.b / 255,
+                                      m_decor[i][j][k].m_entite_graphique.getColor().a * m_decor[i][j][k].m_entite_graphique.m_color.a / 255));
                     m_decor[i][j][k].m_entite_graphique.Initialiser(pos);
                     m_decor[i][j][k].m_entite_graphique.SetParameters(temp);
                     m_decor[i][j][k].m_entite_graphique.Generer();
@@ -946,7 +946,7 @@ void Map::Initialiser(Hero *hero)
             pos.x = (int)(((m_monstre[i].getCoordonnee().x-m_monstre[i].getCoordonnee().y)*64));
             pos.y = (int)(((m_monstre[i].getCoordonnee().x+m_monstre[i].getCoordonnee().y+1)*32));
 
-            m_monstre[i].m_entite_graphique.SetPosition(pos.x, pos.y);
+            m_monstre[i].m_entite_graphique.setPosition(pos.x, pos.y);
 
             if(m_monstre[i].getModele() >= 0
             && m_monstre[i].getModele() < (int)m_ModeleMonstre.size())
@@ -975,47 +975,47 @@ void Map::InitialiserMinimap()
 
                         sf::Sprite minimap = m_decor[i][j][k].m_spriteMinimap;
 
-                        minimap.SetPosition((minimap.GetPosition().x) * 0.125f,
-                                            (minimap.GetPosition().y) * 0.125f);
+                        minimap.setPosition((minimap.getPosition().x) * 0.125f,
+                                            (minimap.getPosition().y) * 0.125f);
 
-                        while(minimap.GetPosition().y > 1024)
-                            minimap.Move(0, -1024), cur_y ++;
-                        while(minimap.GetPosition().x > 1024)
-                            minimap.Move(-1024, 0), cur_x ++;
-                        while(minimap.GetPosition().x - minimap.GetGlobalBounds().Width / 2 < 0)
-                            minimap.Move(1024, 0), cur_x --;
-                        while(minimap.GetPosition().y - minimap.GetGlobalBounds().Height / 2 < 0)
-                            minimap.Move(0, 1024), cur_y --;
+                        while(minimap.getPosition().y > 1024)
+                            minimap.move(0, -1024), cur_y ++;
+                        while(minimap.getPosition().x > 1024)
+                            minimap.move(-1024, 0), cur_x ++;
+                        while(minimap.getPosition().x - minimap.getGlobalBounds().width / 2 < 0)
+                            minimap.move(1024, 0), cur_x --;
+                        while(minimap.getPosition().y - minimap.getGlobalBounds().height / 2 < 0)
+                            minimap.move(0, 1024), cur_y --;
 
 
                         if(m_render_minimap[cur_y][cur_x].GetHeight() != 1024)
                         {
-                            m_render_minimap[cur_y][cur_x].Create(1024,1024);
-                            m_render_minimap[cur_y][cur_x].Clear(sf::Color(0,0,0,0));
+                            m_render_minimap[cur_y][cur_x].create(1024,1024);
+                            m_render_minimap[cur_y][cur_x].clear(sf::Color(0,0,0,0));
                         }
-                        m_render_minimap[cur_y][cur_x].Draw(minimap);
+                        m_render_minimap[cur_y][cur_x].draw(minimap);
 
                         bool redraw = false;
 
-                        if(minimap.GetPosition().y + minimap.GetGlobalBounds().Height > 1024)
-                            cur_y++, minimap.Move(0,-1024), redraw = true;
-                        if(minimap.GetPosition().x + minimap.GetGlobalBounds().Width > 1024)
-                            cur_x++, minimap.Move(-1024,0), redraw = true;
+                        if(minimap.getPosition().y + minimap.getGlobalBounds().height > 1024)
+                            cur_y++, minimap.move(0,-1024), redraw = true;
+                        if(minimap.getPosition().x + minimap.getGlobalBounds().width > 1024)
+                            cur_x++, minimap.move(-1024,0), redraw = true;
 
 
                         if(m_render_minimap[cur_y][cur_x].GetHeight() != 1024)
                         {
-                            m_render_minimap[cur_y][cur_x].Create(1024,1024);
-                            m_render_minimap[cur_y][cur_x].Clear(sf::Color(0,0,0,0));
+                            m_render_minimap[cur_y][cur_x].create(1024,1024);
+                            m_render_minimap[cur_y][cur_x].clear(sf::Color(0,0,0,0));
                         }
                         if(redraw)
-                            m_render_minimap[cur_y][cur_x].Draw(minimap);
+                            m_render_minimap[cur_y][cur_x].draw(minimap);
                     }
                 }
 
     for(int y = 0 ; y < MINIMAP_SIZE ; ++y)
     for(int x = 0 ; x < MINIMAP_SIZE ; ++x)
-        m_render_minimap[y][x].Display();
+        m_render_minimap[y][x].display();
 }
 
 void Map::CreerSprite(sf::Vector3f position_case)
@@ -1033,13 +1033,12 @@ void Map::CreerSprite(sf::Vector3f position_case)
      &&m_decor[z][y][x].getTileset() < (int)m_tileset.size())
     {
         positionPartieDecor=moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getPositionMinimap(m_decor[z][y][x].getTile());
-        m_decor[z][y][x].m_spriteMinimap.SetTexture(*moteurGraphique->getImage(moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getMinimap(m_decor[z][y][x].getTile())));
-        m_decor[z][y][x].m_spriteMinimap.SetTextureRect(IntRect(positionPartieDecor.x, positionPartieDecor.y,
+        m_decor[z][y][x].m_spriteMinimap.setTexture(*moteurGraphique->getImage(moteurGraphique->getTileset(m_tileset[m_decor[z][y][x].getTileset()])->getMinimap(m_decor[z][y][x].getTile())));
+        m_decor[z][y][x].m_spriteMinimap.setTextureRect(IntRect(positionPartieDecor.x, positionPartieDecor.y,
                                                             positionPartieDecor.w, positionPartieDecor.h));
-        m_decor[z][y][x].m_spriteMinimap.SetX(position.x);
-        m_decor[z][y][x].m_spriteMinimap.SetY(position.y);
-        m_decor[z][y][x].m_spriteMinimap.SetOrigin(positionPartieDecor.w/2, positionPartieDecor.h/2);
-        m_decor[z][y][x].m_spriteMinimap.SetColor(sf::Color(255,255,255,255));
+        m_decor[z][y][x].m_spriteMinimap.setPosition(position.x, position.y);
+        m_decor[z][y][x].m_spriteMinimap.setOrigin(positionPartieDecor.w/2, positionPartieDecor.h/2);
+        m_decor[z][y][x].m_spriteMinimap.setColor(sf::Color(255,255,255,255));
     }
 }
 

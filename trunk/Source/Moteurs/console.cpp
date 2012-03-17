@@ -49,12 +49,12 @@ void Console::Afficher()
             if (i>=0&&i<(int)m_erreur.size())
             {
                 sf::Text texte;
-                texte.SetString(m_textes[i].c_str());
-                texte.SetCharacterSize(12);
-                texte.SetY((i-m_textes.size()+27-m_defilement)*15+60);
+                texte.setString(m_textes[i].c_str());
+                texte.setCharacterSize(12);
+                texte.move(0, (i-m_textes.size()+27-m_defilement)*15+60 - texte.getPosition().y);
 
                 if (m_erreur[i])
-                    texte.SetColor(sf::Color(255,0,0,255));
+                    texte.setColor(sf::Color(255,0,0,255));
 
                 moteurGraphique->AjouterTexte(&texte,19);
             }

@@ -55,37 +55,37 @@ bool ParticuleSysteme::Afficher( ModeleParticuleSysteme *modele,float temps)
                 if (Iter->numero>=0&&Iter->numero<(int)modele->m_particules.size())
                 {
                     sf::Sprite sprite;
-                    sprite.SetTexture(*moteurGraphique->getImage(modele->m_image));
-                    sprite.SetTextureRect(sf::IntRect(modele->m_particules[Iter->numero].positionImage.x,
+                    sprite.setTexture(*moteurGraphique->getImage(modele->m_image));
+                    sprite.setTextureRect(sf::IntRect(modele->m_particules[Iter->numero].positionImage.x,
                                                   modele->m_particules[Iter->numero].positionImage.y,
                                                   modele->m_particules[Iter->numero].positionImage.w,
                                                   modele->m_particules[Iter->numero].positionImage.h));
-                    sprite.SetOrigin(modele->m_particules[Iter->numero].positionImage.w/2,
+                    sprite.setOrigin(modele->m_particules[Iter->numero].positionImage.w/2,
                                      modele->m_particules[Iter->numero].positionImage.h/2);
-                    sprite.SetRotation(Iter->rotation);
+                    sprite.setRotation(Iter->rotation);
                     float scale=Iter->position.z/200+1;
-                    sprite.SetScale(scale,scale);
-                    sprite.SetX(Iter->position.x);
-                    sprite.SetY(Iter->position.y-Iter->position.z);
+                    sprite.setScale(scale,scale);
+                    sprite.setPosition(Iter->position.x ,
+                                       Iter->position.y-Iter->position.z);
                     if(!Iter->sang)
-                        sprite.SetColor(sf::Color(m_color.r,m_color.g,m_color.b,(int)Iter->alpha));
+                        sprite.setColor(sf::Color(m_color.r,m_color.g,m_color.b,(int)Iter->alpha));
                     else
-                        sprite.SetColor(sf::Color(255,255,255,(int)Iter->alpha));
+                        sprite.setColor(sf::Color(255,255,255,(int)Iter->alpha));
 
-                    sprite.Scale(Iter->taille, Iter->taille);
+                    sprite.scale(Iter->taille, Iter->taille);
 
                     if (Iter->position.z>32)
                         moteurGraphique->AjouterCommande(&sprite,11,1);
                     else
                         moteurGraphique->AjouterCommande(&sprite,8,1);
 
-                    sprite.Move(0,Iter->position.z);
+                    sprite.move(0,Iter->position.z);
                     moteurGraphique->AjouterCommande(&sprite,9,1);
 
-                    if(sprite.GetPosition().x + sprite.GetGlobalBounds().Width < GetViewRect(moteurGraphique->m_camera).Left
-                    || sprite.GetPosition().x > GetViewRect(moteurGraphique->m_camera).Left + GetViewRect(moteurGraphique->m_camera).Width
-                    || sprite.GetPosition().y + sprite.GetGlobalBounds().Height < GetViewRect(moteurGraphique->m_camera).Top
-                    || sprite.GetPosition().y > GetViewRect(moteurGraphique->m_camera).Top + GetViewRect(moteurGraphique->m_camera).Height)
+                    if(sprite.getPosition().x + sprite.getGlobalBounds().width < GetViewRect(moteurGraphique->m_camera).left
+                    || sprite.getPosition().x > GetViewRect(moteurGraphique->m_camera).left + GetViewRect(moteurGraphique->m_camera).width
+                    || sprite.getPosition().y + sprite.getGlobalBounds().height < GetViewRect(moteurGraphique->m_camera).top
+                    || sprite.getPosition().y > GetViewRect(moteurGraphique->m_camera).top + GetViewRect(moteurGraphique->m_camera).height)
                         Iter->vie = 0, Iter->alpha = 0;
                 }
 

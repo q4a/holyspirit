@@ -63,21 +63,21 @@ bool Bouton_pressoire::Survol()
 sf::Sprite Bouton_pressoire::Afficher(float decalage)
 {
     sf::Sprite sprite;
-    sprite.SetTexture(*moteurGraphique->getImage(image.image));
+    sprite.setTexture(*moteurGraphique->getImage(image.image));
 
-    sprite.SetTextureRect(sf::IntRect(  image.position.x, image.position.y,
+    sprite.setTextureRect(sf::IntRect(  image.position.x, image.position.y,
                                     image.position.w, image.position.h));
 
-    sprite.Resize(position.w,position.h);
+    sprite.scale(position.w,position.h);
 
-    sprite.SetPosition(AutoScreenAdjust(position.x,0).x,
+    sprite.setPosition(AutoScreenAdjust(position.x,0).x,
                        AutoScreenAdjust(0,position.y - decalage).y);
 
     bool hover = false;
 
     if(Survol())
-        if(no_opacity || sprite.GetTexture()->CopyToImage().GetPixel(eventManager->getPositionSouris().x - (int)sprite.GetPosition().x,
-                                         eventManager->getPositionSouris().y - (int)sprite.GetPosition().y).a > 0)
+        if(no_opacity || sprite.getTexture()->copyToImage().getPixel(eventManager->getPositionSouris().x - (int)sprite.getPosition().x,
+                                         eventManager->getPositionSouris().y - (int)sprite.getPosition().y).a > 0)
             hover = true;
 
     if(!eventManager->getEvenement(sf::Mouse::Left,EventClicA))
@@ -99,14 +99,14 @@ sf::Sprite Bouton_pressoire::Afficher(float decalage)
 
     if(m_hover)
     {
-        sprite.SetTexture(*moteurGraphique->getImage(image_hover.image));
-        sprite.SetTextureRect(sf::IntRect(  image_hover.position.x, image_hover.position.y,
+        sprite.setTexture(*moteurGraphique->getImage(image_hover.image));
+        sprite.setTextureRect(sf::IntRect(  image_hover.position.x, image_hover.position.y,
                                         image_hover.position.w, image_hover.position.h));
     }
     if(m_press)
     {
-        sprite.SetTexture(*moteurGraphique->getImage(image_press.image));
-        sprite.SetTextureRect(sf::IntRect(  image_press.position.x, image_press.position.y,
+        sprite.setTexture(*moteurGraphique->getImage(image_press.image));
+        sprite.setTextureRect(sf::IntRect(  image_press.position.x, image_press.position.y,
                                         image_press.position.w, image_press.position.h));
     }
 
@@ -116,72 +116,72 @@ sf::Sprite Bouton_pressoire::Afficher(float decalage)
 void Border::Afficher(coordonnee pos, coordonnee size, int couche, sf::Color color)
 {
     sf::Sprite sprite;
-    sprite.SetColor(color);
-    sprite.SetTexture(*moteurGraphique->getImage(image_lu.image));
-    sprite.SetTextureRect(sf::IntRect(  image_lu.position.x, image_lu.position.y,
+    sprite.setColor(color);
+    sprite.setTexture(*moteurGraphique->getImage(image_lu.image));
+    sprite.setTextureRect(sf::IntRect(  image_lu.position.x, image_lu.position.y,
                                     image_lu.position.w, image_lu.position.h));
-    sprite.SetPosition(pos.x - image_lu.position.w,
+    sprite.setPosition(pos.x - image_lu.position.w,
                        pos.y - image_lu.position.h);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 
-    sprite.SetTexture(*moteurGraphique->getImage(image_ru.image));
-    sprite.SetTextureRect(sf::IntRect(  image_ru.position.x, image_ru.position.y,
+    sprite.setTexture(*moteurGraphique->getImage(image_ru.image));
+    sprite.setTextureRect(sf::IntRect(  image_ru.position.x, image_ru.position.y,
                                     image_ru.position.w, image_ru.position.h));
-    sprite.SetPosition(pos.x + size.x ,
+    sprite.setPosition(pos.x + size.x ,
                        pos.y - image_ru.position.h);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 
-    sprite.SetTexture(*moteurGraphique->getImage(image_ld.image));
-    sprite.SetTextureRect(sf::IntRect(  image_ld.position.x, image_ld.position.y,
+    sprite.setTexture(*moteurGraphique->getImage(image_ld.image));
+    sprite.setTextureRect(sf::IntRect(  image_ld.position.x, image_ld.position.y,
                                     image_ld.position.w, image_ld.position.h));
-    sprite.SetPosition(pos.x - image_ld.position.w,
+    sprite.setPosition(pos.x - image_ld.position.w,
                        pos.y + size.y);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 
-    sprite.SetTexture(*moteurGraphique->getImage(image_rd.image));
-    sprite.SetTextureRect(sf::IntRect(  image_rd.position.x, image_rd.position.y,
+    sprite.setTexture(*moteurGraphique->getImage(image_rd.image));
+    sprite.setTextureRect(sf::IntRect(  image_rd.position.x, image_rd.position.y,
                                     image_rd.position.w, image_rd.position.h));
-    sprite.SetPosition(pos.x + size.x,
+    sprite.setPosition(pos.x + size.x,
                        pos.y + size.y);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 
 
 
-    sprite.SetTexture(*moteurGraphique->getImage(image_u.image));
-    sprite.SetTextureRect(sf::IntRect(  image_u.position.x, image_u.position.y,
+    sprite.setTexture(*moteurGraphique->getImage(image_u.image));
+    sprite.setTextureRect(sf::IntRect(  image_u.position.x, image_u.position.y,
                                     image_u.position.w, image_u.position.h));
-    sprite.SetPosition(pos.x,pos.y - image_u.position.h);
-    sprite.Resize(size.x,image_u.position.h);
+    sprite.setPosition(pos.x,pos.y - image_u.position.h);
+    sprite.scale(size.x,image_u.position.h);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 
-    sprite.SetTexture(*moteurGraphique->getImage(image_d.image));
-    sprite.SetTextureRect(sf::IntRect(  image_d.position.x, image_d.position.y,
+    sprite.setTexture(*moteurGraphique->getImage(image_d.image));
+    sprite.setTextureRect(sf::IntRect(  image_d.position.x, image_d.position.y,
                                     image_d.position.w, image_d.position.h));
-    sprite.SetPosition(pos.x,pos.y + size.y);
-    sprite.Resize(size.x,image_u.position.h);
+    sprite.setPosition(pos.x,pos.y + size.y);
+    sprite.scale(size.x,image_u.position.h);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 
-    sprite.SetTexture(*moteurGraphique->getImage(image_l.image));
-    sprite.SetTextureRect(sf::IntRect(  image_l.position.x, image_l.position.y,
+    sprite.setTexture(*moteurGraphique->getImage(image_l.image));
+    sprite.setTextureRect(sf::IntRect(  image_l.position.x, image_l.position.y,
                                     image_l.position.w, image_l.position.h));
-    sprite.SetPosition(pos.x - image_l.position.w,pos.y);
-    sprite.Resize(image_l.position.w,size.y);
+    sprite.setPosition(pos.x - image_l.position.w,pos.y);
+    sprite.scale(image_l.position.w,size.y);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 
-    sprite.SetTexture(*moteurGraphique->getImage(image_r.image));
-    sprite.SetTextureRect(sf::IntRect(  image_r.position.x, image_r.position.y,
+    sprite.setTexture(*moteurGraphique->getImage(image_r.image));
+    sprite.setTextureRect(sf::IntRect(  image_r.position.x, image_r.position.y,
                                     image_r.position.w, image_r.position.h));
-    sprite.SetPosition(pos.x + size.x,pos.y);
-    sprite.Resize(image_r.position.w,size.y);
+    sprite.setPosition(pos.x + size.x,pos.y);
+    sprite.scale(image_r.position.w,size.y);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 
 
 
-    sprite.SetTexture(*moteurGraphique->getImage(image_c.image));
-    sprite.SetTextureRect(sf::IntRect(  image_c.position.x, image_c.position.y,
+    sprite.setTexture(*moteurGraphique->getImage(image_c.image));
+    sprite.setTextureRect(sf::IntRect(  image_c.position.x, image_c.position.y,
                                     image_c.position.w, image_c.position.h));
-    sprite.SetPosition(pos.x,pos.y);
-    sprite.Resize(size.x,size.y);
+    sprite.setPosition(pos.x,pos.y);
+    sprite.scale(size.x,size.y);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 }
 
@@ -607,14 +607,14 @@ void Emplacement_inventaire::Charger(ifstream &fichier)
 void Emplacement_inventaire::Afficher(float decalage)
 {
     sf::Sprite sprite;
-    sprite.SetTexture(*moteurGraphique->getImage(image));
-    sprite.SetPosition(AutoScreenAdjust(position.x-2,
+    sprite.setTexture(*moteurGraphique->getImage(image));
+    sprite.setPosition(AutoScreenAdjust(position.x-2,
                                         position.y-2, decalage));
     moteurGraphique->AjouterCommande(&sprite, 15, 0);
 
     if(empty)
     {
-        sprite.SetTexture(*moteurGraphique->getImage(image_empty));
+        sprite.setTexture(*moteurGraphique->getImage(image_empty));
         moteurGraphique->AjouterCommande(&sprite, 15, 0);
     }
 }

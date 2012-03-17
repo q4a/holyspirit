@@ -86,10 +86,10 @@ void Menu::AfficherHUD(Classe *classe)
     Sprite sprite2;
 
     //On affiche l'HUD
-    sprite2.SetTexture(*moteurGraphique->getImage(classe->hud.image));
-    sprite2.SetX(classe->hud.position.x + (configuration->Resolution.x - 800) * 0.5);
-    sprite2.SetY(classe->hud.position.y + (configuration->Resolution.y - 600));
-    sprite2.Resize(classe->hud.position.w, classe->hud.position.h);
+    sprite2.setTexture(*moteurGraphique->getImage(classe->hud.image));
+    sprite2.setPosition(classe->hud.position.x + (configuration->Resolution.x - 800) * 0.5 ,
+                        classe->hud.position.y + (configuration->Resolution.y - 600));
+    sprite2.scale(classe->hud.position.w, classe->hud.position.h);
     moteurGraphique->AjouterCommande(&sprite2,17,0);
 }
 
@@ -97,15 +97,15 @@ void Menu::AfficherDialogue(float time,Classe *classe)
 {
     Sprite sprite2;
 
-    sprite2.SetTexture(*moteurGraphique->getImage(classe->talk.image));
-    sprite2.SetX(classe->talk.position.x + (configuration->Resolution.x - 800) * 0.5);
-    sprite2.SetY(AutoScreenAdjust(0,classe->talk.position.y).y + m_cur_talk_hauteur);
-    sprite2.Resize(classe->talk.position.w, classe->talk.position.h);
+    sprite2.setTexture(*moteurGraphique->getImage(classe->talk.image));
+    sprite2.setPosition(classe->talk.position.x + (configuration->Resolution.x - 800) * 0.5 ,
+                        AutoScreenAdjust(0,classe->talk.position.y).y + m_cur_talk_hauteur);
+    sprite2.scale(classe->talk.position.w, classe->talk.position.h);
     moteurGraphique->AjouterCommande(&sprite2,16,0);
 
     sf::Text texte2;
-    texte2.SetCharacterSize(14);
-    texte2.SetFont(moteurGraphique->m_font);
+    texte2.setCharacterSize(14);
+    texte2.setFont(moteurGraphique->m_font);
 
    // if(m_dialogue.empty())
      //   clear_diag = false;
@@ -127,24 +127,24 @@ void Menu::AfficherDialogue(float time,Classe *classe)
 
         texte2.SetString(m_old_dialogue);
 
-        texte2.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte2.GetGlobalBounds().Width) * 0.5,
+        texte2.setPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte2.getGlobalBounds().Width) * 0.5,
                           AutoScreenAdjust(0,classe->position_contenu_dialogue.y).y + m_cur_talk_hauteur);
 
         moteurGraphique->AjouterTexte(&texte2,16,0);
 
-        float pos = texte2.GetGlobalBounds().Top + texte2.GetGlobalBounds().Height + 8;
+        float pos = texte2.getGlobalBounds().Top + texte2.getGlobalBounds().Height + 8;
 
         float minX = -1;
         float maxX = -1;
         for(unsigned i = 0 ; i < m_old_choices.size() ; ++i)
         {
             texte.SetString(m_old_choices[i].text);
-            texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetGlobalBounds().Width) * 0.5,
+            texte.setPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.getGlobalBounds().Width) * 0.5,
                                 pos);
-            if(texte.GetPosition().x < minX || minX == -1)
-                minX = texte.GetPosition().x;
-            if(texte.GetPosition().x + texte.GetGlobalBounds().Width > maxX || maxX == -1)
-                maxX = texte.GetPosition().x + texte.GetGlobalBounds().Width;
+            if(texte.getPosition().x < minX || minX == -1)
+                minX = texte.getPosition().x;
+            if(texte.getPosition().x + texte.getGlobalBounds().Width > maxX || maxX == -1)
+                maxX = texte.getPosition().x + texte.getGlobalBounds().Width;
         }
 
         minX -= 48;
@@ -158,12 +158,12 @@ void Menu::AfficherDialogue(float time,Classe *classe)
         for(unsigned i = 0 ; i < m_old_choices.size() ; ++i)
         {
             texte.SetString(m_old_choices[i].text);
-            texte.SetPosition(minX + 48,
+            texte.setPosition(minX + 48,
                                 pos);
 
-            bullet1.SetY(texte.GetPosition().y - 4);
+            bullet1.SetY(texte.getPosition().y - 4);
 
-            pos = texte.GetGlobalBounds().Top + texte.GetGlobalBounds().Height + 4;
+            pos = texte.getGlobalBounds().Top + texte.getGlobalBounds().Height + 4;
 
 
             bullet1.SetTexture(*moteurGraphique->getImage(classe->bullet_off.image));
@@ -178,15 +178,15 @@ void Menu::AfficherDialogue(float time,Classe *classe)
     {
         m_old_dialogue = m_dialogue;
 
-        texte.SetString(m_dialogue);
+        texte.setString(m_dialogue);
 
         m_hauteur = 140;
-        m_hauteur += texte.GetGlobalBounds().Height + 8;
+        m_hauteur += texte.getGlobalBounds().height + 8;
 
         for(unsigned i = 0 ; i < m_choices.size() ; ++i)
         {
-            texte.SetString(m_choices[i].text);
-            m_hauteur += texte.GetGlobalBounds().Height + 4;
+            texte.setString(m_choices[i].text);
+            m_hauteur += texte.getGlobalBounds().height + 4;
         }
 
         m_hauteur = (int)((m_hauteur+16)/32) * 32;
@@ -206,20 +206,20 @@ void Menu::AfficherDialogue(float time,Classe *classe)
                 m_cur_talk_hauteur = classe->talk.position.h - m_hauteur;
         }
 
-        texte.SetColor(sf::Color(224,224,224));
+        texte.setColor(sf::Color(224,224,224));
 
-        texte.SetCharacterSize(14);
-        texte.SetStyle(0);
-        texte.SetFont(moteurGraphique->m_font);
-        texte.SetString(m_dialogue);
+        texte.setCharacterSize(14);
+        texte.setStyle(0);
+        texte.setFont(moteurGraphique->m_font);
+        texte.setString(m_dialogue);
 
-        texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetGlobalBounds().Width) * 0.5,
+        texte.setPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.getGlobalBounds().width) * 0.5,
                           AutoScreenAdjust(0,classe->position_contenu_dialogue.y).y + m_cur_talk_hauteur);//(classe->talk.position.h - m_hauteur) +(classe->talk.position.h) - (classe->talk.position.h) * alpha/255);
 
         moteurGraphique->AjouterTexte(&texte,16,0);
 
-        float pos = texte.GetGlobalBounds().Top + texte.GetGlobalBounds().Height + 8;
-        texte.SetStyle(0);
+        float pos = texte.getGlobalBounds().top + texte.getGlobalBounds().height + 8;
+        texte.setStyle(0);
 
         sf::Sprite bullet1, bullet2;
 
@@ -228,12 +228,12 @@ void Menu::AfficherDialogue(float time,Classe *classe)
         for(unsigned i = 0 ; i < m_choices.size() ; ++i)
         {
             texte.SetString(m_choices[i].text);
-            texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetGlobalBounds().Width) * 0.5,
+            texte.setPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.getGlobalBounds().Width) * 0.5,
                                 pos);
-            if(texte.GetPosition().x < minX || minX == -1)
-                minX = texte.GetPosition().x;
-            if(texte.GetPosition().x + texte.GetGlobalBounds().Width > maxX || maxX == -1)
-                maxX = texte.GetPosition().x + texte.GetGlobalBounds().Width;
+            if(texte.getPosition().x < minX || minX == -1)
+                minX = texte.getPosition().x;
+            if(texte.getPosition().x + texte.getGlobalBounds().Width > maxX || maxX == -1)
+                maxX = texte.getPosition().x + texte.getGlobalBounds().Width;
         }
 
         minX -= 48;
@@ -244,18 +244,18 @@ void Menu::AfficherDialogue(float time,Classe *classe)
         for(unsigned i = 0 ; i < m_choices.size() ; ++i)
         {
             texte.SetString(m_choices[i].text);
-            texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetGlobalBounds().Width) * 0.5,
+            texte.setPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.getGlobalBounds().Width) * 0.5,
                                 pos);
 
-            bullet1.SetY(texte.GetPosition().y - 4);
-            bullet2.SetY(texte.GetPosition().y - 4);
+            bullet1.SetY(texte.getPosition().y - 4);
+            bullet2.SetY(texte.getPosition().y - 4);
 
-            pos = texte.GetGlobalBounds().Top + texte.GetGlobalBounds().Height + 4;
+            pos = texte.getGlobalBounds().Top + texte.getGlobalBounds().Height + 4;
 
             if(eventManager->getPositionSouris().x > AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x
              &&eventManager->getPositionSouris().x < AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w
-             &&eventManager->getPositionSouris().y > texte.GetGlobalBounds().Top
-             &&eventManager->getPositionSouris().y < texte.GetGlobalBounds().Top + 20)
+             &&eventManager->getPositionSouris().y > texte.getGlobalBounds().Top
+             &&eventManager->getPositionSouris().y < texte.getGlobalBounds().Top + 20)
              {
                 if(eventManager->getEvenement(sf::Mouse::Left, EventClic))
                 {
@@ -289,36 +289,36 @@ void Menu::AfficherDialogue(float time,Classe *classe)
         float maxX = -1;
         for(unsigned i = 0 ; i < m_choices.size() ; ++i)
         {
-            texte.SetString(m_choices[i].text);
-            texte.SetPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.GetGlobalBounds().Width) * 0.5,
+            texte.setString(m_choices[i].text);
+            texte.setPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.getGlobalBounds().width) * 0.5,
                                 pos);
-            if(texte.GetPosition().x < minX || minX == -1)
-                minX = texte.GetPosition().x;
-            if(texte.GetPosition().x + texte.GetGlobalBounds().Width > maxX || maxX == -1)
-                maxX = texte.GetPosition().x + texte.GetGlobalBounds().Width;
+            if(texte.getPosition().x < minX || minX == -1)
+                minX = texte.getPosition().x;
+            if(texte.getPosition().x + texte.getGlobalBounds().width > maxX || maxX == -1)
+                maxX = texte.getPosition().x + texte.getGlobalBounds().width;
         }
 
         minX -= 48;
         maxX += 16;
 
-        bullet2.Scale(-1,1);
+        bullet2.scale(-1,1);
 
         int current_choice = -1;
         for(unsigned i = 0 ; i < m_choices.size() ; ++i)
         {
-            texte.SetString(m_choices[i].text);
-            texte.SetPosition(minX + 48,
+            texte.setString(m_choices[i].text);
+            texte.setPosition(minX + 48,
                                 pos);
 
-            bullet1.SetY(texte.GetPosition().y - 4);
-           // bullet2.SetY(texte.GetPosition().y - 4);
+            bullet1.move(0,texte.getPosition().y - 4 - bullet1.getPosition().y);
+           // bullet2.SetY(texte.getPosition().y - 4);
 
-            pos = texte.GetGlobalBounds().Top + texte.GetGlobalBounds().Height + 4;
+            pos = texte.getGlobalBounds().top + texte.getGlobalBounds().height + 4;
 
             if(eventManager->getPositionSouris().x > AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x
              &&eventManager->getPositionSouris().x < AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w
-             &&eventManager->getPositionSouris().y > texte.GetGlobalBounds().Top
-             &&eventManager->getPositionSouris().y < texte.GetGlobalBounds().Top + 20)
+             &&eventManager->getPositionSouris().y > texte.getGlobalBounds().top
+             &&eventManager->getPositionSouris().y < texte.getGlobalBounds().top + 20)
              {
                  current_choice = i;
                 if(eventManager->getEvenement(sf::Mouse::Left, EventClic))
@@ -328,23 +328,23 @@ void Menu::AfficherDialogue(float time,Classe *classe)
                     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
                     moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 }
-                bullet1.SetTexture(*moteurGraphique->getImage(classe->bullet_on.image));
+                bullet1.setTexture(*moteurGraphique->getImage(classe->bullet_on.image));
                 //bullet2.SetTexture(*moteurGraphique->getImage(classe->bullet_on.image));
-                bullet1.SetX(minX + 16);
+                bullet1.move(minX + 16 - bullet1.getPosition().x, 0);
               //  bullet2.SetX(maxX - 16);
 
                 if(m_current_choice != (int)i)
                     moteurSons->JouerSon(configuration->sound_dialog,coordonnee (0,0),0);
 
-                texte.SetColor(sf::Color(255,224,128));
+                texte.setColor(sf::Color(255,224,128));
              }
              else
              {
-                bullet1.SetTexture(*moteurGraphique->getImage(classe->bullet_off.image));
+                bullet1.setTexture(*moteurGraphique->getImage(classe->bullet_off.image));
                 //bullet2.SetTexture(*moteurGraphique->getImage(classe->bullet_off.image));
-                bullet1.SetX(minX);
+                bullet1.move(minX - bullet1.getPosition().x,0);
                // bullet2.SetX(maxX);
-                texte.SetColor(sf::Color(224,224,224));
+                texte.setColor(sf::Color(224,224,224));
              }
 
              moteurGraphique->AjouterTexte(&texte,16,0);
@@ -377,56 +377,56 @@ int  Menu::getSpeakChoice()
 
 void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteristique caracteristiqueMonstre,Classe *classe)
 {
-    texte.SetFont(moteurGraphique->m_font);
+    texte.setFont(moteurGraphique->m_font);
     if (caracteristique.vie>0)
     {
         Sprite sprite;
-        sprite.SetTexture(*moteurGraphique->getImage(classe->orbe_vie.image));
+        sprite.setTexture(*moteurGraphique->getImage(classe->orbe_vie.image));
 
-        sprite.SetY(classe->orbe_vie.position.y + (configuration->Resolution.y - 600));
+        sprite.move(0, classe->orbe_vie.position.y + (configuration->Resolution.y - 600) - sprite.getPosition().y);
 
         if(caracteristique.vie<=(caracteristique.maxVie - caracteristique.reserveVie))
-            sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.vie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5);
+            sprite.move((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.vie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5 - sprite.getPosition().x, 0);
         else
-            sprite.SetX(classe->orbe_vie.position.x + (configuration->Resolution.x - 800) * 0.5);
+            sprite.move(classe->orbe_vie.position.x + (configuration->Resolution.x - 800) * 0.5 - sprite.getPosition().x, 0);
 
-        sprite.Resize(classe->orbe_vie.position.w, classe->orbe_vie.position.h);
+        sprite.scale(classe->orbe_vie.position.w, classe->orbe_vie.position.h);
 
         if(caracteristique.vie<=(caracteristique.maxVie - caracteristique.reserveVie))
         {
             float x = (caracteristique.maxVie-caracteristique.vie-caracteristique.reserveVie)
                         /caracteristique.maxVie*classe->orbe_vie.position.w;
 
-            sprite.SetTextureRect(sf::IntRect((int)x,
+            sprite.setTextureRect(sf::IntRect((int)x,
                                           0,
                                           classe->orbe_vie.position.w - (int) x,
                                           classe->orbe_vie.position.h));
         }
         else
-            sprite.SetTextureRect(sf::IntRect(0, 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
+            sprite.setTextureRect(sf::IntRect(0, 0, classe->orbe_vie.position.w, classe->orbe_vie.position.h));
 
         moteurGraphique->AjouterCommande(&sprite,17,0);
 
         if(caracteristique.reserveVie > 0)
         {
-            sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5);
+            sprite.move((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5 - sprite.getPosition().x, 0);
 
             float x = (caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w;
-            sprite.SetTextureRect(sf::IntRect((int)x, 0, classe->orbe_vie.position.w - (int)x, classe->orbe_vie.position.h));
+            sprite.setTextureRect(sf::IntRect((int)x, 0, classe->orbe_vie.position.w - (int)x, classe->orbe_vie.position.h));
 
-            sprite.SetColor(sf::Color(32,32,32,255));
+            sprite.setColor(sf::Color(32,32,32,255));
 
             moteurGraphique->AjouterCommande(&sprite,18,0);
         }
 
         if(caracteristique.vie > caracteristique.maxVie - caracteristique.reserveVie)
         {
-            sprite.SetX((classe->orbe_vie.position.x+(int)((caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5);
+            sprite.move((classe->orbe_vie.position.x+(int)((caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5 - sprite.getPosition().x, 0);
 
             float x = (caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w;
-            sprite.SetTextureRect(sf::IntRect((int)x, 0, classe->orbe_vie.position.w - (int)x, classe->orbe_vie.position.h));
+            sprite.setTextureRect(sf::IntRect((int)x, 0, classe->orbe_vie.position.w - (int)x, classe->orbe_vie.position.h));
 
-            sprite.SetColor(sf::Color(255,255,255));
+            sprite.setColor(sf::Color(255,255,255));
             moteurGraphique->AjouterCommande(&sprite,17,0,sf::BlendAdd);
             moteurGraphique->AjouterCommande(&sprite,17,0,sf::BlendAdd);
             moteurGraphique->AjouterCommande(&sprite,17,0,sf::BlendAdd);
@@ -449,35 +449,35 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     if (caracteristique.foi>0)
     {
         Sprite sprite;
-        sprite.SetTexture(*moteurGraphique->getImage(classe->orbe_foi.image));
+        sprite.setTexture(*moteurGraphique->getImage(classe->orbe_foi.image));
 
-        sprite.SetY(classe->orbe_foi.position.y + (configuration->Resolution.y - 600));
-        sprite.SetX(classe->orbe_foi.position.x + (configuration->Resolution.x - 800) * 0.5);
+        sprite.setPosition(classe->orbe_foi.position.x + (configuration->Resolution.x - 800) * 0.5 ,
+                           classe->orbe_foi.position.y + (configuration->Resolution.y - 600));
 
-        sprite.Resize(classe->orbe_foi.position.w, classe->orbe_foi.position.h);
+        sprite.scale(classe->orbe_foi.position.w, classe->orbe_foi.position.h);
 
         if(caracteristique.foi <= (caracteristique.maxFoi - caracteristique.reserveFoi))
-            sprite.SetTextureRect(sf::IntRect(0, 0, (int)((caracteristique.foi+caracteristique.reserveFoi)/caracteristique.maxFoi*classe->orbe_foi.position.w), classe->orbe_foi.position.h));
+            sprite.setTextureRect(sf::IntRect(0, 0, (int)((caracteristique.foi+caracteristique.reserveFoi)/caracteristique.maxFoi*classe->orbe_foi.position.w), classe->orbe_foi.position.h));
         else
-            sprite.SetTextureRect(sf::IntRect(0, 0, classe->orbe_foi.position.w, classe->orbe_foi.position.h));
+            sprite.setTextureRect(sf::IntRect(0, 0, classe->orbe_foi.position.w, classe->orbe_foi.position.h));
 
 
         moteurGraphique->AjouterCommande(&sprite,17,0);
 
         if(caracteristique.reserveFoi > 0)
         {
-            sprite.SetTextureRect(sf::IntRect(0, 0, (int)(caracteristique.reserveFoi/caracteristique.maxFoi*classe->orbe_foi.position.w), classe->orbe_foi.position.h));
+            sprite.setTextureRect(sf::IntRect(0, 0, (int)(caracteristique.reserveFoi/caracteristique.maxFoi*classe->orbe_foi.position.w), classe->orbe_foi.position.h));
 
-            sprite.SetColor(sf::Color(32,32,32,255));
+            sprite.setColor(sf::Color(32,32,32,255));
 
             moteurGraphique->AjouterCommande(&sprite,18,0);
         }
 
         if(caracteristique.foi > caracteristique.maxFoi - caracteristique.reserveFoi)
         {
-            sprite.SetTextureRect(sf::IntRect(0, 0, (int)((caracteristique.foi-caracteristique.maxFoi+caracteristique.reserveFoi*2)/caracteristique.maxFoi*classe->orbe_foi.position.w), classe->orbe_foi.position.h));
+            sprite.setTextureRect(sf::IntRect(0, 0, (int)((caracteristique.foi-caracteristique.maxFoi+caracteristique.reserveFoi*2)/caracteristique.maxFoi*classe->orbe_foi.position.w), classe->orbe_foi.position.h));
 
-            sprite.SetColor(sf::Color(255,255,255));
+            sprite.setColor(sf::Color(255,255,255));
             moteurGraphique->AjouterCommande(&sprite,17,0,sf::BlendAdd);
             moteurGraphique->AjouterCommande(&sprite,17,0,sf::BlendAdd);
             moteurGraphique->AjouterCommande(&sprite,17,0,sf::BlendAdd);
@@ -503,15 +503,15 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     {
         Sprite sprite;
 
-        sprite.SetTexture(*moteurGraphique->getImage(classe->soul_bar.image));
+        sprite.setTexture(*moteurGraphique->getImage(classe->soul_bar.image));
        // sprite.Resize(344*configuration->Resolution.w/800, 16*configuration->Resolution.w/800);
 
         int temp= (int) ( (caracteristique.ancienPointAme-((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)) * 344 / (((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10) - ((caracteristique.niveau-1)*(caracteristique.niveau-1)*(caracteristique.niveau-1)*10)));
 
-        sprite.SetTextureRect(sf::IntRect(0,0, temp, 16));
+        sprite.setTextureRect(sf::IntRect(0,0, temp, 16));
 
-        sprite.SetX(classe->soul_bar.position.x + (configuration->Resolution.x - 800) * 0.5);
-        sprite.SetY(classe->soul_bar.position.y + (configuration->Resolution.y - 600));
+        sprite.setPosition(classe->soul_bar.position.x + (configuration->Resolution.x - 800) * 0.5 ,
+                           classe->soul_bar.position.y + (configuration->Resolution.y - 600));
 
         moteurGraphique->AjouterCommande(&sprite,17,0);
     }
@@ -535,28 +535,28 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     {
         Sprite sprite,sprite2;
 
-        sprite.SetTexture(*moteurGraphique->getImage(classe->barre_vie_monstre_vide.image));
-        sprite.SetX(configuration->Resolution.w/2+classe->barre_vie_monstre_vide.position.x);
-        sprite.SetY(classe->barre_vie_monstre_vide.position.y);
+        sprite.setTexture(*moteurGraphique->getImage(classe->barre_vie_monstre_vide.image));
+        sprite.setPosition(configuration->Resolution.w/2+classe->barre_vie_monstre_vide.position.x ,
+                           classe->barre_vie_monstre_vide.position.y);
 
         moteurGraphique->AjouterCommande(&sprite,16,0);
 
-        sprite2.SetTexture(*moteurGraphique->getImage(classe->barre_vie_monstre.image));
+        sprite2.setTexture(*moteurGraphique->getImage(classe->barre_vie_monstre.image));
 
         float vie = (int)caracteristiqueMonstre.vie;
         if(vie == 0)
             vie = 1;
-        sprite2.SetTextureRect(sf::IntRect(0, 0, (int)(vie/caracteristiqueMonstre.maxVie*moteurGraphique->getImage(classe->barre_vie_monstre.image)->GetWidth()), 32));
-        sprite2.SetX(configuration->Resolution.w/2 + classe->barre_vie_monstre.position.x);
-        sprite2.SetY(classe->barre_vie_monstre.position.y);
+        sprite2.setTextureRect(sf::IntRect(0, 0, (int)(vie/caracteristiqueMonstre.maxVie*moteurGraphique->getImage(classe->barre_vie_monstre.image)->getWidth()), 32));
+        sprite2.setPosition(configuration->Resolution.w/2 + classe->barre_vie_monstre.position.x ,
+                            classe->barre_vie_monstre.position.y);
 
 
         moteurGraphique->AjouterCommande(&sprite2,17,0);
 
-        texte.SetFont(moteurGraphique->m_font);
+        texte.setFont(moteurGraphique->m_font);
 
 
-        texte.SetCharacterSize(16);
+        texte.setCharacterSize(16);
 
         {
             std::ostringstream buf;
@@ -564,16 +564,16 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
             buf << " ("<<(int)caracteristiqueMonstre.vie<<" / "<<caracteristiqueMonstre.maxVie<<")";
 
-            texte.SetString(buf.str());
+            texte.setString(buf.str());
         }
 
-        texte.SetColor(GetItemColor(caracteristiqueMonstre.rang));
+        texte.setColor(GetItemColor(caracteristiqueMonstre.rang));
 
-        texte.SetX(configuration->Resolution.w/2-(texte.GetGlobalBounds().Width)/2);
-        texte.SetY(32);
+        texte.setPosition(configuration->Resolution.w/2-(texte.getGlobalBounds().width)/2 ,
+                          32);
         moteurGraphique->AjouterTexte(&texte,18);
 
-        texte.SetStyle(0);
+        texte.setStyle(0);
     }
     else if(caracteristiqueMonstre.maxVie == 1 && m_dialogue.empty())
     {
@@ -587,11 +587,10 @@ void Menu::AfficherChargement(string nom,int fond,int z=50)
 {
     Sprite sprite;
 
-    sprite.SetTexture(*moteurGraphique->getImage(fond));
-    sprite.SetColor(Color(255,255,255,z*255/50));
-    sprite.SetX(0);
-    sprite.SetY(0);
-    sprite.Resize(configuration->Resolution.w,configuration->Resolution.h*5/6);
+    sprite.setTexture(*moteurGraphique->getImage(fond));
+    sprite.setColor(Color(255,255,255,z*255/50));
+    sprite.setPosition(0,0);
+    sprite.scale(configuration->Resolution.w,configuration->Resolution.h*5/6);
     moteurGraphique->AjouterCommande(&sprite,12);
 
 
@@ -599,8 +598,8 @@ void Menu::AfficherChargement(string nom,int fond,int z=50)
     texte.SetCharacterSize(50*configuration->Resolution.h/600);
     texte.SetString(nom);
 
-    texte.SetX(configuration->Resolution.w/2-(texte.GetGlobalBounds().Width)/2);
-    texte.SetY(configuration->Resolution.h-(texte.GetGlobalBounds().Height)/2-80*configuration->Resolution.h/600);
+    texte.SetX(configuration->Resolution.w/2-(texte.getGlobalBounds().Width)/2);
+    texte.SetY(configuration->Resolution.h-(texte.getGlobalBounds().Height)/2-80*configuration->Resolution.h/600);
     texte.SetColor(Color(150,100,50,z*255/50));
     moteurGraphique->AjouterTexte(&texte,16,1);*/
 
@@ -613,17 +612,16 @@ void Menu::AfficherQuetes(float decalage,Classe *classe)
 {
     Sprite sprite;
 
-    sprite.SetTexture(*moteurGraphique->getImage(classe->quest.image));
-    sprite.SetX(classe->quest.position.x + (configuration->Resolution.x - 800) * 0.5);
-    sprite.SetY(classe->quest.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
-    sprite.Resize(classe->quest.position.w, classe->quest.position.h);
+    sprite.setTexture(*moteurGraphique->getImage(classe->quest.image));
+    sprite.setPosition(classe->quest.position.x + (configuration->Resolution.x - 800) * 0.5 ,
+                       classe->quest.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+    sprite.scale(classe->quest.position.w, classe->quest.position.h);
 
     moteurGraphique->AjouterCommande(&sprite,15,0);
 
-    sprite.SetColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
-    sprite.SetX(0);
-    sprite.SetY(0);
-    sprite.Resize(configuration->Resolution.w, configuration->Resolution.h);
+    sprite.setColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
+    sprite.setPosition(0,0);
+    sprite.scale(configuration->Resolution.w, configuration->Resolution.h);
     moteurGraphique->AjouterCommande(&sprite,14,0);
 }
 
@@ -631,17 +629,16 @@ void Menu::AfficherDocs(float decalage,Classe *classe)
 {
     Sprite sprite;
 
-    sprite.SetTexture(*moteurGraphique->getImage(classe->documents.image));
-    sprite.SetX(classe->documents.position.x + (configuration->Resolution.x - 800) * 0.5);
-    sprite.SetY(classe->documents.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
-    sprite.Resize(classe->documents.position.w, classe->documents.position.h);
+    sprite.setTexture(*moteurGraphique->getImage(classe->documents.image));
+    sprite.setPosition(classe->documents.position.x + (configuration->Resolution.x - 800) * 0.5 ,
+                       classe->documents.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+    sprite.scale(classe->documents.position.w, classe->documents.position.h);
 
     moteurGraphique->AjouterCommande(&sprite,15,0);
 
-    sprite.SetColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
-    sprite.SetX(0);
-    sprite.SetY(0);
-    sprite.Resize(configuration->Resolution.w, configuration->Resolution.h);
+    sprite.setColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
+    sprite.setPosition(0,0);
+    sprite.scale(configuration->Resolution.w, configuration->Resolution.h);
     moteurGraphique->AjouterCommande(&sprite,14,0);
 }
 
@@ -650,17 +647,16 @@ void Menu::AfficherCraft(float decalage,Classe *classe)
 {
     Sprite sprite;
 
-    sprite.SetTexture(*moteurGraphique->getImage(classe->craft.image));
-    sprite.SetX(classe->craft.position.x + (configuration->Resolution.x - 800) * 0.5);
-    sprite.SetY(classe->craft.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
-    sprite.Resize(classe->craft.position.w, classe->craft.position.h);
+    sprite.setTexture(*moteurGraphique->getImage(classe->craft.image));
+    sprite.setPosition(classe->craft.position.x + (configuration->Resolution.x - 800) * 0.5 ,
+                       classe->craft.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+    sprite.scale(classe->craft.position.w, classe->craft.position.h);
 
     moteurGraphique->AjouterCommande(&sprite,15,0);
 
-    sprite.SetColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
-    sprite.SetX(0);
-    sprite.SetY(0);
-    sprite.Resize(configuration->Resolution.w, configuration->Resolution.h);
+    sprite.setColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
+    sprite.setPosition(0,0);
+    sprite.scale(configuration->Resolution.w, configuration->Resolution.h);
     moteurGraphique->AjouterCommande(&sprite,14,0);
 
     classe->schema_craft.Afficher(decalage);
@@ -672,17 +668,16 @@ void Menu::AfficherMiracles(float decalage, Classe *classe)
 {
     Sprite sprite;
 
-    sprite.SetTexture(*moteurGraphique->getImage(classe->interface_miracles.image));
-    sprite.SetX(classe->interface_miracles.position.x + (configuration->Resolution.x - 800) * 0.5);
-    sprite.SetY(classe->interface_miracles.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
-    sprite.Resize(classe->interface_miracles.position.w, classe->interface_miracles.position.h);
+    sprite.setTexture(*moteurGraphique->getImage(classe->interface_miracles.image));
+    sprite.setPosition(classe->interface_miracles.position.x + (configuration->Resolution.x - 800) * 0.5,
+                       classe->interface_miracles.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+    sprite.scale(classe->interface_miracles.position.w, classe->interface_miracles.position.h);
 
     moteurGraphique->AjouterCommande(&sprite,15,0);
 
-    sprite.SetColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
-    sprite.SetX(0);
-    sprite.SetY(0);
-    sprite.Resize(configuration->Resolution.w, configuration->Resolution.h);
+    sprite.setColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
+    sprite.setPosition(0,0);
+    sprite.scale(configuration->Resolution.w, configuration->Resolution.h);
     moteurGraphique->AjouterCommande(&sprite,14,0);
 }
 
@@ -690,18 +685,17 @@ void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)
 {
     Sprite sprite;
 
-    sprite.SetTexture(*moteurGraphique->getImage(classe->inventaire.image));
-    sprite.SetX(classe->inventaire.position.x + (configuration->Resolution.x - 800) * 0.5);
-    sprite.SetY(classe->inventaire.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
-    sprite.Resize(classe->inventaire.position.w, classe->inventaire.position.h);
+    sprite.setTexture(*moteurGraphique->getImage(classe->inventaire.image));
+    sprite.setPosition(classe->inventaire.position.x + (configuration->Resolution.x - 800) * 0.5 ,
+                       classe->inventaire.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+    sprite.scale(classe->inventaire.position.w, classe->inventaire.position.h);
 
     moteurGraphique->AjouterCommande(&sprite,15,0);
 
-    sprite.SetTexture(*moteurGraphique->getImage(0));
-    sprite.SetColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
-    sprite.SetX(0);
-    sprite.SetY(0);
-    sprite.Resize(configuration->Resolution.x, configuration->Resolution.y);
+    sprite.setTexture(*moteurGraphique->getImage(0));
+    sprite.setColor(sf::Color(0,0,0,(int)((600+decalage)*254/600)));
+    sprite.setPosition(0,0);
+    sprite.scale(configuration->Resolution.x, configuration->Resolution.y);
     moteurGraphique->AjouterCommande(&sprite,14,0);
 
     //configuration->effetNoir = decalage/600;
@@ -709,10 +703,10 @@ void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)
     if (!noTrader)
     {
         Sprite sprite2;
-        sprite2.SetTexture(*moteurGraphique->getImage(classe->menu_marchand.image));
-        sprite2.SetX(classe->menu_marchand.position.x + (configuration->Resolution.x - 800) * 0.5);
-        sprite2.SetY(classe->menu_marchand.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
-        sprite2.Resize(classe->menu_marchand.position.w, classe->menu_marchand.position.h);
+        sprite2.setTexture(*moteurGraphique->getImage(classe->menu_marchand.image));
+        sprite2.setPosition(classe->menu_marchand.position.x + (configuration->Resolution.x - 800) * 0.5 ,
+                            classe->menu_marchand.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
+        sprite2.scale(classe->menu_marchand.position.w, classe->menu_marchand.position.h);
 
         moteurGraphique->AjouterCommande(&sprite2,16,0);
     }

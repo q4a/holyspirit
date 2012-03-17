@@ -139,9 +139,9 @@ void c_Inventaire::setTrader(std::vector<Objet> *trade)
 
 void c_Inventaire::Utiliser(Jeu *jeu)
 {
-    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
     jeu->m_display=true;
-    jeu->Clock.Reset();
+    jeu->Clock.restart();
 
     moteurGraphique->Gerer(0);
     jeu->map->GererAmbiance(temps_ecoule);
@@ -216,7 +216,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         net->SendSkin();
         jeu->hero.RecalculerCaracteristiques(true);
         m_afficher=0;
-        jeu->Clock.Reset();
+        jeu->Clock.restart();
         eventManager->StopEvenement(Keyboard::I,EventKey);
 
         /*if (jeu->hero.m_objetEnMain>=0)
@@ -249,16 +249,16 @@ void c_Inventaire::Utiliser(Jeu *jeu)
 
         sf::Sprite sprite;
 
-        sprite.SetTexture(*moteurGraphique->getImage(bouton->image.image));
-        sprite.SetTextureRect(sf::IntRect(bouton->image.position.x,
+        sprite.setTexture(*moteurGraphique->getImage(bouton->image.image));
+        sprite.setTextureRect(sf::IntRect(bouton->image.position.x,
                                       bouton->image.position.y,
                                       bouton->image.position.w,
                                       bouton->image.position.h));
 
-        sprite.SetPosition(AutoScreenAdjust(bouton->position.x,
+        sprite.setPosition(AutoScreenAdjust(bouton->position.x,
                                             bouton->position.y-m_decalage));
 
-        sprite.Resize(bouton->position.w, bouton->position.h);
+        sprite.scale(bouton->position.w, bouton->position.h);
 
         moteurGraphique->AjouterCommande(&sprite, 17,0);
 
@@ -319,9 +319,9 @@ void c_Inventaire::Utiliser(Jeu *jeu)
     position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
     position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
-    Listener::SetGlobalVolume((float)configuration->volume);
-    Listener::SetPosition(-position.x, 0, position.y);
-    Listener::SetDirection(0, 0, 1);
+    Listener::setGlobalVolume((float)configuration->volume);
+    Listener::setPosition(-position.x, 0, position.y);
+    Listener::setDirection(0, 0, 1);
     jeu->map->MusiquePlay();
-    jeu->sonMort.SetPosition(position.x,0,position.y);
+    jeu->sonMort.setPosition(position.x,0,position.y);
 }

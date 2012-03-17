@@ -56,7 +56,7 @@ void Network::CheckPacketClient(sf::Packet &packet)
                     if(jeu->map->m_loaded)
                     if(jeu->map->getEntiteMonstre(no))
                     {
-                        GlobalMutex.Lock();
+                        GlobalMutex.lock();
 
                         bool enVie = jeu->map->getEntiteMonstre(no)->EnVie();
                         int x = (int)((jeu->map->getEntiteMonstre(no))->getCoordonneePixel().x/COTE_TILE + 0.5);
@@ -67,9 +67,9 @@ void Network::CheckPacketClient(sf::Packet &packet)
                         if(enVie != jeu->map->getEntiteMonstre(no)->EnVie())
                             jeu->map->KillMonstre(jeu->map->getEntiteMonstre(no),0,0,jeu);
 
-                        GlobalMutex.Unlock();
+                        GlobalMutex.unlock();
 
-                        if(!packet.EndOfPacket())
+                        if(!packet.endOfPacket())
                             if(!(packet>>type))
                                 type = (sf::Int8)-1;
                     }
@@ -90,7 +90,7 @@ void Network::CheckPacketClient(sf::Packet &packet)
                 jeu->m_personnageClients.back().m_personnage.setCaracteristique(caract);
                 jeu->m_personnageClients.back().m_personnage.m_heroic = true;
 
-                GlobalMutex.Lock();
+                GlobalMutex.lock();
 
                 while(--nbr_mir >= 0)
                 {
@@ -106,7 +106,7 @@ void Network::CheckPacketClient(sf::Packet &packet)
                 jeu->hero.m_amis.push_back(&jeu->m_personnageClients.back().m_personnage);
                 std::cout<<"Joueur " << caract.nom << std::endl;
 
-                GlobalMutex.Unlock();
+                GlobalMutex.unlock();
             }
         }
         else if(type == P_DELETEPLAYER)
@@ -132,9 +132,9 @@ void Network::CheckPacketClient(sf::Packet &packet)
                         for (int k=0; k<NOMBRE_MORCEAU_PERSONNAGE; ++k)
                             packet>>p->m_cheminModeleNouveau[k]>>p->m_pasEquipe[k];
 
-                        GlobalMutex.Lock();
+                        GlobalMutex.lock();
                         p->ChargerGraphics();
-                        GlobalMutex.Unlock();
+                        GlobalMutex.unlock();
                     }
                 }
         }
@@ -145,14 +145,14 @@ void Network::CheckPacketClient(sf::Packet &packet)
             coordonnee coordonneePerso;
             if((packet>>prochaineMap>>coordonneePerso>>h>>m))
             {
-                GlobalMutex.Lock();
+                GlobalMutex.lock();
                 jeu->m_chargement->setC_Chargement(prochaineMap,coordonneePerso);
                 jeu->m_contexte = jeu->m_chargement;
                 for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
                     p->m_ready = false;
                 configuration->heure = h;
                 configuration->minute = m;
-                GlobalMutex.Unlock();
+                GlobalMutex.unlock();
             }
         }
         else if(type == P_DEGATS)
@@ -211,7 +211,7 @@ void Network::CheckPacketClient(sf::Packet &packet)
             int i = 0;
             sf::Int8 no;
 
-            GlobalMutex.Lock();
+            GlobalMutex.lock();
 
             if((packet>>no))
             for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin();
@@ -223,14 +223,14 @@ void Network::CheckPacketClient(sf::Packet &packet)
                     console->Ajouter(p->m_caracteristiques.nom + " : "+p->m_personnage.m_speak);
                 }
 
-            GlobalMutex.Unlock();
+            GlobalMutex.unlock();
         }
         else if(type == P_INTERACT)
         {
             int i = 0;
             sf::Int8 no;
 
-            GlobalMutex.Lock();
+            GlobalMutex.lock();
 
             if((packet>>no))
             for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin();
@@ -242,22 +242,22 @@ void Network::CheckPacketClient(sf::Packet &packet)
                     p->m_cibleInt = n;
                 }
 
-            GlobalMutex.Unlock();
+            GlobalMutex.unlock();
         }
         else if(type == P_ERASEFRIEND)
         {
             sf::Int16 no;
 
-            GlobalMutex.Lock();
+            GlobalMutex.lock();
 
             if((packet>>no))
                 jeu->hero.EraseFriend(no);
 
-            GlobalMutex.Unlock();
+            GlobalMutex.unlock();
         }
         else if(type == P_QUEST)
         {
-            GlobalMutex.Lock();
+            GlobalMutex.lock();
 
             sf::Int16 id, i1, i2;
             sf::Int8  t;
@@ -273,7 +273,7 @@ void Network::CheckPacketClient(sf::Packet &packet)
                     jeu->hero.SetQuestActif(id, i1);
             }
 
-            GlobalMutex.Unlock();
+            GlobalMutex.unlock();
         }
         else if(type == P_CLIMATE && jeu->map)
         {
@@ -287,7 +287,7 @@ void Network::CheckPacketClient(sf::Packet &packet)
             int i = 0;
             sf::Int8 no;
 
-            GlobalMutex.Lock();
+            GlobalMutex.lock();
 
             if((packet>>no))
             for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin();
@@ -295,7 +295,7 @@ void Network::CheckPacketClient(sf::Packet &packet)
                 if(i == no)
                     p->m_ready = true;
 
-            GlobalMutex.Unlock();
+            GlobalMutex.unlock();
         }
 
     }

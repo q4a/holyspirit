@@ -594,7 +594,7 @@ void Configuration::SauvegarderKeyMapping()
 bool Configuration::Options()
 {
     sf::Text texte;
-    texte.SetCharacterSize(48);
+    texte.setCharacterSize(48);
 
     if(no_menu_option == O_PRINCIPAL)
     {
@@ -669,7 +669,7 @@ bool Configuration::Options()
 
     if(no_menu_option == O_GRAPHICS)
     {
-        texte.SetCharacterSize(32);
+        texte.setCharacterSize(32);
 
 
 
@@ -693,11 +693,11 @@ bool Configuration::Options()
 
                     if(mode_fenetre)
                     {
-                        sf::VideoMode test = test.GetDesktopMode();
+                        sf::VideoMode test = test.getDesktopMode();
 
                         while(no < m_liste_resolutions.size()
-                          && (m_liste_resolutions[no].x > (int)test.Width
-                           || m_liste_resolutions[no].y > (int)test.Height))
+                          && (m_liste_resolutions[no].x > (int)test.width
+                           || m_liste_resolutions[no].y > (int)test.height))
                             no++;
                     }
                     else
@@ -707,13 +707,13 @@ bool Configuration::Options()
                         {
                             sf::VideoMode test;
 
-                            unsigned int VideoModesCount = test.GetFullscreenModes().size();
+                            unsigned int VideoModesCount = test.getFullscreenModes().size();
                             for (unsigned int i = 0; i < VideoModesCount; ++i)
                             {
-                                test = test.GetFullscreenModes()[i];
+                                test = test.getFullscreenModes()[i];
 
-                                if((int)test.Width  == m_liste_resolutions[no].x
-                                && (int)test.Height == m_liste_resolutions[no].y)
+                                if((int)test.width  == m_liste_resolutions[no].x
+                                && (int)test.height == m_liste_resolutions[no].y)
                                     ok = true;
                             }
 
@@ -889,7 +889,7 @@ bool Configuration::Options()
 
     if(no_menu_option == O_GRAPHISC_AVANCED)
     {
-        texte.SetCharacterSize(32);
+        texte.setCharacterSize(32);
 
         {
             std::ostringstream buf;
@@ -1056,7 +1056,7 @@ bool Configuration::Options()
 
     if(no_menu_option == O_SOUNDS)
     {
-        texte.SetCharacterSize(32);
+        texte.setCharacterSize(32);
 
         {
             std::ostringstream buf;
@@ -1072,7 +1072,7 @@ bool Configuration::Options()
                     if(volume > 100)
                         volume = 100;
 
-                    sf::Sleep(100);
+                    sf::sleep(sf::milliseconds(100));
                 }
                 if(eventManager->getEvenement(sf::Mouse::Right,EventClic)
                 || eventManager->getEvenement(sf::Keyboard::Subtract,EventKey))
@@ -1082,10 +1082,10 @@ bool Configuration::Options()
                     if(volume < 0)
                         volume = 0;
 
-                    sf::Sleep(100);
+                    sf::sleep(sf::milliseconds(100));
                 }
 
-                sf::Listener::SetGlobalVolume(volume);
+                sf::Listener::setGlobalVolume(volume);
 
                 moteurGraphique->special_typo_h.Draw(buf.str(), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2-240), 48, 19, true);
               }
@@ -1107,7 +1107,7 @@ bool Configuration::Options()
                     if(music_volume > 100)
                         music_volume = 100;
 
-                    sf::Sleep(100);
+                    sf::sleep(sf::milliseconds(100));
                 }
                 if(eventManager->getEvenement(sf::Mouse::Right,EventClic)
                 || eventManager->getEvenement(sf::Keyboard::Subtract,EventKey))
@@ -1116,7 +1116,7 @@ bool Configuration::Options()
                     if(music_volume < 0)
                         music_volume = 0;
 
-                    sf::Sleep(100);
+                    sf::sleep(sf::milliseconds(100));
                 }
 
                 moteurSons->setVolumeMusique((int)music_volume);

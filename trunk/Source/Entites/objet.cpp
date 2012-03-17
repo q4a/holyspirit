@@ -1866,15 +1866,15 @@ sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *
 {
     sf::Text string;
 
-    string.SetFont(moteurGraphique->m_font);
+    string.setFont(moteurGraphique->m_font);
 
-    string.SetColor(color);
+    string.setColor(color);
 
-    string.SetCharacterSize(14);
-    string.SetString(chaine);
+    string.setCharacterSize(14);
+    string.setString(chaine);
 
-    if (tailleCadran->x<(int)string.GetGlobalBounds().Width)
-        tailleCadran->x=(int)string.GetGlobalBounds().Width;
+    if (tailleCadran->x<(int)string.getGlobalBounds().width)
+        tailleCadran->x=(int)string.getGlobalBounds().width;
 
     std::string c(chaine);
     if(c.compare("_") != 0)
@@ -1972,23 +1972,23 @@ std::string getTextBenediction(const benediction &bene)
 void Objet::Afficher(const coordonnee &position)
 {
     sf::Sprite sprite;
-    sprite.SetTexture(*moteurGraphique->getImage(m_image));
-    sprite.SetTextureRect(IntRect(m_positionImage.x,
+    sprite.setTexture(*moteurGraphique->getImage(m_image));
+    sprite.setTextureRect(IntRect(m_positionImage.x,
                               m_positionImage.y,
                               m_positionImage.w,
                               m_positionImage.h));
     if(m_hauteur < 1)
-        sprite.SetScale(0.8f,0.4f);
+        sprite.setScale(0.8f,0.4f);
     else
-        sprite.SetScale(0.6f,0.6f);
+        sprite.setScale(0.6f,0.6f);
 
-    sprite.SetOrigin(   m_positionImage.w * 0.5,
+    sprite.setOrigin(   m_positionImage.w * 0.5,
                         m_positionImage.h * 0.5);
 
-    sprite.SetX(position.x-32+m_position.x*32+16-(m_positionImage.w*0.8f)/2);
-    sprite.SetY(position.y+m_position.y*32 - m_hauteur);
+    sprite.setPosition(position.x-32+m_position.x*32+16-(m_positionImage.w*0.8f)/2 ,
+                       position.y+m_position.y*32 - m_hauteur);
 
-    sprite.SetRotation(m_rotation);
+    sprite.setRotation(m_rotation);
 
     if(m_hauteur > 16)
         moteurGraphique->AjouterCommande(&sprite,10,1);
@@ -2019,7 +2019,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
             else
                 temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,20).c_str()));
         }
-        temp.back().SetCharacterSize(12);
+        temp.back().setCharacterSize(12);
 
         //temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
@@ -2030,9 +2030,9 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     }
 
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_nom.c_str()));
-    temp.back().SetColor(GetItemColor(m_rarete));
+    temp.back().setColor(GetItemColor(m_rarete));
     //temp.back().SetStyle(4);
-    temp.back().SetCharacterSize(16);
+    temp.back().setCharacterSize(16);
 
 
 
@@ -2047,7 +2047,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     if(!m_chemin_set.empty())
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_set.m_nom.c_str()));
-        temp.back().SetColor(GetItemColor(m_rarete));
+        temp.back().setColor(GetItemColor(m_rarete));
 
         m_set.m_nombre = -1;
 
@@ -2057,7 +2057,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
             //tempobj.Charger(m_set.m_items[i], caract);
 
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_set.m_items[i].m_nom.c_str()));
-            temp.back().SetStyle(2);
+            temp.back().setStyle(2);
 
             bool ok = false;
             if(items != NULL)
@@ -2065,9 +2065,9 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
                     if((*items)[j].m_chemin == m_set.m_items_path[i] && (*items)[j].m_equipe >= 0)
                         ok = true;
             if(ok)
-                temp.back().SetColor(GetItemColor(m_set.m_items[i].m_rarete)), m_set.m_nombre++;
+                temp.back().setColor(GetItemColor(m_set.m_items[i].m_rarete)), m_set.m_nombre++;
             else
-                temp.back().SetColor(sf::Color(128,128,128));
+                temp.back().setColor(sf::Color(128,128,128));
         }
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     }
@@ -2083,7 +2083,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         for (int i=0;i<(int)m_description.size();i++)
         {
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_description[i].c_str()));
-            temp.back().SetStyle(2);
+            temp.back().setStyle(2);
         }
 
         if(m_type != CONSOMMABLE && m_type != AUCUN && m_type != DOCUMENT)
@@ -2148,7 +2148,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
             if (multiplieurEfficacite!=100.0f)
-                temp.back().SetColor(sf::Color(0,128,255));
+                temp.back().setColor(sf::Color(0,128,255));
         }
 
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
@@ -2179,7 +2179,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
 
             if (multiplieurEfficacite!=100.0f)
-                temp.back().SetColor(sf::Color(0,128,255));
+                temp.back().setColor(sf::Color(0,128,255));
         }
     }
 
@@ -2217,7 +2217,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.force<m_requirement.force)
-            temp.back().SetColor(sf::Color(192,0,0));
+            temp.back().setColor(sf::Color(192,0,0));
     }
     if (m_requirement.dexterite>0)
     {
@@ -2227,7 +2227,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.dexterite<m_requirement.dexterite)
-            temp.back().SetColor(sf::Color(192,0,0));
+            temp.back().setColor(sf::Color(192,0,0));
     }
     if (m_requirement.charisme>0)
     {
@@ -2237,7 +2237,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.charisme<m_requirement.charisme)
-            temp.back().SetColor(sf::Color(192,0,0));
+            temp.back().setColor(sf::Color(192,0,0));
     }
     if (m_requirement.vitalite>0)
     {
@@ -2247,7 +2247,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.vitalite<m_requirement.vitalite)
-            temp.back().SetColor(sf::Color(192,0,0));
+            temp.back().setColor(sf::Color(192,0,0));
     }
     if (m_requirement.piete>0)
     {
@@ -2257,7 +2257,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.piete<m_requirement.piete)
-            temp.back().SetColor(sf::Color(192,0,0));
+            temp.back().setColor(sf::Color(192,0,0));
     }
     if(!m_nom_IDClasse.empty())
     {
@@ -2274,7 +2274,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
         if(mauvais)
             for(unsigned i = 1 ; i <= m_nom_IDClasse.size() ; ++i)
-                temp[temp.size() - i].SetColor(sf::Color(192,0,0));
+                temp[temp.size() - i].setColor(sf::Color(192,0,0));
     }
 
     if(add_space)
@@ -2305,7 +2305,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         for(unsigned j =  0 ; j < m_miracle.m_description.size() ; ++j)
         {
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracle.m_description[j].c_str(),sf::Color(128,64,0)));
-            temp.back().SetStyle(2);
+            temp.back().setStyle(2);
         }
     }
 
@@ -2316,7 +2316,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         for(unsigned j =  0 ; j < m_miracles_benedictions[i].m_description.size() ; ++j)
         {
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracles_benedictions[i].m_description[j].c_str(),sf::Color(128,64,0)));
-            temp.back().SetStyle(2);
+            temp.back().setStyle(2);
         }
     }
 
@@ -2343,7 +2343,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     {
         add_space = true;
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,60).c_str(),sf::Color(128,128,128)));
-        temp.back().SetStyle(2);
+        temp.back().setStyle(2);
     }
 
     if(m_prix > 0)
@@ -2389,9 +2389,9 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         int decalY2=20;
         for (int i=0;i<(int)temp.size();i++)
         {
-            if(temp[i].GetString() == "")
+            if(temp[i].getString() == "")
                 decalY2+=2;
-            else if(temp[i].GetString() != "_")
+            else if(temp[i].getString() != "_")
                 decalY2+=16;
         }
 
@@ -2399,25 +2399,25 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
         for (int i=0;i<(int)temp.size();i++)
         {
-            if(temp[i].GetString() == "_")
+            if(temp[i].getString() == "_")
             {
                 sf::Sprite bar;
-                bar.Resize(tailleCadran.x + 22, 1);
-                bar.SetColor(sf::Color(72 * GetItemColor(m_rarete).r / 255,
+                bar.scale(tailleCadran.x + 22, 1);
+                bar.setColor(sf::Color(72 * GetItemColor(m_rarete).r / 255,
                                        67 * GetItemColor(m_rarete).g / 255,
                                        42 * GetItemColor(m_rarete).b / 255));
 
-                bar.SetY((position.y+decalY));
-                bar.SetX(position.x - tailleCadran.x - 11);
+                bar.setPosition(position.x - tailleCadran.x - 11 ,
+                                (position.y+decalY));
 
                 moteurGraphique->AjouterCommande(&bar,20,0);
             }
             else
             {
-                temp[i].SetY((position.y+decalY));
-                temp[i].SetX(position.x+(tailleCadran.x-(int)temp[i].GetGlobalBounds().Width)*0.5-tailleCadran.x);
+                temp[i].setPosition(position.x+(tailleCadran.x-(int)temp[i].getGlobalBounds().width)*0.5-tailleCadran.x ,
+                                    (position.y+decalY));
 
-                if(temp[i].GetString() == "")
+                if(temp[i].getString() == "")
                     decalY+=2;
                 else
                     decalY+=16;
@@ -2431,25 +2431,25 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         int decalY=0;
         for (int i=0;i<(int)temp.size();i++)
         {
-            if(temp[i].GetString() == "_")
+            if(temp[i].getString() == "_")
             {
                 sf::Sprite bar(*moteurGraphique->getImage(0));
-                bar.Resize(tailleCadran.x + 22, 1);
-                bar.SetColor(sf::Color(72 * GetItemColor(m_rarete).r / 255,
+                bar.scale(tailleCadran.x + 22, 1);
+                bar.setColor(sf::Color(72 * GetItemColor(m_rarete).r / 255,
                                        67 * GetItemColor(m_rarete).g / 255,
                                        42 * GetItemColor(m_rarete).b / 255));
 
-                bar.SetY((position.y+decalY+4));
-                bar.SetX(position.x - tailleCadran.x - 11);
+                bar.setPosition(position.x - tailleCadran.x - 11 ,
+                                (position.y+decalY+4));
 
                 moteurGraphique->AjouterCommande(&bar,20,0);
             }
             else
             {
-                temp[i].SetY((position.y+decalY+4));
-                temp[i].SetX(position.x+(tailleCadran.x-(int)temp[i].GetGlobalBounds().Width)*0.5-tailleCadran.x);
+                temp[i].setPosition(position.x+(tailleCadran.x-(int)temp[i].getGlobalBounds().width)*0.5-tailleCadran.x ,
+                                    (position.y+decalY+4));
 
-                if(temp[i].GetString() == "")
+                if(temp[i].getString() == "")
                     decalY+=2;
                 else
                     decalY+=16;

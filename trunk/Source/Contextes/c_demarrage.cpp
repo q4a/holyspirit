@@ -44,8 +44,8 @@ c_Demarrage::~c_Demarrage()
 
 void c_Demarrage::Utiliser(Jeu *jeu)
 {
-    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
-    jeu->Clock.Reset();
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
+    jeu->Clock.restart();
 
     configuration->RafraichirOmbre = 0;
     configuration->RafraichirLumiere = 0;
@@ -53,16 +53,16 @@ void c_Demarrage::Utiliser(Jeu *jeu)
 
     Sprite sprite;
 
-    sprite.SetTexture(*moteurGraphique->getImage(m_image));
+    sprite.setTexture(*moteurGraphique->getImage(m_image));
 
     //configuration->effetNoir=1;
 
     if (m_alpha<255)
-        sprite.SetColor(Color(255,255,255,(int)m_alpha));
+        sprite.setColor(Color(255,255,255,(int)m_alpha));
     else
-        sprite.SetColor(Color(255,255,255,255));
-    sprite.SetScale(configuration->Resolution.x/sprite.GetLocalBounds().Width,
-                    configuration->Resolution.y/sprite.GetLocalBounds().Height);
+        sprite.setColor(Color(255,255,255,255));
+    sprite.setScale(configuration->Resolution.x/sprite.getLocalBounds().width,
+                    configuration->Resolution.y/sprite.getLocalBounds().height);
 
     moteurGraphique->AjouterCommande(&sprite,15,0);
 

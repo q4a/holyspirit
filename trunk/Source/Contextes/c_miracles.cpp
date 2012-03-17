@@ -56,9 +56,9 @@ c_Miracles::~c_Miracles()
 
 void c_Miracles::Utiliser(Jeu *jeu)
 {
-    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
+    temps_ecoule=jeu->Clock.getElapsedTime().asMilliseconds();
     jeu->m_display=true;
-    jeu->Clock.Reset();
+    jeu->Clock.restart();
 
     moteurGraphique->Gerer(0);
     jeu->map->GererAmbiance(temps_ecoule);
@@ -85,7 +85,7 @@ void c_Miracles::Utiliser(Jeu *jeu)
     {
         jeu->next_screen = temp;
         m_afficher=0;
-        jeu->Clock.Reset();
+        jeu->Clock.restart();
 
         if(jeu->next_screen == 5 || jeu->next_screen == 4)
             jeu->next_screen = 3;
@@ -122,10 +122,10 @@ void c_Miracles::Utiliser(Jeu *jeu)
     position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
     position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
-    Listener::SetGlobalVolume((float)configuration->volume);
-    Listener::SetPosition(-position.x, 0, position.y);
-    Listener::SetDirection(0, 0, 1);
+    Listener::setGlobalVolume((float)configuration->volume);
+    Listener::setPosition(-position.x, 0, position.y);
+    Listener::setDirection(0, 0, 1);
     jeu->map->MusiquePlay();
-    jeu->sonMort.SetPosition(position.x,0,position.y);
+    jeu->sonMort.setPosition(position.x,0,position.y);
 }
 

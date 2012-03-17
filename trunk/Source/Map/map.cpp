@@ -148,10 +148,10 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
                 && eventManager->getPositionSouris().y > AutoScreenAdjust(0,position_sac_inventaire.y  + (z - m_defilerObjets) * 20).y
                 && eventManager->getPositionSouris().y < AutoScreenAdjust(0,position_sac_inventaire.y  + (z - m_defilerObjets) * 20 + 20).y)
                 {
-                    Sprite.SetTexture(*moteurGraphique->getImage(0));
-                    Sprite.SetColor(sf::Color(255,255,255,128));
-                    Sprite.Resize(position_sac_inventaire.w,20);
-                    Sprite.SetPosition(AutoScreenAdjust(position_sac_inventaire.x,
+                    Sprite.setTexture(*moteurGraphique->getImage(0));
+                    Sprite.setColor(sf::Color(255,255,255,128));
+                    Sprite.scale(position_sac_inventaire.w,20);
+                    Sprite.setPosition(AutoScreenAdjust(position_sac_inventaire.x,
                                                         position_sac_inventaire.y+(z-m_defilerObjets)*20, decalage));
 
                     moteurGraphique->AjouterCommande(&Sprite,16,0);
@@ -165,21 +165,21 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
                     }
                 }
 
-                texte.SetColor(GetItemColor(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getRarete()));
-                texte.SetFont(moteurGraphique->m_font);
+                texte.setColor(GetItemColor(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getRarete()));
+                texte.setFont(moteurGraphique->m_font);
 
                 if (z == m_defilerObjets && m_defilerObjets > 0)
-                    texte.SetString("...");
+                    texte.setString("...");
                 else if ((z-m_defilerObjets == position_sac_inventaire.h-1
                        && z < m_decor[1][positionSac.y][positionSac.x].getNombreObjets() - 1))
-                    texte.SetString("...");
+                    texte.setString("...");
                 else
-                    texte.SetString(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getNom());
-                texte.SetCharacterSize(16);
+                    texte.setString(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getNom());
+                texte.setCharacterSize(16);
 
-                texte.SetPosition(AutoScreenAdjust(position_sac_inventaire.x,
+                texte.setPosition(AutoScreenAdjust(position_sac_inventaire.x,
                                                    position_sac_inventaire.y+(z-m_defilerObjets)*20, decalage));
-                texte.Move((position_sac_inventaire.w-texte.GetGlobalBounds().Width)*0.5,0);
+                texte.move((position_sac_inventaire.w-texte.getGlobalBounds().width)*0.5,0);
 
                 moteurGraphique->AjouterTexte(&texte,16);
             }
@@ -208,23 +208,23 @@ void Map::Afficher(std::list<Hero*> &players,bool alt,float alpha)
         for(int x = 0 ; x < MINIMAP_SIZE ; ++x)
         {
             sf::Sprite map;
-            map.SetTexture(m_render_minimap[y][x].GetTexture());
-            map.SetPosition(configuration->Resolution.x*0.5f + (-positionHero.x) * 0.125f + x * 1024 - MINIMAP_SIZE * 512,
+            map.setTexture(m_render_minimap[y][x].getTexture());
+            map.setPosition(configuration->Resolution.x*0.5f + (-positionHero.x) * 0.125f + x * 1024 - MINIMAP_SIZE * 512,
                             configuration->Resolution.y*0.5f + (-positionHero.y) * 0.125f + y * 1024);
-            map.SetColor(sf::Color(255,255,255,(int)(alpha * 0.5f)));
+            map.setColor(sf::Color(255,255,255,(int)(alpha * 0.5f)));
             moteurGraphique->AjouterCommande(&map,12,0);
         }
 
 
         sf::Sprite minimap;
-        minimap.SetTexture(*moteurGraphique->getImage(hero->m_classe.icone_mm.image));
-        minimap.SetTextureRect(sf::IntRect(hero->m_classe.icone_mm.position.x, hero->m_classe.icone_mm.position.y,
+        minimap.setTexture(*moteurGraphique->getImage(hero->m_classe.icone_mm.image));
+        minimap.setTextureRect(sf::IntRect(hero->m_classe.icone_mm.position.x, hero->m_classe.icone_mm.position.y,
                                        hero->m_classe.icone_mm.position.w, hero->m_classe.icone_mm.position.h));
 
-        minimap.SetColor(sf::Color(255,255,255,(int)(alpha * 0.5f)));
-        minimap.SetPosition((int)(configuration->Resolution.x*0.5f) ,
+        minimap.setColor(sf::Color(255,255,255,(int)(alpha * 0.5f)));
+        minimap.setPosition((int)(configuration->Resolution.x*0.5f) ,
                             (int)(configuration->Resolution.y*0.5f));
-        minimap.SetOrigin(hero->m_classe.icone_mm.position.w/2, hero->m_classe.icone_mm.position.h/2);
+        minimap.setOrigin(hero->m_classe.icone_mm.position.w/2, hero->m_classe.icone_mm.position.h/2);
         moteurGraphique->AjouterCommande(&minimap,12,0);
 
         for(unsigned i = 0 ; i < hero->m_amis.size() ; ++i)
@@ -234,8 +234,8 @@ void Map::Afficher(std::list<Hero*> &players,bool alt,float alpha)
             pos.y=(int)((hero->m_amis[i]->getCoordonneePixel().x+hero->m_amis[i]->getCoordonneePixel().y)*DIVISEUR_COTE_TILE*32);
             pos.x=(int)(((hero->m_amis[i]->getCoordonneePixel().x-hero->m_amis[i]->getCoordonneePixel().y)*DIVISEUR_COTE_TILE-1)*64);
 
-            minimap.SetColor(sf::Color(255,0,192));
-            minimap.SetPosition((int)(configuration->Resolution.x*0.5f + (pos.x - positionHero.x) * 0.125f),
+            minimap.setColor(sf::Color(255,0,192));
+            minimap.setPosition((int)(configuration->Resolution.x*0.5f + (pos.x - positionHero.x) * 0.125f),
                                 (int)(configuration->Resolution.y*0.5f + (pos.y - positionHero.y) * 0.125f));
             moteurGraphique->AjouterCommande(&minimap,12,0);
         }
@@ -244,8 +244,8 @@ void Map::Afficher(std::list<Hero*> &players,bool alt,float alpha)
     if(m_img_sky >= 0)
     {
         sf::Sprite sky;
-        sky.SetTexture(*moteurGraphique->getImage(m_img_sky));
-        sky.Resize(configuration->Resolution.x,configuration->Resolution.y);
+        sky.setTexture(*moteurGraphique->getImage(m_img_sky));
+        sky.scale(configuration->Resolution.x,configuration->Resolution.y);
         moteurGraphique->AjouterCommande(&sky,0,0);
     }
 
@@ -281,7 +281,7 @@ void Map::Afficher(std::list<Hero*> &players,bool alt,float alpha)
                             if (alpha2>255)
                                 alpha2=255;
 
-                            m_decor[couche][j][k].m_entite_graphique.SetColor(sf::Color(255,255,255,alpha2));
+                            m_decor[couche][j][k].m_entite_graphique.setColor(sf::Color(255,255,255,alpha2));
                         }
                         moteurGraphique->AjouterEntiteGraphique(&m_decor[couche][j][k].m_entite_graphique);
                     }
@@ -291,48 +291,48 @@ void Map::Afficher(std::list<Hero*> &players,bool alt,float alpha)
                         if(fabs(j-hero->m_personnage.getCoordonnee().y) < 8 && fabs(k-hero->m_personnage.getCoordonnee().x) < 8)
                             if(TileVisible(k,j,hero->m_personnage.getCoordonnee()))
                             {
-                                if(m_decor[couche][j][k].m_spriteMinimap.GetGlobalBounds().Width> 1)
+                                if(m_decor[couche][j][k].m_spriteMinimap.getGlobalBounds().width> 1)
                                 {
                                     int cur_y = 0;
                                     int cur_x = MINIMAP_SIZE / 2;
 
                                     sf::Sprite minimap = m_decor[couche][j][k].m_spriteMinimap;
 
-                                    minimap.SetPosition((minimap.GetPosition().x) * 0.125f,
-                                                        (minimap.GetPosition().y) * 0.125f);
+                                    minimap.setPosition((minimap.getPosition().x) * 0.125f,
+                                                        (minimap.getPosition().y) * 0.125f);
 
-                                    while(minimap.GetPosition().y > 1024)
-                                        minimap.Move(0, -1024), cur_y ++;
-                                    while(minimap.GetPosition().x > 1024)
-                                        minimap.Move(-1024, 0), cur_x ++;
-                                    while(minimap.GetPosition().x - minimap.GetGlobalBounds().Width / 2 < 0)
-                                        minimap.Move(1024, 0), cur_x --;
-                                    while(minimap.GetPosition().y - minimap.GetGlobalBounds().Height / 2 < 0)
-                                        minimap.Move(0, 1024), cur_y --;
+                                    while(minimap.getPosition().y > 1024)
+                                        minimap.move(0, -1024), cur_y ++;
+                                    while(minimap.getPosition().x > 1024)
+                                        minimap.move(-1024, 0), cur_x ++;
+                                    while(minimap.getPosition().x - minimap.getGlobalBounds().width / 2 < 0)
+                                        minimap.move(1024, 0), cur_x --;
+                                    while(minimap.getPosition().y - minimap.getGlobalBounds().height / 2 < 0)
+                                        minimap.move(0, 1024), cur_y --;
 
 
                                     if(m_render_minimap[cur_y][cur_x].GetHeight() != 1024)
                                     {
-                                        m_render_minimap[cur_y][cur_x].Create(1024,1024);
-                                        m_render_minimap[cur_y][cur_x].Clear(sf::Color(0,0,0,0));
+                                        m_render_minimap[cur_y][cur_x].create(1024,1024);
+                                        m_render_minimap[cur_y][cur_x].clear(sf::Color(0,0,0,0));
                                     }
-                                    m_render_minimap[cur_y][cur_x].Draw(minimap);
+                                    m_render_minimap[cur_y][cur_x].draw(minimap);
 
                                     bool redraw = false;
 
-                                    if(minimap.GetPosition().y + minimap.GetGlobalBounds().Height > 1024)
-                                        cur_y++, minimap.Move(0,-1024), redraw = true;
-                                    if(minimap.GetPosition().x + minimap.GetGlobalBounds().Width > 1024)
-                                        cur_x++, minimap.Move(-1024,0), redraw = true;
+                                    if(minimap.getPosition().y + minimap.getGlobalBounds().height > 1024)
+                                        cur_y++, minimap.move(0,-1024), redraw = true;
+                                    if(minimap.getPosition().x + minimap.getGlobalBounds().width > 1024)
+                                        cur_x++, minimap.move(-1024,0), redraw = true;
 
 
                                     if(m_render_minimap[cur_y][cur_x].GetHeight() != 1024)
                                     {
-                                        m_render_minimap[cur_y][cur_x].Create(1024,1024);
-                                        m_render_minimap[cur_y][cur_x].Clear(sf::Color(0,0,0,0));
+                                        m_render_minimap[cur_y][cur_x].create(1024,1024);
+                                        m_render_minimap[cur_y][cur_x].clear(sf::Color(0,0,0,0));
                                     }
                                     if(redraw)
-                                        m_render_minimap[cur_y][cur_x].Draw(minimap);
+                                        m_render_minimap[cur_y][cur_x].draw(minimap);
 
 
                                     modif_minimap = true;
@@ -421,14 +421,14 @@ void Map::Afficher(std::list<Hero*> &players,bool alt,float alpha)
 
                     sf::Sprite buffer(m_decor[couche][w][z].m_entite_graphique);
 
-                    buffer.SetX((k-j)*64);
-                    buffer.SetY((k+j+1)*32);
+                    buffer.setPosition((k-j)*64 ,
+                                       (k+j+1)*32);
 
-                    if (buffer.GetGlobalBounds().Width>0)
-                        if(buffer.GetPosition().x+buffer.GetGlobalBounds().Width - buffer.GetOrigin().x>=GetViewRect(moteurGraphique->m_camera).Left
-                        && buffer.GetPosition().x-buffer.GetOrigin().x < GetViewRect(moteurGraphique->m_camera).Left + GetViewRect(moteurGraphique->m_camera).Width
-                        && buffer.GetPosition().y+buffer.GetGlobalBounds().Height - buffer.GetOrigin().y>=GetViewRect(moteurGraphique->m_camera).Top
-                        && buffer.GetPosition().y-buffer.GetOrigin().y < GetViewRect(moteurGraphique->m_camera).Top  + GetViewRect(moteurGraphique->m_camera).Height)
+                    if (buffer.getGlobalBounds().width>0)
+                        if(buffer.getPosition().x+buffer.getGlobalBounds().width - buffer.getOrigin().x>=GetViewRect(moteurGraphique->m_camera).left
+                        && buffer.getPosition().x-buffer.getOrigin().x < GetViewRect(moteurGraphique->m_camera).left + GetViewRect(moteurGraphique->m_camera).width
+                        && buffer.getPosition().y+buffer.getGlobalBounds().height - buffer.getOrigin().y>=GetViewRect(moteurGraphique->m_camera).top
+                        && buffer.getPosition().y-buffer.getOrigin().y < GetViewRect(moteurGraphique->m_camera).top  + GetViewRect(moteurGraphique->m_camera).height)
                             moteurGraphique->AjouterCommande(&buffer,m_decor[couche][w][z].getCouche(),1);
                 }
             }
@@ -439,7 +439,7 @@ void Map::Afficher(std::list<Hero*> &players,bool alt,float alpha)
     {
         for(int y = 0 ; y < MINIMAP_SIZE ; ++y)
         for(int x = 0 ; x < MINIMAP_SIZE ; ++x)
-            m_render_minimap[y][x].Display();
+            m_render_minimap[y][x].display();
     }
 }
 
@@ -1068,7 +1068,7 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
 
     }
 
-    if(jeu->m_net_send && !packet.EndOfPacket())
+    if(jeu->m_net_send && !packet.endOfPacket())
         net->SendPacket(packet);
 
     jeu->m_net_send = false;

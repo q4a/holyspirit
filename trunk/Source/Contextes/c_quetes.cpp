@@ -44,9 +44,9 @@ c_Quetes::~c_Quetes()
 
 void c_Quetes::Utiliser(Jeu *jeu)
 {
-    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
     jeu->m_display=true;
-    jeu->Clock.Reset();
+    jeu->Clock.restart();
 
     moteurGraphique->Gerer(0);
     jeu->map->GererAmbiance(temps_ecoule);
@@ -84,7 +84,7 @@ void c_Quetes::Utiliser(Jeu *jeu)
     {
         jeu->next_screen = temp;
         m_afficher=0;
-        jeu->Clock.Reset();
+        jeu->Clock.restart();
 
         if(jeu->next_screen == 6 || jeu->next_screen == 4)
             jeu->next_screen = 3;

@@ -319,18 +319,18 @@ void Light_Manager::Draw(sf::RenderTarget *App,sf::View *camera)
 {
     for (Iter=m_DynamicLight.begin();Iter!=m_DynamicLight.end();++Iter)
         if (Iter->m_actif)
-            if (Iter->GetPosition().x + Iter->GetRadius() > GetViewRect(*camera).Left
-             && Iter->GetPosition().x - Iter->GetRadius() < GetViewRect(*camera).Left + GetViewRect(*camera).Width
-             && Iter->GetPosition().y + Iter->GetRadius() > 2 *  GetViewRect(*camera).Top
-             && Iter->GetPosition().y - Iter->GetRadius() < 2 * (GetViewRect(*camera).Top + GetViewRect(*camera).Height))
+            if (Iter->GetPosition().x + Iter->GetRadius() > GetViewRect(*camera).left
+             && Iter->GetPosition().x - Iter->GetRadius() < GetViewRect(*camera).left + GetViewRect(*camera).width
+             && Iter->GetPosition().y + Iter->GetRadius() > 2 *  GetViewRect(*camera).top
+             && Iter->GetPosition().y - Iter->GetRadius() < 2 * (GetViewRect(*camera).top + GetViewRect(*camera).height))
                 Iter->Draw(App);
 
     for (Iter=m_StaticLight.begin();Iter!=m_StaticLight.end();++Iter)
         if (Iter->m_actif)
-            if (Iter->GetPosition().x + Iter->GetRadius() > GetViewRect(*camera).Left
-             && Iter->GetPosition().x - Iter->GetRadius() < GetViewRect(*camera).Left + GetViewRect(*camera).Width
-             && Iter->GetPosition().y + Iter->GetRadius() > 2 *  GetViewRect(*camera).Top
-             && Iter->GetPosition().y - Iter->GetRadius() < 2 * (GetViewRect(*camera).Top + GetViewRect(*camera).Height))
+            if (Iter->GetPosition().x + Iter->GetRadius() > GetViewRect(*camera).left
+             && Iter->GetPosition().x - Iter->GetRadius() < GetViewRect(*camera).left + GetViewRect(*camera).width
+             && Iter->GetPosition().y + Iter->GetRadius() > 2 *  GetViewRect(*camera).top
+             && Iter->GetPosition().y - Iter->GetRadius() < 2 * (GetViewRect(*camera).top + GetViewRect(*camera).height))
                 Iter->Draw(App);
 }
 
@@ -341,12 +341,12 @@ void Light_Manager::DrawWallShadow(sf::RenderTarget *App,sf::View *camera,float 
     sf::Vector2f vect(cos(angle*M_PI/180) * (100-soleil.hauteur) * 0.02,
                       sin(angle*M_PI/180) * (100-soleil.hauteur) * 0.01);
 
-    for(int y =  GetViewRect(*camera).Top * 2 / SECTOR_SIZE + m_origin_sector.y - 1;
-            y < (GetViewRect(*camera).Top * 2 + GetViewRect(*camera).Height * 2) / SECTOR_SIZE + 1 + m_origin_sector.y;
+    for(int y =  GetViewRect(*camera).top * 2 / SECTOR_SIZE + m_origin_sector.y - 1;
+            y < (GetViewRect(*camera).top * 2 + GetViewRect(*camera).height * 2) / SECTOR_SIZE + 1 + m_origin_sector.y;
           ++y)
     if(y >= 0 && y < (int)m_sectors.size())
-    for(int x =  GetViewRect(*camera).Left / SECTOR_SIZE + m_origin_sector.x - 1;
-            x < (GetViewRect(*camera).Left + GetViewRect(*camera).Width) / SECTOR_SIZE + 1 + m_origin_sector.x;
+    for(int x =  GetViewRect(*camera).left / SECTOR_SIZE + m_origin_sector.x - 1;
+            x < (GetViewRect(*camera).left + GetViewRect(*camera).width) / SECTOR_SIZE + 1 + m_origin_sector.x;
           ++x)
     if(x >= 0 && x < (int)m_sectors[y].size())
     for (std::vector<int>::iterator IterWall=m_sectors[y][x].begin();
@@ -359,7 +359,7 @@ void Light_Manager::DrawWallShadow(sf::RenderTarget *App,sf::View *camera,float 
                                                  m_wall[*IterWall].pt1.y*0.5+m_wall[*IterWall].hauteur1 * vect.y),sf::Color(0,0,0,(int)(255)));
         m_wall[*IterWall].m_shadow[3] = sf::Vertex(sf::Vector2f(m_wall[*IterWall].pt2.x-m_wall[*IterWall].hauteur2 * vect.x,
                                                  m_wall[*IterWall].pt2.y*0.5+m_wall[*IterWall].hauteur2 * vect.y),sf::Color(0,0,0,(int)(255)));
-        App->Draw(m_wall[*IterWall].m_shadow, 4, sf::Quads);
+        App->draw(m_wall[*IterWall].m_shadow, 4, sf::Quads);
      }
 }
 
