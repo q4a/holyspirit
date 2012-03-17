@@ -3,19 +3,19 @@ cmake_minimum_required (VERSION 2.6)
 
 # define a macro that helps defining an option
 macro(set_option var default type docstring)
-    if(NOT DEFINED ${var})
-        set(${var} ${default})
-    endif()
-    set(${var} ${${var}} CACHE ${type} ${docstring} FORCE)
+	if(NOT DEFINED ${var})
+		set(${var} ${default})
+	endif()
+	set(${var} ${${var}} CACHE ${type} ${docstring} FORCE)
 endmacro()
 
 include_directories(
-    ${SFML_INCLUDE}
+	${SFML_INCLUDE}
 	)
 
 # Sources
 
-Set (GAME_SOURCES
+list(APPEND GAME_SOURCES
 	Contextes/c_bless.cpp
 	Contextes/c_changementMap.cpp
 	Contextes/c_craft.cpp
@@ -68,7 +68,7 @@ Set (GAME_SOURCES
 	Network/send.cpp
 	
 	
-    configuration.cpp
+	configuration.cpp
 	datFile.cpp
 	jeu.cpp
 	main.cpp
@@ -76,22 +76,21 @@ Set (GAME_SOURCES
 	video.cpp)
 
 # Add icon to executable for Windows systems
-IF (WIN32)
-  SET(GAME_SOURCES 
-    ${GAME_SOURCES}
-    ressource.rc
-    )
-ENDIF (WIN32)
+if (WIN32)
+list(APPEND GAME_SOURCES 
+	ressource.rc
+	)
+endif()
 
-Add_Executable (Holyspirit ${GAME_SOURCES})
+add_Executable (Holyspirit ${GAME_SOURCES})
 
 # add an option for choosing the build type of SFML(shared or static)
-set_option(SFML_STATIC_LIBRARIES TRUE BOOL "TRUE to build SFML as shared libraries, FALSE to build it as static libraries")
+set_option(SFML_STATIC_LIBRARIES TRUE BOOL "TRUE to build SFML as static libraries, FALSE to build it as shared libraries")
 
 # Detect and add SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 find_package(SFML 1.6 REQUIRED system window graphics network audio)
 if(SFML_FOUND)
-  include_directories(${SFML_INCLUDE_DIR})
-  target_link_libraries(Holyspirit ${SFML_LIBRARIES})
+	include_directories(${SFML_INCLUDE_DIR})
+	target_link_libraries(Holyspirit ${SFML_AUDIO_LIBRARY} ${SFML_NETWORK_LIBRARY} ${SFML_GRAPHICS_LIBRARY} ${SFML_WINDOW_LIBRARY} ${SFML_SYSTEM_LIBRARY})
 endif()

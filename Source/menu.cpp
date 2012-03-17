@@ -706,7 +706,7 @@ void Menu::AfficherInventaire(float decalage,Classe *classe,bool noTrader)
         sprite2.setTexture(*moteurGraphique->getImage(classe->menu_marchand.image));
         sprite2.setPosition(classe->menu_marchand.position.x + (configuration->Resolution.x - 800) * 0.5 ,
                             classe->menu_marchand.position.y + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
-        sprite2.scale(classe->menu_marchand.position.w/sprite2.getLocalBounds().width, classe->menu_marchand.position.h/sprite2.getLocalBounds().height);
+        sprite2.setScale(classe->menu_marchand.position.w/sprite2.getLocalBounds().width, classe->menu_marchand.position.h/sprite2.getLocalBounds().height);
 
         moteurGraphique->AjouterCommande(&sprite2,16,0);
     }
