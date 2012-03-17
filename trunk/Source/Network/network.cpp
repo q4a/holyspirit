@@ -96,7 +96,7 @@ sf::Packet& operator >>(sf::Packet& Packet, Personnage& C)
     {
         C.setEmulatePos(pos,(float)(time)/1000);
 
-        if(fabs(pose - C.m_entite_graphique.m_noAnimation) <= 2
+        if(abs(pose - C.m_entite_graphique.m_noAnimation) <= 2
         && etat == C.getEtat())
             pose = C.m_entite_graphique.m_noAnimation;
        // else

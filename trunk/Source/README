@@ -18,15 +18,11 @@ which should point to SFML folder with next structure:
 lib
 -*.*
 
-2. Latest MinGW (default C++ compiler) 
-
-3. Code::Blocks IDE for building game core (default IDE)
-
-5. CMake if you want to use another compiler/IDE for building game core
+2. dirent.h header if you want to compile under MSVC
 
 RUNTIME DEPENDENCIES:
 
-MinGW:
+for MinGW:
 
 1. libgcc_s_dw2-1.dll
 

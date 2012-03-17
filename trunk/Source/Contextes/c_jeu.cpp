@@ -366,8 +366,8 @@ void c_Jeu::Animation(Jeu *jeu)
 
                     jeu->hero.m_personnage.m_vientDAttaquer = jeu->hero.m_personnage.m_cible->getCoordonnee();
 
-                    if (fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=2
-                      &&fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=2)
+                    if (abs(jeu->hero.m_personnage.m_cible->getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().x)<=2
+                      &&abs(jeu->hero.m_personnage.m_cible->getCoordonnee().y-jeu->hero.m_personnage.getCoordonnee().y)<=2)
                         if (rand() % 100 < (float)((float)(jeu->hero.m_caracteristiques.dexterite + 100) / ((float)(jeu->hero.m_personnage.m_cible->getCaracteristique().dexterite + 100)))*75 )
                             if (!jeu->hero.m_personnage.m_cible->m_friendly && jeu->hero.m_personnage.m_cible->EnVie())
                             {
@@ -421,8 +421,8 @@ void c_Jeu::Animation(Jeu *jeu)
     if (retour==1)
     {
         if (jeu->hero.m_personnage.m_cible != NULL)
-            if (fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().x - jeu->hero.m_personnage.getCoordonnee().x) > 1
-             || fabs(jeu->hero.m_personnage.m_cible->getCoordonnee().y - jeu->hero.m_personnage.getCoordonnee().y) > 1)
+            if (abs(jeu->hero.m_personnage.m_cible->getCoordonnee().x - jeu->hero.m_personnage.getCoordonnee().x) > 1
+             || abs(jeu->hero.m_personnage.m_cible->getCoordonnee().y - jeu->hero.m_personnage.getCoordonnee().y) > 1)
                 jeu->hero.m_personnage.frappeEnCours=false,jeu->hero.m_personnage.setEtat(0,0);
     }
 
@@ -1021,8 +1021,8 @@ void c_Jeu::Evenements(Jeu *jeu)
 
         if (jeu->hero.getSacVise().x!=-1)
         {
-            if (fabs(jeu->hero.getSacVise().x - jeu->hero.m_personnage.getCoordonnee().x) <= 1
-            &&  fabs(jeu->hero.getSacVise().y - jeu->hero.m_personnage.getCoordonnee().y) <= 1)
+            if (abs(jeu->hero.getSacVise().x - jeu->hero.m_personnage.getCoordonnee().x) <= 1
+            &&  abs(jeu->hero.getSacVise().y - jeu->hero.m_personnage.getCoordonnee().y) <= 1)
             {
                 jeu->hero.setChercherSac(jeu->hero.getSacVise());
                 jeu->hero.m_personnage.setArrivee(jeu->hero.m_personnage.getProchaineCase());
@@ -1034,8 +1034,8 @@ void c_Jeu::Evenements(Jeu *jeu)
             jeu->hero.setChercherSac(coordonnee (-1,-1,-1,-1));
     }
 
-    if(fabs(jeu->menu.m_dialogue_position.x - jeu->hero.m_personnage.getCoordonnee().x) > 2
-    || fabs(jeu->menu.m_dialogue_position.y - jeu->hero.m_personnage.getCoordonnee().y) > 2)
+    if(abs(jeu->menu.m_dialogue_position.x - jeu->hero.m_personnage.getCoordonnee().x) > 2
+    || abs(jeu->menu.m_dialogue_position.y - jeu->hero.m_personnage.getCoordonnee().y) > 2)
     if(!jeu->menu.m_forced_dialogue)
     {
         jeu->menu.ClearSpeakChoice();

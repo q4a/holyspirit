@@ -1,3 +1,8 @@
+#ifdef _MSC_VER
+#define _USE_MATH_DEFINES
+#include <math.h>
+#endif
+
 #include "map.h"
 
 #include <iostream>
@@ -165,8 +170,8 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
                 m_monstre[monstre].setDepart();
 
                 if (m_monstre[monstre].m_cible
-                 &&(fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)>1
-                 || fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)>1))
+                 &&(abs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)>1
+                 || abs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)>1))
                     m_monstre[monstre].setArrivee(m_monstre[monstre].m_cible->getProchaineCase());
                 else
                 {
@@ -209,8 +214,8 @@ void Map::Script_Fight(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
             }
 
             if(m_monstre[monstre].m_cible)
-                if (fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)>1
-                 || fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)>1)
+                if (abs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)>1
+                 || abs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)>1)
                 {
                     if(m_monstre[monstre].getArrivee().x==m_monstre[monstre].getCoordonnee().x
                     && m_monstre[monstre].getArrivee().y==m_monstre[monstre].getCoordonnee().y)
@@ -826,8 +831,8 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                 else if (script->m_instructions[no].nom=="talk" && monstre != -1)
                 {
                     if (!(hero->m_personnage.m_cible == &m_monstre[monstre]
-                    &&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1
-                    &&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1))
+                    &&abs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1
+                    &&abs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1))
                         ok=false;
                 }
                 else if (script->m_instructions[no].nom=="interact" && monstre != -1)
@@ -835,14 +840,14 @@ void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,
                     bool newok = false;
 
                     if (hero->m_personnage.m_cible == &m_monstre[monstre]
-                    &&fabs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1
-                    &&fabs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1)
+                    &&abs(m_monstre[monstre].getCoordonnee().x-hero->m_personnage.getCoordonnee().x)<=1
+                    &&abs(m_monstre[monstre].getCoordonnee().y-hero->m_personnage.getCoordonnee().y)<=1)
                         newok = true, hero->m_cibleInt = monstre, net->SendInteract();
 
                     for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
                         if (p->m_cibleInt == monstre
-                        &&fabs(m_monstre[monstre].getCoordonnee().x-p->m_personnage.getCoordonnee().x)<=1
-                        &&fabs(m_monstre[monstre].getCoordonnee().y-p->m_personnage.getCoordonnee().y)<=1)
+                        &&abs(m_monstre[monstre].getCoordonnee().x-p->m_personnage.getCoordonnee().x)<=1
+                        &&abs(m_monstre[monstre].getCoordonnee().y-p->m_personnage.getCoordonnee().y)<=1)
                             newok = true;
 
                     if(!newok)

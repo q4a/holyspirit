@@ -16,6 +16,10 @@ You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
+#ifdef _MSC_VER
+#define _USE_MATH_DEFINES
+#include <math.h>
+#endif
 
 #include "map.h"
 
@@ -288,7 +292,7 @@ void Map::Afficher(std::list<Hero*> &players,bool alt,float alpha)
 
                     ///SOURCE DE CRASH
                     if(!m_decor[couche][j][k].added_minimap)
-                        if(fabs(j-hero->m_personnage.getCoordonnee().y) < 8 && fabs(k-hero->m_personnage.getCoordonnee().x) < 8)
+                        if(abs(j-hero->m_personnage.getCoordonnee().y) < 8 && abs(k-hero->m_personnage.getCoordonnee().x) < 8)
                             if(TileVisible(k,j,hero->m_personnage.getCoordonnee()))
                             {
                                 if(m_decor[couche][j][k].m_spriteMinimap.getGlobalBounds().width> 1)
@@ -861,8 +865,8 @@ bool Map::DistanceWithHeros(Jeu *jeu, coordonnee pos, int t)
 {
     for (std::list<Hero*>::iterator p = jeu->m_listHeroes.begin();
          p != jeu->m_listHeroes.end(); ++p)
-    if(fabs((*p)->m_personnage.getCoordonnee().x - pos.x) < t
-    && fabs((*p)->m_personnage.getCoordonnee().y - pos.y) < t)
+    if(abs((*p)->m_personnage.getCoordonnee().x - pos.x) < t
+    && abs((*p)->m_personnage.getCoordonnee().y - pos.y) < t)
         return true;
 
     return false;
@@ -911,8 +915,8 @@ void Map::GererMonstres(Jeu *jeu,Hero *hero,float temps,Menu *menu)
                 {
                     if (m_monstre[monstre].m_cible != NULL)
                     {
-                        if (m_monstre[monstre].m_shooter||(!m_monstre[monstre].m_shooter&&fabs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)<=1
-                                                           &&fabs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)<=1))
+                        if (m_monstre[monstre].m_shooter||(!m_monstre[monstre].m_shooter&&abs(m_monstre[monstre].getCoordonnee().x-m_monstre[monstre].m_cible->getCoordonnee().x)<=1
+                                                           &&abs(m_monstre[monstre].getCoordonnee().y-m_monstre[monstre].m_cible->getCoordonnee().y)<=1))
                             if ((!m_monstre[monstre].m_friendly && rand() % 100 < (float)((float)(m_monstre[monstre].getCaracteristique().dexterite + 100)/(float)(m_monstre[monstre].m_cible->getCaracteristique().dexterite + 100))*25 )
                             ||  ( m_monstre[monstre].m_friendly && rand() % 100 < (float)((float)(m_monstre[monstre].getCaracteristique().dexterite + 100)/(float)(m_monstre[monstre].m_cible->getCaracteristique().dexterite + 100))*50 ))
                             {
