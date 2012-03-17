@@ -101,7 +101,7 @@ void Climate::Charger(std::string chemin)
 
                 pos.x = pos.x * configuration->Resolution.x/800;
                 pos.y = pos.y * configuration->Resolution.y/600;
-                m_entities.back().SetPosition(pos.x, pos.y);
+                m_entities.back().setPosition(pos.x, pos.y);
                 m_entities.back().Initialiser(pos);
 
                 fichier.get(caractere);
@@ -186,31 +186,31 @@ void Climate::Update(float time)
             m_entities[i].Animer(time);
             m_entities[i].Generer();
 
-            m_entities[i].SetScale((float)configuration->Resolution.x/800,
+            m_entities[i].setScale((float)configuration->Resolution.x/800,
                                     (float)configuration->Resolution.y/600);
 
             if(!m_entities[i].m_fixed)
             {
-                sf::Vector2f pos = m_entities[i].GetPosition();
+                sf::Vector2f pos = m_entities[i].getPosition();
 
-                if(pos.x < GetViewRect(moteurGraphique->m_camera).Left)
-                    pos.x += (int)((GetViewRect(moteurGraphique->m_camera).Left - pos.x)/GetViewRect(moteurGraphique->m_camera).Width + 1)*GetViewRect(moteurGraphique->m_camera).Width;
-                if(pos.y < GetViewRect(moteurGraphique->m_camera).Top)
-                    pos.y += (int)((GetViewRect(moteurGraphique->m_camera).Top - pos.y)/GetViewRect(moteurGraphique->m_camera).Height + 1)*GetViewRect(moteurGraphique->m_camera).Height;
+                if(pos.x < GetViewRect(moteurGraphique->m_camera).left)
+                    pos.x += (int)((GetViewRect(moteurGraphique->m_camera).left - pos.x)/GetViewRect(moteurGraphique->m_camera).width + 1)*GetViewRect(moteurGraphique->m_camera).width;
+                if(pos.y < GetViewRect(moteurGraphique->m_camera).top)
+                    pos.y += (int)((GetViewRect(moteurGraphique->m_camera).top - pos.y)/GetViewRect(moteurGraphique->m_camera).height + 1)*GetViewRect(moteurGraphique->m_camera).height;
 
-                if(pos.x > GetViewRect(moteurGraphique->m_camera).Left + GetViewRect(moteurGraphique->m_camera).Width)
-                    pos.x -= (int)((pos.x - GetViewRect(moteurGraphique->m_camera).Left)/GetViewRect(moteurGraphique->m_camera).Width)*GetViewRect(moteurGraphique->m_camera).Width;
-                if(pos.y > GetViewRect(moteurGraphique->m_camera).Top + GetViewRect(moteurGraphique->m_camera).Height)
-                    pos.y -= (int)((pos.y - GetViewRect(moteurGraphique->m_camera).Top)/GetViewRect(moteurGraphique->m_camera).Height)*GetViewRect(moteurGraphique->m_camera).Height;
+                if(pos.x > GetViewRect(moteurGraphique->m_camera).left + GetViewRect(moteurGraphique->m_camera).width)
+                    pos.x -= (int)((pos.x - GetViewRect(moteurGraphique->m_camera).left)/GetViewRect(moteurGraphique->m_camera).width)*GetViewRect(moteurGraphique->m_camera).width;
+                if(pos.y > GetViewRect(moteurGraphique->m_camera).top + GetViewRect(moteurGraphique->m_camera).height)
+                    pos.y -= (int)((pos.y - GetViewRect(moteurGraphique->m_camera).top)/GetViewRect(moteurGraphique->m_camera).height)*GetViewRect(moteurGraphique->m_camera).height;
 
-                m_entities[i].SetPosition(pos.x, pos.y);
+                m_entities[i].setPosition(pos.x, pos.y);
             }
         }
 
-        sf::Color color = m_entities[i].GetColor();
+        sf::Color color = m_entities[i].getColor();
         float temp = (float)color.a * GetState();
         color.a = (unsigned char)temp;
-        m_entities[i].SetColor(color);
+        m_entities[i].setColor(color);
         m_entities[i].m_sound_volume = GetState() * 100;
     }
 

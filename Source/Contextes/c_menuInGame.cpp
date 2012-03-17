@@ -50,8 +50,8 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     configuration->effetNoir = 1 - m_alpha/255*0.75;
 
     jeu->m_display=true;
-    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
-    jeu->Clock.Reset();
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
+    jeu->Clock.restart();
 
     if (configuration->Lumiere)
         jeu->map->CalculerOmbresEtLumieres();
@@ -78,7 +78,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     {
         jeu->next_screen = temp;
         retour=1;
-        jeu->Clock.Reset();
+        jeu->Clock.restart();
 
         if(jeu->next_screen == 4)
             jeu->next_screen = 3;
@@ -94,7 +94,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
     if(!options)
     {
-        texte.SetCharacterSize(56);
+        texte.setCharacterSize(56);
 
 
         buttons_principal[0].no_opacity = true;

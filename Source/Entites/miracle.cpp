@@ -36,7 +36,7 @@ void Projectile::Afficher()
     if (m_actif)
     {
         m_position.h    = 32;
-        m_effet.SetRotation(((m_rotation)*180/M_PI));
+        m_effet.setRotation(((m_rotation)*180/M_PI));
         m_effet.Afficher();
     }
 }
@@ -60,8 +60,8 @@ void EffetGraphique::Afficher()
 {
     if (m_actif)
     {
-        SetX(((m_position.x - m_position.y) * 64 / COTE_TILE));
-        SetY(((m_position.x + m_position.y) * 64 / COTE_TILE) * 0.5 - m_position.h);
+        setPosition(((m_position.x - m_position.y) * 64 / COTE_TILE) ,
+                    ((m_position.x + m_position.y) * 64 / COTE_TILE) * 0.5 - m_position.h);
         moteurGraphique->AjouterEntiteGraphique(this);
     }
 }
@@ -921,19 +921,19 @@ sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee
 {
     sf::Text string;
 
-    string.SetFont(moteurGraphique->m_font);
+    string.setFont(moteurGraphique->m_font);
 
-    string.SetColor(color);
+    string.setColor(color);
 
-    string.SetCharacterSize(14*(int)(configuration->Resolution.h/600));
-    string.SetString(chaine);
+    string.setCharacterSize(14*(int)(configuration->Resolution.h/600));
+    string.setString(chaine);
 
-    if (tailleCadran->x < string.GetGlobalBounds().Width)
-        tailleCadran->x = (int)string.GetGlobalBounds().Width;
+    if (tailleCadran->x < string.getGlobalBounds().width)
+        tailleCadran->x = (int)string.getGlobalBounds().width;
 
     std::string c(chaine);
     if (c.compare("_") != 0)
-        decalage->y += (int)string.GetGlobalBounds().Height + 2;
+        decalage->y += (int)string.getGlobalBounds().height + 2;
 
     return string;
 }
@@ -956,7 +956,7 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
         else
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,109).c_str()));
 
-        temp.back().SetCharacterSize(12);
+        temp.back().setCharacterSize(12);
 
         //temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
@@ -967,7 +967,7 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
     }
 
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_nom.c_str()));
-    temp.back().SetCharacterSize(16);
+    temp.back().setCharacterSize(16);
  //   temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"_"));
@@ -1032,7 +1032,7 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
     if (suivant)
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,41).c_str()));
-        temp.back().SetCharacterSize(12);
+        temp.back().setCharacterSize(12);
 
         {
             std::ostringstream buf;
@@ -1083,24 +1083,23 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
     int decalY=0;
     for (int i=0;i<(int)temp.size();i++)
     {
-        if(temp[i].GetString() == "_")
+        if(temp[i].getString() == "_")
         {
             sf::Sprite bar(*moteurGraphique->getImage(0));
-            bar.Resize(tailleCadran.x + 22, 1);
+            bar.scale(tailleCadran.x + 22, 1);
 
-            bar.SetColor(sf::Color(72,67,42));
+            bar.setColor(sf::Color(72,67,42));
 
-            bar.SetY((position.y+decalY));
-            bar.SetX(position.x+9);
+            bar.setPosition(position.x+9, (position.y+decalY));
 
             moteurGraphique->AjouterCommande(&bar,20,0);
         }
         else
         {
-            temp[i].SetY((position.y+decalY));
-            temp[i].SetX(position.x+20+(tailleCadran.x-temp[i].GetGlobalBounds().Width) * 0.5);
+            temp[i].setPosition(position.x+20+(tailleCadran.x-temp[i].getGlobalBounds().width) * 0.5 ,
+                                (position.y+decalY));
 
-            decalY += (int)temp[i].GetGlobalBounds().Height + 2;
+            decalY += (int)temp[i].getGlobalBounds().height + 2;
 
             moteurGraphique->AjouterTexte(&temp[i],19);
         }

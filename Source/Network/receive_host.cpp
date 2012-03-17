@@ -70,19 +70,19 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
                     if(*it2 != it)
                     {
                         sf::TcpSocket& client2 = **it2;
-                        client2.Send(packet2);
+                        client2.send(packet2);
                     }
 
                 sf::Packet packet3;
                 packet3<<(sf::Int8)P_CHANGEMAP<<jeu->map->getNom()<<jeu->hero.m_personnage.getCoordonnee()<<(sf::Int8)configuration->heure<<(sf::Int8)configuration->minute;
-                tcp->Send(packet3);
+                tcp->send(packet3);
 
                 int no2 = 0;
                 for (std::list<sf::TcpSocket*>::iterator it2 = m_clientsTCP.begin(); it2 != m_clientsTCP.end(); ++it2, ++no2)
                 {
-                    packet3.Clear();
+                    packet3.clear();
                     packet3<<(sf::Int8)P_READY<<(sf::Int8)no2;
-                    tcp->Send(packet3);
+                    tcp->send(packet3);
                 }
 
 
@@ -114,7 +114,7 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
             {
                 SendChangeMap(prochaineMap, coordonneePerso);
 
-                GlobalMutex.Lock();
+                GlobalMutex.lock();
                 jeu->m_chargement->setC_Chargement(prochaineMap,coordonneePerso);
                 jeu->m_contexte = jeu->m_chargement;
                 for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
@@ -122,7 +122,7 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
 
                 configuration->heure = h;
                 configuration->minute = m;
-                GlobalMutex.Unlock();
+                GlobalMutex.unlock();
             }
         }
         else if(type == P_DEGATS && jeu->map && jeu->map->m_loaded)
@@ -167,7 +167,7 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
 
                         //sf::IpAddress ip2 = client2.GetRemoteAddress();
                         //m_udp.Send(packet, ip2, NET_PORT);
-                        client2.Send(packet2);
+                        client2.send(packet2);
                     }
         }
         else if(type == P_MIRACLE)
@@ -203,7 +203,7 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
                         sf::Packet packet2;
                         packet2<<(sf::Int8)P_MIRACLE<<(bool)true<<(sf::Int8)(no+(no<no2))<<(sf::Int8)noMiracle<<(sf::Int16)monstre<<cible;
 
-                        client2.Send(packet2);
+                        client2.send(packet2);
                     }
             }
         }
@@ -211,7 +211,7 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
         {
             sf::Int16 n;
 
-            GlobalMutex.Lock();
+            GlobalMutex.lock();
 
             int i = 0;
             for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin();
@@ -231,16 +231,16 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
                     sf::Packet packet2;
                     packet2<<(sf::Int8)P_INTERACT<<(sf::Int8)(no+(no<no2))<<n;
 
-                    client2.Send(packet2);
+                    client2.send(packet2);
                 }
 
-            GlobalMutex.Unlock();
+            GlobalMutex.unlock();
         }
         else if(type == P_ERASEFRIEND)
         {
             sf::Int16 no;
 
-            GlobalMutex.Lock();
+            GlobalMutex.lock();
 
             if((packet>>no))
             {
@@ -253,15 +253,15 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
                     sf::Packet packet2;
                     packet2<<(sf::Int8)P_ERASEFRIEND<<no;
 
-                    client2.Send(packet2);
+                    client2.send(packet2);
                 }
             }
 
-            GlobalMutex.Unlock();
+            GlobalMutex.unlock();
         }
         else if(type == P_QUEST)
         {
-            GlobalMutex.Lock();
+            GlobalMutex.lock();
 
             sf::Int16 id, i1, i2;
             sf::Int8  t;
@@ -278,13 +278,13 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
                 SendQuest(id,t,i1,i2);
             }
 
-            GlobalMutex.Unlock();
+            GlobalMutex.unlock();
         }
         else if(type == P_MSGCHAT)
         {
             std::string msg;
 
-            GlobalMutex.Lock();
+            GlobalMutex.lock();
 
             int i = 0;
             for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin();
@@ -307,14 +307,14 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
                     sf::Packet packet2;
                     packet2<<(sf::Int8)P_MSGCHAT<<(sf::Int8)(no+(no<no2))<<msg;
 
-                    client2.Send(packet2);
+                    client2.send(packet2);
                 }
 
-            GlobalMutex.Unlock();
+            GlobalMutex.unlock();
         }
         else if(type == P_READY)
         {
-            GlobalMutex.Lock();
+            GlobalMutex.lock();
 
             int i = 0;
             for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin();
@@ -331,10 +331,10 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
                     sf::Packet packet2;
                     packet2<<(sf::Int8)P_READY<<(sf::Int8)(no+(no<no2));
 
-                    client2.Send(packet2);
+                    client2.send(packet2);
                 }
 
-            GlobalMutex.Unlock();
+            GlobalMutex.unlock();
         }
     }
 }

@@ -233,7 +233,7 @@ void Map::Script_Trade(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 
     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
-    jeu->Clock.Reset();
+    jeu->Clock.restart();
     jeu->m_contexte=jeu->m_inventaire;
     jeu->menu.m_cur_talk_hauteur = jeu->hero.m_classe.talk.position.h;
 }
@@ -244,7 +244,7 @@ void Map::Script_Potale(Jeu *jeu,Script *script,int noInstruction,int monstre,He
 
     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
-    jeu->Clock.Reset();
+    jeu->Clock.restart();
     jeu->m_contexte=jeu->m_potales;
     jeu->menu.m_cur_talk_hauteur = jeu->hero.m_classe.talk.position.h;
 }
@@ -255,7 +255,7 @@ void Map::Script_Craft(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 
     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
-    jeu->Clock.Reset();
+    jeu->Clock.restart();
     jeu->m_contexte=jeu->m_craft;
     jeu->menu.m_cur_talk_hauteur = jeu->hero.m_classe.talk.position.h;
 }
@@ -266,7 +266,7 @@ void Map::Script_Bless(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 
     eventManager->StopEvenement(sf::Mouse::Left, EventClic);
     eventManager->StopEvenement(sf::Mouse::Left, EventClicA);
-    jeu->Clock.Reset();
+    jeu->Clock.restart();
     jeu->m_contexte=jeu->m_bless;
     jeu->menu.m_cur_talk_hauteur = jeu->hero.m_classe.talk.position.h;
 }
@@ -274,8 +274,8 @@ void Map::Script_Bless(Jeu *jeu,Script *script,int noInstruction,int monstre,Her
 std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
 {
     sf::Text temp;
-    temp.SetCharacterSize(tailleTexte);
-    temp.SetFont(moteurGraphique->m_font);
+    temp.setCharacterSize(tailleTexte);
+    temp.setFont(moteurGraphique->m_font);
 
     std::string buf;
     std::string bufMot = "";
@@ -287,8 +287,8 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
                 texte[p] = '\n';
             bufMot += texte[p];
 
-            temp.SetString(buf + bufMot);
-            if (temp.GetGlobalBounds().Width > tailleCadran)
+            temp.setString(buf + bufMot);
+            if (temp.getGlobalBounds().width > tailleCadran)
                 bufMot = '\n' + bufMot.substr(1,bufMot.size()-1);
         }
         else
@@ -639,7 +639,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             coordonneePerso.y = (int)script->getValeur(noInstruction, 1);
 
             sf::Clock Clock;
-            Clock.Reset();
+            Clock.restart();
 
             jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
             jeu->m_contexte = jeu->m_chargement;

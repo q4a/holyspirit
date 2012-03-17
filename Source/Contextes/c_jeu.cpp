@@ -73,20 +73,20 @@ c_Jeu::c_Jeu()
     configuration->heure=12;//(rand() % (24));
     configuration->minute=0;
 
-    sf::Listener::SetGlobalVolume((float)configuration->volume);
+    sf::Listener::setGlobalVolume((float)configuration->volume);
 
     // Texte pour l'affichage des FPS
-    fps.SetCharacterSize(16);
+    fps.setCharacterSize(16);
 
-    Version.SetCharacterSize(16);
-    Version.SetString("v "+configuration->version);
-    Version.SetY(20);
+    Version.setCharacterSize(16);
+    Version.setString("v "+configuration->version);
+    Version.move(0, 20 - Version.getPosition().y);
 
-    Temps.SetCharacterSize(16);
-    Temps.SetY(40);
+    Temps.setCharacterSize(16);
+    Temps.move(0, 40 - Temps.getPosition().y);
 
-    TourBoucle.SetX(120);
-    TourBoucle.SetCharacterSize(16);
+    TourBoucle.move(120 - TourBoucle.getPosition().x, 0);
+    TourBoucle.setCharacterSize(16);
 
     alpha_map=0;
     lowFPS=-1;
@@ -106,7 +106,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
     temps[3] = temps[2];
     temps[2] = temps[1];
     temps[1] = temps[0];
-    temps[0] = jeu->Clock.GetElapsedTime()*0.001;
+    temps[0] = jeu->Clock.getElapsedTime().asSeconds()*0.001;
 
     configuration->elapsed_time = temps[0];
 
@@ -126,19 +126,19 @@ void c_Jeu::Utiliser(Jeu *jeu)
     if (tempsEcoule>0.025f)
         tempsEcoule=0.025f;
 
-    jeu->Clock.Reset();
+    jeu->Clock.restart();
 
     GererTemps(jeu);
     if (tempsSauvergarde>=configuration->frequence_sauvegarde)
     {
         if (m_thread_sauvegarde)
         {
-            m_thread_sauvegarde->Wait();
+            m_thread_sauvegarde->wait();
             delete m_thread_sauvegarde;
         }
 
         m_thread_sauvegarde = new sf::Thread(&Sauvegarder, jeu);
-        m_thread_sauvegarde->Launch();
+        m_thread_sauvegarde->launch();
         tempsSauvergarde=0;
     }
 
@@ -211,9 +211,9 @@ void c_Jeu::GererTemps(Jeu *jeu)
         if (jeu->hero.m_caracteristiques.maxVie != 0.0f)
         {
             if (jeu->hero.m_caracteristiques.vie/(float)jeu->hero.m_caracteristiques.maxVie<0.25)
-                configuration->effetMort=75-(jeu->hero.m_caracteristiques.vie*600/jeu->hero.m_caracteristiques.maxVie)/2,jeu->sonMort.SetVolume(configuration->effetMort);
+                configuration->effetMort=75-(jeu->hero.m_caracteristiques.vie*600/jeu->hero.m_caracteristiques.maxVie)/2,jeu->sonMort.setVolume(configuration->effetMort);
             else
-                configuration->effetMort=0,jeu->sonMort.SetVolume(0);
+                configuration->effetMort=0,jeu->sonMort.setVolume(0);
         }
     }
     else
@@ -320,11 +320,11 @@ void c_Jeu::Deplacements(Jeu *jeu)
     position.x=(jeu->hero.m_personnage.getCoordonnee().x-jeu->hero.m_personnage.getCoordonnee().y-1)/5;
     position.y=(jeu->hero.m_personnage.getCoordonnee().x+jeu->hero.m_personnage.getCoordonnee().y)/5;
 
-    Listener::SetGlobalVolume((float)configuration->volume);
-    Listener::SetPosition(-position.x, 1, position.y);
-    Listener::SetDirection(0, 0, 1);
+    Listener::setGlobalVolume((float)configuration->volume);
+    Listener::setPosition(-position.x, 1, position.y);
+    Listener::setDirection(0, 0, 1);
     jeu->map->MusiquePlay();
-    jeu->sonMort.SetPosition(-position.x,0,position.y);
+    jeu->sonMort.setPosition(-position.x,0,position.y);
 }
 void c_Jeu::Animation(Jeu *jeu)
 {
@@ -616,38 +616,38 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
 
         sf::Sprite sprite;
 
-        sprite.SetTexture(*moteurGraphique->getImage(bouton->image.image));
-        sprite.SetTextureRect(sf::IntRect(bouton->image.position.x,
+        sprite.setTexture(*moteurGraphique->getImage(bouton->image.image));
+        sprite.setTextureRect(sf::IntRect(bouton->image.position.x,
                                       bouton->image.position.y,
                                       bouton->image.position.w,
                                       bouton->image.position.h));
 
-        sprite.SetPosition(AutoScreenAdjust(bouton->position.x,
+        sprite.setPosition(AutoScreenAdjust(bouton->position.x,
                                             bouton->position.y));
 
-        sprite.Resize(bouton->position.w, bouton->position.h);
+        sprite.scale(bouton->position.w, bouton->position.h);
 
         if(bouton->lien == B_MAP
         && configuration->Minimap)
-            sprite.Move(0,9);
+            sprite.move(0,9);
         if(bouton->lien == B_MIRACLES
         && jeu->next_screen == 5)
-            sprite.Move(0,9);
+            sprite.move(0,9);
         if(bouton->lien == B_INVENTAIRE
         && jeu->next_screen == 2)
-            sprite.Move(0,9);
+            sprite.move(0,9);
         if(bouton->lien == B_QUETES
         && jeu->next_screen == 6)
-            sprite.Move(0,9);
+            sprite.move(0,9);
         if(bouton->lien == B_MENU
         && jeu->next_screen == 4)
-            sprite.Move(0,9);
+            sprite.move(0,9);
         if(bouton->lien == B_CHAT
         && configuration->console != 0)
-            sprite.Move(0,9);
+            sprite.move(0,9);
         if(bouton->lien == B_DOCS
         && jeu->next_screen == 9)
-            sprite.Move(0,9);
+            sprite.move(0,9);
 
 
         moteurGraphique->AjouterCommande(&sprite, 17,0);
@@ -772,16 +772,16 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
 
         sf::Sprite sprite;
 
-        sprite.SetTexture(*moteurGraphique->getImage(bouton->image.image));
-        sprite.SetTextureRect(sf::IntRect(bouton->image.position.x,
+        sprite.setTexture(*moteurGraphique->getImage(bouton->image.image));
+        sprite.setTextureRect(sf::IntRect(bouton->image.position.x,
                                       bouton->image.position.y,
                                       bouton->image.position.w,
                                       bouton->image.position.h));
 
-        sprite.SetPosition(AutoScreenAdjust(bouton->position.x,
+        sprite.setPosition(AutoScreenAdjust(bouton->position.x,
                                             bouton->position.y));
 
-        sprite.Resize(bouton->position.w, bouton->position.h);
+        sprite.scale(bouton->position.w, bouton->position.h);
 
         moteurGraphique->AjouterCommande(&sprite, 17,0);
 
@@ -1084,17 +1084,17 @@ void c_Jeu::Affichage(Jeu *jeu)
 
     if (configuration->effetMort&&configuration->postFX&&tempsEffetMort!=0.0f)
     {
-        moteurGraphique->EffectMort.SetParameter("offset", 0.003*configuration->effetMort/100*(0.6+tempsEffetMort/10));
-        moteurGraphique->EffectMort.SetParameter("color",1+0.5*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort);
-        moteurGraphique->EffectMort.SetParameter("black",1-configuration->effetMort/150);
+        moteurGraphique->EffectMort.setParameter("offset", 0.003*configuration->effetMort/100*(0.6+tempsEffetMort/10));
+        moteurGraphique->EffectMort.setParameter("color",1+0.5*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort, 1-1*configuration->effetMort/100*tempsEffetMort);
+        moteurGraphique->EffectMort.setParameter("black",1-configuration->effetMort/150);
     }
 
     if (configuration->console)
     {
         moteurGraphique->AjouterTexte(&fps,17);
-        Version.SetY(20);
+        Version.move(0, 20 - Version.getPosition().y);
         //moteurGraphique->AjouterTexte(&Version,17);
-        Temps.SetY(40);
+        Temps.move(0, 40 - Temps.getPosition().y);
         moteurGraphique->AjouterTexte(&Temps,17);
         moteurGraphique->AjouterTexte(&TourBoucle,17);
 
@@ -1114,14 +1114,14 @@ void c_Jeu::Affichage(Jeu *jeu)
                 std::ostringstream  buf;
                 if (configuration->console&&moteurGraphique->GetFPS()!=0)
                     buf<<moteurGraphique->GetFPS()<<" / "<<(int)lowFPS<<" FPS";
-                fps.SetString(buf.str());
+                fps.setString(buf.str());
             }
 
             {
                 std::ostringstream  buf;
 
                 buf<<"Temps : "<<configuration->heure<<" h "<<(int)configuration->minute;
-                Temps.SetString(buf.str());
+                Temps.setString(buf.str());
             }
 
             tempsEcouleDepuisFPS=0;
@@ -1138,7 +1138,7 @@ void c_Jeu::FPS()
         lowFPS=-1;
         std::ostringstream  buf;
         buf<<"Nbr Tour de boucle : "<<nbrTourBoucle;
-        TourBoucle.SetString(buf.str());
+        TourBoucle.setString(buf.str());
         nbrTourBoucle=0;
 
         tempsNbrTourBoucle=0;

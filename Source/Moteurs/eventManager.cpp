@@ -59,35 +59,35 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
     Event Event;
     while (moteurGraphique->getEvent(Event))
     {
-        switch (Event.Type)
+        switch (Event.type)
         {
         case Event::KeyPressed:
-            if (Event.Key.Code>=0&&Event.Key.Code<500)
-                m_EventTableau[Event.Key.Code] = 1, PressAnyKey = true;
+            if (Event.key.code>=0&&Event.key.code<500)
+                m_EventTableau[Event.key.code] = 1, PressAnyKey = true;
             break;
         case Event::KeyReleased:
-            if (Event.Key.Code>=0&&Event.Key.Code<500)
-                m_EventTableau[Event.Key.Code] = 0;
+            if (Event.key.code>=0&&Event.key.code<500)
+                m_EventTableau[Event.key.code] = 0;
             break;
 
         case sf::Event::TextEntered:
-            m_char = Event.Text.Unicode, isEnteredText = true;
+            m_char = Event.text.unicode, isEnteredText = true;
             break;
 
         case Event::MouseMoved:
-            m_positionSouris.x=Event.MouseMove.X;
-            m_positionSouris.y=Event.MouseMove.Y;
+            m_positionSouris.x=Event.mouseMove.x;
+            m_positionSouris.y=Event.mouseMove.y;
             break;
         case Event::MouseButtonPressed:
-            m_Clic[Event.MouseButton.Button]=1;
-            m_ClicAncien[Event.MouseButton.Button]=1, PressAnyKey = true;
+            m_Clic[Event.mouseButton.button]=1;
+            m_ClicAncien[Event.mouseButton.button]=1, PressAnyKey = true;
             break;
         case Event::MouseButtonReleased:
-            m_Clic[Event.MouseButton.Button]=0;
-            m_ClicAncien[Event.MouseButton.Button]=0;
+            m_Clic[Event.mouseButton.button]=0;
+            m_ClicAncien[Event.mouseButton.button]=0;
             break;
         case Event::MouseWheelMoved:
-            m_molette = Event.MouseWheel.Delta;
+            m_molette = Event.mouseWheel.delta;
             break;
         case Event::Closed:
             *continuer = false;
@@ -193,19 +193,19 @@ void EventManager::AfficherCurseur(bool transparent)
     m_positionSouris.y = moteurGraphique->getPositionSourisEcran().y;
 
     Sprite Sprite;
-    Sprite.SetTexture(*moteurGraphique->getImage(idcurseur));
+    Sprite.setTexture(*moteurGraphique->getImage(idcurseur));
     if (configuration->Resolution.x > 0)
-        Sprite.SetX(m_positionSouris.x*configuration->Resolution.w/configuration->Resolution.x-2);
+        Sprite.move(m_positionSouris.x*configuration->Resolution.w/configuration->Resolution.x-2 - Sprite.getPosition().x, 0);
     if (configuration->Resolution.y > 0)
-        Sprite.SetY(m_positionSouris.y*configuration->Resolution.h/configuration->Resolution.y-2);
+        Sprite.move(0, m_positionSouris.y*configuration->Resolution.h/configuration->Resolution.y-2 - Sprite.getPosition().y);
 
     if(transparent)
-        Sprite.SetColor(sf::Color(255,255,255,64));
+        Sprite.setColor(sf::Color(255,255,255,64));
 
     if(m_Clic[Mouse::Left])
     {
-        Sprite.Scale(0.95,0.95);
-        Sprite.Move(-2,-1);
+        Sprite.scale(0.95,0.95);
+        Sprite.move(-2,-1);
     }
 
     moteurGraphique->AjouterCommande(&Sprite,20,0);

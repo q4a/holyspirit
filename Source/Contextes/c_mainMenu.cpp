@@ -46,17 +46,17 @@ c_MainMenu::c_MainMenu()
     entered_ip = configuration->last_ip;
     moteurSons->PlayNewMusic(configuration->music_menu);
 
-    m_mainscreen.SetTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->mainscreen_menu, -1)));
-    m_mainscreen.Resize(configuration->Resolution.x, configuration->Resolution.y);
+    m_mainscreen.setTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->mainscreen_menu, -1)));
+    m_mainscreen.scale(configuration->Resolution.x, configuration->Resolution.y);
 
-    m_background_hero.SetTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot, -1)));
-    m_backtext_hero.SetTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot_text, -1)));
+    m_background_hero.setTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot, -1)));
+    m_backtext_hero.setTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot_text, -1)));
     //m_background_hero.Resize(150, 192);
 
-    m_delete_heros.SetTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_del, -1)));
-    m_delete_heros.SetPosition(configuration->Resolution.x/2 - 400, configuration->Resolution.y - 160);
+    m_delete_heros.setTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_del, -1)));
+    m_delete_heros.setPosition(configuration->Resolution.x/2 - 400, configuration->Resolution.y - 160);
 
-    m_hs_logo.SetTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_logo, -1)));
+    m_hs_logo.setTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_logo, -1)));
 
     m_light = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,255,255));
     m_light_logo = moteurGraphique->LightManager->Add_Dynamic_Light(sf::Vector2f(0,0),255,256,32,sf::Color(255,192,0));
@@ -91,14 +91,14 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 {
     jeu->m_display=true;
 
-    temps_ecoule=(float)jeu->Clock.GetElapsedTime()/1000;
-    jeu->Clock.Reset();
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()/1000;
+    jeu->Clock.restart();
 
     if(m_save)
     {
         if(jeu->m_jeu->m_thread_sauvegarde)
         {
-            jeu->m_jeu->m_thread_sauvegarde->Wait();
+            jeu->m_jeu->m_thread_sauvegarde->wait();
             delete jeu->m_jeu->m_thread_sauvegarde;
             jeu->m_jeu->m_thread_sauvegarde = NULL;
         }
@@ -127,7 +127,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 
         Reset(jeu);
 
-        jeu->Clock.Reset();
+        jeu->Clock.restart();
         moteurGraphique->ViderParticules();
         moteurSons->StopAllSounds();
 
@@ -159,7 +159,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         ChargerListeSaves();
     }
 
-    m_mainscreen.Resize(configuration->Resolution.x, configuration->Resolution.y);
+    m_mainscreen.scale(configuration->Resolution.x, configuration->Resolution.y);
     moteurGraphique->AjouterCommande(&m_mainscreen, 10, 0);
 
     moteurGraphique->LightManager->SetPosition(m_light,sf::Vector2f(eventManager->getPositionSouris().x,
@@ -170,13 +170,13 @@ void c_MainMenu::Utiliser(Jeu *jeu)
     configuration->RafraichirLumiere = true;
     moteurGraphique->m_soleil.intensite = 1;
 
-    moteurGraphique->m_camera.SetCenter(configuration->Resolution.x * 0.5,
+    moteurGraphique->m_camera.setCenter(configuration->Resolution.x * 0.5,
                                         configuration->Resolution.y * 0.5);
 
     moteurGraphique->LightManager->Generate(m_light);
     moteurGraphique->LightManager->Generate(m_light_logo);
 
-    texte.SetCharacterSize(48);
+    texte.setCharacterSize(48);
 
     if(no_ecran == E_PRINCIPAL)
         E_Principal(jeu);
@@ -249,7 +249,7 @@ void c_MainMenu::ChargerListeSaves()
             cDAT reader;
             reader.Read(configuration->chemin_saves+m_chemin_saves.back());
             int img  = moteurGraphique->AjouterImage(reader.GetFile(chemin_image), reader.GetFileSize(chemin_image), chemin_image, 1, 1);
-            sprite.SetTexture(*moteurGraphique->getImage(img));
+            sprite.setTexture(*moteurGraphique->getImage(img));
             m_images_saves.push_back(sprite);
 
             Hero temp;
@@ -263,7 +263,7 @@ void c_MainMenu::ChargerListeSaves()
 
 void  c_MainMenu::E_Principal(Jeu *jeu)
 {
-    m_hs_logo.SetPosition((configuration->Resolution.x - m_hs_logo.GetGlobalBounds().Width)/2,-16);
+    m_hs_logo.setPosition((configuration->Resolution.x - m_hs_logo.getGlobalBounds().width)/2,-16);
     moteurGraphique->AjouterCommande(&m_hs_logo, 19, 0);
 
     buttons_principal[0].no_opacity = true;
@@ -405,7 +405,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
                     {
                         std::string temp;
                         fichier2>>temp;
-                        m_apercu_classe.back().SetTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(temp,-1)));
+                        m_apercu_classe.back().setTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(temp,-1)));
                     }
                     if (fichier2.eof())
                         caractere2='$';
@@ -530,7 +530,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         net->Disconnect();
     }
 
-    texte.SetCharacterSize(18);
+    texte.setCharacterSize(18);
 
 
     buttons_continuer[1].no_opacity = true;
@@ -564,7 +564,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
                             && i < 8 + (unsigned)defilement_saves; ++i)
     {
 
-        m_background_hero.SetPosition(configuration->Resolution.w/2 - 331 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
+        m_background_hero.setPosition(configuration->Resolution.w/2 - 331 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
                                       configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224);
 
         moteurGraphique->AjouterCommande(&m_background_hero,17,0);
@@ -575,23 +575,23 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         str += m_chemin_saves[i].substr(0, m_chemin_saves[i].size() -7);
 
 
-        texte.SetCharacterSize(14);
+        texte.setCharacterSize(14);
 
-        texte.SetString(str.c_str());
+        texte.setString(str.c_str());
 
-        if(texte.GetGlobalBounds().Width > 128)
-            texte.SetCharacterSize(12);
+        if(texte.getGlobalBounds().width > 128)
+            texte.setCharacterSize(12);
 
-        texte.SetPosition((int)(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte.GetGlobalBounds().Width/2),
+        texte.setPosition((int)(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte.getGlobalBounds().width/2),
                           (int)(configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224 + 140));
 
-        m_images_saves[i].SetPosition(configuration->Resolution.w/2 - 336 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
+        m_images_saves[i].setPosition(configuration->Resolution.w/2 - 336 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
                                       configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224);
-        m_images_saves[i].SetTextureRect(sf::IntRect(48,0,160,256));
-        m_images_saves[i].Resize(160,256);
+        m_images_saves[i].setTextureRect(sf::IntRect(48,0,160,256));
+        m_images_saves[i].scale(160,256);
         moteurGraphique->AjouterCommande(&m_images_saves[i],18,0);
 
-        m_backtext_hero.SetPosition(configuration->Resolution.w/2 - 331 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
+        m_backtext_hero.setPosition(configuration->Resolution.w/2 - 331 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
                                       configuration->Resolution.h/2 - 256 + 136 + ((int)((i - defilement_saves)/4)) * 224);
 
         moteurGraphique->AjouterCommande(&m_backtext_hero,18,0);
@@ -605,27 +605,27 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         else
             buf<<configuration->getText(0,49)<<" : "<<m_niveau_saves[i];
 
-        texte_niv.SetString(buf.str());
-        texte_niv.SetCharacterSize(12);
+        texte_niv.setString(buf.str());
+        texte_niv.setCharacterSize(12);
 
-        texte_niv.SetPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte_niv.GetGlobalBounds().Width/2,
+        texte_niv.setPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte_niv.getGlobalBounds().width/2,
                               configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224 + 158);
 
         if(!m_supprimer_heros
-        &&((eventManager->getPositionSouris().y > texte.GetGlobalBounds().Top
-          &&eventManager->getPositionSouris().y < (texte.GetGlobalBounds().Top + texte.GetGlobalBounds().Height)
-          &&eventManager->getPositionSouris().x > texte.GetGlobalBounds().Left
-          &&eventManager->getPositionSouris().x < (texte.GetGlobalBounds().Left + texte.GetGlobalBounds().Width)) ||
+        &&((eventManager->getPositionSouris().y > texte.getGlobalBounds().top
+          &&eventManager->getPositionSouris().y < (texte.getGlobalBounds().top + texte.getGlobalBounds().height)
+          &&eventManager->getPositionSouris().x > texte.getGlobalBounds().left
+          &&eventManager->getPositionSouris().x < (texte.getGlobalBounds().left + texte.getGlobalBounds().width)) ||
 
-           (eventManager->getPositionSouris().y > m_images_saves[i].GetPosition().y
-          &&eventManager->getPositionSouris().y < m_images_saves[i].GetPosition().y + 192
-          &&eventManager->getPositionSouris().x > m_images_saves[i].GetPosition().x
-          &&eventManager->getPositionSouris().x < m_images_saves[i].GetPosition().x + 160)))
+           (eventManager->getPositionSouris().y > m_images_saves[i].getPosition().y
+          &&eventManager->getPositionSouris().y < m_images_saves[i].getPosition().y + 192
+          &&eventManager->getPositionSouris().x > m_images_saves[i].getPosition().x
+          &&eventManager->getPositionSouris().x < m_images_saves[i].getPosition().x + 160)))
         {
             moteurGraphique->AjouterCommande(&m_images_saves[i],19,0,sf::BlendAdd);
 
-            texte.SetColor(Color(224,224,224));
-            texte_niv.SetColor(Color(224,224,224));
+            texte.setColor(Color(224,224,224));
+            texte_niv.setColor(Color(224,224,224));
             if(eventManager->getEvenement(Mouse::Left,EventClic))
             //if(!m_incompatible_saves[i])
             {
@@ -654,7 +654,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
                 else if(configuration->multi)
                     net->LaunchServer();
 
-                if(configuration->hote || net->m_host->Send(packet) == sf::TcpSocket::Done)
+                if(configuration->hote || net->m_host->send(packet) == sf::TcpSocket::Done)
                 {
                     if(configuration->hote)
                     {
@@ -682,54 +682,54 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
             }
         }
         else
-            texte.SetColor(Color(192,160,128)),texte_niv.SetColor(Color(192,160,128));
+            texte.setColor(Color(192,160,128)),texte_niv.setColor(Color(192,160,128));
 
         moteurGraphique->AjouterTexte(&texte,18,0);
         moteurGraphique->AjouterTexte(&texte_niv,18,0);
     }
 
-    texte.SetCharacterSize(16);
+    texte.setCharacterSize(16);
     {
-        texte.SetString("- + -");
-        texte.SetY((int)configuration->Resolution.h/2 + 160);
-        texte.SetX((int)configuration->Resolution.w/2-texte.GetGlobalBounds().Width/2 + 32);
+        texte.setString("- + -");
+        texte.setPosition((int)configuration->Resolution.w/2-texte.GetGlobalBounds().Width/2 + 32 ,
+                   (int)configuration->Resolution.h/2 + 160);
 
         if(i < m_chemin_saves.size())
         {
             if(!m_supprimer_heros
-              &&eventManager->getPositionSouris().y > texte.GetGlobalBounds().Top
-              &&eventManager->getPositionSouris().y < texte.GetGlobalBounds().Top + 32
-              &&eventManager->getPositionSouris().x > texte.GetGlobalBounds().Left
-              &&eventManager->getPositionSouris().x < (texte.GetGlobalBounds().Left + texte.GetGlobalBounds().Width))
+              &&eventManager->getPositionSouris().y > texte.getGlobalBounds().top
+              &&eventManager->getPositionSouris().y < texte.getGlobalBounds().top + 32
+              &&eventManager->getPositionSouris().x > texte.getGlobalBounds().left
+              &&eventManager->getPositionSouris().x < (texte.getGlobalBounds().left + texte.getGlobalBounds().width))
             {
-                texte.SetColor(Color(100,50,0));
+                texte.setColor(Color(100,50,0));
                 if(eventManager->getEvenement(Mouse::Left,EventClic))
                     defilement_saves ++,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(Mouse::Left,EventClic);
             }
             else
-                texte.SetColor(Color(150,100,50));
+                texte.setColor(Color(150,100,50));
         }
         else
-            texte.SetColor(Color(128,128,128));
+            texte.setColor(Color(128,128,128));
         moteurGraphique->AjouterTexte(&texte,18,1);
     }
 
 
     {
-        texte.SetString("- - -");
-        texte.SetY((int)configuration->Resolution.h/2 + 160 );
-        texte.SetX((int)configuration->Resolution.w/2-texte.GetGlobalBounds().Width/2 - 32);
+        texte.setString("- - -");
+        texte.setPosition((int)configuration->Resolution.w/2-texte.getGlobalBounds().Width/2 - 32 ,
+                          (int)configuration->Resolution.h/2 + 160);
 
         if(defilement_saves > 0)
         {
             if (!m_supprimer_heros
-              &&eventManager->getPositionSouris().y > texte.GetGlobalBounds().Top
-              &&eventManager->getPositionSouris().y < (texte.GetGlobalBounds().Top + 32)
-              && eventManager->getPositionSouris().x > texte.GetGlobalBounds().Left
-              &&eventManager->getPositionSouris().x < (texte.GetGlobalBounds().Left + texte.GetGlobalBounds().Width))
+              &&eventManager->getPositionSouris().y > texte.getGlobalBounds().top
+              &&eventManager->getPositionSouris().y < (texte.getGlobalBounds().top + 32)
+              && eventManager->getPositionSouris().x > texte.getGlobalBounds().left
+              &&eventManager->getPositionSouris().x < (texte.getGlobalBounds().left + texte.getGlobalBounds().width))
             {
-                texte.SetColor(Color(100,50,0));
+                texte.setColor(Color(100,50,0));
                 if(eventManager->getEvenement(Mouse::Left,EventClic))
                 {
                     defilement_saves --;
@@ -738,10 +738,10 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
                 }
             }
             else
-                texte.SetColor(Color(150,100,50));
+                texte.setColor(Color(150,100,50));
         }
         else
-            texte.SetColor(Color(128,128,128));
+            texte.setColor(Color(128,128,128));
 
         moteurGraphique->AjouterTexte(&texte,18,1);
     }
@@ -750,13 +750,13 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     if(m_supprimer_heros)
     {
         moteurGraphique->AjouterCommande(&m_delete_heros,19);
-        texte.SetCharacterSize(18);
+        texte.setCharacterSize(18);
 
-        texte.SetString(configuration->getText(0,96));
-        texte.SetY((int)configuration->Resolution.h - 128 );
-        texte.SetX((int)configuration->Resolution.w/2 - texte.GetGlobalBounds().Width/2);
+        texte.setString(configuration->getText(0,96));
+        texte.setPosition((int)configuration->Resolution.w/2 - texte.getGlobalBounds().width/2,
+                          (int)configuration->Resolution.h - 128 );
 
-        texte.SetColor(Color(224,224,224));
+        texte.setColor(Color(224,224,224));
         moteurGraphique->AjouterTexte(&texte,19,0);
 
 
@@ -773,31 +773,31 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         eventManager->StopEvenement(sf::Keyboard::Back,EventKey);
 
 
-        texte.SetString(nom_hero);
-        texte.SetX((int)configuration->Resolution.w/2 - texte.GetGlobalBounds().Width/2);
+        texte.setString(nom_hero);
 
         if(time > 0.5)
-            texte.SetString(nom_hero + "|");
+            texte.setString(nom_hero + "|");
 
         time += temps_ecoule;
         if(time > 1)
             time = 0;
 
-        texte.SetY((int)configuration->Resolution.h - 96 );
+        texte.setPosition((int)configuration->Resolution.w/2 - texte.getGlobalBounds().width/2 ,
+                          (int)configuration->Resolution.h - 96 );
 
-        texte.SetColor(Color(224,224,224));
+        texte.setColor(Color(224,224,224));
         moteurGraphique->AjouterTexte(&texte,19,0);
 
-        texte.SetString(configuration->getText(0,95));
-        texte.SetY((int)configuration->Resolution.h - 64 );
-        texte.SetX((int)configuration->Resolution.w/2 - texte.GetGlobalBounds().Width/2);
+        texte.setString(configuration->getText(0,95));
+        texte.setPosition((int)configuration->Resolution.w/2 - texte.getGlobalBounds().width/2 ,
+                          (int)configuration->Resolution.h - 64 );
 
-        if (eventManager->getPositionSouris().y >  texte.GetGlobalBounds().Top
-          &&eventManager->getPositionSouris().y < (texte.GetGlobalBounds().Top + 32)
-          &&eventManager->getPositionSouris().x >  texte.GetGlobalBounds().Left
-          &&eventManager->getPositionSouris().x < (texte.GetGlobalBounds().Left + texte.GetGlobalBounds().Width))
+        if (eventManager->getPositionSouris().y >  texte.getGlobalBounds().top
+          &&eventManager->getPositionSouris().y < (texte.getGlobalBounds().top + 32)
+          &&eventManager->getPositionSouris().x >  texte.getGlobalBounds().left
+          &&eventManager->getPositionSouris().x < (texte.getGlobalBounds().left + texte.getGlobalBounds().width))
         {
-            texte.SetColor(Color(160,128,128));
+            texte.setColor(Color(160,128,128));
             if(eventManager->getEvenement(Mouse::Left,EventClic))
             {
                 m_supprimer_heros = false;
@@ -813,7 +813,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
             }
         }
         else
-            texte.SetColor(Color(224,224,224));
+            texte.setColor(Color(224,224,224));
 
         moteurGraphique->AjouterTexte(&texte,19,0);
     }
@@ -842,51 +842,51 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
             nom_hero.erase(nom_hero.begin() + nom_hero.size() - 1);
     eventManager->StopEvenement(sf::Keyboard::Back,EventKey);
 
-    texte.SetCharacterSize(20);
+    texte.setCharacterSize(20);
 
     moteurGraphique->special_typo.Draw(configuration->getText(0,68), sf::Vector2f(configuration->Resolution.w/2,
                                                                                   configuration->Resolution.h/2 - 256 - 16), 40, 19, true);
 
     for(unsigned i = 0 ; i < configuration->player_class.size(); ++i)
     {
-        m_background_hero.SetPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetGlobalBounds().Width + 4) * 0.5
-                                        + i * (m_background_hero.GetGlobalBounds().Width + 4),
+        m_background_hero.setPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.getGlobalBounds().width + 4) * 0.5
+                                        + i * (m_background_hero.getGlobalBounds().width + 4),
                                       configuration->Resolution.h/2 - 208 - 16);
 
         if((int)i != classe_choisie)
-            m_background_hero.SetColor(sf::Color(96,96,96));
+            m_background_hero.setColor(sf::Color(96,96,96));
 
         moteurGraphique->AjouterCommande(&m_background_hero,17,0);
 
-        m_background_hero.SetColor(sf::Color(255,255,255));
+        m_background_hero.setColor(sf::Color(255,255,255));
 
-        m_backtext_hero.SetPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetGlobalBounds().Width + 4) * 0.5
-                                        + i * (m_background_hero.GetGlobalBounds().Width + 4),
+        m_backtext_hero.setPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.getGlobalBounds().width + 4) * 0.5
+                                        + i * (m_background_hero.getGlobalBounds().width + 4),
                                     configuration->Resolution.h/2 - 208 + 136 - 16);
 
         moteurGraphique->AjouterCommande(&m_backtext_hero,19,0);
 
-        texte.SetString(configuration->getText(3,m_nom_classes[i]));
-        texte.SetFont(moteurGraphique->m_font_titre);
+        texte.setString(configuration->getText(3,m_nom_classes[i]));
+        texte.setFont(moteurGraphique->m_font_titre);
 
-        texte.SetPosition((int)(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetGlobalBounds().Width + 4) * 0.5
-                                        + i * (m_background_hero.GetGlobalBounds().Width + 4) + 75 - texte.GetGlobalBounds().Width/2),
+        texte.setPosition((int)(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.getGlobalBounds().width + 4) * 0.5
+                                        + i * (m_background_hero.getGlobalBounds().width + 4) + 75 - texte.getGlobalBounds().width/2),
                           (int)(configuration->Resolution.h/2 - 208 + 145 - 16));
 
         moteurGraphique->AjouterTexte(&texte,19,1);
 
-        m_apercu_classe[i].SetPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.GetGlobalBounds().Width + 4) * 0.5
-                                        + i * (m_background_hero.GetGlobalBounds().Width + 4),
+        m_apercu_classe[i].setPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.getGlobalBounds().width + 4) * 0.5
+                                        + i * (m_background_hero.getGlobalBounds().width + 4),
                                       configuration->Resolution.h/2 - 208 - 16);
-        m_apercu_classe[i].Resize(160,256);
-        m_apercu_classe[i].SetTextureRect(sf::IntRect(48,0,160,256));
+        m_apercu_classe[i].scale(160,256);
+        m_apercu_classe[i].setTextureRect(sf::IntRect(48,0,160,256));
         moteurGraphique->AjouterCommande(&m_apercu_classe[i],18,0);
 
 
-        if (eventManager->getPositionSouris().y > m_background_hero.GetPosition().y
-          &&eventManager->getPositionSouris().y < m_background_hero.GetPosition().y + m_background_hero.GetGlobalBounds().Height
-          &&eventManager->getPositionSouris().x > m_background_hero.GetPosition().x
-          &&eventManager->getPositionSouris().x < m_background_hero.GetPosition().x + m_background_hero.GetGlobalBounds().Width)
+        if (eventManager->getPositionSouris().y > m_background_hero.getPosition().y
+          &&eventManager->getPositionSouris().y < m_background_hero.getPosition().y + m_background_hero.getGlobalBounds().height
+          &&eventManager->getPositionSouris().x > m_background_hero.getPosition().x
+          &&eventManager->getPositionSouris().x < m_background_hero.getPosition().x + m_background_hero.getGlobalBounds().width)
         {
             if(eventManager->getEvenement(Mouse::Left,EventClic))
             {
@@ -901,16 +901,16 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
 
     if(classe_choisie >= 0)
     {
-        texte.SetCharacterSize(12);
-        texte.SetString(m_description_classes[classe_choisie]);
-        texte.SetFont(moteurGraphique->m_font);
-        texte.SetPosition((int)(configuration->Resolution.w/2 - texte.GetGlobalBounds().Width/2),
+        texte.setCharacterSize(12);
+        texte.setString(m_description_classes[classe_choisie]);
+        texte.setFont(moteurGraphique->m_font);
+        texte.setPosition((int)(configuration->Resolution.w/2 - texte.getGlobalBounds().width/2),
                           (int)(configuration->Resolution.h/2 - 24));
         moteurGraphique->AjouterTexte(&texte,19);
 
-        jeu->menu.border.Afficher(coordonnee(configuration->Resolution.w/2 - texte.GetGlobalBounds().Width/2 - 4,
+        jeu->menu.border.Afficher(coordonnee(configuration->Resolution.w/2 - texte.getGlobalBounds().width/2 - 4,
                                          configuration->Resolution.h/2 - 24),
-                              coordonnee(texte.GetGlobalBounds().Width + 8,texte.GetGlobalBounds().Height + 4), 18);
+                              coordonnee(texte.getGlobalBounds().width + 8,texte.getGlobalBounds().height + 4), 18);
     }
 
 
@@ -1029,31 +1029,31 @@ void  c_MainMenu::E_Credits(Jeu *jeu)
         while(no >= (int)m_credits.size())
             no -= m_credits.size();
 
-        texte.SetStyle(0);
-        texte.SetCharacterSize(16);
+        texte.setStyle(0);
+        texte.setCharacterSize(16);
 
-        texte.SetColor(Color(150,100,50));
+        texte.setColor(Color(150,100,50));
 
         if(i == (int)(m_credit_defil/24))
-            texte.SetColor(Color(150,100,50, (int)(255 - (m_credit_defil - ((int)(m_credit_defil/24)*24))*255/24)));
+            texte.setColor(Color(150,100,50, (int)(255 - (m_credit_defil - ((int)(m_credit_defil/24)*24))*255/24)));
         if(i == (int)(m_credit_defil/24) + 16)
-            texte.SetColor(Color(150,100,50, (int)((m_credit_defil - ((int)(m_credit_defil/24 + 16)*24))*240/24)));
+            texte.setColor(Color(150,100,50, (int)((m_credit_defil - ((int)(m_credit_defil/24 + 16)*24))*240/24)));
 
         std::string txt = m_credits[no];
         if(m_credits[no].size() > 0)
         {
             if(m_credits[no][0] == '*')
-                texte.SetStyle(1), txt = txt.substr(1,txt.size());
+                texte.setStyle(1), txt = txt.substr(1,txt.size());
             if(m_credits[no][0] == '+')
-                texte.SetStyle(5), txt = txt.substr(1,txt.size());
+                texte.setStyle(5), txt = txt.substr(1,txt.size());
             if(m_credits[no][0] == '-')
-                texte.SetStyle(1), texte.SetCharacterSize(24), txt = txt.substr(1,txt.size());
+                texte.setStyle(1), texte.setCharacterSize(24), txt = txt.substr(1,txt.size());
         }
 
 
-        texte.SetString(txt);
-        texte.SetY((int)configuration->Resolution.h/2 - 256 + i * 24 - m_credit_defil);
-        texte.SetX((int)configuration->Resolution.w/2-texte.GetGlobalBounds().Width/2);
+        texte.setString(txt);
+        texte.setPosition((int)configuration->Resolution.w/2-texte.getGlobalBounds().width/2 ,
+                          (int)configuration->Resolution.h/2 - 256 + i * 24 - m_credit_defil);
         moteurGraphique->AjouterTexte(&texte,19,1);
     }
 
@@ -1082,17 +1082,18 @@ void  c_MainMenu::E_Credits(Jeu *jeu)
 }
 void  c_MainMenu::E_Story(Jeu *jeu)
 {
-    texte.SetFont(moteurGraphique->m_font);
-    texte.SetStyle(0);
-    texte.SetCharacterSize(16);
-    texte.SetColor(Color(192,160,128));
-    texte.SetString(m_story);
-    texte.SetY((int)(configuration->Resolution.h/2 - 256));
-    texte.SetX((int)(configuration->Resolution.w/2-texte.GetGlobalBounds().Width/2));
+    texte.setFont(moteurGraphique->m_font);
+    texte.setStyle(0);
+    texte.setCharacterSize(16);
+    texte.setColor(Color(192,160,128));
+    texte.setString(m_story);
+
+    texte.setPosition((int)(configuration->Resolution.w/2-texte.getGlobalBounds().width/2) ,
+                      (int)(configuration->Resolution.h/2 - 256));
     moteurGraphique->AjouterTexte(&texte,19);
 
-    jeu->menu.border.Afficher(coordonnee(texte.GetPosition().x - 8,texte.GetPosition().y),
-                              coordonnee(texte.GetGlobalBounds().Width + 16,texte.GetGlobalBounds().Height + 12), 18,
+    jeu->menu.border.Afficher(coordonnee(texte.getPosition().x - 8,texte.getPosition().y),
+                              coordonnee(texte.getGlobalBounds().width + 16,texte.getGlobalBounds().height + 12), 18,
                               sf::Color(224,224,224,192));
 
 

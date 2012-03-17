@@ -52,9 +52,9 @@ c_Bless::~c_Bless()
 
 void c_Bless::Utiliser(Jeu *jeu)
 {
-    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
     jeu->m_display=true;
-    jeu->Clock.Reset();
+    jeu->Clock.restart();
 
     jeu->map->GererAmbiance(temps_ecoule);
 
@@ -90,7 +90,7 @@ void c_Bless::Utiliser(Jeu *jeu)
         jeu->hero.m_defilement_trader=0;
         jeu->hero.m_max_defilement_trader=0;
         m_afficher=0;
-        jeu->Clock.Reset();
+        jeu->Clock.restart();
         eventManager->StopEvenement(sf::Keyboard::I,EventKey);
 
         if (jeu->hero.m_objetEnMain>=0)

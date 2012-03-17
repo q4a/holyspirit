@@ -132,45 +132,45 @@ bool Decor::AfficherTexteObjet(Border &border, coordonnee position,int objet, fl
         sf::Text texte;
         sf::Sprite sprite;
 
-        texte.SetColor(sf::Color(   GetItemColor(m_objets[objet].getRarete()).r,
+        texte.setColor(sf::Color(   GetItemColor(m_objets[objet].getRarete()).r,
                                     GetItemColor(m_objets[objet].getRarete()).g,
                                     GetItemColor(m_objets[objet].getRarete()).b,
                                     (int)(255.0f*alpha)));
 
-        texte.SetFont(moteurGraphique->m_font);
+        texte.setFont(moteurGraphique->m_font);
 
-        texte.SetString(m_objets[objet].getNom());
-        texte.SetCharacterSize(14*configuration->Resolution.w/800);
-        texte.SetY(((position.y-GetViewRect(moteurGraphique->m_camera).Top)/configuration->zoom));
-        texte.SetX(((position.x-GetViewRect(moteurGraphique->m_camera).Left)/configuration->zoom));
+        texte.setString(m_objets[objet].getNom());
+        texte.setCharacterSize(14*configuration->Resolution.w/800);
+        texte.setPosition(((position.x-GetViewRect(moteurGraphique->m_camera).left)/configuration->zoom) ,
+                          ((position.y-GetViewRect(moteurGraphique->m_camera).top)/configuration->zoom));
 
         moteurGraphique->AjouterTexteNonChevauchable(&texte,12);
 
-        sprite.SetTexture(*moteurGraphique->getImage(0));
+        sprite.setTexture(*moteurGraphique->getImage(0));
 
-        sprite.SetY(texte.GetPosition().y+1);
-        sprite.SetX(texte.GetPosition().x-5);
-        sprite.SetColor(sf::Color(0,0,0,(int)(224.0f*alpha)));
-        sprite.Resize(texte.GetGlobalBounds().Width +9 , texte.GetGlobalBounds().Height+5);
+        sprite.setPosition(texte.getPosition().x-5 ,
+                           texte.getPosition().y+1);
+        sprite.setColor(sf::Color(0,0,0,(int)(224.0f*alpha)));
+        sprite.scale(texte.getGlobalBounds().width +9 , texte.getGlobalBounds().height+5);
 
-        border.Afficher(coordonnee(texte.GetPosition().x-4, texte.GetPosition().y+2),
-                        coordonnee(texte.GetGlobalBounds().Width +8, texte.GetGlobalBounds().Height+4), 12, sf::Color(  GetItemColor(m_objets[objet].getRarete()).r,
+        border.Afficher(coordonnee(texte.getPosition().x-4, texte.getPosition().y+2),
+                        coordonnee(texte.getGlobalBounds().width +8, texte.getGlobalBounds().height+4), 12, sf::Color(  GetItemColor(m_objets[objet].getRarete()).r,
                                                                                                         GetItemColor(m_objets[objet].getRarete()).g,
                                                                                                         GetItemColor(m_objets[objet].getRarete()).b,
                                                                                                         (int)(255.0f*alpha)));
 
         if(selectable)
-            if(eventManager->getPositionSouris().x>sprite.GetPosition().x
-             &&eventManager->getPositionSouris().y>sprite.GetPosition().y
-             &&eventManager->getPositionSouris().x<sprite.GetPosition().x + texte.GetGlobalBounds().Width +8
-             &&eventManager->getPositionSouris().y<sprite.GetPosition().y + texte.GetGlobalBounds().Height +4)
-                retour = true,sprite.SetColor(sf::Color(32,32,32,224));
+            if(eventManager->getPositionSouris().x>sprite.getPosition().x
+             &&eventManager->getPositionSouris().y>sprite.getPosition().y
+             &&eventManager->getPositionSouris().x<sprite.getPosition().x + texte.getGlobalBounds().width +8
+             &&eventManager->getPositionSouris().y<sprite.getPosition().y + texte.getGlobalBounds().height +4)
+                retour = true,sprite.setColor(sf::Color(32,32,32,224));
 
         moteurGraphique->AjouterCommande(&sprite,12,0);
 
         if(decalage != NULL)
-            *decalage = (sprite.GetPosition().y*configuration->zoom + GetViewRect(moteurGraphique->m_camera).Top)
-                        - sprite.GetGlobalBounds().Height - 1 - border.image_u.position.h - border.image_d.position.h;
+            *decalage = (sprite.getPosition().y*configuration->zoom + GetViewRect(moteurGraphique->m_camera).top)
+                        - sprite.getGlobalBounds().height - 1 - border.image_u.position.h - border.image_d.position.h;
     }
     return (retour);
 }

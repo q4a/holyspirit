@@ -129,7 +129,7 @@ int  Network::GetNoClient(const sf::IpAddress &address)
 {
     int no = 0;
     for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it, ++no)
-        if((*it)->GetRemoteAddress() == address)
+        if((*it)->getRemoteAddress() == address)
             return no;
 
     return -1;
@@ -144,7 +144,7 @@ void GererReseauClientTCP(void* UserData)
     while(net->m_host)
     {
         sf::Packet packet;
-        if (net->m_host->Receive(packet) == sf::Socket::Done)
+        if (net->m_host->receive(packet) == sf::Socket::Done)
            net->CheckPacketClient(packet);
     }
 }
@@ -161,7 +161,7 @@ void GererReseauClientUDP(void* UserData)
       //  sf::Sleep(0.001);
 
         sf::Packet packet;
-        if(net->m_udp.Receive(packet, ip, port) == sf::Socket::Done)
+        if(net->m_udp.receive(packet, ip, port) == sf::Socket::Done)
             net->CheckPacketClient(packet);
     }
 }
@@ -173,13 +173,13 @@ void GererReseauHost(void* UserData)
 
     while(net->m_runTCPHost)
     {
-        if (net->m_selector.Wait(500))
+        if (net->m_selector.wait(sf::milliseconds(500)))
         {
-            if (net->m_selector.IsReady(net->m_listener))
+            if (net->m_selector.isReady(net->m_listener))
             {
                 sf::TcpSocket* clientTCP = new sf::TcpSocket;
 
-                if (net->m_listener.Accept(*clientTCP) == sf::Socket::Done)
+                if (net->m_listener.accept(*clientTCP) == sf::Socket::Done)
                     net->AddClient(clientTCP);
                 else
                     delete clientTCP;
@@ -190,10 +190,10 @@ void GererReseauHost(void* UserData)
                 for (std::list<sf::TcpSocket*>::iterator it = net->m_clientsTCP.begin(); it != net->m_clientsTCP.end(); ++it, ++no)
                 {
                     sf::TcpSocket& client = **it;
-                    if (net->m_selector.IsReady(client))
+                    if (net->m_selector.isReady(client))
                     {
                         sf::Packet packet;
-                        if (client.Receive(packet) == sf::Socket::Done)
+                        if (client.receive(packet) == sf::Socket::Done)
                             net->CheckPacketHost(packet, no, &client, &client);
                     }
                 }
@@ -219,10 +219,10 @@ void Network::GererMultijoueur(Jeu* p_jeu)
     jeu = p_jeu;
    // m_net_send = false;
     if(configuration->multi)
-    if(m_net_clock.GetElapsedTime() > (float)configuration->net_rate)
+    if(m_net_clock.getElapsedTime().asSeconds() > (float)configuration->net_rate)
     {
         jeu->m_net_send = true;
-        m_net_clock.Reset();
+        m_net_clock.restart();
 
         if(configuration->hote)
         {
@@ -236,9 +236,9 @@ void Network::GererMultijoueur(Jeu* p_jeu)
 
                 sf::Packet ping;
                 ping<<(sf::Int8)(-1);
-                if(client.Send(ping) != sf::TcpSocket::Done)
+                if(client.send(ping) != sf::TcpSocket::Done)
                 {
-                    m_selector.Remove(*(*it));
+                    m_selector.remove(*(*it));
                     m_clientsTCP.erase(it);
                     //delete *&*it;
 
@@ -250,7 +250,7 @@ void Network::GererMultijoueur(Jeu* p_jeu)
                         sf::Packet packet3;
                         packet3<<(sf::Int8)P_DELETEPLAYER<<(sf::Int8)(no+(no>no2));
                         sf::TcpSocket& client2 = **it2;
-                        client2.Send(packet3);
+                        client2.send(packet3);
                     }
 
                     it = m_clientsTCP.begin();
@@ -261,7 +261,7 @@ void Network::GererMultijoueur(Jeu* p_jeu)
                     /*sf::IpAddress ip = client.GetRemoteAddress();
                     short unsigned int port = NET_PORT;
                     m_udp.Send(packet2, ip, port);*/
-                    client.Send(packet2);
+                    client.send(packet2);
                 }
             }
         }
@@ -269,7 +269,7 @@ void Network::GererMultijoueur(Jeu* p_jeu)
         {
             sf::Packet ping;
             ping<<(sf::Int8)(-1);
-            if(!(m_host->Send(ping) == sf::TcpSocket::Done))
+            if(!(m_host->send(ping) == sf::TcpSocket::Done))
             {
                 jeu->m_mainMenu->m_save  = true;
                 jeu->m_mainMenu->m_reset = true;
@@ -287,7 +287,7 @@ void Network::GererMultijoueur(Jeu* p_jeu)
                /* sf::IpAddress ip = m_host->GetRemoteAddress();
                 short unsigned int port = NET_PORT;
                 m_udp.Send(packet, ip, port);*/
-                m_host->Send(packet);
+                m_host->send(packet);
             }
         }
     }
@@ -299,25 +299,25 @@ void Network::LaunchServer()
 
 
     //m_udp.Bind(NET_PORT);
-    m_listener.Listen(NET_PORT);
+    m_listener.listen(NET_PORT);
 
    // m_selector.Add(m_udp);
-    m_selector.Add(m_listener);
+    m_selector.add(m_listener);
 
     m_runTCPHost = true;
     m_thread_host = new sf::Thread(&GererReseauHost, this);
-    m_thread_host->Launch();
+    m_thread_host->launch();
 }
 
 void Network::CloseServer()
 {
     m_runTCPHost = false;
-    m_listener.Close();
+    m_listener.close();
     //m_udp.Unbind();
 
     if(m_thread_host)
     {
-        m_thread_host->Wait();
+        m_thread_host->wait();
         delete m_thread_host;
     }
     m_thread_host = NULL;
@@ -329,14 +329,14 @@ void Network::CloseServer()
         delete *it;
     m_clientsTCP.clear();
 
-    m_selector.Clear();
+    m_selector.clear();
 }
 
 bool Network::Connect(sf::IpAddress ServerAddress)
 {
     m_host = new sf::TcpSocket();
 
-    if (m_host->Connect(ServerAddress, NET_PORT, 3000) != sf::TcpSocket::Done)
+    if (m_host->connect(ServerAddress, NET_PORT, sf::milliseconds(3000)) != sf::TcpSocket::Done)
     {
         delete m_host;
         m_host = NULL;
@@ -346,7 +346,7 @@ bool Network::Connect(sf::IpAddress ServerAddress)
     //m_udp.Bind(NET_PORT);
 
     m_thread_clientTCP = new sf::Thread(&GererReseauClientTCP, this);
-    m_thread_clientTCP->Launch();
+    m_thread_clientTCP->launch();
 
     /*m_thread_clientUDP = new sf::Thread(&GererReseauClientUDP, this);
     m_thread_clientUDP->Launch();*/
@@ -358,27 +358,27 @@ void Network::Disconnect()
 {
     std::cout<<"Vous avez ete deconnecte"<<std::endl;
 
-    GlobalMutex.Lock();
+    GlobalMutex.lock();
     if(m_host)
-    m_host->Disconnect();
+    m_host->disconnect();
     if(m_host)
         delete m_host;
     m_host = NULL;
     //m_udp.Unbind();
-    GlobalMutex.Unlock();
+    GlobalMutex.unlock();
 
     std::cout<<"Vous avez ete deconnecte 2"<<std::endl;
 
     if(m_thread_clientTCP)
     {
-        m_thread_clientTCP->Wait();
+        m_thread_clientTCP->wait();
         delete m_thread_clientTCP;
     }
     std::cout<<"Vous avez ete deconnecte 3"<<std::endl;
 
     if(m_thread_clientUDP)
     {
-        m_thread_clientUDP->Wait();
+        m_thread_clientUDP->wait();
         delete m_thread_clientUDP;
     }
 
@@ -397,35 +397,35 @@ void Network::AddClient(sf::TcpSocket* clientTCP)
 
     std::cout<<"Un joueur arrive !"<<std::endl;
 
-    m_selector.Add(*clientTCP);
+    m_selector.add(*clientTCP);
 
     packet<<(sf::Int8)P_NEWPLAYER<<jeu->hero.m_caracteristiques.nom<<jeu->hero.m_caracteristiques
           <<jeu->hero.m_cheminClasse<<(sf::Int8)jeu->hero.m_lvl_miracles.size();
     for(unsigned i = 0 ; i < jeu->hero.m_lvl_miracles.size() ; ++i)
         packet<<(sf::Int8)jeu->hero.m_lvl_miracles[i];
-    clientTCP->Send(packet);
+    clientTCP->send(packet);
 
-    packet.Clear();
+    packet.clear();
     packet<<(sf::Int8)P_PLAYERSKIN<<(sf::Int8)0<<(sf::Int8)jeu->hero.m_cas;
     for (int i=0; i<NOMBRE_MORCEAU_PERSONNAGE; ++i)
         packet<<jeu->hero.m_cheminModele[i]<<jeu->hero.m_pasEquipe[i];
-    clientTCP->Send(packet);
+    clientTCP->send(packet);
 
     int no2 = 1;
     for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin();
             p != jeu->m_personnageClients.end(); ++p, ++no2)
     {
-        packet.Clear();
+        packet.clear();
         packet<<(sf::Int8)P_NEWPLAYER<<p->m_caracteristiques.nom<<p->m_caracteristiques<<p->m_cheminClasse<<(sf::Int8)p->m_lvl_miracles.size();
         for(unsigned i = 0 ; i < p->m_lvl_miracles.size() ; ++i)
             packet<<(sf::Int8)p->m_lvl_miracles[i];
-        clientTCP->Send(packet);
+        clientTCP->send(packet);
 
-        packet.Clear();
+        packet.clear();
         packet<<(sf::Int8)P_PLAYERSKIN<<(sf::Int8)no2<<(sf::Int8)p->m_cas;
         for (int i=0; i<NOMBRE_MORCEAU_PERSONNAGE; ++i)
             packet<<p->m_cheminModele[i]<<p->m_pasEquipe[i];
-        clientTCP->Send(packet);
+        clientTCP->send(packet);
     }
 }
 
@@ -438,7 +438,7 @@ bool Network::DeletePersonnageClient(int no)
         {
             std::cout<<p->m_caracteristiques.nom<<" est partit"<<std::endl;
 
-            GlobalMutex.Lock();
+            GlobalMutex.lock();
             for(unsigned j = 0 ; j < jeu->hero.m_amis.size() ; ++j)
                 if(jeu->hero.m_amis[j] == &p->m_personnage)
                     jeu->hero.m_amis.erase(jeu->hero.m_amis.begin() + j);
@@ -446,7 +446,7 @@ bool Network::DeletePersonnageClient(int no)
             jeu->m_listHeroes.remove(&*p);
 
             jeu->m_personnageClients.erase(p);
-            GlobalMutex.Unlock();
+            GlobalMutex.unlock();
 
             return true;
         }

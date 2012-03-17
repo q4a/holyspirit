@@ -90,10 +90,10 @@ inline sf::FloatRect GetViewRect(const sf::View& view)
 {
     sf::FloatRect temp;
 
-    temp.Left   = view.GetCenter().x - view.GetSize().x * 0.5;
-    temp.Top    = view.GetCenter().y - view.GetSize().y * 0.5;
-    temp.Width  = view.GetSize().x;
-    temp.Height = view.GetSize().y;
+    temp.left   = view.getCenter().x - view.getSize().x * 0.5;
+    temp.top    = view.getCenter().y - view.getSize().y * 0.5;
+    temp.width  = view.getSize().x;
+    temp.height = view.getSize().y;
 
     return temp;
 };

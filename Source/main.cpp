@@ -63,7 +63,7 @@ int main (  )
 
         eventManager=EventManager::GetInstance();
 
-       if (sf::Shader::IsAvailable() == false)
+       if (sf::Shader::isAvailable() == false)
             configuration->postFX = false;
 
         moteurGraphique->Charger();

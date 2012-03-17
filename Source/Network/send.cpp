@@ -27,7 +27,7 @@ void Network::SendPacket(sf::Packet &packet)
             for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
             {
                 sf::TcpSocket& client = **it;
-                client.Send(packet);
+                client.send(packet);
 
                 //m_udp.Send(packet,m_host->GetRemoteAddress(),NET_PORT);
             }
@@ -35,7 +35,7 @@ void Network::SendPacket(sf::Packet &packet)
         else
         {
             if(m_host)
-                m_host->Send(packet);
+                m_host->send(packet);
         }
     }
 }
@@ -60,11 +60,11 @@ void Network::SendSkin()
             for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
             {
                 sf::TcpSocket& client = **it;
-                client.Send(packet);
+                client.send(packet);
             }
         }
         else
-            m_host->Send(packet);
+            m_host->send(packet);
     }
 }
 
@@ -80,11 +80,11 @@ void Network::SendChangeMap(const std::string &prochaineMap,const coordonnee &co
             for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
             {
                 sf::TcpSocket& client = **it;
-                client.Send(packet);
+                client.send(packet);
             }
         }
         else
-            m_host->Send(packet);
+            m_host->send(packet);
     }
 }
 
@@ -104,7 +104,7 @@ void Network::SendDegats(Hero *hero2, float degats, int type, float temps)
             if(no == no2 + 1)
             {
                 sf::TcpSocket& client = **it;
-                client.Send(packet);
+                client.send(packet);
             }
     }
 }
@@ -115,7 +115,7 @@ void Network::SendDegats(int no, float degats, int type, float temps)
     {
         sf::Packet packet;
         packet<<(sf::Int8)P_DEGATS<<(sf::Int16)no<<(sf::Int16)degats<<(sf::Int8)type<<(sf::Int16)temps;
-        m_host->Send(packet);
+        m_host->send(packet);
        // m_udp.Send(packet,m_host->GetRemoteAddress(),NET_PORT);
     }
 }
@@ -130,7 +130,7 @@ void Network::SendKillMonstre(int no, int angle, float degats)
         for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
         {
             sf::TcpSocket& client = **it;
-            client.Send(packet);
+            client.send(packet);
            // m_udp.Send(packet,client.GetRemoteAddress(),NET_PORT);
         }
     }
@@ -148,7 +148,7 @@ void Network::SendUseMiracle(int monstre, int no)
             for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
             {
                 sf::TcpSocket& client = **it;
-                client.Send(packet);
+                client.send(packet);
             }
         }
     }
@@ -167,13 +167,13 @@ void Network::SendUseMiracle(int no, int monstre, coordonnee cible)
             for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
             {
                 sf::TcpSocket& client = **it;
-                client.Send(packet);
+                client.send(packet);
             }
         }
         else
         {
             packet<<(sf::Int8)P_MIRACLE<<(bool)true<<(sf::Int8)no<<(sf::Int16)monstre<<cible;
-            m_host->Send(packet);
+            m_host->send(packet);
         }
     }
 }
@@ -192,11 +192,11 @@ void Network::SendEraseFriend(int no)
             for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
             {
                 sf::TcpSocket& client = **it;
-                client.Send(packet);
+                client.send(packet);
             }
         }
         else
-            m_host->Send(packet);
+            m_host->send(packet);
     }
 }
 
@@ -218,11 +218,11 @@ void Network::SendInteract()
             for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
             {
                 sf::TcpSocket& client = **it;
-                client.Send(packet);
+                client.send(packet);
             }
         }
         else
-            m_host->Send(packet);
+            m_host->send(packet);
     }
 }
 
@@ -238,7 +238,7 @@ void Network::SendClimate(int no, bool actif)
         for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
         {
             sf::TcpSocket& client = **it;
-            client.Send(packet);
+            client.send(packet);
 
             /*sf::IpAddress ip = client.GetRemoteAddress();
             short unsigned int port = NET_PORT;
@@ -261,11 +261,11 @@ void Network::SendQuest(int id, int type, int info1, int info2)
             for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
             {
                 sf::TcpSocket& client = **it;
-                client.Send(packet);
+                client.send(packet);
             }
         }
         else
-            m_host->Send(packet);
+            m_host->send(packet);
     }
 }
 
@@ -287,11 +287,11 @@ void Network::SendMessage(std::string msg)
             for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
             {
                 sf::TcpSocket& client = **it;
-                client.Send(packet);
+                client.send(packet);
             }
         }
         else
-            m_host->Send(packet);
+            m_host->send(packet);
     }
 }
 
@@ -311,10 +311,10 @@ void Network::SendReady()
             for (std::list<sf::TcpSocket*>::iterator it = m_clientsTCP.begin(); it != m_clientsTCP.end(); ++it)
             {
                 sf::TcpSocket& client = **it;
-                client.Send(packet);
+                client.send(packet);
             }
         }
         else
-            m_host->Send(packet);
+            m_host->send(packet);
     }
 }

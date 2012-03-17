@@ -135,7 +135,7 @@ Personnage::Personnage()
 
     m_no = -1;
 
-    m_clock.Reset();
+    m_clock.restart();
 
     m_positionPixelPrev.x = -1;
     m_positionPixelPrev.y = -1;
@@ -405,10 +405,10 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
             if ((int)(m_angle/45) >= 0 && (int)(m_angle/45) < (int)modele->m_tileset[m_etat].size())
             {
                 m_entite_graphique.m_tileset = &modele->m_tileset[m_etat][(int)(m_angle/45)];
-                m_entite_graphique.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
-                m_entite_graphique.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
+                m_entite_graphique.setPosition(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE) ,
+                                               ((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
 
-                m_entite_graphique.SetColor(sf::Color (
+                m_entite_graphique.setColor(sf::Color (
                                             (m_entite_graphique.m_color.r * (float)effect_color.r / 255),
                                             (m_entite_graphique.m_color.r * (float)effect_color.g / 255),
                                             (m_entite_graphique.m_color.r * (float)effect_color.b / 255),
@@ -424,8 +424,8 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
 
                 if(modele->m_ombre && m_entite_graphique.m_couche + m_entite_graphique.m_decalCouche >= 10)
                 {
-                    m_entite_graphique_shadow.SetX(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE));
-                    m_entite_graphique_shadow.SetY(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
+                    m_entite_graphique_shadow.setPosition(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE) ,
+                                                          ((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE)+32 -m_positionPixel.h);
                     moteurGraphique->AjouterEntiteGraphique(&m_entite_graphique_shadow);
                 }
             }
@@ -447,8 +447,8 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
             alpha = (int)m_speak_time/10;
 
         coordonnee pos;
-        pos.x = (int)(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE - GetViewRect(moteurGraphique->m_camera).Left)/configuration->zoom);
-        pos.y = (int)(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE - m_positionPixel.h - 128 - GetViewRect(moteurGraphique->m_camera).Top)/configuration->zoom);
+        pos.x = (int)(((m_positionPixel.x-m_positionPixel.y)*64/COTE_TILE - GetViewRect(moteurGraphique->m_camera).left)/configuration->zoom);
+        pos.y = (int)(((m_positionPixel.x+m_positionPixel.y)*32/COTE_TILE - m_positionPixel.h - 128 - GetViewRect(moteurGraphique->m_camera).top)/configuration->zoom);
 
         bool empty = m_speak.empty();
 
@@ -456,10 +456,10 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
             m_speak = "Entrez votre message...";
 
         sf::Text text;
-        text.SetFont(moteurGraphique->m_font);
-        text.SetCharacterSize(12);
-        text.SetString(m_speak);
-        pos.x -= (int)text.GetGlobalBounds().Width/2;
+        text.setFont(moteurGraphique->m_font);
+        text.setCharacterSize(12);
+        text.setString(m_speak);
+        pos.x -= (int)text.getGlobalBounds().width/2;
 
         moteurGraphique->AjouterTexte(m_speak, pos, border, 14, 0, 12, sf::Color(224,224,224,alpha));
 
@@ -1118,9 +1118,9 @@ int Personnage::Animer(Modele_Personnage *modele,float temps, bool no_generate)
         if(temps > 0)
             m_entite_graphique.Animer(temps);
 
-        m_entite_graphique.SetScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
+        m_entite_graphique.setScale(m_caracteristique.modificateurTaille,m_caracteristique.modificateurTaille);
 
-        m_entite_graphique.Scale((float)m_entite_graphique.m_scale.x*0.01, (float)m_entite_graphique.m_scale.y*0.01);
+        m_entite_graphique.scale((float)m_entite_graphique.m_scale.x*0.01, (float)m_entite_graphique.m_scale.y*0.01);
        /* if (m_porteeLumineuse.intensite>0)
         {
             m_entite_graphique.SetColor(sf::Color(m_porteeLumineuse.rouge,m_porteeLumineuse.vert,m_porteeLumineuse.bleu, 255));
@@ -1197,9 +1197,9 @@ int Personnage::Animer(Modele_Personnage *modele,float temps, bool no_generate)
         m_entite_graphique_shadow.m_reflect             = false;
         m_entite_graphique_shadow.m_light               = Light_Entity();
 
-        m_entite_graphique_shadow.SetScale(m_caracteristique.modificateurTaille,
+        m_entite_graphique_shadow.setScale(m_caracteristique.modificateurTaille,
                                                     m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
-        m_entite_graphique_shadow.SetRotation(-moteurGraphique->m_angleOmbreSoleil);
+        m_entite_graphique_shadow.setRotation(-moteurGraphique->m_angleOmbreSoleil);
     }
 
     return retour;
@@ -1643,8 +1643,8 @@ bool Personnage::EnVie()
 
 float Personnage::getTime()
 {
-    float t = m_clock.GetElapsedTime();
-    m_clock.Reset();
+    float t = m_clock.getElapsedTime().asSeconds();
+    m_clock.restart();
     return t;
 }
 

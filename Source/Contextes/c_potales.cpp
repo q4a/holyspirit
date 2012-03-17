@@ -47,9 +47,9 @@ void c_Potales::Utiliser(Jeu *jeu)
 {
     int temp = GestionBoutons(jeu);
 
-    temps_ecoule=jeu->Clock.GetElapsedTime()*0.001;
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
     jeu->m_display=true;
-    jeu->Clock.Reset();
+    jeu->Clock.restart();
 
     //jeu->map->Animer(&jeu->hero,0);
     jeu->map->Afficher(jeu->m_listHeroes,0,jeu->m_jeu->alpha_map);
@@ -88,7 +88,7 @@ void c_Potales::Utiliser(Jeu *jeu)
         coordonneePerso.y=jeu->hero.m_potales[jeu->hero.m_potale_selectionnee].position.y;
 
         sf::Clock Clock;
-        Clock.Reset();
+        Clock.restart();
 
         jeu->m_chargement->setC_Chargement(nomMap,coordonneePerso);
         net->SendChangeMap(nomMap,coordonneePerso);
@@ -106,7 +106,7 @@ void c_Potales::Utiliser(Jeu *jeu)
     {
         jeu->next_screen = temp;
         m_afficher=0;
-        jeu->Clock.Reset();
+        jeu->Clock.restart();
 
         if(jeu->next_screen == 6 || jeu->next_screen == 4)
             jeu->next_screen = 3;

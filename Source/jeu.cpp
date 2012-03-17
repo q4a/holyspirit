@@ -71,7 +71,7 @@ void Jeu::Demarrer()
 
     m_contexte = m_mainMenu;
 
-    Clock.Reset();
+    Clock.restart();
 
     moteurSons->setVolumeMusique((int)configuration->music_volume);
 
@@ -79,14 +79,14 @@ void Jeu::Demarrer()
     m_display = true;
     while (m_run)
     {
-        net->GlobalMutex.Lock();
+        net->GlobalMutex.lock();
 
         if(map != NULL && map->m_loaded)
-            eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime()*0.001,map->getDimensions());
+            eventManager->GererLesEvenements(&m_run,Clock.getElapsedTime().asSeconds()*0.001,map->getDimensions());
         else
         {
             coordonnee buf(1,1,1,1);
-            eventManager->GererLesEvenements(&m_run,Clock.GetElapsedTime()*0.001,buf);
+            eventManager->GererLesEvenements(&m_run,Clock.getElapsedTime().asSeconds()*0.001,buf);
         }
 
         if (!configuration->entering_text && eventManager->getEvenement(Keyboard::P,EventKey))
@@ -103,9 +103,9 @@ void Jeu::Demarrer()
 
         net->GererMultijoueur(this);
 
-        net->GlobalMutex.Unlock();
+        net->GlobalMutex.unlock();
 
-        moteurSons->Gerer(MusicClock.GetElapsedTime()*0.001);
+        moteurSons->Gerer(MusicClock.getElapsedTime().asSeconds()*0.001);
 
         //if(MusicClock.GetElapsedTime() < 0.01)
           //  Sleep(0.01 - MusicClock.GetElapsedTime());
@@ -114,7 +114,7 @@ void Jeu::Demarrer()
     }
 
     if(m_jeu->m_thread_sauvegarde)
-        m_jeu->m_thread_sauvegarde->Wait(),delete m_jeu->m_thread_sauvegarde;
+        m_jeu->m_thread_sauvegarde->wait(),delete m_jeu->m_thread_sauvegarde;
 
     net->Disconnect();
     net->CloseServer();

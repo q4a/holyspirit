@@ -36,7 +36,7 @@ Entite_graphique::Entite_graphique() : sf::Sprite()
     m_decalCouche   = 0;
     m_noAnimation   = 0;
 
-    SetTextureRect(sf::IntRect(0,0,0,0));
+    setTextureRect(sf::IntRect(0,0,0,0));
 
     m_animation = 0;
     m_nextAnimation = 0;
@@ -126,13 +126,13 @@ void Entite_graphique::NextTile(bool cur,bool no_sound)
             m_noAnimation = m_tileset->getAnimationTile(m_noAnimation);
 
         coordonnee position;
-        position.x = (int)(GetPosition().x/64/5);
-        position.y = (int)(GetPosition().y/32/5);
+        position.x = (int)(getPosition().x/64/5);
+        position.y = (int)(getPosition().y/32/5);
 
         if(m_fixed)
         {
-            position.x = (int)moteurGraphique->m_camera.GetCenter().x;
-            position.y = (int)moteurGraphique->m_camera.GetCenter().y;
+            position.x = (int)moteurGraphique->m_camera.getCenter().x;
+            position.y = (int)moteurGraphique->m_camera.getCenter().y;
         }
 
         m_nextAnimation = ((float)rand()/RAND_MAX)*m_tileset->getTempsRandDuTile(m_noAnimation);
@@ -151,8 +151,8 @@ void Entite_graphique::NextTile(bool cur,bool no_sound)
         if(configuration->Lumiere && m_light.ID() == -1 && m_tileset->getLumiereDuTile(m_noAnimation).intensite > 0)
         {
             sf::Vector2f position2;
-            position2.x = (int)(GetPosition().x);
-            position2.y = (int)(GetPosition().y*2);
+            position2.x = (int)(getPosition().x);
+            position2.y = (int)(getPosition().y*2);
 
             m_light = moteurGraphique->LightManager->Add_Dynamic_Light(position2,255,m_tileset->getLumiereDuTile(m_noAnimation).intensite*3,12,
                                                                        sf::Color(m_tileset->getLumiereDuTile(m_noAnimation).rouge,
@@ -197,8 +197,8 @@ void Entite_graphique::NextTile(bool cur,bool no_sound)
         && m_tileset->getOrientationDuTile(m_noAnimation) != ' ')
         {
             coordonnee pos;
-            pos.x = GetPosition().x;
-            pos.y = GetPosition().y * 2;
+            pos.x = getPosition().x;
+            pos.y = getPosition().y * 2;
 
             AddWallLight(pos);
         }
@@ -290,24 +290,24 @@ void Entite_graphique::Generer()
         {
             coordonnee positionPartieDecor = m_tileset->getPositionDuTile(m_noAnimation);
 
-            SetTexture(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
-            SetTextureRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
+            setTexture(*moteurGraphique->getImage(m_tileset->getImage(m_noAnimation)));
+            setTextureRect(sf::IntRect(positionPartieDecor.x, positionPartieDecor.y,
                                    positionPartieDecor.w, positionPartieDecor.h - 1));
 
-            SetOrigin(m_tileset->getCentreDuTile(m_noAnimation).x,m_tileset->getCentreDuTile(m_noAnimation).y);
+            setOrigin(m_tileset->getCentreDuTile(m_noAnimation).x,m_tileset->getCentreDuTile(m_noAnimation).y);
 
-            SetColor(sf::Color(m_color.r,
+            setColor(sf::Color(m_color.r,
                                         m_color.g,
                                         m_color.b,
                                         m_tileset->getOpacityDuTile(m_noAnimation) * m_color.a / 255));
 
-            SetScale((float)m_scale.x*0.01, (float)m_scale.y*0.01);
+            setScale((float)m_scale.x*0.01, (float)m_scale.y*0.01);
 
             if(m_scale.x < 0)
-            SetOrigin(positionPartieDecor.w - m_tileset->getCentreDuTile(m_noAnimation).x,
+            setOrigin(positionPartieDecor.w - m_tileset->getCentreDuTile(m_noAnimation).x,
                       m_tileset->getCentreDuTile(m_noAnimation).y);
 
-           SetRotation(-m_rotation);
+           setRotation(-m_rotation);
 
             m_decalCouche = m_tileset->getLayerDuTile(m_noAnimation);
 
@@ -327,18 +327,18 @@ void Entite_graphique::Generer()
             {
                 coordonnee positionPartieDecor2 = m_tileset->getPositionDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1);
 
-                m_sprite_distortion.SetTexture(*moteurGraphique->getImage(m_tileset->getImage(m_tileset->getDistortionDuTile(m_noAnimation), 1)));
-                m_sprite_distortion.SetTextureRect(sf::IntRect(positionPartieDecor2.x, positionPartieDecor2.y,
+                m_sprite_distortion.setTexture(*moteurGraphique->getImage(m_tileset->getImage(m_tileset->getDistortionDuTile(m_noAnimation), 1)));
+                m_sprite_distortion.setTextureRect(sf::IntRect(positionPartieDecor2.x, positionPartieDecor2.y,
                                                            positionPartieDecor2.w, positionPartieDecor2.h));
 
-                m_sprite_distortion.SetOrigin(m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1).x,m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1).y);
+                m_sprite_distortion.setOrigin(m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1).x,m_tileset->getCentreDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1).y);
 
-                m_sprite_distortion.SetColor(sf::Color(m_sprite_distortion.GetColor().r,
-                                                       m_sprite_distortion.GetColor().g,
-                                                       m_sprite_distortion.GetColor().b,
+                m_sprite_distortion.setColor(sf::Color(m_sprite_distortion.getColor().r,
+                                                       m_sprite_distortion.getColor().g,
+                                                       m_sprite_distortion.getColor().b,
                                                        m_tileset->getOpacityDuTile(m_tileset->getDistortionDuTile(m_noAnimation), 1)));
 
-                m_sprite_distortion.SetPosition(GetPosition());
+                m_sprite_distortion.setPosition(getPosition());
 
                 m_distort = true;
             }
@@ -356,16 +356,16 @@ void Entite_graphique::Generer()
                 coordonnee positionPartieDecor2 = m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCoordonnee();
 
 
-                m_sprite_shadowmap.back().SetTexture(*moteurGraphique->getImage(m_tileset->getImageShadowmap(m_noAnimation,i)));
-                m_sprite_shadowmap.back().SetTextureRect(sf::IntRect(positionPartieDecor2.x,
+                m_sprite_shadowmap.back().setTexture(*moteurGraphique->getImage(m_tileset->getImageShadowmap(m_noAnimation,i)));
+                m_sprite_shadowmap.back().setTextureRect(sf::IntRect(positionPartieDecor2.x,
                                                                  positionPartieDecor2.y,
                                                                  positionPartieDecor2.w,
                                                                  positionPartieDecor2.h));
 
-                m_sprite_shadowmap.back().SetOrigin(m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCentre().x,
+                m_sprite_shadowmap.back().setOrigin(m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCentre().x,
                                                     m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getCentre().y);
 
-                m_sprite_shadowmap.back().SetPosition(GetPosition());
+                m_sprite_shadowmap.back().setPosition(getPosition());
 
                 m_angle_shadowmap.push_back(m_tileset->m_tile_shadowmap[m_tileset->getShadowmapDuTile(m_noAnimation)[i]].getAngle());
             }
