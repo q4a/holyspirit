@@ -252,13 +252,13 @@ void MoteurGraphique::Gerer(float temps)
                 m_effetsEcran_iter->temps   = 0;
 
                 int valeur = (int)m_effetsEcran_iter->info1 ;
-                if(((decalage && (fabs(decalageCameraSouhaite.x) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1))
-                 || fabs(valeur) == m_effetsEcran_iter->info1) || !decalage)
+                if(((decalage && (fabs(decalageCameraSouhaite.x) < abs(valeur) && abs(valeur) != m_effetsEcran_iter->info1))
+                 || abs(valeur) == m_effetsEcran_iter->info1) || !decalage)
                         decalageCameraSouhaite.x = (1 - 2 * (rand()%100<50))*valeur;
 
                 valeur = (int)m_effetsEcran_iter->info1 ;
-                if(((decalage && (fabs(decalageCameraSouhaite.y) < fabs(valeur) && fabs(valeur) != m_effetsEcran_iter->info1))
-                 || fabs(valeur) == m_effetsEcran_iter->info1) || !decalage)
+                if(((decalage && (fabs(decalageCameraSouhaite.y) < abs(valeur) && abs(valeur) != m_effetsEcran_iter->info1))
+                 || abs(valeur) == m_effetsEcran_iter->info1) || !decalage)
                         decalageCameraSouhaite.y = (1 - 2 * (rand()%100<50))*valeur;
 
                 m_effetsEcran_iter->info1  -= 1;

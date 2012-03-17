@@ -79,7 +79,7 @@ bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arr
                     if(!grille[enCours.y][enCours.x].collision
                     &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
                       ||grille[enCours.y][enCours.x].valeur == -1)
-                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    &&  abs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     {
                         if(grille[enCours.y][enCours.x].cases >= 0)
                             m_liste[grille[enCours.y][enCours.x].cases].actif = false;
@@ -100,7 +100,7 @@ bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arr
                     if(!grille[enCours.y][enCours.x].collision
                     &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
                       ||grille[enCours.y][enCours.x].valeur == -1)
-                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    &&  abs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     {
                         if(grille[enCours.y][enCours.x].cases >= 0)
                             m_liste[grille[enCours.y][enCours.x].cases].actif = false;
@@ -121,7 +121,7 @@ bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arr
                     if(!grille[enCours.y][enCours.x].collision
                     &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
                       ||grille[enCours.y][enCours.x].valeur == -1)
-                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    &&  abs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     {
                         if(grille[enCours.y][enCours.x].cases >= 0)
                             m_liste[grille[enCours.y][enCours.x].cases].actif = false;
@@ -142,7 +142,7 @@ bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arr
                     if(!grille[enCours.y][enCours.x].collision
                     &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 1)
                       ||grille[enCours.y][enCours.x].valeur == -1)
-                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    &&  abs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     {
                         if(grille[enCours.y][enCours.x].cases >= 0)
                             m_liste[grille[enCours.y][enCours.x].cases].actif = false;
@@ -163,7 +163,7 @@ bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arr
                     if(!grille[enCours.y][enCours.x].collision
                     &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
                       ||grille[enCours.y][enCours.x].valeur == -1)
-                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    &&  abs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     {
                         if(grille[enCours.y][enCours.x].cases >= 0)
                             m_liste[grille[enCours.y][enCours.x].cases].actif = false;
@@ -184,7 +184,7 @@ bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arr
                     if(!grille[enCours.y][enCours.x].collision
                     &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
                       ||grille[enCours.y][enCours.x].valeur == -1)
-                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    &&  abs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     {
                         if(grille[enCours.y][enCours.x].cases >= 0)
                             m_liste[grille[enCours.y][enCours.x].cases].actif = false;
@@ -204,7 +204,7 @@ bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arr
                     if(!grille[enCours.y][enCours.x].collision
                     &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
                       ||grille[enCours.y][enCours.x].valeur == -1)
-                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    &&  abs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     {
                         if(grille[enCours.y][enCours.x].cases >= 0)
                             m_liste[grille[enCours.y][enCours.x].cases].actif = false;
@@ -225,7 +225,7 @@ bool liste_case::AjouterCasesAdjacentes(casePathfinding **grille,coordonnee *arr
                     if(!grille[enCours.y][enCours.x].collision
                     &&  ((grille[enCours.y][enCours.x].valeur == m_distanceEnCours && grille[enCours.y][enCours.x].dist > 2)
                       ||grille[enCours.y][enCours.x].valeur == -1)
-                    &&  fabs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
+                    &&  abs(grille[enCours.y][enCours.x].hauteur- grille[m_liste[i].getPosition().y][m_liste[i].getPosition().x].hauteur)<=32)
                     {
                         if(grille[enCours.y][enCours.x].cases >= 0)
                             m_liste[grille[enCours.y][enCours.x].cases].actif = false;

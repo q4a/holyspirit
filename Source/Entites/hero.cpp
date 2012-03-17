@@ -20,6 +20,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef HEROCPP
 #define HEROCPP
 
+#ifdef _MSC_VER
+#define _USE_MATH_DEFINES
+#endif
+
 #include "../constantes.h"
 #include "hero.h"
 #include "../globale.h"
@@ -1947,8 +1951,8 @@ void Hero::AfficherPotales(float decalage, std::string chemin)
         texte.setString(configuration->getText(4,m_potales[i].nom));
 
 
-        if(fabs(m_potales[i].position.x - m_personnage.getCoordonnee().x) < 5
-        && fabs(m_potales[i].position.y - m_personnage.getCoordonnee().y) < 5
+        if(abs(m_potales[i].position.x - m_personnage.getCoordonnee().x) < 5
+        && abs(m_potales[i].position.y - m_personnage.getCoordonnee().y) < 5
         && m_potales[i].chemin == chemin)
             texte.setColor(sf::Color(128,128,128));
         else
@@ -3145,10 +3149,10 @@ bool Hero::TestMonstreVise(Personnage *monstre)
     if (monstre!=NULL)
         if (m_caracteristiques.vie>0)
         {
-            if (((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=1))
-            || ((!m_personnage.m_shooter||monstre->m_friendly)&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
-            || (!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=13))
-            || (!monstre->m_friendly&&m_personnage.m_shooter&&(fabs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=13&&fabs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=13)))
+            if (((!m_personnage.m_shooter||monstre->m_friendly)&&(abs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=1&&abs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=1))
+            || ((!m_personnage.m_shooter||monstre->m_friendly)&&(abs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=1&&abs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=1))
+            || (!monstre->m_friendly&&m_personnage.m_shooter&&(abs(m_personnage.getCoordonnee().x-monstre->getCoordonnee().x)<=13&&abs(m_personnage.getCoordonnee().y-monstre->getCoordonnee().y)<=13))
+            || (!monstre->m_friendly&&m_personnage.m_shooter&&(abs(m_personnage.getCoordonnee().x-monstre->getProchaineCase().x)<=13&&abs(m_personnage.getCoordonnee().y-monstre->getProchaineCase().y)<=13)))
             {
 
                 float m=atan2(-(double)(monstre->getCoordonneePixel().y-m_personnage.getCoordonneePixel().y),

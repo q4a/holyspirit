@@ -1,3 +1,8 @@
+#ifdef _MSC_VER
+#define _USE_MATH_DEFINES
+#include <math.h>
+#endif
+
 #include "map.h"
 
 #include <iostream>
@@ -340,8 +345,8 @@ bool Map::Miracle_Charme (Jeu *jeu, Personnage *personnage, Miracle &modele, Eff
             return 0;
         }
 
-        if (fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > 10
-         || fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > 10)
+        if (abs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > 10
+         || abs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > 10)
         {
             coordonnee temp;
             bool ok = false;
@@ -414,10 +419,10 @@ bool Map::Miracle_CorpsACorps (Jeu *jeu, Personnage *personnage, Miracle &modele
 
         if(info.m_cible)
         {
-            if( (fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > effet.m_informations[0]
-                 && fabs(info.m_cible->getProchaineCase().x - personnage->getCoordonnee().x) > effet.m_informations[0])
-             || (fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > effet.m_informations[0]
-                 && fabs(info.m_cible->getProchaineCase().y - personnage->getCoordonnee().y) > effet.m_informations[0]))
+            if( (abs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > effet.m_informations[0]
+                 && abs(info.m_cible->getProchaineCase().x - personnage->getCoordonnee().x) > effet.m_informations[0])
+             || (abs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > effet.m_informations[0]
+                 && abs(info.m_cible->getProchaineCase().y - personnage->getCoordonnee().y) > effet.m_informations[0]))
                 personnage->setArrivee(info.m_cible->getProchaineCase());
             else ok = true;
         }
@@ -901,8 +906,8 @@ bool Map::Miracle_Invocation(Jeu *jeu, Personnage *personnage, Miracle &modele, 
             return 0;
         }
 
-        if (fabs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > 10
-         || fabs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > 10)
+        if (abs(info.m_cible->getCoordonnee().x - personnage->getCoordonnee().x) > 10
+         || abs(info.m_cible->getCoordonnee().y - personnage->getCoordonnee().y) > 10)
         {
             coordonnee temp;
             bool ok = false;
