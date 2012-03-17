@@ -988,7 +988,7 @@ void Map::InitialiserMinimap()
                             minimap.move(0, 1024), cur_y --;
 
 
-                        if(m_render_minimap[cur_y][cur_x].GetHeight() != 1024)
+                        if(m_render_minimap[cur_y][cur_x].getSize().y != 1024)
                         {
                             m_render_minimap[cur_y][cur_x].create(1024,1024);
                             m_render_minimap[cur_y][cur_x].clear(sf::Color(0,0,0,0));
@@ -1003,7 +1003,7 @@ void Map::InitialiserMinimap()
                             cur_x++, minimap.move(-1024,0), redraw = true;
 
 
-                        if(m_render_minimap[cur_y][cur_x].GetHeight() != 1024)
+                        if(m_render_minimap[cur_y][cur_x].getSize().y != 1024)
                         {
                             m_render_minimap[cur_y][cur_x].create(1024,1024);
                             m_render_minimap[cur_y][cur_x].clear(sf::Color(0,0,0,0));

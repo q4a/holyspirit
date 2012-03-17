@@ -691,8 +691,8 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     texte.setCharacterSize(16);
     {
         texte.setString("- + -");
-        texte.setPosition((int)configuration->Resolution.w/2-texte.GetGlobalBounds().Width/2 + 32 ,
-                   (int)configuration->Resolution.h/2 + 160);
+        texte.setPosition((int)configuration->Resolution.w/2-texte.getGlobalBounds().width/2 + 32 ,
+                          (int)configuration->Resolution.h/2 + 160);
 
         if(i < m_chemin_saves.size())
         {
@@ -718,7 +718,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
     {
         texte.setString("- - -");
-        texte.setPosition((int)configuration->Resolution.w/2-texte.getGlobalBounds().Width/2 - 32 ,
+        texte.setPosition((int)configuration->Resolution.w/2-texte.getGlobalBounds().width/2 - 32 ,
                           (int)configuration->Resolution.h/2 + 160);
 
         if(defilement_saves > 0)

@@ -84,7 +84,7 @@ void c_Demarrage::Utiliser(Jeu *jeu)
 
     jeu->m_display=true;
 
-
-    if(1.f/moteurGraphique->m_ecran.GetFrameTime() < 5 && !m_augmenter)
-        configuration->postFX = false;
+    //FIXME
+    /*if(1.f/moteurGraphique->m_ecran.GetFrameTime() < 5 && !m_augmenter)
+        configuration->postFX = false;*/
 }
