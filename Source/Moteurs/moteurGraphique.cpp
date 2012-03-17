@@ -102,11 +102,11 @@ void MoteurGraphique::CreateNewWindow()
 
     m_ecran.setActive();
 
--    bufferImage.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
--    m_water_screen.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
--    m_distortion_screen.Create(m_ecran.GetWidth(), m_ecran.GetHeight());
--    m_light_screen.Create(m_ecran.GetWidth()+64, m_ecran.GetHeight()+64);
--    m_light_screen2.Create(m_ecran.GetWidth()+64, m_ecran.GetHeight()+64)
+    bufferImage.create(m_ecran.getSize().x, m_ecran.getSize().y);
+    m_water_screen.create(m_ecran.getSize().x, m_ecran.getSize().y);
+    m_distortion_screen.create(m_ecran.getSize().x, m_ecran.getSize().y);
+    m_light_screen.create(m_ecran.getSize().x+64, m_ecran.getSize().y+64);
+    m_light_screen2.create(m_ecran.getSize().x+64, m_ecran.getSize().y+64);
 }
 
 void MoteurGraphique::Charger()
@@ -1059,6 +1059,6 @@ void MoteurGraphique::Printscreen()
 
 int MoteurGraphique::GetFPS()
 {
-    return (int)( 1.f / m_ecran.GetFrameTime());
+    return 60; //FIXME (int)( 1.f / m_ecran.GetFrameTime());
 }
 

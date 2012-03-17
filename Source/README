@@ -8,9 +8,10 @@ To build the game you will need next 3dparty software
 
 1.2 Libraries (static preferred)
 
-To make CMake script automatically find these files add SMFLDIR environment path to the system, with will point to <SFML> folder:
+To make CMake script automatically find these files add <SMFLDIR> environment path to the system,
+which should point to SFML folder with next structure:
 
-SFMLDIR
+<SFMLDIR>
 -include
 --SFML
 ---*.*
