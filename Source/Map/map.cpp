@@ -150,7 +150,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
                 {
                     Sprite.setTexture(*moteurGraphique->getImage(0));
                     Sprite.setColor(sf::Color(255,255,255,128));
-                    Sprite.scale(position_sac_inventaire.w,20);
+                    Sprite.setScale(position_sac_inventaire.w/Sprite.getGlobalBounds().width,20/Sprite.getGlobalBounds().height);
                     Sprite.setPosition(AutoScreenAdjust(position_sac_inventaire.x,
                                                         position_sac_inventaire.y+(z-m_defilerObjets)*20, decalage));
 
@@ -245,7 +245,7 @@ void Map::Afficher(std::list<Hero*> &players,bool alt,float alpha)
     {
         sf::Sprite sky;
         sky.setTexture(*moteurGraphique->getImage(m_img_sky));
-        sky.scale(configuration->Resolution.x,configuration->Resolution.y);
+        sky.setScale(configuration->Resolution.x/sky.getGlobalBounds().width,configuration->Resolution.y/sky.getGlobalBounds().height);
         moteurGraphique->AjouterCommande(&sky,0,0);
     }
 

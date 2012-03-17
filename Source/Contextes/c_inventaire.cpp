@@ -258,7 +258,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         sprite.setPosition(AutoScreenAdjust(bouton->position.x,
                                             bouton->position.y-m_decalage));
 
-        sprite.scale(bouton->position.w, bouton->position.h);
+        sprite.setScale(bouton->position.w/sprite.getLocalBounds().width, bouton->position.h/sprite.getLocalBounds().height);
 
         moteurGraphique->AjouterCommande(&sprite, 17,0);
 

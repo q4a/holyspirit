@@ -625,7 +625,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         sprite.setPosition(AutoScreenAdjust(bouton->position.x,
                                             bouton->position.y));
 
-        sprite.scale(bouton->position.w, bouton->position.h);
+        sprite.setScale(bouton->position.w/sprite.getLocalBounds().width, bouton->position.h/sprite.getLocalBounds().height);
 
         if(bouton->lien == B_MAP
         && configuration->Minimap)
@@ -781,7 +781,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         sprite.setPosition(AutoScreenAdjust(bouton->position.x,
                                             bouton->position.y));
 
-        sprite.scale(bouton->position.w, bouton->position.h);
+        sprite.setScale(bouton->position.w/sprite.getLocalBounds().width, bouton->position.h/sprite.getLocalBounds().height);
 
         moteurGraphique->AjouterCommande(&sprite, 17,0);
 
