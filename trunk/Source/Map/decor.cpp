@@ -151,7 +151,7 @@ bool Decor::AfficherTexteObjet(Border &border, coordonnee position,int objet, fl
         sprite.setPosition(texte.getPosition().x-5 ,
                            texte.getPosition().y+1);
         sprite.setColor(sf::Color(0,0,0,(int)(224.0f*alpha)));
-        sprite.scale(texte.getGlobalBounds().width +9 , texte.getGlobalBounds().height+5);
+        sprite.setScale((texte.getGlobalBounds().width +9)/sprite.getGlobalBounds().width , (texte.getGlobalBounds().height+5)/sprite.getGlobalBounds().height);
 
         border.Afficher(coordonnee(texte.getPosition().x-4, texte.getPosition().y+2),
                         coordonnee(texte.getGlobalBounds().width +8, texte.getGlobalBounds().height+4), 12, sf::Color(  GetItemColor(m_objets[objet].getRarete()).r,

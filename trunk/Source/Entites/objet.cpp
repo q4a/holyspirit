@@ -2402,7 +2402,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
             if(temp[i].getString() == "_")
             {
                 sf::Sprite bar;
-                bar.scale(tailleCadran.x + 22, 1);
+                bar.setScale((tailleCadran.x + 22)/bar.getGlobalBounds().width, 1/bar.getGlobalBounds().height);
                 bar.setColor(sf::Color(72 * GetItemColor(m_rarete).r / 255,
                                        67 * GetItemColor(m_rarete).g / 255,
                                        42 * GetItemColor(m_rarete).b / 255));
@@ -2434,7 +2434,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
             if(temp[i].getString() == "_")
             {
                 sf::Sprite bar(*moteurGraphique->getImage(0));
-                bar.scale(tailleCadran.x + 22, 1);
+                bar.setScale((tailleCadran.x + 22)/bar.getGlobalBounds().width, 1/bar.getGlobalBounds().height);
                 bar.setColor(sf::Color(72 * GetItemColor(m_rarete).r / 255,
                                        67 * GetItemColor(m_rarete).g / 255,
                                        42 * GetItemColor(m_rarete).b / 255));

@@ -68,7 +68,7 @@ sf::Sprite Bouton_pressoire::Afficher(float decalage)
     sprite.setTextureRect(sf::IntRect(  image.position.x, image.position.y,
                                     image.position.w, image.position.h));
 
-    sprite.scale(position.w,position.h);
+    sprite.setScale(position.w/sprite.getGlobalBounds().width,position.h/sprite.getGlobalBounds().height);
 
     sprite.setPosition(AutoScreenAdjust(position.x,0).x,
                        AutoScreenAdjust(0,position.y - decalage).y);
@@ -151,28 +151,28 @@ void Border::Afficher(coordonnee pos, coordonnee size, int couche, sf::Color col
     sprite.setTextureRect(sf::IntRect(  image_u.position.x, image_u.position.y,
                                     image_u.position.w, image_u.position.h));
     sprite.setPosition(pos.x,pos.y - image_u.position.h);
-    sprite.scale(size.x,image_u.position.h);
+    sprite.setScale(size.x/sprite.getGlobalBounds().width,image_u.position.h/sprite.getGlobalBounds().height);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 
     sprite.setTexture(*moteurGraphique->getImage(image_d.image));
     sprite.setTextureRect(sf::IntRect(  image_d.position.x, image_d.position.y,
                                     image_d.position.w, image_d.position.h));
     sprite.setPosition(pos.x,pos.y + size.y);
-    sprite.scale(size.x,image_u.position.h);
+    sprite.setScale(size.x/sprite.getGlobalBounds().width,image_u.position.h/sprite.getGlobalBounds().height);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 
     sprite.setTexture(*moteurGraphique->getImage(image_l.image));
     sprite.setTextureRect(sf::IntRect(  image_l.position.x, image_l.position.y,
                                     image_l.position.w, image_l.position.h));
     sprite.setPosition(pos.x - image_l.position.w,pos.y);
-    sprite.scale(image_l.position.w,size.y);
+    sprite.setScale(image_l.position.w/sprite.getGlobalBounds().width,size.y/sprite.getGlobalBounds().height);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 
     sprite.setTexture(*moteurGraphique->getImage(image_r.image));
     sprite.setTextureRect(sf::IntRect(  image_r.position.x, image_r.position.y,
                                     image_r.position.w, image_r.position.h));
     sprite.setPosition(pos.x + size.x,pos.y);
-    sprite.scale(image_r.position.w,size.y);
+    sprite.setScale(image_r.position.w/sprite.getGlobalBounds().width,size.y/sprite.getGlobalBounds().height);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 
 
@@ -181,7 +181,7 @@ void Border::Afficher(coordonnee pos, coordonnee size, int couche, sf::Color col
     sprite.setTextureRect(sf::IntRect(  image_c.position.x, image_c.position.y,
                                     image_c.position.w, image_c.position.h));
     sprite.setPosition(pos.x,pos.y);
-    sprite.scale(size.x,size.y);
+    sprite.setScale(size.x/sprite.getGlobalBounds().width,size.y/sprite.getGlobalBounds().height);
     moteurGraphique->AjouterCommande(&sprite,couche,false);
 }
 

@@ -1086,7 +1086,7 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
         if(temp[i].getString() == "_")
         {
             sf::Sprite bar(*moteurGraphique->getImage(0));
-            bar.scale(tailleCadran.x + 22, 1);
+            bar.setScale((tailleCadran.x + 22)/bar.getGlobalBounds().width, 1/bar.getGlobalBounds().height);
 
             bar.setColor(sf::Color(72,67,42));
 
