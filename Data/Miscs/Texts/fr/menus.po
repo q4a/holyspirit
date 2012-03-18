@@ -1,0 +1,147 @@
+# French translation for HolySpirit.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-03-18 21:08+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: Contextes/c_mainMenu.cpp:83
+msgid ""
+"An old law required has always been the good and evil meet has at least one "
+"rule in their eternal conflict. They could not directly intervene in the "
+"affairs of living entities, acting only by the subtle suggestion and "
+"battling within each soul...\n"
+" Egoism, violence, pity, love and clashed in the form of thoughts, of "
+"dreams, with varied fates.\n"
+" But one day evil, which no longer supported the balance was satisfied with "
+"the Good, decided to violate the rule RESPECTED far and achieved this in "
+"incarnating directly into most living beings vulnerable to his impulses, "
+"and, curiously, in some objects.\n"
+" henceforth evil reign could only be on each of which he took possession of "
+"some ordinary objects become demonic.\n"
+" Having anticipated this treachery, the Well was not surprised. Renouncing "
+"to violate the law as Evil had done and refusing to sacrifice the good and "
+"generous souls, he used a few storms and damned spirits who wanted to redeem "
+"himself deeply with him...\n"
+" considering himself already lost, alone unconsciousness would have to "
+"address the foul legion that has swept across the world."
+msgstr ""
+"Une vieille loi obligeait depuis toujours le Bien et le Mal a respecter au moins une "
+"regle dans leur eternel conflit. Ils ne pouvaient intervenir directement dans les "
+"affaires des entites vivantes, n'agissant que par la suggestion et "
+"bataillant subtilement au sein de chaque ame...\n"
+"Egoisme, violence, pitie, amour s'affrontaient ainsi sous forme de pensees, de "
+"reves, avec des destins varies.\n"
+"Pourtant un jour le Mal, qui ne supportait plus l'equilibre dont se contentait "
+"le Bien, decida de violer la regle respectee jusqu'alors et franchit le pas en "
+"s'incarnant directement dans les etres vivants les plus vulnerables a ses pulsions, "
+"et, curieusement, dans certains objets.\n"
+"Desormais le Mal pouvait regner exclusivement sur chaque etre dont il prenait possession "
+"et sur certains objets anodins devenus demoniaques.\n"
+"Ayant pressenti cette trahison, le Bien ne fut pas surpris. Renoncant "
+"a violer la loi comme le Mal l'avait fait et se refusant a sacrifier des ames "
+"bonnes et genereuses, il utilisa quelques esprits damnes et tourmentes qui souhaitaient "
+"profondement se racheter aupres de lui...\n"
+"S'estimant deja perdues, elles seules auraient l'inconscience de s'attaquer "
+"a l'immonde legion qui deferlait sur le Monde."
+
+
+#: Contextes/c_mainMenu.cpp:273 Contextes/c_mainMenu.cpp:281
+#: Contextes/c_mainMenu.cpp:288 Contextes/c_mainMenu.cpp:291
+#: Contextes/c_mainMenu.cpp:294
+msgid "Continue"
+msgstr "Continuer"
+
+#: Contextes/c_mainMenu.cpp:308 Contextes/c_mainMenu.cpp:340
+#: Contextes/c_mainMenu.cpp:347 Contextes/c_mainMenu.cpp:350
+#: Contextes/c_mainMenu.cpp:353
+msgid "New game"
+msgstr "Nouveau jeu"
+
+#: Contextes/c_mainMenu.cpp:316 Contextes/c_mainMenu.cpp:323
+#: Contextes/c_mainMenu.cpp:326 Contextes/c_mainMenu.cpp:329
+msgid "Multiplayer"
+msgstr "Multijoueur"
+
+#: Contextes/c_mainMenu.cpp:423 Contextes/c_mainMenu.cpp:430
+#: Contextes/c_mainMenu.cpp:433 Contextes/c_mainMenu.cpp:436
+msgid "Options"
+msgstr "Options"
+
+#: Contextes/c_mainMenu.cpp:447 Contextes/c_mainMenu.cpp:454
+#: Contextes/c_mainMenu.cpp:457 Contextes/c_mainMenu.cpp:460
+msgid "Credits"
+msgstr "Crédits"
+
+#: Contextes/c_mainMenu.cpp:471 Contextes/c_mainMenu.cpp:478
+#: Contextes/c_mainMenu.cpp:481 Contextes/c_mainMenu.cpp:484
+msgid "Quit"
+msgstr "Quitter"
+
+#: Contextes/c_mainMenu.cpp:506 Contextes/c_mainMenu.cpp:513
+#: Contextes/c_mainMenu.cpp:516 Contextes/c_mainMenu.cpp:519
+#: Contextes/c_mainMenu.cpp:1002 Contextes/c_mainMenu.cpp:1009
+#: Contextes/c_mainMenu.cpp:1012 Contextes/c_mainMenu.cpp:1015
+#: Contextes/c_mainMenu.cpp:1066 Contextes/c_mainMenu.cpp:1073
+#: Contextes/c_mainMenu.cpp:1076 Contextes/c_mainMenu.cpp:1079
+#: Contextes/c_mainMenu.cpp:1216 Contextes/c_mainMenu.cpp:1223
+#: Contextes/c_mainMenu.cpp:1226 Contextes/c_mainMenu.cpp:1229
+msgid "Return"
+msgstr "Retour"
+
+#: Contextes/c_mainMenu.cpp:540 Contextes/c_mainMenu.cpp:547
+#: Contextes/c_mainMenu.cpp:550 Contextes/c_mainMenu.cpp:553
+#: Contextes/c_mainMenu.cpp:794
+msgid "Delete character"
+msgstr "Supprimer personnage"
+
+#: Contextes/c_mainMenu.cpp:607
+msgid "<Incompatible>"
+msgstr "<Incompatible>"
+
+#: Contextes/c_mainMenu.cpp:609
+msgid "Level"
+msgstr "Niveau"
+
+#: Contextes/c_mainMenu.cpp:758
+msgid "Please enter the name of the hero to delete :"
+msgstr "Veuillez taper le nom du heros a supprimer :"
+
+#: Contextes/c_mainMenu.cpp:850
+msgid "Select your character"
+msgstr "Selectionnez votre personnage"
+
+#: Contextes/c_mainMenu.cpp:923
+msgid "Enter your name"
+msgstr "Entrez votre nom"
+
+#: Contextes/c_mainMenu.cpp:939 Contextes/c_mainMenu.cpp:946
+#: Contextes/c_mainMenu.cpp:949 Contextes/c_mainMenu.cpp:952
+msgid "Start"
+msgstr "Commencer"
+
+#: Contextes/c_mainMenu.cpp:1106 Contextes/c_mainMenu.cpp:1113
+#: Contextes/c_mainMenu.cpp:1116 Contextes/c_mainMenu.cpp:1119
+msgid "Next"
+msgstr "Suivant"
+
+#: Contextes/c_mainMenu.cpp:1161 Contextes/c_mainMenu.cpp:1168
+#: Contextes/c_mainMenu.cpp:1171 Contextes/c_mainMenu.cpp:1174
+msgid "Join game"
+msgstr "Rejoindre partie"
+
+#: Contextes/c_mainMenu.cpp:1191 Contextes/c_mainMenu.cpp:1198
+#: Contextes/c_mainMenu.cpp:1201 Contextes/c_mainMenu.cpp:1204
+msgid "Host game"
+msgstr "Creer partie"
