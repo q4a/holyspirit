@@ -51,7 +51,7 @@ void Console::Afficher()
                 sf::Text texte;
                 texte.setString(m_textes[i].c_str());
                 texte.setCharacterSize(12);
-                texte.move(0, (i-m_textes.size()+27-m_defilement)*15+60 - texte.getPosition().y);
+                texte.setPosition(texte.getPosition().x, (i-m_textes.size()+27-m_defilement)*15+60);
 
                 if (m_erreur[i])
                     texte.setColor(sf::Color(255,0,0,255));

@@ -197,9 +197,9 @@ void EventManager::AfficherCurseur(bool transparent)
     Sprite Sprite;
     Sprite.setTexture(*moteurGraphique->getImage(idcurseur));
     if (configuration->Resolution.x > 0)
-        Sprite.move(m_positionSouris.x*configuration->Resolution.w/configuration->Resolution.x-2 - Sprite.getPosition().x, 0);
+        Sprite.setPosition(m_positionSouris.x*configuration->Resolution.w/configuration->Resolution.x-2, Sprite.getPosition().y);
     if (configuration->Resolution.y > 0)
-        Sprite.move(0, m_positionSouris.y*configuration->Resolution.h/configuration->Resolution.y-2 - Sprite.getPosition().y);
+        Sprite.setPosition(Sprite.getPosition().x, m_positionSouris.y*configuration->Resolution.h/configuration->Resolution.y-2);
 
     if(transparent)
         Sprite.setColor(sf::Color(255,255,255,64));

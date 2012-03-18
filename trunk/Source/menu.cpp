@@ -310,7 +310,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
             texte.setPosition(minX + 48,
                                 pos);
 
-            bullet1.move(0,texte.getPosition().y - 4 - bullet1.getPosition().y);
+            bullet1.setPosition(bullet1.getPosition().x, texte.getPosition().y - 4);
            // bullet2.SetY(texte.getPosition().y - 4);
 
             pos = texte.getGlobalBounds().top + texte.getGlobalBounds().height + 4;
@@ -330,7 +330,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
                 }
                 bullet1.setTexture(*moteurGraphique->getImage(classe->bullet_on.image));
                 //bullet2.SetTexture(*moteurGraphique->getImage(classe->bullet_on.image));
-                bullet1.move(minX + 16 - bullet1.getPosition().x, 0);
+                bullet1.setPosition(minX + 16, bullet1.getPosition().y);
               //  bullet2.SetX(maxX - 16);
 
                 if(m_current_choice != (int)i)
@@ -342,7 +342,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
              {
                 bullet1.setTexture(*moteurGraphique->getImage(classe->bullet_off.image));
                 //bullet2.SetTexture(*moteurGraphique->getImage(classe->bullet_off.image));
-                bullet1.move(minX - bullet1.getPosition().x,0);
+                bullet1.setPosition(minX, bullet1.getPosition().y);
                // bullet2.SetX(maxX);
                 texte.setColor(sf::Color(224,224,224));
              }
@@ -383,12 +383,12 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         MySprite sprite;
         sprite.setTexture(*moteurGraphique->getImage(classe->orbe_vie.image));
 
-        sprite.move(0, classe->orbe_vie.position.y + (configuration->Resolution.y - 600) - sprite.getPosition().y);
+        sprite.setPosition(sprite.getPosition().x, classe->orbe_vie.position.y + (configuration->Resolution.y - 600));
 
         if(caracteristique.vie<=(caracteristique.maxVie - caracteristique.reserveVie))
-            sprite.move((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.vie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5 - sprite.getPosition().x, 0);
+            sprite.setPosition((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.vie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5, sprite.getPosition().y);
         else
-            sprite.move(classe->orbe_vie.position.x + (configuration->Resolution.x - 800) * 0.5 - sprite.getPosition().x, 0);
+            sprite.setPosition(classe->orbe_vie.position.x + (configuration->Resolution.x - 800) * 0.5, sprite.getPosition().y);
 
         sprite.Resize(classe->orbe_vie.position.w, classe->orbe_vie.position.h);
 
@@ -409,7 +409,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         if(caracteristique.reserveVie > 0)
         {
-            sprite.move((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5 - sprite.getPosition().x, 0);
+            sprite.setPosition((classe->orbe_vie.position.x+(int)((caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5, sprite.getPosition().y);
 
             float x = (caracteristique.maxVie-caracteristique.reserveVie)/caracteristique.maxVie*classe->orbe_vie.position.w;
             sprite.setTextureRect(sf::IntRect((int)x, 0, classe->orbe_vie.position.w - (int)x, classe->orbe_vie.position.h));
@@ -421,7 +421,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
         if(caracteristique.vie > caracteristique.maxVie - caracteristique.reserveVie)
         {
-            sprite.move((classe->orbe_vie.position.x+(int)((caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5 - sprite.getPosition().x, 0);
+            sprite.setPosition((classe->orbe_vie.position.x+(int)((caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w)) + (configuration->Resolution.x - 800) * 0.5, sprite.getPosition().y);
 
             float x = (caracteristique.maxVie*2-caracteristique.vie-caracteristique.reserveVie*2)/caracteristique.maxVie*classe->orbe_vie.position.w;
             sprite.setTextureRect(sf::IntRect((int)x, 0, classe->orbe_vie.position.w - (int)x, classe->orbe_vie.position.h));

@@ -774,6 +774,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
 
         texte.setString(nom_hero);
+        texte.setPosition((int)configuration->Resolution.w/2 - texte.getGlobalBounds().width/2, texte.getPosition().y);
 
         if(time > 0.5)
             texte.setString(nom_hero + "|");
@@ -782,8 +783,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         if(time > 1)
             time = 0;
 
-        texte.setPosition((int)configuration->Resolution.w/2 - texte.getGlobalBounds().width/2 ,
-                          (int)configuration->Resolution.h - 96 );
+        texte.setPosition(texte.getPosition().x,(int)configuration->Resolution.h - 96 );
 
         texte.setColor(Color(224,224,224));
         moteurGraphique->AjouterTexte(&texte,19,0);

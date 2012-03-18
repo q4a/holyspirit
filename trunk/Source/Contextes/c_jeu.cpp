@@ -80,12 +80,12 @@ c_Jeu::c_Jeu()
 
     Version.setCharacterSize(16);
     Version.setString("v "+configuration->version);
-    Version.move(0, 20 - Version.getPosition().y);
+    Version.setPosition(Version.getPosition().x, 20);
 
     Temps.setCharacterSize(16);
-    Temps.move(0, 40 - Temps.getPosition().y);
+    Temps.setPosition(Temps.getPosition().x, 40);
 
-    TourBoucle.move(120 - TourBoucle.getPosition().x, 0);
+    TourBoucle.setPosition(120, TourBoucle.getPosition().y);
     TourBoucle.setCharacterSize(16);
 
     alpha_map=0;
@@ -1092,9 +1092,9 @@ void c_Jeu::Affichage(Jeu *jeu)
     if (configuration->console)
     {
         moteurGraphique->AjouterTexte(&fps,17);
-        Version.move(0, 20 - Version.getPosition().y);
+        Version.setPosition(Version.getPosition().x, 20);
         //moteurGraphique->AjouterTexte(&Version,17);
-        Temps.move(0, 40 - Temps.getPosition().y);
+        Temps.setPosition(Temps.getPosition().x, 40);
         moteurGraphique->AjouterTexte(&Temps,17);
         moteurGraphique->AjouterTexte(&TourBoucle,17);
 
