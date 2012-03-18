@@ -9,9 +9,11 @@ macro(set_option var default type docstring)
 	set(${var} ${${var}} CACHE ${type} ${docstring} FORCE)
 endmacro()
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
+
 include_directories(
 	${SFML_INCLUDE}
-	)
+	${GNUWIN_INCLUDE_DIR})
 
 # Sources
 
@@ -78,8 +80,8 @@ list(APPEND GAME_SOURCES
 # Add icon to executable for Windows systems
 if (WIN32)
 list(APPEND GAME_SOURCES 
-	ressource.rc
-	)
+	ressource.rc)
+find_package(GNUWIN REQUIRED)
 endif()
 
 add_Executable (Holyspirit ${GAME_SOURCES})
@@ -88,9 +90,8 @@ add_Executable (Holyspirit ${GAME_SOURCES})
 set_option(SFML_STATIC_LIBRARIES TRUE BOOL "TRUE to build SFML as static libraries, FALSE to build it as shared libraries")
 
 # Detect and add SFML
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 find_package(SFML 1.6 REQUIRED system window graphics network audio)
 if(SFML_FOUND)
 	include_directories(${SFML_INCLUDE_DIR})
-	target_link_libraries(Holyspirit ${SFML_AUDIO_LIBRARY} ${SFML_NETWORK_LIBRARY} ${SFML_GRAPHICS_LIBRARY} ${SFML_WINDOW_LIBRARY} ${SFML_SYSTEM_LIBRARY})
+	target_link_libraries(Holyspirit ${GNUWIN_LIBRARY} ${SFML_AUDIO_LIBRARY} ${SFML_NETWORK_LIBRARY} ${SFML_GRAPHICS_LIBRARY} ${SFML_WINDOW_LIBRARY} ${SFML_SYSTEM_LIBRARY})
 endif()

@@ -21,6 +21,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <stdio.h>
 #include <sstream>
 
+#include <libintl.h>
+#include <windows.h>
+
 void Configuration::Charger()
 {
     error = "Error";
@@ -445,6 +448,17 @@ std::vector<std::string> Configuration::ChargerFichierTxt(std::string chemin)
         fichier.close();
     }
 
+	bool lang;
+
+	if (language=="en")
+		lang = SetThreadLocale(0x0409);
+	else if (language=="fr")
+		lang = SetThreadLocale(0x040C);
+	else if (language=="es")
+		lang = SetThreadLocale(0x0C0A);
+	else if (language=="ru")
+		lang = SetThreadLocale(0x0419);
+
     return text;
 }
 
@@ -459,6 +473,37 @@ void Configuration::ChargerTxt()
     text_miracles     = ChargerFichierTxt(chemin_text_miracles);
     text_docs         = ChargerFichierTxt(chemin_text_docs);
     text_quests       = ChargerFichierTxt(chemin_text_quests);
+
+	std::string pathToTranslationFiles = chemin_localisation;
+
+	bindtextdomain ("benedictions",pathToTranslationFiles.c_str());
+	bind_textdomain_codeset ("benedictions","UTF-8");
+
+	bindtextdomain ("menus",pathToTranslationFiles.c_str());
+	bind_textdomain_codeset ("menus","UTF-8");
+
+	bindtextdomain ("items",pathToTranslationFiles.c_str());	
+	bind_textdomain_codeset ("items","UTF-8");
+
+	bindtextdomain ("entities",pathToTranslationFiles.c_str());
+	bind_textdomain_codeset ("entities","UTF-8");
+
+	bindtextdomain ("dialogs",pathToTranslationFiles.c_str());
+	bind_textdomain_codeset ("dialogs","UTF-8");
+
+	bindtextdomain ("maps",pathToTranslationFiles.c_str());
+	bind_textdomain_codeset ("maps","UTF-8");
+
+	bindtextdomain ("miracles",pathToTranslationFiles.c_str());
+	bind_textdomain_codeset ("miracles","UTF-8");
+
+	bindtextdomain ("docs",pathToTranslationFiles.c_str());
+	bind_textdomain_codeset ("docs","UTF-8");
+
+	bindtextdomain ("quests",pathToTranslationFiles.c_str());
+	bind_textdomain_codeset ("quests","UTF-8");
+
+	textdomain ("menus");
 }
 
 const std::string &Configuration::getText(int type, int no)
