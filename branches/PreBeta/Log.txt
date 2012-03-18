@@ -1,0 +1,48 @@
+         --------------------------------------------------------------------------------
+         Demarrage du jeu
+         --------------------------------------------------------------------------------
+         
+         Initialisation du moteur graphique
+         Initialisation du moteur sonore
+         Initialisation du moteur réseau
+         
+ERREUR : Impossible de charger : Data/Sounds/UI/Clic.wav
+ERREUR : Impossible de charger : Data/Sounds/UI/Create_item0.wav
+ERREUR : Impossible de charger : Data/Sounds/UI/Bless_item0.wav
+ERREUR : Impossible de charger : Data/Sounds/UI/Miracle0.wav
+ERREUR : Impossible de charger : Data/Sounds/UI/Tic_dialog.wav
+ERREUR : Impossible de charger : Data/Sounds/UI/Turnpage0.wav
+ERREUR : Impossible de charger : Data/Sounds/UI/Trade.wav
+ERREUR : Impossible de charger : Data/Sounds/UI/Trade_impossible.wav
+ERREUR : Impossible de charger : Data/Sounds/Miscs/QuestStart.wav
+ERREUR : Impossible de charger : Data/Sounds/Miscs/QuestStep.wav
+ERREUR : Impossible de charger : Data/Sounds/Miscs/QuestEnd.wav
+ERREUR : Impossible de charger : Data/Sounds/UI/Menu_open.wav
+ERREUR : Impossible de charger : Data/Sounds/UI/Menu_close.wav
+ERREUR : Impossible de charger : Data/Sounds/UI/NoFaith.wav
+         
+         Chargement des curseurs :
+ERREUR : Impossible de charger : Data/Graphics/Menus/Cursors/Basic_cursor.png
+         
+         Chargement des postFX :
+ERREUR : Impossible de charger : Data/Graphics/Shaders/Blur.sfx
+ERREUR : Impossible de charger : Data/Graphics/Shaders/Blur.sfx
+ERREUR : Impossible de charger : Data/Graphics/Shaders/Blur.sfx
+ERREUR : Impossible de charger : Data/Graphics/Shaders/Death.sfx
+ERREUR : Impossible de charger : Data/Graphics/Shaders/Filter.sfx
+ERREUR : Impossible de charger : Data/Graphics/Shaders/Water.sfx
+ERREUR : Impossible de charger : Data/Graphics/Shaders/Distortion.sfx
+ERREUR : Impossible de charger : Data/Graphics/Shaders/Water.png
+         
+         Chargement des polices d'écriture :
+ERREUR : Impossible de charger : Data/Miscs/Fonts/LiberationSerif-Regular.ttf
+ERREUR : Impossible de charger : Data/Miscs/Fonts/Morpheus.ttf
+ERREUR : Impossible de charger : Data/Graphics/Menus/UI/Item_background.png
+ERREUR : Impossible de charger : Data/Graphics/Menus/UI/Hand.png
+ERREUR : Impossible d'ouvrir le fichier : Data/Graphics/Miscs/AmbientShadow.ts.hs
+         
+         Chargement des menus :
+ERREUR : Impossible de charger : Data/Graphics/Menus/Alpha-arts.png
+ERREUR : Impossible de charger : Data/Graphics/Menus/Mainscreen_menu.png
+ERREUR : Impossible de charger : Data/Graphics/Menus/UI/Slot.png
+ERREUR : Impossible de charger : Data/Graphics/Menus/UI/Slot_text.png
