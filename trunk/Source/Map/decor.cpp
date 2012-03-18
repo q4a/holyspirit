@@ -130,7 +130,7 @@ bool Decor::AfficherTexteObjet(Border &border, coordonnee position,int objet, fl
         alpha /= 255;
 
         sf::Text texte;
-        sf::Sprite sprite;
+        MySprite sprite;
 
         texte.setColor(sf::Color(   GetItemColor(m_objets[objet].getRarete()).r,
                                     GetItemColor(m_objets[objet].getRarete()).g,
@@ -151,7 +151,7 @@ bool Decor::AfficherTexteObjet(Border &border, coordonnee position,int objet, fl
         sprite.setPosition(texte.getPosition().x-5 ,
                            texte.getPosition().y+1);
         sprite.setColor(sf::Color(0,0,0,(int)(224.0f*alpha)));
-        sprite.setScale((texte.getGlobalBounds().width +9)/sprite.getGlobalBounds().width , (texte.getGlobalBounds().height+5)/sprite.getGlobalBounds().height);
+        sprite.Resize(texte.getGlobalBounds().width +9 , texte.getGlobalBounds().height+5);
 
         border.Afficher(coordonnee(texte.getPosition().x-4, texte.getPosition().y+2),
                         coordonnee(texte.getGlobalBounds().width +8, texte.getGlobalBounds().height+4), 12, sf::Color(  GetItemColor(m_objets[objet].getRarete()).r,

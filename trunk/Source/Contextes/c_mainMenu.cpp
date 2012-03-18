@@ -47,7 +47,7 @@ c_MainMenu::c_MainMenu()
     moteurSons->PlayNewMusic(configuration->music_menu);
 
     m_mainscreen.setTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->mainscreen_menu, -1)));
-    m_mainscreen.setScale(configuration->Resolution.x/m_mainscreen.getLocalBounds().width, configuration->Resolution.y/m_mainscreen.getLocalBounds().height);
+    m_mainscreen.Resize(configuration->Resolution.x, configuration->Resolution.y);
 
     m_background_hero.setTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot, -1)));
     m_backtext_hero.setTexture(*moteurGraphique->getImage(moteurGraphique->AjouterImage(configuration->chemin_menus+configuration->menu_slot_text, -1)));
@@ -159,7 +159,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
         ChargerListeSaves();
     }
 
-    m_mainscreen.setScale(configuration->Resolution.x/m_mainscreen.getLocalBounds().width, configuration->Resolution.y/m_mainscreen.getLocalBounds().height);
+    m_mainscreen.Resize(configuration->Resolution.x, configuration->Resolution.y);
     moteurGraphique->AjouterCommande(&m_mainscreen, 10, 0);
 
     moteurGraphique->LightManager->SetPosition(m_light,sf::Vector2f(eventManager->getPositionSouris().x,
@@ -245,7 +245,7 @@ void c_MainMenu::ChargerListeSaves()
             chemin_image += "Image.png";
 
 
-            sf::Sprite sprite;
+            MySprite sprite;
             cDAT reader;
             reader.Read(configuration->chemin_saves+m_chemin_saves.back());
             int img  = moteurGraphique->AjouterImage(reader.GetFile(chemin_image), reader.GetFileSize(chemin_image), chemin_image, 1, 1);
@@ -362,7 +362,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
         {
             m_nom_classes.push_back(0);
             m_description_classes.push_back("");
-            m_apercu_classe.push_back(sf::Sprite ());
+            m_apercu_classe.push_back(MySprite ());
 
             ifstream fichier2;
             fichier2.open(configuration->player_class[i].c_str(),ios::in);
@@ -588,7 +588,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         m_images_saves[i].setPosition(configuration->Resolution.w/2 - 336 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
                                       configuration->Resolution.h/2 - 256 + ((int)((i - defilement_saves)/4)) * 224);
         m_images_saves[i].setTextureRect(sf::IntRect(48,0,160,256));
-        m_images_saves[i].setScale(160/m_images_saves[i].getLocalBounds().width,256/m_images_saves[i].getLocalBounds().height);
+        m_images_saves[i].Resize(160,256);
         moteurGraphique->AjouterCommande(&m_images_saves[i],18,0);
 
         m_backtext_hero.setPosition(configuration->Resolution.w/2 - 331 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3),
@@ -878,7 +878,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
         m_apercu_classe[i].setPosition(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.getGlobalBounds().width + 4) * 0.5
                                         + i * (m_background_hero.getGlobalBounds().width + 4),
                                       configuration->Resolution.h/2 - 208 - 16);
-        m_apercu_classe[i].setScale(160/m_apercu_classe[i].getLocalBounds().width,256/m_apercu_classe[i].getLocalBounds().height);
+        m_apercu_classe[i].Resize(160,256);
         m_apercu_classe[i].setTextureRect(sf::IntRect(48,0,160,256));
         moteurGraphique->AjouterCommande(&m_apercu_classe[i],18,0);
 

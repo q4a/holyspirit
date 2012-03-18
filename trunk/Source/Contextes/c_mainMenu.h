@@ -59,13 +59,13 @@ private:
     std::vector <int> m_niveau_saves;
     std::vector <bool> m_incompatible_saves;
     std::vector <std::string> m_chemin_saves;
-    std::vector <sf::Sprite> m_apercu_classe;
-    std::vector <sf::Sprite> m_images_saves;
+    std::vector <MySprite> m_apercu_classe;
+    std::vector <MySprite> m_images_saves;
     std::string nom_hero, entered_ip;
 
     sf::Text texte;
 
-    sf::Sprite m_mainscreen;
+    MySprite m_mainscreen;
     sf::Sprite m_hs_logo;
     sf::Sprite m_background_hero;
     sf::Sprite m_backtext_hero;

@@ -127,7 +127,7 @@ void Map::CalculerOmbresEtLumieres()
 
 void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_sac_inventaire,Caracteristique caract, std::string cheminClasse, Border &border)
 {
-    Sprite Sprite;
+    MySprite Sprite;
     Text texte;
 
     m_objetPointe=-1;
@@ -154,7 +154,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
                 {
                     Sprite.setTexture(*moteurGraphique->getImage(0));
                     Sprite.setColor(sf::Color(255,255,255,128));
-                    Sprite.setScale(position_sac_inventaire.w/Sprite.getGlobalBounds().width,20/Sprite.getGlobalBounds().height);
+                    Sprite.Resize(position_sac_inventaire.w,20);
                     Sprite.setPosition(AutoScreenAdjust(position_sac_inventaire.x,
                                                         position_sac_inventaire.y+(z-m_defilerObjets)*20, decalage));
 
@@ -247,9 +247,9 @@ void Map::Afficher(std::list<Hero*> &players,bool alt,float alpha)
 
     if(m_img_sky >= 0)
     {
-        sf::Sprite sky;
+        MySprite sky;
         sky.setTexture(*moteurGraphique->getImage(m_img_sky));
-        sky.setScale(configuration->Resolution.x/sky.getGlobalBounds().width,configuration->Resolution.y/sky.getGlobalBounds().height);
+        sky.Resize(configuration->Resolution.x,configuration->Resolution.y);
         moteurGraphique->AjouterCommande(&sky,0,0);
     }
 

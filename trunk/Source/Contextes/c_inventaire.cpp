@@ -247,7 +247,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         else
             bouton = &jeu->hero.m_classe.boutons_menus_weapons[i];
 
-        sf::Sprite sprite;
+        MySprite sprite;
 
         sprite.setTexture(*moteurGraphique->getImage(bouton->image.image));
         sprite.setTextureRect(sf::IntRect(bouton->image.position.x,
@@ -258,7 +258,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         sprite.setPosition(AutoScreenAdjust(bouton->position.x,
                                             bouton->position.y-m_decalage));
 
-        sprite.setScale(bouton->position.w/sprite.getLocalBounds().width, bouton->position.h/sprite.getLocalBounds().height);
+        sprite.Resize(bouton->position.w, bouton->position.h);
 
         moteurGraphique->AjouterCommande(&sprite, 17,0);
 

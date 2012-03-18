@@ -614,7 +614,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         else
             bouton = &jeu->hero.m_classe.boutons_menus_hud[i];
 
-        sf::Sprite sprite;
+        MySprite sprite;
 
         sprite.setTexture(*moteurGraphique->getImage(bouton->image.image));
         sprite.setTextureRect(sf::IntRect(bouton->image.position.x,
@@ -625,7 +625,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         sprite.setPosition(AutoScreenAdjust(bouton->position.x,
                                             bouton->position.y));
 
-        sprite.setScale(bouton->position.w/sprite.getLocalBounds().width, bouton->position.h/sprite.getLocalBounds().height);
+        sprite.Resize(bouton->position.w, bouton->position.h);
 
         if(bouton->lien == B_MAP
         && configuration->Minimap)
@@ -770,7 +770,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         else
             bouton = &jeu->hero.m_classe.boutons_menus_weapons_t[i];
 
-        sf::Sprite sprite;
+        MySprite sprite;
 
         sprite.setTexture(*moteurGraphique->getImage(bouton->image.image));
         sprite.setTextureRect(sf::IntRect(bouton->image.position.x,
@@ -781,7 +781,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         sprite.setPosition(AutoScreenAdjust(bouton->position.x,
                                             bouton->position.y));
 
-        sprite.setScale(bouton->position.w/sprite.getLocalBounds().width, bouton->position.h/sprite.getLocalBounds().height);
+        sprite.Resize(bouton->position.w, bouton->position.h);
 
         moteurGraphique->AjouterCommande(&sprite, 17,0);
 
