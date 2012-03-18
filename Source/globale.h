@@ -23,6 +23,24 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Network/network.h"
 #include "configuration.h"
 
+#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
+
+#pragma once
+
+class MySprite : public sf::Sprite { 
+public:
+
+/*MySprite();
+
+MySprite(const Texture& texture);
+
+MySprite(const Texture& texture, const IntRect& rectangle);*/
+
+void Resize(float, float);
+
+};
+
 extern Configuration *configuration;
 extern Console *console;
 extern MoteurGraphique *moteurGraphique;

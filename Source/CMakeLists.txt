@@ -67,7 +67,7 @@ list(APPEND GAME_SOURCES
 	Network/receive_host.cpp
 	Network/send.cpp
 	
-	
+	sfml.cpp
 	configuration.cpp
 	datFile.cpp
 	jeu.cpp
