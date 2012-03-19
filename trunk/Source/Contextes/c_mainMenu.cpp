@@ -94,7 +94,7 @@ void c_MainMenu::Utiliser(Jeu *jeu)
 {
     jeu->m_display=true;
 
-    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()/1000;
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds();
     jeu->Clock.restart();
 
     if(m_save)

@@ -6,7 +6,7 @@ main
 	then
 		setActif * 1
 
-		if distance * 1
+		if distance * 0
 		then else
 
 			if interact

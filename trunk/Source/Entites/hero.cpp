@@ -3097,7 +3097,10 @@ void Hero::AfficherIconeAttaque(Image_interface &img)
 
     ///FLIP OU PAS FLIP NEW API ???
     if(&img == &m_classe.p_miracleD)
+    {
         sprite.scale(-1,1);
+        sprite.setOrigin(sprite.getLocalBounds().width - sprite.getOrigin().x, sprite.getOrigin().y);
+    }
         //sprite.FlipX(true);
 
     moteurGraphique->AjouterCommande(&sprite,18,0);

@@ -56,7 +56,7 @@ c_Miracles::~c_Miracles()
 
 void c_Miracles::Utiliser(Jeu *jeu)
 {
-    temps_ecoule=jeu->Clock.getElapsedTime().asMilliseconds();
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds();
     jeu->m_display=true;
     jeu->Clock.restart();
 
