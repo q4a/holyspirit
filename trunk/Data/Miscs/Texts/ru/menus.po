@@ -1,147 +1,156 @@
 # Russian translation for HolySpirit.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Igor Paliychuk <mansonigor@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-18 21:08+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-03-19 18:44+0200\n"
+"PO-Revision-Date: 2012-03-19 18:46+0300\n"
+"Last-Translator: Igor Paliychuk <mansonigor@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Virtaal 0.7.0\n"
 
-#: Contextes/c_mainMenu.cpp:83
+#: Contextes/c_mainMenu.cpp:84
 msgid ""
 "An old law required has always been the good and evil meet has at least one "
-"rule in their eternal conflict. They could not directly intervene in the "
-"affairs of living entities, acting only by the subtle suggestion and "
-"battling within each soul...\n"
-" Egoism, violence, pity, love and clashed in the form of thoughts, of "
-"dreams, with varied fates.\n"
-" But one day evil, which no longer supported the balance was satisfied with "
-"the Good, decided to violate the rule RESPECTED far and achieved this in "
-"incarnating directly into most living beings vulnerable to his impulses, "
-"and, curiously, in some objects.\n"
-" henceforth evil reign could only be on each of which he took possession of "
-"some ordinary objects become demonic.\n"
-" Having anticipated this treachery, the Well was not surprised. Renouncing "
-"to violate the law as Evil had done and refusing to sacrifice the good and "
-"generous souls, he used a few storms and damned spirits who wanted to redeem "
-"himself deeply with him...\n"
-" considering himself already lost, alone unconsciousness would have to "
-"address the foul legion that has swept across the world."
+"rule in their eternal conflict.\n"
+"They could not directly intervene in the affairs of living entities, acting "
+"only by the subtle suggestion\n"
+"and battling within each soul...\n"
+"Egoism, violence, pity, love and clashed in the form of thoughts, of dreams, "
+"with varied fates.\n"
+"\n"
+"But one day evil, which no longer supported the balance was satisfied with "
+"the Good, decided to violate the\n"
+"rule RESPECTED far and achieved this in incarnating directly into most "
+"living beings vulnerable to his\n"
+"impulses, and, curiously, in some objects.\n"
+"Henceforth evil reign could only be on each of which he took possession of "
+"some ordinary objects become\n"
+"demonic.\n"
+"\n"
+"Having anticipated this treachery, the Well was not surprised. Renouncing to "
+"violate the law as Evil had done\n"
+" and refusing to sacrifice the good and generous souls, he used a few storms "
+"and damned spirits who wanted to\n"
+"redeem himself deeply with him...\n"
+"considering himself already lost, alone unconsciousness would have to "
+"address the foul legion that has swept\n"
+"across the world."
 msgstr ""
-"Старый закон требует всегда была добра и зла встречаются по крайней мере один "
-"править в их вечном конфликте. Они не могут непосредственно вмешиваться в "
-"делах живых существ, действуя только тонкие внушения и "
-"борьба внутри каждой души...\n"
-"Эгоизм, насилие, жалость, любовь и столкновение в виде мыслей, от "
-"мечты, с различными судьбами.\n"
-"Но однажды зло, которое больше не поддерживается баланс остался доволен "
-"Хорошо, решил нарушить правила УВАЖАЕМЫЕ далеко, и добились этого в "
-"воплощения непосредственно в большинстве живых существ уязвимых к своим импульсам "
-"и, как ни странно, в некоторых объектах.\n"
-"Отныне зло правления может быть только на каждом из которых он завладел "
-"некоторые обычные предметы становятся демоническими.\n"
-"После этого ожидается предательство, ну не был удивлен. Отказ "
-"нарушать закон, как зло сделал и отказываются жертвовать хорошими и "
-"щедрые души, он использовал несколько штормов и проклятые духи, которые хотели выкупить "
-"Сам глубоко с ним...\n"
-"Считая себя уже потеряли, только бессознательное придется "
-"решения фол легион, который прокатился по всему миру."
+"Старый закон требует всегда была добра и зла встречаются по крайней мере один править в их\n"
+" вечном конфликте.\n"
+"Они не могут непосредственно вмешиваться в делах живых существ, действуя только тонкие\n"
+" внушения\n"
+"и борьба внутри каждой души...\n"
+"Эгоизм, насилие, жалость, любовь и столкновение в виде мыслей, от мечты, с различными судьбами.\n"
+"\n"
+"Но однажды зло, которое больше не поддерживается баланс остался доволен Хорошо, решил нарушить\n"
+"правила УВАЖАЕМЫЕ далеко, и добились этого в воплощения непосредственно в большинстве живых\n"
+"существ уязвимых к своим\n"
+"импульсам и, как ни странно, в некоторых объектах.\n"
+"Отныне зло правления может быть только на каждом из которых он завладел некоторые обычные\n"
+"предметы становятся демоническими.\n"
+"\n"
+"После этого ожидается предательство, ну не был удивлен. Отказ нарушать закон, как зло сделал\n"
+"и отказываются жертвовать хорошими и щедрые души, он использовал несколько штормов и проклятые\n"
+"духи, которые хотели выкупить Сам глубоко с ним...\n"
+"Считая себя уже потеряли, только бессознательное придется решения фол легион, который прокатился\n"
+"по всему миру."
 
-
-#: Contextes/c_mainMenu.cpp:273 Contextes/c_mainMenu.cpp:281
-#: Contextes/c_mainMenu.cpp:288 Contextes/c_mainMenu.cpp:291
-#: Contextes/c_mainMenu.cpp:294
+#: Contextes/c_mainMenu.cpp:274 Contextes/c_mainMenu.cpp:282
+#: Contextes/c_mainMenu.cpp:289 Contextes/c_mainMenu.cpp:292
+#: Contextes/c_mainMenu.cpp:295
 msgid "Continue"
 msgstr "Продолжить"
 
-#: Contextes/c_mainMenu.cpp:308 Contextes/c_mainMenu.cpp:340
-#: Contextes/c_mainMenu.cpp:347 Contextes/c_mainMenu.cpp:350
-#: Contextes/c_mainMenu.cpp:353
+#: Contextes/c_mainMenu.cpp:309 Contextes/c_mainMenu.cpp:341
+#: Contextes/c_mainMenu.cpp:348 Contextes/c_mainMenu.cpp:351
+#: Contextes/c_mainMenu.cpp:354
 msgid "New game"
 msgstr "Новая игра"
 
-#: Contextes/c_mainMenu.cpp:316 Contextes/c_mainMenu.cpp:323
-#: Contextes/c_mainMenu.cpp:326 Contextes/c_mainMenu.cpp:329
+#: Contextes/c_mainMenu.cpp:317 Contextes/c_mainMenu.cpp:324
+#: Contextes/c_mainMenu.cpp:327 Contextes/c_mainMenu.cpp:330
 msgid "Multiplayer"
 msgstr "Мультиплеер"
 
-#: Contextes/c_mainMenu.cpp:423 Contextes/c_mainMenu.cpp:430
-#: Contextes/c_mainMenu.cpp:433 Contextes/c_mainMenu.cpp:436
+#: Contextes/c_mainMenu.cpp:424 Contextes/c_mainMenu.cpp:431
+#: Contextes/c_mainMenu.cpp:434 Contextes/c_mainMenu.cpp:437
 msgid "Options"
 msgstr "Опции"
 
-#: Contextes/c_mainMenu.cpp:447 Contextes/c_mainMenu.cpp:454
-#: Contextes/c_mainMenu.cpp:457 Contextes/c_mainMenu.cpp:460
+#: Contextes/c_mainMenu.cpp:448 Contextes/c_mainMenu.cpp:455
+#: Contextes/c_mainMenu.cpp:458 Contextes/c_mainMenu.cpp:461
 msgid "Credits"
 msgstr "Авторы"
 
-#: Contextes/c_mainMenu.cpp:471 Contextes/c_mainMenu.cpp:478
-#: Contextes/c_mainMenu.cpp:481 Contextes/c_mainMenu.cpp:484
+#: Contextes/c_mainMenu.cpp:472 Contextes/c_mainMenu.cpp:479
+#: Contextes/c_mainMenu.cpp:482 Contextes/c_mainMenu.cpp:485
 msgid "Quit"
 msgstr "Выход"
 
-#: Contextes/c_mainMenu.cpp:506 Contextes/c_mainMenu.cpp:513
-#: Contextes/c_mainMenu.cpp:516 Contextes/c_mainMenu.cpp:519
-#: Contextes/c_mainMenu.cpp:1002 Contextes/c_mainMenu.cpp:1009
-#: Contextes/c_mainMenu.cpp:1012 Contextes/c_mainMenu.cpp:1015
-#: Contextes/c_mainMenu.cpp:1066 Contextes/c_mainMenu.cpp:1073
-#: Contextes/c_mainMenu.cpp:1076 Contextes/c_mainMenu.cpp:1079
-#: Contextes/c_mainMenu.cpp:1216 Contextes/c_mainMenu.cpp:1223
-#: Contextes/c_mainMenu.cpp:1226 Contextes/c_mainMenu.cpp:1229
+#: Contextes/c_mainMenu.cpp:507 Contextes/c_mainMenu.cpp:514
+#: Contextes/c_mainMenu.cpp:517 Contextes/c_mainMenu.cpp:520
+#: Contextes/c_mainMenu.cpp:1004 Contextes/c_mainMenu.cpp:1011
+#: Contextes/c_mainMenu.cpp:1014 Contextes/c_mainMenu.cpp:1017
+#: Contextes/c_mainMenu.cpp:1068 Contextes/c_mainMenu.cpp:1075
+#: Contextes/c_mainMenu.cpp:1078 Contextes/c_mainMenu.cpp:1081
+#: Contextes/c_mainMenu.cpp:1218 Contextes/c_mainMenu.cpp:1225
+#: Contextes/c_mainMenu.cpp:1228 Contextes/c_mainMenu.cpp:1231
 msgid "Return"
 msgstr "Назад"
 
-#: Contextes/c_mainMenu.cpp:540 Contextes/c_mainMenu.cpp:547
-#: Contextes/c_mainMenu.cpp:550 Contextes/c_mainMenu.cpp:553
-#: Contextes/c_mainMenu.cpp:794
+#: Contextes/c_mainMenu.cpp:541 Contextes/c_mainMenu.cpp:548
+#: Contextes/c_mainMenu.cpp:551 Contextes/c_mainMenu.cpp:554
+#: Contextes/c_mainMenu.cpp:796
 msgid "Delete character"
 msgstr "Удалить персонаж"
 
-#: Contextes/c_mainMenu.cpp:607
+#: Contextes/c_mainMenu.cpp:609
 msgid "<Incompatible>"
 msgstr "<Несовместимый>"
 
-#: Contextes/c_mainMenu.cpp:609
+#: Contextes/c_mainMenu.cpp:611
 msgid "Level"
 msgstr "Уровень"
 
-#: Contextes/c_mainMenu.cpp:758
+#: Contextes/c_mainMenu.cpp:760
 msgid "Please enter the name of the hero to delete :"
 msgstr "Пожалуйста, введите имя героя для удаления :"
 
-#: Contextes/c_mainMenu.cpp:850
+#: Contextes/c_mainMenu.cpp:852
 msgid "Select your character"
 msgstr "Выберите персонажа"
 
-#: Contextes/c_mainMenu.cpp:923
+#: Contextes/c_mainMenu.cpp:925
 msgid "Enter your name"
 msgstr "Введите свое имя"
 
-#: Contextes/c_mainMenu.cpp:939 Contextes/c_mainMenu.cpp:946
-#: Contextes/c_mainMenu.cpp:949 Contextes/c_mainMenu.cpp:952
+#: Contextes/c_mainMenu.cpp:941 Contextes/c_mainMenu.cpp:948
+#: Contextes/c_mainMenu.cpp:951 Contextes/c_mainMenu.cpp:954
 msgid "Start"
 msgstr "Играть"
 
-#: Contextes/c_mainMenu.cpp:1106 Contextes/c_mainMenu.cpp:1113
-#: Contextes/c_mainMenu.cpp:1116 Contextes/c_mainMenu.cpp:1119
+#: Contextes/c_mainMenu.cpp:1108 Contextes/c_mainMenu.cpp:1115
+#: Contextes/c_mainMenu.cpp:1118 Contextes/c_mainMenu.cpp:1121
 msgid "Next"
 msgstr "Дальше"
 
-#: Contextes/c_mainMenu.cpp:1161 Contextes/c_mainMenu.cpp:1168
-#: Contextes/c_mainMenu.cpp:1171 Contextes/c_mainMenu.cpp:1174
+#: Contextes/c_mainMenu.cpp:1163 Contextes/c_mainMenu.cpp:1170
+#: Contextes/c_mainMenu.cpp:1173 Contextes/c_mainMenu.cpp:1176
 msgid "Join game"
 msgstr "Присоединится к игре"
 
-#: Contextes/c_mainMenu.cpp:1191 Contextes/c_mainMenu.cpp:1198
-#: Contextes/c_mainMenu.cpp:1201 Contextes/c_mainMenu.cpp:1204
+#: Contextes/c_mainMenu.cpp:1193 Contextes/c_mainMenu.cpp:1200
+#: Contextes/c_mainMenu.cpp:1203 Contextes/c_mainMenu.cpp:1206
 msgid "Host game"
 msgstr "Создать игру"
