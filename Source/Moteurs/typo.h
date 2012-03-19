@@ -35,7 +35,8 @@ class Typo
     Typo();
 
     void Load(const std::string &path);
-    void Draw(const std::string &text, sf::Vector2f pos, int size, int layer, bool center = false, sf::Color color = sf::Color (255,255,255));
+    //void Draw(const std::string &text, sf::Vector2f pos, int size, int layer, bool center = false, sf::Color color = sf::Color (255,255,255));
+    void Draw(sf::String text, sf::Vector2f pos, int size, int layer, bool center = false, sf::Color color = sf::Color (255,255,255));
     float getSize(const std::string &text, int size);
     Character &getCharacter(char , bool &);
 

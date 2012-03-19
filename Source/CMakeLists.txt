@@ -1,6 +1,8 @@
 Project (Holyspirit)
 cmake_minimum_required (VERSION 2.6)
 
+add_definitions(-DUNICODE -D_UNICODE)
+
 # define a macro that helps defining an option
 macro(set_option var default type docstring)
 	if(NOT DEFINED ${var})
