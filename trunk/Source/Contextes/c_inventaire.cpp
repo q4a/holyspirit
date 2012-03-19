@@ -139,7 +139,7 @@ void c_Inventaire::setTrader(std::vector<Objet> *trade)
 
 void c_Inventaire::Utiliser(Jeu *jeu)
 {
-    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds();
     jeu->m_display=true;
     jeu->Clock.restart();
 
@@ -258,7 +258,7 @@ void c_Inventaire::Utiliser(Jeu *jeu)
         sprite.setPosition(AutoScreenAdjust(bouton->position.x,
                                             bouton->position.y-m_decalage));
 
-        sprite.Resize(bouton->position.w, bouton->position.h);
+        sprite.resize(bouton->position.w, bouton->position.h);
 
         moteurGraphique->AjouterCommande(&sprite, 17,0);
 

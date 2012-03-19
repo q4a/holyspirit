@@ -2402,7 +2402,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
             if(temp[i].getString() == "_")
             {
                 MySprite bar;
-                bar.Resize(tailleCadran.x + 22, 1);
+                bar.resize(tailleCadran.x + 22, 1);
                 bar.setColor(sf::Color(72 * GetItemColor(m_rarete).r / 255,
                                        67 * GetItemColor(m_rarete).g / 255,
                                        42 * GetItemColor(m_rarete).b / 255));
@@ -2437,7 +2437,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
                 bar.setScale((tailleCadran.x + 22)/(float)bar.getLocalBounds().width  * ((bar.getScale().x > 0) ? 1.f : -1.f),
                                                  1/(float)bar.getLocalBounds().height * ((bar.getScale().y > 0) ? 1.f : -1.f));
-                //bar.Resize(tailleCadran.x + 22, 1);
+                //bar.resize(tailleCadran.x + 22, 1);
 
                 bar.setColor(sf::Color(72 * GetItemColor(m_rarete).r / 255,
                                        67 * GetItemColor(m_rarete).g / 255,

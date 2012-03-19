@@ -82,11 +82,11 @@ void Jeu::Demarrer()
         net->GlobalMutex.lock();
 
         if(map != NULL && map->m_loaded)
-            eventManager->GererLesEvenements(&m_run,Clock.getElapsedTime().asSeconds()*0.001,map->getDimensions());
+            eventManager->GererLesEvenements(&m_run,Clock.getElapsedTime().asSeconds(),map->getDimensions());
         else
         {
             coordonnee buf(1,1,1,1);
-            eventManager->GererLesEvenements(&m_run,Clock.getElapsedTime().asSeconds()*0.001,buf);
+            eventManager->GererLesEvenements(&m_run,Clock.getElapsedTime().asSeconds(),buf);
         }
 
         if (!configuration->entering_text && eventManager->getEvenement(Keyboard::P,EventKey))
@@ -105,7 +105,7 @@ void Jeu::Demarrer()
 
         net->GlobalMutex.unlock();
 
-        moteurSons->Gerer(MusicClock.getElapsedTime().asSeconds()*0.001);
+        moteurSons->Gerer(MusicClock.getElapsedTime().asSeconds());
 
         //if(MusicClock.GetElapsedTime() < 0.01)
           //  Sleep(0.01 - MusicClock.GetElapsedTime());

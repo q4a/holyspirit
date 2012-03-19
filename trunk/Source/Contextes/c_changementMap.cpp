@@ -458,7 +458,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
     }
 
     temps_ecoule=0;
-    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds();
     tempsEcouleDepuisDernierAffichage+=temps_ecoule;
     jeu->Clock.restart();
 

@@ -106,7 +106,7 @@ void c_Jeu::Utiliser(Jeu *jeu)
     temps[3] = temps[2];
     temps[2] = temps[1];
     temps[1] = temps[0];
-    temps[0] = jeu->Clock.getElapsedTime().asSeconds()*0.001;
+    temps[0] = jeu->Clock.getElapsedTime().asSeconds();
 
     configuration->elapsed_time = temps[0];
 
@@ -625,7 +625,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         sprite.setPosition(AutoScreenAdjust(bouton->position.x,
                                             bouton->position.y));
 
-        sprite.Resize(bouton->position.w, bouton->position.h);
+        sprite.resize(bouton->position.w, bouton->position.h);
 
         if(bouton->lien == B_MAP
         && configuration->Minimap)
@@ -781,7 +781,7 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         sprite.setPosition(AutoScreenAdjust(bouton->position.x,
                                             bouton->position.y));
 
-        sprite.Resize(bouton->position.w, bouton->position.h);
+        sprite.resize(bouton->position.w, bouton->position.h);
 
         moteurGraphique->AjouterCommande(&sprite, 17,0);
 
