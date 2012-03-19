@@ -86,6 +86,7 @@ void MoteurGraphique::CreateNewWindow()
      //   m_ecran.EnableVerticalSync(true);
 
     //FIXME m_ecran.showMouseCursor(false);
+    m_ecran.setMouseCursorVisible(false);
 
     if (configuration->postFX)
     {
@@ -814,6 +815,10 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite,  const sf
                 sf::Sprite sprite = *entite;
                 sprite.move(entite->m_decalage.x,entite->m_decalage.y);
 
+                if(sprite.getScale().x < 0)
+                    sprite.setOrigin(sprite.getLocalBounds().width - sprite.getOrigin().x,
+                                     sprite.getOrigin().y);
+
                 if((sprite.getPosition().x + sprite.getGlobalBounds().width - sprite.getOrigin().x     >= GetViewRect(m_camera).left
                  && sprite.getPosition().x - sprite.getOrigin().x                          <  GetViewRect(m_camera).left + GetViewRect(m_camera).width
                  && sprite.getPosition().y + sprite.getGlobalBounds().height - sprite.getOrigin().y     >= GetViewRect(m_camera).top
@@ -841,8 +846,10 @@ void MoteurGraphique::AjouterEntiteGraphique(Entite_graphique *entite,  const sf
                 sprite.move(entite->m_decalage.x,entite->m_decalage.y);
 
                 sprite.scale(1,-1);
+
                 //sprite.FlipX(true);
-                sprite.setOrigin(sprite.getOrigin().x, sprite.getGlobalBounds().height - sprite.getOrigin().y);
+                sprite.setOrigin(sprite.getLocalBounds().width - sprite.getOrigin().x,
+                                 sprite.getGlobalBounds().height - sprite.getOrigin().y);
 
                 if(sprite.getPosition().x + sprite.getGlobalBounds().width - sprite.getOrigin().x     >= GetViewRect(m_camera).left
                 && sprite.getPosition().x - sprite.getOrigin().x                          <  GetViewRect(m_camera).left + GetViewRect(m_camera).width
