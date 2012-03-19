@@ -52,7 +52,7 @@ c_Craft::~c_Craft()
 
 void c_Craft::Utiliser(Jeu *jeu)
 {
-    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds();
     jeu->m_display=true;
     jeu->Clock.restart();
 

@@ -348,7 +348,7 @@ void MoteurGraphique::Afficher()
 
         MySprite sprite3;
         sprite3.setTexture(*getImage(0));
-        sprite3.Resize(configuration->Resolution.w+64,configuration->Resolution.h+64);
+        sprite3.resize(configuration->Resolution.w+64,configuration->Resolution.h+64);
         sprite3.setColor(sf::Color(sf::Color((int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5),(int)(128+128-m_soleil.intensite*0.5))));
         m_light_screen2.draw(sprite3, sf::BlendAdd);
 
@@ -552,7 +552,7 @@ void MoteurGraphique::Afficher()
         {
             MySprite sprite2;
             sprite2.setTexture(*getImage(0));
-            sprite2.Resize(configuration->Resolution.x,configuration->Resolution.y);
+            sprite2.resize(configuration->Resolution.x,configuration->Resolution.y);
             sprite2.setColor(sf::Color((int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),(int)(configuration->effetNoir*255),255));
             bufferImage.draw(sprite2,sf::BlendMultiply);
         }

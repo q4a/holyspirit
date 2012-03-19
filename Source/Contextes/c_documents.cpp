@@ -51,7 +51,7 @@ c_Documents::~c_Documents()
 
 void c_Documents::Utiliser(Jeu *jeu)
 {
-    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds();
     jeu->m_display=true;
     jeu->Clock.restart();
 

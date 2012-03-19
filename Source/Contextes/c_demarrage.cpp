@@ -44,7 +44,7 @@ c_Demarrage::~c_Demarrage()
 
 void c_Demarrage::Utiliser(Jeu *jeu)
 {
-    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds();
     jeu->Clock.restart();
 
     configuration->RafraichirOmbre = 0;

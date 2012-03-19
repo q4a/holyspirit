@@ -1093,7 +1093,7 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
             bar.setScale((tailleCadran.x + 22)/(float)bar.getLocalBounds().width  * ((bar.getScale().x > 0) ? 1.f : -1.f),
                                              1/(float)bar.getLocalBounds().height * ((bar.getScale().y > 0) ? 1.f : -1.f));
 
-            //bar.Resize(tailleCadran.x + 22, 1);
+            //bar.resize(tailleCadran.x + 22, 1);
 
             bar.setColor(sf::Color(72,67,42));
 

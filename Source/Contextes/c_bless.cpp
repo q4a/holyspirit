@@ -52,7 +52,7 @@ c_Bless::~c_Bless()
 
 void c_Bless::Utiliser(Jeu *jeu)
 {
-    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds();
     jeu->m_display=true;
     jeu->Clock.restart();
 

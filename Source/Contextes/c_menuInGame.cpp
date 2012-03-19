@@ -50,7 +50,7 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
     configuration->effetNoir = 1 - m_alpha/255*0.75;
 
     jeu->m_display=true;
-    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds()*0.001;
+    temps_ecoule=jeu->Clock.getElapsedTime().asSeconds();
     jeu->Clock.restart();
 
     if (configuration->Lumiere)
