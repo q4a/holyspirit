@@ -182,7 +182,7 @@ bool Modele_Monstre::Charger(const std::string &chemin)
     m_chemin = chemin;
 
     console->Ajouter("",0);
-    console->Ajouter("Chargement du monstre : "+chemin,0);
+    console->Ajouter("Loading the monster : "+chemin,0);
 
     m_caracteristique.vitesse=0;
     m_caracteristique.vie=0;
@@ -218,7 +218,7 @@ bool Modele_Monstre::Charger(const std::string &chemin)
 
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Monster \" "+chemin+" \" is invalid",1);
                 caractere='$';
                 m_caracteristique.maxVie=0;
             }
@@ -257,7 +257,7 @@ bool Modele_Monstre::Charger(const std::string &chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Monster \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -357,7 +357,7 @@ bool Modele_Monstre::Charger(const std::string &chemin)
                     }
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Monster \" "+chemin+" \" is invalid",1);
                         caractere='$';
                         m_caracteristique.maxVie=0;
                     }
@@ -370,7 +370,7 @@ bool Modele_Monstre::Charger(const std::string &chemin)
                 fichier.get(caractere);
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                    console->Ajouter("Error : Monster \" "+chemin+" \" is invalid",1);
                     caractere='$';
                     m_caracteristique.maxVie=0;
                 }
@@ -378,7 +378,7 @@ bool Modele_Monstre::Charger(const std::string &chemin)
             fichier.get(caractere);
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Monster \" "+chemin+" \" is invalid",1);
                 caractere='$';
                 m_caracteristique.maxVie=0;
             }
@@ -399,7 +399,7 @@ bool Modele_Monstre::Charger(const std::string &chemin)
 
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Monster \" "+chemin+" \" is invalid",1);
                 caractere='$';
                 m_caracteristique.maxVie=0;
             }
@@ -446,7 +446,7 @@ bool Modele_Monstre::Charger(const std::string &chemin)
 
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Monster \" "+chemin+" \" is invalid",1);
                         caractere='$';
                     }
                 }
@@ -455,7 +455,7 @@ bool Modele_Monstre::Charger(const std::string &chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Monster \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -475,7 +475,7 @@ bool Modele_Monstre::Charger(const std::string &chemin)
 
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Monster \" "+chemin+" \" is invalid",1);
                 caractere='$';
                 m_caracteristique.maxVie=0;
             }
@@ -495,7 +495,7 @@ bool Modele_Monstre::Charger(const std::string &chemin)
 
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Monstre \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Monster \" "+chemin+" \" is invalid",1);
                 caractere='$';
                 m_caracteristique.maxVie=0;
             }

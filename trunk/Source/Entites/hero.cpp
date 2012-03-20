@@ -114,7 +114,7 @@ Hero::Hero()
 Hero::~Hero()
 {
     if (configuration->debug)
-        console->Ajouter("Destruction du héro ...");
+        console->Ajouter("Destruction of the hero ...");
 }
 
 void Hero::Reset()
@@ -232,7 +232,7 @@ void Hero::Reset()
 void Hero::Sauvegarder()
 {
     console->Ajouter("");
-    console->Ajouter("Sauvegarde du héro...");
+    console->Ajouter("Saving the hero...");
 
     ofstream fichier((configuration->chemin_temps+"Save.sav.hs").c_str(), ios::out | ios::trunc | ios::binary);
 
@@ -241,7 +241,7 @@ void Hero::Sauvegarder()
     if (fichier)
     {
         if (configuration->debug)
-            console->Ajouter("Ouverture du fichier.");
+            console->Ajouter("Opening the file.");
 
         fichier<<VERSION_SAVE<<endl;
 
@@ -285,13 +285,13 @@ void Hero::Sauvegarder()
         fichier<<m_miracle_gauche[1]<<endl;
 
         if (configuration->debug)
-            console->Ajouter("/Ecriture des caracterstiques.");
+            console->Ajouter("/Writing characteristics.");
 
         for (int i=0;i<(int)m_inventaire.size();++i)
             m_inventaire[i].SauvegarderTexte(&fichier);
 
         if (configuration->debug)
-            console->Ajouter("/Ecriture des objets.");
+            console->Ajouter("/Writing objects.");
 
         fichier<<'$'<<endl;
 
@@ -299,7 +299,7 @@ void Hero::Sauvegarder()
             m_coffre[i].SauvegarderTexte(&fichier);
 
         if (configuration->debug)
-            console->Ajouter("/Ecriture des objets du coffre.");
+            console->Ajouter("/Writing items to stash.");
 
         fichier<<'$'<<endl;
 
@@ -308,7 +308,7 @@ void Hero::Sauvegarder()
             fichier<<"* l"<<m_lvl_miracles[i]<<" $ ";
 
         if (configuration->debug)
-            console->Ajouter("/Ecriture des miracles.");
+            console->Ajouter("/Writing miracles.");
 
         fichier<<'$'<<endl;
 
@@ -316,7 +316,7 @@ void Hero::Sauvegarder()
             fichier<<" d"<<m_docs[i].m_chemin<<" "<<endl;
 
         if (configuration->debug)
-            console->Ajouter("/Ecriture des docs.");
+            console->Ajouter("/Writing docs.");
 
         fichier<<'$'<<endl;
 
@@ -324,7 +324,7 @@ void Hero::Sauvegarder()
             m_quetes[i].SauvegarderTexte(&fichier);
 
         if (configuration->debug)
-            console->Ajouter("/Ecriture des quetes.");
+            console->Ajouter("/Writing quests.");
 
         fichier<<'$'<<endl;
 
@@ -342,17 +342,17 @@ void Hero::Sauvegarder()
 
 
         if (configuration->debug)
-            console->Ajouter("/Ecriture des potales.");
+            console->Ajouter("/Writing shrines.");
 
         fichier<<'$'<<endl;
 
         fichier.close();
 
-        console->Ajouter("Sauvegarde du héro terminée !");
+        console->Ajouter("Saving the hero ended !");
 
     }
     else
-        console->Ajouter("Impossible de sauvegarder le héro !",1);
+        console->Ajouter("Unable to save the hero !",1);
 
     cDAT fichierSave;
 
@@ -368,7 +368,7 @@ void Hero::SauvegarderApercu()
     render.clear(sf::Color(0,0,0,0));
 
     if (configuration->debug)
-            console->Ajouter("/Génération de l'image...");
+            console->Ajouter("/Generating the image...");
 
 
     int etat = m_personnage.getEtat();
@@ -399,19 +399,17 @@ void Hero::SauvegarderApercu()
     m_personnage.setAngle(next_angle);
     m_personnage.setForcedAngle(angle);
 
-    if (configuration->debug)
-            console->Ajouter("/Image affichée.");
 
     render.display();
 
     render.getTexture().copyToImage().saveToFile(configuration->chemin_temps + "Image.png");
 
     if (configuration->debug)
-            console->Ajouter("/Image générée.");
+            console->Ajouter("/Image generated.");
 }
 void Hero::Charger(const std::string &chemin_save)
 {
-    console->Ajouter("Chargement du hero.");
+    console->Ajouter("Loading hero.");
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
         m_cheminModele[i]="";
 
@@ -501,7 +499,7 @@ void Hero::Charger(const std::string &chemin_save)
             charTemp.ancienPointAme=charTemp.pointAme,charTemp.positionAncienAme=charTemp.pointAme;
 
             if (configuration->debug)
-                console->Ajouter("/Lectures des caracteristiques.");
+                console->Ajouter("/Reading characteristics.");
 
             do
             {
@@ -529,12 +527,12 @@ void Hero::Charger(const std::string &chemin_save)
                     fichier->get(caractere);
                 }
                 if (fichier->eof())
-                    throw "Impossible de charger la sauvegarde";
+                    throw "Unable to load savegame";
             }
             while (caractere!='$');
 
             if (configuration->debug)
-                console->Ajouter("/Lectures des objets.");
+                console->Ajouter("/Reading objects.");
 
             do
             {
@@ -552,12 +550,12 @@ void Hero::Charger(const std::string &chemin_save)
                     fichier->get(caractere);
                 }
                 if (fichier->eof())
-                    throw "Impossible de charger la sauvegarde";
+                    throw "Unable to load savegame";
             }
             while (caractere!='$');
 
             if (configuration->debug)
-                console->Ajouter("/Lectures des objets du coffre.");
+                console->Ajouter("/Reading items in stash.");
 
 
             if(temp < 6)
@@ -576,18 +574,18 @@ void Hero::Charger(const std::string &chemin_save)
                             *fichier>>m_lvl_miracles.back();
 
                         if (fichier->eof())
-                            throw "Impossible de charger la sauvegarde";
+                            throw "Unable to load savegame";
                     }
                     while (caractere!='$');
                     fichier->get(caractere);
                 }
                 if (fichier->eof())
-                    throw "Impossible de charger la sauvegarde";
+                    throw "Unable to load savegame";
             }
             while (caractere!='$');
 
             if (configuration->debug)
-                console->Ajouter("/Lectures des miracles.");
+                console->Ajouter("/Reading miracles.");
 
             if(temp == 8)
             do
@@ -600,7 +598,7 @@ void Hero::Charger(const std::string &chemin_save)
                     fichier->get(caractere);
                 }
                 if (fichier->eof())
-                    throw "Impossible de charger la sauvegarde";
+                    throw "Unable to load savegame";
             }
             while (caractere!='$');
 
@@ -623,11 +621,11 @@ void Hero::Charger(const std::string &chemin_save)
                     fichier->get(caractere);
                 }
                 if (fichier->eof())
-                    throw "Impossible de charger la sauvegarde";
+                    throw "Unable to load savegame";
             } while(caractere!='$');
 
             if (configuration->debug)
-                console->Ajouter("/Lectures des docs.");
+                console->Ajouter("/Reading docs.");
             do
             {
                 fichier->get(caractere);
@@ -638,12 +636,12 @@ void Hero::Charger(const std::string &chemin_save)
                     fichier->get(caractere);
                 }
                 if (fichier->eof())
-                    throw "Impossible de charger la sauvegarde";
+                    throw "Unable to load savegame";
             }
             while (caractere!='$');
 
             if (configuration->debug)
-                console->Ajouter("/Lectures des quêtes.");
+                console->Ajouter("/Reading quests.");
 
             do
             {
@@ -668,19 +666,19 @@ void Hero::Charger(const std::string &chemin_save)
 
                         if (fichier->eof())
                         {
-                            throw "Impossible de charger la potale";
+                            throw "Unable to load shrine";
                         }
                     }
                     while (caractere!='$');
                     fichier->get(caractere);
                 }
                 if (fichier->eof())
-                    throw "Impossible de charger la sauvegarde";
+                    throw "Unable to load savegame";
             }
             while (caractere!='$');
 
             if (configuration->debug)
-                console->Ajouter("/Lectures des potales.");
+                console->Ajouter("/Reading shrines.");
 
             UpdateRaccourcis();
 
@@ -768,7 +766,7 @@ void Hero::Charger(const std::string &chemin_save)
     m_personnage.setCaracteristique(temp);
 
     if (configuration->debug)
-        console->Ajouter("/Chargement du héro terminé");
+        console->Ajouter("/Loading the hero ended");
 }
 
 bool Hero::ChargerPresentation(const std::string &chemin_save)

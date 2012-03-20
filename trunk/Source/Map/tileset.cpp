@@ -81,14 +81,14 @@ void Tileset::ChargerTiles(ifstream &fichier, int lumiere_base)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Tileset \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
         while (caractere!='$');
     }
     else
-        console->Ajouter("Impossible d'ouvrir le fichier : "+m_chemin,1);
+        console->Ajouter("Can not open file : "+m_chemin,1);
 }
 
 void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
@@ -257,7 +257,7 @@ void Tileset::ChargerInfosTile(ifstream &fichier, int lumiere_base,int type)
         }
         if (fichier.eof())
         {
-            console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
+            console->Ajouter("Error : Tileset \" "+m_chemin+" \" is invalid",1);
             caractere='$';
         }
     }
@@ -320,7 +320,7 @@ void Tileset::Charger(ifstream &fichier, int lumiere_base, cDAT *reader)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Tileset \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -372,7 +372,7 @@ void Tileset::Charger(ifstream &fichier, int lumiere_base, cDAT *reader)
                     }
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Monstre \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Monster \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
                 }
@@ -382,7 +382,7 @@ void Tileset::Charger(ifstream &fichier, int lumiere_base, cDAT *reader)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Tileset \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -392,7 +392,7 @@ void Tileset::Charger(ifstream &fichier, int lumiere_base, cDAT *reader)
         ChargerTiles(fichier,lumiere_base);
     }
     else
-        console->Ajouter("Impossible d'ouvrir le fichier : "+m_chemin,1);
+        console->Ajouter("Can not open file : "+m_chemin,1);
 }
 
 void Tileset::Charger(const std::string &chemin)

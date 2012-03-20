@@ -224,7 +224,7 @@ bool Modele_Personnage::Charger(string chemin)
     m_tileset.clear();
 
     console->Ajouter("",0);
-    console->Ajouter("Chargement du personnage : "+chemin,0);
+    console->Ajouter("Loading character : "+chemin,0);
 
     cDAT reader;
 
@@ -276,7 +276,7 @@ bool Modele_Personnage::Charger(string chemin)
         }
         else
         {
-            console->Ajouter("Impossible d'ouvrir : "+chemin,1);
+            console->Ajouter("Unable to open : "+chemin,1);
             return 0;
         }
 
@@ -285,7 +285,7 @@ bool Modele_Personnage::Charger(string chemin)
     }
     else
     {
-        console->Ajouter("Impossible d'ouvrir : "+chemin,1);
+        console->Ajouter("Unable to open : "+chemin,1);
         return 0;
     }
 

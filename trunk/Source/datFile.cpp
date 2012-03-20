@@ -193,7 +193,7 @@ bool cDAT::Read (std::string source)
         m_datfile = source;
     }
     else
-        console->Ajouter("Impossible de lire le fichier : " + source);
+        console->Ajouter("Unable to read file : " + source);
     //Closing the DAT file
     datfile.close();
 
@@ -247,7 +247,7 @@ std::ifstream* cDAT::GetInfos(std::string filename)
     }
 
     if (!ok)
-        console->Ajouter("Fichier introuvable : "+filename);
+        console->Ajouter("File not found : "+filename);
     //Finally, there is no such file in our DAT file
     return datfile;
 }
@@ -293,7 +293,7 @@ char* cDAT::GetFile (std::string filename)
             }
         }
     }
-    console->Ajouter("Fichier introuvable : "+filename,1);
+    console->Ajouter("File not found : "+filename,1);
     //Finally, there is no such file in our DAT file
     return (NULL);
 }

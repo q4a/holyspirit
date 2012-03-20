@@ -329,7 +329,7 @@ void Objet::Sauvegarder(std::ofstream *fichier)
     fichier->write((char*)&espace, sizeof(char));
 
     if (configuration->debug)
-        console->Ajouter("/Sauvegarde de "+m_chemin);
+        console->Ajouter("/Saving "+m_chemin);
 }
 
 void Objet::SauvegarderTexte(std::ofstream *fichier)
@@ -374,7 +374,7 @@ void Objet::SauvegarderTexte(std::ofstream *fichier)
     *fichier<<" $ ";
 
     if (configuration->debug)
-        console->Ajouter("/Sauvegarde de "+m_chemin);
+        console->Ajouter("/Saving "+m_chemin);
 }
 
 void Objet::ChargerChemin(std::ifstream *fichier)
@@ -388,7 +388,7 @@ void Objet::ChargerChemin(std::ifstream *fichier)
 
         if (fichier->eof())
         {
-            throw "Impossible de charger l'objet";
+            throw "Unable to load the object";
         }
     }
     while (caractere!='$');
@@ -494,7 +494,7 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
 
                 if (fichier->eof())
                 {
-                    throw "Impossible de charger l'objet";
+                    throw "Unable to load the object";
                 }
             }
             while (caractere!='$');
@@ -516,7 +516,7 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
 
         if (fichier->eof())
         {
-            throw "Impossible de charger l'objet";
+            throw "Unable to load the object";
         }
     }
     while (caractere!='$');
@@ -534,7 +534,7 @@ void Objet::ChargerTexte(std::ifstream *fichier, const Caracteristique &caract, 
 void Objet::Charger(const std::string &chemin, const Caracteristique &caract,bool NePasAjouterBenedictions, bool ChargerSet)
 {
     console->Ajouter("",0);
-    console->Ajouter("Chargement de l'objet : "+chemin,0);
+    console->Ajouter("Loading the object : "+chemin,0);
 
     cDAT reader;
     reader.Read(configuration->chemin_items);
@@ -597,7 +597,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -607,7 +607,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -647,7 +647,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -657,7 +657,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -690,7 +690,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -700,7 +700,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -738,7 +738,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -756,7 +756,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -787,7 +787,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -797,7 +797,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -833,7 +833,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -843,7 +843,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -870,7 +870,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -880,7 +880,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -915,7 +915,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -925,7 +925,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -953,7 +953,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -991,7 +991,7 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -1062,7 +1062,7 @@ void Set::Charger(std::string chemin, Caracteristique caract)
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -1072,7 +1072,7 @@ void Set::Charger(std::string chemin, Caracteristique caract)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -1090,7 +1090,7 @@ void Set::Charger(std::string chemin, Caracteristique caract)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -1119,7 +1119,7 @@ void Set::Charger(std::string chemin, Caracteristique caract)
                     }
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+chemin+" \" is invalid",1);
                         caractere='$';
                     }
                 }
@@ -1158,7 +1158,7 @@ void Set::Charger(std::string chemin, Caracteristique caract)
 
                             if (fichier->eof())
                             {
-                                console->Ajouter("Erreur : Objet \" "+chemin+" \" Invalide",1);
+                                console->Ajouter("Error : Object \" "+chemin+" \" is invalid",1);
                                 caractere='$';
                             }
 
@@ -1190,7 +1190,7 @@ void Set::Charger(std::string chemin, Caracteristique caract)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -1200,7 +1200,7 @@ void Set::Charger(std::string chemin, Caracteristique caract)
         fichier->close();
     }
     else
-        console->Ajouter("Impossible d'ouvrir : "+chemin,1);
+        console->Ajouter("Unable to open : "+chemin,1);
 
     delete fichier;
 }
@@ -1520,7 +1520,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -1533,7 +1533,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -1573,7 +1573,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -1584,7 +1584,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -1624,7 +1624,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -1635,7 +1635,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -1667,7 +1667,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -1678,7 +1678,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -1706,7 +1706,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -1716,7 +1716,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -1750,7 +1750,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -1766,7 +1766,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -1790,7 +1790,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -1801,7 +1801,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -1841,7 +1841,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 
                     if (fichier->eof())
                     {
-                        console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -1852,7 +1852,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Objet \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Object \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -1905,7 +1905,7 @@ int getNomMiracle(const std::string &path)
 
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Miracle \" "+path+" \" Invalide",1);
+                console->Ajouter("Error : Miracle \" "+path+" \" is invalid",1);
                 caractere='$';
             }
         }

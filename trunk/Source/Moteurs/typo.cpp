@@ -29,7 +29,7 @@ void Typo::Load(const std::string &path)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Typo \" "+path+" \" Invalide",1);
+                console->Ajouter("Error : Typo \" "+path+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -62,7 +62,7 @@ void Typo::Load(const std::string &path)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Typo \" "+path+" \" Invalide",1);
+                console->Ajouter("Error : Typo \" "+path+" \" is invalid",1);
                 caractere='$';
             }
         }

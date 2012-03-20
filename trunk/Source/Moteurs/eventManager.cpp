@@ -44,7 +44,7 @@ EventManager::EventManager()
     m_positionSouris.y=300;
 
     console->Ajouter("",0);
-    console->Ajouter("Chargement des curseurs :",0);
+    console->Ajouter("Loading cursors :",0);
 
     idcurseur=moteurGraphique->AjouterImage(configuration->chemin_curseurs+configuration->nom_curseur_base,-1);
 

@@ -229,7 +229,7 @@ void                ChargerImageInterface(ifstream &fichier, Image_interface &im
 
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Classe Invalide",1);
+                    console->Ajouter("Error : Invalid class",1);
                     caractere='$';
                 }
             }
@@ -238,7 +238,7 @@ void                ChargerImageInterface(ifstream &fichier, Image_interface &im
         }
         if (fichier.eof())
         {
-            console->Ajouter("Erreur : Classe Invalide",1);
+            console->Ajouter("Error : Invalid class",1);
             caractere='$';
         }
 
@@ -282,7 +282,7 @@ void                ChargerImageInterface(ifstream &fichier, std::vector <Image_
 
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Classe Invalide",1);
+                    console->Ajouter("Error : Invalid class",1);
                     caractere='$';
                 }
             }
@@ -291,7 +291,7 @@ void                ChargerImageInterface(ifstream &fichier, std::vector <Image_
         }
         if (fichier.eof())
         {
-            console->Ajouter("Erreur : Classe Invalide",1);
+            console->Ajouter("Error : Invalid class",1);
             caractere='$';
         }
 
@@ -345,7 +345,7 @@ void                ChargerBouton(ifstream &fichier, std::vector <Bouton> &bouto
 
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Classe Invalide",1);
+                    console->Ajouter("Error : Invalid class",1);
                     caractere='$';
                 }
             }
@@ -354,7 +354,7 @@ void                ChargerBouton(ifstream &fichier, std::vector <Bouton> &bouto
         }
         if (fichier.eof())
         {
-            console->Ajouter("Erreur : Classe Invalide",1);
+            console->Ajouter("Error : Invalid class",1);
             caractere='$';
         }
 
@@ -413,7 +413,7 @@ void                ChargerBouton(ifstream &fichier, Bouton_pressoire &bouton)
 
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Classe Invalide",1);
+                    console->Ajouter("Error : Invalid class",1);
                     caractere='$';
                 }
             }
@@ -422,7 +422,7 @@ void                ChargerBouton(ifstream &fichier, Bouton_pressoire &bouton)
         }
         if (fichier.eof())
         {
-            console->Ajouter("Erreur : Classe Invalide",1);
+            console->Ajouter("Error : Invalid class",1);
             caractere='$';
         }
 
@@ -490,7 +490,7 @@ void                ChargerBorder(ifstream &fichier, Border &border)
 
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Classe Invalide",1);
+                    console->Ajouter("Error : Invalid class",1);
                     caractere='$';
                 }
             }
@@ -499,7 +499,7 @@ void                ChargerBorder(ifstream &fichier, Border &border)
         }
         if (fichier.eof())
         {
-            console->Ajouter("Erreur : Classe Invalide",1);
+            console->Ajouter("Error : Invalid class",1);
             caractere='$';
         }
 
@@ -538,7 +538,7 @@ void                ChargerCoordonneeInterface(ifstream &fichier, coordonnee &co
 
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Classe Invalide",1);
+                    console->Ajouter("Error : Invalid class",1);
                     caractere='$';
                 }
             }
@@ -547,7 +547,7 @@ void                ChargerCoordonneeInterface(ifstream &fichier, coordonnee &co
         }
         if (fichier.eof())
         {
-            console->Ajouter("Erreur : Classe Invalide",1);
+            console->Ajouter("Error : Invalid class",1);
             caractere='$';
         }
 
@@ -596,7 +596,7 @@ void Emplacement_inventaire::Charger(ifstream &fichier)
 
         if (fichier.eof())
         {
-            console->Ajouter("Erreur : Classe Invalide",1);
+            console->Ajouter("Error : Invalid class",1);
             caractere='$';
         }
 
@@ -647,7 +647,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                 caractere='$';
             }
         }
@@ -663,7 +663,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                 caractere='$';
             }
         }
@@ -680,7 +680,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                 caractere='$';
             }
         }
@@ -716,7 +716,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
 
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                        console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                         caractere='$';
                     }
 
@@ -726,7 +726,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                 caractere='$';
             }
 
@@ -751,7 +751,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
 
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                        console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                         caractere='$';
                     }
 
@@ -761,7 +761,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                 caractere='$';
             }
 
@@ -786,7 +786,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
 
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                        console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                         caractere='$';
                     }
 
@@ -796,7 +796,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                 caractere='$';
             }
 
@@ -829,7 +829,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
 
                         if (fichier.eof())
                         {
-                            console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                            console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                             caractere='$';
                         }
 
@@ -839,7 +839,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
                 }
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                    console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                     caractere='$';
                 }
 
@@ -859,7 +859,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                 caractere='$';
             }
 
@@ -938,7 +938,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                 caractere='$';
             }
         }
@@ -953,7 +953,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                 caractere='$';
             }
         }
@@ -968,7 +968,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                 caractere='$';
             }
         }
@@ -985,7 +985,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                 caractere='$';
             }
 
@@ -1060,7 +1060,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
 
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                        console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                         caractere='$';
                     }
                 }
@@ -1083,7 +1083,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Classe \""+chemin+"\" Invalide",1);
+                console->Ajouter("Error : Class \""+chemin+"\" is invalid",1);
                 caractere='$';
             }
         }
@@ -1093,7 +1093,7 @@ void Classe::Charger(const std::string &chemin, const std::vector<int> &lvl_mira
         fichier.close();
     }
     else
-        console->Ajouter("Impossible de charger : "+chemin,1);
+        console->Ajouter("Unable to load : "+chemin,1);
 }
 
 

@@ -41,17 +41,17 @@ int main (  )
     console=Console::GetInstance();
 
     console->Ajouter("--------------------------------------------------------------------------------");
-    console->Ajouter("Demarrage du jeu",0);
+    console->Ajouter("Starting the game",0);
     console->Ajouter("--------------------------------------------------------------------------------");
     console->Ajouter("");
 
-    console->Ajouter("Initialisation du moteur graphique");
+    console->Ajouter("Initializing graphics engine");
     moteurGraphique = MoteurGraphique::GetInstance();
 
-    console->Ajouter("Initialisation du moteur sonore");
+    console->Ajouter("Initializing sound engine");
     moteurSons = MoteurSons::GetInstance();
 
-    console->Ajouter("Initialisation du moteur réseau");
+    console->Ajouter("Initializing network engine");
     net = Network::GetInstance();
 
     console->Ajouter("");
@@ -86,12 +86,12 @@ int main (  )
 
 
     console->Ajouter("");
-    console->Ajouter("Sauvegarde de la configuration");
+    console->Ajouter("Saving configuration");
 
     configuration->Sauvegarder();
 
     console->Ajouter("");
-    console->Ajouter("Destruction des moteurs");
+    console->Ajouter("Destruction of engines");
 
     net->Kill();
     moteurGraphique->Kill();
@@ -104,7 +104,7 @@ int main (  )
 
     console->Kill();
 
-    cout<<"Console fermée"<<endl;
+    cout<<"Closing console"<<endl;
 
     return EXIT_SUCCESS;
 }
