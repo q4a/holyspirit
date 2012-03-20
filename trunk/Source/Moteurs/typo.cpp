@@ -203,7 +203,7 @@ Character &Typo::getCharacter(int car, bool &maj)
         return m_chars[43];
     if(car == '.')
         return m_chars[44];
-    if(car == 234/*'ê'*/)
+    if(car == 2/*'ê'*/)
         return m_chars[45];
 
 
@@ -224,7 +224,7 @@ Character &Typo::getCharacter(int car, bool &maj)
         return m_chars[58];
 
     if(car >= 0x043A && car <= 0x044F)
-        return m_chars[61 + car - 0x043A];
+        return m_chars[59 + car - 0x043A];
 
 
     return m_chars.front();
