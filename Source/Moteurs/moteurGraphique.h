@@ -209,6 +209,9 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 
 	sf::RenderWindow m_ecran;
 
+	int m_fps;
+	sf::Clock m_fps_clock;
+
 
 };
 

@@ -190,6 +190,9 @@ void MoteurGraphique::Charger()
 
 void MoteurGraphique::Gerer(float temps)
 {
+    m_fps = (int)( 1.f /m_fps_clock.getElapsedTime().asSeconds());
+    m_fps_clock.restart();
+
     if(!configuration->mode_fenetre)
     {
         if(sf::Mouse::getPosition(m_ecran).x > configuration->Resolution.x - 1)
@@ -1066,6 +1069,6 @@ void MoteurGraphique::Printscreen()
 
 int MoteurGraphique::GetFPS()
 {
-    return 60; //FIXME (int)( 1.f / m_ecran.GetFrameTime());
+    return m_fps;
 }
 
