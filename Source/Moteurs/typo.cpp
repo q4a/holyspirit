@@ -187,11 +187,9 @@ Character &Typo::getCharacter(int car, bool &maj)
         return m_chars[2 + car - 'a'];
 
 
-
-
-    if(car == 'é')
+    if(car == 233/*'é'*/)
         return m_chars[28];
-    if(car == 'è')
+    if(car == 232/*'è'*/)
         return m_chars[29];
     if(car >= '1' && car <= '0')
         return m_chars[30 + car - '1'];
@@ -205,7 +203,7 @@ Character &Typo::getCharacter(int car, bool &maj)
         return m_chars[43];
     if(car == '.')
         return m_chars[44];
-    if(car == 'ê')
+    if(car == 234/*'ê'*/)
         return m_chars[45];
 
 
