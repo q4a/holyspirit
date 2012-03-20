@@ -270,7 +270,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     moteurGraphique->AjouterCommande(&m_hs_logo, 19, 0);
 
     buttons_principal[0].no_opacity = true;
-	buttons_principal[0].position.w = moteurGraphique->special_typo.getSize(gettext("Continue"), 72);
+	buttons_principal[0].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Continue")), 72);
     buttons_principal[0].position.h = 64;
     buttons_principal[0].position.y = configuration->Resolution.h/2-96;
     buttons_principal[0].position.x = configuration->Resolution.w/2-buttons_principal[0].position.w/2;
@@ -305,7 +305,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     }
 
     buttons_principal[5].no_opacity = true;
-    buttons_principal[5].position.w = moteurGraphique->special_typo.getSize(gettext("New game"), 110);
+    buttons_principal[5].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Multiplayer")), 110);
     buttons_principal[5].position.h = 64;
     buttons_principal[5].position.y = configuration->Resolution.h/2-32;
     buttons_principal[5].position.x = configuration->Resolution.w/2-buttons_principal[5].position.w/2;
@@ -337,7 +337,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     }
 
     buttons_principal[1].no_opacity = true;
-    buttons_principal[1].position.w = moteurGraphique->special_typo.getSize(gettext("New game"), 72);
+    buttons_principal[1].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("New game")), 72);
     buttons_principal[1].position.h = 64;
     buttons_principal[1].position.y = configuration->Resolution.h/2+32;
     buttons_principal[1].position.x = configuration->Resolution.w/2-buttons_principal[1].position.w/2;
@@ -348,7 +348,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
                                                                                         buttons_principal[1].position.y), 72, 19, true);
     else if(buttons_principal[1].m_hover)
         moteurGraphique->special_typo_h.Draw(toUtf32(gettext("New game")), sf::Vector2f(configuration->Resolution.w/2,
-                                                                                        buttons_principal[1].position.y), 72, 19, true);
+                                                                                      buttons_principal[1].position.y), 72, 19, true);
     else
         moteurGraphique->special_typo.Draw(toUtf32(gettext("New game")), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_principal[1].position.y), 72, 19, true);
@@ -420,7 +420,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     }
 
     buttons_principal[2].no_opacity = true;
-    buttons_principal[2].position.w = moteurGraphique->special_typo.getSize(gettext("Options"), 72);
+    buttons_principal[2].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Options")), 72);
     buttons_principal[2].position.h = 64;
     buttons_principal[2].position.y = configuration->Resolution.h/2+96;
     buttons_principal[2].position.x = configuration->Resolution.w/2-buttons_principal[2].position.w/2;
@@ -444,7 +444,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     }
 
     buttons_principal[3].no_opacity = true;
-    buttons_principal[3].position.w = moteurGraphique->special_typo.getSize(gettext("Credits"), 72);
+    buttons_principal[3].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Credits")), 72);
     buttons_principal[3].position.h = 64;
     buttons_principal[3].position.y = configuration->Resolution.h/2+160;
     buttons_principal[3].position.x = configuration->Resolution.w/2-buttons_principal[3].position.w/2;
@@ -468,7 +468,7 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     }
 
     buttons_principal[4].no_opacity = true;
-    buttons_principal[4].position.w = moteurGraphique->special_typo.getSize(gettext("Quit"), 72);
+    buttons_principal[4].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Quit")), 72);
     buttons_principal[4].position.h = 64;
     buttons_principal[4].position.y = configuration->Resolution.h/2+224;
     buttons_principal[4].position.x = configuration->Resolution.w/2-buttons_principal[4].position.w/2;
@@ -503,7 +503,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         defilement_saves = 0;
 
     buttons_continuer[0].no_opacity = true;
-    buttons_continuer[0].position.w = moteurGraphique->special_typo.getSize(gettext("Return"), 72);
+    buttons_continuer[0].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Return")), 72);
     buttons_continuer[0].position.h = 64;
     buttons_continuer[0].position.y = configuration->Resolution.h/2+192;
     buttons_continuer[0].position.x = configuration->Resolution.w/2-buttons_continuer[0].position.w/2;
@@ -537,7 +537,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
 
 
     buttons_continuer[1].no_opacity = true;
-    buttons_continuer[1].position.w = moteurGraphique->special_typo.getSize(gettext("Delete character"), 32);
+    buttons_continuer[1].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Delete character")), 32);
     buttons_continuer[1].position.h = 32;
     buttons_continuer[1].position.y = configuration->Resolution.h/2+ 192 + 64;
     buttons_continuer[1].position.x = configuration->Resolution.w/2-buttons_continuer[1].position.w/2 + 224;
@@ -936,7 +936,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
                               coordonnee(384,40), 18);
 
     buttons_nouveau[1].no_opacity = true;
-    buttons_nouveau[1].position.w = moteurGraphique->special_typo.getSize(gettext("Start"), 72);
+    buttons_nouveau[1].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Start")), 72);
     buttons_nouveau[1].position.h = 64;
     buttons_nouveau[1].position.y = configuration->Resolution.h/2+128 + 32;
     buttons_nouveau[1].position.x = configuration->Resolution.w/2-buttons_nouveau[1].position.w/2;
@@ -999,7 +999,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     }
 
     buttons_nouveau[0].no_opacity = true;
-    buttons_nouveau[0].position.w = moteurGraphique->special_typo.getSize(gettext("Return"), 72);
+    buttons_nouveau[0].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Return")), 72);
     buttons_nouveau[0].position.h = 64;
     buttons_nouveau[0].position.y = configuration->Resolution.h/2+192 + 32;
     buttons_nouveau[0].position.x = configuration->Resolution.w/2-buttons_nouveau[0].position.w/2;
@@ -1063,7 +1063,7 @@ void  c_MainMenu::E_Credits(Jeu *jeu)
     }
 
     buttons_credits[0].no_opacity = true;
-    buttons_credits[0].position.w = moteurGraphique->special_typo.getSize(gettext("Return"), 72);
+    buttons_credits[0].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Return")), 72);
     buttons_credits[0].position.h = 64;
     buttons_credits[0].position.y = configuration->Resolution.h/2+192;
     buttons_credits[0].position.x = configuration->Resolution.w/2-buttons_credits[0].position.w/2;
@@ -1103,7 +1103,7 @@ void  c_MainMenu::E_Story(Jeu *jeu)
 
 
     buttons_story[0].no_opacity = true;
-    buttons_story[0].position.w = moteurGraphique->special_typo.getSize(gettext("Next"), 72);
+    buttons_story[0].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Next")), 72);
     buttons_story[0].position.h = 72;
     buttons_story[0].position.y = configuration->Resolution.h/2+192;
     buttons_story[0].position.x = configuration->Resolution.w/2-buttons_story[0].position.w/2;
@@ -1158,7 +1158,7 @@ void  c_MainMenu::E_Multi(Jeu *jeu)
 
 
     buttons_multi[1].no_opacity = true;
-    buttons_multi[1].position.w = moteurGraphique->special_typo.getSize(gettext("Join game"), 72);
+    buttons_multi[1].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Join game")), 72);
     buttons_multi[1].position.h = 64;
     buttons_multi[1].position.y = configuration->Resolution.h/2-96;
     buttons_multi[1].position.x = configuration->Resolution.w/2-buttons_multi[1].position.w/2;
@@ -1188,7 +1188,7 @@ void  c_MainMenu::E_Multi(Jeu *jeu)
     }
 
     buttons_multi[2].no_opacity = true;
-    buttons_multi[2].position.w = moteurGraphique->special_typo.getSize(gettext("Host game"), 72);
+    buttons_multi[2].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Host game")), 72);
     buttons_multi[2].position.h = 64;
     buttons_multi[2].position.y = configuration->Resolution.h/2-32;
     buttons_multi[2].position.x = configuration->Resolution.w/2-buttons_multi[2].position.w/2;
@@ -1213,7 +1213,7 @@ void  c_MainMenu::E_Multi(Jeu *jeu)
     }
 
     buttons_multi[0].no_opacity = true;
-    buttons_multi[0].position.w = moteurGraphique->special_typo.getSize(gettext("Return"), 72);
+    buttons_multi[0].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Return")), 72);
     buttons_multi[0].position.h = 64;
     buttons_multi[0].position.y = configuration->Resolution.h/2+192;
     buttons_multi[0].position.x = configuration->Resolution.w/2-buttons_multi[0].position.w/2;
