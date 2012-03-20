@@ -138,7 +138,7 @@ void Jeu::Demarrer()
     delete m_mainMenu;
 
     console->Ajouter("");
-    console->Ajouter("Fermeture des contextes effectuée avec succès.");
+    console->Ajouter("Contexts were closed successfully.");
 }
 
 

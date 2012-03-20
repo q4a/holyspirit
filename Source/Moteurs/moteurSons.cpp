@@ -63,9 +63,9 @@ void MoteurSons::Gerer(float temps)
             m_music.setLoop(false);
 
             if (!m_music.openFromFile(m_nextMusic.c_str()))
-                console->Ajouter("Impossible de charger : "+m_nextMusic,1);
+                console->Ajouter("Unable to load : "+m_nextMusic,1);
             else
-                console->Ajouter("Chargement de : "+m_nextMusic,0),m_music.play();
+                console->Ajouter("Loading : "+m_nextMusic,0),m_music.play();
 
             std::string conf_path = m_nextMusic.substr(0,m_nextMusic.size()-3) + "conf";
             std::ifstream conf;
@@ -131,11 +131,11 @@ int MoteurSons::AjouterBuffer(std::string chemin)
 
     if (!m_buffers.back()->buffer.loadFromFile(chemin.c_str()))
     {
-        console->Ajouter("Impossible de charger : "+chemin,1);
+        console->Ajouter("Unable to load : "+chemin,1);
         return -1;
     }
     else
-        console->Ajouter("Chargement de : "+chemin,0);
+        console->Ajouter("Loading : "+chemin,0);
 
     std::string conf_path = chemin.substr(0,chemin.size()-3) + "conf";
     std::ifstream conf;

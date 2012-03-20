@@ -50,13 +50,13 @@ sf::Color GetItemColor(int rarete);
 Menu::~Menu()
 {
     if (configuration->debug)
-        console->Ajouter("Destruction du menu ...");
+        console->Ajouter("Destruction of the menu ...");
 }
 
 Menu::Menu()
 {
     console->Ajouter("",0);
-    console->Ajouter("Chargement des menus :",0);
+    console->Ajouter("Loading menus :",0);
 
     //m_dialogue.clear();
     m_speak_choice = -1;

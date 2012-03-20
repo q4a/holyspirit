@@ -123,7 +123,7 @@ void Configuration::ChargerConf()
         fichier.close();
     }
     else
-        throw std::string("Impossible de charger la configuration : configuration.conf");
+        throw std::string("Unable to load configuration : configuration.conf");
 
 
 
@@ -150,7 +150,7 @@ void Configuration::ChargerConf()
         fichier2.close();
     }
     else
-        throw std::string("Impossible de charger la configuration : liste_resolution.conf");
+        throw std::string("Unable to load configuration : liste_resolution.conf");
 }
 
 void Configuration::ChargerKeyMapping()
@@ -202,7 +202,7 @@ void Configuration::ChargerKeyMapping()
         fichier.close();
     }
    /* else
-        throw std::string("Impossible de charger la configuration : key_mapping.conf");*/
+        throw std::string("Unable to load configuration : key_mapping.conf");*/
 }
 
 void Configuration::ChargerInit()
@@ -424,7 +424,7 @@ void Configuration::ChargerInit()
         fichier.close();
     }
     else
-        throw std::string("Impossible de charger la configuration : holyspirit.ini");
+        throw std::string("Unable to load configuration : holyspirit.ini");
 }
 
 std::vector<std::string> Configuration::ChargerFichierTxt(std::string chemin)
@@ -601,7 +601,7 @@ void Configuration::Sauvegarder()
         fichier.close();
     }
     else
-        throw "Impossible de sauvegarder la configuration";
+        throw "Unable to save configuration";
 }
 
 void Configuration::SauvegarderKeyMapping()
@@ -632,7 +632,7 @@ void Configuration::SauvegarderKeyMapping()
         fichier.close();
     }
     else
-        throw "Impossible de sauvegarder la configuration";
+        throw "Unable to save configuration";
 }
 
 

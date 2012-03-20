@@ -233,7 +233,7 @@ void c_MainMenu::ChargerListeSaves()
     DIR *repertoire;
     repertoire = opendir(configuration->chemin_saves.c_str());
     if(!repertoire)
-        console->Ajouter("Le repertoire n'existe pas",1);
+        console->Ajouter("Directory does not exist",1);
 
 
 

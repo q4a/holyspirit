@@ -116,30 +116,30 @@ void MoteurGraphique::Charger()
     if (configuration->postFX)
     {
         console->Ajouter("");
-        console->Ajouter("Chargement des postFX :");
+        console->Ajouter("Loading postFX :");
 
         if (!EffectBlur.loadFromFile(configuration->chemin_fx+configuration->nom_effetBlur, sf::Shader::Fragment))
-            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
+            console->Ajouter("Unable to load : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
         else
-            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
+            console->Ajouter("Loading : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
 
         if (!EffectBlur2.loadFromFile(configuration->chemin_fx+configuration->nom_effetBlur, sf::Shader::Fragment))
-            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
+            console->Ajouter("Unable to load : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
         else
-            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
+            console->Ajouter("Loading : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
 
         if (!EffectBlurScreen.loadFromFile(configuration->chemin_fx+configuration->nom_effetBlur, sf::Shader::Fragment))
-            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
+            console->Ajouter("Unable to load : "+configuration->chemin_fx+configuration->nom_effetBlur,1);
         else
-            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
+            console->Ajouter("Loading : "+configuration->chemin_fx+configuration->nom_effetBlur,0);
 
         EffectBlur.setParameter("offset",0.02);
         EffectBlur2.setParameter("offset",0.005);
 
         if (!EffectMort.loadFromFile(configuration->chemin_fx+configuration->nom_effetMort, sf::Shader::Fragment))
-            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetMort,1);
+            console->Ajouter("Unable to load : "+configuration->chemin_fx+configuration->nom_effetMort,1);
         else
-            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetMort,0);
+            console->Ajouter("Loading : "+configuration->chemin_fx+configuration->nom_effetMort,0);
 
         EffectMort.setParameter("offset", 0);
         EffectMort.setParameter("color",1, 1, 1);
@@ -147,36 +147,36 @@ void MoteurGraphique::Charger()
 
 
         if (!EffectFiltre.loadFromFile(configuration->chemin_fx+configuration->nom_effetFiltre, sf::Shader::Fragment))
-            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetFiltre,1);
+            console->Ajouter("Unable to load : "+configuration->chemin_fx+configuration->nom_effetFiltre,1);
         else
-            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetFiltre,0);
+            console->Ajouter("Loading : "+configuration->chemin_fx+configuration->nom_effetFiltre,0);
 
         if (!EffectWater.loadFromFile(configuration->chemin_fx+configuration->nom_effetWater, sf::Shader::Fragment))
-            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetWater,1);
+            console->Ajouter("Unable to load : "+configuration->chemin_fx+configuration->nom_effetWater,1);
         else
-            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetWater,0);
+            console->Ajouter("Loading : "+configuration->chemin_fx+configuration->nom_effetWater,0);
 
         if (!EffectDistortion.loadFromFile(configuration->chemin_fx+configuration->nom_effetDistortion, sf::Shader::Fragment))
-            console->Ajouter("Impossible de charger : "+configuration->chemin_fx+configuration->nom_effetDistortion,1);
+            console->Ajouter("Unable to load : "+configuration->chemin_fx+configuration->nom_effetDistortion,1);
         else
-            console->Ajouter("Chargement de : "+configuration->chemin_fx+configuration->nom_effetDistortion,0);
+            console->Ajouter("Loading : "+configuration->chemin_fx+configuration->nom_effetDistortion,0);
 
         m_img_water = AjouterImage(configuration->water_map,-1);
         EffectWater.setParameter("water_map", *getImage(m_img_water));
     }
 
     console->Ajouter("");
-    console->Ajouter("Chargement des polices d'écriture :");
+    console->Ajouter("Loading writing policies :");
 
     if (!m_font.loadFromFile(configuration->chemin_fonts+configuration->font))
-        console->Ajouter("Impossible de charger : "+configuration->chemin_fonts+configuration->font,1);
+        console->Ajouter("Unable to load : "+configuration->chemin_fonts+configuration->font,1);
     else
-        console->Ajouter("Chargement de : "+configuration->chemin_fonts+configuration->font,0);
+        console->Ajouter("Loading : "+configuration->chemin_fonts+configuration->font,0);
 
     if (!m_font_titre.loadFromFile(configuration->chemin_fonts+configuration->font_titre))
-        console->Ajouter("Impossible de charger : "+configuration->chemin_fonts+configuration->font_titre,1);
+        console->Ajouter("Unable to load : "+configuration->chemin_fonts+configuration->font_titre,1);
     else
-        console->Ajouter("Chargement de : "+configuration->chemin_fonts+configuration->font_titre,0);
+        console->Ajouter("Loading : "+configuration->chemin_fonts+configuration->font_titre,0);
 
     special_typo.Load(configuration->chemin_fonts+configuration->spec_font);
     special_typo_h.Load(configuration->chemin_fonts+configuration->spec_font_h);
@@ -593,11 +593,11 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
 
                 if (!m_images[i].img->loadFromMemory(Data,SizeInBytes))
                 {
-                    console->Ajouter("Impossible de charger : "+nom,1);
+                    console->Ajouter("Unable to load : "+nom,1);
                     return -1;
                 }
                 else
-                    console->Ajouter("Chargement de : "+nom,0);
+                    console->Ajouter("Loading : "+nom,0);
 
                 m_images[i].importance=importance;
 
@@ -618,11 +618,11 @@ int MoteurGraphique::AjouterImage(const char *Data, std::size_t SizeInBytes, std
 
     if (!m_images.back().img->loadFromMemory(Data,SizeInBytes))
     {
-        console->Ajouter("Impossible de charger depuis la mémoire : "+nom,1);
+        console->Ajouter("Unable to load from memory : "+nom,1);
         return -1;
     }
     else
-        console->Ajouter("Chargement de : "+nom,0);
+        console->Ajouter("Loading : "+nom,0);
 
     m_images.back().importance=importance;
 
@@ -655,11 +655,11 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance,bool newimag
 
                 if (!m_images[i].img->loadFromFile(chemin.c_str()))
                 {
-                    console->Ajouter("Impossible de charger : "+chemin,1);
+                    console->Ajouter("Unable to load : "+chemin,1);
                     return -1;
                 }
                 else
-                    console->Ajouter("Chargement de : "+chemin,0);
+                    console->Ajouter("Loading : "+chemin,0);
 
                 m_images[i].importance=importance;
 
@@ -680,11 +680,11 @@ int MoteurGraphique::AjouterImage(std::string chemin,int importance,bool newimag
 
     if (!m_images.back().img->loadFromFile(chemin.c_str()))
     {
-        console->Ajouter("Impossible de charger : "+chemin,1);
+        console->Ajouter("Unable to load : "+chemin,1);
         return -1;
     }
     else
-        console->Ajouter("Chargement de : "+chemin,0);
+        console->Ajouter("Loading : "+chemin,0);
 
     m_images.back().importance=importance;
 
@@ -714,7 +714,7 @@ int MoteurGraphique::AjouterTileset(std::string chemin,int importance)
     std::ifstream fichier;
     fichier.open(chemin.c_str(), std::ios::in);
     int retour = AjouterTileset(fichier, chemin, importance);
-    console->Ajouter("Chargement de : "+chemin,0);
+    console->Ajouter("Loading : "+chemin,0);
     fichier.close();
     return retour;
 }

@@ -47,7 +47,7 @@ void Climate::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Climat \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Climate \" "+chemin+" \" is invalid",1);
                 caractere = '$';
             }
         }
@@ -93,7 +93,7 @@ void Climate::Charger(std::string chemin)
 
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Climat \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Climate \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
                 }
@@ -108,7 +108,7 @@ void Climate::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Climat \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Climate \" "+m_chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -129,7 +129,7 @@ void Climate::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Climat \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Climate \" "+chemin+" \" is invalid",1);
                 caractere = '$';
             }
         }
@@ -146,7 +146,7 @@ void Climate::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Climat \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Climate \" "+chemin+" \" is invalid",1);
                 caractere = '$';
             }
         }
@@ -162,7 +162,7 @@ void Climate::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Climat \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Climate \" "+chemin+" \" is invalid",1);
                 caractere = '$';
             }
         }

@@ -85,7 +85,7 @@ void    Document::    SauvegarderTexte(std::ofstream *fichier)
     *fichier<<" $ ";
 
     if (configuration->debug)
-        console->Ajouter("/Sauvegarde de "+m_nom);
+        console->Ajouter("/Saving "+m_nom);
 }
 
 void    Document::    ChargerTexte(std::ifstream *fichier)
@@ -102,7 +102,7 @@ void    Document::    ChargerTexte(std::ifstream *fichier)
 
         if (fichier->eof())
         {
-            throw "Impossible de charger la quête";
+            throw "Unable to load the quest";
         }
     }
     while (caractere!='$');
@@ -157,7 +157,7 @@ void    Quete::    SauvegarderTexte(std::ofstream *fichier)
     *fichier<<" $ ";
 
     if (configuration->debug)
-        console->Ajouter("/Sauvegarde de "+m_nom);
+        console->Ajouter("/Saving "+m_nom);
 }
 
 void    Quete::    ChargerTexte(std::ifstream *fichier)
@@ -180,7 +180,7 @@ void    Quete::    ChargerTexte(std::ifstream *fichier)
 
         if (fichier->eof())
         {
-            throw "Impossible de charger la quête";
+            throw "Unable to load the quest";
         }
     }
     while (caractere!='$');

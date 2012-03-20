@@ -36,13 +36,13 @@ void Map::Detruire()
     moteurGraphique->LightManager->Delete_All_Wall();
 
     console->Ajouter("");
-    console->Ajouter("Destruction de la map...");
+    console->Ajouter("Destroying the map...");
 
     m_tileset.clear();
     m_herbe.clear();
 
     if (configuration->debug)
-        console->Ajouter("Destruction des cases...");
+        console->Ajouter("Destroying tiles...");
 
     for (int i=0;i<NOMBRE_COUCHE_MAP;++i)
     {
@@ -52,37 +52,37 @@ void Map::Detruire()
     }
 
     if (configuration->debug)
-        console->Ajouter("Cases détruites !");
+        console->Ajouter("Tiles destroyed !");
 
     m_ModeleMonstre.clear();
 
     if (configuration->debug)
-        console->Ajouter("Modèles monstres détruits !");
+        console->Ajouter("Monster's models destroyed !");
 
     m_monstre.clear();
 
     if (configuration->debug)
-        console->Ajouter("Monstres détruits !");
+        console->Ajouter("Monsters destroyed !");
 
     m_fond.clear();
     if (configuration->debug)
-        console->Ajouter("Fonds détruits !");
+        console->Ajouter("Funds destroyed !");
 
     m_musiques.clear();
     if (configuration->debug)
-        console->Ajouter("Chemins musiques détruits !");
+        console->Ajouter("Pathes to music content destroyed !");
 
     m_ambiances.clear();
 
     m_projectile.clear();
     if (configuration->debug)
-        console->Ajouter("Projectiles détruits !");
+        console->Ajouter("Projectiles destroyed !");
 
     m_effets.clear();
     if (configuration->debug)
-        console->Ajouter("Effets détruits !");
+        console->Ajouter("Effets destroyed !");
 
-    console->Ajouter("Map détruite !");
+    console->Ajouter("Map destroyed !");
 }
 
 bool Map::Charger(std::string nomMap,Hero *hero)
@@ -111,14 +111,14 @@ bool Map::Charger(std::string nomMap,Hero *hero)
     m_etat_chargement = 0;
 
     console->Ajouter("",0);
-    console->Ajouter("Chargement de la map : "+nomMap);
+    console->Ajouter("Loading the map : "+nomMap);
 
     cDAT reader,reader2;
 
     reader.Read(configuration->chemin_saves+hero->m_chemin_save);
 
     if (reader.IsFileExist(configuration->chemin_temps+nomMap))
-        mapExistante=true,entite_map_existante=true,console->Ajouter("Map sauvée existante.");
+        mapExistante=true,entite_map_existante=true,console->Ajouter("Map does exist in savegame.");
 
     ifstream *fichier=NULL;
     ifstream *fichier2=NULL;
@@ -151,7 +151,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
     }
     else
     {
-        console->Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
+        console->Ajouter("Can not open file : "+chemin,1);
         throw "";
     }
 
@@ -168,7 +168,7 @@ bool Map::Charger(std::string nomMap,Hero *hero)
     m_dimensions.x=(int)m_decor[0][0].size();
     m_dimensions.y=(int)m_decor[0].size();
 
-    console->Ajouter("Chargement de la map terminé.");
+    console->Ajouter("Loading the map ended.");
 
     m_loaded = true;
 
@@ -194,8 +194,8 @@ void Map::ChargerInfos(ifstream *fichier, const std::string &chemin)
 
                 if (fichier->eof())
                 {
-                    console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                    throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                    console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+                    throw ("Error : Map \" "+chemin+" \" is invalid");
                 }
             }
             while (caractere!='$');
@@ -206,13 +206,13 @@ void Map::ChargerInfos(ifstream *fichier, const std::string &chemin)
 
         if (fichier->eof())
         {
-            console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-            throw ("Erreur : Map \" "+chemin+" \" Invalide");
+            console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+            throw ("Error : Map \" "+chemin+" \" is invalid");
         }
     }
     while (caractere!='$');
     if (configuration->debug)
-        console->Ajouter("/Lectures du nom.");
+        console->Ajouter("/Reading name.");
 
     do
     {
@@ -227,14 +227,14 @@ void Map::ChargerInfos(ifstream *fichier, const std::string &chemin)
 
         if (fichier->eof())
         {
-            console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-            throw ("Erreur : Map \" "+chemin+" \" Invalide");
+            console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+            throw ("Error : Map \" "+chemin+" \" is invalid");
         }
     }
     while (caractere!='$');
 
     if (configuration->debug)
-        console->Ajouter("/Lectures des fonds.");
+        console->Ajouter("/Reading funds.");
 
     m_musiqueEnCours = 0;
     do
@@ -249,14 +249,14 @@ void Map::ChargerInfos(ifstream *fichier, const std::string &chemin)
         }
         if (fichier->eof())
         {
-            console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-            throw ("Erreur : Map \" "+chemin+" \" Invalide");
+            console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+            throw ("Error : Map \" "+chemin+" \" is invalid");
         }
     }
     while (caractere!='$');
 
     if (configuration->debug)
-        console->Ajouter("/Lectures des musiques.");
+        console->Ajouter("/Reading music.");
 
     do
     {
@@ -298,7 +298,7 @@ void Map::ChargerInfos(ifstream *fichier, const std::string &chemin)
     while (caractere!='$');
 
     if (configuration->debug)
-        console->Ajouter("/Lectures des ambiances.");
+        console->Ajouter("/Reading environments.");
 
 
     int heureEnCours=0;
@@ -321,14 +321,14 @@ void Map::ChargerInfos(ifstream *fichier, const std::string &chemin)
         }
         if (fichier->eof())
         {
-            console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-            throw ("Erreur : Map \" "+chemin+" \" Invalide");
+            console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+            throw ("Error : Map \" "+chemin+" \" is invalid");
         }
     }
     while (caractere!='$');
 
     if (configuration->debug)
-        console->Ajouter("/Lectures des lumières.");
+        console->Ajouter("/Reading lights.");
 
     m_img_sky = -1;
 
@@ -342,8 +342,8 @@ void Map::ChargerInfos(ifstream *fichier, const std::string &chemin)
         }
         if (fichier->eof())
         {
-            console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-            throw ("Erreur : Map \" "+chemin+" \" Invalide");
+            console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+            throw ("Error : Map \" "+chemin+" \" is invalid");
         }
     }
     while (caractere!='$');
@@ -359,14 +359,14 @@ void Map::ChargerInfos(ifstream *fichier, const std::string &chemin)
         }
         if (fichier->eof())
         {
-            console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-            throw ("Erreur : Map \" "+chemin+" \" Invalide");
+            console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+            throw ("Error : Map \" "+chemin+" \" is invalid");
         }
     }
     while (caractere!='$');
 
     if (configuration->debug)
-        console->Ajouter("/Lectures des ciels.");
+        console->Ajouter("/Reading skies.");
 
 
 
@@ -394,15 +394,15 @@ void Map::ChargerInfos(ifstream *fichier, const std::string &chemin)
         }
         if (fichier->eof())
         {
-            console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-            throw ("Erreur : Map \" "+chemin+" \" Invalide");
+            console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+            throw ("Error : Map \" "+chemin+" \" is invalid");
         }
 
     }
     while (caractere!='$');
 
     if (configuration->debug)
-        console->Ajouter("/Lectures des tilesets.");
+        console->Ajouter("/Reading tilesets.");
 
     do
     {
@@ -416,15 +416,15 @@ void Map::ChargerInfos(ifstream *fichier, const std::string &chemin)
         }
         if (fichier->eof())
         {
-            console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-            throw ("Erreur : Map \" "+chemin+" \" Invalide");
+            console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+            throw ("Error : Map \" "+chemin+" \" is invalid");
         }
 
     }
     while (caractere!='$');
 
     if (configuration->debug)
-        console->Ajouter("/Lectures des herbes.");
+        console->Ajouter("/Reading herbs.");
 
     m_etat_chargement = 2;
 
@@ -439,26 +439,26 @@ void Map::ChargerInfos(ifstream *fichier, const std::string &chemin)
             *fichier>>cheminDuMonstre;
                 m_ModeleMonstre.push_back(Modele_Monstre ());
                 m_ModeleMonstre.back().Charger(cheminDuMonstre);
-                console->Ajouter("Chargement de : "+cheminDuMonstre+" terminé",0);
+                console->Ajouter("Loading : "+cheminDuMonstre+" ended",0);
 
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+                throw ("Error : Map \" "+chemin+" \" is invalid");
             }
         }
         while (caractere!='$');
 
         if (configuration->debug)
-            console->Ajouter("/Lectures des monstres.");
+            console->Ajouter("/Reading monsters.");
 
         console->Ajouter("");
 }
 
 void Map::ChargerEntites(ifstream *fichier2, const std::string &chemin)
 {
-    console->Ajouter("Une map des entités est déjà existante.");
+    console->Ajouter("A map of already existing entities.");
     if (fichier2)
     {
         char caractere;
@@ -555,8 +555,8 @@ void Map::ChargerEntites(ifstream *fichier2, const std::string &chemin)
 
                     if (fichier2->eof())
                     {
-                        console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                        throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                        console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+                        throw ("Error : Map \" "+chemin+" \" is invalid");
                     }
                 }
                 while (caractere!='$');
@@ -590,15 +590,15 @@ void Map::ChargerEntites(ifstream *fichier2, const std::string &chemin)
 
             if (fichier2->eof())
             {
-                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+                throw ("Error : Map \" "+chemin+" \" is invalid");
             }
         }
         while (caractere!='$');
         fichier2->close();
     }
     if (configuration->debug)
-        console->Ajouter("/Lectures des monstres si existants.");
+        console->Ajouter("/Reading monsters if existing.");
 }
 
 void Map::ChargerCases(ifstream *fichier, const std::string &chemin, bool entite_map_existante, Hero *hero)
@@ -722,8 +722,8 @@ void Map::ChargerCases(ifstream *fichier, const std::string &chemin, bool entite
                         fichier->get(caractere);
                         if (fichier->eof())
                         {
-                            console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                            throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                            console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+                            throw ("Error : Map \" "+chemin+" \" is invalid");
                         }
                     }
                     while (caractere!='|' && caractere!='$');
@@ -778,8 +778,8 @@ void Map::ChargerCases(ifstream *fichier, const std::string &chemin, bool entite
 
                         if (fichier->eof())
                         {
-                            console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                            throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                            console->Ajouter("Error : Map \" "+chemin+" \" is invalid",1);
+                            throw ("Error : Map \" "+chemin+" \" is invalid");
                         }
 
                         if (couche==0)
@@ -808,14 +808,14 @@ void Map::ChargerCases(ifstream *fichier, const std::string &chemin, bool entite
             }
             if (fichier->eof())
             {
-                console->Ajouter("Erreur : Map \" "+chemin+" \" Invalide",1);
-                throw ("Erreur : Map \" "+chemin+" \" Invalide");
+                console->Ajouter("Error : Map \" "+chemin+" \" is invslid",1);
+                throw ("Error : Map \" "+chemin+" \" is invalid");
             }
         }
         while (caractere!='$');
     }
     if (configuration->debug)
-        console->Ajouter("/Lectures des cases.");
+        console->Ajouter("/Reading the boxes.");
 }
 
 void Map::AddMonstre(vector <int> &monstre, vector <int> &monstreFinal, std::vector <Entite_graphique> &entite_monstre,
@@ -902,7 +902,7 @@ void Map::Initialiser(Hero *hero)
             }
 
     if (configuration->debug)
-        console->Ajouter("Initialisation de l'herbe terminée.");
+        console->Ajouter("Initializing the grass ended.");
 
     for (unsigned i=0;i<NOMBRE_COUCHE_MAP;++i)
         for (unsigned j=0;j<m_decor[i].size();j++)
@@ -936,7 +936,7 @@ void Map::Initialiser(Hero *hero)
                     m_decor[i][j][k].m_entite_graphique.m_tileset = NULL;
 
     if (configuration->debug)
-        console->Ajouter("Initialisation des décors terminée.");
+        console->Ajouter("Initializing scenery ended.");
 
     for (int i=0;i<(int)m_monstre.size();++i)
        // if (m_monstre[i].getCaracteristique().rang>=0)
@@ -955,7 +955,7 @@ void Map::Initialiser(Hero *hero)
         }
 
     if (configuration->debug)
-        console->Ajouter("Initialisation des entités terminée.");
+        console->Ajouter("Initializing entities ended.");
 
 
     moteurGraphique->LightManager->Generate();
@@ -1048,7 +1048,7 @@ void Map::Sauvegarder(Hero *hero)
     string chemin = configuration->chemin_temps+m_nom_fichier;
 
     console->Ajouter("",0);
-    console->Ajouter("Sauvegarde de la map : "+chemin,0);
+    console->Ajouter("Saving the map : "+chemin,0);
 
     ofstream fichier(chemin.c_str(), ios::out | ios::trunc);
 
@@ -1168,7 +1168,7 @@ void Map::Sauvegarder(Hero *hero)
     }
     else
     {
-        console->Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
+        console->Ajouter("Can not open file : "+chemin,1);
         throw "";
     }
 
@@ -1177,7 +1177,7 @@ void Map::Sauvegarder(Hero *hero)
 
     chemin = configuration->chemin_temps+"entites_map_"+m_nom_fichier+".emap.hs";
 
-    console->Ajouter("Sauvegarde de la map_entite : "+chemin,0);
+    console->Ajouter("Saving the map_entite : "+chemin,0);
 
     ofstream fichier2(chemin.c_str(), ios::out | ios::trunc);
 
@@ -1198,7 +1198,7 @@ void Map::Sauvegarder(Hero *hero)
         fichier2.close();
     }
 
-    console->Ajouter("Sauvegarde de la map terminée !");
+    console->Ajouter("Saving the map ended !");
 }
 
 

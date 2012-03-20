@@ -48,7 +48,7 @@ inline sf::Vector2f AutoScreenAdjust(float x, float y, float decalage = 0)
 
 Map::Map()
 {
-    console->Ajouter("Creation minimap :");
+    console->Ajouter("Creating minimap :");
 
     /*for(int y = 0 ; y < MINIMAP_SIZE ; ++y)
     for(int x = 0 ; x < MINIMAP_SIZE ; ++x)
@@ -63,7 +63,7 @@ Map::Map()
     m_monstreIllumine   = -1;
 
     console->Ajouter("");
-    console->Ajouter("Chargements d'images diverses :");
+    console->Ajouter("Loading various images :");
 }
 
 Map::~Map()

@@ -232,7 +232,7 @@ void Script::Charger(const std::string &chemin)
 
     Charger(fichier);
 
-    console->Ajouter("Chargement du script : \" "+chemin+" \"");
+    console->Ajouter("Loading the script : \" "+chemin+" \"");
 }
 
 

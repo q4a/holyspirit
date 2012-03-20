@@ -18,7 +18,12 @@ which should point to SFML folder with next structure:
 lib
 -*.*
 
-2. dirent.h header if you want to compile under MSVC
+Please note that Cmake script has SFML_STATIC switch set to TRUE. So if it can't find SFML libraries than maybe you want to use
+dynamic libraries instead of static. Is this case uncheck that flag. Also read 3dparty\SFML\README file before building the game.
+
+2. dirent.h header if you want to compile under MSVC (http://www.softagalleria.net/dirent.php)
+
+3. Gettext package. You can get it here: http://sourceforge.net/projects/gnuwin32/files/gettext/0.14.4/gettext-0.14.4.exe
 
 RUNTIME DEPENDENCIES:
 
@@ -31,3 +36,7 @@ for MinGW:
 3. libstdc++-6.dll
 
 4. mingwm10.dll
+
+Gettext:
+
+libintl3.dll

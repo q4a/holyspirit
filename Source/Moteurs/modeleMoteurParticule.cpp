@@ -39,7 +39,7 @@ ModeleParticuleSysteme::~ModeleParticuleSysteme()
 void ModeleParticuleSysteme::Charger(std::string chemin)
 {
     console->Ajouter("",0);
-    console->Ajouter("Chargement du systeme de particules : "+chemin,0);
+    console->Ajouter("Loading system particles : "+chemin,0);
 
     std::ifstream fichier;
     fichier.open(chemin.c_str(), std::ios::in);
@@ -57,7 +57,7 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Système de particules \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : System of particles \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -88,7 +88,7 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
                     }
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Monstre \" "+m_chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Monster \" "+m_chemin+" \" is invalid",1);
                         caractere='$';
                     }
                 }
@@ -98,7 +98,7 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Tileset \" "+m_chemin+" \" Invalide",1);
+                console->Ajouter("Error : Tileset \" "+m_chemin+" \" is invslid",1);
                 caractere='$';
             }
         }
@@ -166,7 +166,7 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
 
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Système de particules \" "+chemin+" \" Invalide",1);
+                        console->Ajouter("Error : System of particles \" "+chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -179,7 +179,7 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Système de particules \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : System of particles \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
 
@@ -189,5 +189,5 @@ void ModeleParticuleSysteme::Charger(std::string chemin)
         fichier.close();
     }
     else
-        console->Ajouter("Impossible d'ouvrir : "+chemin,1);
+        console->Ajouter("Unable to open : "+chemin,1);
 }

@@ -80,7 +80,7 @@ void c_Potales::Utiliser(Jeu *jeu)
 
         console->Ajouter("",0);
         console->Ajouter("---------------------------------------------------------------------------------",0);
-        console->Ajouter("EVENEMENT : Changement de map",0);
+        console->Ajouter("EVENT : Changing the map",0);
         console->Ajouter("---------------------------------------------------------------------------------",0);
 
         coordonnee coordonneePerso;

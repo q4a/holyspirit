@@ -318,7 +318,7 @@ float ChargerEquation(ifstream &fichier, const Caracteristique &caract, int leve
 
 void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, int level)
 {
-    console->Ajouter("Chargement du miracle : "+chemin);
+    console->Ajouter("Loading the miracle : "+chemin);
 
     m_unique     =  false;
     m_direct     =  false;
@@ -360,7 +360,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
 
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Miracle \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -380,7 +380,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
 
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Miracle \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -408,7 +408,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
 
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Miracle \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -503,7 +503,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
 
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Miracle \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -569,7 +569,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
                     }
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Miracle \" "+chemin+" \" is invalid",1);
                         caractere='$';
                     }
                 }
@@ -580,7 +580,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
 
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Miracle \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -646,7 +646,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
                     }
                     if (fichier.eof())
                     {
-                        console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                        console->Ajouter("Error : Miracle \" "+chemin+" \" is invalid",1);
                         caractere='$';
                     }
 
@@ -658,7 +658,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
 
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Miracle \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -678,7 +678,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
             }
             if (fichier.eof())
             {
-                console->Ajouter("Erreur : Miracle \" "+chemin+" \" Invalide",1);
+                console->Ajouter("Error : Miracle \" "+chemin+" \" is invalid",1);
                 caractere='$';
             }
         }
@@ -687,7 +687,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
         fichier.close();
     }
     else
-        console->Ajouter("Impossible d'ouvrir le fichier : "+chemin,1);
+        console->Ajouter("Can not open file : "+chemin,1);
 }
 
 void Miracle::RechargerTileset()
@@ -712,7 +712,7 @@ void Miracle::RechargerTileset()
 
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    console->Ajouter("Error : Miracle \" "+m_chemin_concatene[j]+" \" is invalid",1);
                     caractere='$';
                 }
             }
@@ -731,7 +731,7 @@ void Miracle::RechargerTileset()
 
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    console->Ajouter("Error : Miracle \" "+m_chemin_concatene[j]+" \" is invalid",1);
                     caractere='$';
                 }
             }
@@ -747,7 +747,7 @@ void Miracle::RechargerTileset()
                         fichier.get(caractere);
                         if (fichier.eof())
                         {
-                            console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                            console->Ajouter("Error : Miracle \" "+m_chemin_concatene[j]+" \" is invalid",1);
                             caractere='$';
                         }
                     }
@@ -757,7 +757,7 @@ void Miracle::RechargerTileset()
 
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    console->Ajouter("Error : Miracle \" "+m_chemin_concatene[j]+" \" is invalid",1);
                     caractere='$';
                 }
             }
@@ -776,7 +776,7 @@ void Miracle::RechargerTileset()
 
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    console->Ajouter("Error : Miracle \" "+m_chemin_concatene[j]+" \" is invalid",1);
                     caractere='$';
                 }
             }
@@ -792,7 +792,7 @@ void Miracle::RechargerTileset()
                         fichier.get(caractere);
                         if (fichier.eof())
                         {
-                            console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                            console->Ajouter("Error : Miracle \" "+m_chemin_concatene[j]+" \" is invalid",1);
                             caractere='$';
                         }
                     }
@@ -803,7 +803,7 @@ void Miracle::RechargerTileset()
 
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    console->Ajouter("Error : Miracle \" "+m_chemin_concatene[j]+" \" is invalid",1);
                     caractere='$';
                 }
             }
@@ -821,7 +821,7 @@ void Miracle::RechargerTileset()
                         fichier.get(caractere);
                         if (fichier.eof())
                         {
-                            console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                            console->Ajouter("Error : Miracle \" "+m_chemin_concatene[j]+" \" is invalid",1);
                             caractere='$';
                         }
 
@@ -833,7 +833,7 @@ void Miracle::RechargerTileset()
 
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    console->Ajouter("Error : Miracle \" "+m_chemin_concatene[j]+" \" is invalid",1);
                     caractere='$';
                 }
             }
@@ -851,7 +851,7 @@ void Miracle::RechargerTileset()
                 }
                 if (fichier.eof())
                 {
-                    console->Ajouter("Erreur : Miracle \" "+m_chemin_concatene[j]+" \" Invalide",1);
+                    console->Ajouter("Error : Miracle \" "+m_chemin_concatene[j]+" \" is invalid",1);
                     caractere='$';
                 }
             }
@@ -860,7 +860,7 @@ void Miracle::RechargerTileset()
             fichier.close();
         }
         else
-            console->Ajouter("Impossible d'ouvrir le fichier : "+m_chemin_concatene[j],1);
+            console->Ajouter("Can not open file : "+m_chemin_concatene[j],1);
     }
 }
 

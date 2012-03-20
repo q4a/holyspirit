@@ -49,7 +49,7 @@ void c_Chargement::setC_Chargement(const std::string &prochaineMap,const coordon
 
     console->Ajouter("",0);
     console->Ajouter("---------------------------------------------------------------------------------",0);
-    console->Ajouter("EVENEMENT : Changement de map",0);
+    console->Ajouter("EVENT : Changing the map",0);
     console->Ajouter("---------------------------------------------------------------------------------",0);
 
     mort = false;

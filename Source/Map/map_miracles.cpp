@@ -766,7 +766,7 @@ bool Map::Miracle_Invocation(Jeu *jeu, Personnage *personnage, Miracle &modele, 
             {
                 m_ModeleMonstre.push_back(Modele_Monstre ());
                 m_ModeleMonstre.back().Charger(effet.m_chaine);
-                console->Ajouter("Chargement de : "+effet.m_chaine+" terminé",0);
+                console->Ajouter("Loading : "+effet.m_chaine+" ended",0);
                 numero=m_ModeleMonstre.size()-1;
             }
 
