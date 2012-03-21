@@ -1,11 +1,3 @@
-Efficacite accrue de : 
-Force accrue : 
-Dextérité accrue : 
-Vitalité accrue : 
-Piété accrue : 
-Charisme accru : 
-Vie accrue : 
-Foi accrue : 
 Dégâts accrus :
 Dégâts par le feu : 
 Dégâts par la foi : 
