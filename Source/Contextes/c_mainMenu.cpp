@@ -23,13 +23,12 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <fstream>
 #include <sstream>
 
+#include <dirent.h>
+
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#include <libintl.h>
-
-#include <dirent.h>
 
 using namespace sf;
 using namespace std;
@@ -76,7 +75,6 @@ c_MainMenu::c_MainMenu()
         fichier.close();
     }
 
-	textdomain ("menus");
 
     m_credit_defil = 0;
     time = 0;
@@ -869,9 +867,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
 
         moteurGraphique->AjouterCommande(&m_backtext_hero,19,0);
 
-		textdomain ("entities");
-        texte.setString(configuration->getText(3,m_nom_classes[i]));
-		textdomain ("menus");
+        texte.setString(toUtf32(gettext(configuration->getText(3,m_nom_classes[i]).c_str())));
         texte.setFont(moteurGraphique->m_font_titre);
 
         texte.setPosition((int)(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.getGlobalBounds().width + 4) * 0.5

@@ -1,34 +1,32 @@
-# Russian translation for HolySpirit.
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Igor Paliychuk <mansonigor@gmail.com>, 2012.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-21 20:32+0200\n"
-"PO-Revision-Date: 2012-03-21 20:37+0300\n"
-"Last-Translator: Igor Paliychuk <mansonigor@gmail.com>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Virtaal 0.7.0\n"
 
 #: configuration.cpp:654 configuration.cpp:657 configuration.cpp:660
 msgid "Graphics options"
-msgstr "Настройки графики"
+msgstr ""
 
 #: configuration.cpp:670 configuration.cpp:673 configuration.cpp:676
 msgid "Advanced options"
-msgstr "Расширенные настройки"
+msgstr ""
 
 #: configuration.cpp:687 configuration.cpp:690 configuration.cpp:693
 msgid "Sound options"
-msgstr "Настройки звука"
+msgstr ""
 
 #: configuration.cpp:708 configuration.cpp:711 configuration.cpp:928
 #: configuration.cpp:931 configuration.cpp:1096 configuration.cpp:1099
@@ -44,73 +42,73 @@ msgstr "Настройки звука"
 #: Contextes/c_menuInGame.cpp:108 Contextes/c_menuInGame.cpp:111
 #: Contextes/c_menuInGame.cpp:114 Entites/hero.cpp:4676
 msgid "Return"
-msgstr "Назад"
+msgstr ""
 
 #: configuration.cpp:723
 msgid "Resolution: "
-msgstr "Разрешение: "
+msgstr ""
 
 #: configuration.cpp:816
 msgid "Window mode: "
-msgstr "Режим окна: "
+msgstr ""
 
 #: configuration.cpp:836
 msgid "Brightness: "
-msgstr "Яркость: "
+msgstr ""
 
 #: configuration.cpp:866
 msgid "Contrast: "
-msgstr "Контраст: "
+msgstr ""
 
 #: configuration.cpp:941
 msgid "Quality of lights: "
-msgstr "Качество освещения: "
+msgstr ""
 
 #: configuration.cpp:966
 msgid "Render the shadows: "
-msgstr "Рисовать тени: "
+msgstr ""
 
 #: configuration.cpp:986
 msgid "Use shader effects: "
-msgstr "Использовать шейдеры: "
+msgstr ""
 
 #: configuration.cpp:1006
 msgid "Enable reflection of objects: "
-msgstr "Включить отражение обьектов: "
+msgstr ""
 
 #: configuration.cpp:1026
 msgid "Enable effects of distortion: "
-msgstr "Включить эффекты искажения: "
+msgstr ""
 
 #: configuration.cpp:1046
 msgid "Render the grass: "
-msgstr "Рисовать траву:  "
+msgstr ""
 
 #: configuration.cpp:1066
 msgid "Enable dynamical debris: "
-msgstr "Включить динамический мусор: "
+msgstr ""
 
 #: configuration.cpp:1108
 msgid "Volume: "
-msgstr "Громкость: "
+msgstr ""
 
 #: configuration.cpp:1144
 msgid "Music volume: "
-msgstr "Громкость музыки: "
+msgstr ""
 
 #: menu.cpp:442 Entites/hero.cpp:1088 Entites/hero.cpp:1119
 #: Entites/objet.cpp:2189
 msgid "Life"
-msgstr "Жизнь"
+msgstr ""
 
 #: menu.cpp:493 Entites/hero.cpp:1124 Entites/hero.cpp:1155
 #: Entites/hero.cpp:1578
 msgid "Faith"
-msgstr "Вера"
+msgstr ""
 
 #: menu.cpp:527
 msgid "Points of souls: "
-msgstr "Очки душ: "
+msgstr ""
 
 #: Contextes/c_jeu.cpp:244 Contextes/c_jeu.cpp:251
 msgid "Non resquiescat in pace..."
@@ -118,7 +116,7 @@ msgstr ""
 
 #: Contextes/c_jeu.cpp:246 Contextes/c_jeu.cpp:253
 msgid "Click to have another chance!"
-msgstr "Нажмите для еще одной попытки!"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:81
 msgid ""
@@ -148,382 +146,350 @@ msgid ""
 "address the foul legion that has swept\n"
 "across the world."
 msgstr ""
-"Старый закон требует всегда была добра и зла встречаются по крайней мере "
-"один править в их\n"
-" вечном конфликте.\n"
-"Они не могут непосредственно вмешиваться в делах живых существ, действуя "
-"только тонкие\n"
-" внушения\n"
-"и борьба внутри каждой души...\n"
-"Эгоизм, насилие, жалость, любовь и столкновение в виде мыслей, от мечты, с "
-"различными судьбами.\n"
-"\n"
-"Но однажды зло, которое больше не поддерживается баланс остался доволен "
-"Хорошо, решил нарушить\n"
-"правила УВАЖАЕМЫЕ далеко, и добились этого в воплощения непосредственно в "
-"большинстве живых\n"
-"существ уязвимых к своим\n"
-"импульсам и, как ни странно, в некоторых объектах.\n"
-"Отныне зло правления может быть только на каждом из которых он завладел "
-"некоторые обычные\n"
-"предметы становятся демоническими.\n"
-"\n"
-"После этого ожидается предательство, ну не был удивлен. Отказ нарушать "
-"закон, как зло сделал\n"
-"и отказываются жертвовать хорошими и щедрые души, он использовал несколько "
-"штормов и проклятые\n"
-"духи, которые хотели выкупить Сам глубоко с ним...\n"
-"Считая себя уже потеряли, только бессознательное придется решения фол "
-"легион, который прокатился\n"
-"по всему миру."
 
 #: Contextes/c_mainMenu.cpp:271 Contextes/c_mainMenu.cpp:279
 #: Contextes/c_mainMenu.cpp:286 Contextes/c_mainMenu.cpp:289
 #: Contextes/c_mainMenu.cpp:292
 msgid "Continue"
-msgstr "Продолжить"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:306 Contextes/c_mainMenu.cpp:314
 #: Contextes/c_mainMenu.cpp:321 Contextes/c_mainMenu.cpp:324
 #: Contextes/c_mainMenu.cpp:327
 msgid "Multiplayer"
-msgstr "Мультиплеер"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:338 Contextes/c_mainMenu.cpp:345
 #: Contextes/c_mainMenu.cpp:348 Contextes/c_mainMenu.cpp:351
 msgid "New game"
-msgstr "Новая игра"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:421 Contextes/c_mainMenu.cpp:428
 #: Contextes/c_mainMenu.cpp:431 Contextes/c_mainMenu.cpp:434
 #: Contextes/c_menuInGame.cpp:127 Contextes/c_menuInGame.cpp:134
 #: Contextes/c_menuInGame.cpp:137 Contextes/c_menuInGame.cpp:140
 msgid "Options"
-msgstr "Опции"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:445 Contextes/c_mainMenu.cpp:452
 #: Contextes/c_mainMenu.cpp:455 Contextes/c_mainMenu.cpp:458
 msgid "Credits"
-msgstr "Авторы"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:469 Contextes/c_mainMenu.cpp:476
 #: Contextes/c_mainMenu.cpp:479 Contextes/c_mainMenu.cpp:482
 msgid "Quit"
-msgstr "Выход"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:538 Contextes/c_mainMenu.cpp:545
 #: Contextes/c_mainMenu.cpp:548 Contextes/c_mainMenu.cpp:551
 #: Contextes/c_mainMenu.cpp:792
 msgid "Delete character"
-msgstr "Удалить персонаж"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:605
 msgid "<Incompatible>"
-msgstr "<Несовместимый>"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:607 Entites/hero.cpp:1045
 msgid "Level"
-msgstr "Уровень"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:756
 msgid "Please enter the name of the hero to delete :"
-msgstr "Пожалуйста, введите имя героя для удаления :"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:848
 msgid "Select your character"
-msgstr "Выберите персонажа"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:919
 msgid "Enter your name"
-msgstr "Введите свое имя"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:935 Contextes/c_mainMenu.cpp:942
 #: Contextes/c_mainMenu.cpp:945 Contextes/c_mainMenu.cpp:948
 msgid "Start"
-msgstr "Играть"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:1102 Contextes/c_mainMenu.cpp:1109
 #: Contextes/c_mainMenu.cpp:1112 Contextes/c_mainMenu.cpp:1115
 msgid "Next"
-msgstr "Дальше"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:1157 Contextes/c_mainMenu.cpp:1164
 #: Contextes/c_mainMenu.cpp:1167 Contextes/c_mainMenu.cpp:1170
 msgid "Join game"
-msgstr "Присоединится к игре"
+msgstr ""
 
 #: Contextes/c_mainMenu.cpp:1187 Contextes/c_mainMenu.cpp:1194
 #: Contextes/c_mainMenu.cpp:1197 Contextes/c_mainMenu.cpp:1200
 msgid "Host game"
-msgstr "Создать игру"
+msgstr ""
 
 #: Contextes/c_menuInGame.cpp:152 Contextes/c_menuInGame.cpp:159
 #: Contextes/c_menuInGame.cpp:162 Contextes/c_menuInGame.cpp:165
 msgid "Save and Exit"
-msgstr "Сохранить и выйти"
+msgstr ""
 
 #: Contextes/c_menuInGame.cpp:180 Contextes/c_menuInGame.cpp:187
 #: Contextes/c_menuInGame.cpp:190 Contextes/c_menuInGame.cpp:193
 msgid "Quit the game"
-msgstr "Покинуть игру"
+msgstr ""
 
 #: Entites/hero.cpp:111 Entites/hero.cpp:4988
 msgid "New quest"
-msgstr "Новый квест"
+msgstr ""
 
 #: Entites/hero.cpp:1063
 msgid "Name"
-msgstr "Имя"
+msgstr ""
 
 #: Entites/hero.cpp:1082
 msgid "Class"
-msgstr "Клас"
+msgstr ""
 
 #: Entites/hero.cpp:1201
 msgid "Strength"
-msgstr "Сила"
+msgstr ""
 
 #: Entites/hero.cpp:1214
 msgid ""
 "Your strength increases your damage to opponent and allows you to carry the "
 "heavier equipment."
 msgstr ""
-"Ваша сила увеличивает нанесенный противнику урон и позволяет носить тяжелое "
-"обмундирование."
 
 #: Entites/hero.cpp:1262
 msgid "Dexterity"
-msgstr "Ловкость"
+msgstr ""
 
 #: Entites/hero.cpp:1274
 msgid ""
 "Your dexterity allows you to dodge better and access to certain objects."
 msgstr ""
-"Ваша ловкость позволяет лучше уклонятся от удара и дает доступ к некоторым "
-"обьектам."
 
 #: Entites/hero.cpp:1324
 msgid "Vitality"
-msgstr "Живучесть"
+msgstr ""
 
 #: Entites/hero.cpp:1336
 msgid "Your vitality increases your life."
-msgstr "Ваша живучесть увеличивает вашу жизнь."
+msgstr ""
 
 #: Entites/hero.cpp:1384
 msgid "Piety"
-msgstr "Благочестие"
+msgstr ""
 
 #: Entites/hero.cpp:1394
 msgid "Your piety points increase your faith."
-msgstr "Очки благочестия увеличивают веру."
+msgstr ""
 
 #: Entites/hero.cpp:1442
 msgid "Charisma"
-msgstr "Харизма"
+msgstr ""
 
 #: Entites/hero.cpp:1454
 msgid ""
 "Your charisma affects the price of objects and allows you to wear certain "
 "items."
-msgstr "Харизма влияет на цену вещей и позволяет носить некоторые обьекты."
+msgstr ""
 
 #: Entites/hero.cpp:1458 Entites/hero.cpp:2004
 msgid "Remaining"
-msgstr "Осталось"
+msgstr ""
 
 #: Entites/hero.cpp:1512
 msgid "Damage"
-msgstr "Урон"
+msgstr ""
 
 #: Entites/hero.cpp:1555 Entites/objet.cpp:2177
 msgid "Armor"
-msgstr "Броня"
+msgstr ""
 
 #: Entites/hero.cpp:1568
 msgid "Physical"
-msgstr "Физический"
+msgstr ""
 
 #: Entites/hero.cpp:1573
 msgid "Fire"
-msgstr "Огонь"
+msgstr ""
 
 #: Entites/hero.cpp:1583
 msgid "Corrosion"
-msgstr "Коррозия"
+msgstr ""
 
 #: Entites/hero.cpp:1602
 msgid "Money"
-msgstr "Деньги"
+msgstr ""
 
 #: Entites/hero.cpp:1620
 msgid "Holy water"
-msgstr "Святая вода"
+msgstr ""
 
 #: Entites/hero.cpp:2975
 msgid "Shortcut"
-msgstr "Ярлык"
+msgstr ""
 
 #: Entites/hero.cpp:3229
 msgid "LevelUp"
-msgstr "Новый уровень"
+msgstr ""
 
 #: Entites/hero.cpp:3649
 msgid "I do not have the required equipment!"
-msgstr "У меня нет нужного оборудование!"
+msgstr ""
 
 #: Entites/hero.cpp:3782
 msgid "My bag is full!"
-msgstr "Моя сумка переполнена!"
+msgstr ""
 
 #: Entites/hero.cpp:5023
 msgid "Quest ended"
-msgstr "Квест закончен"
+msgstr ""
 
 #: Entites/miracle.cpp:958
 msgid "Left click"
-msgstr "Левый щелчек"
+msgstr ""
 
 #: Entites/miracle.cpp:960
 msgid "Right click"
-msgstr "Правый щелчек"
+msgstr ""
 
 #: Entites/miracle.cpp:1006 Entites/miracle.cpp:1054
 msgid "Cost of faith: "
-msgstr "Цена веры:"
+msgstr ""
 
 #: Entites/miracle.cpp:1012 Entites/miracle.cpp:1060
 msgid "Reserve of faith: "
-msgstr "Запас веры:"
+msgstr ""
 
 #: Entites/miracle.cpp:1018 Entites/miracle.cpp:1066
 msgid "Cost of life: "
-msgstr "Цена жызни:"
+msgstr ""
 
 #: Entites/miracle.cpp:1024 Entites/miracle.cpp:1072
 msgid "Reserve of life: "
-msgstr "Запас жызни:"
+msgstr ""
 
 #: Entites/miracle.cpp:1037
 msgid "Next level: "
-msgstr "Следующий уровень:"
+msgstr ""
 
 #: Entites/miracle.cpp:1042
 msgid "Requirements: "
-msgstr "Требования:"
+msgstr ""
 
 #: Entites/objet.cpp:1923
 msgid "Increased efficiency: "
-msgstr "Повышение эффективности: "
+msgstr ""
 
 #: Entites/objet.cpp:1929
 msgid "Strength increased: "
-msgstr "Сила увеличена: "
+msgstr ""
 
 #: Entites/objet.cpp:1931
 msgid "Dexterity increased: "
-msgstr "Ловкость увеличина: "
+msgstr ""
 
 #: Entites/objet.cpp:1933
 msgid "Vitality increased: "
-msgstr "Жывучесть увеличена: "
+msgstr ""
 
 #: Entites/objet.cpp:1935
 msgid "Piety increased: "
-msgstr "Благочестие увеличено: "
+msgstr ""
 
 #: Entites/objet.cpp:1937
 msgid "Charisma increased: "
-msgstr "Харизма увеличена: "
+msgstr ""
 
 #: Entites/objet.cpp:1943
 msgid "Health increased: "
-msgstr "Жызнь увеличена: "
+msgstr ""
 
 #: Entites/objet.cpp:1945
 msgid "Faith increased: "
-msgstr "Вера увеличена: "
+msgstr ""
 
 #: Entites/objet.cpp:1956
 msgid "over"
-msgstr "за"
+msgstr ""
 
 #: Entites/objet.cpp:1965
 msgid "Miracle: "
-msgstr "Чудо: "
+msgstr ""
 
 #: Entites/objet.cpp:2012
 msgid "Team: "
-msgstr "Команда: "
+msgstr ""
 
 #: Entites/objet.cpp:2016
 msgid "Stash: "
-msgstr "Тайник: "
+msgstr ""
 
 #: Entites/objet.cpp:2018
 msgid "Trader: "
-msgstr "Торговец: "
+msgstr ""
 
 #: Entites/objet.cpp:2020
 msgid "Inventory: "
-msgstr "Инвентарь: "
+msgstr ""
 
 #: Entites/objet.cpp:2110
 msgid "Production time: "
-msgstr "Время изготовления: "
+msgstr ""
 
 #: Entites/objet.cpp:2113
 msgid "minutes"
-msgstr "минут"
+msgstr ""
 
 #: Entites/objet.cpp:2115
 msgid "seconds"
-msgstr "секунд"
+msgstr ""
 
 #: Entites/objet.cpp:2147 Entites/objet.cpp:2193
 msgid "Damage: "
-msgstr "Урон: "
+msgstr ""
 
 #: Entites/objet.cpp:2163
 msgid "Two-handed weapon"
-msgstr "Двуручное оружие"
+msgstr ""
 
 #: Entites/objet.cpp:2165
 msgid "One hand weapon"
-msgstr "Одноручное оружие"
+msgstr ""
 
 #: Entites/objet.cpp:2197
 msgid "Armor: "
-msgstr "Броня: "
+msgstr ""
 
 #: Entites/objet.cpp:2216
 msgid "Required Strength: "
-msgstr "Требуемая сила: "
+msgstr ""
 
 #: Entites/objet.cpp:2226
 msgid "Dexterity required: "
-msgstr "Требуемая ловкость: "
+msgstr ""
 
 #: Entites/objet.cpp:2236
 msgid "Charisma required: "
-msgstr "Требуемая харизма: "
+msgstr ""
 
 #: Entites/objet.cpp:2246
 msgid "Vitality required: "
-msgstr "Требуемая жывучесть: "
+msgstr ""
 
 #: Entites/objet.cpp:2256
 msgid "Piety required: "
-msgstr "Требуемое благочестие: "
+msgstr ""
 
 #: Entites/objet.cpp:2269
 msgid "Only for: "
-msgstr "Только для: "
+msgstr ""
 
 #: Entites/objet.cpp:2345
 msgid "Free slot"
-msgstr "Пустой слот"
+msgstr ""
 
 #: Entites/objet.cpp:2363
 msgid "Price: "
-msgstr "Цена: "
+msgstr ""

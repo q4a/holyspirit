@@ -104,7 +104,7 @@ void Network::CheckPacketClient(sf::Packet &packet)
                 jeu->m_personnageClients.back().ChargerModele();
 
                 jeu->hero.m_amis.push_back(&jeu->m_personnageClients.back().m_personnage);
-                std::cout<<"Joueur " << caract.nom << std::endl;
+                std::cout<<"Player " << caract.nom << std::endl;
 
                 GlobalMutex.unlock();
             }

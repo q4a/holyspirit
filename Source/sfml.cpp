@@ -1,7 +1,4 @@
 #include "globale.h"
-#include <iostream>
-#include <string>
-#include <iterator>
 
 #include <SFML/System/Utf.hpp>
 
@@ -17,3 +14,10 @@ std::basic_string<sf::Uint32> utf32line;
 	sf::Utf8::toUtf32((line).begin(),(line).end(), back_inserter(utf32line));
     return utf32line;
 }
+
+/*std::string toANSI(std::string line)
+{
+char*std::string ANSIline;
+	sf::Utf8::toAnsi((line).begin(),(line).end(), 0, back_inserter(ANSIline), std::locale());
+    return ANSIline;
+}*/

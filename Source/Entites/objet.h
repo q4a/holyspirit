@@ -179,7 +179,7 @@ public:
     int                     m_doc;
 
 private:
-    sf::Text AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
+    sf::Text AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, sf::String chaine,sf::Color color=sf::Color(255,255,255));
 
     std::string m_nom,m_chemin;
     std::vector <std::string> m_description;

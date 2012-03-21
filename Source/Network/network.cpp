@@ -243,7 +243,7 @@ void Network::GererMultijoueur(Jeu* p_jeu)
                     //delete *&*it;
 
                     if(!DeletePersonnageClient(no))
-                        std::cout<<"Un joueur est partit"<<std::endl;
+                        std::cout<<"Player left"<<std::endl;
                     int no2 = 1;
                     for (std::list<sf::TcpSocket*>::iterator it2 = m_clientsTCP.begin(); it2 != m_clientsTCP.end(); ++it2,++no2)
                     {
@@ -274,7 +274,7 @@ void Network::GererMultijoueur(Jeu* p_jeu)
                 jeu->m_mainMenu->m_save  = true;
                 jeu->m_mainMenu->m_reset = true;
                 jeu->m_contexte = jeu->m_mainMenu;
-                std::cout<<"L'hôte à quitté la partie"<<std::endl;
+                std::cout<<"The host leaves the game"<<std::endl;
 
                 Disconnect();
                 CloseServer();
@@ -356,7 +356,7 @@ bool Network::Connect(sf::IpAddress ServerAddress)
 
 void Network::Disconnect()
 {
-    std::cout<<"Vous avez ete deconnecte"<<std::endl;
+    std::cout<<"You have been disconnected"<<std::endl;
 
     GlobalMutex.lock();
     if(m_host)
@@ -367,14 +367,14 @@ void Network::Disconnect()
     //m_udp.Unbind();
     GlobalMutex.unlock();
 
-    std::cout<<"Vous avez ete deconnecte 2"<<std::endl;
+    std::cout<<"You have been disconnected 2"<<std::endl;
 
     if(m_thread_clientTCP)
     {
         m_thread_clientTCP->wait();
         delete m_thread_clientTCP;
     }
-    std::cout<<"Vous avez ete deconnecte 3"<<std::endl;
+    std::cout<<"You have been disconnected 3"<<std::endl;
 
     if(m_thread_clientUDP)
     {
@@ -382,7 +382,7 @@ void Network::Disconnect()
         delete m_thread_clientUDP;
     }
 
-    std::cout<<"Vous avez ete deconnecte 4"<<std::endl;
+    std::cout<<"You have been disconnected 4"<<std::endl;
 
     m_thread_clientTCP = NULL;
     m_thread_clientUDP = NULL;
@@ -395,7 +395,7 @@ void Network::AddClient(sf::TcpSocket* clientTCP)
 
     m_clientsTCP.push_back(clientTCP);
 
-    std::cout<<"Un joueur arrive !"<<std::endl;
+    std::cout<<"A player arrives !"<<std::endl;
 
     m_selector.add(*clientTCP);
 
@@ -436,7 +436,7 @@ bool Network::DeletePersonnageClient(int no)
             p != jeu->m_personnageClients.end() && i <= no; ++p, ++i)
         if(i == no)
         {
-            std::cout<<p->m_caracteristiques.nom<<" est partit"<<std::endl;
+            std::cout<<p->m_caracteristiques.nom<<" left"<<std::endl;
 
             GlobalMutex.lock();
             for(unsigned j = 0 ; j < jeu->hero.m_amis.size() ; ++j)

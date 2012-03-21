@@ -151,7 +151,7 @@ public:
     void RechargerTileset();
 
     void AfficherDescription(coordonnee position, Border &border, bool suivant = true, int hand = 0);
-    sf::Text AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color=sf::Color(255,255,255));
+    sf::Text AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, sf::String chaine,sf::Color color=sf::Color(255,255,255));
 
     std::vector <int>           m_tileset;
 
@@ -170,7 +170,7 @@ public:
     int                         m_coutVie_suivant;
     int                         m_reserveVie_suivant;
 
-    std::string                 m_nom;
+    sf::String                  m_nom;
     std::vector<std::string>    m_description;
     std::vector<std::string>    m_description_effets;
     std::vector<std::string>    m_description_effets_suivant;

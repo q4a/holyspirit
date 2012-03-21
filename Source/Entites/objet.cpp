@@ -1862,7 +1862,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 }
 
 
-sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color)
+sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, sf::String chaine,sf::Color color)
 {
     sf::Text string;
 
@@ -1920,50 +1920,50 @@ std::string getTextBenediction(const benediction &bene)
     std::ostringstream buf;
     if(bene.type == EFFICACITE_ACCRUE)
     {
-        buf<<configuration->getText(1,0);
+        buf<<gettext("Increased efficiency: ");
         buf<<" "<<bene.info1<<" %";
     }
     if(bene.type == CARACT_SUPP)
     {
         if(bene.info1 == FORCE)
-            buf<<configuration->getText(1,1);
+            buf<<gettext("Strength increased: ");
         if(bene.info1 == DEXTERITE)
-            buf<<configuration->getText(1,2);
+            buf<<gettext("Dexterity increased: ");
         if(bene.info1 == VITALITE)
-            buf<<configuration->getText(1,3);
+            buf<<gettext("Vitality increased: ");
         if(bene.info1 == PIETE)
-            buf<<configuration->getText(1,4);
+            buf<<gettext("Piety increased: ");
         if(bene.info1 == CHARISME)
-            buf<<configuration->getText(1,5);
+            buf<<gettext("Charisma increased: ");
         buf<<" "<<bene.info2;
     }
     if(bene.type == POINTS_SUPP)
     {
         if(bene.info1 == PT_VIE)
-            buf<<configuration->getText(1,6);
+            buf<<gettext("Health increased: ");
         if(bene.info1 == PT_FOI)
-            buf<<configuration->getText(1,7);
+            buf<<gettext("Faith increased: ");
         buf<<" "<<bene.info2;
     }
     if(bene.type == DEGATS_SUPP)
     {
-        buf<<configuration->getText(1,8 + bene.info1);
+        buf<<gettext(configuration->getText(1,0 + bene.info1).c_str());
         buf<<" "<<bene.info2<<" - "<<bene.info3;
     }
     if(bene.type == DEGATS_TEMPS_SUPP)
     {
-        buf<<configuration->getText(1,16 + bene.info1);
-        buf<<" "<<bene.info2<<" "<<configuration->getText(1,20)<<" "<<bene.info3<<" s";
+        buf<<gettext(configuration->getText(1,8 + bene.info1).c_str());
+        buf<<" "<<bene.info2<<" "<<gettext("over")<<" "<<bene.info3<<" s";
     }
     if(bene.type == ARMURE_SUPP)
     {
-        buf<<configuration->getText(1,12 + bene.info1);
+        buf<<gettext(configuration->getText(1,4 + bene.info1).c_str());
         buf<<" "<<bene.info2;
     }
     if(bene.type == MIRACLE_SUPP)
     {
-        buf<<configuration->getText(1,21);
-        buf<<configuration->getText(6,getNomMiracle(bene.text));
+        buf<<gettext("Miracle: ");
+        buf<<gettext(configuration->getText(6,getNomMiracle(bene.text)).c_str());
         buf<<" +"<<bene.info1;
     }
     return buf.str();
@@ -2009,15 +2009,15 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
         if(m_equipe >= 0)
-            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,18).c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Team: "))));
         else
         {
             if(coffre)
-                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,63).c_str()));
+                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Stash: "))));
             else if (decalageDroite)
-                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,19).c_str()));
+                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Trader: "))));
             else
-                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,20).c_str()));
+                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Inventory: "))));
         }
         temp.back().setCharacterSize(12);
 
@@ -2107,12 +2107,12 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         int min = (int)(m_time/60);
 
         std::ostringstream buf;
-        buf<<configuration->getText(0,69);
+        buf<<gettext("Production time: ");
 
         if(min > 0)
-            buf<<min<<" "<<configuration->getText(0,71)<<" ";
+            buf<<min<<" "<<gettext("minutes")<<" ";
         if(sec > 0)
-            buf<<sec<<" "<<configuration->getText(0,70);
+            buf<<sec<<" "<<gettext("seconds");
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
@@ -2144,7 +2144,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     {
         {
             std::ostringstream buf;
-            buf<<configuration->getText(0,21)<<(int)(m_degatsMin*multiplieurEfficacite/100)<<" - "<<(int)(m_degatsMax*multiplieurEfficacite/100);
+            buf<<gettext("Damage: ")<<(int)(m_degatsMin*multiplieurEfficacite/100)<<" - "<<(int)(m_degatsMax*multiplieurEfficacite/100);
 
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
             if (multiplieurEfficacite!=100.0f)
@@ -2160,9 +2160,9 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
                     if (m_emplacementImpossible[j]==BOUCLIER)
                         arme2H = true;
             if(arme2H)
-                buf<<configuration->getText(0,107);
+                buf<<gettext("Two-handed weapon");
             else
-                buf<<configuration->getText(0,106);
+                buf<<gettext("One hand weapon");
 
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
@@ -2174,7 +2174,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         if(m_armure > 0)
         {
             std::ostringstream buf;
-            buf<<configuration->getText(0,22)<<(int)(m_armure*multiplieurEfficacite/100);
+            buf<<gettext("Armor")<<(int)(m_armure*multiplieurEfficacite/100);
 
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
 
@@ -2186,15 +2186,15 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     if(m_type == GOLEM)
     {
         std::ostringstream buf;
-        buf<<configuration->getText(0,3)<<" : "<<m_gol_caract.maxVie;
+        buf<<gettext("Life")<<" : "<<m_gol_caract.maxVie;
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
 
         buf.str("");
-        buf<<configuration->getText(0,21)<<m_gol_caract.degatsMin[0]<<" - "<<m_gol_caract.degatsMax[0];
+        buf<<gettext("Damage: ")<<m_gol_caract.degatsMin[0]<<" - "<<m_gol_caract.degatsMax[0];
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
 
         buf.str("");
-        buf<<configuration->getText(0,22)<<m_gol_caract.armure[0];
+        buf<<gettext("Armor: ")<<m_gol_caract.armure[0];
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
     }
 
@@ -2213,7 +2213,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     {
         add_space = true;
         std::ostringstream buf;
-        buf<<configuration->getText(0,23)<<m_requirement.force;
+        buf<<gettext("Required Strength: ")<<m_requirement.force;
 
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.force<m_requirement.force)
@@ -2223,7 +2223,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     {
         add_space = true;
         std::ostringstream buf;
-        buf<<configuration->getText(0,24)<<m_requirement.dexterite;
+        buf<<gettext("Dexterity required: ")<<m_requirement.dexterite;
 
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.dexterite<m_requirement.dexterite)
@@ -2233,7 +2233,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     {
         add_space = true;
         std::ostringstream buf;
-        buf<<configuration->getText(0,25)<<m_requirement.charisme;
+        buf<<gettext("Charisma required: ")<<m_requirement.charisme;
 
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.charisme<m_requirement.charisme)
@@ -2243,7 +2243,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     {
         add_space = true;
         std::ostringstream buf;
-        buf<<configuration->getText(0,26)<<m_requirement.vitalite;
+        buf<<gettext("Vitality required: ")<<m_requirement.vitalite;
 
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.vitalite<m_requirement.vitalite)
@@ -2253,7 +2253,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     {
         add_space = true;
         std::ostringstream buf;
-        buf<<configuration->getText(0,27)<<m_requirement.piete;
+        buf<<gettext("Piety required: ")<<m_requirement.piete;
 
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         if (caract.piete<m_requirement.piete)
@@ -2266,7 +2266,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         for(unsigned i = 0 ; i < m_nom_IDClasse.size() ; ++i)
         {
             std::string buf;
-            buf = configuration->getText(0,52) + configuration->getText(3, m_nom_IDClasse[i]);
+            buf = toUtf32(gettext("Only for: ")) + configuration->getText(3, m_nom_IDClasse[i]);
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.c_str()));
             if(m_IDClasse[i] == nom_classe)
                 mauvais = false;
@@ -2298,10 +2298,10 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
     add_space = false;
 
-    if(!m_miracle.m_nom.empty())
+    if(m_miracle.m_nom.getSize() != 0)
     {
         add_space = true;
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracle.m_nom.c_str(),sf::Color(128,64,0)));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracle.m_nom,sf::Color(128,64,0)));
         for(unsigned j =  0 ; j < m_miracle.m_description.size() ; ++j)
         {
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracle.m_description[j].c_str(),sf::Color(128,64,0)));
@@ -2312,7 +2312,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     for(unsigned i = 0 ; i < m_miracles_benedictions.size() ; ++i)
     {
         add_space = true;
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracles_benedictions[i].m_nom.c_str(),sf::Color(128,64,0)));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracles_benedictions[i].m_nom,sf::Color(128,64,0)));
         for(unsigned j =  0 ; j < m_miracles_benedictions[i].m_description.size() ; ++j)
         {
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracles_benedictions[i].m_description[j].c_str(),sf::Color(128,64,0)));
@@ -2342,7 +2342,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     for(int i = 0 ; i < m_nbr_bless ; ++i)
     {
         add_space = true;
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,60).c_str(),sf::Color(128,128,128)));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,gettext("Free slot"),sf::Color(128,128,128)));
         temp.back().setStyle(2);
     }
 
@@ -2360,7 +2360,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
             modPrix = 1.0;
 
         std::ostringstream buf;
-        buf<<configuration->getText(0,28)<<(int)((float)m_prix*modPrix);
+        buf<<gettext("Price: ")<<(int)((float)m_prix*modPrix);
 
         if(modPrix != 1.0f)
             buf<<" ("<< m_prix <<")";

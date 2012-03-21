@@ -920,7 +920,7 @@ void Miracle::Concatenencer(const std::string &chemin, const Caracteristique &ca
 
 
 
-sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color)
+sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, sf::String chaine,sf::Color color)
 {
     sf::Text string;
 
@@ -955,9 +955,9 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
         if(hand == 1)
-            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,108).c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Left click"))));
         else
-            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,109).c_str()));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Right click"))));
 
         temp.back().setCharacterSize(12);
 
@@ -969,7 +969,7 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     }
 
-    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_nom.c_str()));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_nom));
     temp.back().setCharacterSize(16);
  //   temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
@@ -1003,25 +1003,25 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
         if (m_coutFoi > 0)
         {
             std::ostringstream buf;
-            buf<<configuration->getText(0,29)<<m_coutFoi;
+            buf<<gettext("Cost of faith: ")<<m_coutFoi;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_reserveFoi > 0)
         {
             std::ostringstream buf;
-            buf<<configuration->getText(0,30)<<m_reserveFoi;
+            buf<<gettext("Reserve of faith: ")<<m_reserveFoi;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_coutVie > 0)
         {
             std::ostringstream buf;
-            buf<<configuration->getText(0,31)<<m_coutVie;
+            buf<<gettext("Cost of life: ")<<m_coutVie;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_reserveVie > 0)
         {
             std::ostringstream buf;
-            buf<<configuration->getText(0,32)<<m_reserveVie;
+            buf<<gettext("Reserve of life: ")<<m_reserveVie;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
 
@@ -1034,12 +1034,12 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
 
     if (suivant)
     {
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,configuration->getText(0,41).c_str()));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Next level: "))));
         temp.back().setCharacterSize(12);
 
         {
             std::ostringstream buf;
-            buf<<configuration->getText(0,115)<<m_level*3+1;
+            buf<<gettext("Requirements: ")<<m_level*3+1;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
 
@@ -1051,25 +1051,25 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
         if (m_coutFoi_suivant > 0)
         {
             std::ostringstream buf;
-            buf<<configuration->getText(0,29)<<m_coutFoi_suivant;
+            buf<<gettext("Cost of faith: ")<<m_coutFoi_suivant;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_reserveFoi_suivant > 0)
         {
             std::ostringstream buf;
-            buf<<configuration->getText(0,30)<<m_reserveFoi_suivant;
+            buf<<gettext("Reserve of faith: ")<<m_reserveFoi_suivant;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_coutVie_suivant > 0)
         {
             std::ostringstream buf;
-            buf<<configuration->getText(0,31)<<m_coutVie_suivant;
+            buf<<gettext("Cost of life: ")<<m_coutVie_suivant;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_reserveVie_suivant > 0)
         {
             std::ostringstream buf;
-            buf<<configuration->getText(0,32)<<m_reserveVie_suivant;
+            buf<<gettext("Reserve of life: ")<<m_reserveVie_suivant;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
     }

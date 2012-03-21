@@ -114,6 +114,9 @@ class Configuration : public CSingleton<Configuration>
     coordonnee  map_start_pos;
 
     std::string language;
+
+	const char* mylocale;
+
     std::string last_ip;
 
     std::string error;
