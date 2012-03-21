@@ -21,6 +21,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <stdio.h>
 #include <sstream>
 
+#include <locale>
+
 #include <libintl.h>
 #include <windows.h>
 
@@ -450,15 +452,24 @@ std::vector<std::string> Configuration::ChargerFichierTxt(std::string chemin)
 
 	bool lang;
 
-	if (language=="en")
+	if (language=="en") {
 		lang = SetThreadLocale(0x0409);
-	else if (language=="fr")
+	}
+	else if (language=="fr") {
 		lang = SetThreadLocale(0x040C);
-	else if (language=="es")
+		mylocale = "french";
+		setlocale(LC_CTYPE,mylocale);
+	}
+	else if (language=="es") {
 		lang = SetThreadLocale(0x0C0A);
-	else if (language=="ru")
+		mylocale = "spanish";
+		setlocale(LC_CTYPE,mylocale);
+	}
+	else if (language=="ru") {
 		lang = SetThreadLocale(0x0419);
-
+		mylocale = "rus.1251";
+		setlocale(LC_CTYPE,mylocale);
+	}
     return text;
 }
 
@@ -482,7 +493,7 @@ void Configuration::ChargerTxt()
 	bindtextdomain ("menus",pathToTranslationFiles.c_str());
 	bind_textdomain_codeset ("menus","UTF-8");
 
-	bindtextdomain ("items",pathToTranslationFiles.c_str());	
+	bindtextdomain ("items",pathToTranslationFiles.c_str());
 	bind_textdomain_codeset ("items","UTF-8");
 
 	bindtextdomain ("entities",pathToTranslationFiles.c_str());
@@ -651,13 +662,13 @@ bool Configuration::Options()
             {
                 no_menu_option = O_GRAPHICS,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
-                moteurGraphique->special_typo_p.Draw(configuration->getText(0,72), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
+                moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Graphics options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
             }
             else
-                moteurGraphique->special_typo_h.Draw(configuration->getText(0,72), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Graphics options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(configuration->getText(0,72), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
+            moteurGraphique->special_typo.Draw(toUtf32(gettext("Graphics options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
 
 
         if (eventManager->getPositionSouris().y > Resolution.h/2 - 64
@@ -667,13 +678,13 @@ bool Configuration::Options()
             {
                 no_menu_option = O_GRAPHISC_AVANCED,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
-                moteurGraphique->special_typo_p.Draw(configuration->getText(0,73), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
+                moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Advanced options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
             }
             else
-                moteurGraphique->special_typo_h.Draw(configuration->getText(0,73), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Advanced options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(configuration->getText(0,73), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
+            moteurGraphique->special_typo.Draw(toUtf32(gettext("Advanced options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
 
 
 
@@ -684,13 +695,13 @@ bool Configuration::Options()
             {
                 no_menu_option = O_SOUNDS,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
-                moteurGraphique->special_typo_p.Draw(configuration->getText(0,74), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
+                moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Sound options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
             }
             else
-                moteurGraphique->special_typo_h.Draw(configuration->getText(0,74), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Sound options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(configuration->getText(0,74), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
+            moteurGraphique->special_typo.Draw(toUtf32(gettext("Sound options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
 
 
 
@@ -705,10 +716,10 @@ bool Configuration::Options()
                 return 1;
             }
             else
-                moteurGraphique->special_typo_h.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+            moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
 
     }
 
@@ -720,7 +731,7 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,88)<<Resolution.x<<" x "<<Resolution.y;
+            buf<<gettext("Resolution: ")<<Resolution.x<<" x "<<Resolution.y;
 
             if (eventManager->getPositionSouris().y > Resolution.h/2 - 240
               &&eventManager->getPositionSouris().y < Resolution.h/2 - 240 + 48)
@@ -813,7 +824,7 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,77)<<mode_fenetre;
+            buf<<gettext("Window mode: ")<<mode_fenetre;
             if (eventManager->getPositionSouris().y > Resolution.h/2 - 192
               &&eventManager->getPositionSouris().y < Resolution.h/2 - 192+48)
               {
@@ -833,7 +844,7 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,75)<<luminosite;
+            buf<<gettext("Brightness: ")<<luminosite;
             if (eventManager->getPositionSouris().y > Resolution.h/2 - 144
               &&eventManager->getPositionSouris().y < Resolution.h/2 - 144+48)
               {
@@ -863,7 +874,7 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,76)<<contrastes*10;
+            buf<<gettext("Contrast: ")<<contrastes*10;
             if (eventManager->getPositionSouris().y > Resolution.h/2 - 96
               &&eventManager->getPositionSouris().y < Resolution.h/2 - 96+48)
               {
@@ -895,7 +906,7 @@ bool Configuration::Options()
 
        /* {
             std::ostringstream buf;
-            buf<<getText(0,85)<<item_background;
+            buf<<gettext("Display background color of objects: ")<<item_background;
             if (eventManager->getPositionSouris().y > Resolution.h/2 - 48
               &&eventManager->getPositionSouris().y < Resolution.h/2 - 48+48)
               {
@@ -925,10 +936,10 @@ bool Configuration::Options()
                 no_menu_option = O_PRINCIPAL;
             }
             else
-                moteurGraphique->special_typo_h.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+            moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
 
     }
 
@@ -938,7 +949,7 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,78)<<Lumiere;
+            buf<<gettext("Quality of lights: ")<<Lumiere;
             if (eventManager->getPositionSouris().y > Resolution.h/2 - 240
               &&eventManager->getPositionSouris().y < Resolution.h/2 - 240+48)
               {
@@ -963,7 +974,7 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,79)<<Ombre;
+            buf<<gettext("Render the shadows: ")<<Ombre;
             if (eventManager->getPositionSouris().y > Resolution.h/2 - 192
               &&eventManager->getPositionSouris().y < Resolution.h/2 - 192+48)
               {
@@ -983,7 +994,7 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,80)<<postFX;
+            buf<<gettext("Use shader effects: ")<<postFX;
             if (eventManager->getPositionSouris().y > Resolution.h/2 - 144
               &&eventManager->getPositionSouris().y < Resolution.h/2 - 144+48)
               {
@@ -1003,7 +1014,7 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,81)<<Reflection;
+            buf<<gettext("Enable reflection of objects: ")<<Reflection;
             if (eventManager->getPositionSouris().y > Resolution.h/2 - 96
               &&eventManager->getPositionSouris().y < Resolution.h/2 - 96+48)
               {
@@ -1023,7 +1034,7 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,82)<<Distortion;
+            buf<<gettext("Enable effects of distortion: ")<<Distortion;
             if (eventManager->getPositionSouris().y > Resolution.h/2 - 48
               &&eventManager->getPositionSouris().y < Resolution.h/2 - 48+48)
               {
@@ -1043,7 +1054,7 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,83)<<Herbes;
+            buf<<gettext("Render the grass: ")<<Herbes;
             if (eventManager->getPositionSouris().y > Resolution.h/2
               &&eventManager->getPositionSouris().y < Resolution.h/2+48)
               {
@@ -1063,7 +1074,7 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,84)<<particules;
+            buf<<gettext("Enable dynamical debris: ")<<particules;
             if (eventManager->getPositionSouris().y > Resolution.h/2+48
               &&eventManager->getPositionSouris().y < Resolution.h/2+48+48)
               {
@@ -1093,10 +1104,10 @@ bool Configuration::Options()
                 no_menu_option = O_PRINCIPAL;
             }
             else
-                moteurGraphique->special_typo_h.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+            moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
     }
 
     if(no_menu_option == O_SOUNDS)
@@ -1105,7 +1116,7 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,86)<<volume;
+            buf<<gettext("Volume: ")<<volume;
             if (eventManager->getPositionSouris().y > Resolution.h/2-240
               &&eventManager->getPositionSouris().y < Resolution.h/2-240+48)
               {
@@ -1141,7 +1152,7 @@ bool Configuration::Options()
 
         {
             std::ostringstream buf;
-            buf<<getText(0,87)<<music_volume;
+            buf<<gettext("Music volume: ")<<music_volume;
             if (eventManager->getPositionSouris().y > Resolution.h/2-192
               &&eventManager->getPositionSouris().y < Resolution.h/2-192+48)
               {
@@ -1184,10 +1195,10 @@ bool Configuration::Options()
                 no_menu_option = O_PRINCIPAL;
             }
             else
-                moteurGraphique->special_typo_h.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(configuration->getText(0,57), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+            moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
     }
 
     return 0;

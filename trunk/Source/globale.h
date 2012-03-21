@@ -26,6 +26,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 
+#include <libintl.h>
+
+#include <string>
+#include <iterator>
+
 #pragma once
 
 class MySprite : public sf::Sprite {
@@ -42,6 +47,8 @@ void resize(float x, float y);
 };
 
 std::basic_string<sf::Uint32> toUtf32(std::string);
+
+//std::string toANSI(std::string);
 
 extern Configuration *configuration;
 extern Console *console;

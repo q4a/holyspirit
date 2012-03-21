@@ -108,7 +108,7 @@ Hero::Hero()
 {
     Reset();
 
-    m_newQuest_label.SetText(configuration->getText(0,113));
+    m_newQuest_label.SetText(gettext("New quest"));
 }
 
 Hero::~Hero()
@@ -233,6 +233,8 @@ void Hero::Sauvegarder()
 {
     console->Ajouter("");
     console->Ajouter("Saving the hero...");
+
+	setlocale(LC_CTYPE, "english");//FIXME
 
     ofstream fichier((configuration->chemin_temps+"Save.sav.hs").c_str(), ios::out | ios::trunc | ios::binary);
 
@@ -359,6 +361,8 @@ void Hero::Sauvegarder()
     fichierSave.Create(m_contenuSave, configuration->chemin_saves+m_chemin_save);
 
     m_personnage.ActiverEffets();
+
+	setlocale(LC_CTYPE, configuration->mylocale);//FIXME
 }
 
 void Hero::SauvegarderApercu()
@@ -419,6 +423,8 @@ void Hero::Charger(const std::string &chemin_save)
     m_chemin_save = chemin_save;
 
     cDAT reader;
+
+	setlocale(LC_CTYPE,"english");//FIXME
     if (reader.Read(configuration->chemin_saves+m_chemin_save))
     {
         ifstream* fichier=reader.GetInfos(configuration->chemin_temps+"Save.sav.hs");
@@ -692,6 +698,8 @@ void Hero::Charger(const std::string &chemin_save)
     //}
     // closedir(repertoire);
 
+	setlocale(LC_CTYPE, configuration->mylocale);//FIXME
+
     m_classe.Charger(m_cheminClasse, m_lvl_miracles, m_caracteristiques);
     m_lvl_miracles.resize(m_classe.miracles.size(),0);
 
@@ -773,6 +781,9 @@ bool Hero::ChargerPresentation(const std::string &chemin_save)
 {
     bool erreur = false;
     cDAT reader;
+
+	setlocale(LC_CTYPE,"english");//FIXME
+
     if (reader.Read(configuration->chemin_saves+chemin_save))
     {
         ifstream* fichier=reader.GetInfos(configuration->chemin_temps+"Save.sav.hs");
@@ -795,6 +806,8 @@ bool Hero::ChargerPresentation(const std::string &chemin_save)
         fichier->close();
         delete fichier;
     }
+
+	setlocale(LC_CTYPE, configuration->mylocale);//FIXME
 
     return erreur;
 }
@@ -1042,7 +1055,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().x < string.getGlobalBounds().left + string.getGlobalBounds().width
          &&eventManager->getPositionSouris().y > string.getGlobalBounds().top
          &&eventManager->getPositionSouris().y < string.getGlobalBounds().top + string.getGlobalBounds().height)
-            moteurGraphique->AjouterTexte(configuration->getText(0,49),coordonnee(  eventManager->getPositionSouris().x,
+            moteurGraphique->AjouterTexte(toUtf32(gettext("Level")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,
                                           19,0,12,sf::Color(224,224,224));
@@ -1060,7 +1073,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().x < string.getGlobalBounds().left + string.getGlobalBounds().width
          &&eventManager->getPositionSouris().y > string.getGlobalBounds().top
          &&eventManager->getPositionSouris().y < string.getGlobalBounds().top + string.getGlobalBounds().height)
-            moteurGraphique->AjouterTexte(configuration->getText(0,50),coordonnee(  eventManager->getPositionSouris().x,
+            moteurGraphique->AjouterTexte(toUtf32(gettext("Name")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,
                                           19,0,12,sf::Color(224,224,224));
@@ -1069,7 +1082,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
      {
 
         string.setCharacterSize(14);
-        string.setString(configuration->getText(3,m_classe.nom).c_str());
+        string.setString(toUtf32(gettext(configuration->getText(3,m_classe.nom).c_str())));
         string.setPosition(AutoScreenAdjust(44,348,decalage));
         string.setColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
@@ -1079,20 +1092,20 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().x < string.getGlobalBounds().left + string.getGlobalBounds().width
          &&eventManager->getPositionSouris().y > string.getGlobalBounds().top
          &&eventManager->getPositionSouris().y < string.getGlobalBounds().top + string.getGlobalBounds().height)
-            moteurGraphique->AjouterTexte(configuration->getText(0,62),coordonnee(  eventManager->getPositionSouris().x,
+            moteurGraphique->AjouterTexte(toUtf32(gettext("Class")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,
                                           19,0,12,sf::Color(224,224,224));
     }
 
-    string.setString(configuration->getText(0,3));
+    string.setString(toUtf32(gettext("Life")));
     string.setCharacterSize(14);
     string.setPosition(AutoScreenAdjust(224,319,decalage));
     moteurGraphique->AjouterTexte(&string,15);
 
     {
         std::ostringstream  buf;
-        buf/*<<configuration->getText(0,3)<<" : "*/<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.maxVie;
+        buf/*<<toUtf32(configuration->gettext("Life"))<<" : "*/<<(int)m_caracteristiques.vie<<" / "<<(int)m_caracteristiques.maxVie;
         string.setString(buf.str());
     }
 
@@ -1116,12 +1129,12 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().x < string.getGlobalBounds().left + string.getGlobalBounds().width
          &&eventManager->getPositionSouris().y > string.getGlobalBounds().top
          &&eventManager->getPositionSouris().y < string.getGlobalBounds().top + string.getGlobalBounds().height)
-        moteurGraphique->AjouterTexte(configuration->getText(0,3),coordonnee(   eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(toUtf32(gettext("Life")),coordonnee(   eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,
                                       19,0,12,sf::Color(224,224,224));
 
-    string.setString(configuration->getText(0,4));
+    string.setString(toUtf32(gettext("Faith")));
     string.setCharacterSize(14);
     string.setPosition(AutoScreenAdjust(224,347,decalage));
     moteurGraphique->AjouterTexte(&string,15);
@@ -1131,7 +1144,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
 
     {
         std::ostringstream  buf;
-        buf/*<<configuration->getText(0,4)<<" : "*/<<(int)m_caracteristiques.foi<<" / "<<(int)m_caracteristiques.maxFoi;
+        buf/*<<toUtf32(gettext("Faith"))<<" : "*/<<(int)m_caracteristiques.foi<<" / "<<(int)m_caracteristiques.maxFoi;
         string.setString(buf.str());
     }
 
@@ -1152,7 +1165,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().x < string.getGlobalBounds().left + string.getGlobalBounds().width
          &&eventManager->getPositionSouris().y > string.getGlobalBounds().top
          &&eventManager->getPositionSouris().y < string.getGlobalBounds().top + string.getGlobalBounds().height)
-        moteurGraphique->AjouterTexte(configuration->getText(0,4),coordonnee(   eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(toUtf32(gettext("Faith")),coordonnee(   eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,19,0,12,sf::Color(224,224,224));
 
@@ -1198,7 +1211,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         }
     }
 
-    string.setString(configuration->getText(0,5).c_str());
+    string.setString(toUtf32(gettext("Strength")));
 
     string.setPosition(46 + (configuration->Resolution.x - 800) * 0.5 ,
                        378 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
@@ -1211,7 +1224,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
      &&eventManager->getPositionSouris().x < string.getGlobalBounds().left + string.getGlobalBounds().width
      &&eventManager->getPositionSouris().y > string.getGlobalBounds().top
      &&eventManager->getPositionSouris().y < string.getGlobalBounds().top + string.getGlobalBounds().height) {
-        moteurGraphique->AjouterTexte(configuration->getText(0,90),coordonnee(  eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(toUtf32(gettext("Your strength increases your damage to opponent and allows you to carry the heavier equipment.")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,19,0,12,sf::Color(224,224,224)); }
 
@@ -1259,7 +1272,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         }
     }
 
-    string.setString(configuration->getText(0,6).c_str());
+    string.setString(toUtf32(gettext("Dexterity")));
    // string.SetX(46 + (configuration->Resolution.x - 800) * 0.5);
     //string.SetY(404 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
     string.setPosition(AutoScreenAdjust(46,404,decalage));
@@ -1271,7 +1284,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
      &&eventManager->getPositionSouris().x < string.getGlobalBounds().left + string.getGlobalBounds().width
      &&eventManager->getPositionSouris().y > string.getGlobalBounds().top
      &&eventManager->getPositionSouris().y < string.getGlobalBounds().top + string.getGlobalBounds().height) {
-        moteurGraphique->AjouterTexte(configuration->getText(0,91),coordonnee(  eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(toUtf32(gettext("Your dexterity allows you to dodge better and access to certain objects.")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,19,0,12,sf::Color(224,224,224)); }
 
@@ -1321,7 +1334,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         }
     }
 
-    string.setString(configuration->getText(0,7).c_str());
+    string.setString(toUtf32(gettext("Vitality")));
   //  string.SetX(46 + (configuration->Resolution.x - 800) * 0.5);
   //  string.SetY(434 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
     string.setPosition(AutoScreenAdjust(46,432,decalage));
@@ -1333,7 +1346,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
      &&eventManager->getPositionSouris().x < string.getGlobalBounds().left + string.getGlobalBounds().width
      &&eventManager->getPositionSouris().y > string.getGlobalBounds().top
      &&eventManager->getPositionSouris().y < string.getGlobalBounds().top + string.getGlobalBounds().height) {
-        moteurGraphique->AjouterTexte(configuration->getText(0,92),coordonnee(  eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(toUtf32(gettext("Your vitality increases your life.")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,19,0,12,sf::Color(224,224,224)); }
 
@@ -1381,7 +1394,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         }
     }
 
-    string.setString(configuration->getText(0,8).c_str());
+    string.setString(toUtf32(gettext("Piety")));
     string.setPosition(AutoScreenAdjust(46,460,decalage));
     string.setColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -1391,7 +1404,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
      &&eventManager->getPositionSouris().x < string.getGlobalBounds().left + string.getGlobalBounds().width
      &&eventManager->getPositionSouris().y > string.getGlobalBounds().top
      &&eventManager->getPositionSouris().y < string.getGlobalBounds().top + string.getGlobalBounds().height) {
-        moteurGraphique->AjouterTexte(configuration->getText(0,93),coordonnee(  eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(toUtf32(gettext("Your piety points increase your faith.")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,19,0,12,sf::Color(224,224,224)); }
 
@@ -1439,7 +1452,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         }
     }
 
-    string.setString(configuration->getText(0,9).c_str());
+    string.setString(toUtf32(gettext("Charisma")));
     string.setPosition(46 + (configuration->Resolution.x - 800) * 0.5 ,
                        490 + (configuration->Resolution.y - 600) -decalage*configuration->Resolution.h/600);
     string.setPosition(AutoScreenAdjust(46,488,decalage));
@@ -1451,11 +1464,11 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
      &&eventManager->getPositionSouris().x < string.getGlobalBounds().left + string.getGlobalBounds().width
      &&eventManager->getPositionSouris().y > string.getGlobalBounds().top
      &&eventManager->getPositionSouris().y < string.getGlobalBounds().top + string.getGlobalBounds().height) {
-        moteurGraphique->AjouterTexte(configuration->getText(0,94),coordonnee(  eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(toUtf32(gettext("Your charisma affects the price of objects and allows you to wear certain items.")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,19,0,12,sf::Color(224,224,224)); }
 
-    string.setString(configuration->getText(0,12).c_str());
+    string.setString(toUtf32(gettext("Remaining")));
     string.setPosition(AutoScreenAdjust(46,516,decalage));
     string.setColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -1509,7 +1522,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    string.setString(configuration->getText(0,10).c_str());
+    string.setString(toUtf32(gettext("Damage")));
     string.setPosition(AutoScreenAdjust(208,376,decalage));
     string.move(32 - string.getGlobalBounds().width * 0.5, 0);
     string.setColor(sf::Color(255,255,255));
@@ -1552,7 +1565,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    string.setString(configuration->getText(0,11).c_str());
+    string.setString(toUtf32(gettext("Armor")));
     string.setPosition(AutoScreenAdjust(307,376,decalage));
     string.move(28 - string.getGlobalBounds().width * 0.5, 0);
     string.setColor(sf::Color(255,255,255));
@@ -1565,22 +1578,22 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
     {
         if(eventManager->getPositionSouris().y > AutoScreenAdjust(0,404,decalage).y
          &&eventManager->getPositionSouris().y < AutoScreenAdjust(0,422,decalage).y)
-            moteurGraphique->AjouterTexte(configuration->getText(0,44),coordonnee(  eventManager->getPositionSouris().x,
+            moteurGraphique->AjouterTexte(toUtf32(gettext("Physical")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,19,0,14,sf::Color(224,224,224));
         if(eventManager->getPositionSouris().y > AutoScreenAdjust(0,432,decalage).y
          &&eventManager->getPositionSouris().y < AutoScreenAdjust(0,450,decalage).y)
-            moteurGraphique->AjouterTexte(configuration->getText(0,45),coordonnee(  eventManager->getPositionSouris().x,
+            moteurGraphique->AjouterTexte(toUtf32(gettext("Fire")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,19,0,14,sf::Color(224,224,224));
         if(eventManager->getPositionSouris().y > AutoScreenAdjust(0,460,decalage).y
          &&eventManager->getPositionSouris().y < AutoScreenAdjust(0,478,decalage).y)
-            moteurGraphique->AjouterTexte(configuration->getText(0,46),coordonnee(  eventManager->getPositionSouris().x,
+            moteurGraphique->AjouterTexte(toUtf32(gettext("Faith")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,19,0,14,sf::Color(224,224,224));
         if(eventManager->getPositionSouris().y > AutoScreenAdjust(0,488,decalage).y
          &&eventManager->getPositionSouris().y < AutoScreenAdjust(0,506,decalage).y)
-            moteurGraphique->AjouterTexte(configuration->getText(0,47),coordonnee(  eventManager->getPositionSouris().x,
+            moteurGraphique->AjouterTexte(toUtf32(gettext("Corrosion")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,19,0,14,sf::Color(224,224,224));
     }
@@ -1599,7 +1612,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
              &&eventManager->getPositionSouris().x < string.getGlobalBounds().left + string.getGlobalBounds().width
              &&eventManager->getPositionSouris().y > string.getGlobalBounds().top
              &&eventManager->getPositionSouris().y < string.getGlobalBounds().top + string.getGlobalBounds().height)
-                moteurGraphique->AjouterTexte(configuration->getText(0,48),coordonnee(  eventManager->getPositionSouris().x,
+                moteurGraphique->AjouterTexte(toUtf32(gettext("Money")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,19,0,14,sf::Color(224,224,224));
     }
@@ -1617,7 +1630,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
              &&eventManager->getPositionSouris().x < string.getGlobalBounds().left + string.getGlobalBounds().width
              &&eventManager->getPositionSouris().y > string.getGlobalBounds().top
              &&eventManager->getPositionSouris().y < string.getGlobalBounds().top + string.getGlobalBounds().height)
-                moteurGraphique->AjouterTexte(configuration->getText(0,34),coordonnee(  eventManager->getPositionSouris().x,
+                moteurGraphique->AjouterTexte(toUtf32(gettext("Holy water")),coordonnee(  eventManager->getPositionSouris().x,
                                                                                     eventManager->getPositionSouris().y - 20),
                                           m_classe.border,19,0,12,sf::Color(224,224,224));
     }
@@ -2001,7 +2014,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
      && eventManager->getPositionSouris().x < m_classe.position_points_miracles.x + m_classe.position_points_miracles.w + (configuration->Resolution.x - 800) * 0.5
      && eventManager->getPositionSouris().y > m_classe.position_points_miracles.y + (configuration->Resolution.y - 600)
      && eventManager->getPositionSouris().y < m_classe.position_points_miracles.y + m_classe.position_points_miracles.h + (configuration->Resolution.y - 600))
-        moteurGraphique->AjouterTexte(configuration->getText(0,12), coordonnee(eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(toUtf32(gettext("Remaining")), coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),m_classe.border,20,false,12,sf::Color(224,224,224));
 
     texte.setCharacterSize(12);
@@ -2972,7 +2985,7 @@ void Hero::AfficherRaccourcis()
              && eventManager->getPositionSouris().y < AutoScreenAdjust(0,m_classe.position_raccourcis[i].y).y + m_classe.position_raccourcis[i].h && m_objetEnMain < 0)
             {
                 std::ostringstream buf;
-                buf<<configuration->getText(0, 33)<<" ("<<i+1<<")";
+                buf<<gettext("Shortcut")<<" ("<<i+1<<")";
                 moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                               eventManager->getPositionSouris().y - 20),
                                               m_classe.border,19,0,12,sf::Color(224,224,224));
@@ -3226,7 +3239,7 @@ void Hero::GererTemps(float temps)
 
         UtiliserMiracle(0,NULL,coordonnee (),NULL);
 
-        m_newQuest_label.SetText(configuration->getText(0,116));
+        m_newQuest_label.SetText(gettext("LevelUp"));
         m_newQuest_label.Reset();
     }
 
@@ -3646,7 +3659,7 @@ bool Hero::UtiliserMiracle(int miracle, Personnage *cible, coordonnee cible_coor
                     }
                     else
                     {
-                        m_personnage.m_speak = configuration->getText(0, 42);
+                        m_personnage.m_speak = gettext("I do not have the required equipment!");
                         m_personnage.m_speak_time = 2000;
                     }
                 }
@@ -3779,7 +3792,7 @@ bool Hero::AjouterObjet(Objet &objet,bool enMain, bool playSound)
     if(!ramasser)
     {
         m_personnage.m_speak_time = 2000;
-        m_personnage.m_speak = configuration->getText(0, 43);
+        m_personnage.m_speak = gettext("My bag is full!");
     }
 
     return ramasser;
@@ -4673,7 +4686,7 @@ const std::string &Hero::getNomObjet(int numero)
     if(numero >= 0 && numero < (int)m_inventaire.size())
         return m_inventaire[numero].getChemin();
     else
-        return configuration->getText(0,0);
+        return gettext("Return");
 }
 int Hero::getNombreObjet()
 {
@@ -4985,7 +4998,7 @@ void Hero::NewQuest(int id)
         m_queteSelectionnee = m_quetes.size() - 1;
         newQuest = true;
 
-        m_newQuest_label.SetText(configuration->getText(0,113));
+        m_newQuest_label.SetText(gettext("New quest"));
         m_newQuest_label.Reset();
 
         moteurSons->JouerSon(configuration->sound_quest_start,coordonnee (0,0),0);
@@ -5020,7 +5033,7 @@ void Hero::SetQuestActif(int id, int a)
             {
                 moteurSons->JouerSon(configuration->sound_quest_end,coordonnee (0,0),0);
 
-                m_newQuest_label.SetText(configuration->getText(0,114));
+                m_newQuest_label.SetText(gettext("Quest ended"));
                 m_newQuest_label.Reset();
             }
         }

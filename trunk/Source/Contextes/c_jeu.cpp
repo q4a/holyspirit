@@ -241,16 +241,16 @@ void c_Jeu::GererTemps(Jeu *jeu)
             jeu->Next();
         }
 
-        moteurGraphique->special_typo.Draw(configuration->getText(0,102), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(toUtf32(gettext("Non resquiescat in pace...")), sf::Vector2f(configuration->Resolution.w/2,
                                                           configuration->Resolution.h/2-96), 64, 19, true, sf::Color(255,255,255,(m_dead <= 2) ? m_dead/2*255 : 255));
-        moteurGraphique->special_typo.Draw(configuration->getText(0,103), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(toUtf32(gettext("Click to have another chance!")), sf::Vector2f(configuration->Resolution.w/2,
                                                           configuration->Resolution.h/2), 32, 19, true, sf::Color(255,255,255,(m_dead <= 2) ? m_dead/2*255 : 255));
 
         if(m_dead >= 2)
         {
-            moteurGraphique->special_typo_p.Draw(configuration->getText(0,102), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Non resquiescat in pace...")), sf::Vector2f(configuration->Resolution.w/2,
                                                               configuration->Resolution.h/2-96), 64, 19, true, sf::Color(255,255,255,fabs(m_dead - (int)((m_dead+1)/2)*2)*255));
-            moteurGraphique->special_typo_p.Draw(configuration->getText(0,103), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Click to have another chance!")), sf::Vector2f(configuration->Resolution.w/2,
                                                               configuration->Resolution.h/2), 32, 19, true, sf::Color(255,255,255,fabs(m_dead - (int)((m_dead+1)/2)*2)*255));
         }
     }

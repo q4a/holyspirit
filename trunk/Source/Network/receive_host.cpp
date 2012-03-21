@@ -40,7 +40,7 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
             if((packet>>caract.nom>>caract>>cheminclasse>>nbr_mir))
             {
 
-                std::cout<<caract.nom<<" s'est connecte a la partie"<<std::endl;
+                std::cout<<caract.nom<<" was connected to the party"<<std::endl;
                 jeu->m_personnageClients.push_back(Hero ());
                 jeu->m_listHeroes.push_back(&jeu->m_personnageClients.back());
                 jeu->m_personnageClients.back().m_cheminClasse = cheminclasse;

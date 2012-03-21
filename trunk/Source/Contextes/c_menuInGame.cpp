@@ -98,20 +98,20 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
 
         buttons_principal[0].no_opacity = true;
-        buttons_principal[0].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,0), 72);
+        buttons_principal[0].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Return")), 72);
         buttons_principal[0].position.h = 64;
         buttons_principal[0].position.y = configuration->Resolution.h/2 - 140;
         buttons_principal[0].position.x = configuration->Resolution.w/2-buttons_principal[0].position.w/2;
         buttons_principal[0].Afficher(0);
 
         if(buttons_principal[0].m_press)
-            moteurGraphique->special_typo_p.Draw(configuration->getText(0,0), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[0].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else if(buttons_principal[0].m_hover)
-            moteurGraphique->special_typo_h.Draw(configuration->getText(0,0), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[0].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else
-            moteurGraphique->special_typo.Draw(configuration->getText(0,0), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
                                                                                           buttons_principal[0].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
 
         if(buttons_principal[0].m_action)
@@ -124,20 +124,20 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
 
         buttons_principal[1].no_opacity = true;
-        buttons_principal[1].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,55), 72);
+        buttons_principal[1].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Options")), 72);
         buttons_principal[1].position.h = 64;
         buttons_principal[1].position.y = configuration->Resolution.h/2 - 70;
         buttons_principal[1].position.x = configuration->Resolution.w/2-buttons_principal[1].position.w/2;
         buttons_principal[1].Afficher(0);
 
         if(buttons_principal[1].m_press)
-            moteurGraphique->special_typo_p.Draw(configuration->getText(0,55), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Options")), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[1].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else if(buttons_principal[1].m_hover)
-            moteurGraphique->special_typo_h.Draw(configuration->getText(0,55), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Options")), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[1].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else
-            moteurGraphique->special_typo.Draw(configuration->getText(0,55), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo.Draw(toUtf32(gettext("Options")), sf::Vector2f(configuration->Resolution.w/2,
                                                                                           buttons_principal[1].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
 
         if(buttons_principal[1].m_action)
@@ -149,20 +149,20 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
 
         buttons_principal[2].no_opacity = true;
-        buttons_principal[2].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,1), 72);
+        buttons_principal[2].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Save and Exit")), 72);
         buttons_principal[2].position.h = 64;
         buttons_principal[2].position.y = configuration->Resolution.h/2;
         buttons_principal[2].position.x = configuration->Resolution.w/2-buttons_principal[2].position.w/2;
         buttons_principal[2].Afficher(0);
 
         if(buttons_principal[2].m_press)
-            moteurGraphique->special_typo_p.Draw(configuration->getText(0,1), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Save and Exit")), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[2].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else if(buttons_principal[2].m_hover)
-            moteurGraphique->special_typo_h.Draw(configuration->getText(0,1), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Save and Exit")), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[2].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else
-            moteurGraphique->special_typo.Draw(configuration->getText(0,1), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo.Draw(toUtf32(gettext("Save and Exit")), sf::Vector2f(configuration->Resolution.w/2,
                                                                                           buttons_principal[2].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
 
         if(buttons_principal[2].m_action)
@@ -177,20 +177,20 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
 
         buttons_principal[3].no_opacity = true;
-        buttons_principal[3].position.w = moteurGraphique->special_typo.getSize(configuration->getText(0,2), 72);
+        buttons_principal[3].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Quit the game")), 72);
         buttons_principal[3].position.h = 64;
         buttons_principal[3].position.y = configuration->Resolution.h/2+70;
         buttons_principal[3].position.x = configuration->Resolution.w/2-buttons_principal[3].position.w/2;
         buttons_principal[3].Afficher(0);
 
         if(buttons_principal[3].m_press)
-            moteurGraphique->special_typo_p.Draw(configuration->getText(0,2), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Quit the game")), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[3].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else if(buttons_principal[3].m_hover)
-            moteurGraphique->special_typo_h.Draw(configuration->getText(0,2), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Quit the game")), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[3].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else
-            moteurGraphique->special_typo.Draw(configuration->getText(0,2), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo.Draw(toUtf32(gettext("Quit the game")), sf::Vector2f(configuration->Resolution.w/2,
                                                                                           buttons_principal[3].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
 
         if(buttons_principal[3].m_action)

@@ -439,7 +439,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     && eventManager->getPositionSouris().y < (classe->orbe_vie.position.y + classe->orbe_vie.position.h) + (configuration->Resolution.x - 600))
     {
         std::ostringstream buf;
-        buf<<configuration->getText(0,3)<<" : "<<(int)caracteristique.vie<<" / "<<caracteristique.maxVie;
+        buf<<gettext("Life")<<" : "<<(int)caracteristique.vie<<" / "<<caracteristique.maxVie;
 
         moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                                                          eventManager->getPositionSouris().y - 20),
@@ -490,7 +490,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     && eventManager->getPositionSouris().y < (classe->orbe_foi.position.y + classe->orbe_foi.position.h) + (configuration->Resolution.y - 600))
     {
         std::ostringstream buf;
-        buf<<configuration->getText(0,4)<<" : "<<(int)caracteristique.foi<<" / "<<caracteristique.maxFoi;
+        buf<<gettext("Faith")<<" : "<<(int)caracteristique.foi<<" / "<<caracteristique.maxFoi;
 
         moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                                                          eventManager->getPositionSouris().y - 20),
@@ -524,7 +524,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     && eventManager->getPositionSouris().y < classe->soul_bar.position.y + (configuration->Resolution.y - 600) + classe->soul_bar.position.h)
     {
         std::ostringstream buf;
-        buf<<configuration->getText(0,97)<<(int)caracteristique.ancienPointAme<<" / "<<((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10);
+        buf<<gettext("Points of souls: ")<<(int)caracteristique.ancienPointAme<<" / "<<((caracteristique.niveau)*(caracteristique.niveau)*(caracteristique.niveau)*10);
 
         moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                                                          eventManager->getPositionSouris().y - 20),
