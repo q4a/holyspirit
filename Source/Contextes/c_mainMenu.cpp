@@ -276,20 +276,20 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
 
     if(m_chemin_saves.empty())
     {
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Continue")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Continue"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_principal[0].position.y), 72, 19, true,
                                            sf::Color(128,128,128));
     }
     else
     {
         if(buttons_principal[0].m_press)
-            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Continue")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(gettext("Continue"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[0].position.y), 72, 19, true);
         else if(buttons_principal[0].m_hover)
-            moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Continue")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_h.Draw(gettext("Continue"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[0].position.y), 72, 19, true);
         else
-            moteurGraphique->special_typo.Draw(toUtf32(gettext("Continue")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo.Draw(gettext("Continue"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                           buttons_principal[0].position.y), 72, 19, true);
     }
 
@@ -311,20 +311,20 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
 
     if(m_chemin_saves.empty())
     {
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Multiplayer")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Multiplayer"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_principal[5].position.y), 72, 19, true,
                                            sf::Color(128,128,128));
     }
     else
     {
         if(buttons_principal[5].m_press)
-            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Multiplayer")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(gettext("Multiplayer"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[5].position.y), 72, 19, true);
         else if(buttons_principal[5].m_hover)
-            moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Multiplayer")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_h.Draw(gettext("Multiplayer"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[5].position.y), 72, 19, true);
         else
-            moteurGraphique->special_typo.Draw(toUtf32(gettext("Multiplayer")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo.Draw(gettext("Multiplayer"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                           buttons_principal[5].position.y), 72, 19, true);
 
         if(buttons_principal[5].m_action)
@@ -342,13 +342,13 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     buttons_principal[1].Afficher(0);
 
     if(buttons_principal[1].m_press)
-        moteurGraphique->special_typo_p.Draw(toUtf32(gettext("New game")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_p.Draw(gettext("New game"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_principal[1].position.y), 72, 19, true);
     else if(buttons_principal[1].m_hover)
-        moteurGraphique->special_typo_h.Draw(toUtf32(gettext("New game")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_h.Draw(gettext("New game"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_principal[1].position.y), 72, 19, true);
     else
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("New game")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("New game"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_principal[1].position.y), 72, 19, true);
 
     if(buttons_principal[1].m_action)
@@ -425,13 +425,13 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     buttons_principal[2].Afficher(0);
 
     if(buttons_principal[2].m_press)
-        moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Options")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_p.Draw(gettext("Options"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_principal[2].position.y), 72, 19, true);
     else if(buttons_principal[2].m_hover)
-        moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Options")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_h.Draw(gettext("Options"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_principal[2].position.y), 72, 19, true);
     else
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Options")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Options"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_principal[2].position.y), 72, 19, true);
 
     if(buttons_principal[2].m_action)
@@ -449,13 +449,13 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     buttons_principal[3].Afficher(0);
 
     if(buttons_principal[3].m_press)
-        moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Credits")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_p.Draw(gettext("Credits"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_principal[3].position.y), 72, 19, true);
     else if(buttons_principal[3].m_hover)
-        moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Credits")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_h.Draw(gettext("Credits"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_principal[3].position.y), 72, 19, true);
     else
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Credits")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Credits"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_principal[3].position.y), 72, 19, true);
 
     if(buttons_principal[3].m_action)
@@ -473,13 +473,13 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
     buttons_principal[4].Afficher(0);
 
     if(buttons_principal[4].m_press)
-        moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Quit")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_p.Draw(gettext("Quit"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_principal[4].position.y), 72, 19, true);
     else if(buttons_principal[4].m_hover)
-        moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Quit")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_h.Draw(gettext("Quit"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_principal[4].position.y), 72, 19, true);
     else
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Quit")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Quit"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_principal[4].position.y), 72, 19, true);
 
     if(buttons_principal[4].m_action)
@@ -508,13 +508,13 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     buttons_continuer[0].Afficher(0);
 
     if(buttons_continuer[0].m_press)
-        moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_p.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_continuer[0].position.y), 72, 19, true);
     else if(buttons_continuer[0].m_hover)
-        moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_h.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_continuer[0].position.y), 72, 19, true);
     else
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_continuer[0].position.y), 72, 19, true);
 
     if(m_supprimer_heros)
@@ -542,13 +542,13 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
     buttons_continuer[1].Afficher(0);
 
     if(buttons_continuer[1].m_press)
-        moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Delete character")), sf::Vector2f(buttons_continuer[1].position.x,
+        moteurGraphique->special_typo_p.Draw(gettext("Delete character"), sf::Vector2f(buttons_continuer[1].position.x,
                                                                                         buttons_continuer[1].position.y), 32, 19, false);
     else if(buttons_continuer[1].m_hover)
-        moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Delete character")), sf::Vector2f(buttons_continuer[1].position.x,
+        moteurGraphique->special_typo_h.Draw(gettext("Delete character"), sf::Vector2f(buttons_continuer[1].position.x,
                                                                                         buttons_continuer[1].position.y), 32, 19, false);
     else
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Delete character")), sf::Vector2f(buttons_continuer[1].position.x,
+        moteurGraphique->special_typo.Draw(gettext("Delete character"), sf::Vector2f(buttons_continuer[1].position.x,
                                                                                       buttons_continuer[1].position.y), 32, 19, false);
 
 
@@ -606,7 +606,7 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         else
             buf<<gettext("Level")<<" : "<<m_niveau_saves[i];
 
-        texte_niv.setString(buf.str());
+        texte_niv.setString(toUtf32(buf.str()));
         texte_niv.setCharacterSize(12);
 
         texte_niv.setPosition(configuration->Resolution.w/2 - 384 + 160 * ((i - defilement_saves)%4 == 1) + 320 * ((i - defilement_saves)%4 == 2)  + 480 * ((i - defilement_saves)%4 == 3) + 130 - texte_niv.getGlobalBounds().width/2,
@@ -845,7 +845,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
 
     texte.setCharacterSize(20);
 
-    moteurGraphique->special_typo.Draw(toUtf32(gettext("Select your character")), sf::Vector2f(configuration->Resolution.w/2,
+    moteurGraphique->special_typo.Draw(gettext("Select your character"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                   configuration->Resolution.h/2 - 256 - 16), 40, 19, true);
 
     for(unsigned i = 0 ; i < configuration->player_class.size(); ++i)
@@ -916,7 +916,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
 
 
 
-    moteurGraphique->special_typo.Draw(toUtf32(gettext("Enter your name")), sf::Vector2f(configuration->Resolution.w/2,
+    moteurGraphique->special_typo.Draw(gettext("Enter your name"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                   configuration->Resolution.h/2 + 48), 40, 19, true);
 
     moteurGraphique->special_typo.Draw(nom_hero + (time > 0.5 ? "|" : ""), sf::Vector2f(configuration->Resolution.w/2,
@@ -939,13 +939,13 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     buttons_nouveau[1].Afficher(0);
 
     if(buttons_nouveau[1].m_press)
-        moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Start")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_p.Draw(gettext("Start"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_nouveau[1].position.y), 72, 19, true);
     else if(buttons_nouveau[1].m_hover)
-        moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Start")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_h.Draw(gettext("Start"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_nouveau[1].position.y), 72, 19, true);
     else
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Start")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Start"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_nouveau[1].position.y), 72, 19, true);
 
 
@@ -1002,13 +1002,13 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     buttons_nouveau[0].Afficher(0);
 
     if(buttons_nouveau[0].m_press)
-        moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_p.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_nouveau[0].position.y), 72, 19, true);
     else if(buttons_nouveau[0].m_hover)
-        moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_h.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_nouveau[0].position.y), 72, 19, true);
     else
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_nouveau[0].position.y), 72, 19, true);
 
     if(buttons_nouveau[0].m_action || eventManager->getEvenement(sf::Keyboard::Escape, EventKey))
@@ -1066,13 +1066,13 @@ void  c_MainMenu::E_Credits(Jeu *jeu)
     buttons_credits[0].Afficher(0);
 
     if(buttons_credits[0].m_press)
-        moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_p.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_credits[0].position.y), 72, 19, true);
     else if(buttons_credits[0].m_hover)
-        moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_h.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_credits[0].position.y), 72, 19, true);
     else
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_credits[0].position.y), 72, 19, true);
 
     if(buttons_credits[0].m_action)
@@ -1106,13 +1106,13 @@ void  c_MainMenu::E_Story(Jeu *jeu)
     buttons_story[0].Afficher(0);
 
     if(buttons_story[0].m_press)
-        moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Next")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_p.Draw(gettext("Next"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       configuration->Resolution.h/2 + 192), 72, 19, true);
     else if(buttons_story[0].m_hover)
-        moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Next")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_h.Draw(gettext("Next"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       configuration->Resolution.h/2 + 192), 72, 19, true);
     else
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Next")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Next"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       configuration->Resolution.h/2 + 192), 72, 19, true);
 
     if(buttons_story[0].m_action)
@@ -1161,13 +1161,13 @@ void  c_MainMenu::E_Multi(Jeu *jeu)
     buttons_multi[1].Afficher(0);
 
     if(buttons_multi[1].m_press)
-        moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Join game")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_p.Draw(gettext("Join game"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_multi[1].position.y), 72, 19, true);
     else if(buttons_multi[1].m_hover)
-        moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Join game")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_h.Draw(gettext("Join game"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_multi[1].position.y), 72, 19, true);
     else
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Join game")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Join game"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_multi[1].position.y), 72, 19, true);
 
     if(buttons_multi[1].m_action)
@@ -1191,13 +1191,13 @@ void  c_MainMenu::E_Multi(Jeu *jeu)
     buttons_multi[2].Afficher(0);
 
     if(buttons_multi[2].m_press)
-        moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Host game")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_p.Draw(gettext("Host game"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_multi[2].position.y), 72, 19, true);
     else if(buttons_multi[2].m_hover)
-        moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Host game")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_h.Draw(gettext("Host game"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_multi[2].position.y), 72, 19, true);
     else
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Host game")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Host game"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_multi[2].position.y), 72, 19, true);
 
     if(buttons_multi[2].m_action)
@@ -1216,13 +1216,13 @@ void  c_MainMenu::E_Multi(Jeu *jeu)
     buttons_multi[0].Afficher(0);
 
     if(buttons_multi[0].m_press)
-        moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_p.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_multi[0].position.y), 72, 19, true);
     else if(buttons_multi[0].m_hover)
-        moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo_h.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                         buttons_multi[0].position.y), 72, 19, true);
     else
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                       buttons_multi[0].position.y), 72, 19, true);
     if(buttons_multi[0].m_action)
     {

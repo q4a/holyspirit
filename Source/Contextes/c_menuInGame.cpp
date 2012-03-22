@@ -105,13 +105,13 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         buttons_principal[0].Afficher(0);
 
         if(buttons_principal[0].m_press)
-            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[0].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else if(buttons_principal[0].m_hover)
-            moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_h.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[0].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else
-            moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                           buttons_principal[0].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
 
         if(buttons_principal[0].m_action)
@@ -131,13 +131,13 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         buttons_principal[1].Afficher(0);
 
         if(buttons_principal[1].m_press)
-            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Options")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(gettext("Options"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[1].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else if(buttons_principal[1].m_hover)
-            moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Options")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_h.Draw(gettext("Options"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[1].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else
-            moteurGraphique->special_typo.Draw(toUtf32(gettext("Options")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo.Draw(gettext("Options"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                           buttons_principal[1].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
 
         if(buttons_principal[1].m_action)
@@ -156,13 +156,13 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         buttons_principal[2].Afficher(0);
 
         if(buttons_principal[2].m_press)
-            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Save and Exit")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(gettext("Save and Exit"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[2].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else if(buttons_principal[2].m_hover)
-            moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Save and Exit")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_h.Draw(gettext("Save and Exit"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[2].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else
-            moteurGraphique->special_typo.Draw(toUtf32(gettext("Save and Exit")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo.Draw(gettext("Save and Exit"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                           buttons_principal[2].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
 
         if(buttons_principal[2].m_action)
@@ -184,13 +184,13 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
         buttons_principal[3].Afficher(0);
 
         if(buttons_principal[3].m_press)
-            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Quit the game")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(gettext("Quit the game"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[3].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else if(buttons_principal[3].m_hover)
-            moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Quit the game")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_h.Draw(gettext("Quit the game"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[3].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else
-            moteurGraphique->special_typo.Draw(toUtf32(gettext("Quit the game")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo.Draw(gettext("Quit the game"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                           buttons_principal[3].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
 
         if(buttons_principal[3].m_action)

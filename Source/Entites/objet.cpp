@@ -1862,7 +1862,7 @@ void Objet::ChargerCaracteristiques(std::ifstream *fichier)
 }
 
 
-sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, sf::String chaine,sf::Color color)
+sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color)
 {
     sf::Text string;
 
@@ -1871,7 +1871,7 @@ sf::Text Objet::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *
     string.setColor(color);
 
     string.setCharacterSize(14);
-    string.setString(chaine);
+    string.setString(toUtf32(chaine));
 
     if (tailleCadran->x<(int)string.getGlobalBounds().width)
         tailleCadran->x=(int)string.getGlobalBounds().width;
@@ -2009,15 +2009,15 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
         if(m_equipe >= 0)
-            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Team: "))));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,gettext("Team: ")));
         else
         {
             if(coffre)
-                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Stash: "))));
+                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,gettext("Stash: ")));
             else if (decalageDroite)
-                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Trader: "))));
+                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,gettext("Trader: ")));
             else
-                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Inventory: "))));
+                temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,gettext("Inventory: ")));
         }
         temp.back().setCharacterSize(12);
 
@@ -2298,10 +2298,10 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
 
     add_space = false;
 
-    if(m_miracle.m_nom.getSize() != 0)
+    if(!m_miracle.m_nom.empty())
     {
         add_space = true;
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracle.m_nom,sf::Color(128,64,0)));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracle.m_nom.c_str(),sf::Color(128,64,0)));
         for(unsigned j =  0 ; j < m_miracle.m_description.size() ; ++j)
         {
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracle.m_description[j].c_str(),sf::Color(128,64,0)));
@@ -2312,7 +2312,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     for(unsigned i = 0 ; i < m_miracles_benedictions.size() ; ++i)
     {
         add_space = true;
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracles_benedictions[i].m_nom,sf::Color(128,64,0)));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracles_benedictions[i].m_nom.c_str(),sf::Color(128,64,0)));
         for(unsigned j =  0 ; j < m_miracles_benedictions[i].m_description.size() ; ++j)
         {
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_miracles_benedictions[i].m_description[j].c_str(),sf::Color(128,64,0)));

@@ -130,7 +130,7 @@ class MoteurGraphique : public CSingleton<MoteurGraphique>
 	void AjouterTexte(sf::Text*, int couche=0,bool titre=false);
 	void AjouterTexteNonChevauchable(sf::Text*, int couche=0,bool titre=false);
 	void AjouterTexte(const std::string &, coordonnee, int couche=0, bool titre=false, int size = 14, sf::Color color = sf::Color(224,224,224));
-	void AjouterTexte(sf::String , coordonnee, Border &border, int couche=0, bool titre=false, int size = 14, sf::Color color = sf::Color(224,224,224));
+	void AjouterTexte(const std::string & ,coordonnee, Border &border, int couche=0, bool titre=false, int size = 14, sf::Color color = sf::Color(224,224,224));
 
 	Entite_graphique getEntiteGraphique(int noTileset, int noTile, int couche);
 
