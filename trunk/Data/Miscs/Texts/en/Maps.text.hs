@@ -1,13 +1,9 @@
-Agrarian Lands
-Agrarian Lands
-Agrarian Lands
-Loading
-The Graveyard
-The Dungeon Of Fear
 Tutorial
-The One Thousand and One Traps Cavern
-Malemort Forest
-
-The Abbey
-
-Catacombs
+The Abbey - Exterior
+The Catacombs - Level 1
+The Abbey - Interior
+Agrarian Lands
+The Catacombs - Level 2
+The Graveyard
+The Cave
+Mausoleum

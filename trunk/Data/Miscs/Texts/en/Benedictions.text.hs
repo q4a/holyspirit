@@ -1,21 +1,12 @@
-Increased efficiency : 
-Strength increased : 
-Dexterity increased : 
-Vitality increased : 
-Piety increased : 
-Charisma increased : 
-Health increased : 
-Faith increased : 
-Damages increased :
-Fire damages : 
-Faith damages : 
-Corrosion damages :
-Armor increased :
-Fire resistance :
-Faith resistance :
-Corrosion resistance :
-Damage by bleeding :
-Damage by burning:
-Damage by purification :
-Damage by poisoning :
-over
+Damage increased: 
+Damage by fire: 
+Damage by faith: 
+Damage by corrosion: 
+Armor increased: 
+Resistance to fire: 
+Resistance à faith: 
+Corrosion resistance: 
+Damage per bleeding: 
+Damage by the burn: 
+Damage per purification: 
+Damage by poison: 
