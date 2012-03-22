@@ -74,17 +74,19 @@ void Typo::Load(const std::string &path)
 }
 
 
-/*void Typo::Draw(const std::string &text, sf::Vector2f pos, int size, int layer, bool center, sf::Color color)
+void Typo::Draw(const std::string &text, sf::Vector2f pos, int size, int layer, bool center, sf::Color color)
 {
     std::vector<sf::Sprite> sprites;
 
     sf::Vector2f cur_pos = pos;
+	
+	sf::String utftext = toUtf32(text);
 
-    for(unsigned i = 0 ; i < text.size() ; ++i)
+    for(unsigned i = 0 ; i < utftext.getSize() ; ++i)
     {
         bool maj = false;
 
-        Character buf = getCharacter(text[i], maj);
+        Character buf = getCharacter(utftext[i], maj);
 
         sprites.push_back(sf::Sprite ());
         sprites.back().setColor(color);
@@ -97,50 +99,9 @@ void Typo::Load(const std::string &path)
         if(maj)
             sprites.back().scale(1.15,1.15), sprites.back().move(0,-(float)size*0.1);
 
-        if(text[i] == 'v' && i+1 < text.size() && text[i+1] == 'a')
+        if(utftext[i] == 'v' && i+1 < utftext.getSize() && utftext[i+1] == 'a')
             cur_pos.x -=  buf.space * ((float)size/72) * (maj ? 1.1 : 1.0) * 0.25;
-        if(i+1 < text.size() && text[i+1] == '.')
-            cur_pos.x -= 8 * ((float)size/72) * (maj ? 1.1 : 1.0);
-
-        cur_pos.x += buf.space * ((float)size/72) * (maj ? 1.1 : 1.0);
-    }
-
-    if(center)
-        for(unsigned i = 0 ; i < sprites.size() ; ++i)
-            sprites[i].move((pos.x - cur_pos.x)/2,0);
-
-
-    for(unsigned i = 0 ; i < sprites.size() ; ++i)
-        moteurGraphique->AjouterCommande(&sprites[i], layer, false);
-}*/
-
-
-void Typo::Draw(const sf::String &text, sf::Vector2f pos, int size, int layer, bool center, sf::Color color)
-{
-    std::vector<sf::Sprite> sprites;
-
-    sf::Vector2f cur_pos = pos;
-
-    for(unsigned i = 0 ; i < text.getSize() ; ++i)
-    {
-        bool maj = false;
-
-        Character buf = getCharacter(text[i], maj);
-
-        sprites.push_back(sf::Sprite ());
-        sprites.back().setColor(color);
-        sprites.back().setTexture(*moteurGraphique->getImage(m_img));
-        sprites.back().setPosition(cur_pos);
-        sprites.back().setTextureRect(sf::IntRect(buf.pos, buf.size));
-
-        sprites.back().scale((float)size/72,(float)size/72);
-
-        if(maj)
-            sprites.back().scale(1.15,1.15), sprites.back().move(0,-(float)size*0.1);
-
-        if(text[i] == 'v' && i+1 < text.getSize() && text[i+1] == 'a')
-            cur_pos.x -=  buf.space * ((float)size/72) * (maj ? 1.1 : 1.0) * 0.25;
-        if(i+1 < text.getSize() && text[i+1] == '.')
+        if(i+1 < utftext.getSize() && utftext[i+1] == '.')
             cur_pos.x -= 8 * ((float)size/72) * (maj ? 1.1 : 1.0);
 
         cur_pos.x += buf.space * ((float)size/72) * (maj ? 1.1 : 1.0);

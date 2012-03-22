@@ -24,7 +24,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <locale>
 
 #include <libintl.h>
+
+#ifdef WIN32
 #include <windows.h>
+#endif
 
 void Configuration::Charger()
 {
@@ -450,6 +453,8 @@ std::vector<std::string> Configuration::ChargerFichierTxt(std::string chemin)
         fichier.close();
     }
 
+#ifdef WIN32
+
 	bool lang;
 
 	if (language=="en") {
@@ -457,19 +462,18 @@ std::vector<std::string> Configuration::ChargerFichierTxt(std::string chemin)
 	}
 	else if (language=="fr") {
 		lang = SetThreadLocale(0x040C);
-		mylocale = "french";
-		setlocale(LC_CTYPE,mylocale);
 	}
 	else if (language=="es") {
 		lang = SetThreadLocale(0x0C0A);
-		mylocale = "spanish";
-		setlocale(LC_CTYPE,mylocale);
 	}
 	else if (language=="ru") {
 		lang = SetThreadLocale(0x0419);
-		mylocale = "rus.1251";
-		setlocale(LC_CTYPE,mylocale);
 	}
+
+#else
+	//TODO use setlocale()
+#endif
+
     return text;
 }
 
@@ -662,13 +666,13 @@ bool Configuration::Options()
             {
                 no_menu_option = O_GRAPHICS,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
-                moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Graphics options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
+                moteurGraphique->special_typo_p.Draw(gettext("Graphics options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
             }
             else
-                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Graphics options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(gettext("Graphics options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(toUtf32(gettext("Graphics options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
+            moteurGraphique->special_typo.Draw(gettext("Graphics options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
 
 
         if (eventManager->getPositionSouris().y > Resolution.h/2 - 64
@@ -678,13 +682,13 @@ bool Configuration::Options()
             {
                 no_menu_option = O_GRAPHISC_AVANCED,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
-                moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Advanced options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
+                moteurGraphique->special_typo_p.Draw(gettext("Advanced options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
             }
             else
-                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Advanced options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(gettext("Advanced options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(toUtf32(gettext("Advanced options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
+            moteurGraphique->special_typo.Draw(gettext("Advanced options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 64), 72, 19, true);
 
 
 
@@ -695,13 +699,13 @@ bool Configuration::Options()
             {
                 no_menu_option = O_SOUNDS,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                    eventManager->StopEvenement(sf::Mouse::Left,EventClic);
-                moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Sound options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
+                moteurGraphique->special_typo_p.Draw(gettext("Sound options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
             }
             else
-                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Sound options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(gettext("Sound options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(toUtf32(gettext("Sound options")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
+            moteurGraphique->special_typo.Draw(gettext("Sound options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2), 72, 19, true);
 
 
 
@@ -716,10 +720,10 @@ bool Configuration::Options()
                 return 1;
             }
             else
-                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+            moteurGraphique->special_typo.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
 
     }
 
@@ -936,10 +940,10 @@ bool Configuration::Options()
                 no_menu_option = O_PRINCIPAL;
             }
             else
-                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+            moteurGraphique->special_typo.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
 
     }
 
@@ -1104,10 +1108,10 @@ bool Configuration::Options()
                 no_menu_option = O_PRINCIPAL;
             }
             else
-                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+            moteurGraphique->special_typo.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
     }
 
     if(no_menu_option == O_SOUNDS)
@@ -1195,10 +1199,10 @@ bool Configuration::Options()
                 no_menu_option = O_PRINCIPAL;
             }
             else
-                moteurGraphique->special_typo_h.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(toUtf32(gettext("Return")), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
+            moteurGraphique->special_typo.Draw(gettext("Return"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2+160), 72, 19, true);
     }
 
     return 0;

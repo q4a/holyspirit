@@ -920,7 +920,7 @@ void Miracle::Concatenencer(const std::string &chemin, const Caracteristique &ca
 
 
 
-sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, sf::String chaine,sf::Color color)
+sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee *tailleCadran, const char *chaine,sf::Color color)
 {
     sf::Text string;
 
@@ -929,7 +929,7 @@ sf::Text Miracle::AjouterCaracteristiqueAfficher(coordonnee *decalage,coordonnee
     string.setColor(color);
 
     string.setCharacterSize(14*(int)(configuration->Resolution.h/600));
-    string.setString(chaine);
+    string.setString(toUtf32(chaine));
 
     if (tailleCadran->x < string.getGlobalBounds().width)
         tailleCadran->x = (int)string.getGlobalBounds().width;
@@ -955,9 +955,9 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
         if(hand == 1)
-            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Left click"))));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,gettext("Left click")));
         else
-            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Right click"))));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,gettext("Right click")));
 
         temp.back().setCharacterSize(12);
 
@@ -969,7 +969,7 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     }
 
-    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_nom));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_nom.c_str()));
     temp.back().setCharacterSize(16);
  //   temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
@@ -1034,7 +1034,7 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
 
     if (suivant)
     {
-        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,toUtf32(gettext("Next level: "))));
+        temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,gettext("Next level: ")));
         temp.back().setCharacterSize(12);
 
         {

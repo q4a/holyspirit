@@ -241,16 +241,16 @@ void c_Jeu::GererTemps(Jeu *jeu)
             jeu->Next();
         }
 
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Non resquiescat in pace...")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Non resquiescat in pace..."), sf::Vector2f(configuration->Resolution.w/2,
                                                           configuration->Resolution.h/2-96), 64, 19, true, sf::Color(255,255,255,(m_dead <= 2) ? m_dead/2*255 : 255));
-        moteurGraphique->special_typo.Draw(toUtf32(gettext("Click to have another chance!")), sf::Vector2f(configuration->Resolution.w/2,
+        moteurGraphique->special_typo.Draw(gettext("Click to have another chance!"), sf::Vector2f(configuration->Resolution.w/2,
                                                           configuration->Resolution.h/2), 32, 19, true, sf::Color(255,255,255,(m_dead <= 2) ? m_dead/2*255 : 255));
 
         if(m_dead >= 2)
         {
-            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Non resquiescat in pace...")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(gettext("Non resquiescat in pace..."), sf::Vector2f(configuration->Resolution.w/2,
                                                               configuration->Resolution.h/2-96), 64, 19, true, sf::Color(255,255,255,fabs(m_dead - (int)((m_dead+1)/2)*2)*255));
-            moteurGraphique->special_typo_p.Draw(toUtf32(gettext("Click to have another chance!")), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(gettext("Click to have another chance!"), sf::Vector2f(configuration->Resolution.w/2,
                                                               configuration->Resolution.h/2), 32, 19, true, sf::Color(255,255,255,fabs(m_dead - (int)((m_dead+1)/2)*2)*255));
         }
     }
@@ -1120,8 +1120,8 @@ void c_Jeu::Affichage(Jeu *jeu)
             {
                 std::ostringstream  buf;
 
-                buf<<"Temps : "<<configuration->heure<<" h "<<(int)configuration->minute;
-                Temps.setString(buf.str());
+                buf<<gettext("Time : ")<<configuration->heure<<" h "<<(int)configuration->minute;
+                Temps.setString(toUtf32(buf.str()));
             }
 
             tempsEcouleDepuisFPS=0;
@@ -1137,8 +1137,8 @@ void c_Jeu::FPS()
     {
         lowFPS=-1;
         std::ostringstream  buf;
-        buf<<"Nbr Tour de boucle : "<<nbrTourBoucle;
-        TourBoucle.setString(buf.str());
+        buf<<gettext("Loop iteration nbr : ")<<nbrTourBoucle;
+        TourBoucle.setString(toUtf32(buf.str()));
         nbrTourBoucle=0;
 
         tempsNbrTourBoucle=0;

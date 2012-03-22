@@ -564,7 +564,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
 
             buf << " ("<<(int)caracteristiqueMonstre.vie<<" / "<<caracteristiqueMonstre.maxVie<<")";
 
-            texte.setString(buf.str());
+            texte.setString(toUtf32(buf.str()));
         }
 
         texte.setColor(GetItemColor(caracteristiqueMonstre.rang));

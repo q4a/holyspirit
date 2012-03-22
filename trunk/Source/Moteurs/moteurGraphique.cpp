@@ -904,11 +904,11 @@ void MoteurGraphique::AjouterCommande(sf::Sprite *sprite, int couche, bool camer
         m_commandes[couche].push_back(Commande (sprite,camera,s));
 }
 
-void MoteurGraphique::AjouterTexte(sf::String txt, coordonnee pos, Border &border, int couche, bool titre, int size, sf::Color color)
+void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, Border &border, int couche, bool titre, int size, sf::Color color)
 {
     sf::Text temp;
     temp.setFont(m_font);
-    temp.setString(txt);
+    temp.setString(toUtf32(txt));
     temp.setPosition(pos.x, pos.y);
     temp.setCharacterSize(size);
     temp.setColor(color);

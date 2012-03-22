@@ -16,7 +16,7 @@ void Label::Draw()
     {
         if(m_clock.getElapsedTime().asSeconds() < 2)
         {
-            moteurGraphique->special_typo_h.Draw( toUtf32(m_text), sf::Vector2f( configuration->Resolution.w/2,
+            moteurGraphique->special_typo_h.Draw( m_text, sf::Vector2f( configuration->Resolution.w/2,
                                                                         configuration->Resolution.h/2-128),
                                                 48, 19, true, sf::Color(255,255,255,min((float)m_clock.getElapsedTime().asSeconds(),1.f)*255));
         }
