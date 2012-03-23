@@ -15,9 +15,3 @@ std::basic_string<sf::Uint32> utf32line;
     return utf32line;
 }
 
-/*std::string toANSI(std::string line)
-{
-char*std::string ANSIline;
-	sf::Utf8::toAnsi((line).begin(),(line).end(), 0, back_inserter(ANSIline), std::locale());
-    return ANSIline;
-}*/

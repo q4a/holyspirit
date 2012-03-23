@@ -676,17 +676,19 @@ void Objet::Charger(const std::string &chemin, const Caracteristique &caract,boo
                 do
                 {
                     fichier->get(caractere);
+					textdomain ("data");
                     switch (caractere)
                     {
                         case 'n' :
                             *fichier>>no;
-                            m_nom       = configuration->getText(2,no);
+                            m_nom       = gettext(configuration->getText(2,no).c_str());
                             break;
                         case 'd' :
                             *fichier>>no;
-                            description = configuration->getText(2,no);
+                            description = gettext(configuration->getText(2,no).c_str());
                             break;
                     }
+					textdomain ("menus");
 
                     if (fichier->eof())
                     {
@@ -1052,13 +1054,15 @@ void Set::Charger(std::string chemin, Caracteristique caract)
                 do
                 {
                     fichier->get(caractere);
+					textdomain ("data");
                     switch (caractere)
                     {
                         case 'n' :
                             *fichier>>no;
-                            m_nom       = configuration->getText(2,no);
+                            m_nom       = gettext(configuration->getText(2,no).c_str());
                             break;
                     }
+					textdomain ("menus");
 
                     if (fichier->eof())
                     {
@@ -1945,6 +1949,7 @@ std::string getTextBenediction(const benediction &bene)
             buf<<gettext("Faith increased: ");
         buf<<" "<<bene.info2;
     }
+	textdomain ("data");
     if(bene.type == DEGATS_SUPP)
     {
         buf<<gettext(configuration->getText(1,0 + bene.info1).c_str());
@@ -1966,6 +1971,7 @@ std::string getTextBenediction(const benediction &bene)
         buf<<gettext(configuration->getText(6,getNomMiracle(bene.text)).c_str());
         buf<<" +"<<bene.info1;
     }
+	textdomain ("menus");
     return buf.str();
 }
 
@@ -2265,9 +2271,9 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         bool mauvais = true;
         for(unsigned i = 0 ; i < m_nom_IDClasse.size() ; ++i)
         {
-            std::string buf;
-            buf = toUtf32(gettext("Only for: ")) + configuration->getText(3, m_nom_IDClasse[i]);
-            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.c_str()));
+            std::ostringstream buf;
+            buf<<gettext("Only for: ")<<gettext(configuration->getText(3, m_nom_IDClasse[i]).c_str());
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
             if(m_IDClasse[i] == nom_classe)
                 mauvais = false;
         }

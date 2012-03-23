@@ -1,1 +1,0 @@
-xgettext.exe -d menus -o ../Data/Miscs/Texts/menus.pot *.cpp Contextes/*.cpp Entites/*.cpp Map/*.cpp Moteurs/*.cpp Network/*.cpp

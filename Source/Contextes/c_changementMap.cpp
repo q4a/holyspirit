@@ -88,7 +88,9 @@ void c_Chargement::setC_Chargement(const std::string &prochaineMap,const coordon
                     {
                         int no;
                         *fichier>>no;
-                        nomMap = configuration->getText(5, no);
+						textdomain ("data");
+                        nomMap = gettext(configuration->getText(5, no).c_str());
+						textdomain ("menus");
                     }
                 }
                 while (caractere!='$');

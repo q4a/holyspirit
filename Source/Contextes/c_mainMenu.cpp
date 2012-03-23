@@ -388,7 +388,9 @@ void  c_MainMenu::E_Principal(Jeu *jeu)
                     {
                         int temp;
                         fichier2>>temp;
-                        m_description_classes.back() = configuration->getText(0,temp);
+						textdomain ("data");
+                        m_description_classes.back() = gettext(configuration->getText(0,temp).c_str());
+						textdomain ("menus");
 
                         for(unsigned j = 0 ; j < m_description_classes.back().size() ; ++j)
                             if(m_description_classes.back()[j] == '\\')
@@ -867,7 +869,9 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
 
         moteurGraphique->AjouterCommande(&m_backtext_hero,19,0);
 
+		textdomain ("data");
         texte.setString(toUtf32(gettext(configuration->getText(3,m_nom_classes[i]).c_str())));
+		textdomain ("menus");
         texte.setFont(moteurGraphique->m_font_titre);
 
         texte.setPosition((int)(configuration->Resolution.w/2 - configuration->player_class.size() * (m_background_hero.getGlobalBounds().width + 4) * 0.5
@@ -903,7 +907,7 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     if(classe_choisie >= 0)
     {
         texte.setCharacterSize(12);
-        texte.setString(m_description_classes[classe_choisie]);
+        texte.setString(toUtf32(m_description_classes[classe_choisie]));
         texte.setFont(moteurGraphique->m_font);
         texte.setPosition((int)(configuration->Resolution.w/2 - texte.getGlobalBounds().width/2),
                           (int)(configuration->Resolution.h/2 - 24));

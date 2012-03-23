@@ -200,7 +200,7 @@ void Map::ChargerInfos(ifstream *fichier, const std::string &chemin)
             }
             while (caractere!='$');
 
-            m_nom = configuration->getText(5,m_no_nom);
+            m_nom = gettext(configuration->getText(5,m_no_nom).c_str());
             fichier->get(caractere);
         }
 

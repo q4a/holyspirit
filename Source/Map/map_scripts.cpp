@@ -314,6 +314,7 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
 
 void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
 {
+	textdomain ("data");
     if (noInstruction>=0&&noInstruction<(int)script->m_instructions.size())
     {
         if (script->m_instructions[noInstruction].nom=="fight" && monstre != -1 && configuration->hote)
@@ -442,14 +443,14 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="tell" && monstre != -1)
         {
-            m_monstre[monstre].m_speak      = configuration->getText(4, (int)script->getValeur(noInstruction, 0));
+            m_monstre[monstre].m_speak      = gettext(configuration->getText(4, (int)script->getValeur(noInstruction, 0)).c_str());
             m_monstre[monstre].m_speak_time = script->getValeur(noInstruction, 1);
         }
         else if (script->m_instructions[noInstruction].nom=="speak")
         {
             if (jeu->menu.m_dialogue.empty())
             {
-                jeu->menu.m_dialogue = DecouperTexte(configuration->getText(4, (int)script->getValeur(noInstruction, 0)),
+                jeu->menu.m_dialogue = DecouperTexte(gettext(configuration->getText(4, (int)script->getValeur(noInstruction, 0)).c_str()),
                                                                             hero->m_classe.position_contenu_dialogue.w, 14);
                 eventManager->StopEvenement(Mouse::Left,EventClic);
 
@@ -470,7 +471,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
         }
         else if (script->m_instructions[noInstruction].nom=="speak_choice")
         {
-            jeu->menu.AddSpeakChoice(   DecouperTexte(configuration->getText(4, (int)script->getValeur(noInstruction, 0)),
+            jeu->menu.AddSpeakChoice(   DecouperTexte(gettext(configuration->getText(4, (int)script->getValeur(noInstruction, 0)).c_str()),
                                                       hero->m_classe.position_contenu_dialogue.w, 14),
                                         (int)script->getValeur(noInstruction, 1));
             eventManager->StopEvenement(Mouse::Left,EventClic);
@@ -560,7 +561,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                 for(unsigned i = 0 ; i < m_listID[(unsigned)script->getValeur(noInstruction, 0)].size() ; ++i)
                 {
                     Caracteristique temp = m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].getCaracteristique();
-                    temp.nom = configuration->getText((int)script->getValeur(noInstruction, 1), (int)script->getValeur(noInstruction, 2));
+                    temp.nom = gettext(configuration->getText((int)script->getValeur(noInstruction, 1), (int)script->getValeur(noInstruction, 2)).c_str());
                     m_monstre[m_listID[(unsigned)script->getValeur(noInstruction, 0)][i]].setCaracteristique(temp);
                 }
         }
@@ -671,6 +672,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                 moteurSons->PlayNewMusic(m_musiques[m_musiqueEnCours]);*/
         }
     }
+	textdomain ("menus");
 }
 
 void Map::GererConditions(Jeu *jeu,Script *script,int noInstruction,int monstre,Hero *hero,float temps,Menu *menu, bool seDeplacer)
