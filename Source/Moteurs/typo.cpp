@@ -79,7 +79,7 @@ void Typo::Draw(const std::string &text, sf::Vector2f pos, int size, int layer, 
     std::vector<sf::Sprite> sprites;
 
     sf::Vector2f cur_pos = pos;
-	
+
 	sf::String utftext = toUtf32(text);
 
     for(unsigned i = 0 ; i < utftext.getSize() ; ++i)
@@ -181,7 +181,7 @@ Character &Typo::getCharacter(int car, bool &maj)
         return m_chars[56];
     if(car == 0x0457)
         return m_chars[57];
-    if(car == 0x045D)
+    if(car == 0x0439)
         return m_chars[58];
 
     if(car >= 0x043A && car <= 0x044F)
