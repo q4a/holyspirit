@@ -29,7 +29,7 @@ def extract(filename):
     if os.path.exists(filename):
         infile = open(filename, 'r')
         for line in infile.readlines():
-            keys.append(line.strip('\n').replace("\"", "\\\""))
+            keys.append(line.strip('\n'))
 
 # this removes duplicates without screwing up the order
 def remove_duplicates():
