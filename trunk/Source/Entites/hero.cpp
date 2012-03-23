@@ -1805,7 +1805,7 @@ void Hero::AfficherQuetes(float decalage)
             if(!actif)
                 texte.setColor(sf::Color(128,128,128));
 
-            texte.setString(m_quetes[i].m_nom);
+            texte.setString(toUtf32(m_quetes[i].m_nom));
 
             moteurGraphique->AjouterTexte(&texte,15);
 
@@ -1843,14 +1843,14 @@ void Hero::AfficherQuetes(float decalage)
         texte.setCharacterSize(16);
         texte.setPosition(AutoScreenAdjust(m_classe.position_contenu_description_quete.x + 2,
                                            m_classe.position_contenu_description_quete.y,decalage));
-        texte.setString(m_quetes[queteAffichee].m_nom);
+        texte.setString(toUtf32(m_quetes[queteAffichee].m_nom));
 
         moteurGraphique->AjouterTexte(&texte,15,0);
 
         texte.setCharacterSize(14);
         texte.setPosition(AutoScreenAdjust(m_classe.position_contenu_description_quete.x + 2,
                                            m_classe.position_contenu_description_quete.y + 32,decalage));
-        texte.setString(m_quetes[queteAffichee].m_description);
+        texte.setString(toUtf32(m_quetes[queteAffichee].m_description));
 
         moteurGraphique->AjouterTexte(&texte,15,0);
     }
@@ -1870,7 +1870,7 @@ void Hero::AfficherDocs(float decalage)
         texte.setCharacterSize(14);
         texte.setPosition(AutoScreenAdjust(position.x + 2,position.y,decalage));
 
-        texte.setString(m_docs[i].m_nom);
+        texte.setString(toUtf32(m_docs[i].m_nom));
 
         moteurGraphique->AjouterTexte(&texte,15);
 
@@ -1905,7 +1905,7 @@ void Hero::AfficherDocs(float decalage)
         texte.setPosition(AutoScreenAdjust(m_classe.position_contenu_docs.x + 2,
                                            m_classe.position_contenu_docs.y,decalage));
 
-        texte.setString(m_docs[docAffiche].m_nom);
+        texte.setString(toUtf32(m_docs[docAffiche].m_nom));
 
         moteurGraphique->AjouterTexte(&texte,15,0);
 
@@ -1920,7 +1920,7 @@ void Hero::AfficherDocs(float decalage)
             i < (unsigned)(m_defil_cdoc + m_classe.position_contenu_docs.h);
             ++i)
         {
-            texte.setString(m_docs[docAffiche].m_ldescription[i]);
+            texte.setString(toUtf32(m_docs[docAffiche].m_ldescription[i]));
             texte.move(0,19);
 
             moteurGraphique->AjouterTexte(&texte,15,0);

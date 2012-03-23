@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-21 20:32+0200\n"
+"POT-Creation-Date: 2012-03-23 21:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,109 +16,137 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: configuration.cpp:654 configuration.cpp:657 configuration.cpp:660
+#: ../../../Source/configuration.cpp:659 ../../../Source/configuration.cpp:662
+#: ../../../Source/configuration.cpp:665
 msgid "Graphics options"
 msgstr ""
 
-#: configuration.cpp:670 configuration.cpp:673 configuration.cpp:676
+#: ../../../Source/configuration.cpp:675 ../../../Source/configuration.cpp:678
+#: ../../../Source/configuration.cpp:681
 msgid "Advanced options"
 msgstr ""
 
-#: configuration.cpp:687 configuration.cpp:690 configuration.cpp:693
+#: ../../../Source/configuration.cpp:692 ../../../Source/configuration.cpp:695
+#: ../../../Source/configuration.cpp:698
 msgid "Sound options"
 msgstr ""
 
-#: configuration.cpp:708 configuration.cpp:711 configuration.cpp:928
-#: configuration.cpp:931 configuration.cpp:1096 configuration.cpp:1099
-#: configuration.cpp:1187 configuration.cpp:1190 Contextes/c_mainMenu.cpp:504
-#: Contextes/c_mainMenu.cpp:511 Contextes/c_mainMenu.cpp:514
-#: Contextes/c_mainMenu.cpp:517 Contextes/c_mainMenu.cpp:998
-#: Contextes/c_mainMenu.cpp:1005 Contextes/c_mainMenu.cpp:1008
-#: Contextes/c_mainMenu.cpp:1011 Contextes/c_mainMenu.cpp:1062
-#: Contextes/c_mainMenu.cpp:1069 Contextes/c_mainMenu.cpp:1072
-#: Contextes/c_mainMenu.cpp:1075 Contextes/c_mainMenu.cpp:1212
-#: Contextes/c_mainMenu.cpp:1219 Contextes/c_mainMenu.cpp:1222
-#: Contextes/c_mainMenu.cpp:1225 Contextes/c_menuInGame.cpp:101
-#: Contextes/c_menuInGame.cpp:108 Contextes/c_menuInGame.cpp:111
-#: Contextes/c_menuInGame.cpp:114 Entites/hero.cpp:4676
+#: ../../../Source/configuration.cpp:713 ../../../Source/configuration.cpp:716
+#: ../../../Source/configuration.cpp:933 ../../../Source/configuration.cpp:936
+#: ../../../Source/configuration.cpp:1101
+#: ../../../Source/configuration.cpp:1104
+#: ../../../Source/configuration.cpp:1192
+#: ../../../Source/configuration.cpp:1195
+#: ../../../Source/Contextes/c_mainMenu.cpp:506
+#: ../../../Source/Contextes/c_mainMenu.cpp:513
+#: ../../../Source/Contextes/c_mainMenu.cpp:516
+#: ../../../Source/Contextes/c_mainMenu.cpp:519
+#: ../../../Source/Contextes/c_mainMenu.cpp:1002
+#: ../../../Source/Contextes/c_mainMenu.cpp:1009
+#: ../../../Source/Contextes/c_mainMenu.cpp:1012
+#: ../../../Source/Contextes/c_mainMenu.cpp:1015
+#: ../../../Source/Contextes/c_mainMenu.cpp:1066
+#: ../../../Source/Contextes/c_mainMenu.cpp:1073
+#: ../../../Source/Contextes/c_mainMenu.cpp:1076
+#: ../../../Source/Contextes/c_mainMenu.cpp:1079
+#: ../../../Source/Contextes/c_mainMenu.cpp:1216
+#: ../../../Source/Contextes/c_mainMenu.cpp:1223
+#: ../../../Source/Contextes/c_mainMenu.cpp:1226
+#: ../../../Source/Contextes/c_mainMenu.cpp:1229
+#: ../../../Source/Contextes/c_menuInGame.cpp:101
+#: ../../../Source/Contextes/c_menuInGame.cpp:108
+#: ../../../Source/Contextes/c_menuInGame.cpp:111
+#: ../../../Source/Contextes/c_menuInGame.cpp:114
+#: ../../../Source/Entites/hero.cpp:4685
 msgid "Return"
 msgstr ""
 
-#: configuration.cpp:723
+#: ../../../Source/configuration.cpp:728
 msgid "Resolution: "
 msgstr ""
 
-#: configuration.cpp:816
+#: ../../../Source/configuration.cpp:821
 msgid "Window mode: "
 msgstr ""
 
-#: configuration.cpp:836
+#: ../../../Source/configuration.cpp:841
 msgid "Brightness: "
 msgstr ""
 
-#: configuration.cpp:866
+#: ../../../Source/configuration.cpp:871
 msgid "Contrast: "
 msgstr ""
 
-#: configuration.cpp:941
+#: ../../../Source/configuration.cpp:946
 msgid "Quality of lights: "
 msgstr ""
 
-#: configuration.cpp:966
+#: ../../../Source/configuration.cpp:971
 msgid "Render the shadows: "
 msgstr ""
 
-#: configuration.cpp:986
+#: ../../../Source/configuration.cpp:991
 msgid "Use shader effects: "
 msgstr ""
 
-#: configuration.cpp:1006
+#: ../../../Source/configuration.cpp:1011
 msgid "Enable reflection of objects: "
 msgstr ""
 
-#: configuration.cpp:1026
+#: ../../../Source/configuration.cpp:1031
 msgid "Enable effects of distortion: "
 msgstr ""
 
-#: configuration.cpp:1046
+#: ../../../Source/configuration.cpp:1051
 msgid "Render the grass: "
 msgstr ""
 
-#: configuration.cpp:1066
+#: ../../../Source/configuration.cpp:1071
 msgid "Enable dynamical debris: "
 msgstr ""
 
-#: configuration.cpp:1108
+#: ../../../Source/configuration.cpp:1113
 msgid "Volume: "
 msgstr ""
 
-#: configuration.cpp:1144
+#: ../../../Source/configuration.cpp:1149
 msgid "Music volume: "
 msgstr ""
 
-#: menu.cpp:442 Entites/hero.cpp:1088 Entites/hero.cpp:1119
-#: Entites/objet.cpp:2189
+#: ../../../Source/menu.cpp:442 ../../../Source/Entites/hero.cpp:1095
+#: ../../../Source/Entites/hero.cpp:1126
+#: ../../../Source/Entites/objet.cpp:2195
 msgid "Life"
 msgstr ""
 
-#: menu.cpp:493 Entites/hero.cpp:1124 Entites/hero.cpp:1155
-#: Entites/hero.cpp:1578
+#: ../../../Source/menu.cpp:493 ../../../Source/Entites/hero.cpp:1131
+#: ../../../Source/Entites/hero.cpp:1162 ../../../Source/Entites/hero.cpp:1585
 msgid "Faith"
 msgstr ""
 
-#: menu.cpp:527
+#: ../../../Source/menu.cpp:527
 msgid "Points of souls: "
 msgstr ""
 
-#: Contextes/c_jeu.cpp:244 Contextes/c_jeu.cpp:251
+#: ../../../Source/Contextes/c_jeu.cpp:244
+#: ../../../Source/Contextes/c_jeu.cpp:251
 msgid "Non resquiescat in pace..."
 msgstr ""
 
-#: Contextes/c_jeu.cpp:246 Contextes/c_jeu.cpp:253
+#: ../../../Source/Contextes/c_jeu.cpp:246
+#: ../../../Source/Contextes/c_jeu.cpp:253
 msgid "Click to have another chance!"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:81
+#: ../../../Source/Contextes/c_jeu.cpp:1123
+msgid "Time : "
+msgstr ""
+
+#: ../../../Source/Contextes/c_jeu.cpp:1140
+msgid "Loop iteration nbr : "
+msgstr ""
+
+#: ../../../Source/Contextes/c_mainMenu.cpp:81
 msgid ""
 "An old law required has always been the good and evil meet has at least one "
 "rule in their eternal conflict.\n"
@@ -147,349 +175,384 @@ msgid ""
 "across the world."
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:271 Contextes/c_mainMenu.cpp:279
-#: Contextes/c_mainMenu.cpp:286 Contextes/c_mainMenu.cpp:289
-#: Contextes/c_mainMenu.cpp:292
+#: ../../../Source/Contextes/c_mainMenu.cpp:271
+#: ../../../Source/Contextes/c_mainMenu.cpp:279
+#: ../../../Source/Contextes/c_mainMenu.cpp:286
+#: ../../../Source/Contextes/c_mainMenu.cpp:289
+#: ../../../Source/Contextes/c_mainMenu.cpp:292
 msgid "Continue"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:306 Contextes/c_mainMenu.cpp:314
-#: Contextes/c_mainMenu.cpp:321 Contextes/c_mainMenu.cpp:324
-#: Contextes/c_mainMenu.cpp:327
+#: ../../../Source/Contextes/c_mainMenu.cpp:306
+#: ../../../Source/Contextes/c_mainMenu.cpp:314
+#: ../../../Source/Contextes/c_mainMenu.cpp:321
+#: ../../../Source/Contextes/c_mainMenu.cpp:324
+#: ../../../Source/Contextes/c_mainMenu.cpp:327
 msgid "Multiplayer"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:338 Contextes/c_mainMenu.cpp:345
-#: Contextes/c_mainMenu.cpp:348 Contextes/c_mainMenu.cpp:351
+#: ../../../Source/Contextes/c_mainMenu.cpp:338
+#: ../../../Source/Contextes/c_mainMenu.cpp:345
+#: ../../../Source/Contextes/c_mainMenu.cpp:348
+#: ../../../Source/Contextes/c_mainMenu.cpp:351
 msgid "New game"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:421 Contextes/c_mainMenu.cpp:428
-#: Contextes/c_mainMenu.cpp:431 Contextes/c_mainMenu.cpp:434
-#: Contextes/c_menuInGame.cpp:127 Contextes/c_menuInGame.cpp:134
-#: Contextes/c_menuInGame.cpp:137 Contextes/c_menuInGame.cpp:140
+#: ../../../Source/Contextes/c_mainMenu.cpp:423
+#: ../../../Source/Contextes/c_mainMenu.cpp:430
+#: ../../../Source/Contextes/c_mainMenu.cpp:433
+#: ../../../Source/Contextes/c_mainMenu.cpp:436
+#: ../../../Source/Contextes/c_menuInGame.cpp:127
+#: ../../../Source/Contextes/c_menuInGame.cpp:134
+#: ../../../Source/Contextes/c_menuInGame.cpp:137
+#: ../../../Source/Contextes/c_menuInGame.cpp:140
 msgid "Options"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:445 Contextes/c_mainMenu.cpp:452
-#: Contextes/c_mainMenu.cpp:455 Contextes/c_mainMenu.cpp:458
+#: ../../../Source/Contextes/c_mainMenu.cpp:447
+#: ../../../Source/Contextes/c_mainMenu.cpp:454
+#: ../../../Source/Contextes/c_mainMenu.cpp:457
+#: ../../../Source/Contextes/c_mainMenu.cpp:460
 msgid "Credits"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:469 Contextes/c_mainMenu.cpp:476
-#: Contextes/c_mainMenu.cpp:479 Contextes/c_mainMenu.cpp:482
+#: ../../../Source/Contextes/c_mainMenu.cpp:471
+#: ../../../Source/Contextes/c_mainMenu.cpp:478
+#: ../../../Source/Contextes/c_mainMenu.cpp:481
+#: ../../../Source/Contextes/c_mainMenu.cpp:484
 msgid "Quit"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:538 Contextes/c_mainMenu.cpp:545
-#: Contextes/c_mainMenu.cpp:548 Contextes/c_mainMenu.cpp:551
-#: Contextes/c_mainMenu.cpp:792
+#: ../../../Source/Contextes/c_mainMenu.cpp:540
+#: ../../../Source/Contextes/c_mainMenu.cpp:547
+#: ../../../Source/Contextes/c_mainMenu.cpp:550
+#: ../../../Source/Contextes/c_mainMenu.cpp:553
+#: ../../../Source/Contextes/c_mainMenu.cpp:794
 msgid "Delete character"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:605
+#: ../../../Source/Contextes/c_mainMenu.cpp:607
 msgid "<Incompatible>"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:607 Entites/hero.cpp:1045
+#: ../../../Source/Contextes/c_mainMenu.cpp:609
+#: ../../../Source/Entites/hero.cpp:1050
 msgid "Level"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:756
+#: ../../../Source/Contextes/c_mainMenu.cpp:758
 msgid "Please enter the name of the hero to delete :"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:848
+#: ../../../Source/Contextes/c_mainMenu.cpp:850
 msgid "Select your character"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:919
+#: ../../../Source/Contextes/c_mainMenu.cpp:923
 msgid "Enter your name"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:935 Contextes/c_mainMenu.cpp:942
-#: Contextes/c_mainMenu.cpp:945 Contextes/c_mainMenu.cpp:948
+#: ../../../Source/Contextes/c_mainMenu.cpp:939
+#: ../../../Source/Contextes/c_mainMenu.cpp:946
+#: ../../../Source/Contextes/c_mainMenu.cpp:949
+#: ../../../Source/Contextes/c_mainMenu.cpp:952
 msgid "Start"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:1102 Contextes/c_mainMenu.cpp:1109
-#: Contextes/c_mainMenu.cpp:1112 Contextes/c_mainMenu.cpp:1115
+#: ../../../Source/Contextes/c_mainMenu.cpp:1106
+#: ../../../Source/Contextes/c_mainMenu.cpp:1113
+#: ../../../Source/Contextes/c_mainMenu.cpp:1116
+#: ../../../Source/Contextes/c_mainMenu.cpp:1119
 msgid "Next"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:1157 Contextes/c_mainMenu.cpp:1164
-#: Contextes/c_mainMenu.cpp:1167 Contextes/c_mainMenu.cpp:1170
+#: ../../../Source/Contextes/c_mainMenu.cpp:1161
+#: ../../../Source/Contextes/c_mainMenu.cpp:1168
+#: ../../../Source/Contextes/c_mainMenu.cpp:1171
+#: ../../../Source/Contextes/c_mainMenu.cpp:1174
 msgid "Join game"
 msgstr ""
 
-#: Contextes/c_mainMenu.cpp:1187 Contextes/c_mainMenu.cpp:1194
-#: Contextes/c_mainMenu.cpp:1197 Contextes/c_mainMenu.cpp:1200
+#: ../../../Source/Contextes/c_mainMenu.cpp:1191
+#: ../../../Source/Contextes/c_mainMenu.cpp:1198
+#: ../../../Source/Contextes/c_mainMenu.cpp:1201
+#: ../../../Source/Contextes/c_mainMenu.cpp:1204
 msgid "Host game"
 msgstr ""
 
-#: Contextes/c_menuInGame.cpp:152 Contextes/c_menuInGame.cpp:159
-#: Contextes/c_menuInGame.cpp:162 Contextes/c_menuInGame.cpp:165
+#: ../../../Source/Contextes/c_menuInGame.cpp:152
+#: ../../../Source/Contextes/c_menuInGame.cpp:159
+#: ../../../Source/Contextes/c_menuInGame.cpp:162
+#: ../../../Source/Contextes/c_menuInGame.cpp:165
 msgid "Save and Exit"
 msgstr ""
 
-#: Contextes/c_menuInGame.cpp:180 Contextes/c_menuInGame.cpp:187
-#: Contextes/c_menuInGame.cpp:190 Contextes/c_menuInGame.cpp:193
+#: ../../../Source/Contextes/c_menuInGame.cpp:180
+#: ../../../Source/Contextes/c_menuInGame.cpp:187
+#: ../../../Source/Contextes/c_menuInGame.cpp:190
+#: ../../../Source/Contextes/c_menuInGame.cpp:193
 msgid "Quit the game"
 msgstr ""
 
-#: Entites/hero.cpp:111 Entites/hero.cpp:4988
+#: ../../../Source/Entites/hero.cpp:111 ../../../Source/Entites/hero.cpp:4999
 msgid "New quest"
 msgstr ""
 
-#: Entites/hero.cpp:1063
+#: ../../../Source/Entites/hero.cpp:1068
 msgid "Name"
 msgstr ""
 
-#: Entites/hero.cpp:1082
+#: ../../../Source/Entites/hero.cpp:1089
 msgid "Class"
 msgstr ""
 
-#: Entites/hero.cpp:1201
+#: ../../../Source/Entites/hero.cpp:1208
 msgid "Strength"
 msgstr ""
 
-#: Entites/hero.cpp:1214
+#: ../../../Source/Entites/hero.cpp:1221
 msgid ""
 "Your strength increases your damage to opponent and allows you to carry the "
 "heavier equipment."
 msgstr ""
 
-#: Entites/hero.cpp:1262
+#: ../../../Source/Entites/hero.cpp:1269
 msgid "Dexterity"
 msgstr ""
 
-#: Entites/hero.cpp:1274
+#: ../../../Source/Entites/hero.cpp:1281
 msgid ""
 "Your dexterity allows you to dodge better and access to certain objects."
 msgstr ""
 
-#: Entites/hero.cpp:1324
+#: ../../../Source/Entites/hero.cpp:1331
 msgid "Vitality"
 msgstr ""
 
-#: Entites/hero.cpp:1336
+#: ../../../Source/Entites/hero.cpp:1343
 msgid "Your vitality increases your life."
 msgstr ""
 
-#: Entites/hero.cpp:1384
+#: ../../../Source/Entites/hero.cpp:1391
 msgid "Piety"
 msgstr ""
 
-#: Entites/hero.cpp:1394
+#: ../../../Source/Entites/hero.cpp:1401
 msgid "Your piety points increase your faith."
 msgstr ""
 
-#: Entites/hero.cpp:1442
+#: ../../../Source/Entites/hero.cpp:1449
 msgid "Charisma"
 msgstr ""
 
-#: Entites/hero.cpp:1454
+#: ../../../Source/Entites/hero.cpp:1461
 msgid ""
 "Your charisma affects the price of objects and allows you to wear certain "
 "items."
 msgstr ""
 
-#: Entites/hero.cpp:1458 Entites/hero.cpp:2004
+#: ../../../Source/Entites/hero.cpp:1465 ../../../Source/Entites/hero.cpp:2013
 msgid "Remaining"
 msgstr ""
 
-#: Entites/hero.cpp:1512
+#: ../../../Source/Entites/hero.cpp:1519
 msgid "Damage"
 msgstr ""
 
-#: Entites/hero.cpp:1555 Entites/objet.cpp:2177
+#: ../../../Source/Entites/hero.cpp:1562
+#: ../../../Source/Entites/objet.cpp:2183
 msgid "Armor"
 msgstr ""
 
-#: Entites/hero.cpp:1568
+#: ../../../Source/Entites/hero.cpp:1575
 msgid "Physical"
 msgstr ""
 
-#: Entites/hero.cpp:1573
+#: ../../../Source/Entites/hero.cpp:1580
 msgid "Fire"
 msgstr ""
 
-#: Entites/hero.cpp:1583
+#: ../../../Source/Entites/hero.cpp:1590
 msgid "Corrosion"
 msgstr ""
 
-#: Entites/hero.cpp:1602
+#: ../../../Source/Entites/hero.cpp:1609
 msgid "Money"
 msgstr ""
 
-#: Entites/hero.cpp:1620
+#: ../../../Source/Entites/hero.cpp:1627
 msgid "Holy water"
 msgstr ""
 
-#: Entites/hero.cpp:2975
+#: ../../../Source/Entites/hero.cpp:2984
 msgid "Shortcut"
 msgstr ""
 
-#: Entites/hero.cpp:3229
+#: ../../../Source/Entites/hero.cpp:3238
 msgid "LevelUp"
 msgstr ""
 
-#: Entites/hero.cpp:3649
+#: ../../../Source/Entites/hero.cpp:3658
 msgid "I do not have the required equipment!"
 msgstr ""
 
-#: Entites/hero.cpp:3782
+#: ../../../Source/Entites/hero.cpp:3791
 msgid "My bag is full!"
 msgstr ""
 
-#: Entites/hero.cpp:5023
+#: ../../../Source/Entites/hero.cpp:5038
 msgid "Quest ended"
 msgstr ""
 
-#: Entites/miracle.cpp:958
+#: ../../../Source/Entites/miracle.cpp:960
 msgid "Left click"
 msgstr ""
 
-#: Entites/miracle.cpp:960
+#: ../../../Source/Entites/miracle.cpp:962
 msgid "Right click"
 msgstr ""
 
-#: Entites/miracle.cpp:1006 Entites/miracle.cpp:1054
+#: ../../../Source/Entites/miracle.cpp:1008
+#: ../../../Source/Entites/miracle.cpp:1056
 msgid "Cost of faith: "
 msgstr ""
 
-#: Entites/miracle.cpp:1012 Entites/miracle.cpp:1060
+#: ../../../Source/Entites/miracle.cpp:1014
+#: ../../../Source/Entites/miracle.cpp:1062
 msgid "Reserve of faith: "
 msgstr ""
 
-#: Entites/miracle.cpp:1018 Entites/miracle.cpp:1066
+#: ../../../Source/Entites/miracle.cpp:1020
+#: ../../../Source/Entites/miracle.cpp:1068
 msgid "Cost of life: "
 msgstr ""
 
-#: Entites/miracle.cpp:1024 Entites/miracle.cpp:1072
+#: ../../../Source/Entites/miracle.cpp:1026
+#: ../../../Source/Entites/miracle.cpp:1074
 msgid "Reserve of life: "
 msgstr ""
 
-#: Entites/miracle.cpp:1037
+#: ../../../Source/Entites/miracle.cpp:1039
 msgid "Next level: "
 msgstr ""
 
-#: Entites/miracle.cpp:1042
+#: ../../../Source/Entites/miracle.cpp:1044
 msgid "Requirements: "
 msgstr ""
 
-#: Entites/objet.cpp:1923
+#: ../../../Source/Entites/objet.cpp:1927
 msgid "Increased efficiency: "
 msgstr ""
 
-#: Entites/objet.cpp:1929
+#: ../../../Source/Entites/objet.cpp:1933
 msgid "Strength increased: "
 msgstr ""
 
-#: Entites/objet.cpp:1931
+#: ../../../Source/Entites/objet.cpp:1935
 msgid "Dexterity increased: "
 msgstr ""
 
-#: Entites/objet.cpp:1933
+#: ../../../Source/Entites/objet.cpp:1937
 msgid "Vitality increased: "
 msgstr ""
 
-#: Entites/objet.cpp:1935
+#: ../../../Source/Entites/objet.cpp:1939
 msgid "Piety increased: "
 msgstr ""
 
-#: Entites/objet.cpp:1937
+#: ../../../Source/Entites/objet.cpp:1941
 msgid "Charisma increased: "
 msgstr ""
 
-#: Entites/objet.cpp:1943
+#: ../../../Source/Entites/objet.cpp:1947
 msgid "Health increased: "
 msgstr ""
 
-#: Entites/objet.cpp:1945
+#: ../../../Source/Entites/objet.cpp:1949
 msgid "Faith increased: "
 msgstr ""
 
-#: Entites/objet.cpp:1956
+#: ../../../Source/Entites/objet.cpp:1961
 msgid "over"
 msgstr ""
 
-#: Entites/objet.cpp:1965
+#: ../../../Source/Entites/objet.cpp:1970
 msgid "Miracle: "
 msgstr ""
 
-#: Entites/objet.cpp:2012
+#: ../../../Source/Entites/objet.cpp:2018
 msgid "Team: "
 msgstr ""
 
-#: Entites/objet.cpp:2016
+#: ../../../Source/Entites/objet.cpp:2022
 msgid "Stash: "
 msgstr ""
 
-#: Entites/objet.cpp:2018
+#: ../../../Source/Entites/objet.cpp:2024
 msgid "Trader: "
 msgstr ""
 
-#: Entites/objet.cpp:2020
+#: ../../../Source/Entites/objet.cpp:2026
 msgid "Inventory: "
 msgstr ""
 
-#: Entites/objet.cpp:2110
+#: ../../../Source/Entites/objet.cpp:2116
 msgid "Production time: "
 msgstr ""
 
-#: Entites/objet.cpp:2113
+#: ../../../Source/Entites/objet.cpp:2119
 msgid "minutes"
 msgstr ""
 
-#: Entites/objet.cpp:2115
+#: ../../../Source/Entites/objet.cpp:2121
 msgid "seconds"
 msgstr ""
 
-#: Entites/objet.cpp:2147 Entites/objet.cpp:2193
+#: ../../../Source/Entites/objet.cpp:2153
+#: ../../../Source/Entites/objet.cpp:2199
 msgid "Damage: "
 msgstr ""
 
-#: Entites/objet.cpp:2163
+#: ../../../Source/Entites/objet.cpp:2169
 msgid "Two-handed weapon"
 msgstr ""
 
-#: Entites/objet.cpp:2165
+#: ../../../Source/Entites/objet.cpp:2171
 msgid "One hand weapon"
 msgstr ""
 
-#: Entites/objet.cpp:2197
+#: ../../../Source/Entites/objet.cpp:2203
 msgid "Armor: "
 msgstr ""
 
-#: Entites/objet.cpp:2216
+#: ../../../Source/Entites/objet.cpp:2222
 msgid "Required Strength: "
 msgstr ""
 
-#: Entites/objet.cpp:2226
+#: ../../../Source/Entites/objet.cpp:2232
 msgid "Dexterity required: "
 msgstr ""
 
-#: Entites/objet.cpp:2236
+#: ../../../Source/Entites/objet.cpp:2242
 msgid "Charisma required: "
 msgstr ""
 
-#: Entites/objet.cpp:2246
+#: ../../../Source/Entites/objet.cpp:2252
 msgid "Vitality required: "
 msgstr ""
 
-#: Entites/objet.cpp:2256
+#: ../../../Source/Entites/objet.cpp:2262
 msgid "Piety required: "
 msgstr ""
 
-#: Entites/objet.cpp:2269
+#: ../../../Source/Entites/objet.cpp:2275
 msgid "Only for: "
 msgstr ""
 
-#: Entites/objet.cpp:2345
+#: ../../../Source/Entites/objet.cpp:2351
 msgid "Free slot"
 msgstr ""
 
-#: Entites/objet.cpp:2363
+#: ../../../Source/Entites/objet.cpp:2369
 msgid "Price: "
 msgstr ""

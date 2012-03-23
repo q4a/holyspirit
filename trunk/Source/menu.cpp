@@ -178,14 +178,14 @@ void Menu::AfficherDialogue(float time,Classe *classe)
     {
         m_old_dialogue = m_dialogue;
 
-        texte.setString(m_dialogue);
+        texte.setString(toUtf32(m_dialogue));
 
         m_hauteur = 140;
         m_hauteur += texte.getGlobalBounds().height + 8;
 
         for(unsigned i = 0 ; i < m_choices.size() ; ++i)
         {
-            texte.setString(m_choices[i].text);
+            texte.setString(toUtf32(m_choices[i].text));
             m_hauteur += texte.getGlobalBounds().height + 4;
         }
 
@@ -211,7 +211,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
         texte.setCharacterSize(14);
         texte.setStyle(0);
         texte.setFont(moteurGraphique->m_font);
-        texte.setString(m_dialogue);
+        texte.setString(toUtf32(m_dialogue));
 
         texte.setPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.getGlobalBounds().width) * 0.5,
                           AutoScreenAdjust(0,classe->position_contenu_dialogue.y).y + m_cur_talk_hauteur);//(classe->talk.position.h - m_hauteur) +(classe->talk.position.h) - (classe->talk.position.h) * alpha/255);
@@ -289,7 +289,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
         float maxX = -1;
         for(unsigned i = 0 ; i < m_choices.size() ; ++i)
         {
-            texte.setString(m_choices[i].text);
+            texte.setString(toUtf32(m_choices[i].text));
             texte.setPosition(AutoScreenAdjust(classe->position_contenu_dialogue.x,0).x + classe->position_contenu_dialogue.w * 0.5 - (texte.getGlobalBounds().width) * 0.5,
                                 pos);
             if(texte.getPosition().x < minX || minX == -1)
@@ -306,7 +306,7 @@ void Menu::AfficherDialogue(float time,Classe *classe)
         int current_choice = -1;
         for(unsigned i = 0 ; i < m_choices.size() ; ++i)
         {
-            texte.setString(m_choices[i].text);
+            texte.setString(toUtf32(m_choices[i].text));
             texte.setPosition(minX + 48,
                                 pos);
 
