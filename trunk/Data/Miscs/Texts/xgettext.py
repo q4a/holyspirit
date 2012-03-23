@@ -24,14 +24,14 @@ msgstr ""
 
 '''
 
-# this extracts translatable strings from the flare data file
+# this extracts translatable strings from the \en\*.text.hs Texts files
 def extract(filename):
     if os.path.exists(filename):
         infile = open(filename, 'r')
         for line in infile.readlines():
             keys.append(line.strip('\n').replace("\"", "\\\""))
 
-# this removes duplicates from keys in a clean way (without screwing up the order)
+# this removes duplicates without screwing up the order
 def remove_duplicates():
     global keys
     tmp = []
