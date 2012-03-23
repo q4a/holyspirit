@@ -318,7 +318,9 @@ void                ChargerBouton(ifstream &fichier, std::vector <Bouton> &bouto
 
                     int no;
                     fichier>>no;
-                    bouton.back().nom = configuration->getText(0, no);
+					textdomain ("data");
+                    bouton.back().nom = gettext(configuration->getText(0, no).c_str());
+					textdomain ("menus");
 
                     break;
                 case 'e' :
@@ -381,7 +383,9 @@ void                ChargerBouton(ifstream &fichier, Bouton_pressoire &bouton)
 
                     int no;
                     fichier>>no;
-                    bouton.nom = configuration->getText(0, no);
+					textdomain ("data");
+                    bouton.nom = gettext(configuration->getText(0, no).c_str());
+					textdomain ("menus");
 
                     break;
                 case 'x' :

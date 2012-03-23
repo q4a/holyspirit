@@ -25,11 +25,11 @@ All creatures have been eliminated.
 
 The innkeeper is besieged
 I must free the passage in front of the inn.
-À I have to talk with landlord.
+I have to talk with landlord.
 The innkeeper was able to escape.
 A house in the forest
 I must rescue a young woman which is holed up in her house southeast of the abbey, in the forest.
-The young woman was more alas herself. I have to terminate its new à horrible existence.
+The young woman was more alas herself. I have to terminate its new horrible existence.
 
 A creature in the night
 REAPER

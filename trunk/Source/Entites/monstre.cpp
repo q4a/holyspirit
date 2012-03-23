@@ -239,7 +239,9 @@ bool Modele_Monstre::Charger(const std::string &chemin)
                     {
                         int no;
                         fichier>>no;
-                        m_caracteristique.nom = configuration->getText(3, no);
+						textdomain ("data");
+                        m_caracteristique.nom = gettext(configuration->getText(3, no).c_str());
+						textdomain ("menus");
                     }
                 }
                 while (caractere!='$');

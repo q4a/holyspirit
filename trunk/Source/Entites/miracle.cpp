@@ -355,7 +355,8 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
             {
                 int no;
                 fichier>>no;
-                m_nom = configuration->getText(6, no);
+				textdomain ("data");
+                m_nom = gettext(configuration->getText(6, no).c_str());
             }
 
             if (fichier.eof())
@@ -375,7 +376,7 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
             {
                 int no;
                 fichier>>no;
-                description = configuration->getText(6, no);
+                description = gettext(configuration->getText(6, no).c_str());
             }
 
             if (fichier.eof())
@@ -425,7 +426,8 @@ void Miracle::Charger(const std::string &chemin, const Caracteristique &caract, 
 
                 int no;
                 fichier>>no;
-                m_description_effets.back() = configuration->getText(6, no);
+                m_description_effets.back() = gettext(configuration->getText(6, no).c_str());
+				textdomain ("menus");
 
                 for (int i=0;i<(int)m_description_effets.back().size();i++)
                 {

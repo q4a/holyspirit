@@ -618,7 +618,9 @@ void Hero::Charger(const std::string &chemin_save)
                     m_docs.push_back(Document ());
                     m_docs.back().m_chemin = doc.getChemin();
                     m_docs.back().m_nom = doc.getNom();
-                    m_docs.back().m_description = configuration->getText(7,doc.m_doc);
+					textdomain ("data");
+                    m_docs.back().m_description = gettext(configuration->getText(7,doc.m_doc).c_str());
+					textdomain ("menus");
 
                     fichier->get(caractere);
                 }
@@ -1072,7 +1074,9 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
      {
 
         string.setCharacterSize(14);
+		textdomain ("data");
         string.setString(toUtf32(gettext(configuration->getText(3,m_classe.nom).c_str())));
+		textdomain ("menus");
         string.setPosition(AutoScreenAdjust(44,348,decalage));
         string.setColor(sf::Color(255,255,255));
         moteurGraphique->AjouterTexte(&string,15);
@@ -1949,7 +1953,9 @@ void Hero::AfficherPotales(float decalage, std::string chemin)
         texte.setCharacterSize(14);
         texte.setPosition(AutoScreenAdjust(position.x + 2,
                                            position.y,decalage));
-        texte.setString(configuration->getText(4,m_potales[i].nom));
+		textdomain ("data");
+        texte.setString(toUtf32(configuration->getText(4,m_potales[i].nom)));
+		textdomain ("menus");
 
 
         if(abs(m_potales[i].position.x - m_personnage.getCoordonnee().x) < 5
@@ -4742,7 +4748,9 @@ bool Hero::UtiliserObjet(int numero)
                 m_docs.push_back(Document ());
                 m_docs.back().m_chemin = m_inventaire[numero].getChemin();
                 m_docs.back().m_nom = m_inventaire[numero].getNom();
-                std::string temp = configuration->getText(7,m_inventaire[numero].m_doc);
+				textdomain ("data");
+                std::string temp = gettext(configuration->getText(7,m_inventaire[numero].m_doc).c_str());
+				textdomain ("menus");
                 temp = DecouperTexte(temp,m_classe.position_contenu_docs.w,16);
                 m_docs.back().m_description = temp;
                 m_docs.back().GenerateDescription();
@@ -4997,20 +5005,24 @@ void Hero::NewQuest(int id)
 
 void Hero::SetQuestName(int id, int n)
 {
+	textdomain ("data");
     for (int i = 0;i < (int)m_quetes.size(); ++i)
         if (m_quetes[i].m_id == id)
-            m_quetes[i].m_nom = DecouperTexte(configuration->getText(8, n), m_classe.position_contenu_quetes.w, 16);
+            m_quetes[i].m_nom = DecouperTexte(gettext(configuration->getText(8, n).c_str()), m_classe.position_contenu_quetes.w, 16);
+	textdomain ("menus");
 }
 
 void Hero::SetQuestState(int id, int s, int d)
 {
+	textdomain ("data");
     for (int i = 0;i < (int)m_quetes.size(); ++i)
         if (m_quetes[i].m_id == id)
         {
-            m_quetes[i].m_description = DecouperTexte(configuration->getText(8, d),
+            m_quetes[i].m_description = DecouperTexte(gettext(configuration->getText(8, d).c_str()),
                                                                                     m_classe.position_contenu_description_quete.w, 14);
             m_quetes[i].m_statut = s;
         }
+	textdomain ("menus");
 }
 
 void Hero::SetQuestActif(int id, int a)

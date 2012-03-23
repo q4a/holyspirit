@@ -1,0 +1,1 @@
+xgettext.exe -d menus -o menus.pot ../../../Source/*.cpp ../../../Source/Contextes/*.cpp ../../../Source/Entites/*.cpp ../../../Source/Map/*.cpp ../../../Source/Moteurs/*.cpp ../../../Source/Network/*.cpp

@@ -437,7 +437,7 @@ std::vector<std::string> Configuration::ChargerFichierTxt(std::string chemin)
     std::vector<std::string> text;
 
     std::ifstream fichier;
-    fichier.open((chemin_localisation+language+"/"+chemin).c_str(), std::ios::in);
+    fichier.open((chemin_localisation+"en"+"/"+chemin).c_str(), std::ios::in);
     if (fichier)
     {
         std::string chaine;
@@ -471,7 +471,18 @@ std::vector<std::string> Configuration::ChargerFichierTxt(std::string chemin)
 	}
 
 #else
-	//TODO use setlocale()
+	if (language=="en") {
+		setlocale(LC_MESSAGES, "en_US");
+	}
+	else if (language=="fr") {
+		setlocale(LC_MESSAGES, "fr_Fr");
+	}
+	else if (language=="es") {
+		setlocale(LC_MESSAGES, "es_ES");
+	}
+	else if (language=="ru") {
+		setlocale(LC_MESSAGES, "ru_RU");
+	}
 #endif
 
     return text;
@@ -491,32 +502,11 @@ void Configuration::ChargerTxt()
 
 	std::string pathToTranslationFiles = chemin_localisation;
 
-	bindtextdomain ("benedictions",pathToTranslationFiles.c_str());
-	bind_textdomain_codeset ("benedictions","UTF-8");
+	bindtextdomain ("data",pathToTranslationFiles.c_str());
+	bind_textdomain_codeset ("data","UTF-8");
 
 	bindtextdomain ("menus",pathToTranslationFiles.c_str());
 	bind_textdomain_codeset ("menus","UTF-8");
-
-	bindtextdomain ("items",pathToTranslationFiles.c_str());
-	bind_textdomain_codeset ("items","UTF-8");
-
-	bindtextdomain ("entities",pathToTranslationFiles.c_str());
-	bind_textdomain_codeset ("entities","UTF-8");
-
-	bindtextdomain ("dialogs",pathToTranslationFiles.c_str());
-	bind_textdomain_codeset ("dialogs","UTF-8");
-
-	bindtextdomain ("maps",pathToTranslationFiles.c_str());
-	bind_textdomain_codeset ("maps","UTF-8");
-
-	bindtextdomain ("miracles",pathToTranslationFiles.c_str());
-	bind_textdomain_codeset ("miracles","UTF-8");
-
-	bindtextdomain ("docs",pathToTranslationFiles.c_str());
-	bind_textdomain_codeset ("docs","UTF-8");
-
-	bindtextdomain ("quests",pathToTranslationFiles.c_str());
-	bind_textdomain_codeset ("quests","UTF-8");
 
 	textdomain ("menus");
 }
