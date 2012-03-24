@@ -6,12 +6,12 @@ OptionsJeu::OptionsJeu() : QDialog() {
 
     setFixedSize(600, 500);
 
-    ms_contrastes      = new QLabel(tr("Taux de contrastes : %1")   .arg( (int)( (config.contrastes-1) * 100 / 9 ) ) ,this);
-    ms_luminosite      = new QLabel(tr("Taux de luminosité : %1")   .arg( (int)config.luminosite * 100 / 64 )        ,this);
-    ms_volume          = new QLabel(tr("Volume sonore : %1")        .arg( (int)config.volume)                        ,this);
-    ms_resolution      = new QLabel(tr("Résolution :")                                                               ,this);
-    ms_qualiteLumieres = new QLabel(tr("Qualité des lumières : %1") .arg( (int)config.Lumiere)                       ,this);
-    ms_alpha           = new QLabel(tr("Opacité alpha : %1")        .arg( (int)config.alpha)                         ,this);
+    ms_contrastes      = new QLabel(tr("Rate of contrast : %1")   .arg( (int)( (config.contrastes-1) * 100 / 9 ) ) ,this);
+    ms_luminosite      = new QLabel(tr("Rate of luminosity : %1")   .arg( (int)config.luminosite * 100 / 64 )        ,this);
+    ms_volume          = new QLabel(tr("Sound volume : %1")        .arg( (int)config.volume)                        ,this);
+    ms_resolution      = new QLabel(tr("Resolution :")                                                               ,this);
+    ms_qualiteLumieres = new QLabel(tr("Quality of lights : %1") .arg( (int)config.Lumiere)                       ,this);
+    ms_alpha           = new QLabel(tr("Alpha opacity : %1")        .arg( (int)config.alpha)                         ,this);
 
     ms_contrastes      ->move(60,40);
     ms_luminosite      ->move(60,72);
@@ -50,51 +50,51 @@ OptionsJeu::OptionsJeu() : QDialog() {
 
 
 
-    modeFenetre= new QCheckBox(tr("Mode fenêtré"), this);
+    modeFenetre= new QCheckBox(tr("Window mode"), this);
     modeFenetre->move(128,176);
     modeFenetre->setChecked(config.mode_fenetre);
 
-    syncro= new QCheckBox(tr("Syncronisation verticale"), this);
+    syncro= new QCheckBox(tr("Vertical syncronisation"), this);
     syncro->move(128,192);
     syncro->setChecked(config.syncronisation_verticale);
 
 
-    ombres= new QCheckBox(tr("Afficher les ombres"), this);
+    ombres= new QCheckBox(tr("Render shadows"), this);
     ombres->move(128,208);
     ombres->setChecked(config.Ombre);
 
-    fx= new QCheckBox(tr("Utiliser les post-effects"), this);
+    fx= new QCheckBox(tr("Use the post-effects"), this);
     fx->move(128,224);
     fx->setChecked(config.postFX);
 
-    item_background= new QCheckBox(tr("Fonds des objets colorés"), this);
+    item_background= new QCheckBox(tr("Fund colored objects"), this);
     item_background->move(128,240);
     item_background->setChecked(config.item_background);
 
-    herbes= new QCheckBox(tr("Afficher l'herbe"), this);
+    herbes= new QCheckBox(tr("Render the grass"), this);
     herbes->move(128,256);
     herbes->setChecked(config.Herbes);
 
-    particule= new QCheckBox(tr("Afficher les particules"), this);
+    particule= new QCheckBox(tr("Render particles"), this);
     particule->move(128,272);
     particule->setChecked(config.particules);
 
-    lissage= new QCheckBox(tr("Activer le lissage"), this);
+    lissage= new QCheckBox(tr("Enable smoothing"), this);
     lissage->move(128,288);
     lissage->setChecked(config.lissage);
 
-    reflect= new QCheckBox(tr("Réflections dans l'eau"), this);
+    reflect= new QCheckBox(tr("Reflections in water"), this);
     reflect->move(128,304);
     reflect->setChecked(config.Reflection);
 
-    distortion= new QCheckBox(tr("Effets de distorsion"), this);
+    distortion= new QCheckBox(tr("Distorting"), this);
     distortion->move(128,320);
     distortion->setChecked(config.Distortion);
 
     listeResolution = new QComboBox(this);
     listeResolution->move(256, 160);
 
-    m_boutonRetour = new QPushButton(tr("Sauvegarder et quitter"), this);
+    m_boutonRetour = new QPushButton(tr("Save and Exit"), this);
     m_boutonRetour->setGeometry(128,448,256,32);
 
 
@@ -122,7 +122,7 @@ OptionsJeu::OptionsJeu() : QDialog() {
             f_resolutions.close();
         }
         else
-            qWarning("Impossible d'ouvrir le fichier resolutions.list :\n\tLe choix des résolutions n'est' donc pas disponible.");
+            qWarning("Can not open file resolutions.list:\n\tThe choice of resolutions will be not available.");
 
 
     if(!maResolutionEstAffichee) {
@@ -190,30 +190,30 @@ void OptionsJeu::Quitter() {
 
 void OptionsJeu::ChangerContraste(int contraste) {
     config.contrastes = ((float)contraste/10) + 1;
-    ms_contrastes->setText( QString(tr("Taux de contrastes : %1"))
+    ms_contrastes->setText( QString(tr("Rate of contrast : %1"))
                  .arg(  (int)((config.contrastes - 1) * 100 / 9) ) );
 
 }
 void OptionsJeu::ChangerLuminosite(int luminosite) {
     config.luminosite = luminosite;
-    ms_luminosite->setText(QString(tr("Taux de luminosité : %1"))
+    ms_luminosite->setText(QString(tr("Rate of luminosity : %1"))
                     .arg((int)config.luminosite * 100 / 64) );
 
 }
 void OptionsJeu::ChangerLumiere(int lumiere) {
     config.Lumiere = lumiere;
-    ms_qualiteLumieres->setText(QString(tr("Qualité des lumières : %1"))
+    ms_qualiteLumieres->setText(QString(tr("Quality of lights : %1"))
                    .arg( (int)config.Lumiere ) );
 
 }
 void OptionsJeu::ChangerAlpha(int alpha) {
     config.alpha = alpha;
-    ms_alpha->setText(QString(tr("Opacité alpha : %1"))
+    ms_alpha->setText(QString(tr("Alpha opacity : %1"))
                     .arg( (int)config.alpha ) );
 
 }
 void OptionsJeu::ChangerVolume(int volume) {
     config.volume = volume;
-    ms_volume->setText(QString(tr("Volume sonore : %1"))
+    ms_volume->setText(QString(tr("Sound volume : %1"))
                    .arg(  (int)config.volume ) );
 }

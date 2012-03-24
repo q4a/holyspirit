@@ -85,8 +85,8 @@ void Configuration::Charger() {
         fichier.close();
     }
     else {
-        qWarning("Le fichier configuration.conf n'a pu être ouvert.");
-        qWarning("   Création de ce fichier en cours...");
+        qWarning("The file configuration.conf could not be open.");
+        qWarning("   Creating this file...");
         Sauvegarder();
         Charger();
         return;
@@ -150,5 +150,5 @@ void Configuration::Sauvegarder() {
         fichier.close();
     }
     else
-        qWarning("Impossible de sauvegarder la configuration.");
+        qWarning("Unable to save configuration.");
 }

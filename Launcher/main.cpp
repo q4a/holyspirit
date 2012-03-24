@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
 
     config.Sauvegarder();
 
-    translator.load( QString("hslauncher_%1").arg(config.language.c_str()));
+    translator.load( QString("Languages/hslauncher_%1").arg(config.language.c_str()));
     app.installTranslator(&translator);
 
     Launcher launcher;

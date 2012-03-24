@@ -22,8 +22,8 @@ Launcher::Launcher() : QWidget() {
             setStyleSheet(QString(feuilleCSS.readAll()));
         }
         else {
-            qWarning("Le fichier launcher.css n'existe pas : ");
-            qWarning("      L'interface du Launcher ne sera donc pas affichée.");
+            qWarning("The file launcher.css does not exist");
+            qWarning("      The interface of Launcher will not be displayed.");
         }
 
         feuilleCSS.close();
@@ -39,7 +39,7 @@ Launcher::Launcher() : QWidget() {
         setMask(pixmap.mask());
     }
         
-    m_boutonDemarrer = new QPushButton(tr("Lancer le jeu"), this);
+    m_boutonDemarrer = new QPushButton(tr("Launch the game"), this);
         m_boutonDemarrer->setGeometry(114,324,271,32);
     m_boutonMettreAJour = new QPushButton(tr("Mettre le jeu à jour"), this);
         m_boutonMettreAJour->setGeometry(QRect(114,360,271,32));
@@ -54,7 +54,7 @@ Launcher::Launcher() : QWidget() {
         m_miseAJourTotale->setGeometry(121,422,260,20);
     m_boutonOptions = new QPushButton(tr("Options"), this);
      m_boutonOptions->setGeometry(114,448,271,32);
-    m_boutonQuitter = new QPushButton(tr("Quitter"), this);
+    m_boutonQuitter = new QPushButton(tr("Quit"), this);
         m_boutonQuitter->setGeometry(186,484,128,32);
         m_boutonQuitter->setObjectName("boutonQuitter");
 
@@ -88,7 +88,7 @@ Launcher::Launcher() : QWidget() {
             }
         }
         else
-            qWarning("Le fichier liste_langages.conf n'a pu être ouvert.");
+            qWarning("Could not open file liste_langages.conf.");
     }
     {
         std::ifstream fichierLocal(PATH_FICHIER_MAJ_CONF_LOCAL, std::ios::in);
@@ -96,7 +96,7 @@ Launcher::Launcher() : QWidget() {
             char caractere;
 
             while(!fichierLocal.eof()) {
-                if(fichierLocal.tellg() == -1)
+                if(fichierLocal.tellg() < 0)
                     break;
                 fichierLocal.get(caractere);
                 if(caractere == '*') {
@@ -162,7 +162,7 @@ void Launcher::telechargerFichierMAJDistant()  {
 
 
    if(_fichier->open(QIODevice::WriteOnly)) {
-       m_boutonMettreAJour->setText(tr("Téléchargement de la base de données..."));
+       m_boutonMettreAJour->setText(tr("Downloading the database..."));
 
        _http->get(QUrl::toPercentEncoding(url.path(), "!$&'()*+,;=:@/"), _fichier);
 
@@ -170,7 +170,7 @@ void Launcher::telechargerFichierMAJDistant()  {
        QObject::connect(_http, SIGNAL(done(bool)),                 this, SLOT(verificationPresenceMiseAJour(bool)));
    }
    else
-       qWarning("Le fichier maj.txt local n'a pu etre ouvert.");
+       qWarning("Local file maj.txt could not be opened.");
 }
 void Launcher::verificationPresenceMiseAJour(bool demarrer) {
     //On a ouvert le fichier maj.txt dans Launcher::telechargerFichierMAJDistant()
@@ -180,7 +180,7 @@ void Launcher::verificationPresenceMiseAJour(bool demarrer) {
     //demarrer vaut true si done renvoit une erreur.
     if(demarrer) {
        m_boutonDemarrer->setEnabled(true);
-       m_boutonMettreAJour->setText(tr("Mise à jour impossible"));
+       m_boutonMettreAJour->setText(tr("Unable to update"));
        m_boutonMettreAJour->setEnabled(false);
        return;
     }
@@ -196,7 +196,7 @@ void Launcher::verificationPresenceMiseAJour(bool demarrer) {
 
             while(!f_listeDistante.eof()) {
                 f_listeDistante.get(caractere);
-                if(f_listeDistante.tellg() == -1)
+                if(f_listeDistante.tellg() < 0)
                     break;
 
                 if(caractere == '*') {
@@ -209,14 +209,14 @@ void Launcher::verificationPresenceMiseAJour(bool demarrer) {
             f_listeDistante.close();
         }
         else
-            qWarning("Ouverture de maj.txt impossible.");
+            qWarning("Can not open maj.txt.");
 
     }
 
     //La liste de fichiers est vide ==> Mise à jour en cours (sur le site).
     if(fichiersDistants->size() == 0) {
         m_boutonDemarrer->setEnabled(true);
-        m_boutonMettreAJour->setText(tr("Maintenance du système.\n Réessayez dans quelques minutes."));
+        m_boutonMettreAJour->setText(tr("Maintenance of the system.\n Try again in a few minutes."));
         m_boutonMettreAJour->setEnabled(false);
         return;
     }
@@ -230,7 +230,7 @@ void Launcher::verificationPresenceMiseAJour(bool demarrer) {
            while(!f_listeLocale.eof()) {
                f_listeLocale.get(caractere);
 
-               if(f_listeLocale.tellg() == -1)
+               if(f_listeLocale.tellg() < 0)
                    break;
 
                if(caractere == '*') {
@@ -243,17 +243,17 @@ void Launcher::verificationPresenceMiseAJour(bool demarrer) {
            f_listeLocale.close();
        }
        else {
-           qWarning("Impossible d'ouvrir le fichier maj.conf : ");
+           qWarning("Can not open file maj.conf : ");
            std::ofstream f_conf(PATH_FICHIER_MAJ_CONF_LOCAL,std::ios::out);
            if(f_conf.good()) {
                f_conf << "$";
                f_conf.close();
-               qWarning("    Fichier maj.conf recréé");
-               qWarning("    Attention cela retéléchargera le jeu dans son entier.");
+               qWarning("    File maj.conf recreated");
+               qWarning("    Please note that the game will be fully redownload.");
                verificationPresenceMiseAJour(false);
            }
            else
-               qWarning("    Impossible de créér ce fichier.");
+               qWarning("    Can not create this file.");
        }
     }
     
@@ -262,7 +262,7 @@ void Launcher::verificationPresenceMiseAJour(bool demarrer) {
     if(_fichiersLocaux->size() < 500) {
         m_boutonDemarrer->setEnabled(false);
         m_boutonMettreAJour->setEnabled(true);
-        m_boutonMettreAJour->setText(tr("Télécharger et installer"));
+        m_boutonMettreAJour->setText(tr("Download and install"));
     }
 
 
@@ -357,16 +357,16 @@ void Launcher::verificationPresenceMiseAJour(bool demarrer) {
         }
     }
     else
-        qWarning("Impossible d'ouvrir les fichiers de spécifications.");
+        qWarning("Can not open files of specifications.");
 
     if(_fichiersATelecharger->size() > 0) {
         m_boutonMettreAJour->setEnabled(true);
-        m_boutonMettreAJour->setText(tr("Mise à jour disponible."));
+        m_boutonMettreAJour->setText(tr("An update is available."));
     }
     else {
         m_boutonDemarrer->setEnabled(true);
         m_boutonMettreAJour->setEnabled(false);
-        m_boutonMettreAJour->setText(tr("Aucune mise à jour trouvée"));
+        m_boutonMettreAJour->setText(tr("No updates available."));
     }
 
  }
@@ -376,7 +376,7 @@ void Launcher::telechargerFichier(bool erreur) {
 
     //Sert à ajouter une ligne dans le fichier maj.conf (permet d'éviter le retéléchargement de tous les fichiers déjà téléchargés).
     if(_fichierEnTelechargement) {
-        qWarning("    Le fichier %s a fini d'être téléchargé.",_fichierEnTelechargement->nom.c_str());
+        qWarning("    The file %s was downloaded successfully.",_fichierEnTelechargement->nom.c_str());
         _fichier->close();
 
         _nombreDeFichiersTelecharges++;
@@ -394,13 +394,13 @@ void Launcher::telechargerFichier(bool erreur) {
     //Il y a encore des fichiers
     if(_fichiersATelecharger->size() > 0) {
         if(erreur) {
-            QMessageBox::information(0, tr("Erreur"), _http->error() == 7 ? tr("Mise à jour interrompue.") : tr("Mise à jour impossible."));
+            QMessageBox::information(0, tr("Error"), _http->error() == 7 ? tr("Update stopped.") : tr("Unable to update"));
             return;
         }
 
         _fichierEnTelechargement = new Fichier(_fichiersATelecharger->dequeue());
 
-        qWarning("Téléchargement en cours du fichier %s.", _fichierEnTelechargement->nom.c_str());
+        qWarning("File download in progress %s.", _fichierEnTelechargement->nom.c_str());
         m_boutonMettreAJour->setText(_fichierEnTelechargement->nom.c_str());
 
         QUrl url(QString("http://holyspirit.alpha-arts.net/Fichiers_jeu/Holyspirit/%1").arg(_fichierEnTelechargement->nom.c_str()));
@@ -414,7 +414,7 @@ void Launcher::telechargerFichier(bool erreur) {
 
 
         if(!_fichier->open(QIODevice::WriteOnly))
-            qWarning("Impossible d'ouvrir le fichier %s : mise à jour stoppée.", _fichierEnTelechargement->nom.c_str());
+            qWarning("Can not open file %s : updating was stopped.", _fichierEnTelechargement->nom.c_str());
 
         _http->get(QUrl::toPercentEncoding(url.path(), "!$&'()*+,;=:@/"), _fichier);
 
@@ -427,30 +427,32 @@ void Launcher::telechargerFichier(bool erreur) {
         //Le pointeur _fichiersATelecharger n'est initialisé que lorsqu'il y a une mise à jour en cours sinon il est vaut NULL.
         if(_fichiersATelecharger) {
             m_boutonDemarrer->setEnabled(true);
-            m_boutonMettreAJour->setText(tr("Mise à jour terminée."));
+            m_boutonMettreAJour->setText(tr("Update finished."));
         }
         else
-            m_boutonMettreAJour->setText(tr("Aucune mise à jour."));
+            m_boutonMettreAJour->setText(tr("No updates available."));
     }
 
 }
 
 void Launcher::ajouterFichierDansTelecharges(const Fichier &fichier) {
     bool fichierEnregistre = false;
-    {
-        const int nombreFichiersLocaux = _fichiersLocaux->size();
+    int nombreFichiersLocaux = 0;
+
+    nombreFichiersLocaux = _fichiersLocaux->size();
+
         for(int i = 0; i < nombreFichiersLocaux; i++) {
             if(_fichiersLocaux->at(i).nom == fichier.nom) {
-                _fichiersLocaux->replace(i,(Fichier){fichier.nom,"",fichier.version});
+                _fichiersLocaux->replace(i,(Fichier&)(fichier.nom,"",fichier.version));
                 fichierEnregistre = true;
                 break;
             }
         }
-    }
+
     if(!fichierEnregistre)
         _fichiersLocaux->push_back(fichier);
 
-    const int nombreFichiersLocaux = _fichiersLocaux->size();
+    nombreFichiersLocaux = _fichiersLocaux->size();
     std::ofstream fichierLocal(PATH_FICHIER_MAJ_CONF_LOCAL,std::ios::out);
     if(fichierLocal.good()) {
         for(int i = 0; i < nombreFichiersLocaux; i++)
@@ -470,14 +472,14 @@ void Launcher::miseAJourBarreTotale(float progression, int total) {
 }
 void Launcher::miseAJourBarre2(int progression, int total) {
     m_miseAJour->setValue(progression*100/total);
- }
+}
 void Launcher::LancerJeu() {
 #ifdef WINDOWS
     ShellExecute(NULL,NULL,"Holyspirit.exe",NULL,NULL,SW_SHOWNORMAL);
 #else
     #ifdef LINUX
        if(system("Holyspirit") == -1)
-           qWarning("Holyspirit n'a pu etre lancé automatiquement.");
+           qWarning("Holyspirit could not be launched automatically.");
     #else
         #error "Holyspirit ne pourra etre lancé automatiquement : commmande d'OS non spécifié ou LINUX ou WINDOWS non défini."
     #endif
