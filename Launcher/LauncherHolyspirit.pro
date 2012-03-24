@@ -17,6 +17,7 @@ SOURCES += configuration.cpp \
     Launcher.cpp \
     main.cpp \
     optionsjeu.cpp
+RC_FILE = ressource.rc
 TRANSLATIONS += Languages\hslauncher_en.ts \
     Languages/hslauncher_es.ts \
     Languages/hslauncher_fr.ts \
