@@ -927,7 +927,7 @@ void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, int c
 {
     sf::Text temp;
     temp.setFont(m_font);
-    temp.setString(txt);
+    temp.setString(toUtf32(txt));
     temp.setPosition(pos.x, pos.y);
     temp.setCharacterSize(size);
     temp.setColor(color);

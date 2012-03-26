@@ -21,4 +21,5 @@ RC_FILE = ressource.rc
 TRANSLATIONS += Languages\hslauncher_en.ts \
     Languages/hslauncher_es.ts \
     Languages/hslauncher_fr.ts \
-    Languages/hslauncher_ru.ts
+    Languages/hslauncher_ru.ts \
+    Languages/hslauncher_uk.ts

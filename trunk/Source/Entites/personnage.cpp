@@ -455,12 +455,12 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
         bool empty = m_speak.empty();
 
         if(empty)
-            m_speak = "Entrez votre message...";
+            m_speak = gettext("Enter your message...");
 
         sf::Text text;
         text.setFont(moteurGraphique->m_font);
         text.setCharacterSize(12);
-        text.setString(m_speak);
+        text.setString(toUtf32(m_speak));
         pos.x -= (int)text.getGlobalBounds().width/2;
 
         moteurGraphique->AjouterTexte(m_speak, pos, border, 14, 0, 12, sf::Color(224,224,224,alpha));
