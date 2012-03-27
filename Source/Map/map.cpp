@@ -658,7 +658,7 @@ void Map::GererAmbiance(float temps)
 
 bool Map::SetClimate(int no, bool actif)
 {
-    if(no >= 0 && no < m_climates.size())
+    if(no >= 0 && no < (int)m_climates.size())
     {
         if(actif)
         {

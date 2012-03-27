@@ -139,7 +139,7 @@ int  Network::GetNoClient(const sf::IpAddress &address)
 void GererReseauClientTCP(void* UserData)
 {
     sf::Context context;
-    Jeu *jeu = static_cast<Jeu*>(UserData);
+   // Jeu *jeu = static_cast<Jeu*>(UserData);
 
     while(net->m_host)
     {
@@ -150,7 +150,7 @@ void GererReseauClientTCP(void* UserData)
 }
 void GererReseauClientUDP(void* UserData)
 {
-    Jeu *jeu = static_cast<Jeu*>(UserData);
+  //  Jeu *jeu = static_cast<Jeu*>(UserData);
 
     sf::IpAddress ip;
     short unsigned int port;
@@ -169,7 +169,7 @@ void GererReseauClientUDP(void* UserData)
 void GererReseauHost(void* UserData)
 {
     sf::Context context;
-    Jeu *jeu = static_cast<Jeu*>(UserData);
+    //Jeu *jeu = static_cast<Jeu*>(UserData);
 
     while(net->m_runTCPHost)
     {

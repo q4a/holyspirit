@@ -181,11 +181,9 @@ Character &Typo::getCharacter(int car, bool &maj)
         return m_chars[56];
     if(car == 0x0457)
         return m_chars[57];
-    if(car == 0x0439)
-        return m_chars[58];
 
-    if(car >= 0x043A && car <= 0x044F)
-        return m_chars[59 + car - 0x043A];
+    if(car >= 0x0439 && car <= 0x044F)
+        return m_chars[58 + car - 0x0439];
 
 
     return m_chars.front();

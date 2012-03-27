@@ -853,7 +853,7 @@ void Hero::ChargerModele(bool tout)
     if (nombreArme==2)
         m_cas=1;
 
-    int ordre[NOMBRE_MORCEAU_PERSONNAGE];
+   // int ordre[NOMBRE_MORCEAU_PERSONNAGE];
 
     int priorite[NOMBRE_MORCEAU_PERSONNAGE];
 
@@ -890,7 +890,7 @@ void Hero::ChargerModele(bool tout)
                     if(m_cheminModeleNouveau[m_inventaire[i].m_emplacementImageHero[temp]].empty() || m_inventaire[i].m_equipe > priorite[m_inventaire[i].m_emplacementImageHero[temp]])
                     {
                         m_cheminModeleNouveau[m_inventaire[i].m_emplacementImageHero[temp]]=m_inventaire[i].m_cheminImageHero[temp];
-                        ordre[m_inventaire[i].m_emplacementImageHero[temp]] = temp;
+                        //ordre[m_inventaire[i].m_emplacementImageHero[temp]] = temp;
                         priorite[m_inventaire[i].m_emplacementImageHero[temp]] = m_inventaire[i].m_equipe;
 
                         if (m_classe.emplacements[m_inventaire[i].m_equipe].emplacement==ARME_PRINCIPAL&&m_inventaire[i].m_type==ARME)

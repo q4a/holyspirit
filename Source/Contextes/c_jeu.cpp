@@ -147,7 +147,9 @@ void c_Jeu::Utiliser(Jeu *jeu)
     {
         Evenements(jeu);
         Deplacements(jeu);
-        Animation(jeu);
+
+        if (jeu->hero.m_personnage.EnVie())
+            Animation(jeu);
     }
     else
         jeu->map->GererScript(jeu,&jeu->hero,tempsEcoule,&jeu->menu);
@@ -276,6 +278,8 @@ void c_Jeu::Deplacements(Jeu *jeu)
 
     IA(jeu);
 
+    if(jeu->hero.m_personnage.EnVie()){
+
     if (seDeplacer)
     {
         bool ok=true;
@@ -305,6 +309,7 @@ void c_Jeu::Deplacements(Jeu *jeu)
 
     if(fabs(jeu->hero.m_personnage.getPousse().x) > 0 || fabs(jeu->hero.m_personnage.getPousse().y) > 0)
         jeu->hero.m_personnage.m_cible = NULL,jeu->hero.m_personnage.frappeEnCours=false;
+    }
 
     coordonneeDecimal old, heroPos;
     old.x = (oldHeroPos.x-oldHeroPos.y-1)*64;

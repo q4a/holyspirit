@@ -238,11 +238,11 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
         }
         else if(type == P_ERASEFRIEND)
         {
-            sf::Int16 no;
+            sf::Int16 no2;
 
             GlobalMutex.lock();
 
-            if((packet>>no))
+            if((packet>>no2))
             {
                 jeu->hero.EraseFriend(no);
 
@@ -251,7 +251,7 @@ void Network::CheckPacketHost(sf::Packet &packet, int no, sf::Socket* it, sf::Tc
                 {
                     sf::TcpSocket& client2 = **it2;
                     sf::Packet packet2;
-                    packet2<<(sf::Int8)P_ERASEFRIEND<<no;
+                    packet2<<(sf::Int8)P_ERASEFRIEND<<no2;
 
                     client2.send(packet2);
                 }

@@ -214,10 +214,10 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,in
                 {
 
                     //m_sons[i].SetVolume(volume);
-                    float x,y,z;
+                    float x,y;//,z;
                     x=m_sons[i].getPosition().x;
                     y=m_sons[i].getPosition().y;
-                    z=m_sons[i].getPosition().z;
+                    //z=m_sons[i].getPosition().z;
 
                  /*   m_sons[i].SetVolume(volume * m_buffers[ID]->volume / 100);*/
 
