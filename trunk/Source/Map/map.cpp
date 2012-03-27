@@ -178,7 +178,7 @@ void Map::AfficherSac(coordonnee positionSac,float decalage,coordonnee position_
                        && z < m_decor[1][positionSac.y][positionSac.x].getNombreObjets() - 1))
                     texte.setString("...");
                 else
-                    texte.setString(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getNom());
+                    texte.setString(toUtf32(m_decor[1][positionSac.y][positionSac.x].getObjet(z)->getNom()));
                 texte.setCharacterSize(16);
 
                 texte.setPosition(AutoScreenAdjust(position_sac_inventaire.x,

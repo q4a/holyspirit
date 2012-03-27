@@ -25,6 +25,8 @@ dynamic libraries instead of static. Is this case uncheck that flag. Also read 3
 
 3. Gettext package. You can get it here: http://sourceforge.net/projects/gnuwin32/files/gettext/0.14.4/gettext-0.14.4.exe
 
+4. CMake package. http://www.cmake.org/cmake/resources/software.html
+
 RUNTIME DEPENDENCIES:
 
 for MinGW:
@@ -40,3 +42,31 @@ for MinGW:
 Gettext:
 
 libintl3.dll
+
+BUILDING UNDER LINUX SYSTEMS:
+
+1. As SFML 2.0 wasn't released yet and is not included in your distro repository, so
+   you will need to build it yourself before compiling HolySpirit.
+
+To build SFML you will need to get next packages from your distro repository:
+
+	pthread
+	opengl
+	xlib
+	xrandr
+	freetype
+	glew
+	jpeg
+	sndfile
+	openal
+
+Don't forget to install the DEVELOPMENT version of these packages
+
+2. CMake-gui is recommended way to build SFML (and the Game) under Linux. Get it from your distro repo with CMake itself.
+
+3. Configure SFML using CMake-gui. It will report if you dont have any from above dependencies.
+   Than build it with preferred IDE or by using "console make". You will need to build ALL SFML libraries.
+
+4. Configure HolySpirit using CMake-gui. It will fail. Uncheck "SFML_STATIC", than set SFML Include Directory and
+   SFML libraries pathes using just built SFML files. Click "Configure" again. This time it should work.
+   Click "Generate" and than use preferred IDE or just "console make" to build the game. Enjoy ;)
