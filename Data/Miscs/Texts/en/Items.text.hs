@@ -1,83 +1,83 @@
 Leather cuffs
-These leather cuffs\nprotect the forearm.
+These leather cuffs\protect the forearm.
 Quilted armor
-This modest armor consists of a lined\nsplit leather for cushion the blows.
+This modest armor consists of a lined\split leather for cushion the blows.
 Arquebus
-This strange object has the power\nto propel projectiles with great metal speed.\nMuch better than a bow but more painful to the ears!
+This strange object has the power\to propel projectiles with great metal speed.\Much better than a bow but more painful to the ears!
 Leather boots
-Boots made for walking...and for\nprotecting feet beats slightly.
+Boots made for walking...and for\protecting feet beats slightly.
 Ceremonial dagger
-A sharp dagger designed for\nsacrifices during ceremonies.
+A sharp dagger designed for\sacrifices during ceremonies.
 Chainmail
-An armor made of many steel\nrings, a good compromise between\nprotection and freedom of movement.
+An armor made of many steel\rings, a good compromise between\protection and freedom of movement.
 Coal
-Coal is a base material for\nthe manufacture of steel
+Coal is a base material for\the manufacture of steel
 Hand crossbow
-This small throwing weapon\nis handy and fast, however less\ndestructive than a firearm.
+This small throwing weapon\is handy and fast, however less\destructive than a firearm.
 Dagger
-Thin, pointed dagger\nis a perfect weapon for\na traitor... or a woman.
+Thin, pointed dagger\is a perfect weapon for\a traitor... or a woman.
 Minor faith potion
-The flask contents strangely\nfluorescent gasoline will flow\ndivine in your veins!\nYou will regenerate 150 PF.
+The flask contents strangely\fluorescent gasoline will flow\divine in your veins!\You will regenerate 150 PF.
 Frock
 A monk's robe.
 Great shield
-This shield protects holder\nfrom metal from the chest to the feet.
+This shield protects holder\from metal from the chest to the feet.
 Minor health potion
-A red and thick liquid,\ntastes disgusting. It is\ncertainly not good, but it\ngives a famous whip.\nYou heal 150 HP.
+A red and thick liquid,\tastes disgusting. It is\certainly not good, but it\gives a famous whip.\You heal 150 HP.
 Cervelliere
-This helmet is a\ngood head protection.
+This helmet is a\good head protection.
 Katzbalger
-This terrible two-handed weapon\nis made to kill,\nand not human beings...
+This terrible two-handed weapon\is made to kill,\and not human beings...
 Long sword
-This longsword\nis well balanced:\nan excellent weapon.
+This longsword\is well balanced:\an excellent weapon.
 Azure pendant
 A pretty small pendant.
 Iron ore
-Iron ore is a basic material for\nweapons and armors crafting.
+Iron ore is a basic material for\weapons and armors crafting.
 Ring
 A small ring with one stone.
 Wooden board
-A board that can be used to\nmake many objects...\nPerhaps the first step in a coffin?
+A board that can be used to\make many objects...\Perhaps the first step in a coffin?
 Saddle Crossbow
 ...
 Buckler
-A small wooden shield\ntopped with metal reinforcements.
+A small wooden shield\topped with metal reinforcements.
 Short sword
-A steel sword,\nshort but sharp.
+A steel sword,\short but sharp.
 Wrath blade
 ???
 Two-handed sword
-This heavy sword crushes\nand does not crack...
+This heavy sword crushes\and does not crack...
 Boots
 Devine boots.
 Scarifier
-Scarifier is a ceremonial dagger\nused by the terrible killer Lavoisin.
+Scarifier is a ceremonial dagger\used by the terrible killer Lavoisin.
 Harold's damnation
-This shield once belonged to\nthe great king Harold.
+This shield once belonged to\the great king Harold.
 Reinforced gloves
-Strong leather gloves\nreinforced by metal plates.
+Strong leather gloves\reinforced by metal plates.
 Leather hood
-A simple leather hood\noffering little protection.
+A simple leather hood\offering little protection.
 Satin robe of the Tearful Widow.
 A black robe which suit perfectly to a woman in mourning.
 Winged mace
-A powerful weapon,\nwhich crushes the skulls also\neasily than eggs.
+A powerful weapon,\which crushes the skulls also\easily than eggs.
 Fracasseuse
-A formidable weapon capable of crushing\na human skull in one fell swoop.\n\nOne-handed weapon.
+A formidable weapon capable of crushing\a human skull in one fell swoop.\\One-handed weapon.
 Flamboyant
-Sword forged in the Hell's flammes\nwhich belonged to the demon\nbefore being stole by\nthe archangel Michel. This one lose it\nby becoming incarnate\non Earth and is believed\ngone forever.
+Sword forged in the Hell's flammes\which belonged to the demon\before being stole by\the archangel Michel. This one lose it\by becoming incarnate\on Earth and is believed\gone forever.
 Timber axe
-A simple axe for\ncutting wood.\nBut it's also slices very\nnice meat and bones...
+A simple axe for\cutting wood.\But it's also slices very\nice meat and bones...
 Butcher's mace
-This mace has pig killing for first goal.\nBut it's also very efficient against demons.\n\nTwo-handed weapon.
+This mace has pig killing for first goal.\But it's also very efficient against demons.\\Two-handed weapon.
 Leather armor
 
 Tears of the Tearful Widow
 A jewel which suit perfectly to a woman in mourning.
 Horned barbute
-A barbarian helmet\nextremely resistant.\nUnavailable in the shops.
+A barbarian helmet\extremely resistant.\Unavailable in the shops.
 Copper ore
-The copper ore is basic material for\nweapons and armors crafting.
+The copper ore is basic material for\weapons and armors crafting.
 Ruby
 A beautiful precious stone.
 Blueprint : Horned barbute
@@ -91,52 +91,52 @@ Blueprint explaining the construction of a tiara.
 Tiara
 Beautiful tiara orned with an emerald.
 Cleaver
-Knife used by butchers,\nhe shall rule the chairs.
+Knife used by butchers,\he shall rule the chairs.
 Emerald
 A beautiful precious stone.
 Gold ore
-Precious metal,\ngold is mainly used in jewelry.
+Precious metal,\gold is mainly used in jewelry.
 Bronze shield
-A buckler forged entirely in bronze. \nVery tough.
+A buckler forged entirely in bronze. \Very tough.
 Blueprint : Bronze shield
 Blueprint explaining the construction of a bronze shield.
 Diadem of the Tearful Widow
 A diadem which suits perfectly to a woman in mourning.
 Set of the Tearful Widow
 Minor litany
-This parchment holds the incantation\nrequired to bless an item.
+This parchment holds the incantation\required to bless an item.
 Minor Toxic Cloud Litany
-This parchment holds the incantation\nrequired to bless an item so that this one\n could drop a toxic cloud on the battlefield.\nThis cloud deal 20 damage over 6 seconds.
+This parchment holds the incantation\required to bless an item so that this one\ could drop a toxic cloud on the battlefield.\This cloud deal 20 damage over 6 seconds.
 Blueprint : Burning coal golem
 Blueprint explaining how to make a coal golem familiar.
 Burning coal golem
-A powerful companion.\nThe burning coal golem is an humanoid\nmade of coal.
+A powerful companion.\The burning coal golem is an humanoid\made of coal.
 Bone Espadon
 A two-handed sword made of bone.
 Bone shield
-Shield made of human bones.\nSome say that it is cursed...
+Shield made of human bones.\Some say that it is cursed...
 Limited faith potion
-The flask contents strangely\nfluorescent gasoline will flow\ndivine in your veins!\nYou will regenerate 300 PF.
+The flask contents strangely\fluorescent gasoline will flow\divine in your veins!\You will regenerate 300 PF.
 Limited heal potion
-A red and thick liquid,\ntastes disgusting. It is\ncertainly not good, but it\ngives a famous whip.\nYou heal 300 PV.
+A red and thick liquid,\tastes disgusting. It is\certainly not good, but it\gives a famous whip.\You heal 300 PV.
 Aventail
-A cap made of mail\nprotecting the head and the neck.
+A cap made of mail\protecting the head and the neck.
 Clodomir's Scepter
 Description and story of Clodomir.
 Journal of the monk Redimus
-Some notes that seem to\ncome from the Redimus's the\nmonk newspaper.\nRight-click to use.
+Some notes that seem to\come from the Redimus's the\monk newspaper.\Right-click to use.
 Book of Saints - Calvary of Frenegonde
-Excerpt from the Book of Saints, the paper\ntells the story of St. Frenegonde.\nRight-click to use.
+Excerpt from the Book of Saints, the paper\tells the story of St. Frenegonde.\Right-click to use.
 Book of Saints - The Sacrifice of Joachim
-Excerpt from the Book of Saints, the paper\ntells the story of St. Joachim.\nRight-click to use.
+Excerpt from the Book of Saints, the paper\tells the story of St. Joachim.\Right-click to use.
 Book of Saints - The Courage of Galswintha
-Excerpt from the Book of Saints, the paper\ntells the story of St. Galswintha.\nRight-click to use.
+Excerpt from the Book of Saints, the paper\tells the story of St. Galswintha.\Right-click to use.
 Book of Saints - Story of Clodomir's Life
-Excerpt from the Book of Saints, the paper\ntells the story of Saint Clodomir.\nRight-click to use.
+Excerpt from the Book of Saints, the paper\tells the story of Saint Clodomir.\Right-click to use.
 Barbarian Haksil armor
-Weaved mesh and leather\nbelonged to the terrible barbarian leader\nHaksil Wurgasht.\nSome say it still stained by\nthe blood of St. Frenegonde...
+Weaved mesh and leather\belonged to the terrible barbarian leader\Haksil Wurgasht.\Some say it still stained by\the blood of St. Frenegonde...
 Crossbow of eternal fire
-The crossbow was soaked\nin the blood of the demon,\ngiving it the ability to\npull the explosive bolts.
+The crossbow was soaked\in the blood of the demon,\giving it the ability to\pull the explosive bolts.
 The finger of Saint Clodomir
 
 The ear of St. Frenegonde

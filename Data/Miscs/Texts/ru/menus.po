@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-23 21:46+0200\n"
-"PO-Revision-Date: 2012-03-23 21:52+0200\n"
+"POT-Creation-Date: 2012-03-27 18:22+0300\n"
+"PO-Revision-Date: 2012-03-27 18:39+0200\n"
 "Last-Translator: Igor Paliychuk <mansonigor@gmail.com>\n"
 "Language-Team: RUSSIAN <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,32 +17,32 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Virtaal 0.7.0\n"
 
-#: ../../../Source/configuration.cpp:659
-#: ../../../Source/configuration.cpp:662
-#: ../../../Source/configuration.cpp:665
+#: ../../../Source/configuration.cpp:667
+#: ../../../Source/configuration.cpp:670
+#: ../../../Source/configuration.cpp:673
 msgid "Graphics options"
 msgstr "Настройки графики"
 
-#: ../../../Source/configuration.cpp:675
-#: ../../../Source/configuration.cpp:678
-#: ../../../Source/configuration.cpp:681
+#: ../../../Source/configuration.cpp:683
+#: ../../../Source/configuration.cpp:686
+#: ../../../Source/configuration.cpp:689
 msgid "Advanced options"
 msgstr "Расширенные настройки"
 
-#: ../../../Source/configuration.cpp:692
-#: ../../../Source/configuration.cpp:695
-#: ../../../Source/configuration.cpp:698
+#: ../../../Source/configuration.cpp:700
+#: ../../../Source/configuration.cpp:703
+#: ../../../Source/configuration.cpp:706
 msgid "Sound options"
 msgstr "Настройки звука"
 
-#: ../../../Source/configuration.cpp:713
-#: ../../../Source/configuration.cpp:716
-#: ../../../Source/configuration.cpp:933
-#: ../../../Source/configuration.cpp:936
-#: ../../../Source/configuration.cpp:1101
-#: ../../../Source/configuration.cpp:1104
-#: ../../../Source/configuration.cpp:1192
-#: ../../../Source/configuration.cpp:1195
+#: ../../../Source/configuration.cpp:721
+#: ../../../Source/configuration.cpp:724
+#: ../../../Source/configuration.cpp:941
+#: ../../../Source/configuration.cpp:944
+#: ../../../Source/configuration.cpp:1109
+#: ../../../Source/configuration.cpp:1112
+#: ../../../Source/configuration.cpp:1200
+#: ../../../Source/configuration.cpp:1203
 #: ../../../Source/Contextes/c_mainMenu.cpp:506
 #: ../../../Source/Contextes/c_mainMenu.cpp:513
 #: ../../../Source/Contextes/c_mainMenu.cpp:516
@@ -67,55 +67,55 @@ msgstr "Настройки звука"
 msgid "Return"
 msgstr "Назад"
 
-#: ../../../Source/configuration.cpp:728
+#: ../../../Source/configuration.cpp:736
 msgid "Resolution: "
 msgstr "Разрешение: "
 
-#: ../../../Source/configuration.cpp:821
+#: ../../../Source/configuration.cpp:829
 msgid "Window mode: "
 msgstr "Режим окна: "
 
-#: ../../../Source/configuration.cpp:841
+#: ../../../Source/configuration.cpp:849
 msgid "Brightness: "
 msgstr "Яркость: "
 
-#: ../../../Source/configuration.cpp:871
+#: ../../../Source/configuration.cpp:879
 msgid "Contrast: "
 msgstr "Контраст: "
 
-#: ../../../Source/configuration.cpp:946
+#: ../../../Source/configuration.cpp:954
 msgid "Quality of lights: "
 msgstr "Качество освещения: "
 
-#: ../../../Source/configuration.cpp:971
+#: ../../../Source/configuration.cpp:979
 msgid "Render the shadows: "
 msgstr "Рисовать тени: "
 
-#: ../../../Source/configuration.cpp:991
+#: ../../../Source/configuration.cpp:999
 msgid "Use shader effects: "
 msgstr "Использовать шейдеры: "
 
-#: ../../../Source/configuration.cpp:1011
+#: ../../../Source/configuration.cpp:1019
 msgid "Enable reflection of objects: "
 msgstr "Включить отражение обьектов: "
 
-#: ../../../Source/configuration.cpp:1031
+#: ../../../Source/configuration.cpp:1039
 msgid "Enable effects of distortion: "
 msgstr "Включить эффекты искажения: "
 
-#: ../../../Source/configuration.cpp:1051
+#: ../../../Source/configuration.cpp:1059
 msgid "Render the grass: "
 msgstr "Рисовать траву:  "
 
-#: ../../../Source/configuration.cpp:1071
+#: ../../../Source/configuration.cpp:1079
 msgid "Enable dynamical debris: "
 msgstr "Включить динамический мусор: "
 
-#: ../../../Source/configuration.cpp:1113
+#: ../../../Source/configuration.cpp:1121
 msgid "Volume: "
 msgstr "Громкость: "
 
-#: ../../../Source/configuration.cpp:1149
+#: ../../../Source/configuration.cpp:1157
 msgid "Music volume: "
 msgstr "Громкость музыки: "
 
@@ -156,43 +156,8 @@ msgid "Loop iteration nbr : "
 msgstr "Номер итерации:"
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:81
-msgid ""
-"An old law required has always been the good and evil meet has at least one rule in their eternal conflict.\n"
-"They could not directly intervene in the affairs of living entities, acting only by the subtle suggestion\n"
-"and battling within each soul...\n"
-"Egoism, violence, pity, love and clashed in the form of thoughts, of dreams, with varied fates.\n"
-"\n"
-"But one day evil, which no longer supported the balance was satisfied with the Good, decided to violate the\n"
-"rule RESPECTED far and achieved this in incarnating directly into most living beings vulnerable to his\n"
-"impulses, and, curiously, in some objects.\n"
-"Henceforth evil reign could only be on each of which he took possession of some ordinary objects become\n"
-"demonic.\n"
-"\n"
-"Having anticipated this treachery, the Well was not surprised. Renouncing to violate the law as Evil had done\n"
-" and refusing to sacrifice the good and generous souls, he used a few storms and damned spirits who wanted to\n"
-"redeem himself deeply with him...\n"
-"considering himself already lost, alone unconsciousness would have to address the foul legion that has swept\n"
-"across the world."
-msgstr ""
-"Старый закон требует всегда была добра и зла встречаются по крайней мере один править в их\n"
-" вечном конфликте.\n"
-"Они не могут непосредственно вмешиваться в делах живых существ, действуя только тонкие\n"
-" внушения\n"
-"и борьба внутри каждой души...\n"
-"Эгоизм, насилие, жалость, любовь и столкновение в виде мыслей, от мечты, с различными судьбами.\n"
-"\n"
-"Но однажды зло, которое больше не поддерживается баланс остался доволен Хорошо, решил нарушить\n"
-"правила УВАЖАЕМЫЕ далеко, и добились этого в воплощения непосредственно в большинстве живых\n"
-"существ уязвимых к своим\n"
-"импульсам и, как ни странно, в некоторых объектах.\n"
-"Отныне зло правления может быть только на каждом из которых он завладел некоторые обычные\n"
-"предметы становятся демоническими.\n"
-"\n"
-"После этого ожидается предательство, ну не был удивлен. Отказ нарушать закон, как зло сделал\n"
-"и отказываются жертвовать хорошими и щедрые души, он использовал несколько штормов и проклятые\n"
-"духи, которые хотели выкупить Сам глубоко с ним...\n"
-"Считая себя уже потеряли, только бессознательное придется решения фол легион, который прокатился\n"
-"по всему миру."
+msgid "An old law required has always been the good and evil meet has at least one rule in their eternal conflict. They could not directly intervene in the affairs of living entities, acting only by the subtle suggestion and battling within each soul...\\Egoism, violence, pity, love and clashed in the form of thoughts, of dreams, with varied fates.\\\\But one day evil, which no longer supported the balance was satisfied with the Good, decided to violate the rule RESPECTED far and achieved this in incarnating directly into most living beings vulnerable to his impulses, and, curiously, in some objects.\\Henceforth evil reign could only be on each of which he took possession of some ordinary objects become demonic.\\\\Having anticipated this treachery, the Well was not surprised. Renouncing to violate the law as Evil had done and refusing to sacrifice the good and generous souls, he used a few storms and damned spirits who wanted to redeem himself deeply with him...\\considering himself already lost, alone unconsciousness would have to address the foul legion that has swept across the world."
+msgstr "Старый закон требует всегда была добра и зла встречаются по крайней мере один править в их вечном конфликте. Они не могут непосредственно вмешиваться в делах живых существ, действуя только тонкие  внушения и борьба внутри каждой души...\\Эгоизм, насилие, жалость, любовь и столкновение в виде мыслей, от мечты, с различными судьбами.\\\\Но однажды зло, которое больше не поддерживается баланс остался доволен Хорошо, решил нарушить правила УВАЖАЕМЫЕ далеко, и добились этого в воплощения непосредственно в большинстве живых существ уязвимых к своим импульсам и, как ни странно, в некоторых объектах.\\Отныне зло правления может быть только на каждом из которых он завладел некоторые обычные предметы становятся демоническими.\\\\После этого ожидается предательство, ну не был удивлен. Отказ нарушать закон, как зло сделал и отказываются жертвовать хорошими и щедрые души, он использовал несколько штормов и проклятые духи, которые хотели выкупить Сам глубоко с ним...\\Считая себя уже потеряли, только бессознательное придется решения фол легион, который прокатился по всему миру."
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:271
 #: ../../../Source/Contextes/c_mainMenu.cpp:279
@@ -572,4 +537,8 @@ msgstr "Пустой слот"
 #: ../../../Source/Entites/objet.cpp:2369
 msgid "Price: "
 msgstr "Цена: "
+
+#: ../../../Source/Entites/personnage.cpp:458
+msgid "Enter your message..."
+msgstr "Введите сообщение..."
 
