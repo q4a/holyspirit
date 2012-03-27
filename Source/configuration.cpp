@@ -41,6 +41,7 @@ void Configuration::Charger()
     ChargerConf();
     ChargerKeyMapping();
     ChargerInit();
+    SetLanguage();
     ChargerTxt();
 
     RafraichirOmbre=0;
@@ -453,38 +454,6 @@ std::vector<std::string> Configuration::ChargerFichierTxt(std::string chemin)
         fichier.close();
     }
 
-#ifdef WIN32
-
-	bool lang;
-
-	if (language=="en") {
-		lang = SetThreadLocale(0x0409);
-	}
-	else if (language=="fr") {
-		lang = SetThreadLocale(0x040C);
-	}
-	else if (language=="es") {
-		lang = SetThreadLocale(0x0C0A);
-	}
-	else if (language=="ru") {
-		lang = SetThreadLocale(0x0419);
-	}
-
-#else
-	if (language=="en") {
-		setlocale(LC_MESSAGES, "en_US");
-	}
-	else if (language=="fr") {
-		setlocale(LC_MESSAGES, "fr_Fr");
-	}
-	else if (language=="es") {
-		setlocale(LC_MESSAGES, "es_ES");
-	}
-	else if (language=="ru") {
-		setlocale(LC_MESSAGES, "ru_RU");
-	}
-#endif
-
     return text;
 }
 
@@ -499,8 +468,11 @@ void Configuration::ChargerTxt()
     text_miracles     = ChargerFichierTxt(chemin_text_miracles);
     text_docs         = ChargerFichierTxt(chemin_text_docs);
     text_quests       = ChargerFichierTxt(chemin_text_quests);
+}
 
-	std::string pathToTranslationFiles = chemin_localisation;
+void Configuration::SetLanguage()
+{
+    std::string pathToTranslationFiles = chemin_localisation;
 
 	bindtextdomain ("data",pathToTranslationFiles.c_str());
 	bind_textdomain_codeset ("data","UTF-8");
@@ -509,6 +481,42 @@ void Configuration::ChargerTxt()
 	bind_textdomain_codeset ("menus","UTF-8");
 
 	textdomain ("menus");
+
+#ifdef WIN32
+	bool lang;
+
+	if (language=="en") {
+		lang = SetThreadLocale(0x0409);
+	}
+	else if (language=="fr") {
+		lang = SetThreadLocale(0x040C);
+	}
+	else if (language=="es") {
+		lang = SetThreadLocale(0x0C0A);
+	}
+	else if (language=="ru") {
+		lang = SetThreadLocale(0x0419);
+	}
+	else if (language=="uk") {
+		lang = SetThreadLocale(0x0422);
+	}
+#else
+	if (language=="en") {
+		setlocale(LC_MESSAGES, "en_US");
+	}
+	else if (language=="fr") {
+		setlocale(LC_MESSAGES, "fr_Fr");
+	}
+	else if (language=="es") {
+		setlocale(LC_MESSAGES, "es_ES");
+	}
+	else if (language=="ru") {
+		setlocale(LC_MESSAGES, "ru_RU");
+	}
+	else if (language=="ru") {
+		setlocale(LC_MESSAGES, "uk_UA");
+	}
+#endif
 }
 
 const std::string &Configuration::getText(int type, int no)

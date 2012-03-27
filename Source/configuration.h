@@ -65,6 +65,7 @@ class Configuration : public CSingleton<Configuration>
     void ChargerConf();
     void ChargerInit();
     void ChargerTxt();
+    void SetLanguage();
 
     void ChargerKeyMapping();
 
