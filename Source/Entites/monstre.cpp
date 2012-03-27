@@ -181,6 +181,8 @@ bool Modele_Monstre::Charger(const std::string &chemin)
 {
     m_chemin = chemin;
 
+    configuration->SetLanguage();
+
     console->Ajouter("",0);
     console->Ajouter("Loading the monster : "+chemin,0);
 

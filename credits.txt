@@ -22,6 +22,9 @@ Gregouar (Naisse Grégoire)
 *Texts
 Roger (Izard Jérome)
 
+*Localization support
+Igor Paliychuk
+
 *Compositors
 Andrasia (Martin Cap)
 SpotLine (Clément Duquesne)
@@ -60,6 +63,7 @@ Bravach (English)
 Gonze Philippe (English)
 Derycke Valérie (Nederlands)
 Richard Jim (Spanish)
+Igor Paliychuk (Ukrainian)
 
 *2D GUI Artist
 Cremuss (http://cremuss.free.fr/)
@@ -108,6 +112,7 @@ Code::Block (http://www.codeblocks.org/)
 *Libraries
 SFML (http://www.sfml-dev.org/)
 QT (http://qt.nokia.com/)
+Gettext (http://www.gnu.org/software/gettext/)
 
 *3D Softwares
 Autodesk 3D Studio Max
