@@ -292,7 +292,7 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
                 texte[p] = '\n';
             bufMot += texte[p];
 
-            temp.setString(buf + bufMot);
+            temp.setString(toUtf32(buf + bufMot));
             if (temp.getGlobalBounds().width > tailleCadran)
                 bufMot = '\n' + bufMot.substr(1,bufMot.size()-1);
         }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-26 22:11+0300\n"
+"POT-Creation-Date: 2012-03-27 18:22+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,27 +16,27 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../../Source/configuration.cpp:659 ../../../Source/configuration.cpp:662
-#: ../../../Source/configuration.cpp:665
+#: ../../../Source/configuration.cpp:667 ../../../Source/configuration.cpp:670
+#: ../../../Source/configuration.cpp:673
 msgid "Graphics options"
 msgstr ""
 
-#: ../../../Source/configuration.cpp:675 ../../../Source/configuration.cpp:678
-#: ../../../Source/configuration.cpp:681
+#: ../../../Source/configuration.cpp:683 ../../../Source/configuration.cpp:686
+#: ../../../Source/configuration.cpp:689
 msgid "Advanced options"
 msgstr ""
 
-#: ../../../Source/configuration.cpp:692 ../../../Source/configuration.cpp:695
-#: ../../../Source/configuration.cpp:698
+#: ../../../Source/configuration.cpp:700 ../../../Source/configuration.cpp:703
+#: ../../../Source/configuration.cpp:706
 msgid "Sound options"
 msgstr ""
 
-#: ../../../Source/configuration.cpp:713 ../../../Source/configuration.cpp:716
-#: ../../../Source/configuration.cpp:933 ../../../Source/configuration.cpp:936
-#: ../../../Source/configuration.cpp:1101
-#: ../../../Source/configuration.cpp:1104
-#: ../../../Source/configuration.cpp:1192
-#: ../../../Source/configuration.cpp:1195
+#: ../../../Source/configuration.cpp:721 ../../../Source/configuration.cpp:724
+#: ../../../Source/configuration.cpp:941 ../../../Source/configuration.cpp:944
+#: ../../../Source/configuration.cpp:1109
+#: ../../../Source/configuration.cpp:1112
+#: ../../../Source/configuration.cpp:1200
+#: ../../../Source/configuration.cpp:1203
 #: ../../../Source/Contextes/c_mainMenu.cpp:506
 #: ../../../Source/Contextes/c_mainMenu.cpp:513
 #: ../../../Source/Contextes/c_mainMenu.cpp:516
@@ -61,55 +61,55 @@ msgstr ""
 msgid "Return"
 msgstr ""
 
-#: ../../../Source/configuration.cpp:728
+#: ../../../Source/configuration.cpp:736
 msgid "Resolution: "
 msgstr ""
 
-#: ../../../Source/configuration.cpp:821
+#: ../../../Source/configuration.cpp:829
 msgid "Window mode: "
 msgstr ""
 
-#: ../../../Source/configuration.cpp:841
+#: ../../../Source/configuration.cpp:849
 msgid "Brightness: "
 msgstr ""
 
-#: ../../../Source/configuration.cpp:871
+#: ../../../Source/configuration.cpp:879
 msgid "Contrast: "
 msgstr ""
 
-#: ../../../Source/configuration.cpp:946
+#: ../../../Source/configuration.cpp:954
 msgid "Quality of lights: "
 msgstr ""
 
-#: ../../../Source/configuration.cpp:971
+#: ../../../Source/configuration.cpp:979
 msgid "Render the shadows: "
 msgstr ""
 
-#: ../../../Source/configuration.cpp:991
+#: ../../../Source/configuration.cpp:999
 msgid "Use shader effects: "
 msgstr ""
 
-#: ../../../Source/configuration.cpp:1011
+#: ../../../Source/configuration.cpp:1019
 msgid "Enable reflection of objects: "
 msgstr ""
 
-#: ../../../Source/configuration.cpp:1031
+#: ../../../Source/configuration.cpp:1039
 msgid "Enable effects of distortion: "
 msgstr ""
 
-#: ../../../Source/configuration.cpp:1051
+#: ../../../Source/configuration.cpp:1059
 msgid "Render the grass: "
 msgstr ""
 
-#: ../../../Source/configuration.cpp:1071
+#: ../../../Source/configuration.cpp:1079
 msgid "Enable dynamical debris: "
 msgstr ""
 
-#: ../../../Source/configuration.cpp:1113
+#: ../../../Source/configuration.cpp:1121
 msgid "Volume: "
 msgstr ""
 
-#: ../../../Source/configuration.cpp:1149
+#: ../../../Source/configuration.cpp:1157
 msgid "Music volume: "
 msgstr ""
 
@@ -149,30 +149,20 @@ msgstr ""
 #: ../../../Source/Contextes/c_mainMenu.cpp:81
 msgid ""
 "An old law required has always been the good and evil meet has at least one "
-"rule in their eternal conflict.\n"
-"They could not directly intervene in the affairs of living entities, acting "
-"only by the subtle suggestion\n"
-"and battling within each soul...\n"
-"Egoism, violence, pity, love and clashed in the form of thoughts, of dreams, "
-"with varied fates.\n"
-"\n"
-"But one day evil, which no longer supported the balance was satisfied with "
-"the Good, decided to violate the\n"
-"rule RESPECTED far and achieved this in incarnating directly into most "
-"living beings vulnerable to his\n"
-"impulses, and, curiously, in some objects.\n"
-"Henceforth evil reign could only be on each of which he took possession of "
-"some ordinary objects become\n"
-"demonic.\n"
-"\n"
-"Having anticipated this treachery, the Well was not surprised. Renouncing to "
-"violate the law as Evil had done\n"
-" and refusing to sacrifice the good and generous souls, he used a few storms "
-"and damned spirits who wanted to\n"
-"redeem himself deeply with him...\n"
-"considering himself already lost, alone unconsciousness would have to "
-"address the foul legion that has swept\n"
-"across the world."
+"rule in their eternal conflict. They could not directly intervene in the "
+"affairs of living entities, acting only by the subtle suggestion and "
+"battling within each soul...\\Egoism, violence, pity, love and clashed in "
+"the form of thoughts, of dreams, with varied fates.\\\\But one day evil, "
+"which no longer supported the balance was satisfied with the Good, decided "
+"to violate the rule RESPECTED far and achieved this in incarnating directly "
+"into most living beings vulnerable to his impulses, and, curiously, in some "
+"objects.\\Henceforth evil reign could only be on each of which he took "
+"possession of some ordinary objects become demonic.\\\\Having anticipated "
+"this treachery, the Well was not surprised. Renouncing to violate the law as "
+"Evil had done and refusing to sacrifice the good and generous souls, he used "
+"a few storms and damned spirits who wanted to redeem himself deeply with "
+"him...\\considering himself already lost, alone unconsciousness would have "
+"to address the foul legion that has swept across the world."
 msgstr ""
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:271
