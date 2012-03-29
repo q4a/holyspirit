@@ -102,8 +102,8 @@ msgstr "Тепер тобі треба знищити істот в наступ
 msgid "Well! You're learning fast and that's what I expected from you...\\You've turned a corner, and you can now choose which area you want to improve yourself.\\\\(We choose the features that one wishes improve through the inventory, \"I\")"
 msgstr "Добре! Ти швидко вчишся, я очікував цього від тебе...\\Ти повернув за ріг і тепер можеш вибрати, в якій галузі ти хочеш себе покращити.\\\\(Можливості для покращення вказуються в інвентарі, \"I\")"
 
-msgid "-Your strength increases your melee damage and allows you to wear heavier equipment.\\-Dexterity allows you to dodge better/and carry more items.\\-Vitality increases your life.\\-Your piety is your ability to invoke your god, it allows you to run more miracles (we'll come back...).\\-Your charisma affects the price of objects and allows you to wear certain items."
-msgstr "-Твоя сила збільшує нанесену шкоду в ближньому бою і дозволяє носити важкі обладунки.\\-Спритність дозволяє краще уникати/атак і носити більше речей.\\-Життєва сила збільшує твоє життя.\\-Твоє благочестя це можливість закликати твого бога, воно дозволяє робити більше чудес (ми ще повернемося...).\\-Твоя харизма впливає на ціну речей і дозволяє носити деякі предмети."
+msgid "-Your strength increases your melee damage and allows you to wear heavier equipment.\\-Dexterity allows you to dodge better and carry more items.\\-Vitality increases your life.\\-Your piety is your ability to invoke your god, it allows you to run more miracles (we'll come back...).\\-Your charisma affects the price of objects and allows you to wear certain items."
+msgstr "-Твоя сила збільшує нанесену шкоду в ближньому бою і дозволяє носити важкі обладунки.\\-Спритність дозволяє краще уникати атак і носити більше речей.\\-Життєва сила збільшує твоє життя.\\-Твоє благочестя це можливість закликати твого бога, воно дозволяє робити більше чудес (ми ще повернемося...).\\-Твоя харизма впливає на ціну речей і дозволяє носити деякі предмети."
 
 msgid "You must know your current status allows you to access certain powers.\\You can now call upon your god to destroy your opponents.\\\\(Click on the icon shaped like a cross to open the panel of miracles. You can choose the way in which you specialize you want by clicking on one of the three tabs at the top. You just have to right click on a miracle to learn or improve. This will place it in the shortcut bar at the bottom. You can access it during the game with the 1-8 keys and clicking the right mouse button.)"
 msgstr "Ти повинен знати,  що твій поточний стан дозволяє тобі отримати доступ до певної сили.\\Тепер ти можеш закликати твого бога допомогти знищити своїх противників.\\\\(Натисни на значок у формі креста, щоб відкрити панель чудес. Ти можеш вибрати певний шлях, натиснувши на одну з трьох вкладок у верхній частині. Тобі просто потрібно буде правою кнопкою миші клацнути на диво щоб його вивчити або поліпшити. Воно буде поміщене на поясі внизу екрану. Ви зможете отримати до нього доступ  під час гри клавішами 1-8 чи натиснувши на ньому правою кнопкою миші.)"
@@ -388,13 +388,13 @@ msgid "///FARMER SUITE///"
 msgstr "///СВИТА ФЕРМЕРА///"
 
 msgid "Beware the reaper!"
-msgstr "Бійся жнеця?"
+msgstr "Бійся жнеця!"
 
 msgid "The reaper?"
-msgstr "Жнець?"
+msgstr "Жнеця?"
 
 msgid "Yeah, the reaper! You know? This is kind of lanky beast with a head! The horrible is the reaper! And terrible, nobody can kill him, ten peasants died with their fork while trying to zigouiller. Y comes out at night, then must be locked at night. The day never seen!"
-msgstr "Так, жнець! Знаєш? Це такий довготелесий звір з головою! Цей жнець це просто жах! І страшно те, що ніхто не може його вбити, десять селян померли з вилами в руках, намагаючись його завалити. Він виходить вночі, тому ловити його треба вночі. Вдень його ніхто не бачив!"
+msgstr "Так, жнеця! Знаєш? Це такий довготелесий звір з головою! Цей жнець це просто жах! І страшно те, що ніхто не може його вбити, десять селян померли з вилами в руках, намагаючись його завалити. Він виходить вночі, тому ловити його треба вночі. Вдень його ніхто не бачив!"
 
 msgid "///DOORS///"
 msgstr "///ДВЕРІ///"
@@ -499,7 +499,7 @@ msgid "From Johannes!"
 msgstr "Від Йоханнеса!"
 
 msgid "It's time that I make you suffer... personally!"
-msgstr "Прийшов щас коли я заставлю тебе страждати... особисто!"
+msgstr "Прийшов час коли я заставлю тебе страждати... особисто!"
 
 msgid "\"Sunday, November 5:\\\\Abbey apparently based on huge catacombs containing the relics of four venerable saints. If this rental is a huge source of prestige for the Abbey, our good father Hademar has regret in the R block access. It seems that some zealous monks, eager to pray with Saints got lost in the maze and never resurfaced.\\We therefore got access to a tiny part of the catacombs: two rooms equipped with cells of prayer and rest and in a library. The rest is strongly condemned by a heavy door that it is forbidden to touch.\\\\Tuesday, November 7:\\\\The cells arranged in order of the Father Hademar in these ancient catacombs offer an ideal place for meditation. The darkness, the silence is such that the monk is totally receptive to subtle signs of Very Large sometimes seems whispered something his humble nearest ear.\\\\Friday, November 10:\\\\I must admit that sometimes my mind, in this silence delicious, seems to me to play tricks. A bit like a corpse found in length show ends nearest the viewer a discrete movement, the deep silence of the cells gives rise to illusions of sounds, sometimes troubling when consider they emanate actually from the depths of our soul.\\\\Sunday November 13:\\\\After the celebration of the Sunday service I spent a few hours reading in the library nearest the catacombs. Leaving the door open because I was alone, I heard, this time I'm sure, sounds strange and disturbing, like moans alternating expression of pain and the pleasure of obscene. Believing be the subject of a joke of Lothair, a brother who loves nearest distract us beyond reason, I have traveled the corridor hoping to uncover, in vain... Noises quickly stopped.\\\\Monday, November 14:\\\\I just heard strange noises again nearest to the catacombs, and now I know where they come from: the other side of the forbidden door! Certainly there are creatures on the other side. Of tormented souls seeking rest, even, who knows, monks who eventually lost find their way, miraculously surviving in the catacombs for years? I know that Our Almighty knows we be challenged by the most incredible wonders!\\Despite the ban Hademar nearest I will get their meeting tomorrow. Whether men or spirits there can be as benevolent entities are based in places where not one but four Saints!\""
 msgstr "\"Неділя, 5 листопада:\\\\Абатство побудоване на величезних катакомбах з мощами чотирьох поважних святих. Це місце є величезним джерелом престижу для абатство, наш добрий батько Гадемар каявся у блоці доступу R. Здається, що деякі палкі монахи, бажаючи, молитися зі Святими заблукали у лабіринті і не повернулись.\\Таким чином ми отримали доступ до крихітної частини катакомб: дві кімнати обладнані камерами для молитви і відпочинку та бібліотеки. Решта закрита важкими дверима, які заборонено чіпати. \\Вівторок, 7 листопада:\\\\Каиери розташовані в порядку від Отця Гадемара і ці стародавні катакомби є ідеальним місцем для медитації. Темрява, така тиша, що монах повністю сприйнятливий до тонких ознак Неосяжного і іноді здається, що Воно навіть шепоче тобі на вухо.\\\\П'ятниця, 10 листопада:\\\\Я повинен зізнатися, що іноді мені здається, що у цій тиші розум починає зі мною гратись. Появляються якісь картинки, що наближаються до глядача, глибоке мовчання клітин призводить до звукових ілюзій, іноді починаєш хвилюватись, якщо прийняти, що вони насправді виходять з глибини нашої душі.\\\\Неділя, 13 листопада:\\\\Після проведення Недільної служби я провів кілька годин за читанням в бібліотеці у найближчих катакомбах. Залишивши двері відкритими, тому що я був один, я чув, на цей раз я впевнений, дивні і тривожні звуки, ніби стогін від болю, що змінюється на задоволення. Вважаючи, що це жатрує брат Лотар, який любить пожартувати понад міру, я пішов коридором в надії виявити, даремно... Шум швидко стих.\\\\Понеділок, 14 листопада:\\\\Я щойно знов чув дивні звуки в ближніх катакомбах, і тепер я знаю, звідки вони беруться: з іншого боку заборонеих дверей! Звичайно там є якісь істоти. Змучені душі, що шукають спокою, хто знає, може навіть монахи, які не змогли знайти шлях назад і дивом вижили в катакомбах протягом багатьох років? Я знаю, що наш Всемогутній може послати нам в протистояння найнеймовірніші чудеса!\\Незважаючи на заборону Гадемара я піду туди завтра. Хто би там не був, люди чи духи, вони можуть бути доброзичливими, це ж все таки місця Чотирьох Святих!\""
@@ -508,19 +508,19 @@ msgid "Holy Frenegonde was a sensitive and creative young woman, who liked to pl
 msgstr "Свята Френегонда була чуттєвою і творчою молодою жінкою, яка в дитинстві любила грати свистульки в зелених луках. З вишуканою красою, вона була в розквіті сил, коли легіони брудних варварів вилились на землі Рухінгарду.\\Хаксіл Вургаст, один з сильних ватажків цих племен, прибув в один прекрасний день з невеликою групою варварів, захоплених ідеєю ближнього кровопролиття і спаленням сіл.\\Передчуваючи, що скоро вони прийдуть до її скромного села Пілундер, Френегонда, тішачись славою мучениці, впала на коліна до ніг Хаксіла, пропонуючи йому себе в обмін на змилування над селом.\\Варвар, здивований цим несподіваним прийомом, спочатку взяв її за голову своїми потужними руками, потім схопив її  за вуха, відповідно до варварських звичаїв.\\Справи йшли добре і обстановка розрядилась, коли лейтенант Хаксіл, з дуже перекривленим лицем, в припадку ревнощів своєю важкою булавою розтрощив череп нещасної Френегонди.\\Хаксіл жорстоко провернув булаву в черепі Френегонди і вуха нещасної залишились в його руках."
 
 msgid "Joachim was a shepherd who spoke little. He led an austere life, retired to the mountains and never went battle its congeners. Many took him for a fool and had against him nearest the greatest contempt... His only good, except an animal skin and a few sheep, was a strong shepherd's staff who fanned gossip as much jealousy (that detail the lives of Joachim, however, remains obscure).\\When the barbarians who were ruining everything Ruhigland penetrated in our sweet country, the people flowed loosely, leaving the weak and the innocent. Joachim was to be part of the batch of victims.\\The barbarians, led by the formidable Haksil Shortcut, gave away the women, children and the remaining animals, probably by engaging nearest cannibalism (in all likelihood more greedy than rituals).\\It is found that a heart of flesh adult human, we considered its size as that of Joachim. Certainly the whole village was worth a martyr canonization in good and due form, but the merit of his nearest relative Joachim congeners was to have left something to be a relic for posterity."
-msgstr "Йоахім був пастухом, який мало говорив. Він вів строгий спосіб життя, ходив в гори і ніколи не йшов з боєм на побратимів. Багато хто вважав його дурнем і сильно його презирав... Його власністю, окрім тваринної шкіри і декількох овець, був міцний посох пастуха, який викликав багато заздроців (проте, ця деталь життя Йоахіма залишається малозрозумілою).\\Коли варвари, що все руйнували, проникли в Рухігланд, люди повтікали, залишаючи слабких і немовлят. Йоахім мав бути однією з жертв.\\Варвари , очолювані Хаксілом, з'їли жінок, дітей і тварин, що залишилися (це ймовірно ще страшніше за ритуали).\\Було знайдено серце дорослої людини, за його розміром ми припустили що це Йоахім. Звичайно ціле село коштувало канонізації мученика в хорошій і належній формі, але гідність Йоахіма в відносинах з його побратимами мала залишити що-небудь для наслідування його потомками."
+msgstr "Йоахім був пастухом, який мало говорив. Він вів строгий спосіб життя, ходив в гори і ніколи не йшов з боєм на побратимів. Багато хто вважав його дурнем і сильно його презирав... Його власністю, окрім тваринної шкіри і декількох овець, був міцний посох пастуха, який викликав багато заздрощів (проте, ця деталь життя Йоахіма залишається малозрозумілою).\\Коли варвари, що все руйнували, проникли в Рухігланд, люди повтікали, залишаючи слабких і немовлят. Йоахім мав бути однією з жертв.\\Варвари , очолювані Хаксілом, з'їли жінок, дітей і тварин, що залишилися (це ймовірно ще страшніше за ритуали).\\Було знайдено серце дорослої людини, за його розміром ми припустили що це Йоахім. Звичайно ціле село коштувало канонізації мученика в хорошій і належній формі, але гідність Йоахіма в відносинах з його побратимами мала залишити що-небудь для наслідування його потомками."
 
 msgid "Galswintha was already known from her youth for the purity of her thoughts. Her extreme modesty made him look away even when innocent animals were mating nearest proximity. Her only pleasure was embroidery, she performed with a proven talent for miles nearest the nearest round...\\She must have known the torment that would ensure her fame with the terrible barbarian invasions, when his unfortunate fate made her cross the sinister Haksil Shortcut, whose virility diminished by the Office of Holy Frenegonde had strengthened the bestial cruelty.\\Nearest always looking for new distractions to entertain the troops, gave the Haksil Galswintha nearest congeners sordid games with pets village (games whose moral condemnation to discuss the details).\\Asked to attend the show by the infamous invaders, who hoped to force then indirectly to take part, had the merit Galswintha thrice holy to mutilate his own flesh to escape its nearest vision. With a gesture of defiance and ignoring any pain, she tore her eyes with her fingers and threw for at her feet, her hollow eyes weeping blood in abundance.\\Her courageous act was to unfortunately not provided to avoid obscene and Cruel games Haksil that because they can not steal her virtue-even the horrible task entrusted nearest a strong bull."
-msgstr "Галсвінта було відомою з її молодості за чистоту своїх думок. Її скромність змушувала її відвести погляд навіть тоді, коли поблизу спарювались невинні тварини. Її єдиною радістю була вишивка, вона вишивала з явним талантом... \\Вона, повинна була здогадатись, які муки забезпечили б їй славу від страшних вторгнень варварів, коли її нещасна доля змусила її потрапити на шлях зловісного Хаксіла, і їй вистачило мужності повторити подвиг Святої Френегонди.\\Майже весь час шукаючи нові розваги для війська, найближчі родичі проводили в селі брудні ігри з домашніми тваринами (їх опис викличе лише моральний осуд).\\Після спроби загарбників змусити Галсвінту взяти участь в шоу, Галсвінта тричі скалічила своє тіло, щоб не бачити цих захів. Ігноруючи будь-який біль, вона рвала на собі очі пальцями й кинула її під ноги, вона стікала кров'ю зі сльозами.\\Її мужній вчинок, на жаль, не дозволив уникнути непристойних і жорстоких ігор Хаксіла, оскільки навіть це його не переконало."
+msgstr "Галсвінта було відомою з її молодості за чистоту своїх думок. Її скромність змушувала її відвести погляд навіть тоді, коли поблизу спарювались невинні тварини. Її єдиною радістю була вишивка, вона вишивала з явним талантом... \\Вона, повинна була здогадатись, які муки забезпечили б їй славу від страшних вторгнень варварів, коли її нещасна доля змусила її потрапити на шлях зловісного Хаксіла, і їй вистачило мужності повторити подвиг Святої Френегонди.\\Майже весь час шукаючи нові розваги для війська, найближчі родичі проводили в селі брудні ігри з домашніми тваринами (їх опис викличе лише моральний осуд).\\Після спроби загарбників змусити Галсвінту взяти участь в шоу, Галсвінта тричі скалічила своє тіло, щоб не бачити цих жахів. Ігноруючи будь-який біль, вона рвала на собі очі пальцями й кинула її під ноги, вона стікала кров'ю зі сльозами.\\Її мужній вчинок, на жаль, не дозволив уникнути непристойних і жорстоких ігор Хаксіла, оскільки навіть це його не переконало."
 
 msgid "Saint Clodomir, just between the righteous, is the largest ever known Ruhigland Saint.\\Renowned for his wisdom, he was accustomed to lift the middle finger of his right hand in a gesture of appeasement when the inhabitants of the Old People bickered, which about a misplaced fence, which about a poultry disappeared suspiciously. At the end of his speech, he invariably threw an acorn on the ground to signify that he had finished, his every action is as a grain of wisdom designed to thrive as the venerable oak.\\A constant friendly smile on the face, He stated the justice of his sweet voice, without ever raising his voice and the good farmers - as their lords - accepted his judgment with these words again and again repeated: \"Just spoke Clodomir the raised finger, he threw the acorn Everything is set!\".\\When the horrific hordes of barbarians beastly manners well known befell Ruhigland, spreading desolation, Clodomir reassured his people: he would talk to these thugs and would surely lambs, because justice is born of love, and it was missing, uneducated poor, the revelation that the values of the Old People to stop doing evil!\\Clodomir then crossed with his usual calm smoldering villages to talk with the barbarians. Meeting one of the leaders of these, named Wilankar Wurgasht he wore a friendly smile and lifted his usual middle finger as a sign of temperance. Las! The other believed he was about to cast a spell, and his sharp sword, cut off in a flash the finger of the holy man, then are arms, and finally his head. His plan is accomplished, the bloodthirsty brute made a pendant Clodomir macabre finger and gave the rest of his body and its reservation of acorns to pigs hungry, bursting into a laugh like the roar of a wild beast."
 msgstr "Святий Клодомір, але справді, є найбільшим коли-небудь відомим Святим Рухігланду.\\Відомий за його мудрість, він звик піднімати середній палець його правої руки в жесті заспокоєння, коли представники Старих Людей сперечалися, чи про загорожу, чи про домашнього птаха, що підозріло зник. У кінці його мови, він незмінно кидав жолудя, як признак того, шо він закінчив, його кожна дія була зерном мудрості, що процвітала як поважний дуб.\\З постійною доброзичливою посмішкою на обличчі, він діяв правосуддя його солодким голосом, ніколи не підвищував голос і добрі фермери - як його лорди - приймали його судження з наступними словами: \"Тільки що піднявши палець говорив Клодомір, він кинув жолудь, Все визначено!\".\\Коли жахливі орди варварів, добре відомих, дійшли до Рухігланду, несучи спустошення, Клодомір заспокоїв своїх людей: він поговорить із цими головорізами як з ягнятами, тому що правосуддя народжується з любові, і вони повинні дізнатись це одкровення і цінності Старих Людей, щоб перестати робити зло!\\Тоді Клодомір, як звичайно спокійний, пішов через тліючі села, щоб поговорити з варварами. Зустрівшись з одним з керівників на ім'я Віланкар Вурхгаст, він надів доброзичливу посмішку і підняв його правий середній палець як знак стриманості. І ось тобі! Інший подумав, що Клодомір хоче здійснити заклинання, і його гострий меч вмить відрізав палець святого чоловіка, потім - руки, і вкінці голову. Тоді кровожерний варвар зробив підвіску з пальця Клодоміра і решту останків разом з жолудями кинув голодним свиням, сміючись подібно до реву дикого звіра."
 
 msgid "This book is an account of the inventory of the relics of the abbey of Saint Clodomir.\\\\\\\\Heart of St. Joachim\\\\The heart of Saint Joachim was found ninety-eight years after his unfortunate death , in a bazaar. He slept in a small wooden box. At the sight of the body withered by years, a particularly devout buyer felt a warmth divine invade, and he called upon God to destroy the field he could not see where the noble body of the saint. As the sentence invoked did not come, the happy man knew he was right and gave the relic to the abbey of Saint Clodomir.\\The heart of St. Joachim is still preserved at St. Clodomir. His condition is correct.\\\\Oreille de Saint Frenegonde\\\\ear of St. Frenegonde was miraculously found one hundred twenty-seven years after his terrible ordeal. Canon Ambroisius was discovered in the stomach of a sow in skinning the animal to make a sausage. Illuminated by divine grace, he immediately recognized the ear as belonging to the saint.\\The ear is preserved in the catacombs of St. Clodomir, in fair condition, though somewhat dry.\\\\\\Eye of Santa Galswintha\\\\The eyes of St. Galswintha appeared in a ceremonial necklace worn by one of the last kings of barbarians Ruhigland. Struck down by a warrior led a holy faith, and the abominable creature freed the precious relic which became property of the abbey.\\Galswintha holy eyes have unfortunately left the catacombs of St. Clodomir following an unfortunate event. A monk of evil memory having judged it expedient to leave the eyes of the Holy shrine for its exhibit at the sight of peasants of his knowledge, the relic disappeared mysteriously. The rumor involves Katrina (suspected of witchcraft) but following the deaths by a sudden illness of three successive investigators recovering the relic has been postponed.\\\\The finger of Saint Clodomir\\\\The mummified finger Saint Clodomir was found in the loot of a barbarian king, who used it as a pen to scribble some incomprehensible gibberish. This use explains the black color of the holy body, which is otherwise in excellent condition."
-msgstr "Ця книга є журналом інвентаризації мощів абатства Святого Клодоміра.\\\\\\\\Серце Св. Йоахіма\\\\Серце Святого Йоахіма було знайдене за дев'яносто вісім років після його смерті, на базарі. Воно лежало в маленькій дерев'яній скриньці. Особливо набожний покупець відчував, що тіло, яке не розкладається роками, випромінює тепло, і він какликав Бога знищити поле, де було знайдене тіло святого. Оскільки просьба не була виконана, щасливий чоловік знав, що він правий, і віддав мощі абатству Святого Клодоміра.\\Серце Святого Йоахіма все ще зберігається у абатстві. Його стан задовільний.\\\\Вухо Святої Френегонди\\\\Вухо  Святої Френегонди були на диво знайдене сто двадцять сім років після її жахливого важкого випробування. Вухо було виявлене в животі свині, яку розділяли на ковбасу. Вухо святого було зразу впізнане оскільки свтилось божественною благодаттю.\\Вухо зберігається в катакомбах Святого Клодоміра, в непоганому стані, хоча трохи сухому.\\\\\\Око Всятої Галсвінти\\\\Очі Святої Галсвінти з'явилися в церемоніальному намисті, що носив один з останніх королів варварів Рухігланду. Він був вбитий воїном святої віри, а мощі були передані до абатства.\\Святі очі Галсвінти на жаль залишили катакомби Святого Клодоміра через нещасний випадок. Монах з поганою пам'яттю вважав за доцільне винести очі зі святині для показу селянам і реліквія таємниче зникла. Слухи вказують на Катріну (підозрюється в чаклунстві) але через раптові смерті трьох людей, які шукали очі, пошуки були відкладені.\\\\Палець Святого Клодоміра\\\\Муміфікований палець Святого Клодоміра був знайдений у варварського короля, який використовував це як ручку для написання якоїсь незбагненної тарабарщини. Це пояснює чому святі мощі мають чорний колір, але загалом вони у відмінному стані."
+msgstr "Ця книга є журналом інвентаризації мощів абатства Святого Клодоміра.\\\\\\\\Серце Св. Йоахіма\\\\Серце Святого Йоахіма було знайдене за дев'яносто вісім років після його смерті, на базарі. Воно лежало в маленькій дерев'яній скриньці. Особливо набожний покупець відчував, що тіло, яке не розкладається роками, випромінює тепло, і він закликав Бога знищити поле, де було знайдене тіло святого. Оскільки просьба не була виконана, щасливий чоловік знав, що він правий, і віддав мощі абатству Святого Клодоміра.\\Серце Святого Йоахіма все ще зберігається у абатстві. Його стан задовільний.\\\\Вухо Святої Френегонди\\\\Вухо  Святої Френегонди були на диво знайдене сто двадцять сім років після її жахливого важкого випробування. Вухо було виявлене в животі свині, яку розділяли на ковбасу. Вухо святого було зразу впізнане оскільки світилось божественною благодаттю.\\Вухо зберігається в катакомбах Святого Клодоміра, в непоганому стані, хоча трохи сухому.\\\\\\Око Святої Галсвінти\\\\Очі Святої Галсвінти з'явилися в церемоніальному намисті, що носив один з останніх королів варварів Рухігланду. Він був вбитий воїном святої віри, а мощі були передані до абатства.\\Святі очі Галсвінти на жаль залишили катакомби Святого Клодоміра через нещасний випадок. Монах з поганою пам'яттю вважав за доцільне винести очі зі святині для показу селянам і реліквія таємниче зникла. Слухи вказують на Катріну (підозрюється в чаклунстві) але через раптові смерті трьох людей, які шукали очі, пошуки були відкладені.\\\\Палець Святого Клодоміра\\\\Муміфікований палець Святого Клодоміра був знайдений у варварського короля, який використовував це як ручку для написання якоїсь незбагненної тарабарщини. Це пояснює чому святі мощі мають чорний колір, але загалом вони у відмінному стані."
 
 msgid "To Vlanker brother, honorary monk of the abbey.\\\\As everyone knows the abbey of Saint Clodomir is considered a beacon of faith and imperial heirs of the Old People. Founded three centuries after the death of the saint whose name it bears, not far from where Clodomir was eaten by pigs, it contains many unknown treasures of ordinary mortals.\\Built on an underground necropolis forgotten at the time of barbarian rule, the abbey was presented to them as an ignorant vulgar to salting ham. The cult can not be done within the building itself for fear of arousing the suspicion of the invaders, the faithful of the Old courageous people settled in the catacombs and enlarged gradually.\\The underground network became a well huge maze under the action of the faithful who find themselves more and more to pray. Digging became an act of faith, and fervor was such that under the barbarous oppression catacombs stretched themselves in colossal proportions (to the point that one should attempt to venture without a plan).\\Once the period of barbarian rule ended, the catacombs were evacuated by the faithful and collected the remains of countless martyrs of the occupant. Four of them were canonized because of the exemplary nature of their sacrifice: the kind Frenegonde, Joachim the shepherd, and the pure Galswintha course Clodomir.\\One might also note the presence of the tomb of Teuderic, one of ancient kings of our people. Prohibits burial in the crypt of the kings of the capital, as his reign was deemed pathetic, he was taken to St. Clodomir respect for the sovereign lineage. Most aware of our history know that Teuderic had indeed prevailed under the influence of advisors and dishonest fancier one than the other (we still remember the magician Boris invert the fencing master Gunther paralytic and Ingmar lecherous Minister who obtains the favor of successive Teuderic wife and his daughter Princess Theodora)."
-msgstr "Для брата Вланкера, почесного монаха абатства.\\\\Як відомо абатство Святого Клодоміра вважається маяком віри і імперським спадкоємцем Давніх Людей. Було засноване три століття після смерті святого, чиє ім'я воно носить, поблизу від місця, де Клодоміра поїли свині, і містить багато невідомих для звичайних смертних скарбів.\\Побудовано на підземному некрополі, забутому під час варварського правління, абатство було представлене цим неосвідченим істотам як завод для соління шинки. Культ не міг проводитись в самій будівлі, щоб загарбники нічого не запідозрили, тому люди оселилися в катакомбах і поступово їх розширювали.\\Підземелля розрослось в величезний лабіринт під дією віруючих, які все більше і більше молились. Риття тунелів стало проявом віри, і завзяття було таке, що під гнітом варварів катакомби досягли колосальних розмірів (до таких, що без плану там було робити нічого).\\Після закінчення періоду правління варварів катакомби були евакуйовані і віруючі зібрали останки незліченних мучеників. Чотири з них були канонізовані у зв'язку з зразковим характером їх жертви: добра Френегонда, Йоахім пастир, чиста Галсвінта і звичайно Клодомір.\\Можна також відзначити наявність могили Тедеріка, одного із стародавніх царів людей. Його не дозволили ховати в склепі царів, бо його правління вважалося жалюгідним, і він був доставлений катакомб Св. Клодоміра. Більшість знають про те, що Тедерік дійсно піддавався натиску радників і нечесних людей (ми до сих пір пам'ятаємо мага перетворення Бориса, паралізованого учителя фехтування Гюнтера і розпусного Міністра Інгмара, який використовува дружину Тедеріка і його дочку принцесу Тодору)."
+msgstr "Брата Вланкера, почесного монаха абатства.\\\\Як відомо абатство Святого Клодоміра вважається маяком віри і імперським спадкоємцем Давніх Людей. Було засноване три століття після смерті святого, чиє ім'я воно носить, поблизу від місця, де Клодоміра поїли свині, і містить багато невідомих для звичайних смертних скарбів.\\Побудовано на підземному некрополі, забутому під час варварського правління, абатство було представлене цим неосвідченим істотам як завод для соління шинки. Культ не міг проводитись в самій будівлі, щоб загарбники нічого не запідозрили, тому люди оселилися в катакомбах і поступово їх розширювали.\\Підземелля розрослось в величезний лабіринт під дією віруючих, які все більше і більше молились. Риття тунелів стало проявом віри, і завзяття було таке, що під гнітом варварів катакомби досягли колосальних розмірів (до таких, що без плану там було робити нічого).\\Після закінчення періоду правління варварів катакомби були евакуйовані і віруючі зібрали останки незліченних мучеників. Чотири з них були канонізовані у зв'язку з зразковим характером їх жертви: добра Френегонда, Йоахім пастир, чиста Галсвінта і звичайно Клодомір.\\Можна також відзначити наявність могили Тедеріка, одного із стародавніх царів людей. Його не дозволили ховати в склепі царів, бо його правління вважалося жалюгідним, і він був доставлений катакомб Св. Клодоміра. Більшість знають про те, що Тедерік дійсно піддавався натиску радників і нечесних людей (ми до сих пір пам'ятаємо мага перетворення Бориса, паралізованого учителя фехтування Гюнтера і розпусного Міністра Інгмара, який використовував дружину Тедеріка і його дочку принцесу Тодору)."
 
 msgid "Barrel"
 msgstr "Бочка"
@@ -793,7 +793,7 @@ msgid "Iron ore"
 msgstr "Залізна руда"
 
 msgid "Iron ore is a basic material for\\weapons and armors crafting."
-msgstr "Мідна руда є основним матеріалом для\\виготовлення зброї та обладунків."
+msgstr "Залізна руда є основним матеріалом для\\виготовлення зброї та обладунків."
 
 msgid "Ring"
 msgstr "Кільце"
@@ -999,7 +999,7 @@ msgid "Set of the Tearful Widow"
 msgstr "Набір Плачучої Вдови"
 
 msgid "Minor litany"
-msgstr "Малий згорток для молитви."
+msgstr "Малий згорток для молитви"
 
 msgid "This parchment holds the incantation\\required to bless an item."
 msgstr "Цей пергамент містить заклинання\\необхідне для благословіння предмету."
@@ -1103,6 +1103,9 @@ msgstr "Арбалет був просякнутий\\в крові демона
 msgid "The finger of Saint Clodomir"
 msgstr "Палець святого Клодоміра"
 
+msgid "No description"
+msgstr "Без опису"
+
 msgid "The ear of St. Frenegonde"
 msgstr "Вухо святої Френегонди"
 
@@ -1184,44 +1187,17 @@ msgstr "Печера"
 msgid "Mausoleum"
 msgstr "Мавзолей"
 
-msgid "Return"
-msgstr "Назад"
+msgid "Pretended soldier deliverer of God and Christ's tomb, you have much killing and sometimes breach,\\flouting the values in whose name you did bloodshed...\\Of course you know how to fight, but your burden is the heaviest and you must accomplish many feats to win you back!"
+msgstr "Так званий солдат визволитель з могили Бога і Христа, ви повинні багато вбивати, а іноді й забувати,\\в чиє ім'я ви здійснили кровопролиття... \\Ви, звичайно, знаєте, як битись, але ваша ноша важка, і ви повинні знати багато трюків, щоб себе вберегти!"
 
-msgid "Save and exit"
-msgstr "Зберегти та вийти"
+msgid "At least you've never pretended to be virtuous...\\Nee in the mud, you've dressed up in finery demonic female seductrices for you infiltrate the highest levels of society.\\But even among the princes we can not deny its origins when they are unworthy,\\and when your charm was not enough you were able to wield the dagger like poison..."
+msgstr "Принаймні вона ніколи не прикидалась добродійною...\\Вийшовши з болота, вона вдяглася в шати демонічної жінки спокусниці щоб проникнути у вищі верстви суспільства.\\Але навіть серед князів ми не можемо заперечувати її походження, що вона негідна,\\і коли її чарівності було недостатньо, то вона могла володіти кинджалом, як отрутою..."
 
-msgid "Quit the game"
-msgstr "Залишити гру"
+msgid "The gunslinger is one of those bounty hunters who count only its own interests. He does not hesitate to kill innocent people if he should and his contracts are its only limit. And even if another offer him seem more interesting, it may turn against his boss. Normally destined to hell, it is committed by God to do the dirty work."
+msgstr "Стрілець є одним з тих мисливців за головами, який задовільняє лише свої власні інтереси. Він не вагаючись вбиває невинних людей, якщо йому цього треба для виконання угоди. І навіть якщо йому дадуть цікавішу пропозицію, він може піти проти власного боса. Зазвичай їм пряма дорога в пекло і вони використовуються Богом для виконання брудної роботи."
 
-msgid "Health"
-msgstr "Життя"
-
-msgid "Faith"
-msgstr "Віра"
-
-msgid "Strength"
-msgstr "Сила"
-
-msgid "Dexterity"
-msgstr "Спритність"
-
-msgid "Vitality"
-msgstr "Життєва сила"
-
-msgid "Piety"
-msgstr "Благочестя"
-
-msgid "Charisma"
-msgstr "Харизма"
-
-msgid "Damages"
-msgstr "Шкода"
-
-msgid "Armor"
-msgstr "Броня"
-
-msgid "Points left"
-msgstr "Залишилось очків"
+msgid "Religious fanatic par excellence, he was made a point to go to any heretic or witch bonfire ever. And without further ado, having never had remorse or doubt when has the guilt of his victims. So God decided to fulfill the dream of the inquisitor, that is to say the really let go in a world overrun by evil, a place where he can let go of his madness and sadism without making any innocent victim."
+msgstr "Загалом релігійний фанатик, він зразу відправить будь-яких єретика чи відьму на багаття. І, не лукавлячи, їх ніколи не мучили докори совісті чи сумніви, щодо смерті їх жертв. Таким чином, Бог вирішив втілити мрію інквізитора, тобто відпустити його у світ переповнений злом, місце, де він зможе дати волю своїм божевіллю і садизму, не вбиваючи невинних людей."
 
 msgid "Display/Hide map (M)"
 msgstr "Показати/Сховати карту (M)"
@@ -1238,56 +1214,17 @@ msgstr "Чуда (T)"
 msgid "Menu (Escape)"
 msgstr "Меню (Escape)"
 
-msgid "Equiped: "
-msgstr "Обладнано: "
+msgid "Console (Tab)"
+msgstr "Консоль (Tab)"
 
-msgid "Trader: "
-msgstr "Торговець: "
+msgid "Documents (D)"
+msgstr "Документи (D)"
 
-msgid "Inventory: "
-msgstr "Інвентар: "
+msgid "Weapon set n1 (W)"
+msgstr "Набір зброї 1 (W)"
 
-msgid "Damages: "
-msgstr "Шкода: "
-
-msgid "Armor: "
-msgstr "Броня: "
-
-msgid "Required strength: "
-msgstr "Необхідно сили: "
-
-msgid "Required dexterity: "
-msgstr "Необхідно спритності: "
-
-msgid "Required charisma: "
-msgstr "Необхідно харизми: "
-
-msgid "Required vitality: "
-msgstr "Необхідно життєвої сили: "
-
-msgid "Required piety: "
-msgstr "Необхідно благочестя: "
-
-msgid "Price: "
-msgstr "Ціна: "
-
-msgid "Faith cost: "
-msgstr "Ціна віри: "
-
-msgid "Faith stock: "
-msgstr "Наявно віри: "
-
-msgid "Health cost: "
-msgstr "Ціна життя: "
-
-msgid "Health stock: "
-msgstr "Наявно життя: "
-
-msgid "Shortcut"
-msgstr "Ярлик"
-
-msgid "Hoty water"
-msgstr "Свята вода"
+msgid "Weapon set n2 (W)"
+msgstr "Набір зброї 2 (W)"
 
 msgid "The Persecutor path"
 msgstr "Шлях Переслідувача"
@@ -1306,231 +1243,6 @@ msgstr "Шлях вбивці"
 
 msgid "The Seductress Path"
 msgstr "Шлях Спокуси"
-
-msgid "Next Level: "
-msgstr "Наступний рівень: "
-
-msgid "I do not have the required equipment!"
-msgstr "У мене немає необхідного обладнання!"
-
-msgid "My bag is full!"
-msgstr "Моя сумка заповнена!"
-
-msgid "Physical"
-msgstr "Физична"
-
-msgid "Fire"
-msgstr "Вогонь"
-
-msgid "Corrosion"
-msgstr "Корозія"
-
-msgid "Money"
-msgstr "Гроші"
-
-msgid "Level"
-msgstr "Рівень"
-
-msgid "Name"
-msgstr "І'мя"
-
-msgid "Console (Tab)"
-msgstr "Консоль (Tab)"
-
-msgid "Only for: "
-msgstr "Лише для: "
-
-msgid "Continue a game"
-msgstr "Продовжити гру"
-
-msgid "New game"
-msgstr "Нова гра"
-
-msgid "Options"
-msgstr "Опції"
-
-msgid "Exit"
-msgstr "Вийти"
-
-msgid "Back"
-msgstr "Назад"
-
-msgid "Enter your name: "
-msgstr "Введіть ваше і'мя: "
-
-msgid "Launch"
-msgstr "Запустити"
-
-msgid "Free socket"
-msgstr "Вільний слот"
-
-msgid "Toggle buttons"
-msgstr "Перемкнути кнопки"
-
-msgid "Class"
-msgstr "Клас"
-
-msgid "Stash: "
-msgstr "Тайник: "
-
-msgid "<Incompatible>"
-msgstr "<Несумісний>"
-
-msgid "Credits"
-msgstr "Автори"
-
-msgid "An old law required has always been the good and evil meet has at least one rule in their eternal conflict. They could not directly intervene in the affairs of living entities, acting only by the subtle suggestion and battling within each soul...\\Egoism, violence, pity, love and clashed in the form of thoughts, of dreams, with varied fates.\\\\But one day evil, which no longer supported the balance was satisfied with the Good, decided to violate the rule RESPECTED far and achieved this in incarnating directly into most living beings vulnerable to his impulses, and, curiously, in some objects.\\Henceforth evil reign could only be on each of which he took possession of some ordinary objects become demonic.\\\\Having anticipated this treachery, the Well was not surprised. Renouncing to violate the law as Evil had done and refusing to sacrifice the good and generous souls, he used a few storms and damned spirits who wanted to redeem himself deeply with him...\\considering himself already lost, alone unconsciousness would have to address the foul legion that has swept across the world."
-msgstr "Старий закон завжди вимагав, щоб в протистоянні добра і зла дотримувалось хоча б одне правило. Вони не можуть безпосередньо втручатися в справи живих істот, лише навіюванням позиції в боротьбі всередині кожної душі...\\Егоїзм, насильство, жалість, любов стикались у вигляді думок, мрії, і змінювали долі.\\\\Але одного разу зло, яке більше перестало задовольнятись балансу з добром, вирішило порушити ВЕЛИКЕ правило, і домоглися свого втілення безпосередньо у більшості живих істот уразливих до своїх імпульсів і, як не дивно, в деяких об'єктах.\\Відтепер прості предмети, якими заволоділо зло, стають демонічними.\\\\Добро не здивувалось, це була очікувана зрада. Відмовляючись порушувати закон, як це зробило Зло і відмовляються жертвувати хорошими і щедрими душами, він застосував кілька штормів і проклятих духів, які хотіли спокутувати гріхи  перед Добром...\\не бачачи іншого виходу, оскільки цілий легіон несвідомих істот прокотився по всьому світу."
-
-msgid "Next"
-msgstr "Далі"
-
-msgid "Select your character"
-msgstr "Виберіть персонажа"
-
-msgid "Production time: "
-msgstr "Час виготовлення: "
-
-msgid "seconds"
-msgstr "секунд"
-
-msgid "minutes"
-msgstr "хвилин"
-
-msgid "Graphical Options"
-msgstr "Параметри графіки"
-
-msgid "Advanced Options"
-msgstr "Додаткові параметри"
-
-msgid "Sound options"
-msgstr "Параметри звуку"
-
-msgid "Brightness: "
-msgstr "Яскравість: "
-
-msgid "Contrasts: "
-msgstr "Контраст: "
-
-msgid "Window mode: "
-msgstr "Режим вікна: "
-
-msgid "Quality of lights: "
-msgstr "Якість освітлення: "
-
-msgid "Enable shadows: "
-msgstr "Ввімкнути тіні: "
-
-msgid "Enable shader effects: "
-msgstr "Ввімкнути ефекти шейдерів: "
-
-msgid "Enable reflection of objects: "
-msgstr "Ввімкнути відображення предметів: "
-
-msgid "Enable effects of distortion: "
-msgstr "Ввімкнути ефекти спотворення: "
-
-msgid "Render grass: "
-msgstr "Малювати траву: "
-
-msgid "Enable dynamic debris: "
-msgstr "Ввімкнути динамічне сміття: "
-
-msgid "Display Background color of objects: "
-msgstr "Показувати колір тла об'єктів: "
-
-msgid "Volume: "
-msgstr "Гучність: "
-
-msgid "Volume of the music: "
-msgstr "Гучність музики: "
-
-msgid "Resolution: "
-msgstr "Розширення: "
-
-msgid "Documents (D)"
-msgstr "Документи (D)"
-
-msgid "Your strength increases your damage to opponent and allows you to carry the heavier equipment."
-msgstr "Твоя сила збільшує нанесену шкоду в ближньому бою і дозволяє носити важкі обладунки."
-
-msgid "Your dexterity allows you to dodge better and access to certain objects."
-msgstr "Спритність дозволяє краще уникати атак і дає доступ до певних об'єктів."
-
-msgid "Your vitality increases your life."
-msgstr "Життєва сила збільшує твоє життя."
-
-msgid "Your piety points increase your faith."
-msgstr "Очки благочестя збільшують твою віру."
-
-msgid "Your charisma affects the price of objects and allows you to wear certain items."
-msgstr "Твоя харизма впливає на ціну речей і дозволяє носити деякі предмети."
-
-msgid "Delete character"
-msgstr "Видалити персонажа"
-
-msgid "Please enter the name of the hero to delete: "
-msgstr "Будь ласка введіть ім'я героя для видалення: "
-
-msgid "Points of souls: "
-msgstr "Очків душ: "
-
-msgid "Pretended soldier deliverer of God and Christ's tomb, you have much killing and sometimes breach,\\flouting the values in whose name you did bloodshed...\\Of course you know how to fight, but your burden is the heaviest and you must accomplish many feats to win you back!"
-msgstr "Так званий солдат визволитель з могили Бога і Христа, ви повинні багато вбивати, а іноді й забувати,\\в чиє ім'я ви здійснили кровопролиття... \\Ви, звичайно, знаєте, як битись, але ваша ноша важка, і ви повинні знати багато трюків, щоб себе вберегти!"
-
-msgid "At least you've never pretended to be virtuous...\\Nee in the mud, you've dressed up in finery demonic female seductrices for you infiltrate the highest levels of society.\\But even among the princes we can not deny its origins when they are unworthy,\\and when your charm was not enough you were able to wield the dagger like poison..."
-msgstr "Принаймні вона ніколи не прикидалась добродійною...\\Вийшовши з болота, вона вдяглася в шати демонічної жінки спокусниці щоб проникнути у вищі верстви суспільства.\\Але навіть серед князів ми не можемо заперечувати її походження, що вона негідна,\\і коли її чарівності було недостатньо, то вона могла володіти кинджалом, як отрутою..."
-
-msgid "Religious fanatic par excellence, he was made a point to go to any heretic or witch bonfire ever. And without further ado, having never had remorse or doubt when has the guilt of his victims. So God decided to fulfill the dream of the inquisitor, that is to say the really let go in a world overrun by evil, a place where he can let go of his madness and sadism without making any innocent victim."
-msgstr "загалом релігійний фанатик, він зразу відправить будь-яких єретика чи відьму на багаття. І, не лукавлячи, їх ніколи не мучили докори совісті чи сумніви, щодо смерті їх жертв. Таким чином, Бог вирішив втілити мрію інквізитора, тобто відпустити його у світ переповнений злом, місце, де він зможе дати волю своїм божевіллю і садизму, не вбиваючи невинних людей."
-
-msgid "The gunslinger is one of those bounty hunters who count only its own interests. He does not hesitate to kill innocent people if he should and his contracts are its only limit. And even if another offer him seem more interesting, it may turn against his boss. Normally destined to hell, it is committed by God to do the dirty work."
-msgstr "Стрілець є одним з тих мисливців за головами, який задовільняє лише свої власні інтереси. Він не вагаючись вбиває невинних людей, якщо йому цього треба для виконання угоди. І навіть якщо йому дадуть цікавішу пропозицію, він може піти проти власного боса. Зазвичай їм пряма дорога в пекло і вони використовуються Богом для виконання брудної роботи."
-
-msgid "Non resquiescat in pace..."
-msgstr ""
-
-msgid "Click to get another chance!"
-msgstr "Клацніть щоб отримати ще один шанс!"
-
-msgid "Weapon set n1 (W)"
-msgstr "Набір зброї 1 (W)"
-
-msgid "Weapon set n2 (W)"
-msgstr "Набір зброї 2 (W)"
-
-msgid "One-handed weapon"
-msgstr "Одноручна зброя"
-
-msgid "Two-handed weapon"
-msgstr "Дворучна зброя"
-
-msgid "Left click"
-msgstr "Ліве клацання"
-
-msgid "Right click"
-msgstr "Праве клацання"
-
-msgid "Multiplayer"
-msgstr "Мультиплеєр"
-
-msgid "Join Game"
-msgstr "Приєднатись до гри"
-
-msgid "Host game"
-msgstr "Створити гру"
-
-msgid "New quest"
-msgstr "Новий квест"
-
-msgid "Quest ended"
-msgstr "Квест завершено"
-
-msgid "Requirements: "
-msgstr "Вимоги: "
-
-msgid "LevelUp!"
-msgstr "Новий рівень!"
 
 msgid "Saint Barbe Incarnation"
 msgstr "Втілення Св. Барба"
@@ -1566,7 +1278,7 @@ msgid "Saint Lazare Incarnation : Vampirism"
 msgstr "Втілення Св. Лазара: Вампіризм"
 
 msgid "In addition to heal the crusader, Saint Lazare\\allows him to stole the health of his ennemies."
-msgstr "Крім лікуваня хрестоносця, Святий Лазар\\дозволяє йому красти здоров'я у ворогів."
+msgstr "Крім лікування хрестоносця, Святий Лазар\\дозволяє йому красти здоров'я у ворогів."
 
 msgid "Health stolen: %1\\%"
 msgstr "Крадіжка життя: %1\\%"
@@ -1734,13 +1446,13 @@ msgid "I found the diary of the monk Redimus. This indicates that terrifying thi
 msgstr "Я знайшов щоденник монаха Редімуса. Він підтверджує що в катакомбах творяться страшні речі. Я повинен поговорити з Абатом."
 
 msgid "The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification."
-msgstr "Абат поросив мене знайти чотири мощі абатства, щоб змогти прочитати молитву очищення."
+msgstr "Абат попросив мене знайти чотири мощі абатства, щоб змогти прочитати молитву очищення."
 
 msgid "I have to escort a Brother to the Oculus, the center of the catacombs, in order that the Purification Ritual."
 msgstr "Я повинен провести Брата в Окулус в центрі катакомб для проведення Ритуалу Очищення."
 
 msgid "The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification. After Alcuin, a relic would have disappeared in recent years."
-msgstr "Абат поросив мене знайти чотири мощі абатства, щоб змогти прочитати молитву очищення. Після того як останні роки за ними наглядав Алкуїн, мощі зникли."
+msgstr "Абат попросив мене знайти чотири мощі абатства, щоб змогти прочитати молитву очищення. Після того як останні роки за ними наглядав Алкуїн, мощі зникли."
 
 msgid "Abandoned charette"
 msgstr "Покинутий віз"

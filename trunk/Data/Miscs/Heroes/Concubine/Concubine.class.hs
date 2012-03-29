@@ -1,6 +1,6 @@
 	*32
 $
-	*99
+	*1
 $
 	*Data/Graphics/Menus/Concubine.png
 $
@@ -123,39 +123,39 @@ $
 $
 	* x577 y550 w41 h41 m Data/Graphics/Menus/UI/Attack.png $
 $
-	* e2 x299 y522 w29 h15 m14 	i * mData/Graphics/Menus/UI/hud_button.png x87 y0 w29 h15 $ $ $ 
-	* e1 x328 y522 w29 h15 m16 	i * mData/Graphics/Menus/UI/hud_button.png x58 y0 w29 h15 $ $ $ 
-	* e3 x357 y522 w29 h15 m15 	i * mData/Graphics/Menus/UI/hud_button.png x0 y0 w29 h15 $ $ $ 
-	* e7 x386 y522 w29 h15 m89 	i * mData/Graphics/Menus/UI/hud_button.png x116 y0 w29 h15 $ $ $ 
-	* e5 x415 y522 w29 h15 m13 	i * mData/Graphics/Menus/UI/hud_button.png x174 y0 w29 h15 $ $ $ 
-	* e0 x444 y522 w29 h15 m51 	i * mData/Graphics/Menus/UI/hud_button.png x29 y0 w29 h15 $ $ $ 
-	* e4 x473 y522 w29 h15 m17 	i * mData/Graphics/Menus/UI/hud_button.png x145 y0 w29 h15 $ $ $ 
+	* e2 x299 y522 w29 h15 m5 	i * mData/Graphics/Menus/UI/hud_button.png x87 y0 w29 h15 $ $ $ 
+	* e1 x328 y522 w29 h15 m7 	i * mData/Graphics/Menus/UI/hud_button.png x58 y0 w29 h15 $ $ $ 
+	* e3 x357 y522 w29 h15 m6 	i * mData/Graphics/Menus/UI/hud_button.png x0 y0 w29 h15 $ $ $ 
+	* e7 x386 y522 w29 h15 m10 	i * mData/Graphics/Menus/UI/hud_button.png x116 y0 w29 h15 $ $ $ 
+	* e5 x415 y522 w29 h15 m4 	i * mData/Graphics/Menus/UI/hud_button.png x174 y0 w29 h15 $ $ $ 
+	* e0 x444 y522 w29 h15 m9 	i * mData/Graphics/Menus/UI/hud_button.png x29 y0 w29 h15 $ $ $ 
+	* e4 x473 y522 w29 h15 m8 	i * mData/Graphics/Menus/UI/hud_button.png x145 y0 w29 h15 $ $ $ 
 $
-	* e2 x299 y522 w29 h15 m14 	i * mData/Graphics/Menus/UI/hud_button_2.png x87 y0 w29 h15 $ $ $ 
-	* e1 x328 y522 w29 h15 m16 	i * mData/Graphics/Menus/UI/hud_button_2.png x58 y0 w29 h15 $ $ $ 
-	* e3 x357 y522 w29 h15 m15 	i * mData/Graphics/Menus/UI/hud_button_2.png x0 y0 w29 h15 $ $ $ 
-	* e7 x386 y522 w29 h15 m89 	i * mData/Graphics/Menus/UI/hud_button_2.png x116 y0 w29 h15 $ $ $ 
-	* e5 x415 y522 w29 h15 m13 	i * mData/Graphics/Menus/UI/hud_button_2.png x174 y0 w29 h15 $ $ $ 
-	* e0 x444 y522 w29 h15 m51 	i * mData/Graphics/Menus/UI/hud_button_2.png x29 y0 w29 h15 $ $ $ 
-	* e4 x473 y522 w29 h15 m17 	i * mData/Graphics/Menus/UI/hud_button_2.png x145 y0 w29 h15 $ $ $ 
+	* e2 x299 y522 w29 h15 m5 	i * mData/Graphics/Menus/UI/hud_button_2.png x87 y0 w29 h15 $ $ $ 
+	* e1 x328 y522 w29 h15 m7 	i * mData/Graphics/Menus/UI/hud_button_2.png x58 y0 w29 h15 $ $ $ 
+	* e3 x357 y522 w29 h15 m6 	i * mData/Graphics/Menus/UI/hud_button_2.png x0 y0 w29 h15 $ $ $ 
+	* e7 x386 y522 w29 h15 m10 	i * mData/Graphics/Menus/UI/hud_button_2.png x116 y0 w29 h15 $ $ $ 
+	* e5 x415 y522 w29 h15 m4 	i * mData/Graphics/Menus/UI/hud_button_2.png x174 y0 w29 h15 $ $ $ 
+	* e0 x444 y522 w29 h15 m9 	i * mData/Graphics/Menus/UI/hud_button_2.png x29 y0 w29 h15 $ $ $ 
+	* e4 x473 y522 w29 h15 m8 	i * mData/Graphics/Menus/UI/hud_button_2.png x145 y0 w29 h15 $ $ $ 
 $
-	* e0 x37 y18 w29 h15 m104 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
-	* e1 x66 y18 w29 h15 m105 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $  
+	* e0 x37 y18 w29 h15 m11 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
+	* e1 x66 y18 w29 h15 m12 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $  
 $
-	* e0 x37 y18 w29 h15 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
-	* e1 x66 y18 w29 h15 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $ 
+	* e0 x37 y18 w29 h15 m11 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
+	* e1 x66 y18 w29 h15 m12 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $ 
 $
 
 
-	* e0 x179 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
-	* e1 x202 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $  
-	* e0 x575 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
-	* e1 x598 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $  
+	* e0 x179 y529 w23 h12 m11 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
+	* e1 x202 y529 w23 h12 m12 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $  
+	* e0 x575 y529 w23 h12 m11 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x0 y0 w29 h15 $ $ $ 
+	* e1 x598 y529 w23 h12 m12 	i * mData/Graphics/Menus/UI/Weapons_button_2.png x29 y0 w29 h15 $ $ $  
 $
-	* e0 x179 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
-	* e1 x202 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $ 
-	* e0 x575 y529 w23 h12 m104 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
-	* e1 x598 y529 w23 h12 m105 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $  
+	* e0 x179 y529 w23 h12 m11 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
+	* e1 x202 y529 w23 h12 m12 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $ 
+	* e0 x575 y529 w23 h12 m11 	i * mData/Graphics/Menus/UI/Weapons_button.png x0 y0 w29 h15 $ $ $ 
+	* e1 x598 y529 w23 h12 m12 	i * mData/Graphics/Menus/UI/Weapons_button.png x29 y0 w29 h15 $ $ $  
 $
 
 	* x56 y88 w64 h64 m Data/Graphics/Menus/UI/Slot2x2.png n Data/Graphics/Menus/UI/Slot_scroll.png $
@@ -182,9 +182,9 @@ $
 $
 	* x738 y60 w24 h32 $
 $
-	* e0 x58 y46 w42 h42 m38 	i * mData/Graphics/Menus/UI/Concubine/ConcubinePath1.png x0 y0 w32 h32 $ $ $
-	* e1 x124 y46 w42 h42 m39	i * mData/Graphics/Menus/UI/Concubine/ConcubinePath2.png x0 y0 w32 h32 $ $ $
-	* e2 x186 y46 w42 h42 m40	i * mData/Graphics/Menus/UI/Concubine/ConcubinePath3.png x0 y0 w32 h32 $ $ $
+	* e0 x58 y46 w42 h42 m16 	i * mData/Graphics/Menus/UI/Concubine/ConcubinePath1.png x0 y0 w32 h32 $ $ $
+	* e1 x124 y46 w42 h42 m17	i * mData/Graphics/Menus/UI/Concubine/ConcubinePath2.png x0 y0 w32 h32 $ $ $
+	* e2 x186 y46 w42 h42 m18	i * mData/Graphics/Menus/UI/Concubine/ConcubinePath3.png x0 y0 w32 h32 $ $ $
 $
 	* e0 x49 y37 w59 h55	i * mData/Graphics/Menus/UI/Miracle_tab.png x0 y0 w59 h55 $ $ $
 	* e1 x115 y37 w59 h55	i * mData/Graphics/Menus/UI/Miracle_tab.png x0 y0 w59 h55 $ $ $

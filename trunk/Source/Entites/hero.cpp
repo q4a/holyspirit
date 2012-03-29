@@ -1462,7 +1462,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,19,0,12,sf::Color(224,224,224)); }
 
-    string.setString(toUtf32(gettext("Remaining")));
+    string.setString(toUtf32(gettext("Points left")));
     string.setPosition(AutoScreenAdjust(46,516,decalage));
     string.setColor(sf::Color(255,255,255));
     moteurGraphique->AjouterTexte(&string,15);
@@ -1954,7 +1954,7 @@ void Hero::AfficherPotales(float decalage, std::string chemin)
         texte.setPosition(AutoScreenAdjust(position.x + 2,
                                            position.y,decalage));
 		textdomain ("data");
-        texte.setString(toUtf32(configuration->getText(4,m_potales[i].nom)));
+        texte.setString(toUtf32(gettext(configuration->getText(4,m_potales[i].nom).c_str())));
 		textdomain ("menus");
 
 
@@ -2010,7 +2010,7 @@ bool Hero::AfficherMiracles(float decalage, int fenetreEnCours)
      && eventManager->getPositionSouris().x < m_classe.position_points_miracles.x + m_classe.position_points_miracles.w + (configuration->Resolution.x - 800) * 0.5
      && eventManager->getPositionSouris().y > m_classe.position_points_miracles.y + (configuration->Resolution.y - 600)
      && eventManager->getPositionSouris().y < m_classe.position_points_miracles.y + m_classe.position_points_miracles.h + (configuration->Resolution.y - 600))
-        moteurGraphique->AjouterTexte(gettext("Remaining"), coordonnee(eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(gettext("Points left"), coordonnee(eventManager->getPositionSouris().x,
                                       eventManager->getPositionSouris().y - 20),m_classe.border,20,false,12,sf::Color(224,224,224));
 
     texte.setCharacterSize(12);

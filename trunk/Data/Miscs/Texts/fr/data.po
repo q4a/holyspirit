@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2012-03-27 18:48+0200\n"
+"PO-Revision-Date: 2012-03-29 18:11+0200\n"
 "Last-Translator: Igor Paliychuk <mansonigor@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -109,8 +109,8 @@ msgstr "A présent tu dois éliminer les créatures dans la pièce suivante (je 
 msgid "Well! You're learning fast and that's what I expected from you...\\You've turned a corner, and you can now choose which area you want to improve yourself.\\\\(We choose the features that one wishes improve through the inventory, \"I\")"
 msgstr "Bien ! Tu apprends vite et c'est ce que j'attendais de toi...\\Tu as franchi un cap, et tu peux maintenant choisir dans quel domaine tu désires t'améliorer.\\\\(on choisit les caractéristiques que l'on désire améliorer via l'inventaire, « I »)"
 
-msgid "-Your strength increases your melee damage and allows you to wear heavier equipment.\\-Dexterity allows you to dodge better/and carry more items.\\-Vitality increases your life.\\-Your piety is your ability to invoke your god, it allows you to run more miracles (we'll come back...).\\-Your charisma affects the price of objects and allows you to wear certain items."
-msgstr "-Ta force augmente tes dégâts au corps à corps et te permet de porter de l'équipement plus lourd.\\-Ta dextérité te permet de mieux toucher/esquiver et de porter plus d'objets.\\-Ta vitalité augmente ta vie. \\-Ta piété est ta capacité à invoquer ton dieu, elle te permet de lancer plus de miracles (nous allons y revenir...). \\-Ton charisme influe sur le prix des objets et te permet de porter certains objets."
+msgid "-Your strength increases your melee damage and allows you to wear heavier equipment.\\-Dexterity allows you to dodge better and carry more items.\\-Vitality increases your life.\\-Your piety is your ability to invoke your god, it allows you to run more miracles (we'll come back...).\\-Your charisma affects the price of objects and allows you to wear certain items."
+msgstr "-Ta force augmente tes dégâts au corps à corps et te permet de porter de l'équipement plus lourd.\\-Ta dextérité te permet de mieux toucher esquiver et de porter plus d'objets.\\-Ta vitalité augmente ta vie. \\-Ta piété est ta capacité à invoquer ton dieu, elle te permet de lancer plus de miracles (nous allons y revenir...). \\-Ton charisme influe sur le prix des objets et te permet de porter certains objets."
 
 msgid "You must know your current status allows you to access certain powers.\\You can now call upon your god to destroy your opponents.\\\\(Click on the icon shaped like a cross to open the panel of miracles. You can choose the way in which you specialize you want by clicking on one of the three tabs at the top. You just have to right click on a miracle to learn or improve. This will place it in the shortcut bar at the bottom. You can access it during the game with the 1-8 keys and clicking the right mouse button.)"
 msgstr "Tu dois savoir que ton état actuel te permet d'avoir accès à certains pouvoirs.\\Tu peux maintenant faire appel à ton dieu pour détruire tes adversaires.\\\\(Clique sur l'icone en forme de croix pour ouvrir le panneau des miracles. Tu peux choisir la voie dans laquelle tu veux te spécialiser en cliquant sur un des trois onglets en haut. Il te suffit de faire un clic droit sur un miracle pour l'apprendre ou l'améliorer. Il se placera automatiquement dans la barre de raccourcis du bas. Tu peux y accéder durant le jeu avec les touches 1 à 8 puis en cliquant droit avec la souris. )"
@@ -901,7 +901,6 @@ msgstr "Épée forgée dans les flammes\\de l'enfer, elle a appartenu au\\démon
 msgid "Timber axe"
 msgstr "Hache de bucheron"
 
-#, fuzzy
 msgid ""
 "A simple axe for\\cutting wood.\\But it's also slices very\\n"
 "ice meat and bones..."
@@ -1115,6 +1114,9 @@ msgstr "Cette arbalète a été trempée\\dans le sang du démon,\\lui conféran
 msgid "The finger of Saint Clodomir"
 msgstr "Le doigt de Saint Clodomir"
 
+msgid "No description"
+msgstr ""
+
 msgid "The ear of St. Frenegonde"
 msgstr "L'oreille de Sainte Frénégonde"
 
@@ -1196,44 +1198,17 @@ msgstr "Grotte"
 msgid "Mausoleum"
 msgstr "Mausolée"
 
-msgid "Return"
-msgstr "Retour"
+msgid "Pretended soldier deliverer of God and Christ's tomb, you have much killing and sometimes breach,\\flouting the values in whose name you did bloodshed...\\Of course you know how to fight, but your burden is the heaviest and you must accomplish many feats to win you back!"
+msgstr "Pretendu soldat de Dieu et liberateur du tombeau du Christ, tu as largement massacre et quelques fois viole,\\bafouant les valeurs au nom desquelles tu faisais couler le sang...\\Certes tu sais te battre, mais ton fardeau est des plus lourds et tu devras accomplir bien des exploits pour te racheter !"
 
-msgid "Save and exit"
-msgstr "Sauvegarder et quitter"
+msgid "At least you've never pretended to be virtuous...\\Nee in the mud, you've dressed up in finery demonic female seductrices for you infiltrate the highest levels of society.\\But even among the princes we can not deny its origins when they are unworthy,\\and when your charm was not enough you were able to wield the dagger like poison..."
+msgstr "Toi au moins tu n'as jamais pretendu etre vertueuse...\\Nee dans la fange, tu t'es paree des atours demoniaques des femelles seductrices pour t'infiltrer au plus haut niveau de la societe.\\Mais meme au milieu des princes on ne peut renier ses origines quand elles sont indignes,\\et quand ton charme n'a pas suffi tu as su manier le poignard comme le poison..."
 
-msgid "Quit the game"
-msgstr "Reinitialiser la partie"
+msgid "The gunslinger is one of those bounty hunters who count only its own interests. He does not hesitate to kill innocent people if he should and his contracts are its only limit. And even if another offer him seem more interesting, it may turn against his boss. Normally destined to hell, it is committed by God to do the dirty work."
+msgstr "Le pistolero est un de ces chasseurs de prime pour qui seul ses propres interets comptent. Il n'hesites pas a tuer des innocents si il le doit et ses contrats sont sa seule limite. Et encore si une autre offre lui parait plus interessante, il pourra se retourner contre son patron. Normalement destine aux enfers, il est engage par Dieu pour faire le sale boulot."
 
-msgid "Health"
-msgstr "Vie"
-
-msgid "Faith"
-msgstr "Foi"
-
-msgid "Strength"
-msgstr "Force"
-
-msgid "Dexterity"
-msgstr "Dexterite"
-
-msgid "Vitality"
-msgstr "Vitalite"
-
-msgid "Piety"
-msgstr "Piete"
-
-msgid "Charisma"
-msgstr "Charisme"
-
-msgid "Damages"
-msgstr "Degats"
-
-msgid "Armor"
-msgstr "Armure"
-
-msgid "Points left"
-msgstr "Restants"
+msgid "Religious fanatic par excellence, he was made a point to go to any heretic or witch bonfire ever. And without further ado, having never had remorse or doubt when has the guilt of his victims. So God decided to fulfill the dream of the inquisitor, that is to say the really let go in a world overrun by evil, a place where he can let go of his madness and sadism without making any innocent victim."
+msgstr "Fanatique religieux par excellence, il s'etait fait un devoir de passer au bucher tout heretique ou sorciere qui soit. Et ce sans autre forme de proces, n'ayant jamais eu un remord ou l'ombre d'un doute quand a la culpabilite de ses victimes. Dieu decide donc d'accomplir le reve de l'inquisiteur, c'est a dire le lacher dans un monde reellement envahi par le Mal, un endroit ou il pourra lacher sa folie et son sadisme sans faire de victime innocente."
 
 msgid "Display/Hide map (M)"
 msgstr "Afficher/Cacher carte (M)"
@@ -1250,56 +1225,17 @@ msgstr "Miracles (T)"
 msgid "Menu (Escape)"
 msgstr "Menu (Echap)"
 
-msgid "Equiped: "
-msgstr "Equipe :"
+msgid "Console (Tab)"
+msgstr "Console (Tab)"
 
-msgid "Trader: "
-msgstr "Marchand :"
+msgid "Documents (D)"
+msgstr "Documents (D)"
 
-msgid "Inventory: "
-msgstr "Inventaire :"
+msgid "Weapon set n1 (W)"
+msgstr "Set d'armes n?1 (W)"
 
-msgid "Damages: "
-msgstr "Degats : "
-
-msgid "Armor: "
-msgstr "Armure : "
-
-msgid "Required strength: "
-msgstr "Force requise : "
-
-msgid "Required dexterity: "
-msgstr "Dexterite requise : "
-
-msgid "Required charisma: "
-msgstr "Charisme requis : "
-
-msgid "Required vitality: "
-msgstr "Vitalite requise : "
-
-msgid "Required piety: "
-msgstr "Piete requise : "
-
-msgid "Price: "
-msgstr "Prix : "
-
-msgid "Faith cost: "
-msgstr "Cout en foi : "
-
-msgid "Faith stock: "
-msgstr "Reserve en foi : "
-
-msgid "Health cost: "
-msgstr "Cout en vie : "
-
-msgid "Health stock: "
-msgstr "Reserve en vie : "
-
-msgid "Shortcut"
-msgstr "Raccourci"
-
-msgid "Hoty water"
-msgstr "Eau benite"
+msgid "Weapon set n2 (W)"
+msgstr "Set d'armes n?2 (W)"
 
 msgid "The Persecutor path"
 msgstr "La voie du Persecuteur"
@@ -1318,231 +1254,6 @@ msgstr "La voie de l'Assassin"
 
 msgid "The Seductress Path"
 msgstr "La voie de la Seductrice"
-
-msgid "Next Level: "
-msgstr "Niveau suivant :"
-
-msgid "I do not have the required equipment!"
-msgstr "Je n'ai pas l'equipement requis !"
-
-msgid "My bag is full!"
-msgstr "Mon sac est plein !"
-
-msgid "Physical"
-msgstr "Physique"
-
-msgid "Fire"
-msgstr "Feu"
-
-msgid "Corrosion"
-msgstr "Corrosion"
-
-msgid "Money"
-msgstr "Argent"
-
-msgid "Level"
-msgstr "Niveau"
-
-msgid "Name"
-msgstr "Nom"
-
-msgid "Console (Tab)"
-msgstr "Console (Tab)"
-
-msgid "Only for: "
-msgstr "Uniquement pour : "
-
-msgid "Continue a game"
-msgstr "Continuer"
-
-msgid "New game"
-msgstr "Nouveau jeu"
-
-msgid "Options"
-msgstr "Options"
-
-msgid "Exit"
-msgstr "Quitter"
-
-msgid "Back"
-msgstr "Retour"
-
-msgid "Enter your name: "
-msgstr "Entrez votre nom"
-
-msgid "Launch"
-msgstr "Commencer"
-
-msgid "Free socket"
-msgstr "Emplacement libre"
-
-msgid "Toggle buttons"
-msgstr "Afficher/Cacher les boutons"
-
-msgid "Class"
-msgstr "Classe"
-
-msgid "Stash: "
-msgstr "Coffre :"
-
-msgid "<Incompatible>"
-msgstr "<Incompatible>"
-
-msgid "Credits"
-msgstr "Credits"
-
-msgid "An old law required has always been the good and evil meet has at least one rule in their eternal conflict. They could not directly intervene in the affairs of living entities, acting only by the subtle suggestion and battling within each soul...\\Egoism, violence, pity, love and clashed in the form of thoughts, of dreams, with varied fates.\\\\But one day evil, which no longer supported the balance was satisfied with the Good, decided to violate the rule RESPECTED far and achieved this in incarnating directly into most living beings vulnerable to his impulses, and, curiously, in some objects.\\Henceforth evil reign could only be on each of which he took possession of some ordinary objects become demonic.\\\\Having anticipated this treachery, the Well was not surprised. Renouncing to violate the law as Evil had done and refusing to sacrifice the good and generous souls, he used a few storms and damned spirits who wanted to redeem himself deeply with him...\\considering himself already lost, alone unconsciousness would have to address the foul legion that has swept across the world."
-msgstr "Une vieille loi obligeait depuis toujours le Bien et le Mal a respecter au moins une regle dans leur eternel conflit. Ils ne pouvaient intervenir directement dans les affaires des entites vivantes, n'agissant que par la suggestion et bataillant subtilement au sein de chaque ame...\\Egoisme, violence, pitie, amour s'affrontaient ainsi sous forme de pensees, de reves, avec des destins varies.\\\\Pourtant un jour le Mal, qui ne supportait plus l'equilibre dont se contentait le Bien, decida de violer la regle respectee jusqu'alors et franchit le pas en s'incarnant directement dans les etres vivants les plus vulnerables a ses pulsions, et, curieusement, dans certains objets.\\Desormais le Mal pouvait regner exclusivement sur chaque etre dont il prenait possession et sur certains objets anodins devenus demoniaques.\\\\Ayant pressenti cette trahison, le Bien ne fut pas surpris. Renoncant a violer la loi comme le Mal l'avait fait et se refusant a sacrifier des ames bonnes et genereuses, il utilisa quelques esprits damnes et tourmentes qui souhaitaient profondement se racheter aupres de lui...\\S'estimant deja perdues, elles seules auraient l'inconscience de s'attaquer a l'immonde legion qui deferlait sur le Monde."
-
-msgid "Next"
-msgstr "Suivant"
-
-msgid "Select your character"
-msgstr "Selectionnez votre personnage"
-
-msgid "Production time: "
-msgstr "Temps de fabrication : "
-
-msgid "seconds"
-msgstr "secondes"
-
-msgid "minutes"
-msgstr "minutes"
-
-msgid "Graphical Options"
-msgstr "Options graphiques"
-
-msgid "Advanced Options"
-msgstr "Options avancees"
-
-msgid "Sound options"
-msgstr "Options sonores"
-
-msgid "Brightness: "
-msgstr "Luminosite : "
-
-msgid "Contrasts: "
-msgstr "Contrastes : "
-
-msgid "Window mode: "
-msgstr "Mode fenetre : "
-
-msgid "Quality of lights: "
-msgstr "Qualite des lumieres : "
-
-msgid "Enable shadows: "
-msgstr "Rendre les ombres : "
-
-msgid "Enable shader effects: "
-msgstr "Utiliser les effets de shaders : "
-
-msgid "Enable reflection of objects: "
-msgstr "Rendre la reflexion des objets : "
-
-msgid "Enable effects of distortion: "
-msgstr "Rendre les effets de distorsion : "
-
-msgid "Render grass: "
-msgstr "Rendre l'herbe : "
-
-msgid "Enable dynamic debris: "
-msgstr "Rendre les debris dynamiques : "
-
-msgid "Display Background color of objects: "
-msgstr "Afficher le fond colore des objets : "
-
-msgid "Volume: "
-msgstr "Volume sonore : "
-
-msgid "Volume of the music: "
-msgstr "Volume de la musique : "
-
-msgid "Resolution: "
-msgstr "Resolution : "
-
-msgid "Documents (D)"
-msgstr "Documents (D)"
-
-msgid "Your strength increases your damage to opponent and allows you to carry the heavier equipment."
-msgstr "Votre force augmente vos degats au corps a corps et vous permet de porter de l'equipement plus lourd."
-
-msgid "Your dexterity allows you to dodge better and access to certain objects."
-msgstr "Votre dexterite vous permet de mieux toucher/esquiver et d'acceder a certains objets."
-
-msgid "Your vitality increases your life."
-msgstr "Votre vitalite augmente votre vie."
-
-msgid "Your piety points increase your faith."
-msgstr "Votre piete augmente vos points de foi."
-
-msgid "Your charisma affects the price of objects and allows you to wear certain items."
-msgstr "Votre charisme influe sur le prix des objets et vous permet de porter certains objets."
-
-msgid "Delete character"
-msgstr "Supprimer personnage"
-
-msgid "Please enter the name of the hero to delete: "
-msgstr "Veuillez taper le nom du heros a supprimer :"
-
-msgid "Points of souls: "
-msgstr "Points d'ames : "
-
-msgid "Pretended soldier deliverer of God and Christ's tomb, you have much killing and sometimes breach,\\flouting the values in whose name you did bloodshed...\\Of course you know how to fight, but your burden is the heaviest and you must accomplish many feats to win you back!"
-msgstr "Pretendu soldat de Dieu et liberateur du tombeau du Christ, tu as largement massacre et quelques fois viole,\\bafouant les valeurs au nom desquelles tu faisais couler le sang...\\Certes tu sais te battre, mais ton fardeau est des plus lourds et tu devras accomplir bien des exploits pour te racheter !"
-
-msgid "At least you've never pretended to be virtuous...\\Nee in the mud, you've dressed up in finery demonic female seductrices for you infiltrate the highest levels of society.\\But even among the princes we can not deny its origins when they are unworthy,\\and when your charm was not enough you were able to wield the dagger like poison..."
-msgstr "Toi au moins tu n'as jamais pretendu etre vertueuse...\\Nee dans la fange, tu t'es paree des atours demoniaques des femelles seductrices pour t'infiltrer au plus haut niveau de la societe.\\Mais meme au milieu des princes on ne peut renier ses origines quand elles sont indignes,\\et quand ton charme n'a pas suffi tu as su manier le poignard comme le poison..."
-
-msgid "Religious fanatic par excellence, he was made a point to go to any heretic or witch bonfire ever. And without further ado, having never had remorse or doubt when has the guilt of his victims. So God decided to fulfill the dream of the inquisitor, that is to say the really let go in a world overrun by evil, a place where he can let go of his madness and sadism without making any innocent victim."
-msgstr "Fanatique religieux par excellence, il s'etait fait un devoir de passer au bucher tout heretique ou sorciere qui soit. Et ce sans autre forme de proces, n'ayant jamais eu un remord ou l'ombre d'un doute quand a la culpabilite de ses victimes. Dieu decide donc d'accomplir le reve de l'inquisiteur, c'est a dire le lacher dans un monde reellement envahi par le Mal, un endroit ou il pourra lacher sa folie et son sadisme sans faire de victime innocente."
-
-msgid "The gunslinger is one of those bounty hunters who count only its own interests. He does not hesitate to kill innocent people if he should and his contracts are its only limit. And even if another offer him seem more interesting, it may turn against his boss. Normally destined to hell, it is committed by God to do the dirty work."
-msgstr "Le pistolero est un de ces chasseurs de prime pour qui seul ses propres interets comptent. Il n'hesites pas a tuer des innocents si il le doit et ses contrats sont sa seule limite. Et encore si une autre offre lui parait plus interessante, il pourra se retourner contre son patron. Normalement destine aux enfers, il est engage par Dieu pour faire le sale boulot."
-
-msgid "Non resquiescat in pace..."
-msgstr "Non resquiescat in pace..."
-
-msgid "Click to get another chance!"
-msgstr "Cliquez pour avoir une nouvelle chance !"
-
-msgid "Weapon set n1 (W)"
-msgstr "Set d'armes n?1 (W)"
-
-msgid "Weapon set n2 (W)"
-msgstr "Set d'armes n?2 (W)"
-
-msgid "One-handed weapon"
-msgstr "Arme a une main"
-
-msgid "Two-handed weapon"
-msgstr "Arme a deux mains"
-
-msgid "Left click"
-msgstr "Clic gauche"
-
-msgid "Right click"
-msgstr "Clic droit"
-
-msgid "Multiplayer"
-msgstr "Multijoueur"
-
-msgid "Join Game"
-msgstr "Rejoindre partie"
-
-msgid "Host game"
-msgstr "Creer partie"
-
-msgid "New quest"
-msgstr "Nouvelle quete"
-
-msgid "Quest ended"
-msgstr "Quete terminee"
-
-msgid "Requirements: "
-msgstr "Niveau requis : "
-
-msgid "LevelUp!"
-msgstr "Niveau superieur !"
 
 msgid "Saint Barbe Incarnation"
 msgstr "Incarnation de Sainte Barbe"

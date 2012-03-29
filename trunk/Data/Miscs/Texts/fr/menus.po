@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-27 18:22+0300\n"
-"PO-Revision-Date: 2012-03-27 18:41+0200\n"
+"POT-Creation-Date: 2012-03-29 10:35+0300\n"
+"PO-Revision-Date: 2012-03-29 18:11+0200\n"
 "Last-Translator: Igor Paliychuk <mansonigor@gmail.com>\n"
 "Language-Team: FRENCH <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,21 +137,21 @@ msgstr "Foi"
 msgid "Points of souls: "
 msgstr "Points d'ames : "
 
-#: ../../../Source/Contextes/c_jeu.cpp:244
-#: ../../../Source/Contextes/c_jeu.cpp:251
+#: ../../../Source/Contextes/c_jeu.cpp:246
+#: ../../../Source/Contextes/c_jeu.cpp:253
 msgid "Non resquiescat in pace..."
 msgstr ""
 
-#: ../../../Source/Contextes/c_jeu.cpp:246
-#: ../../../Source/Contextes/c_jeu.cpp:253
+#: ../../../Source/Contextes/c_jeu.cpp:248
+#: ../../../Source/Contextes/c_jeu.cpp:255
 msgid "Click to have another chance!"
 msgstr "Cliquez pour avoir une nouvelle chance !"
 
-#: ../../../Source/Contextes/c_jeu.cpp:1123
+#: ../../../Source/Contextes/c_jeu.cpp:1128
 msgid "Time : "
 msgstr ""
 
-#: ../../../Source/Contextes/c_jeu.cpp:1140
+#: ../../../Source/Contextes/c_jeu.cpp:1145
 msgid "Loop iteration nbr : "
 msgstr ""
 
@@ -333,7 +333,7 @@ msgstr "Votre charisme influe sur le prix des objets et vous permet de porter ce
 
 #: ../../../Source/Entites/hero.cpp:1465
 #: ../../../Source/Entites/hero.cpp:2013
-msgid "Remaining"
+msgid "Points left"
 msgstr "Restants"
 
 #: ../../../Source/Entites/hero.cpp:1519
@@ -426,31 +426,31 @@ msgid "Increased efficiency: "
 msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:1933
-msgid "Strength increased: "
+msgid "Increased strength: "
 msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:1935
-msgid "Dexterity increased: "
+msgid "Increased dexterity: "
 msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:1937
-msgid "Vitality increased: "
+msgid "Increased vitality: "
 msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:1939
-msgid "Piety increased: "
+msgid "Increased piety: "
 msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:1941
-msgid "Charisma increased: "
+msgid "Increased charisma: "
 msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:1947
-msgid "Health increased: "
+msgid "Increased health: "
 msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:1949
-msgid "Faith increased: "
+msgid "Increased faith: "
 msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:1961
@@ -462,7 +462,7 @@ msgid "Miracle: "
 msgstr "Miracle: "
 
 #: ../../../Source/Entites/objet.cpp:2018
-msgid "Team: "
+msgid "Equiped: "
 msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:2022
