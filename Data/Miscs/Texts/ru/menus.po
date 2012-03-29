@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-27 18:22+0300\n"
-"PO-Revision-Date: 2012-03-27 18:39+0200\n"
+"POT-Creation-Date: 2012-03-29 10:35+0300\n"
+"PO-Revision-Date: 2012-03-29 18:11+0200\n"
 "Last-Translator: Igor Paliychuk <mansonigor@gmail.com>\n"
 "Language-Team: RUSSIAN <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,21 +137,21 @@ msgstr "Вера"
 msgid "Points of souls: "
 msgstr "Очки душ: "
 
-#: ../../../Source/Contextes/c_jeu.cpp:244
-#: ../../../Source/Contextes/c_jeu.cpp:251
+#: ../../../Source/Contextes/c_jeu.cpp:246
+#: ../../../Source/Contextes/c_jeu.cpp:253
 msgid "Non resquiescat in pace..."
 msgstr ""
 
-#: ../../../Source/Contextes/c_jeu.cpp:246
-#: ../../../Source/Contextes/c_jeu.cpp:253
+#: ../../../Source/Contextes/c_jeu.cpp:248
+#: ../../../Source/Contextes/c_jeu.cpp:255
 msgid "Click to have another chance!"
 msgstr "Нажмите для еще одной попытки!"
 
-#: ../../../Source/Contextes/c_jeu.cpp:1123
+#: ../../../Source/Contextes/c_jeu.cpp:1128
 msgid "Time : "
 msgstr "Время: "
 
-#: ../../../Source/Contextes/c_jeu.cpp:1140
+#: ../../../Source/Contextes/c_jeu.cpp:1145
 msgid "Loop iteration nbr : "
 msgstr "Номер итерации:"
 
@@ -333,7 +333,7 @@ msgstr "Харизма влияет на цену вещей и позволяе
 
 #: ../../../Source/Entites/hero.cpp:1465
 #: ../../../Source/Entites/hero.cpp:2013
-msgid "Remaining"
+msgid "Points left"
 msgstr "Осталось"
 
 #: ../../../Source/Entites/hero.cpp:1519
@@ -426,32 +426,32 @@ msgid "Increased efficiency: "
 msgstr "Повышение эффективности: "
 
 #: ../../../Source/Entites/objet.cpp:1933
-msgid "Strength increased: "
-msgstr "Сила увеличена: "
+msgid "Increased strength: "
+msgstr "Повышение силы: "
 
 #: ../../../Source/Entites/objet.cpp:1935
-msgid "Dexterity increased: "
-msgstr "Ловкость увеличина: "
+msgid "Increased dexterity: "
+msgstr "Повышение ловкости: "
 
 #: ../../../Source/Entites/objet.cpp:1937
-msgid "Vitality increased: "
-msgstr "Жывучесть увеличена: "
+msgid "Increased vitality: "
+msgstr "Повышение жизнеспособности: "
 
 #: ../../../Source/Entites/objet.cpp:1939
-msgid "Piety increased: "
-msgstr "Благочестие увеличено: "
+msgid "Increased piety: "
+msgstr "Повышение благочестия: "
 
 #: ../../../Source/Entites/objet.cpp:1941
-msgid "Charisma increased: "
-msgstr "Харизма увеличена: "
+msgid "Increased charisma: "
+msgstr "Повышение харизмы: "
 
 #: ../../../Source/Entites/objet.cpp:1947
-msgid "Health increased: "
-msgstr "Жызнь увеличена: "
+msgid "Increased health: "
+msgstr "Повышение здоровья: "
 
 #: ../../../Source/Entites/objet.cpp:1949
-msgid "Faith increased: "
-msgstr "Вера увеличена: "
+msgid "Increased faith: "
+msgstr "Повышение веры: "
 
 #: ../../../Source/Entites/objet.cpp:1961
 msgid "over"
@@ -462,8 +462,8 @@ msgid "Miracle: "
 msgstr "Чудо: "
 
 #: ../../../Source/Entites/objet.cpp:2018
-msgid "Team: "
-msgstr "Команда: "
+msgid "Equiped: "
+msgstr "На себе: "
 
 #: ../../../Source/Entites/objet.cpp:2022
 msgid "Stash: "

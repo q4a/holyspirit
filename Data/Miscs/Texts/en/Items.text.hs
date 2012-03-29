@@ -138,13 +138,13 @@ Weaved mesh and leather\belonged to the terrible barbarian leader\Haksil Wurgash
 Crossbow of eternal fire
 The crossbow was soaked\in the blood of the demon,\giving it the ability to\pull the explosive bolts.
 The finger of Saint Clodomir
-
+No description
 The ear of St. Frenegonde
-
+No description
 The heart of Saint Joachim
-
+No description
 The eye of St. Galswintha
-
+No description
 Silver: 
 Blueprint : Short sword
 Blueprint explaining the design of a short sword.

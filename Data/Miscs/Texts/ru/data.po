@@ -49,7 +49,7 @@ msgid "///SHRINE///"
 msgstr "///СВЯТЫНЯ///"
 
 msgid "What would you do?\\\\"
-msgstr "Что бы вы сделали?\\\\"
+msgstr "Что бы ты сделал?\\\\"
 
 msgid "Teleport"
 msgstr "Телепорт"
@@ -76,40 +76,40 @@ msgid "///TUTORIAL///"
 msgstr "///ОБУЧЕНИЕ///"
 
 msgid "Miserable fisherman!\\Here you are in Limbo. You have much to do before they can hope to reach Paradise...\\For you to prove to myself first and foremost that you are worthy of my trust. Some of your fellows to whom I gave a chance for redemption have not even been able to get out by themselves in this room... Fools... Show me that you're better from them!"
-msgstr "Несчастный рыбак!\\Здесь вы находитесь в состоянии неопределенности. Вы еще многое предстоит сделать, прежде чем они могут надеяться достичь рая...\\Для вас, чтобы доказать себе, прежде всего, что вы достойны моего доверия. Некоторые из ваших парней, которым я дал шанс на искупление даже не смогли выйти сами по себе в этой комнате... дураков... Покажите мне, что ты лучший из них!"
+msgstr "Несчастный рыбак!\\Ты находишься между мирами. Тебе еще много придется сделать, чтобы иметь надежду попасть в Рай ...\\Тебе придется доказать, что ты достоин моего доверия. Некоторые из таких как ты, которым я дал шанс на искупление, даже не смогли сами выбраться из комнаты ... дураки ... Докажи, что ты лучше них!"
 
 msgid "Miserable sinner!\\Here you are in Limbo. You have much to do before they can hope to reach Paradise...\\For you to prove to myself first and foremost that you are worthy of my trust. Some of your fellows to whom I gave a chance for redemption have not even been able to get out by themselves in this room... Fools... Show me that you're better from them!"
-msgstr "Несчастный грешник!\\Здесь вы находитесь в состоянии неопределенности. Вы еще многое предстоит сделать, прежде чем они могут надеяться достичь рая...\\Для вас, чтобы доказать себе, прежде всего, что вы достойны моего доверия. Некоторые из ваших парней, которым я дал шанс на искупление даже не смогли выйти сами по себе в этой комнате... дураков ... Покажите мне, что ты лучший из них!"
+msgstr "Несчастный грешник!\\Ты находишься между мирами. Тебе еще много придется сделать, чтобы иметь надежду попасть в Рай ...\\Тебе придется доказать, что ты достоин моего доверия. Некоторые из таких как ты, которым я дал шанс на искупление, даже не смогли сами выбраться из комнаты ... дураки ... Докажи, что ты лучше них!"
 
 msgid "Fine. I would still not explain how to get through a door!\\Let's see if you can beat you. It drags in the next room the soul of one of your fellows who do me any good. If I think your history of violence hast not foreign. Eliminate this creature!\\\\(Click on the creature to destroy it)"
-msgstr "Хорошо. Я бы все равно не объясняет, как пройти через дверь!\\Давайте посмотрим, если вы можете бить вас. Он увлекает в соседней комнате душа одного из своих товарищей, которые делают мне ничего хорошего. Если я думаю, что ваша история насилия Ты не чуждо. Устранить эту тварь!\\(Нажмите на существо, чтобы уничтожить его)"
+msgstr "Хорошо. Это все равно не объясняет, как пройти через дверь!\\Давай посмотрим, как ты бьешься. Двери ведут к следующей комнате, где находится душа одного из таких как ты, которые не сделали ничего хорошего. Насколько я знаю из твоей жизни\\насилие тебе не чуждо. Уничтожь существо!\\\\(Щелкни на существо, чтобы его уничтожить)"
 
 msgid "Not bad! I would now like you to confront many of these stupid creatures who keep safe. Look at them... They do not know why they keep, or even what's inside... If you do not want to end up like they catch you!\\\\ (Click to open the safe, ALT to see the objects and click on their name to pick them up)"
-msgstr "Не плохо! Я бы хотел, чтобы вы противостоять многим из этих глупых существ, которые держат в безопасности. Посмотрите на них... Они не знают, почему они продолжают, или даже то, что внутри... Если вы не хотите, чтобы в конечном итоге, как поймают!\\(Нажмите, чтобы открыть сейф, ALT, чтобы посмотреть объекты и нажмите на свое имя, чтобы забрать их)"
+msgstr "Неплохо! Я бы хотел чтобы ты противостоял нескольким таким глупым существам, которые являются полностью безопасными. Посмотри на них... Они даже не знают почему их здесь закрыли, а также что внутри... Если не хочешь закончить как они, возьми то что внутри!\\\\(Щелкни чтобы открыть сундук, придержи ALT чтобы увидеть предметы и нажми на их название чтобы их поднять)"
 
 msgid "Hold down alt and click on the name of the object to pick it up."
-msgstr "Удерживайте Alt и нажмите на название объекта, чтобы поднять ее."
+msgstr "Удерживай Alt и нажми на название предмета чтобы его поднять."
 
 msgid "Perfect. You can now find the items you've collected in your inventory.\\\\(Click on the icon of the interface below or on \"I\". It is also possible to equip them by placing them in the appropriate box or placed in use with shortcuts keys 1 to 8.)"
-msgstr "Отлично. Теперь Вы можете найти элементы, которые вы собрали в вашем инвентаре.\\\\(Нажмите на иконку интерфейса ниже или на \"I\". Можно также оборудовать их, помещая их в соответствующее поле или помещены в использовании с ярлыками клавиш от 1 до 8.)"
+msgstr "Прекрасно. Теперь ты можешь найти собранные предметы в инвентаре.\\\\(Нажми значок в интерфейсе внизу или клавишу \"I\". Вещи можно экипировать, поместив в соответствующие поля или поместить на пояс и использовать клавиши от 1 до 8)."
 
 msgid "You will notice also that each destroyed enemy strengthens your soul and helps make you stronger.\\\\(When the bar is filled souls you win a level)"
-msgstr "Вы увидите также, что каждый уничтожил врага укрепляет душу и помогает сделать вас сильнее.\\\\(Когда строка заполнена душами вы выиграете уровень)"
+msgstr "Также ты заметишь, что каждый уничтоженный тобой враг укрепляет душу и делает тебя сильнее.\\\\(Когда полоска заполняется душами ты перейдешь на новый уровень)"
 
 msgid "Now you have to eliminate the creatures in the next room (Do not kill, they are already dead for centuries). You will win and the strengths and talents more!"
-msgstr "Теперь у вас есть для устранения существ в соседней комнате (не убивай, они уже мертвы столетия) Вы выиграете и сильные стороны и таланты других!"
+msgstr "Теперь тебе надо уничтожить существ в следующей комнате (не убивать, нет, они уже мертвы веками). Тогда ты станешь сильнее и сможешь получить новое умение!"
 
 msgid "Well! You're learning fast and that's what I expected from you...\\You've turned a corner, and you can now choose which area you want to improve yourself.\\\\(We choose the features that one wishes improve through the inventory, \"I\")"
-msgstr "Ну, ты быстро учится, и вот что я ожидал от вас...\\Ты повернул за угол, и теперь вы можете выбрать, в каком районе вы хотите улучшить себя.\\\\(Мы выбираем функции, которые человек хочет улучшить путем инвентаризации, \"I\")"
+msgstr "Хорошо! Ты быстро учишься, я ожидал этого от тебя...\\Ты повернул за угол и теперь можешь выбрать, в какой области ты хочешь себя улучшить.\\\\(Возможности для улучшения указываются в инвентаре, \"I\")"
 
-msgid "-Your strength increases your melee damage and allows you to wear heavier equipment.\\-Dexterity allows you to dodge better/and carry more items.\\-Vitality increases your life.\\-Your piety is your ability to invoke your god, it allows you to run more miracles (we'll come back...).\\-Your charisma affects the price of objects and allows you to wear certain items."
-msgstr "Ваша сила увеличивает повреждение в ближнем бою и позволяет носить тяжелого оборудования.\\Ловкость позволяет избежать лучше / и выполнять несколько элементов.\\Жывучесть увеличивает вашу жизнь.\\Ваше благочестие является возможность ссылаться на ваш бог, он позволяет запускать больше чудес (мы еще вернемся ...).\\Ваша харизма влияет на цену объекта и позволяет носить некоторые пункты."
+msgid "-Your strength increases your melee damage and allows you to wear heavier equipment.\\-Dexterity allows you to dodge better and carry more items.\\-Vitality increases your life.\\-Your piety is your ability to invoke your god, it allows you to run more miracles (we'll come back...).\\-Your charisma affects the price of objects and allows you to wear certain items."
+msgstr "-Твоя сила увеличивает нанесенный ущерб в ближнем бою и позволяет носить тяжелые доспехи.\\-Ловкость позволяет лучше избегать атак и носить больше вещей.\\-Жизненная сила увеличивает твою жизнь.\\-Твое благочестие это возможность призывать твоего бога, оно позволяет делать больше чудес (мы еще вернемся...).\\-Твоя харизма влияет на цену вещей и позволяет носить некоторые предметы."
 
 msgid "You must know your current status allows you to access certain powers.\\You can now call upon your god to destroy your opponents.\\\\(Click on the icon shaped like a cross to open the panel of miracles. You can choose the way in which you specialize you want by clicking on one of the three tabs at the top. You just have to right click on a miracle to learn or improve. This will place it in the shortcut bar at the bottom. You can access it during the game with the 1-8 keys and clicking the right mouse button.)"
-msgstr "Вы должны знать свой текущий статус позволяет получить доступ к определенной силы.\\Теперь Вы можете звонить на ваш бог, чтобы уничтожить своих оппонентов.\\\\(Нажмите на значок в форме креста, чтобы открыть панель чудес. Вы можете выбрать способ, которым вы хотите специализироваться, нажав на одну из трех вкладок в верхней части. Вам просто нужно правой кнопкой мыши на чудо выучить или улучшить. Это будет поместить его в панели быстрого запуска в нижней части. Вы можете получить доступ к нему во время игры с 1-8 ключами и нажав правую кнопку мыши.)"
+msgstr "Ты должен знать, что твой текущее состояние позволяет тебе получить доступ к определенной силе.\\Теперь ты можешь призвать твоего бога помочь уничтожить твоих противников.\\\\ (Нажми на значок в форме креста, чтобы открыть панель чудес. Ты можешь выбрать определенный путь, нажав на одну из трех вкладок в верхней части. Тебе просто нужно будет правой кнопкой мыши щелкнуть на чудо чтобы выучить или улучшить его. Оно будет помещено на поясе внизу экрана. Ты сможеш получить к нему доступ во время игры клавишами 1-8 или нажав на нем правой кнопкой мыши.)"
 
 msgid "Perfect! This test was very small but all the poor souls I've known have not succeeded, far away... Yes, I know this is appalling.\\Now join the light at the back of the room and embrace your next mission.\\If I had knowledge of your past I'll complain packages..."
-msgstr "Отлично! Этот тест был очень небольшой, но все бедные души я знал, не удалось, далеко... Да, я знаю, что это ужасно.\\Теперь присоединиться свет в конце зала и принять следующей миссии.\\Если бы я знал о вашем прошлом, я буду жаловаться пакетов..."
+msgstr "Прекрасно! Этот тест был совсем небольшой, но много душ, которых я знал, не смогли выполнить даже этого... Да, я знаю, что это ужасно.\\Теперь зайди в свет в конце зала и берись за новое задание.\\Если бы я знал о твоем прошлом я бы пожалел, что так жил ..."
 
 msgid "Continue"
 msgstr "Продолжить"
@@ -121,55 +121,55 @@ msgid "////ABBE///"
 msgstr "////АББАТ///"
 
 msgid "Hello to you my son! Is that you? Yes it can be you! Big, strong... The Savior! Out of nowhere! God spoke to me, and I knew he did not abandon us! Vas, exterminate the vermin demonic rode around everywhere!"
-msgstr "Привет тебе, сын мой! Это ты? Да, это может быть, вы! Большой, сильный... Спаситель! Из ниоткуда! Бог говорил со мной, и я знал, что он не оставит нас! Vas, уничтожить вредителей демонические ездил везде!"
+msgstr "Привет сын мой! Это ты? Да, это точно ты! Большой, сильный ... Спаситель! Ниоткуда! Бог говорил со мной, и я знал, что он не покинет нас! Давай, очисти землю от паразитирующих вокруг демонов!"
 
 msgid "Who are you woman? From what country do you come up with this evocative, these strange clothes? Are you a demon who was able to interfere in God's house? Pay attention to your actions, even in these troubled times we can find time to burn witches..."
-msgstr "Кто ты женщина? Из какой страны вы придумали это воспоминания, эти странные одежды? Ты демон, который был в состоянии вмешиваться в дом Божий? Обратите внимание на ваши действия, даже в эти трудные времена мы можем найти время сжигать ведьм..."
+msgstr "Кто ты, женщина? Из какой страны ты пришла, в этой странной одежде? Может ты демон, который смог войти в дом Божий? Обращай внимание на свои действия, даже в эти тяжелые дни мы найдем время, чтобы сжечь ведьму..."
 
 msgid "I recognize in you a servant of God my brother. But the fever that I read in your eyes me some concern... Are you okay?"
-msgstr "Я признаю в тебе раба Божия мой брат. Но лихорадка, что я читал в ваших глазах меня некоторое беспокойство... Ты в порядке?"
+msgstr "Я признаю в тебе раба Божия, брат. Но жар, который я вижу в твоих глазах меня тревожит... С тобой все в порядке?"
 
 msgid "Hello to you my son. You have to come from a country very far away to wander in such attire.\\Maybe you will know how to get rid of the vermin that has befallen our poor country?"
-msgstr "Привет тебе мой сын. Вы должны прийти из страны, очень далеко, чтобы бродить в таком наряде.\\Может быть, вы будете знать, как избавиться от паразитов, которые обрушились на нашу бедную страну?"
+msgstr "Привет сын мой. Ты наверняка пришел издалека, что бродишь в таком наряде.\\Может ты сможешь выяснить, как избавиться от паразитов, что обрушились на нашу бедную страну?"
 
 msgid "Where am I?"
 msgstr "Где я?"
 
 msgid "You're in the abbey of Saint Clodomir. By these days it is one of the few places in the country where we find some peace. And more... Even here it is woven of devilry!"
-msgstr "Вы находитесь в аббатстве святого Клодомира. В эти дни он является одним из немногих мест в стране, где мы находим покой. И еще... Даже здесь он соткан из чертовщина!"
+msgstr "Ти находишся в аббатстве святого Клодомира. В эти дни это одно из немногих мест в стране, где относительно спокойно. Но... Даже здесь происходит какая-то чертовщина!"
 
 msgid "Of devilry?"
-msgstr "Чертовщины?"
+msgstr "Чертовщина?"
 
 msgid "Yes, well, of devilry. My brother monks have a strange behavior, sometimes unhealthy, and some have mysteriously disappeared... I hear noises in the catacombs under the Abbey at night. I initially thought that wild animals that would be introduced but I do not know what to think... I'm afraid I must admit, and the only solution I found is to close the door leading to it. But he will have someone to go and see what happens there... I'm worried about my monks!"
-msgstr "Да, ну, чертовщина. Мой брат монахов есть странное поведение, иногда нездоровый, и некоторые из них таинственно исчез... Я слышу шум в катакомбах под аббатство ночью. Я сначала подумал, что дикие животные, которые будут введены но я не знаю что и думать... Я боюсь, что я должен признаться, и единственное решение я нашел, чтобы закрыть дверь, ведущую к нему. Но он будет иметь кого-то, чтобы пойти и посмотреть, что там происходит... Я боюсь, о моих монахов!"
+msgstr "Ну, да, чертовщина. Мои братья монахи странно себя ведут, некоторые нездоровые, а некоторые из них таинственно исчезли... Я слышу шум в катакомбах под Аббатством ночью. Сначала я думал, что это дикие звери, которые туда залезли, но теперь я даже не знаю что думать... Я, признаться, боюсь, и единственное решение, которое я нашел, это закрыть дверь, что туда ведет. Но нужен кто-то, кто бы пошел туда и посмотрел что там творится... Я боюсь за монахов!"
 
 msgid "Do you want me to go?"
 msgstr "Вы хотите, чтобы я пошел?"
 
 msgid "Oh! I dared not ask... I have some qualms about sending you there alone, but we are not fighters you see... If you need help I'll do what I can! Here, take the key of the catacombs and good luck, God assist you!\\Come back soon and tell me what you saw."
-msgstr ""
+msgstr "О! Посмею попросить... У меня есть некоторые сомнения по поводу отправки тебя туда в одиночку, но как видишь мы не бойцы... Если тебе понадобится помощь я сделаю все что смогу! Вот, возьми ключ от катакомб и удачи, Бог тебе в помощь!\\Возвращайся скорее и скажи что ты видел."
 
 msgid "That's what I thought! It ran terrible things behind that door... Certainly we are surrounded by evil! He's out, it is under our feet! Is the sky itself is really kind to us poor miserable human?\\Let us... It is urgent to clean our basement! We are surrounded by evil, but we can not tolerate it in the den of the Lord!\\To perform purification at all costs you must find the relics of four saints who are dispersed in the catacombs."
-msgstr ""
+msgstr "Я так и думал! Он нашел за этой дверью ужасные вещи... Мы явно окружены злом! Оно у нас под ногами! Смилостивится ли небо над бедными нещаснмы людьми?\\Для осуществления очистки тебе придется найти мощи четырех святых, размещенных в катакомбах."
 
 msgid "Finally, you found the source of evil! Here I am reassured, but not that much... The whole world seems overrun by this disgusting filth of undead and mysteriously animated objects... I think the end of this chaotic period is still far alas!"
-msgstr ""
+msgstr "Наконец, ты нашел источник зла! Я немного успокоился, но не очень... Весь мир словно захвачен этой отвратительной травью и таинственными подвижными объектами... Я думаю, что конец этому хаосу придет еще не скоро!"
 
 msgid "I am looking for weapons."
 msgstr "Я ищу оружие."
 
 msgid "You can ask Rognorak, our blacksmith who has taken refuge with us in this holy place. That's a big guy friendly, he continues to forge weapons even if it no longer serves to nothing, he says it occupies until the end of the world."
-msgstr ""
+msgstr "Можешь спросить Рагнорака, нашего кузнеца, который спрятался у нас в этом святом месте. Это большой парень, доброжелательный, он продолжает ковать оружие, даже если оно никому не нужно, он говорит, что оно еще послужит людям."
 
 msgid "Do you have things to sell?"
-msgstr ""
+msgstr "Имеешь вещи на продажу?"
 
 msgid "Could you bless something?"
-msgstr ""
+msgstr "Можете что-то освятить?"
 
 msgid "Goodbye!"
-msgstr "До свидания!"
+msgstr "Пока!"
 
 msgid "Ah! Our hero!"
 msgstr "Ах! Наш герой!"
@@ -178,223 +178,223 @@ msgid "You're back, woman?"
 msgstr "Ты вернулась, женщина?"
 
 msgid "I saw skeletons in the catacombs!"
-msgstr ""
+msgstr "Я видел скелетов в катакомбах!"
 
 msgid "I got relic."
 msgstr "Я получил реликвию."
 
 msgid "Perfect! You quickly, I did not even think you could do it to be honest...\\Now go see the lesser brother next to me, he will accompany you to pronounce the mantra in the Oculus. Follow him and make sure it reaches the Oculus safe and sound!"
-msgstr ""
+msgstr "Прекрасно! Ты быстро, я даже не думал, что ты можешь это сделать, честно говоря...\\Теперь иди к меньшему брату рядом со мной, он сопровождает тебя для прочтения молитвы в Окулусе. Следуй за ним и убедитесь, что он достигнет Окулуса живым и здоровым!"
 
 msgid "The brother was murdered by Hergahrt, a demonic priest!"
-msgstr ""
+msgstr "Брата убил Гергарт, демонический священник!"
 
 msgid "Hergahrt, the former priest of the Church of Saint Waldinghe! My God... I did never hear from him... We have banned years ago for his behavior intolerable. With a neighboring parish priest named Johannes they spent their time drinking and laughing in public the result of confessions they received. Not to mention everything we could agree on their differences with women...\\I think Hergahrt went much further now. It is the henchman of the ignominy that is sweeping Ruhigland.\\I am sure there is land in the crypt of his former church, which communicates with our catacombs... Well, here's the key to the gate that separates our catacombs in the crypt.\\Hergahrt must be eliminated, it is now an enemy of the Church and of the human race!"
-msgstr ""
+msgstr "Герхарт, бывший священник церкви Святого Вальдинга! Боже мой... Я никогда не слышал от него... Мы выгнали его много лет назад за недопустимое поведение. Вместе со священником из соседнего прихода на имя Йоханнес они тратили свое время на алкоголь и удовольствия. Не говоря уже о том, как отличались их вкусы в отношении женщин...\\Я думаю Герхарт пошел гораздо дальше в настоящее время. Он себя опозорил.\\Я уверен, что склеп его бывшей церкви имеет связь с нашими катакомбами... Вот ключ к воротам, которые отделяют катакомбы от склепа.\\Герхарт должен быть уничтожен, он теперь является врагом Церкви и всего человеческого рода!"
 
 msgid "Of course! The blessing increases the virtues of weapons and armor. So I can give my blessing I need some holy water, and to sing a litany of course object to bless!"
-msgstr ""
+msgstr "Конечно! Благословение увеличивает качество оружия и брони. Так что я могу дать благословение. Мне нужна святая вода, и конечно молитва для объекта, который надо благословить!"
 
 msgid "Let's go!"
-msgstr ""
+msgstr "Вперед!"
 
 msgid "And then?"
-msgstr ""
+msgstr "А потом?"
 
 msgid "Then he'll have to escort a minor brother to deliver a litany in the Oculus, the old ceremonial hall of the first Christians. You will recognize, is the largest room of the catacombs and the outside light gives it.\\For now fetches the relics! It's been a long time that nobody went to see them and we lost the plans of the catacombs...\\You'll find the Holy Frenegonde ear, the heart of St. Joachim, St. Galswintha eyes and the finger of St. Clodomir. Good luck!"
-msgstr ""
+msgstr "Тогда тебе придется проводить младшего брата в Окулус, старый актовый зал первых христиан. Ты его узнаешь, это крупнейшая в катакомбах комната и в нее попадает внешний свет.\\На данный момент в ней хранятся мощи! Туда давно никто не ходил, и мы потеряли планы катакомб... \\Ты найдешь ухо Святой Френегоды, сердце Св. Иоахима, глаза Св. Галсвинты и пальцы Св. Клодомира. Удачи!"
 
 msgid "///FARMER///"
-msgstr ""
+msgstr "///ФЕРМЕР///"
 
 msgid "Hey! What are you doing man? You look like a stranger but you're saying so well built! You would not get a service?"
-msgstr ""
+msgstr "Гей! Что ты делаешь, друг? Ты похож на пришельца, но ты так хорошо говоришь! Не сделаешь мне одолжение?"
 
 msgid "Hello madmoizelle! Let me guess: you are going from the city right? Because i do not like rags now... If you know a beefy guy I would need a service for get me back to my farm."
-msgstr ""
+msgstr "Привет мадмуазель! Позвольте мне угадать: вы идете из города? Потому что я не люблю тряпки ... Если вы знаете крепкого парня, не мог бы он помочь мне в моей ферме."
 
 msgid "Who are you?"
-msgstr ""
+msgstr "Кто ты такой?"
 
 msgid "I'm Borlor, of the southern farm. Many farmers to feed this beautiful world that is anything but pray. Moreover c'qui seen falling on our face because there is not pray out loud...\\Finally you have not criticize because chui virtually refugee... Besides I need a service, remember?"
-msgstr ""
+msgstr "Я Борлор с южной фермы. Один из многих фермеров, которые кормят этот прекрасный мир, и им не остается больше ничего, чем молиться. Но никто не молится вслух...\\И не критикуйте меня за то что я беженец... Кроме того, мне нужна услуга."
 
 msgid "What service?"
-msgstr ""
+msgstr "Какая услуга?"
 
 msgid "In fact there are plenty of funny creatures everywhere at the moment, as you have noticed as well. Well they are not ben solid, often a good sod between the eyes and talk about it more!\\But there are things tougher, the kinds of living stones! I saw with my own eyes! They look like regular rocks from afar but it will move and attack you if you approach. I can not drive them more and I can go home! Want to see what you can do? I give a bottle of liquor turnip my personal cuy who chase these bastards from my house!"
-msgstr ""
+msgstr "На самом деле сейчас по всему миру вокруг развелось много смешных существ, если вы заметили. Ну они не твердее от земли, и зачастую являются лишь предметом обсуждения!\\Но есть жесткие вещи, живые камни! Я видел своими глазами! Издалека они выглядят как обычные скалы, но если вы приблизитесь, они пойдут навстречу и нападут. Я не могу больше их терпеть и хочу домой! Можете помочь? Я даю бутылку ликера из репы тому, кто выгонит эту дрянь из моего дома!"
 
 msgid "I'll see what I can do..."
-msgstr ""
+msgstr "Я посмотрю что можно сделать..."
 
 msgid "Frankly I have better things to do than take care of the wall of a peasant!"
-msgstr ""
+msgstr "Честно говоря у меня есть дела поважнее, чем заботиться о забор крестьянина!"
 
 msgid "Thank you so much! I hope I can trust you! Ten, that's a little turnip of my liquor. It's hard but it gives energy, with it you can not plow horse!"
-msgstr ""
+msgstr "Огромное спасибо! Я надеюсь, что могу тебе доверять! Вот ликер из репы. Он тяжелый, но дает силу, как выпьешь то можно не запрягать лошадь!"
 
 msgid "Great! Follow the path that goes south and you will find my farm at roadside. You will recognize the monsters who will jump on you!"
-msgstr ""
+msgstr "Отлично! Идите по дороге на юг и там увидите мою ферму на обочине дороги. Вы узнаете монстров, которые на вас набросятся!"
 
 msgid "///ROMULUS TRADER///"
-msgstr ""
+msgstr "///ТОРГОВЕЦ РОМУЛУС///"
 
 msgid "Hello my fine fellow! Would you need anything? I sell everything but sacred objects - out of respect for the Father - and weapons - since Rognorak threatened me with an ax me to swallow."
-msgstr ""
+msgstr "Здравствуйте молодец! Тебе что-нибудь нужно? Я продаю все, за исключением духовных предметов - из уважения к Отцу, - и оружия, - поскольку Рогнорак угрожал мне топором."
 
 msgid "Hello miss! You might want to buy something? I have no perfumes or makeup in stock but maybe you'll be interested in something else?"
-msgstr ""
+msgstr "Приветствую даму! Возможно, вы захотите что-то купить? У меня нет парфюма или косметики на складе, но, возможно, вас заинтересует что-то другое?"
 
 msgid "Good God, you make a head! You should offer a small gift to cheer you up! I have a lot of niceties that I give you at a friendly price!"
-msgstr ""
+msgstr "Боже мой, не опускай голову! Тебе нужен небольшой подарок, чтобы поднять настроение! У меня есть много мелочей, которые я продам по небольшой цене!"
 
 msgid "Hi guy! You know I like your quickdraw? This is not the conventional home but need to know innovate, eh? I'll want a lot of things ES-SEN-TI-AL to sell you. I say \"sell\" but that's the principle, in fact it is almost set!"
-msgstr ""
+msgstr "Эй мальчик! Ты знаешь, мне нравится твоя оттяжка. Это не обычный дом, и предлагает инновации, а? Я могу продать тебе много НЕ-ОБ-ХО-ДИ-МЫХ вещей. Я говорю \"продать\", но в принципе они почти бесплатные!"
 
 msgid "My name is Romulus and I am a merchant. Normally I was going to Nekhag, not far from a corn Flatagahn. A friendly city, unpretentious. In short I went there, just to get some rest, but I had the bad idea to spend in this unfortunate country. I ran things for the bizarre, such as stones moving or animated skeletons... I got scared and when I saw the abbey in the distance I abandoned my cart to rush into this holy place. At least for now it survives without undergoing these visions of horror and chaos!"
-msgstr ""
+msgstr "Меня зовут Ромулус, купец. На самом деле я шел в Некгад, недалеко от Флатагана. Доброжелательный город, неприхотливый. Короче я шел туда, только чтобы отдохнуть, но у меня возникла плохая идея пойти через эту несчастную страну. Я увидел такие странные вещи как ходячие камни и ходячие скелеты... Я испугался, и когда я увидел издалека аббатство я оставил свою телегу и убежал к этому святому месту. По крайней мере пока оно защищено от картин этого ужаса и хаоса!"
 
 msgid "And your cart?"
-msgstr ""
+msgstr "А воз?"
 
 msgid "Well it should always be there, somewhere south of here. Unless the bone puppets have chosen to play with... I would love to get something! Just a little bag of tobacco from Mad-Retsam. It would help me pass the time, we are so bored here...\\If you bring it back to me I'll give a you little, with a small purse too!\\It would make me so happy!"
-msgstr ""
+msgstr "Ну, он никуда оттуда не денется, где-то южнее отсюда. Разве ходячие скелеты решили им поиграть... Я хотел бы взять оттуда кое-что! Просто мешочек табака с Мед-Ретсама. Он поможет мне скоротать время, здесь так скучно...\\Если ты мне его вернешь, я дам немного тебе, вместе с небольшим кошельком!\\Я был бы очень рад!"
 
 msgid "Must ask Rognorak, the guy not comfortable there. He forbade me to sell arms on pain of death. As if the external threats were not enough! Talk about a shopping..."
-msgstr ""
+msgstr "Спроси Рогнорака. Он запретил мне продавать оружие под страхом смерти. Словно внешних угроз не хватает! А на счет торговли..."
 
 msgid "Got the deal?"
-msgstr ""
+msgstr "Есть что продать?"
 
 msgid "I have your tobacco!"
-msgstr ""
+msgstr "У меня есть твой табак!"
 
 msgid "Ahhh! In my arms my friend! My good tobacco! Hey, for the trouble I give you a little as promised! Using it in moderation, it is strong enough and its effects are unpredictable. You have there for about ten takes. Thank you again, with this book I will not see spending the next week!"
-msgstr ""
+msgstr "Ах! Вот он! Мой добрый табак! Эй, я дам тебе немного за неприятности, как и обещал! Используй его в умеренных количествах, он достаточно силен, а последствия непредсказуемы. Я дал тебе примерно на десять раз. Еще раз спасибо, теперь я с радостью проведу следующую неделю!"
 
 msgid "Pfffff... What nice dog!"
-msgstr ""
+msgstr "Хммм ... Какой хорошенький песик!"
 
 msgid "///ROGNORAK BLACKSMITH///"
-msgstr ""
+msgstr "///КУЗНЕЦ РОГНОРАК///"
 
 msgid "Yeah? What do you want abroad? A weapon, armor, tools? Times are troubled but life goes on, as they say!"
-msgstr ""
+msgstr "Да? Что ты хочешь? Оружие, доспехи, инструменты? Времена неспокойные, но жизнь продолжается, как говорится!"
 
 msgid "Well chick! You're up awfully! If you need a service would ask Rognorak! He always knows to please the ladies... Rognorak"
-msgstr ""
+msgstr "Душечка! Выглядишь замечательно! Если тебе нужна услуга то спроси Рогнорака! Он всегда знает, пожалуйста, госпожа... Рогнорак"
 
 msgid "Frankly it's not lack of men in dress here... We'll end up talking my man! And I only sell things that are bad for the health of souls."
-msgstr ""
+msgstr "Честно говоря, здесь нет недостатка мужчин в одежде... Это все же говорит мужчина! Но я продаю только вещи, которые вредны для здоровья души."
 
 msgid "Hi there! You too have decided to disguise yourself to celebrate the end of the world? When I see spend all that happening right now I think we need a clean sweep and start all over again. I do not like your clothes and your upper air but if it is to kill the unspeakable horrors lurking around I'll sell you what you want!"
-msgstr ""
+msgstr "Привет! Ты тоже решил замаскироваться, чтобы отпраздновать конец света? Когда я вижу все, что происходит вокруг, я думаю, все должно быть стерто чтобы начать все заново. Мне не нравится твоя одежда и запах, но если это прекратит неописуемые ужасы, скрывающиеся вокруг, то я продам тебе все, что захочешь!"
 
 msgid "I'm Rognorak, former blacksmith of the Empire. I like to forge weapons quietly in my corner but a fight that's not really my cup of tea. I am an artist! So when they decided to send me to the front to forge swords to chain I cut and I left to chance...\\I do not know if it was a good idea to think... I could not stand to be just a few kilometers from the horde of monsters and now I have to survive a few yards away, taking refuge in that damn Abbey!"
-msgstr ""
+msgstr "Я Рогнорак, бывший кузнец империи. Я люблю ковать оружие тихо в своем углу, а битва это не совсем мое. Я творческий человек! Поэтому когда они решили отправить меня на фронт ковать мечи я бежал и доверился воле случая...\\Я тогда не думал, была ли это хорошая идея... Я не мог находится всего в нескольких километрах от орды монстров и теперь они всего в нескольких шагах, а я прячусь в этом проклятом аббатстве!."
 
 msgid "Where are we?"
-msgstr ""
+msgstr "Где мы?"
 
 msgid "You're not very observant boy! We see in a monastery! Or an abbey, I've never understood the difference... Question dresses were what level must be female but it is a little sad!"
-msgstr ""
+msgstr "Ты не очень наблюдательный мальчик! Мы в монастыре! Или аббатстве, я никогда не понимал разницы... Вопрос длины платья был бы актуальным если бы здесь были женщины, и это немного грустно!"
 
 msgid "You're not very observant sweetie! Most often men dress like this are found in the monasteries. Well sometimes we also unearthed in the brothels, huh, hey hey!"
-msgstr ""
+msgstr "Вы не очень наблюдательная конфетка! Чаще всего так одетых мужчин можно найти в монастырях. Ну, иногда их можно увидеть в борделях, хех, гей, гей!"
 
 msgid "We trade?"
-msgstr ""
+msgstr "Поторгуемся?"
 
 msgid "You can do something for me?"
-msgstr ""
+msgstr "Можешь для меня кое-что сделать?"
 
 msgid "So, what's up my man?"
-msgstr ""
+msgstr "Ну и в чем дело?"
 
 msgid "So miss, we come back to see the blacksmith? We do not shy, eh, heh heh..."
-msgstr ""
+msgstr "Итак дамы, возвращаемся к кузнецу? Не стесняемся, а, хе-хе..."
 
 msgid "RETURN INQUISITOR"
-msgstr ""
+msgstr "ВОЗВРАЩЕНИЕ ИНКВИЗИТОРА"
 
 msgid "RETURN PISTOLERO"
-msgstr ""
+msgstr "ВОЗВРАЩЕНИЕ ПЕХОТИНЦА"
 
 msgid "What are you doing?"
-msgstr ""
+msgstr "Что ты делаешь?"
 
 msgid "There? Immediately? But I'm bored! That is, perfectly, I'm bored to the point where it could go bad... You know what? I am so idle that if you give me something to tinker with a gun I'll make the free, just for fun. \\If you want I have an old plan that I train sword for ages. Find me three pounds of metal and I will forge a wink. It will always be better than the usual junk that sells Romulus. Finally he sold before I blast him in the bronchi! Ha ha ha!"
-msgstr ""
+msgstr "Здесь? Сейчас? Но мне скучно! То есть, мне скучно до точки, где уже хуже быть не может... Знаешь что? Я сижу без дела, поэтому если ты дашь мне что-нибудь, связанное с оружием, я сделаю это бесплатно, просто для удовольствия.\\Если хочешь, у меня есть старый план, по которому делают мечи уже столетиями. Найди мне три фунта металла, и я выкую тебе его. Он всегда будет лучшим, чем обычный мусор, который продает Ромулус. Хотя он продавал их до того, как я поправил ему легкие! Ха-ха-ха!"
 
 msgid "There? Immediately? But I'm bored! That is, perfectly, I'm bored to the point where it could go bad... You know what? I am so idle that if you give me something to tinker with a gun I'll make the free, just for fun. \\If you want I plan a sophisticated machine that I train for ages. Find me a pound of metal and a solid piece of wood and I'll factory in stride. It is a gift, because I love the pretty girls!"
-msgstr ""
+msgstr "Здесь? Сейчас? Но мне скучно! То есть, мне скучно до точки, где уже хуже быть не может... Знаешь что? Я сижу без дела, поэтому если ты дашь мне что-нибудь, связанное с оружием, я сделаю это бесплатно, просто для удовольствия.\\Если хочешь, я разрабатываю сложную машину. Найди мне фунт металла и целый кусок дерева, и я кое-что смастерю. Это подарок, потому что я люблю красивых девушек!"
 
 msgid "///BARKEEPER////"
-msgstr ""
+msgstr "///БАРМЕН////"
 
 msgid "Pssst! Hey you!"
-msgstr ""
+msgstr "Пссс! Эй!"
 
 msgid "Pssst! Hey you! Come help me!\\I dare not leave my hostel since these demons attacked me!"
-msgstr ""
+msgstr "Пссс! Эй! Иди и помоги мне!\\Я не могу покинуть отель после нападения тех демонов!"
 
 msgid "I'll get rid of right away!"
-msgstr ""
+msgstr "Я разберусь с этим немедленно!"
 
 msgid "Wait, I have other details to be worked before..."
-msgstr ""
+msgstr "Подожди, у меня есть дела поважнее..."
 
 msgid "Hey! I still need you! Help me, I can not stand to stay locked up here!"
-msgstr ""
+msgstr "Эй! Ты все еще мне нужен! Помоги мне, я не могу сидеть здесь вечно!"
 
 msgid "Thank you, I do not know where to go but at least I'm going to run away from here!"
-msgstr ""
+msgstr "Спасибо, я не знаю, куда идти, но хотя я заберусь подальше отсюда!"
 
 msgid "You hear a howl of pain in the distance... Looks like the voice of the innkeeper..."
-msgstr ""
+msgstr "Вы слышите болезненный крик неподалеку... Похоже это голос хозяина..."
 
 msgid "///SERGEANT WALDEMAR////"
-msgstr ""
+msgstr "///СЕРЖАНТ ВАЛЬДЕМАР////"
 
 msgid "Greetings my guys. You are here safe because me and my men are guarding the place. If you go by and you find survivors sends us, we represent the last vestiges of civilization!"
-msgstr ""
+msgstr "Приветствую парень. Здесь ты в безопасности, потому что я и мои люди охраняют это место. Если ты пройдешь мимо и не найдешь живых, значит мы представляем последние остатки цивилизации!"
 
 msgid "Greetings, female. I have nothing against you but avoids dispel my men, they need all their concentration to keep the walls of the Abbey..."
-msgstr ""
+msgstr "Приветствую даму. Я ничего не имею против вас, но не мути моих людей, они должны быть внимательными чтобы уберечь стены Аббатства..."
 
 msgid "I'm Waldemar, Sub-Officer of the Empire. Normally I'm Sergeant but given the circumstances I might as well be Marshall! All these skeletons almost make me regret the barbarians. At least they were flesh and blood like us and killing made sense..."
-msgstr ""
+msgstr "Я Валдемар, младший офицер Империи. Обычно я Сержант, но учитывая обстоятельства, я мог бы быть даже Маршалом! Все эти скелеты почти заставляют меня жалеть варваров. По крайней мере они из плоти и крови, как и мы, и убийство имело смысл..."
 
 msgid "I can do something for you?"
-msgstr ""
+msgstr "Я могу что-то для тебя сделать?"
 
 msgid "Well no, not now. These horrible creatures seem to ignore the abbey for now... I hope it will last because if they decide to storm it will not stand for long. At least Will is the consolation of dying all together!"
-msgstr ""
+msgstr "Нет, не сейчас. Эти ужасные существа, похоже, пока не трогают аббатство... Я надеюсь, что так будет и дальше, потому что если они решат штурмовать то аббатство не устоит. По крайней мере мы все умрем в святом месте!"
 
 msgid "What is happening?"
-msgstr ""
+msgstr "Что тут творится?"
 
 msgid "Ah! What a question! Well I can not answer you specifically. Everything seems to be Ruhigland suddenly invaded by hostile creatures, corpses and skeletons strangely resuscitated... Some point to a bloodthirsty creature that walks the night, nicknamed the \"reaper\", others talk of a monstrosity in the eyes that shine like fire in the forest... Going to sort out the fantasies of these bumpkins and reality!\\In any case many of us think that all this has something to do with a barbarian revenge..."
-msgstr ""
+msgstr "Ах! Хорошый вопросик! Ну, я не могу тебе ответить. Похоже, что в Рухигланд внезапно вторглись враждебные существа, трупы и ходячие скелеты... Некоторые говорят о кровожадном существе, что бродит здесь по ночам, по прозвищу \"жнец\", другие говорят о чудовище, у которого глаза сияют как огонь в лесу... Надо разобраться что из этих слов мужиков фантазии а что реальность!\\В любом случае, многие из нас думают, что все это как-то связано с местью варваров..."
 
 msgid "Was he outside of the survivors of the abbey?"
-msgstr ""
+msgstr "А есть кто-то, кто выжил за пределами аббатства?"
 
 msgid "Some... The old Ridwen Myrta and her niece who live in the woods to the south, the innkeeper of the Wolf peeled who has cut his home, and Jacquou, the poor fool who walks around the village. He is not afraid of him anything! He wanders the night with strange small bright objects. I wonder how he manages to survive amidst all that, but he refuses to come with us!"
-msgstr ""
+msgstr "Некоторые... Старая Ридвен Мирта и ее племянница, которые живут в лесу на юге, хозяин Волка, и Жакоб, бедный дурак, который ходит по деревне. Он не боится ничего! Он бродит по ночам со странными маленькими яркими предметами. Интересно, как ему удается выжить среди всего этого, но он отказывается идти с нами!"
 
 msgid "///FARMER SUITE///"
-msgstr ""
+msgstr "///СВИТА ФЕРМЕРА///"
 
 msgid "Beware the reaper!"
-msgstr ""
+msgstr "Бойся жнеца!"
 
 msgid "The reaper?"
-msgstr ""
+msgstr "Жнеца?"
 
 msgid "Yeah, the reaper! You know? This is kind of lanky beast with a head! The horrible is the reaper! And terrible, nobody can kill him, ten peasants died with their fork while trying to zigouiller. Y comes out at night, then must be locked at night. The day never seen!"
-msgstr ""
+msgstr "Да, жнеца! Знаешь? Это такой длинный зверь с головой! Этот жнец это просто ужас! И страшно то, что никто не может его убить, десять крестьян умерли с вилами в руках, пытаясь его завалить. Он выходит ночью, поэтому ловить его надо ночью. Днем его никто не видел!"
 
 msgid "///DOORS///"
 msgstr "///ДВЕРИ///"
@@ -406,121 +406,121 @@ msgid "It's closed."
 msgstr "Она закрыта."
 
 msgid "//MISSED RELIC///"
-msgstr ""
+msgstr "//ПОТЕРЯННАЯ РЕЛИКВИЯ///"
 
 msgid "The reliquary of St. Galswintha is empty!"
-msgstr ""
+msgstr "Гробница Св. Галсвинты пуста!"
 
 msgid "///MONK ALCUIN///"
-msgstr ""
+msgstr "///МОНАХ АЛКУИН///"
 
 msgid "Hello! I am brother Alcuin. I am the second brother of the abbey, although Hademar consider myself his slave..."
-msgstr ""
+msgstr "Привет! Я брат Алкуин. Я второй брат аббатства, хотя Гадемар считает меня своим рабом..."
 
 msgid "What can you tell me about the abbey?"
-msgstr ""
+msgstr "Что ты можешь сказать мне об аббатстве?"
 
 msgid "The abbey of Saint Clodomir is a venerable institution known throughout Ruhigland. As you can see it now serves as a refuge for neighbors who escape the horror that fell on us..."
-msgstr ""
+msgstr "Аббатство Святого Клодомира это уважаемое учреждение, известное на весь Ругигленд. Как видишь в настоящее время оно выступает в качестве убежища для соседей, спасающихся от ужасов, что к нам пришли..."
 
 msgid "What do you know about relics?"
-msgstr ""
+msgstr "Что ты знаешь о мощах?"
 
 msgid "The relics are treasures that ensure the reputation of the abbey. Specifically they are useless, except to perform miraculous incantations once a century... And yet these incantations do not always work!\\Since monks were lost in the catacombs we banned their access, and Hademar no one cares much. I'm sure he does not even know that relics disappeared..."
-msgstr ""
+msgstr "Мощи это сокровища, которые обеспечивают репутацию монастыря. Всего они ни на что не годятся, кроме произношения заклинания раз в столетие... И даже эти заклинания не всегда работают!\\Когда в катакомбах погибли монахи мы закрыли туда доступ, а Гадемар не очень о них заботится. Я уверен, что он даже не знает, что мощи исчезли..."
 
 msgid "It lacks a relic?"
-msgstr ""
+msgstr "Мощи исчезли?"
 
 msgid "Yes, before Hademar happens, the monks indulged in questionable practices. Some farmers were paid to show them the relics... And one day one of them, the pair of eyes of St. Galswintha, disappeared due to the negligence of a brother..."
-msgstr ""
+msgstr "Да, до Гадемара монахи предавались сомнительным практикам. Некоторые фермеры платили чтобы увидеть мощи... И вот однажды одна из реликвий, пара глаз Св. Галсвинты, пропали из-за халатности брата..."
 
 msgid "Where can I find it?"
-msgstr ""
+msgstr "Где я могу их найти?"
 
 msgid "Hm... I do not know. Some pointed to a thief, other animal that would have won the thing... I do not know what is the exact reality about this unfortunate event! Yet there is something that should simplify searching: the eyes have the ability to glow in the dark. If it's any help..."
-msgstr ""
+msgstr "Хм... Я не знаю. Некоторые указывали на вора, другие на животных... Я не знаю, что из этого является правдой о несчастном случае! Но есть кое-что, что должно упростить поиск: глаза обладают способностью светиться в темноте. Если это как-то поможет ..."
 
 msgid "///TEUDERIC///"
-msgstr ""
+msgstr "///ТЕДЕРИК///"
 
 msgid "Forgotten by all the gods... a human being, a real, flesh!\\I did not see one day...\\Help me to die! I want to go to my grave and find rest but I can not do it alone!"
-msgstr ""
+msgstr "Забытый всеми богами... человек, реальная, плоть!\\Я не видел такого уже...\\Помоги мне умереть! Я хочу к моей могиле чтоб обрести покой, но я не могу сделать это сам!"
 
 msgid "I'm Teuderic, King of the Old People. Not the brightest for sure, I was duped and betrayed by a bunch of mediocre courtiers. When I realized their treachery I have them all hanged. But since my death their ghosts haunt me incessantly, and it's been ages since I experienced this hellish existence without hope of rest. Only a living can get rid of it!"
-msgstr ""
+msgstr "Я Тедерик, король Древних Людей. Не самый яркий, я был обманут и предан кучкой посредственных придворных. Когда я понял их измену я их повесил. Но со времени моей смерти их призраки постоянно меня преследуют, и я терплю это адское существование уже веками без надежды на отдых. Только живой может от него меня избавить!"
 
 msgid "Meurs, skeletal abomination!"
-msgstr ""
+msgstr "Умри, скелетная гадость!"
 
 msgid "For now I have something else to do..."
-msgstr ""
+msgstr "В настоящее время у меня есть другая работа..."
 
 msgid "How can I help you?"
-msgstr ""
+msgstr "Как я могу помочь?"
 
 msgid "It's simple. Wait a few moments and they will come back. Gunther, Ingmar, Boris and others, these vile pigs! I am powerless against them but you will be able to defeat them. Or perish by the way, I must warn you they are more powerful dead than they were alive!"
-msgstr ""
+msgstr "Это просто. Подожди несколько секунд, и они вернутся. Гюнтер, Ингмар, Борис и другие, эти мерзкие свиньи! Я бессилен против них, но ты сможешь победить их. Или погибнуть, кстати, я должен предупредить тебя, что мертвые они более сильные чем когда были живы!"
 
 msgid "Okay."
-msgstr ""
+msgstr "Хорошо."
 
 msgid "In this case I'm going!"
-msgstr ""
+msgstr "Ну тогда я пошел!"
 
 msgid "At the enemy!"
-msgstr ""
+msgstr "На врага!"
 
 msgid "You'll die, vermin!"
-msgstr ""
+msgstr "Вы сдохнете, паразиты!"
 
 msgid "Finally... freedom..."
-msgstr ""
+msgstr "Наконец... свобода..."
 
 msgid "///Johannes///"
-msgstr ""
+msgstr "///Йоханнес///"
 
 msgid "Forgiveness young person, but this relic comes back to me! I was just going to take it when you arrived! Hi hi!"
-msgstr ""
+msgstr "Извини парень, но эта реликвия вернется ко мне! Я как раз собирался взять ее, когда ты пришел! Ха-ха!"
 
 msgid "Go, my dear, you take care of our valiant heroes!"
-msgstr ""
+msgstr "Иди миленький, позаботься о наших доблестных героях!"
 
 msgid "Go, my dear, you take care of that little idiot!"
-msgstr ""
+msgstr "Иди миленький, позаботься об этой крысе!"
 
 msgid "Idiot, you'll run out to follow me..."
-msgstr ""
+msgstr "Идиот, ты побежишь за мной..."
 
 msgid "Go a little exercise!"
-msgstr ""
+msgstr "Иди немного потренируйся!"
 
 msgid "From Johannes!"
-msgstr ""
+msgstr "От Йоханнеса!"
 
 msgid "It's time that I make you suffer... personally!"
-msgstr ""
+msgstr "Пришло время, когда я заставлю тебя страдать... лично!"
 
 msgid "\"Sunday, November 5:\\\\Abbey apparently based on huge catacombs containing the relics of four venerable saints. If this rental is a huge source of prestige for the Abbey, our good father Hademar has regret in the R block access. It seems that some zealous monks, eager to pray with Saints got lost in the maze and never resurfaced.\\We therefore got access to a tiny part of the catacombs: two rooms equipped with cells of prayer and rest and in a library. The rest is strongly condemned by a heavy door that it is forbidden to touch.\\\\Tuesday, November 7:\\\\The cells arranged in order of the Father Hademar in these ancient catacombs offer an ideal place for meditation. The darkness, the silence is such that the monk is totally receptive to subtle signs of Very Large sometimes seems whispered something his humble nearest ear.\\\\Friday, November 10:\\\\I must admit that sometimes my mind, in this silence delicious, seems to me to play tricks. A bit like a corpse found in length show ends nearest the viewer a discrete movement, the deep silence of the cells gives rise to illusions of sounds, sometimes troubling when consider they emanate actually from the depths of our soul.\\\\Sunday November 13:\\\\After the celebration of the Sunday service I spent a few hours reading in the library nearest the catacombs. Leaving the door open because I was alone, I heard, this time I'm sure, sounds strange and disturbing, like moans alternating expression of pain and the pleasure of obscene. Believing be the subject of a joke of Lothair, a brother who loves nearest distract us beyond reason, I have traveled the corridor hoping to uncover, in vain... Noises quickly stopped.\\\\Monday, November 14:\\\\I just heard strange noises again nearest to the catacombs, and now I know where they come from: the other side of the forbidden door! Certainly there are creatures on the other side. Of tormented souls seeking rest, even, who knows, monks who eventually lost find their way, miraculously surviving in the catacombs for years? I know that Our Almighty knows we be challenged by the most incredible wonders!\\Despite the ban Hademar nearest I will get their meeting tomorrow. Whether men or spirits there can be as benevolent entities are based in places where not one but four Saints!\""
-msgstr ""
+msgstr "\"Воскресенье, 5 ноября:\\\\Аббатство построено на огромных катакомбах с мощами четырех важных святых. Это место является огромным источником престижа для аббатства, наш добрый отец Гадемар каялся в блоке доступа R. Кажется, что некоторые горячие монахи, желая, молиться со Святым заблудились в лабиринте и не вернулись.\\Таким образом, мы получили доступ к крохотной части катакомб: две комнаты оборудованы камерами для молитвы и отдыха, и библиотека. Остальные закрыты тяжелыми дверьми, которые запрещено трогать.\\Вторник, 7 ноября:\\\\Каиеры расположены в порядке от Отца Гадемара и эти древние катакомбы являются идеальным местом для медитации. Темнота, такая тишина, что монах полностью восприимчив к тонким признакам необъятного и иногда кажется, что Оно даже шепчет тебе на ухо.\\\\Пятница, 10 ноября:\\\\Я должен признаться, что иногда мне кажется, что в этой тишине разум начинает со мной играть. Появляются какие-то картинки, которые приближаются к зрителю, глубокое молчание клеток приводит к звуковых иллюзий, иногда начинаешь волноваться, если принять, что они действительно исходят из глубины нашей души.\\\\Воскресенье, 13 ноября:\\\\После проведения Воскресной службы я провел несколько часов за чтением в библиотеке в ближайших катакомбах. Оставив дверь открытой, потому что я был один , я слышал, на этот раз я уверен, странные и тревожные звуки, будто стон от боли, сменяется удовольствием. Считая, что это шутит брат Лотар, который слишком любит пошутить, я пошел по коридору в надежде обнаружить, зря... Шум быстро затих.\\\\Понедельник, 14 ноября:\\\\Я только-что снова слышал странные звуки в ближних катакомбах, и теперь я знаю, откуда они берутся: с другой стороны запрещенных дверей! Там наверное есть какие-то существа. Измученные души, которые ищут спокойствия, кто знает, может даже монахи, которые не смогли найти путь назад и чудом выжили в катакомбах в течение многих лет? Я знаю, что наш Всемогущий может послать нам в противостояние невероятные чудеса!\\Несмотря на запрет Гадемара я пойду туда завтра. Кто бы там ни был, люди или духи, они могут быть дружелюбными, это все же места Четырех Святых!\""
 
 msgid "Holy Frenegonde was a sensitive and creative young woman, who liked to play the penny whistle in the green meadows of his childhood. From exquisite beauty, she was in the prime of life when the legions of filthy barbarians poured on our good earth Ruhigland.\\Haksil Wurgasht, one of the powerful chiefs of these tribes claims, arrived one day with a small band of barbarians very excited nearest the idea of shedding blood and burning villages.\\Foreseeing the catastrophe to come nearest to his modest village of Pilunder, Frenegonde, basking in the glory of martyrs, fell nearest knees at the feet of Haksil, offering him tribute in his mouth to save the village.\\The Barbarian, surprised by this unexpected reception, first enter their face with his powerful hands, then grabbed him by the ears while his office, according to what had seemed you typically use it barbaric.\\Things were going well and the atmosphere relaxed subtly, when a lieutenant Haksil, very ugly and deformed, had an access of jealousy and of his heavy club struck the skull of unfortunate Frenegonde.\\The brutality of the coup was an explosion in the skull Frenegonde and left ears of the unfortunate in the hands of Haksil. The male member of the latter ever remained nearest the mouth of the Saint, as the teeth of the unfortunate remained tight nearest his death.\\To expiate his fault, Lieutenant angry undergoes triple removal of his member and his ears."
-msgstr ""
+msgstr "Святая Френегонда была чувственной и творческой молодой женщиной, которая в детстве любила играть свистульки в зеленых лугах. С изысканной красотой, она была в расцвете сил, когда легионы грязных варваров вылились на земли Рухингарда.\\Хаксил Вургаст, один из сильнейших главарей этих племен, прибыл в один прекрасный день с небольшой группой варваров, захваченных идеей ближнего кровопролития и сожжением деревень.\\Предчувствуя, что скоро они придут к ее скромноой деревне Пилундер, Френегонда, наслаждаясь славой мученицы, упала на колени к ногам Хаксила, предлагая ему себя в замен на пощаду села.\\Варвар, удивленный этим неожиданным приемом, сначала взял ее за голову своими мощными руками, потом схватил ее за уши, согласно варварских обычаев.\\Дела шли хорошо и обстановка разрядилась, когда лейтенант Хаксил, с очень искаженным лицом, в припадке ревности своей тяжелой булавой разбил череп несчастной Френегонды.\\Хаксил жестоко провернул булаву в черепе Френегонды и уши несчастной остались в его руках."
 
 msgid "Joachim was a shepherd who spoke little. He led an austere life, retired to the mountains and never went battle its congeners. Many took him for a fool and had against him nearest the greatest contempt... His only good, except an animal skin and a few sheep, was a strong shepherd's staff who fanned gossip as much jealousy (that detail the lives of Joachim, however, remains obscure).\\When the barbarians who were ruining everything Ruhigland penetrated in our sweet country, the people flowed loosely, leaving the weak and the innocent. Joachim was to be part of the batch of victims.\\The barbarians, led by the formidable Haksil Shortcut, gave away the women, children and the remaining animals, probably by engaging nearest cannibalism (in all likelihood more greedy than rituals).\\It is found that a heart of flesh adult human, we considered its size as that of Joachim. Certainly the whole village was worth a martyr canonization in good and due form, but the merit of his nearest relative Joachim congeners was to have left something to be a relic for posterity."
-msgstr ""
+msgstr "Иоахим был пастухом, который мало говорил. Он вел строгий образ жизни, ходил в горы и никогда не шел с боем на собратьев. Многие считали его дураком и сильно его презирали... Его собственностью, кроме животной кожи и нескольких овец, был крепкий пастушый посох, который вызвал много зависти (однако, эта деталь жизни Иоахима остается малопонятной).\\Когда варвары, все разрушали, проникли в Рухигланд, люди бежали, оставляя слабых и младенцев . Иоахим должен быть одной из жертв.\\Варвары, возглавляемые Хаксилом, съели женщин, детей и животных, которые остались (это вероятно еще страшнее ритуалы).\\Было найдено сердце взрослого человека, по его размеру мы предположили что это Йоахим. Конечно целая деревня стоила канонизации мученика в хорошей и надлежащей форме, но достоинство Иоахима в отношениях с его собратьями оставило что-нибудь для подражания его потомками."
 
 msgid "Galswintha was already known from her youth for the purity of her thoughts. Her extreme modesty made him look away even when innocent animals were mating nearest proximity. Her only pleasure was embroidery, she performed with a proven talent for miles nearest the nearest round...\\She must have known the torment that would ensure her fame with the terrible barbarian invasions, when his unfortunate fate made her cross the sinister Haksil Shortcut, whose virility diminished by the Office of Holy Frenegonde had strengthened the bestial cruelty.\\Nearest always looking for new distractions to entertain the troops, gave the Haksil Galswintha nearest congeners sordid games with pets village (games whose moral condemnation to discuss the details).\\Asked to attend the show by the infamous invaders, who hoped to force then indirectly to take part, had the merit Galswintha thrice holy to mutilate his own flesh to escape its nearest vision. With a gesture of defiance and ignoring any pain, she tore her eyes with her fingers and threw for at her feet, her hollow eyes weeping blood in abundance.\\Her courageous act was to unfortunately not provided to avoid obscene and Cruel games Haksil that because they can not steal her virtue-even the horrible task entrusted nearest a strong bull."
-msgstr ""
+msgstr "Галсвинта было известной при ее молодости за чистоту своих мыслей. Ее скромность заставляла ее отвести взгляд даже тогда, когда рядом сношались невинные животные. Ее единственной радостью была вышивка, она вышивала с явным талантом...\\Она должна была догадаться, какие муки обеспечят ей славу от страшных вторжений варваров, когда ее несчастная судьба заставила ее попасть на путь зловещего Хаксила, и ей хватило мужества повторить подвиг Святой Френегонды.\\Почти все время ища новые развлечения для войска , ближайшие родственники проводили в деревне грязные игры с домашними животными (их описание вызовет лишь моральное осуждение).\\После попытки захватчиков заставить Галсвинту принять участие в шоу, Галсвинта трижды искалечила свое тело, чтобы не видеть этих ужасов. Игнорируя любую боль, она рвала на себе глаза пальцами и бросила их под ноги, она истекала кровью со слезами.\\Ее мужественный поступок, к сожалению, не позволил избежать непристойных и жестоких игр Хаксила, поскольку даже это его не убедило."
 
 msgid "Saint Clodomir, just between the righteous, is the largest ever known Ruhigland Saint.\\Renowned for his wisdom, he was accustomed to lift the middle finger of his right hand in a gesture of appeasement when the inhabitants of the Old People bickered, which about a misplaced fence, which about a poultry disappeared suspiciously. At the end of his speech, he invariably threw an acorn on the ground to signify that he had finished, his every action is as a grain of wisdom designed to thrive as the venerable oak.\\A constant friendly smile on the face, He stated the justice of his sweet voice, without ever raising his voice and the good farmers - as their lords - accepted his judgment with these words again and again repeated: \"Just spoke Clodomir the raised finger, he threw the acorn Everything is set!\".\\When the horrific hordes of barbarians beastly manners well known befell Ruhigland, spreading desolation, Clodomir reassured his people: he would talk to these thugs and would surely lambs, because justice is born of love, and it was missing, uneducated poor, the revelation that the values of the Old People to stop doing evil!\\Clodomir then crossed with his usual calm smoldering villages to talk with the barbarians. Meeting one of the leaders of these, named Wilankar Wurgasht he wore a friendly smile and lifted his usual middle finger as a sign of temperance. Las! The other believed he was about to cast a spell, and his sharp sword, cut off in a flash the finger of the holy man, then are arms, and finally his head. His plan is accomplished, the bloodthirsty brute made a pendant Clodomir macabre finger and gave the rest of his body and its reservation of acorns to pigs hungry, bursting into a laugh like the roar of a wild beast."
-msgstr ""
+msgstr "Святой Клодомир, действительно является крупнейшим когда-либо известным Святым Рухигланда.\\Известный за его мудрость, он привык поднимать средний палец его правой руки в жесте умиротворения, когда представители Древних Людей о заграждениях, или о домашней птице, что подозрительно исчезла. В конце его речи, он неизменно бросал желудя, как признак того, что он закончил, его каждое действие было зерном мудрости, что проростало как важный дуб.\\С постоянной доброжелательной улыбкой на лице, он деял правосудие его сладким голосом, никогда не повышал голос и хорошие фермеры - как его лорды - принимали его суждения со следующими словами: \"Только подняв палец говорил Клодомир, он бросил желудь, Все решено!\".\\Когда ужасные орды варваров, хорошо известных, дошли к Рухигланду, неся опустошение, Клодомир успокоил своих людей: он поговорит с этими головорезами как с ягнятами, потому что правосудие рождается из любви, и они должны узнать это откровение и ценности Древних Людей, чтобы перестать делать зло!\\Тогда Клодомир, как обычно спокойный, пошел через тлеющие села, чтобы поговорить с варварами. Встретившись с одним из руководителей на имя Виланкар Вурхгаст, он нацепил доброжелательную улыбку и поднял его правій средний палец в знак сдержанности. И вот тебе! Другой подумал, что Клодомир хочет осуществить заклинание, и его острый меч мгновенно отрезал палец святого мужа, потом - руки, и наконец голову. Тогда кровожадный варвар сделал подвеску из пальца Клодомира а остальные останки вместе с желудями бросил голодным свиньям, смеясь подобно реву дикого зверя."
 
 msgid "This book is an account of the inventory of the relics of the abbey of Saint Clodomir.\\\\\\\\Heart of St. Joachim\\\\The heart of Saint Joachim was found ninety-eight years after his unfortunate death , in a bazaar. He slept in a small wooden box. At the sight of the body withered by years, a particularly devout buyer felt a warmth divine invade, and he called upon God to destroy the field he could not see where the noble body of the saint. As the sentence invoked did not come, the happy man knew he was right and gave the relic to the abbey of Saint Clodomir.\\The heart of St. Joachim is still preserved at St. Clodomir. His condition is correct.\\\\Oreille de Saint Frenegonde\\\\ear of St. Frenegonde was miraculously found one hundred twenty-seven years after his terrible ordeal. Canon Ambroisius was discovered in the stomach of a sow in skinning the animal to make a sausage. Illuminated by divine grace, he immediately recognized the ear as belonging to the saint.\\The ear is preserved in the catacombs of St. Clodomir, in fair condition, though somewhat dry.\\\\\\Eye of Santa Galswintha\\\\The eyes of St. Galswintha appeared in a ceremonial necklace worn by one of the last kings of barbarians Ruhigland. Struck down by a warrior led a holy faith, and the abominable creature freed the precious relic which became property of the abbey.\\Galswintha holy eyes have unfortunately left the catacombs of St. Clodomir following an unfortunate event. A monk of evil memory having judged it expedient to leave the eyes of the Holy shrine for its exhibit at the sight of peasants of his knowledge, the relic disappeared mysteriously. The rumor involves Katrina (suspected of witchcraft) but following the deaths by a sudden illness of three successive investigators recovering the relic has been postponed.\\\\The finger of Saint Clodomir\\\\The mummified finger Saint Clodomir was found in the loot of a barbarian king, who used it as a pen to scribble some incomprehensible gibberish. This use explains the black color of the holy body, which is otherwise in excellent condition."
-msgstr ""
+msgstr "Эта книга является журналом инвентаризации мощей аббатства Святого Клодомира.\\\\\\\\Сердце Св. Иоахима\\\\Сердце Святого Иоахима было найдено за девяносто восемь лет после его смерти, на базаре. Оно лежало в маленькой деревянной шкатулке. Особенно набожный покупатель чувствовал, что тело, которое не разлагается годами, излучает тепло, и он призвал Бога уничтожить поле, где было найдено тело святого. Поскольку просьба не была выполнена, счастливый человек знал, что он прав, и отдал мощи аббатству Святого Клодомира.\\Сердце Святого Иоахима все еще сохраняется в аббатстве. Его состояние удовлетворительное.\\\\Ухо Святой Френегонды.\\\\Ухо Святой Френегонды было найдено сто двадцать семь лет после его ужасного тяжелого испытания. Ухо было обнаружено в животе свиньи, которую разделяли на колбасу. Ухо святого было сразу опознано, так как светилось божественной благодатью.\\Ухо хранится в катакомбах Святого Клодомира, в неплохом состоянии, хотя немного сухом.\\\\\\Глаз Святой Галсвинты\\\\Глаза Святой Галсвинты появились в церемониальном ожерелье, что носил один из последних королей варваров Рухигланда. Он был убит воином святой веры, а мощи были переданы аббатству.\\Святые глаза Галсвинты увы оставили катакомбы Святого Клодомира через несчастный случай. Монах с плохой памятью счел целесообразным вынести глаза из святыни для показа крестьянам и реликвия таинственно исчезла. Слухи указывают на Катрин (подозревается в колдовстве), но через внезапные смерти трех человек, которые искали глаза, поиски были отложены.\\\\Палец Святого Клодомира.\\\\Мумифицированный палец Святого Клодомира был найден у варварского короля, который использовал это как ручку для написания какой-то непостижимой тарабарщины. Это объясняет, почему святые мощи имеют черный цвет, но в целом они в отличном состоянии."
 
 msgid "To Vlanker brother, honorary monk of the abbey.\\\\As everyone knows the abbey of Saint Clodomir is considered a beacon of faith and imperial heirs of the Old People. Founded three centuries after the death of the saint whose name it bears, not far from where Clodomir was eaten by pigs, it contains many unknown treasures of ordinary mortals.\\Built on an underground necropolis forgotten at the time of barbarian rule, the abbey was presented to them as an ignorant vulgar to salting ham. The cult can not be done within the building itself for fear of arousing the suspicion of the invaders, the faithful of the Old courageous people settled in the catacombs and enlarged gradually.\\The underground network became a well huge maze under the action of the faithful who find themselves more and more to pray. Digging became an act of faith, and fervor was such that under the barbarous oppression catacombs stretched themselves in colossal proportions (to the point that one should attempt to venture without a plan).\\Once the period of barbarian rule ended, the catacombs were evacuated by the faithful and collected the remains of countless martyrs of the occupant. Four of them were canonized because of the exemplary nature of their sacrifice: the kind Frenegonde, Joachim the shepherd, and the pure Galswintha course Clodomir.\\One might also note the presence of the tomb of Teuderic, one of ancient kings of our people. Prohibits burial in the crypt of the kings of the capital, as his reign was deemed pathetic, he was taken to St. Clodomir respect for the sovereign lineage. Most aware of our history know that Teuderic had indeed prevailed under the influence of advisors and dishonest fancier one than the other (we still remember the magician Boris invert the fencing master Gunther paralytic and Ingmar lecherous Minister who obtains the favor of successive Teuderic wife and his daughter Princess Theodora)."
-msgstr ""
+msgstr "От брата Вланкера, почетного монаха аббатства.\\\\Как известно аббатство Святого Клодомира считается маяком веры и имперским наследником древних Людей. Было основано три столетия после смерти святого, чье имя оно носит, поблизости от места, где Клодомира поели свиньи, и содержит много неизвестных для обычных смертных сокровищ.\\Стоит на подземном некрополе, забытом во время варварского правления, аббатство было представлено этим необразованным существам как завод для соления ветчины. Культ не мог проводиться в самом здании, чтобы захватчики ничего не заподозрили, поэтому люди поселились в катакомбах и постепенно их расширяли.\\Подземелья разрослось в огромный лабиринт под действием верующих, которые все больше и больше молились. Рытье тоннелей стало проявлением веры и упорство было такое, что под гнетом варваров катакомбы достигли колоссальных размеров (таких, что без плана нельзя было делать нечего).\\После окончания периода правления варваров катакомбы были эвакуированы и верующие собрали останки бесчисленных мучеников. Четыре из них были канонизированы в связи с примерным характером их жертвы: добрая Френегонда, Йоахим пастырь, чистая Галсвинта и конечно Клодомир.\\Можно также отметить наличие могилы Тедерика, одного из царей Древних Людей. Его не разрешили хоронить в склепе царей, потому что его правление считалось жалким, и он был доставлен в катакомбы Св. Клодомира. Большинство знают о том, что Тедерик действительно подвергался напору советников и нечестных людей (мы до сих пор помним мага превращения Бориса, парализованного учителя фехтования Гюнтера и развратного Министра Ингмара, который использовал жену Тедерика и его дочь принцессу Тодору)."
 
 msgid "Barrel"
 msgstr "Бочка"
@@ -535,13 +535,13 @@ msgid "Door"
 msgstr "Дверь"
 
 msgid "Morbid Arquebuser "
-msgstr ""
+msgstr "Болезненный Аркебузер"
 
 msgid "Morbid Puppet"
-msgstr ""
+msgstr "Болезненная Марионетка"
 
 msgid "Skeletton Guardian"
-msgstr ""
+msgstr "Скелет Стражник"
 
 msgid "Dark Shadow"
 msgstr "Темная тень"
@@ -550,7 +550,7 @@ msgid "Demonic Priest"
 msgstr "Демонический священник"
 
 msgid "Tainted Militia : Bully"
-msgstr ""
+msgstr "Запятнанная Милиция : Хулиган"
 
 msgid "Wandering Stones"
 msgstr "Блуждающие камни"
@@ -562,61 +562,61 @@ msgid "Reliquary"
 msgstr "Ковчег"
 
 msgid "Gaunt Dog"
-msgstr ""
+msgstr "Худощавый Пес"
 
 msgid "Zombified Peasant "
-msgstr ""
+msgstr "Зомбированный Крестьянин"
 
 msgid "Putrid corpse"
-msgstr ""
+msgstr "Гнилостный труп"
 
 msgid "Romulus the merchant"
 msgstr "Ромул торговец"
 
 msgid "Rare Trader"
-msgstr ""
+msgstr "Редкий торговец"
 
 msgid "The Great Questor"
-msgstr ""
+msgstr "Большой Квестор"
 
 msgid "Lever"
 msgstr "Рычаг"
 
 msgid "Zombie macer"
-msgstr ""
+msgstr "Раскалыватель зомби"
 
 msgid "Brother"
 msgstr "Брат"
 
 msgid "The Reaper"
-msgstr ""
+msgstr "Жнец"
 
 msgid "Pack Chief"
-msgstr ""
+msgstr "Главарь стаи"
 
 msgid "Alcuin the archivist"
 msgstr "Алкуин архивариус"
 
 msgid "Infernal Dog"
-msgstr ""
+msgstr "Адская собака"
 
 msgid "Abbe Hademar"
-msgstr ""
+msgstr "Аббат Гадемар"
 
 msgid "Abbey Shrine"
-msgstr ""
+msgstr "Святыня аббатства"
 
 msgid "Catacombs Shrine"
-msgstr ""
+msgstr "Святыня в катакомбах"
 
 msgid "Graveyard Shrine"
-msgstr ""
+msgstr "Святыня на кладбище"
 
 msgid "Barkeeper behind the door"
 msgstr "Бармен за дверью"
 
 msgid "Crusader"
-msgstr "Crusader"
+msgstr ""
 
 msgid "Concubine"
 msgstr ""
@@ -625,25 +625,25 @@ msgid "Pistolero"
 msgstr ""
 
 msgid "Skeletton Lord"
-msgstr ""
+msgstr "Лорд скелет"
 
 msgid "Burning charcoal golem"
-msgstr ""
+msgstr "Горящий улгяной голем"
 
 msgid "Bones stack"
-msgstr ""
+msgstr "Куча костей"
 
 msgid "Rognorak the blacksmith"
-msgstr ""
+msgstr "Рагнорак кузнец"
 
 msgid "Sarcophagus"
 msgstr "Саркофаг"
 
 msgid "Wandering cemeteries"
-msgstr ""
+msgstr "Блуждающее кладбище"
 
 msgid "Mass grave (Creates wanderers)"
-msgstr ""
+msgstr "Братская могила (Создает путешественников)"
 
 msgid "Passage"
 msgstr "Проход"
@@ -658,25 +658,25 @@ msgid "Sergeant Waldemar"
 msgstr "Сержант Волдемар"
 
 msgid "Writing case"
-msgstr ""
+msgstr "Пенал"
 
 msgid "Corrupted peasant"
-msgstr ""
+msgstr "Поврежденный крестьянин"
 
 msgid "Offshoot"
-msgstr ""
+msgstr "Отросток"
 
 msgid "Tomb of King Teuderic"
-msgstr "Гробница короля Теудерика"
+msgstr "Гробница короля Тедерика"
 
 msgid "King Teuderic"
-msgstr "Король Теудерик"
+msgstr "Король Тедерик"
 
 msgid "Teuderic's torment"
-msgstr "Мучения Теудерика"
+msgstr "Мучения Тедерика"
 
 msgid "Johannes the Fallen"
-msgstr ""
+msgstr "Йоханнес Павший"
 
 msgid "Relic"
 msgstr "Реликвия"
@@ -691,7 +691,7 @@ msgid "Leather cuffs"
 msgstr "Кожание манжеты"
 
 msgid "These leather cuffs\\protect the forearm."
-msgstr "Это кожа манжеты\\защищают предплечья"
+msgstr "Эти кожаные манжеты\\защищают предплечья"
 
 msgid "Quilted armor"
 msgstr "Стеганые доспехи"
@@ -700,7 +700,7 @@ msgid "This modest armor consists of a lined\\split leather for cushion the blow
 msgstr "Эта скромная броня состоит из кожаной\\стилки для смягчения ударов"
 
 msgid "Arquebus"
-msgstr ""
+msgstr "Аркебуза"
 
 msgid "This strange object has the power\\to propel projectiles with great metal speed.\\Much better than a bow but more painful to the ears!"
 msgstr "Этот странный объект имеет мощность\\послать снаряды с большой скоростью\\Намного лучше, чем лук, но более болезненно на уши!"
@@ -715,7 +715,7 @@ msgid "Ceremonial dagger"
 msgstr "Цереморниальный кинжал"
 
 msgid "A sharp dagger designed for\\sacrifices during ceremonies."
-msgstr ""
+msgstr "Острый кинжал, предназначенный для\\жертвоприношения во время торжественных церемоний."
 
 msgid "Chainmail"
 msgstr "Кольчуга"
@@ -727,19 +727,19 @@ msgid "Coal"
 msgstr "Уголь"
 
 msgid "Coal is a base material for\\the manufacture of steel"
-msgstr ""
+msgstr "Уголь является основным материалом для\\производства стали"
 
 msgid "Hand crossbow"
-msgstr ""
+msgstr "Ручной арбалет"
 
 msgid "This small throwing weapon\\is handy and fast, however less\\destructive than a firearm."
-msgstr ""
+msgstr "Эта небольшая метательное оружие\\является удобным и быстрым, но менее\\разрушительным, чем огнестрельное оружие."
 
 msgid "Dagger"
 msgstr "Кинжал"
 
 msgid "Thin, pointed dagger\\is a perfect weapon for\\a traitor... or a woman."
-msgstr ""
+msgstr "Тонкий, заостренный нож\\является идеальным оружием для\\предателя... или женщины."
 
 msgid "Minor faith potion"
 msgstr "Малое зелье веры"
@@ -754,10 +754,10 @@ msgid "A monk's robe."
 msgstr "Одежда монаха."
 
 msgid "Great shield"
-msgstr ""
+msgstr "Большой щит"
 
 msgid "This shield protects holder\\from metal from the chest to the feet."
-msgstr ""
+msgstr "Этот щит защищает владельца\\от металла, от груди к ногам."
 
 msgid "Minor health potion"
 msgstr "Малое зелье здоровья"
@@ -766,13 +766,13 @@ msgid "A red and thick liquid,\\tastes disgusting. It is\\certainly not good, bu
 msgstr "Красная и густая жидкость,\\на вкус отвратительная. Это\\не хорошо, но она\\делает свое дело.\\Исцеляет 300 PV."
 
 msgid "Cervelliere"
-msgstr ""
+msgstr "Цервельер"
 
 msgid "This helmet is a\\good head protection."
 msgstr "Этот шлем\\дает хорошую защиту головы."
 
 msgid "Katzbalger"
-msgstr ""
+msgstr "Катцбалгер"
 
 msgid "This terrible two-handed weapon\\is made to kill,\\and not human beings..."
 msgstr "Это страшное двуручное оружие\\сделано, чтобы убивать,\\но не человеческие существа..."
@@ -784,16 +784,16 @@ msgid "This longsword\\is well balanced:\\an excellent weapon."
 msgstr "Этот меч\\хорошо сбалансирован:\\отличное оружие."
 
 msgid "Azure pendant"
-msgstr ""
+msgstr "Лазурный кулон"
 
 msgid "A pretty small pendant."
-msgstr "Довольно небольшой кулон"
+msgstr "Красивый небольшой кулон"
 
 msgid "Iron ore"
 msgstr "Железная руда"
 
 msgid "Iron ore is a basic material for\\weapons and armors crafting."
-msgstr "Медная руда является основным материалом для\\изготовления оружия и доспехов."
+msgstr "Железная руда является основным материалом для\\изготовления оружия и доспехов."
 
 msgid "Ring"
 msgstr "Кольцо"
@@ -805,10 +805,10 @@ msgid "Wooden board"
 msgstr "Деревянная доска"
 
 msgid "A board that can be used to\\make many objects...\\Perhaps the first step in a coffin?"
-msgstr ""
+msgstr "Доска, которая может быть использована для\\изготовления различных вещей...\\Возможно, первый шаг к гробу?"
 
 msgid "Saddle Crossbow"
-msgstr ""
+msgstr "Арбалет всадника"
 
 msgid "..."
 msgstr "..."
@@ -823,7 +823,7 @@ msgid "Short sword"
 msgstr "Короткий меч"
 
 msgid "A steel sword,\\short but sharp."
-msgstr ""
+msgstr "Стальной меч,\\короткий но острый."
 
 msgid "Wrath blade"
 msgstr "Клинок гнева"
@@ -835,61 +835,61 @@ msgid "Two-handed sword"
 msgstr "Двуручный меч"
 
 msgid "This heavy sword crushes\\and does not crack..."
-msgstr ""
+msgstr "Тяжелый меч ломает\\но не ломается..."
 
 msgid "Boots"
 msgstr "Сапоги"
 
 msgid "Devine boots."
-msgstr ""
+msgstr "Божественные сапоги."
 
 msgid "Scarifier"
-msgstr ""
+msgstr "Скарификатор"
 
 msgid "Scarifier is a ceremonial dagger\\used by the terrible killer Lavoisin."
-msgstr ""
+msgstr "Скарификатор это церемониальный кинжал,\\использовавшийся страшным убийцей Лавозином."
 
 msgid "Harold's damnation"
 msgstr "Проклятье Гарольда"
 
 msgid "This shield once belonged to\\the great king Harold."
-msgstr ""
+msgstr "Этот щит когда-то принадлежал\\славному королю Гарольду."
 
 msgid "Reinforced gloves"
-msgstr ""
+msgstr "Усиленные перчатки"
 
 msgid "Strong leather gloves\\reinforced by metal plates."
-msgstr ""
+msgstr "Прочные кожаные перчатки\\усиленые металлическими пластинами."
 
 msgid "Leather hood"
-msgstr ""
+msgstr "Кожаный капюшон"
 
 msgid "A simple leather hood\\offering little protection."
-msgstr ""
+msgstr "Простой кожаный капюшон\\для небольшой защиты."
 
 msgid "Satin robe of the Tearful Widow."
-msgstr ""
+msgstr "Атласные одеяния Плачущей Вдовы."
 
 msgid "A black robe which suit perfectly to a woman in mourning."
-msgstr ""
+msgstr "Черные одежды, которые идеально подходят женщине в трауре."
 
 msgid "Winged mace"
-msgstr ""
+msgstr "Крылатая булава"
 
 msgid "A powerful weapon,\\which crushes the skulls also\\easily than eggs."
-msgstr ""
+msgstr "Мощное оружие,\\которая ломает черепа\\так же легко как яйца."
 
 msgid "Fracasseuse"
-msgstr ""
+msgstr "Фракасус"
 
 msgid "A formidable weapon capable of crushing\\a human skull in one fell swoop.\\\\One-handed weapon."
-msgstr ""
+msgstr "Грозное оружие, которое способно дробить\\человеческий череп одним махом.\\\\Одноручное оружие."
 
 msgid "Flamboyant"
-msgstr ""
+msgstr "Горящий"
 
 msgid "Sword forged in the Hell's flammes\\which belonged to the demon\\before being stole by\\the archangel Michel. This one lose it\\by becoming incarnate\\on Earth and is believed\\gone forever."
-msgstr ""
+msgstr "Меч выкован в пламени Ада\\принадлежавший демону\\перед тем как его похитил\\архангел Михаил. Михаил потерял\\его при воплощении\\на Земле и, как полагают,\\меч был потерян навсегда."
 
 msgid "Timber axe"
 msgstr "Топор лесоруба"
@@ -903,22 +903,22 @@ msgid "Butcher's mace"
 msgstr "Булава мясника"
 
 msgid "This mace has pig killing for first goal.\\But it's also very efficient against demons.\\\\Two-handed weapon."
-msgstr "Это булава предназначена для забоя свиней.\\Но это также очень эффектива против демонов.\\\\Дворучное оружие."
+msgstr "Эта булава предназначена для забоя свиней.\\Но она также очень эффективна против демонов.\\\\Дворучное оружие."
 
 msgid "Leather armor"
 msgstr "Кожаные доспехи"
 
 msgid "Tears of the Tearful Widow"
-msgstr ""
+msgstr "Слезы Плачущей Вдовы"
 
 msgid "A jewel which suit perfectly to a woman in mourning."
-msgstr ""
+msgstr "Драгоценности, которые идеально подходят женщине в трауре."
 
 msgid "Horned barbute"
-msgstr ""
+msgstr "Рогатый шлем"
 
 msgid "A barbarian helmet\\extremely resistant.\\Unavailable in the shops."
-msgstr ""
+msgstr "Шлем варвара,\\чрезвычайно прочен.\\Отсутствует у торговцев."
 
 msgid "Copper ore"
 msgstr "Медная руда"
@@ -933,40 +933,40 @@ msgid "A beautiful precious stone."
 msgstr "Красивый драгоценный камень."
 
 msgid "Blueprint : Horned barbute"
-msgstr ""
+msgstr "Схема : Рогатый шлем"
 
 msgid "Blueprint explaining the construction of a horned barbute."
-msgstr ""
+msgstr "Схема, обьясняющая конструкцию рогатого шлема."
 
 msgid "Blueprint : Chainmail"
 msgstr "Схема : Кольчуга"
 
 msgid "Blueprint explaining the construction of a chainmail."
-msgstr "Схема, объясняющая изготовление кольчуги"
+msgstr "Схема, объясняющая изготовление кольчуги."
 
 msgid "Blueprint : Pendant"
-msgstr ""
+msgstr "Схема : Кулон"
 
 msgid "Blueprint explaining the construction of a pendant."
-msgstr ""
+msgstr "Схема, обьясняющая конструкцию кулона."
 
 msgid "Blueprint : Tiara"
-msgstr ""
+msgstr "Схема : Тиара"
 
 msgid "Blueprint explaining the construction of a tiara."
-msgstr ""
+msgstr "Схема, обьясняющая конструкцию тиары."
 
 msgid "Tiara"
-msgstr ""
+msgstr "Тиара"
 
 msgid "Beautiful tiara orned with an emerald."
-msgstr ""
+msgstr "Прекрасная тиара с изумрудом."
 
 msgid "Cleaver"
-msgstr ""
+msgstr "Дровокол"
 
 msgid "Knife used by butchers,\\he shall rule the chairs."
-msgstr ""
+msgstr "Нож мясников,\\он правит банкетом."
 
 msgid "Emerald"
 msgstr "Изумруд"
@@ -975,7 +975,7 @@ msgid "Gold ore"
 msgstr "Золотая руда"
 
 msgid "Precious metal,\\gold is mainly used in jewelry."
-msgstr ""
+msgstr "Драгоценный металл,\\золото в основном используется в ювелирном деле."
 
 msgid "Bronze shield"
 msgstr "Бронзовый щит"
@@ -984,10 +984,10 @@ msgid "A buckler forged entirely in bronze. \\Very tough."
 msgstr "Щит кованый целиком из бронзы. \\Очень тяжелый."
 
 msgid "Blueprint : Bronze shield"
-msgstr ""
+msgstr "Схема : Бронзовый щит"
 
 msgid "Blueprint explaining the construction of a bronze shield."
-msgstr ""
+msgstr "Схема, обьясняющая конструкцию бронзового щита."
 
 msgid "Diadem of the Tearful Widow"
 msgstr "Диадема Плачущей Вдовы"
@@ -999,31 +999,31 @@ msgid "Set of the Tearful Widow"
 msgstr "Набор Плачущей Вдовы"
 
 msgid "Minor litany"
-msgstr ""
+msgstr "Малый свиток для молитвы"
 
 msgid "This parchment holds the incantation\\required to bless an item."
-msgstr ""
+msgstr "Этот пергамент содержит заклинания\\необходимое для благословения предмета."
 
 msgid "Minor Toxic Cloud Litany"
-msgstr ""
+msgstr "Молитва Малого Токсичного Облака"
 
 msgid "This parchment holds the incantation\\required to bless an item so that this one\\ could drop a toxic cloud on the battlefield.\\This cloud deal 20 damage over 6 seconds."
-msgstr ""
+msgstr "Этот пергамент содержит заклинание\\необходимое для благословения предмета, который сможет\\бросить токсическое облако на поле боя.\\Это облако наносит 20 ущерба за 6 секунд."
 
 msgid "Blueprint : Burning coal golem"
-msgstr ""
+msgstr "Схема : Горящий угольный голем"
 
 msgid "Blueprint explaining how to make a coal golem familiar."
-msgstr ""
+msgstr "Схема, обьясняющая как подружиться с угольным големом."
 
 msgid "Burning coal golem"
-msgstr "Горящий угляный голем"
+msgstr "Горящий угольный голем"
 
 msgid "A powerful companion.\\The burning coal golem is an humanoid\\made of coal."
-msgstr "Мощный спутник.\\Горящий угляный голем это гуманоид\\из угля."
+msgstr "Мощный спутник.\\Горящий угольный голем это гуманоид\\из угля."
 
 msgid "Bone Espadon"
-msgstr ""
+msgstr "Костяной Эспадон"
 
 msgid "A two-handed sword made of bone."
 msgstr "Двуручный меч из кости."
@@ -1032,7 +1032,7 @@ msgid "Bone shield"
 msgstr "Костяной щит"
 
 msgid "Shield made of human bones.\\Some say that it is cursed..."
-msgstr ""
+msgstr "Щит изготовлен из человеческих костей.\\Некоторые говорят, что он проклят..."
 
 msgid "Limited faith potion"
 msgstr "Ограниченное зелье веры"
@@ -1047,10 +1047,10 @@ msgid "A red and thick liquid,\\tastes disgusting. It is\\certainly not good, bu
 msgstr "Красная и густая жидкость,\\на вкус отвратительная. Это\\не хорошо, но она\\делает свое дело.\\Исцеляет 300 PV."
 
 msgid "Aventail"
-msgstr ""
+msgstr "Бармица"
 
 msgid "A cap made of mail\\protecting the head and the neck."
-msgstr ""
+msgstr "Кольчужная шапка для\\защиты головы и шеи."
 
 msgid "Clodomir's Scepter"
 msgstr "Скиперт Клодомира"
@@ -1062,64 +1062,67 @@ msgid "Journal of the monk Redimus"
 msgstr "Журнал монаха Редимуса"
 
 msgid "Some notes that seem to\\come from the Redimus's the\\monk newspaper.\\Right-click to use."
-msgstr ""
+msgstr "Некоторые заметки, кажется\\взяты из газеты монаха\\Редимуса.\\Щелкните правой для использования."
 
 msgid "Book of Saints - Calvary of Frenegonde"
 msgstr "Книга святых - Голгофа Френегонда"
 
 msgid "Excerpt from the Book of Saints, the paper\\tells the story of St. Frenegonde.\\Right-click to use."
-msgstr ""
+msgstr "Выдержки из книги Святых, работа\\рассказывает о Св. Френегонде.\\Щелкните правой для использования."
 
 msgid "Book of Saints - The Sacrifice of Joachim"
 msgstr "Книга святых - Жертвоприношение Иоакима"
 
 msgid "Excerpt from the Book of Saints, the paper\\tells the story of St. Joachim.\\Right-click to use."
-msgstr ""
+msgstr "Выдержки из книги Святых, работа\\рассказывает о Св. Иохиме.\\Щелкните правой для использования."
 
 msgid "Book of Saints - The Courage of Galswintha"
 msgstr "Книга святых - Мужество Галсвинты"
 
 msgid "Excerpt from the Book of Saints, the paper\\tells the story of St. Galswintha.\\Right-click to use."
-msgstr ""
+msgstr "Выдержки из книги Святых, работа\\рассказывает о Св. Галсвинте.\\Щелкните правой для использования."
 
 msgid "Book of Saints - Story of Clodomir's Life"
 msgstr "Книга святых - История жизни Клодомира"
 
 msgid "Excerpt from the Book of Saints, the paper\\tells the story of Saint Clodomir.\\Right-click to use."
-msgstr ""
+msgstr "Выдержки из книги Святых, работа\\рассказывает о Св. Клодомире.\\Щелкните правой для использования."
 
 msgid "Barbarian Haksil armor"
-msgstr ""
+msgstr "Латы варвара Хаксила"
 
 msgid "Weaved mesh and leather\\belonged to the terrible barbarian leader\\Haksil Wurgasht.\\Some say it still stained by\\the blood of St. Frenegonde..."
-msgstr ""
+msgstr "Плетеная сетка и кожа,\\принадлежавшая грозному варварскому вождю\\Хаксилу Вургасту.\\Некоторые говорят, что он все еще замащен\\кровью Св. Френегонды..."
 
 msgid "Crossbow of eternal fire"
 msgstr "Арбалет вечного огня"
 
 msgid "The crossbow was soaked\\in the blood of the demon,\\giving it the ability to\\pull the explosive bolts."
-msgstr ""
+msgstr "Арбалет был пропитан\\кровью демона,\\давая ему возможность\\посылать взрывные снаряды."
 
 msgid "The finger of Saint Clodomir"
 msgstr "Палец святого Клодомира"
 
+msgid "No description"
+msgstr "Без описания"
+
 msgid "The ear of St. Frenegonde"
-msgstr "Ухо святого Френегонда"
+msgstr "Ухо святой Френегонди"
 
 msgid "The heart of Saint Joachim"
 msgstr "Сердце святого Иоакима"
 
 msgid "The eye of St. Galswintha"
-msgstr "Сердце  святой Галсвинты"
+msgstr "Сердце святой Галсвинты"
 
 msgid "Silver: "
 msgstr "Серебро: "
 
 msgid "Blueprint : Short sword"
-msgstr ""
+msgstr "Схема : Короткий меч"
 
 msgid "Blueprint explaining the design of a short sword."
-msgstr ""
+msgstr "Схема, обьясняющая конструкцию короткого меча."
 
 msgid "Blueprint : Hand crossbow"
 msgstr "Схема : Ручной арбалет"
@@ -1128,31 +1131,31 @@ msgid "Blueprint explaining the design of a hand crossbow."
 msgstr "Схема объясняет конструкцию ручного арбалета."
 
 msgid "Teuderic's Seal"
-msgstr "Печать тедерика"
+msgstr "Печать Тедерика"
 
 msgid "Ring that belonged to the glorious King Teuderic."
-msgstr ""
+msgstr "Кольцо, принадлежавшее славному королю Тедерику."
 
 msgid "Teuderic's Crown"
 msgstr "Корона Тедерика"
 
 msgid "Crown that belonged to the glorious King Teuderic."
-msgstr ""
+msgstr "Корона, которая принадлежала славному королю Тедерику."
 
 msgid "Teuderic's Plastron"
-msgstr ""
+msgstr "Нагрудник Тедерика"
 
 msgid "Plastron that belonged to the glorious King Teuderic."
-msgstr ""
+msgstr "Нагрудник, принадлежавший славному королю Тедерику."
 
 msgid "Teuderic's Finery"
-msgstr ""
+msgstr "Украшения Тедерика"
 
 msgid "History of the Abbey of St. Clodomir"
 msgstr "История Аббатства Св. Клодомира"
 
 msgid "By brother Vlanker, honorary monk of the abbey."
-msgstr ""
+msgstr "Брата Вланкера, почетного монаха аббатства."
 
 msgid "Tobacco pouch"
 msgstr "Кисет"
@@ -1184,44 +1187,17 @@ msgstr "Пещера"
 msgid "Mausoleum"
 msgstr "Мавзолей"
 
-msgid "Return"
-msgstr "Назад"
+msgid "Pretended soldier deliverer of God and Christ's tomb, you have much killing and sometimes breach,\\flouting the values in whose name you did bloodshed...\\Of course you know how to fight, but your burden is the heaviest and you must accomplish many feats to win you back!"
+msgstr "Так называемый солдат освободитель из могилы Бога и Христа, вы должны много убивать, а иногда и забывать,\\у чье имя вы совершили кровопролитие...\\Вы, конечно, знаете, как драться, но ваша ноша тяжелая, и вы должны знать много трюков, чтобы себя обезопасить!"
 
-msgid "Save and exit"
-msgstr "Сохранить и Выйти"
+msgid "At least you've never pretended to be virtuous...\\Nee in the mud, you've dressed up in finery demonic female seductrices for you infiltrate the highest levels of society.\\But even among the princes we can not deny its origins when they are unworthy,\\and when your charm was not enough you were able to wield the dagger like poison..."
+msgstr "По крайней мере она никогда не притворялась благотворительной...\\Выйдя из болота, она оделась в одежды демонической женщины соблазнительницы чтобы проникнуть в высшие слои общества.\\Но среди князей мы не можем отрицать ее происхождения, она недостойна,\\и когда ее обаяния было недостаточно, то она могла завладеть кинжалом, как ядом..."
 
-msgid "Quit the game"
-msgstr "Покинуть игру"
+msgid "The gunslinger is one of those bounty hunters who count only its own interests. He does not hesitate to kill innocent people if he should and his contracts are its only limit. And even if another offer him seem more interesting, it may turn against his boss. Normally destined to hell, it is committed by God to do the dirty work."
+msgstr "Стрелец является одним из охотников за головами, который удовлетворяет только свои собственные интересы. Он не колеблясь убивает невинных людей, если ему этого нужно для выполнения соглашения. И даже если ему дадут более интересное предложение, он может пойти против собственного босса. Обычно им прямая дорога в ад и они используются Богом для выполнения грязной работы."
 
-msgid "Health"
-msgstr "Жызнь"
-
-msgid "Faith"
-msgstr "Вера"
-
-msgid "Strength"
-msgstr "Сила"
-
-msgid "Dexterity"
-msgstr "Ловкость"
-
-msgid "Vitality"
-msgstr "Жывучесть"
-
-msgid "Piety"
-msgstr "Благочестие"
-
-msgid "Charisma"
-msgstr "Харизма"
-
-msgid "Damages"
-msgstr "Уроны"
-
-msgid "Armor"
-msgstr "Броня"
-
-msgid "Points left"
-msgstr ""
+msgid "Religious fanatic par excellence, he was made a point to go to any heretic or witch bonfire ever. And without further ado, having never had remorse or doubt when has the guilt of his victims. So God decided to fulfill the dream of the inquisitor, that is to say the really let go in a world overrun by evil, a place where he can let go of his madness and sadism without making any innocent victim."
+msgstr "В общем религиозный фанатик, он сразу отправит любых еретика или ведьму на костер. И, не лукавя, их никогда не мучили угрызения совести или сомнения о смерти их жертв. Таким образом, Бог решил воплотить мечту инквизитора, и отпустить его в мир переполнен злом, место, где он сможет дать волю своим безумию и садизму, не убивая невинных людей."
 
 msgid "Display/Hide map (M)"
 msgstr "Показать/Скрыть карту (M)"
@@ -1238,56 +1214,17 @@ msgstr "Чуда (T)"
 msgid "Menu (Escape)"
 msgstr "Меню (Escape)"
 
-msgid "Equiped: "
-msgstr "Оборудовано: "
+msgid "Console (Tab)"
+msgstr "Консоль (Tab)"
 
-msgid "Trader: "
-msgstr "Торговец: "
+msgid "Documents (D)"
+msgstr "Документы (D)"
 
-msgid "Inventory: "
-msgstr "Инвентарь: "
+msgid "Weapon set n1 (W)"
+msgstr "Набор оружыя 1 (W)"
 
-msgid "Damages: "
-msgstr "Урон: "
-
-msgid "Armor: "
-msgstr "Броня: "
-
-msgid "Required strength: "
-msgstr "Требуемая сила: "
-
-msgid "Required dexterity: "
-msgstr "Требуемая ловкость: "
-
-msgid "Required charisma: "
-msgstr "Требуемая харизма: "
-
-msgid "Required vitality: "
-msgstr "Требуемая жывучесть: "
-
-msgid "Required piety: "
-msgstr "Требуемое благочестие: "
-
-msgid "Price: "
-msgstr "Цена: "
-
-msgid "Faith cost: "
-msgstr "Цена веры: "
-
-msgid "Faith stock: "
-msgstr "Имеется веры: "
-
-msgid "Health cost: "
-msgstr "Цена жызни: "
-
-msgid "Health stock: "
-msgstr "Имеется жызни: "
-
-msgid "Shortcut"
-msgstr "Ярлык"
-
-msgid "Hoty water"
-msgstr "Святая вода"
+msgid "Weapon set n2 (W)"
+msgstr "Набор оружыя 2 (W)"
 
 msgid "The Persecutor path"
 msgstr "Путь Преследователя"
@@ -1305,397 +1242,172 @@ msgid "The Assassin Path"
 msgstr "Путь убийцы"
 
 msgid "The Seductress Path"
-msgstr ""
-
-msgid "Next Level: "
-msgstr "Следующий уровень: "
-
-msgid "I do not have the required equipment!"
-msgstr "У меня нет необходимого оборудования!"
-
-msgid "My bag is full!"
-msgstr "Моя сумка заполнена!"
-
-msgid "Physical"
-msgstr "Физический"
-
-msgid "Fire"
-msgstr "Огонь"
-
-msgid "Corrosion"
-msgstr "Коррозия"
-
-msgid "Money"
-msgstr "Деньги"
-
-msgid "Level"
-msgstr "Уровень"
-
-msgid "Name"
-msgstr "Имя"
-
-msgid "Console (Tab)"
-msgstr "Консоль (Tab)"
-
-msgid "Only for: "
-msgstr "Только для: "
-
-msgid "Continue a game"
-msgstr "Прододжыть игру"
-
-msgid "New game"
-msgstr "Новая игра"
-
-msgid "Options"
-msgstr "Опции"
-
-msgid "Exit"
-msgstr "Выйти"
-
-msgid "Back"
-msgstr "Назад"
-
-msgid "Enter your name: "
-msgstr "Введите ваше имя: "
-
-msgid "Launch"
-msgstr "Начать"
-
-msgid "Free socket"
-msgstr ""
-
-msgid "Toggle buttons"
-msgstr "Переключить кнопки"
-
-msgid "Class"
-msgstr "Клас"
-
-msgid "Stash: "
-msgstr "Тайник: "
-
-msgid "<Incompatible>"
-msgstr "<Несовместимый>"
-
-msgid "Credits"
-msgstr "Авторы"
-
-msgid "An old law required has always been the good and evil meet has at least one rule in their eternal conflict. They could not directly intervene in the affairs of living entities, acting only by the subtle suggestion and battling within each soul...\\Egoism, violence, pity, love and clashed in the form of thoughts, of dreams, with varied fates.\\\\But one day evil, which no longer supported the balance was satisfied with the Good, decided to violate the rule RESPECTED far and achieved this in incarnating directly into most living beings vulnerable to his impulses, and, curiously, in some objects.\\Henceforth evil reign could only be on each of which he took possession of some ordinary objects become demonic.\\\\Having anticipated this treachery, the Well was not surprised. Renouncing to violate the law as Evil had done and refusing to sacrifice the good and generous souls, he used a few storms and damned spirits who wanted to redeem himself deeply with him...\\considering himself already lost, alone unconsciousness would have to address the foul legion that has swept across the world."
-msgstr ""
-
-msgid "Next"
-msgstr "Дальше"
-
-msgid "Select your character"
-msgstr "Выберите персонажа"
-
-msgid "Production time: "
-msgstr "Время производства: "
-
-msgid "seconds"
-msgstr "секунд"
-
-msgid "minutes"
-msgstr "минут"
-
-msgid "Graphical Options"
-msgstr "Опции графики"
-
-msgid "Advanced Options"
-msgstr "Дополнительные параметры"
-
-msgid "Sound options"
-msgstr "Опции звука"
-
-msgid "Brightness: "
-msgstr "Яркость: "
-
-msgid "Contrasts: "
-msgstr "Контраст: "
-
-msgid "Window mode: "
-msgstr ""
-
-msgid "Quality of lights: "
-msgstr ""
-
-msgid "Enable shadows: "
-msgstr ""
-
-msgid "Enable shader effects: "
-msgstr ""
-
-msgid "Enable reflection of objects: "
-msgstr ""
-
-msgid "Enable effects of distortion: "
-msgstr ""
-
-msgid "Render grass: "
-msgstr ""
-
-msgid "Enable dynamic debris: "
-msgstr ""
-
-msgid "Display Background color of objects: "
-msgstr ""
-
-msgid "Volume: "
-msgstr ""
-
-msgid "Volume of the music: "
-msgstr ""
-
-msgid "Resolution: "
-msgstr ""
-
-msgid "Documents (D)"
-msgstr "Документы (D)"
-
-msgid "Your strength increases your damage to opponent and allows you to carry the heavier equipment."
-msgstr ""
-
-msgid "Your dexterity allows you to dodge better and access to certain objects."
-msgstr ""
-
-msgid "Your vitality increases your life."
-msgstr ""
-
-msgid "Your piety points increase your faith."
-msgstr ""
-
-msgid "Your charisma affects the price of objects and allows you to wear certain items."
-msgstr ""
-
-msgid "Delete character"
-msgstr "Удалить персонажа"
-
-msgid "Please enter the name of the hero to delete: "
-msgstr ""
-
-msgid "Points of souls: "
-msgstr "Очков душ: "
-
-msgid "Pretended soldier deliverer of God and Christ's tomb, you have much killing and sometimes breach,\\flouting the values in whose name you did bloodshed...\\Of course you know how to fight, but your burden is the heaviest and you must accomplish many feats to win you back!"
-msgstr ""
-
-msgid "At least you've never pretended to be virtuous...\\Nee in the mud, you've dressed up in finery demonic female seductrices for you infiltrate the highest levels of society.\\But even among the princes we can not deny its origins when they are unworthy,\\and when your charm was not enough you were able to wield the dagger like poison..."
-msgstr ""
-
-msgid "Religious fanatic par excellence, he was made a point to go to any heretic or witch bonfire ever. And without further ado, having never had remorse or doubt when has the guilt of his victims. So God decided to fulfill the dream of the inquisitor, that is to say the really let go in a world overrun by evil, a place where he can let go of his madness and sadism without making any innocent victim."
-msgstr ""
-
-msgid "The gunslinger is one of those bounty hunters who count only its own interests. He does not hesitate to kill innocent people if he should and his contracts are its only limit. And even if another offer him seem more interesting, it may turn against his boss. Normally destined to hell, it is committed by God to do the dirty work."
-msgstr ""
-
-msgid "Non resquiescat in pace..."
-msgstr ""
-
-msgid "Click to get another chance!"
-msgstr ""
-
-msgid "Weapon set n1 (W)"
-msgstr "Набор оружыя 1 (W)"
-
-msgid "Weapon set n2 (W)"
-msgstr "Набор оружыя 2 (W)"
-
-msgid "One-handed weapon"
-msgstr "Одноручное оружые"
-
-msgid "Two-handed weapon"
-msgstr "Дворучное оружые"
-
-msgid "Left click"
-msgstr "Левый щелчек"
-
-msgid "Right click"
-msgstr "правый щелчек"
-
-msgid "Multiplayer"
-msgstr ""
-
-msgid "Join Game"
-msgstr ""
-
-msgid "Host game"
-msgstr ""
-
-msgid "New quest"
-msgstr ""
-
-msgid "Quest ended"
-msgstr ""
-
-msgid "Requirements: "
-msgstr ""
-
-msgid "LevelUp!"
-msgstr "Новый уровень!"
+msgstr "Путь Искушения"
 
 msgid "Saint Barbe Incarnation"
 msgstr "Воплощение Св. Барба"
 
 msgid "The crusader summons Saint Barbe to help him.\\She allows the crusader to inflict fire damages."
-msgstr ""
+msgstr "Крестоносец вызывает Святую Барбу, чтобы помочь ему.\\Она позволяет крестоносцу наносить ущерб огнем."
 
 msgid "Fire Damage : %1-%2"
-msgstr ""
+msgstr "Ущерб от огня : %1-%2"
 
 msgid "Charge"
 msgstr "Заряд"
 
 msgid "The crusader charges an adversary knocking down everything on his way.\\Usable only with a shield."
-msgstr ""
+msgstr "Крестоносец заставляет противника сбивать все на своем пути.\\Используется только со щитом."
 
 msgid "Damage during the charge : %1-%2"
-msgstr ""
+msgstr "Урон во время зарядки : %1-%2"
 
 msgid "Damage upon impact : %3-%4"
-msgstr ""
+msgstr "Урон при ударе : %3-%4"
 
 msgid "Divine Tornado"
-msgstr "Божественной Торнадо"
+msgstr "Божественный Торнадо"
 
 msgid "The crusader makes his blade spin\\pushing back ennemies close to him.\\Usable only with two-handed weapons."
-msgstr ""
+msgstr "Крестоносец вращает клинок\\отодвигая ближних врагов.\\Доступно только с двуручной оружием."
 
 msgid "Damage : %1 \\% of the weapon"
-msgstr "Урон : %1 \\% от оружыя"
+msgstr "Урон : %1 \\% от оружия"
 
 msgid "Saint Lazare Incarnation : Vampirism"
-msgstr "Воплощение Св. Лазара: Вампиризм"
+msgstr "Воплощение Св. Лазара : Вампиризм"
 
 msgid "In addition to heal the crusader, Saint Lazare\\allows him to stole the health of his ennemies."
-msgstr ""
+msgstr "Кроме лечения крестоносца, Святой Лазарь\\позволяет ему красть здоровье у врагов."
 
 msgid "Health stolen: %1\\%"
-msgstr ""
+msgstr "Кража жизни : %1\\%"
 
 msgid "Saint Lazare Incarnation"
 msgstr "Воплощение Св. Лазара"
 
 msgid "The crusader summons Saint Lazare to help him.\\He boosts the crusader health regeneration.\\Can not be combined with other incarnations."
-msgstr ""
+msgstr "Крестоносец вызывает Святого Лазаря для помощи.\\Он усиливает восстановление здоровья крестоносца.\\Не может быть объединено с другими воплощениями."
 
 msgid "Health regeneration : +%1"
-msgstr ""
+msgstr "Восстановление жизни : +%1"
 
 msgid "Charm"
 msgstr "Очарование"
 
 msgid "The concubine charms an ennemy\\to help her in her fight."
-msgstr ""
+msgstr "Наложница завораживает врага\\чтобы тот помог ему в бою."
 
 msgid "Maximum health : %2"
-msgstr ""
+msgstr "Максимум жизни : %2"
 
 msgid "Charm : Mastodont"
-msgstr ""
+msgstr "Очарование : Мастодонт"
 
 msgid "Charmed ennemy gain more life under the charm\\and regenerate their health more rapidly. "
-msgstr ""
+msgstr "Очарованный враг отнимает больше жизни\\и восстанавливает свое здоровье быстрее."
 
 msgid "Health added : %2"
-msgstr ""
+msgstr "Добавляет жизни : %2"
 
 msgid "Health regeneration : +%1/s "
-msgstr ""
+msgstr "Восстановление жизни : +%1/с"
 
 msgid "Toxic cloud"
 msgstr "Токсичное облако"
 
 msgid "The concubine throws a globe that\\unleashes a toxic cloud on impact."
-msgstr ""
+msgstr "Наложница бросает шар, которая\\при ударе высвобождает токсическое облако."
 
 msgid "%1 damages on 6 seconds"
-msgstr ""
+msgstr "%1 урона за 6 секунд"
 
 msgid "Venom"
-msgstr ""
+msgstr "Яд"
 
 msgid "The concubine poison her weapons during a certain period of time."
-msgstr ""
+msgstr "Наложница отравляет ее оружие на определенный период времени."
 
 msgid "Duration : %1 seconds"
 msgstr "Длительность : %1 секунд"
 
 msgid "Corrosion damage: %3 on 2 seconds."
-msgstr ""
+msgstr "Повреждение коррозией : %3 за 2 секунды."
 
 msgid "Mighty Blow"
 msgstr "Мощный удар"
 
 msgid "The crusader sends a powerful blow\\pushing back adversaries."
-msgstr ""
+msgstr "Крестоносец выполняет мощный удар,\\что отталкивает противников."
 
 msgid "Damage : +%1 to %2"
-msgstr ""
+msgstr "Урон : +%1 - %2"
 
 msgid "Divine Tornado : Projection"
 msgstr "Божественной Торнадо : Проекция"
 
 msgid "When the crusader rotate, this create a\\real tornado which destroys everything on its path."
-msgstr ""
+msgstr "Когда крестоносец крутится, то создает\\настоящий торнадо, который разрушает все на своем пути."
 
 msgid "Air blow damage : %1 to %2"
-msgstr ""
+msgstr "Урон от ветра : %1 - %2"
 
 msgid "Minor toxic cloud litany"
-msgstr ""
+msgstr "Молитва малого токсичного облака"
 
 msgid "20 damage over 6 seconds."
 msgstr "20 урона за 6 секунд."
 
 msgid "Judgment"
-msgstr ""
+msgstr "Осуждение"
 
 msgid "The crusader curses an enemy who will explode at his death."
-msgstr ""
+msgstr "Крестоносец проклинает врага, который разорвется после смерти."
 
 msgid "Blast damages : %1 to %2"
-msgstr ""
+msgstr "Повреждение взрывом : %1 - %2"
 
 msgid "Armor of Faith"
-msgstr ""
+msgstr "Латы Веры"
 
 msgid "The faith of the cross-protection against the elements"
-msgstr ""
+msgstr "Вера в перекрестную защиту от стихий"
 
 msgid "+ 1% resistance to all elements"
-msgstr ""
+msgstr "+ 1% сопротивления ко всем стихиям"
 
 msgid "Duration: %2 seconds"
-msgstr ""
+msgstr "Продолжительность: %2 секунд"
 
 msgid "Judgment Day: Ignite"
-msgstr ""
+msgstr "Судный День : Поджог"
 
 msgid "The explosion ignited the fire of the enemy,\\causing additional fire damage over time."
-msgstr ""
+msgstr "Взрыв зажигает противника огнем,\\вызывая дополнительный ущерб огнем во времени."
 
 msgid "Damage: %1 to %2 seconds."
-msgstr ""
+msgstr "Урон: %1 - %2 секунд."
 
 msgid "Shooting fragmentation"
-msgstr ""
+msgstr "Выстрел с фрагментацией"
 
 msgid "The concubine sends a tile\\explodes after a second, splitting into hundreds of fragments."
-msgstr ""
+msgstr "Наложница бросает взрывчатку, которая\\за секунду взрывается, распадаясь на сотни осколков."
 
 msgid "Damage: %1\\% of the original damage."
-msgstr ""
+msgstr "Урон: %1\\% от начального урона."
 
 msgid "Explosion"
 msgstr "Взрыв"
 
 msgid "The tile is fired by a crossbow explosive.\\It inflicts 10-20 points of damage by fire."
-msgstr ""
+msgstr "Выстрел из арбалета взрывчаткой.\\Наносит 10-20 очков вреда огнем."
 
 msgid "Shadow"
 msgstr "Тень"
 
 msgid "The concubine blabla"
-msgstr ""
+msgstr "Наложница туда-сюда"
 
 msgid "Evasion: +1%"
 msgstr "Уклонение: +1%"
@@ -1704,49 +1416,49 @@ msgid "Assassin"
 msgstr "Убийца"
 
 msgid "The concubine makes a mortal blow to its target.\\Applicable only in Shadow mode."
-msgstr ""
+msgstr "Наложница осуществляет смертельный удар.\\Доступно только в режиме Тени."
 
 msgid "Damage +%1\\%"
-msgstr ""
+msgstr "Урон +%1\\%"
 
 msgid "To cut the throats"
-msgstr ""
+msgstr "Для перерезания глотки"
 
 msgid "The concubine moves almost instantaneously behind his target, dealing then a lightning attack.\\Usable only in Shadow mode."
-msgstr ""
+msgstr "Наложница движется почти мгновенно позади врага, нанося молниеносную атаку.\\Доступно только в режиме Тени."
 
 msgid "Damage: 1% to 2%"
-msgstr ""
+msgstr "Урон: 1% - 2%"
 
 msgid "Attack"
 msgstr "Атака"
 
 msgid "Damage: 0% to 1%"
-msgstr ""
+msgstr "Урон: 0% - 1%"
 
 msgid "Things that loitering in the catacombs"
-msgstr ""
+msgstr "Существа, что бродят в катакомбах."
 
 msgid "I have to go into the catacombs to see what is going on."
-msgstr ""
+msgstr "Мне надо сходить в катакомбы, и посмотреть, что там творится."
 
 msgid "I found the diary of the monk Redimus. This indicates that terrifying things are happening in the catacombs. I ought to speak with the Abbe."
-msgstr ""
+msgstr "Я нашел дневник монаха Редимуса. Он подтверждает в катакомбах происходят страшные вещи. Я должен поговорить с аббатом."
 
 msgid "The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification."
-msgstr ""
+msgstr "Аббат поросил меня найти четыре мощи аббатства, чтобы смочь прочитать молитву очищения."
 
 msgid "I have to escort a Brother to the Oculus, the center of the catacombs, in order that the Purification Ritual."
-msgstr ""
+msgstr "Я должен провести Брата в Окулус в центре катакомб для проведения ритуала очищения."
 
 msgid "The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification. After Alcuin, a relic would have disappeared in recent years."
-msgstr ""
+msgstr "Аббат попросил меня найти четыре мощи аббатства, чтобы смочь прочитать молитву очищения. После того как последние годы за ними присматривал Алкуин, мощи исчезли."
 
 msgid "Abandoned charette"
-msgstr ""
+msgstr "Брошенный воз"
 
 msgid "I must find and bring to Romulus the merchant the pouch of tobacco abandoned in his cart."
-msgstr ""
+msgstr "Я должен найти и принести Ромулу торговцу мешочек табака, который он оставил в своей телеге."
 
 msgid "I have to return tobacco Romulus the merchant."
 msgstr "Я должен вернуть табак торговцу Ромулу."
@@ -1755,34 +1467,34 @@ msgid "Romulus recover tobacco history."
 msgstr "История возвращения табака Ромулу."
 
 msgid "A hobby for Rognorak"
-msgstr "Увлечения Рогнорака"
+msgstr "Увлечение Рогнорака"
 
 msgid "Rognorak the blacksmith is so bored that was proposing to build me a gun charge. I have to bring needed ingredients."
-msgstr ""
+msgstr "Рагнораку кузнецу так скучно, что он предлагал изготовить мне пороховой заряд. Я должен принести необходимые составляющие."
 
 msgid "Rognorak makes me a weapon."
-msgstr ""
+msgstr "Рогнорак делает мне оружие."
 
 msgid "The blessing of the good abbe"
 msgstr "Благословение доброго аббата"
 
 msgid "The abbe can bless one of my items if I will give him water and a holy litany."
-msgstr ""
+msgstr "Аббат может благословить один из моих предметов, если я дам ему святую воду и молитву."
 
 msgid "The abbot has blessed one of my objects."
-msgstr ""
+msgstr "Аббат благословил один из моих предметов."
 
 msgid "The evil wall"
 msgstr "Стена зла"
 
 msgid "I have to eliminate the creatures that infest the wall of the farm of Borlor."
-msgstr ""
+msgstr "Я должен уничтожить существ, паразитирующих на стене фермы Борлора."
 
 msgid "All creatures have been eliminated."
 msgstr "Все существа были устранены."
 
 msgid "The innkeeper is besieged"
-msgstr "Хозяен в осаде"
+msgstr "Хозяин в осаде"
 
 msgid "I must free the passage in front of the inn."
 msgstr "Я должен освободить место перед гостиницей."
@@ -1806,17 +1518,17 @@ msgid "A creature in the night"
 msgstr "Существо в ночи"
 
 msgid "REAPER"
-msgstr ""
+msgstr "ЖНЕЦ"
 
 msgid "I decided to help Teuderic fight his ghosts."
-msgstr ""
+msgstr "Я решил помочь Тедерику побороть его призраков."
 
 msgid "I helped Teuderic."
-msgstr ""
+msgstr "Я помог Тедерику."
 
 msgid "I decided to face and take Teuderic's treasure."
-msgstr ""
+msgstr "Я решил схитрить и забрать у Тедерика его сокровища."
 
 msgid "I failed, Teuderic became absorbed by his phantoms."
-msgstr ""
+msgstr "Я потерпел поражение, Тедерика поглотили его фантомы."
 

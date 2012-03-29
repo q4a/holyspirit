@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-27 17:52+\n"
+"POT-Creation-Date: 2012-03-29 16:00+\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,7 +112,7 @@ msgstr ""
 msgid "Well! You're learning fast and that's what I expected from you...\\You've turned a corner, and you can now choose which area you want to improve yourself.\\\\(We choose the features that one wishes improve through the inventory, \"I\")"
 msgstr ""
 
-msgid "-Your strength increases your melee damage and allows you to wear heavier equipment.\\-Dexterity allows you to dodge better/and carry more items.\\-Vitality increases your life.\\-Your piety is your ability to invoke your god, it allows you to run more miracles (we'll come back...).\\-Your charisma affects the price of objects and allows you to wear certain items."
+msgid "-Your strength increases your melee damage and allows you to wear heavier equipment.\\-Dexterity allows you to dodge better and carry more items.\\-Vitality increases your life.\\-Your piety is your ability to invoke your god, it allows you to run more miracles (we'll come back...).\\-Your charisma affects the price of objects and allows you to wear certain items."
 msgstr ""
 
 msgid "You must know your current status allows you to access certain powers.\\You can now call upon your god to destroy your opponents.\\\\(Click on the icon shaped like a cross to open the panel of miracles. You can choose the way in which you specialize you want by clicking on one of the three tabs at the top. You just have to right click on a miracle to learn or improve. This will place it in the shortcut bar at the bottom. You can access it during the game with the 1-8 keys and clicking the right mouse button.)"
@@ -1111,6 +1111,9 @@ msgstr ""
 msgid "The finger of Saint Clodomir"
 msgstr ""
 
+msgid "No description"
+msgstr ""
+
 msgid "The ear of St. Frenegonde"
 msgstr ""
 
@@ -1192,43 +1195,16 @@ msgstr ""
 msgid "Mausoleum"
 msgstr ""
 
-msgid "Return"
+msgid "Pretended soldier deliverer of God and Christ's tomb, you have much killing and sometimes breach,\\flouting the values in whose name you did bloodshed...\\Of course you know how to fight, but your burden is the heaviest and you must accomplish many feats to win you back!"
 msgstr ""
 
-msgid "Save and exit"
+msgid "At least you've never pretended to be virtuous...\\Nee in the mud, you've dressed up in finery demonic female seductrices for you infiltrate the highest levels of society.\\But even among the princes we can not deny its origins when they are unworthy,\\and when your charm was not enough you were able to wield the dagger like poison..."
 msgstr ""
 
-msgid "Quit the game"
+msgid "The gunslinger is one of those bounty hunters who count only its own interests. He does not hesitate to kill innocent people if he should and his contracts are its only limit. And even if another offer him seem more interesting, it may turn against his boss. Normally destined to hell, it is committed by God to do the dirty work."
 msgstr ""
 
-msgid "Health"
-msgstr ""
-
-msgid "Faith"
-msgstr ""
-
-msgid "Strength"
-msgstr ""
-
-msgid "Dexterity"
-msgstr ""
-
-msgid "Vitality"
-msgstr ""
-
-msgid "Piety"
-msgstr ""
-
-msgid "Charisma"
-msgstr ""
-
-msgid "Damages"
-msgstr ""
-
-msgid "Armor"
-msgstr ""
-
-msgid "Points left"
+msgid "Religious fanatic par excellence, he was made a point to go to any heretic or witch bonfire ever. And without further ado, having never had remorse or doubt when has the guilt of his victims. So God decided to fulfill the dream of the inquisitor, that is to say the really let go in a world overrun by evil, a place where he can let go of his madness and sadism without making any innocent victim."
 msgstr ""
 
 msgid "Display/Hide map (M)"
@@ -1246,55 +1222,16 @@ msgstr ""
 msgid "Menu (Escape)"
 msgstr ""
 
-msgid "Equiped: "
+msgid "Console (Tab)"
 msgstr ""
 
-msgid "Trader: "
+msgid "Documents (D)"
 msgstr ""
 
-msgid "Inventory: "
+msgid "Weapon set n1 (W)"
 msgstr ""
 
-msgid "Damages: "
-msgstr ""
-
-msgid "Armor: "
-msgstr ""
-
-msgid "Required strength: "
-msgstr ""
-
-msgid "Required dexterity: "
-msgstr ""
-
-msgid "Required charisma: "
-msgstr ""
-
-msgid "Required vitality: "
-msgstr ""
-
-msgid "Required piety: "
-msgstr ""
-
-msgid "Price: "
-msgstr ""
-
-msgid "Faith cost: "
-msgstr ""
-
-msgid "Faith stock: "
-msgstr ""
-
-msgid "Health cost: "
-msgstr ""
-
-msgid "Health stock: "
-msgstr ""
-
-msgid "Shortcut"
-msgstr ""
-
-msgid "Hoty water"
+msgid "Weapon set n2 (W)"
 msgstr ""
 
 msgid "The Persecutor path"
@@ -1313,231 +1250,6 @@ msgid "The Assassin Path"
 msgstr ""
 
 msgid "The Seductress Path"
-msgstr ""
-
-msgid "Next Level: "
-msgstr ""
-
-msgid "I do not have the required equipment!"
-msgstr ""
-
-msgid "My bag is full!"
-msgstr ""
-
-msgid "Physical"
-msgstr ""
-
-msgid "Fire"
-msgstr ""
-
-msgid "Corrosion"
-msgstr ""
-
-msgid "Money"
-msgstr ""
-
-msgid "Level"
-msgstr ""
-
-msgid "Name"
-msgstr ""
-
-msgid "Console (Tab)"
-msgstr ""
-
-msgid "Only for: "
-msgstr ""
-
-msgid "Continue a game"
-msgstr ""
-
-msgid "New game"
-msgstr ""
-
-msgid "Options"
-msgstr ""
-
-msgid "Exit"
-msgstr ""
-
-msgid "Back"
-msgstr ""
-
-msgid "Enter your name: "
-msgstr ""
-
-msgid "Launch"
-msgstr ""
-
-msgid "Free socket"
-msgstr ""
-
-msgid "Toggle buttons"
-msgstr ""
-
-msgid "Class"
-msgstr ""
-
-msgid "Stash: "
-msgstr ""
-
-msgid "<Incompatible>"
-msgstr ""
-
-msgid "Credits"
-msgstr ""
-
-msgid "An old law required has always been the good and evil meet has at least one rule in their eternal conflict. They could not directly intervene in the affairs of living entities, acting only by the subtle suggestion and battling within each soul...\\Egoism, violence, pity, love and clashed in the form of thoughts, of dreams, with varied fates.\\\\But one day evil, which no longer supported the balance was satisfied with the Good, decided to violate the rule RESPECTED far and achieved this in incarnating directly into most living beings vulnerable to his impulses, and, curiously, in some objects.\\Henceforth evil reign could only be on each of which he took possession of some ordinary objects become demonic.\\\\Having anticipated this treachery, the Well was not surprised. Renouncing to violate the law as Evil had done and refusing to sacrifice the good and generous souls, he used a few storms and damned spirits who wanted to redeem himself deeply with him...\\considering himself already lost, alone unconsciousness would have to address the foul legion that has swept across the world."
-msgstr ""
-
-msgid "Next"
-msgstr ""
-
-msgid "Select your character"
-msgstr ""
-
-msgid "Production time: "
-msgstr ""
-
-msgid "seconds"
-msgstr ""
-
-msgid "minutes"
-msgstr ""
-
-msgid "Graphical Options"
-msgstr ""
-
-msgid "Advanced Options"
-msgstr ""
-
-msgid "Sound options"
-msgstr ""
-
-msgid "Brightness: "
-msgstr ""
-
-msgid "Contrasts: "
-msgstr ""
-
-msgid "Window mode: "
-msgstr ""
-
-msgid "Quality of lights: "
-msgstr ""
-
-msgid "Enable shadows: "
-msgstr ""
-
-msgid "Enable shader effects: "
-msgstr ""
-
-msgid "Enable reflection of objects: "
-msgstr ""
-
-msgid "Enable effects of distortion: "
-msgstr ""
-
-msgid "Render grass: "
-msgstr ""
-
-msgid "Enable dynamic debris: "
-msgstr ""
-
-msgid "Display Background color of objects: "
-msgstr ""
-
-msgid "Volume: "
-msgstr ""
-
-msgid "Volume of the music: "
-msgstr ""
-
-msgid "Resolution: "
-msgstr ""
-
-msgid "Documents (D)"
-msgstr ""
-
-msgid "Your strength increases your damage to opponent and allows you to carry the heavier equipment."
-msgstr ""
-
-msgid "Your dexterity allows you to dodge better and access to certain objects."
-msgstr ""
-
-msgid "Your vitality increases your life."
-msgstr ""
-
-msgid "Your piety points increase your faith."
-msgstr ""
-
-msgid "Your charisma affects the price of objects and allows you to wear certain items."
-msgstr ""
-
-msgid "Delete character"
-msgstr ""
-
-msgid "Please enter the name of the hero to delete: "
-msgstr ""
-
-msgid "Points of souls: "
-msgstr ""
-
-msgid "Pretended soldier deliverer of God and Christ's tomb, you have much killing and sometimes breach,\\flouting the values in whose name you did bloodshed...\\Of course you know how to fight, but your burden is the heaviest and you must accomplish many feats to win you back!"
-msgstr ""
-
-msgid "At least you've never pretended to be virtuous...\\Nee in the mud, you've dressed up in finery demonic female seductrices for you infiltrate the highest levels of society.\\But even among the princes we can not deny its origins when they are unworthy,\\and when your charm was not enough you were able to wield the dagger like poison..."
-msgstr ""
-
-msgid "Religious fanatic par excellence, he was made a point to go to any heretic or witch bonfire ever. And without further ado, having never had remorse or doubt when has the guilt of his victims. So God decided to fulfill the dream of the inquisitor, that is to say the really let go in a world overrun by evil, a place where he can let go of his madness and sadism without making any innocent victim."
-msgstr ""
-
-msgid "The gunslinger is one of those bounty hunters who count only its own interests. He does not hesitate to kill innocent people if he should and his contracts are its only limit. And even if another offer him seem more interesting, it may turn against his boss. Normally destined to hell, it is committed by God to do the dirty work."
-msgstr ""
-
-msgid "Non resquiescat in pace..."
-msgstr ""
-
-msgid "Click to get another chance!"
-msgstr ""
-
-msgid "Weapon set n1 (W)"
-msgstr ""
-
-msgid "Weapon set n2 (W)"
-msgstr ""
-
-msgid "One-handed weapon"
-msgstr ""
-
-msgid "Two-handed weapon"
-msgstr ""
-
-msgid "Left click"
-msgstr ""
-
-msgid "Right click"
-msgstr ""
-
-msgid "Multiplayer"
-msgstr ""
-
-msgid "Join Game"
-msgstr ""
-
-msgid "Host game"
-msgstr ""
-
-msgid "New quest"
-msgstr ""
-
-msgid "Quest ended"
-msgstr ""
-
-msgid "Requirements: "
-msgstr ""
-
-msgid "LevelUp!"
 msgstr ""
 
 msgid "Saint Barbe Incarnation"

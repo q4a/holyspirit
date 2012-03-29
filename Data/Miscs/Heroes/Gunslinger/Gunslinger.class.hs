@@ -1,6 +1,6 @@
 	*33
 $
-	*100
+	*2
 $
 	* f20 v20 p10 d15 c5 $
 $
@@ -103,12 +103,12 @@ $
 $
 	* x577 y550 w41 h41 $
 $
-	* e7 x314 y522 w29 h15 m89 	i * mData/Menus/hud_button.png x0 y0 w29 h15 $ $ $
-	* e1 x343 y522 w29 h15 m16 	i * mData/Menus/hud_button.png x29 y0 w29 h15 $ $ $
-	* e2 x372 y522 w29 h15 m14 	i * mData/Menus/hud_button.png x58 y0 w29 h15 $ $ $
-	* e3 x401 y522 w29 h15 m15 	i * mData/Menus/hud_button.png x87 y0 w29 h15 $ $ $
-	* e4 x430 y522 w29 h15 m17 	i * mData/Menus/hud_button.png x116 y0 w29 h15 $ $ $
-	* e5 x459 y522 w29 h15 m13 	i * mData/Menus/hud_button.png x145 y0 w29 h15 $ $ $
+	* e7 x314 y522 w29 h15 m10 	i * mData/Menus/hud_button.png x0 y0 w29 h15 $ $ $
+	* e1 x343 y522 w29 h15 m7 	i * mData/Menus/hud_button.png x29 y0 w29 h15 $ $ $
+	* e2 x372 y522 w29 h15 m5 	i * mData/Menus/hud_button.png x58 y0 w29 h15 $ $ $
+	* e3 x401 y522 w29 h15 m6 	i * mData/Menus/hud_button.png x87 y0 w29 h15 $ $ $
+	* e4 x430 y522 w29 h15 m8 	i * mData/Menus/hud_button.png x116 y0 w29 h15 $ $ $
+	* e5 x459 y522 w29 h15 m4 	i * mData/Menus/hud_button.png x145 y0 w29 h15 $ $ $
 $
 	* x56 y88 w64 h64 m Data/Menus/Slot2x2.png n Data/Menus/Slot_scroll.png $
 $
@@ -134,9 +134,9 @@ $
 $
 	* x738 y60 w24 h32 $
 $
-	* e0 x58 y46 w42 h42 m35 	i * mData/Menus/Crusader/CrusaderPath1.png x96 y0 w32 h32 $ $ $
-	* e1 x124 y46 w42 h42 m36	i * mData/Menus/Crusader/CrusaderPath2.png x0 y0 w32 h32 $ $ $
-	* e2 x190 y46 w42 h42 m37	i * mData/Menus/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
+	* e0 x58 y46 w42 h42 m13 	i * mData/Menus/Crusader/CrusaderPath1.png x96 y0 w32 h32 $ $ $
+	* e1 x124 y46 w42 h42 m14	i * mData/Menus/Crusader/CrusaderPath2.png x0 y0 w32 h32 $ $ $
+	* e2 x190 y46 w42 h42 m15	i * mData/Menus/Crusader/CrusaderPath3.png x0 y0 w32 h32 $ $ $
 $
 	* e-1 b-1 mData/Entities/Heroes/LevelUp/LevelUp.miracle.hs $
 

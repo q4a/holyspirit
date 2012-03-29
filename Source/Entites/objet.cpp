@@ -1930,23 +1930,23 @@ std::string getTextBenediction(const benediction &bene)
     if(bene.type == CARACT_SUPP)
     {
         if(bene.info1 == FORCE)
-            buf<<gettext("Strength increased: ");
+            buf<<gettext("Increased strength: ");
         if(bene.info1 == DEXTERITE)
-            buf<<gettext("Dexterity increased: ");
+            buf<<gettext("Increased dexterity: ");
         if(bene.info1 == VITALITE)
-            buf<<gettext("Vitality increased: ");
+            buf<<gettext("Increased vitality: ");
         if(bene.info1 == PIETE)
-            buf<<gettext("Piety increased: ");
+            buf<<gettext("Increased piety: ");
         if(bene.info1 == CHARISME)
-            buf<<gettext("Charisma increased: ");
+            buf<<gettext("Increased charisma: ");
         buf<<" "<<bene.info2;
     }
     if(bene.type == POINTS_SUPP)
     {
         if(bene.info1 == PT_VIE)
-            buf<<gettext("Health increased: ");
+            buf<<gettext("Increased health: ");
         if(bene.info1 == PT_FOI)
-            buf<<gettext("Faith increased: ");
+            buf<<gettext("Increased faith: ");
         buf<<" "<<bene.info2;
     }
 	textdomain ("data");
@@ -2015,7 +2015,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     {
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
         if(m_equipe >= 0)
-            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,gettext("Team: ")));
+            temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,gettext("Equiped: ")));
         else
         {
             if(coffre)
