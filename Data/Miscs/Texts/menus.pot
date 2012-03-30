@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-29 10:35+0300\n"
+"POT-Creation-Date: 2012-03-30 12:22+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -281,7 +281,7 @@ msgstr ""
 #: ../../../Source/Contextes/c_menuInGame.cpp:187
 #: ../../../Source/Contextes/c_menuInGame.cpp:190
 #: ../../../Source/Contextes/c_menuInGame.cpp:193
-msgid "Quit the game"
+msgid "Reset game world"
 msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:111 ../../../Source/Entites/hero.cpp:4999
@@ -351,7 +351,8 @@ msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:1562
 #: ../../../Source/Entites/objet.cpp:2183
-msgid "Armor"
+#: ../../../Source/Entites/objet.cpp:2203
+msgid "Armor: "
 msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:1575
@@ -509,10 +510,6 @@ msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:2171
 msgid "One hand weapon"
-msgstr ""
-
-#: ../../../Source/Entites/objet.cpp:2203
-msgid "Armor: "
 msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:2222

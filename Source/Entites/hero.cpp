@@ -1559,7 +1559,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
         moteurGraphique->AjouterTexte(&string,15);
     }
 
-    string.setString(toUtf32(gettext("Armor")));
+    string.setString(toUtf32(gettext("Armor: ")));
     string.setPosition(AutoScreenAdjust(307,376,decalage));
     string.move(28 - string.getGlobalBounds().width * 0.5, 0);
     string.setColor(sf::Color(255,255,255));

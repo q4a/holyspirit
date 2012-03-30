@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-29 10:35+0300\n"
-"PO-Revision-Date: 2012-03-29 18:11+0200\n"
+"POT-Creation-Date: 2012-03-30 12:22+0300\n"
+"PO-Revision-Date: 2012-03-30 12:25+0200\n"
 "Last-Translator: Igor Paliychuk <mansonigor@gmail.com>\n"
 "Language-Team: FRENCH <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -275,7 +275,7 @@ msgstr "Sauvegarder et quitter"
 #: ../../../Source/Contextes/c_menuInGame.cpp:187
 #: ../../../Source/Contextes/c_menuInGame.cpp:190
 #: ../../../Source/Contextes/c_menuInGame.cpp:193
-msgid "Quit the game"
+msgid "Reset game world"
 msgstr "Reinitialiser la partie"
 
 #: ../../../Source/Entites/hero.cpp:111
@@ -342,8 +342,9 @@ msgstr "Degats"
 
 #: ../../../Source/Entites/hero.cpp:1562
 #: ../../../Source/Entites/objet.cpp:2183
-msgid "Armor"
-msgstr "Armure"
+#: ../../../Source/Entites/objet.cpp:2203
+msgid "Armor: "
+msgstr "Armure : "
 
 #: ../../../Source/Entites/hero.cpp:1575
 msgid "Physical"
@@ -501,10 +502,6 @@ msgstr "Arme a deux mains"
 #: ../../../Source/Entites/objet.cpp:2171
 msgid "One hand weapon"
 msgstr "Arme a une main"
-
-#: ../../../Source/Entites/objet.cpp:2203
-msgid "Armor: "
-msgstr "Armure : "
 
 #: ../../../Source/Entites/objet.cpp:2222
 msgid "Required Strength: "

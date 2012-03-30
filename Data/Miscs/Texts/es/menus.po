@@ -1,39 +1,37 @@
-# Russian translation for HolySpirit.
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Igor Paliychuk <mansonigor@gmail.com>, 2012.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-30 12:22+0300\n"
-"PO-Revision-Date: 2012-03-30 12:29+0200\n"
+"PO-Revision-Date: 2012-03-30 12:24+0200\n"
 "Last-Translator: Igor Paliychuk <mansonigor@gmail.com>\n"
-"Language-Team: UKRAINIAN <LL@li.org>\n"
+"Language-Team: SPANISH <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Virtaal 0.7.0\n"
 
 #: ../../../Source/configuration.cpp:667
 #: ../../../Source/configuration.cpp:670
 #: ../../../Source/configuration.cpp:673
 msgid "Graphics options"
-msgstr "Параметри графіки"
+msgstr ""
 
 #: ../../../Source/configuration.cpp:683
 #: ../../../Source/configuration.cpp:686
 #: ../../../Source/configuration.cpp:689
 msgid "Advanced options"
-msgstr "Додаткові параметри"
+msgstr ""
 
 #: ../../../Source/configuration.cpp:700
 #: ../../../Source/configuration.cpp:703
 #: ../../../Source/configuration.cpp:706
 msgid "Sound options"
-msgstr "Параметри звуку"
+msgstr ""
 
 #: ../../../Source/configuration.cpp:721
 #: ../../../Source/configuration.cpp:724
@@ -65,77 +63,77 @@ msgstr "Параметри звуку"
 #: ../../../Source/Contextes/c_menuInGame.cpp:114
 #: ../../../Source/Entites/hero.cpp:4685
 msgid "Return"
-msgstr "Назад"
+msgstr "Regreso"
 
 #: ../../../Source/configuration.cpp:736
 msgid "Resolution: "
-msgstr "Розширення: "
+msgstr ""
 
 #: ../../../Source/configuration.cpp:829
 msgid "Window mode: "
-msgstr "Режим вікна: "
+msgstr ""
 
 #: ../../../Source/configuration.cpp:849
 msgid "Brightness: "
-msgstr "Яскравість: "
+msgstr ""
 
 #: ../../../Source/configuration.cpp:879
 msgid "Contrast: "
-msgstr "Контраст: "
+msgstr ""
 
 #: ../../../Source/configuration.cpp:954
 msgid "Quality of lights: "
-msgstr "Якість освітлення: "
+msgstr ""
 
 #: ../../../Source/configuration.cpp:979
 msgid "Render the shadows: "
-msgstr "Малювати тіні: "
+msgstr ""
 
 #: ../../../Source/configuration.cpp:999
 msgid "Use shader effects: "
-msgstr "Використоувати шейдери: "
+msgstr ""
 
 #: ../../../Source/configuration.cpp:1019
 msgid "Enable reflection of objects: "
-msgstr "Ввімкнути відображення об'єктів: "
+msgstr ""
 
 #: ../../../Source/configuration.cpp:1039
 msgid "Enable effects of distortion: "
-msgstr "Ввімкнути ефекти спотворення: "
+msgstr ""
 
 #: ../../../Source/configuration.cpp:1059
 msgid "Render the grass: "
-msgstr "Малювати траву:  "
+msgstr ""
 
 #: ../../../Source/configuration.cpp:1079
 msgid "Enable dynamical debris: "
-msgstr "Ввімкнути динамічне сміття: "
+msgstr ""
 
 #: ../../../Source/configuration.cpp:1121
 msgid "Volume: "
-msgstr "Гучність: "
+msgstr ""
 
 #: ../../../Source/configuration.cpp:1157
 msgid "Music volume: "
-msgstr "Гучність музики: "
+msgstr ""
 
 #: ../../../Source/menu.cpp:442
 #: ../../../Source/Entites/hero.cpp:1095
 #: ../../../Source/Entites/hero.cpp:1126
 #: ../../../Source/Entites/objet.cpp:2195
 msgid "Life"
-msgstr "Життя"
+msgstr "Vida"
 
 #: ../../../Source/menu.cpp:493
 #: ../../../Source/Entites/hero.cpp:1131
 #: ../../../Source/Entites/hero.cpp:1162
 #: ../../../Source/Entites/hero.cpp:1585
 msgid "Faith"
-msgstr "Віра"
+msgstr "Fe"
 
 #: ../../../Source/menu.cpp:527
 msgid "Points of souls: "
-msgstr "Очки душ: "
+msgstr ""
 
 #: ../../../Source/Contextes/c_jeu.cpp:246
 #: ../../../Source/Contextes/c_jeu.cpp:253
@@ -145,19 +143,19 @@ msgstr ""
 #: ../../../Source/Contextes/c_jeu.cpp:248
 #: ../../../Source/Contextes/c_jeu.cpp:255
 msgid "Click to have another chance!"
-msgstr "Натисніть для ще одної спроби!"
+msgstr ""
 
 #: ../../../Source/Contextes/c_jeu.cpp:1128
 msgid "Time : "
-msgstr "Час: "
+msgstr ""
 
 #: ../../../Source/Contextes/c_jeu.cpp:1145
 msgid "Loop iteration nbr : "
-msgstr "Номер ітерації:"
+msgstr ""
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:81
 msgid "An old law required has always been the good and evil meet has at least one rule in their eternal conflict. They could not directly intervene in the affairs of living entities, acting only by the subtle suggestion and battling within each soul...\\Egoism, violence, pity, love and clashed in the form of thoughts, of dreams, with varied fates.\\\\But one day evil, which no longer supported the balance was satisfied with the Good, decided to violate the rule RESPECTED far and achieved this in incarnating directly into most living beings vulnerable to his impulses, and, curiously, in some objects.\\Henceforth evil reign could only be on each of which he took possession of some ordinary objects become demonic.\\\\Having anticipated this treachery, the Well was not surprised. Renouncing to violate the law as Evil had done and refusing to sacrifice the good and generous souls, he used a few storms and damned spirits who wanted to redeem himself deeply with him...\\considering himself already lost, alone unconsciousness would have to address the foul legion that has swept across the world."
-msgstr "Старий закон завжди вимагав, щоб в протистоянні добра і зла дотримувалось хоча б одне правило. Вони не можуть безпосередньо втручатися в справи живих істот, лише навіюванням позиції в боротьбі всередині кожної душі...\\Егоїзм, насильство, жалість, любов стикались у вигляді думок, мрії, і змінювали долі.\\\\Але одного разу зло, яке більше перестало задовольнятись балансу з добром, вирішило порушити ВЕЛИКЕ правило, і домоглися свого втілення безпосередньо у більшості живих істот уразливих до своїх імпульсів і, як не дивно, в деяких об'єктах.\\Відтепер прості предмети, якими заволоділо зло, стають демонічними.\\\\Добро не здивувалось, це була очікувана зрада. Відмовляючись порушувати закон, як це зробило Зло і відмовляються жертвувати хорошими і щедрими душами, він застосував кілька штормів і проклятих духів, які хотіли спокутувати гріхи  перед Добром...\\не бачачи іншого виходу, оскільки цілий легіон несвідомих істот прокотився по всьому світу."
+msgstr ""
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:271
 #: ../../../Source/Contextes/c_mainMenu.cpp:279
@@ -165,7 +163,7 @@ msgstr "Старий закон завжди вимагав, щоб в прот�
 #: ../../../Source/Contextes/c_mainMenu.cpp:289
 #: ../../../Source/Contextes/c_mainMenu.cpp:292
 msgid "Continue"
-msgstr "Продовжити"
+msgstr "Proseguir el juego"
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:306
 #: ../../../Source/Contextes/c_mainMenu.cpp:314
@@ -173,14 +171,14 @@ msgstr "Продовжити"
 #: ../../../Source/Contextes/c_mainMenu.cpp:324
 #: ../../../Source/Contextes/c_mainMenu.cpp:327
 msgid "Multiplayer"
-msgstr "Мультиплеєр"
+msgstr ""
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:338
 #: ../../../Source/Contextes/c_mainMenu.cpp:345
 #: ../../../Source/Contextes/c_mainMenu.cpp:348
 #: ../../../Source/Contextes/c_mainMenu.cpp:351
 msgid "New game"
-msgstr "Нова гра"
+msgstr "Nueva partida"
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:423
 #: ../../../Source/Contextes/c_mainMenu.cpp:430
@@ -191,21 +189,21 @@ msgstr "Нова гра"
 #: ../../../Source/Contextes/c_menuInGame.cpp:137
 #: ../../../Source/Contextes/c_menuInGame.cpp:140
 msgid "Options"
-msgstr "Опції"
+msgstr "Opciones"
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:447
 #: ../../../Source/Contextes/c_mainMenu.cpp:454
 #: ../../../Source/Contextes/c_mainMenu.cpp:457
 #: ../../../Source/Contextes/c_mainMenu.cpp:460
 msgid "Credits"
-msgstr "Автори"
+msgstr "Crédits"
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:471
 #: ../../../Source/Contextes/c_mainMenu.cpp:478
 #: ../../../Source/Contextes/c_mainMenu.cpp:481
 #: ../../../Source/Contextes/c_mainMenu.cpp:484
 msgid "Quit"
-msgstr "Вийти"
+msgstr "Salir"
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:540
 #: ../../../Source/Contextes/c_mainMenu.cpp:547
@@ -213,329 +211,329 @@ msgstr "Вийти"
 #: ../../../Source/Contextes/c_mainMenu.cpp:553
 #: ../../../Source/Contextes/c_mainMenu.cpp:794
 msgid "Delete character"
-msgstr "Видалити персонажа"
+msgstr ""
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:607
 msgid "<Incompatible>"
-msgstr "<Несумісний>"
+msgstr "<Incompatible>"
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:609
 #: ../../../Source/Entites/hero.cpp:1050
 msgid "Level"
-msgstr "Рівень"
+msgstr "Nivel"
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:758
 msgid "Please enter the name of the hero to delete :"
-msgstr "Будь ласка, введіть ім'я героя для видалення :"
+msgstr ""
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:850
 msgid "Select your character"
-msgstr "Виберіть персонажа"
+msgstr ""
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:923
 msgid "Enter your name"
-msgstr "Введіть ваше ім'я"
+msgstr "Su nombre"
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:939
 #: ../../../Source/Contextes/c_mainMenu.cpp:946
 #: ../../../Source/Contextes/c_mainMenu.cpp:949
 #: ../../../Source/Contextes/c_mainMenu.cpp:952
 msgid "Start"
-msgstr "Почати"
+msgstr "Empezar"
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:1106
 #: ../../../Source/Contextes/c_mainMenu.cpp:1113
 #: ../../../Source/Contextes/c_mainMenu.cpp:1116
 #: ../../../Source/Contextes/c_mainMenu.cpp:1119
 msgid "Next"
-msgstr "Далі"
+msgstr ""
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:1161
 #: ../../../Source/Contextes/c_mainMenu.cpp:1168
 #: ../../../Source/Contextes/c_mainMenu.cpp:1171
 #: ../../../Source/Contextes/c_mainMenu.cpp:1174
 msgid "Join game"
-msgstr "При'єднатись до гри"
+msgstr ""
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:1191
 #: ../../../Source/Contextes/c_mainMenu.cpp:1198
 #: ../../../Source/Contextes/c_mainMenu.cpp:1201
 #: ../../../Source/Contextes/c_mainMenu.cpp:1204
 msgid "Host game"
-msgstr "Створити гру"
+msgstr ""
 
 #: ../../../Source/Contextes/c_menuInGame.cpp:152
 #: ../../../Source/Contextes/c_menuInGame.cpp:159
 #: ../../../Source/Contextes/c_menuInGame.cpp:162
 #: ../../../Source/Contextes/c_menuInGame.cpp:165
 msgid "Save and Exit"
-msgstr "Зберегти і вийти"
+msgstr "Guardar y salir"
 
 #: ../../../Source/Contextes/c_menuInGame.cpp:180
 #: ../../../Source/Contextes/c_menuInGame.cpp:187
 #: ../../../Source/Contextes/c_menuInGame.cpp:190
 #: ../../../Source/Contextes/c_menuInGame.cpp:193
 msgid "Reset game world"
-msgstr "Скинути ігровий світ"
+msgstr "Reiniciar la partida y salir"
 
 #: ../../../Source/Entites/hero.cpp:111
 #: ../../../Source/Entites/hero.cpp:4999
 msgid "New quest"
-msgstr "Новий квест"
+msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:1068
 msgid "Name"
-msgstr "І'мя"
+msgstr "Nombre"
 
 #: ../../../Source/Entites/hero.cpp:1089
 msgid "Class"
-msgstr "Клас"
+msgstr "Clase"
 
 #: ../../../Source/Entites/hero.cpp:1208
 msgid "Strength"
-msgstr "Сила"
+msgstr "Fuerza"
 
 #: ../../../Source/Entites/hero.cpp:1221
 msgid "Your strength increases your damage to opponent and allows you to carry the heavier equipment."
-msgstr "Ваша сила збільшує нанесену противнику шкоду і дозволяє носити важкі обладунки."
+msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:1269
 msgid "Dexterity"
-msgstr "Спритність"
+msgstr "Destreza"
 
 #: ../../../Source/Entites/hero.cpp:1281
 msgid "Your dexterity allows you to dodge better and access to certain objects."
-msgstr "Ваша спритність дозволяє краще ухилятись від ударів і надає доступ до деяких об'єктів."
+msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:1331
 msgid "Vitality"
-msgstr "Життєва сила"
+msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:1343
 msgid "Your vitality increases your life."
-msgstr "Ваша життєва сила збільшує ваше життя."
+msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:1391
 msgid "Piety"
-msgstr "Благочестя"
+msgstr "Piedad"
 
 #: ../../../Source/Entites/hero.cpp:1401
 msgid "Your piety points increase your faith."
-msgstr "Очки благочестя збільшують віру."
+msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:1449
 msgid "Charisma"
-msgstr "Харизма"
+msgstr "Carisma"
 
 #: ../../../Source/Entites/hero.cpp:1461
 msgid "Your charisma affects the price of objects and allows you to wear certain items."
-msgstr "Харизма впливає на вартість речей і дозволяє носити деякі предмети."
+msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:1465
 #: ../../../Source/Entites/hero.cpp:2013
 msgid "Points left"
-msgstr "Залишилось"
+msgstr "Restantes"
 
 #: ../../../Source/Entites/hero.cpp:1519
 msgid "Damage"
-msgstr "Шкода"
+msgstr "Daños"
 
 #: ../../../Source/Entites/hero.cpp:1562
 #: ../../../Source/Entites/objet.cpp:2183
 #: ../../../Source/Entites/objet.cpp:2203
 msgid "Armor: "
-msgstr "Броня: "
+msgstr "Armadura: "
 
 #: ../../../Source/Entites/hero.cpp:1575
 msgid "Physical"
-msgstr "Физична"
+msgstr "Físico"
 
 #: ../../../Source/Entites/hero.cpp:1580
 msgid "Fire"
-msgstr "Вогонь"
+msgstr "Fuego"
 
 #: ../../../Source/Entites/hero.cpp:1590
 msgid "Corrosion"
-msgstr "Корозія"
+msgstr "Corrosión"
 
 #: ../../../Source/Entites/hero.cpp:1609
 msgid "Money"
-msgstr "Гроші"
+msgstr "Dinero"
 
 #: ../../../Source/Entites/hero.cpp:1627
 msgid "Holy water"
-msgstr "Свята вода"
+msgstr "Agua bendita"
 
 #: ../../../Source/Entites/hero.cpp:2984
 msgid "Shortcut"
-msgstr "Ярлик"
+msgstr "Atajo"
 
 #: ../../../Source/Entites/hero.cpp:3238
 msgid "LevelUp"
-msgstr "Новий рівень"
+msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:3658
 msgid "I do not have the required equipment!"
-msgstr "В меня немає потрібного обладнання!"
+msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:3791
 msgid "My bag is full!"
-msgstr "Моя сумка переповнена!"
+msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:5038
 msgid "Quest ended"
-msgstr "Квест завершений"
+msgstr ""
 
 #: ../../../Source/Entites/miracle.cpp:960
 msgid "Left click"
-msgstr "Ліве клацання"
+msgstr ""
 
 #: ../../../Source/Entites/miracle.cpp:962
 msgid "Right click"
-msgstr "Праве клацання"
+msgstr ""
 
 #: ../../../Source/Entites/miracle.cpp:1008
 #: ../../../Source/Entites/miracle.cpp:1056
 msgid "Cost of faith: "
-msgstr "Ціна віри:"
+msgstr "Cuesto en fe: "
 
 #: ../../../Source/Entites/miracle.cpp:1014
 #: ../../../Source/Entites/miracle.cpp:1062
 msgid "Reserve of faith: "
-msgstr "Запас віри:"
+msgstr "Reserva de fe: "
 
 #: ../../../Source/Entites/miracle.cpp:1020
 #: ../../../Source/Entites/miracle.cpp:1068
 msgid "Cost of life: "
-msgstr "Цена життя:"
+msgstr "Cuesto en vida: "
 
 #: ../../../Source/Entites/miracle.cpp:1026
 #: ../../../Source/Entites/miracle.cpp:1074
 msgid "Reserve of life: "
-msgstr "Запас життя:"
+msgstr "Reserva de vida: "
 
 #: ../../../Source/Entites/miracle.cpp:1039
 msgid "Next level: "
-msgstr "Наступний рівень:"
+msgstr "Siguiente nivel: "
 
 #: ../../../Source/Entites/miracle.cpp:1044
 msgid "Requirements: "
-msgstr "Вимоги: "
+msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:1927
 msgid "Increased efficiency: "
-msgstr "Збільшення ефективності: "
+msgstr "Eficacia mejorada de: "
 
 #: ../../../Source/Entites/objet.cpp:1933
 msgid "Increased strength: "
-msgstr "Збільшення сили: "
+msgstr "Fuerza mejorada de: "
 
 #: ../../../Source/Entites/objet.cpp:1935
 msgid "Increased dexterity: "
-msgstr "Збільшення спритності: "
+msgstr "Destreza mejorada de: "
 
 #: ../../../Source/Entites/objet.cpp:1937
 msgid "Increased vitality: "
-msgstr "Збільшення життєвої сили: "
+msgstr "Vitalidad mejorada de: "
 
 #: ../../../Source/Entites/objet.cpp:1939
 msgid "Increased piety: "
-msgstr "Збільшення благочестя: "
+msgstr "Piedad mejorada de: "
 
 #: ../../../Source/Entites/objet.cpp:1941
 msgid "Increased charisma: "
-msgstr "Збільшення харизми: "
+msgstr "Carisma mejorado de: "
 
 #: ../../../Source/Entites/objet.cpp:1947
 msgid "Increased health: "
-msgstr "Збільшення життя: "
+msgstr "Vida mejorada de: "
 
 #: ../../../Source/Entites/objet.cpp:1949
 msgid "Increased faith: "
-msgstr "Збільшення віри: "
+msgstr "Daños mejorados de: "
 
 #: ../../../Source/Entites/objet.cpp:1961
 msgid "over"
-msgstr "за"
+msgstr "sur"
 
 #: ../../../Source/Entites/objet.cpp:1970
 msgid "Miracle: "
-msgstr "Чудо: "
+msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:2018
 msgid "Equiped: "
-msgstr "На собі: "
+msgstr "Equipaje: "
 
 #: ../../../Source/Entites/objet.cpp:2022
 msgid "Stash: "
-msgstr "Тайник: "
+msgstr "Baúl: "
 
 #: ../../../Source/Entites/objet.cpp:2024
 msgid "Trader: "
-msgstr "Торговець: "
+msgstr "Mercantil: "
 
 #: ../../../Source/Entites/objet.cpp:2026
 msgid "Inventory: "
-msgstr "Інвентар: "
+msgstr "Inventario: "
 
 #: ../../../Source/Entites/objet.cpp:2116
 msgid "Production time: "
-msgstr "Час виготовлення: "
+msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:2119
 msgid "minutes"
-msgstr "хвилин"
+msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:2121
 msgid "seconds"
-msgstr "секунд"
+msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:2153
 #: ../../../Source/Entites/objet.cpp:2199
 msgid "Damage: "
-msgstr "Шкода: "
+msgstr "Daños: "
 
 #: ../../../Source/Entites/objet.cpp:2169
 msgid "Two-handed weapon"
-msgstr "Дворучна зброя"
+msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:2171
 msgid "One hand weapon"
-msgstr "Одноручна зброя"
+msgstr ""
 
 #: ../../../Source/Entites/objet.cpp:2222
 msgid "Required Strength: "
-msgstr "Потрібна сила: "
+msgstr "Fuerza física: "
 
 #: ../../../Source/Entites/objet.cpp:2232
 msgid "Dexterity required: "
-msgstr "Потрібна спритність: "
+msgstr "Destreza necesaria: "
 
 #: ../../../Source/Entites/objet.cpp:2242
 msgid "Charisma required: "
-msgstr "Потрібна харизма: "
+msgstr "Carisma necesario: "
 
 #: ../../../Source/Entites/objet.cpp:2252
 msgid "Vitality required: "
-msgstr "Потрібна життєва сила: "
+msgstr "Vitalidad necesaria: "
 
 #: ../../../Source/Entites/objet.cpp:2262
 msgid "Piety required: "
-msgstr "Потрібне благочестя: "
+msgstr "Piedad necesaria: "
 
 #: ../../../Source/Entites/objet.cpp:2275
 msgid "Only for: "
-msgstr "Лише для: "
+msgstr "Solamente para: "
 
 #: ../../../Source/Entites/objet.cpp:2351
 msgid "Free slot"
-msgstr "Порожній слот"
+msgstr "Sitio libre"
 
 #: ../../../Source/Entites/objet.cpp:2369
 msgid "Price: "
-msgstr "Ціна: "
+msgstr "Precio: "
 
 #: ../../../Source/Entites/personnage.cpp:458
 msgid "Enter your message..."
-msgstr "Введіть повідомлення..."
+msgstr ""
 

@@ -177,20 +177,20 @@ void c_MenuInGame::Utiliser(Jeu *jeu)
 
 
         buttons_principal[3].no_opacity = true;
-        buttons_principal[3].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Quit the game")), 72);
+        buttons_principal[3].position.w = moteurGraphique->special_typo.getSize(toUtf32(gettext("Reset game world")), 72);
         buttons_principal[3].position.h = 64;
         buttons_principal[3].position.y = configuration->Resolution.h/2+70;
         buttons_principal[3].position.x = configuration->Resolution.w/2-buttons_principal[3].position.w/2;
         buttons_principal[3].Afficher(0);
 
         if(buttons_principal[3].m_press)
-            moteurGraphique->special_typo_p.Draw(gettext("Quit the game"), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_p.Draw(gettext("Reset game world"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[3].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else if(buttons_principal[3].m_hover)
-            moteurGraphique->special_typo_h.Draw(gettext("Quit the game"), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo_h.Draw(gettext("Reset game world"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                             buttons_principal[3].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
         else
-            moteurGraphique->special_typo.Draw(gettext("Quit the game"), sf::Vector2f(configuration->Resolution.w/2,
+            moteurGraphique->special_typo.Draw(gettext("Reset game world"), sf::Vector2f(configuration->Resolution.w/2,
                                                                                           buttons_principal[3].position.y), 72, 19, true, sf::Color(255,255,255,(int)m_alpha));
 
         if(buttons_principal[3].m_action)
