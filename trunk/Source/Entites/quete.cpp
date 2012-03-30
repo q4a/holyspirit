@@ -153,6 +153,7 @@ void    Quete::    SauvegarderTexte(std::ofstream *fichier)
     *fichier<<" d"<<description;
     *fichier<<" i"<<m_id;
     *fichier<<" s"<<m_statut;
+    *fichier<<" a"<<m_actif;
 
     *fichier<<" $ ";
 
@@ -176,6 +177,9 @@ void    Quete::    ChargerTexte(std::ifstream *fichier)
             *fichier>>m_id;
         else if (caractere=='s')
             *fichier>>m_statut;
+
+        else if (caractere=='a')
+            *fichier>>m_actif;
 
 
         if (fichier->eof())
