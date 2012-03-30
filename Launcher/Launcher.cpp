@@ -17,7 +17,7 @@ Launcher::Launcher() : QWidget() {
 
     //Chargement du CSS
     {
-        QFile feuilleCSS("Data/Menus/Launcher/launcher.css");
+        QFile feuilleCSS("Data/Graphics/Menus/Launcher/launcher.css");
         if(feuilleCSS.open(QIODevice::ReadOnly)) {
             setStyleSheet(QString(feuilleCSS.readAll()));
         }
@@ -32,7 +32,7 @@ Launcher::Launcher() : QWidget() {
     QLabel *fond = new QLabel(this);
     //On ajoute un fond.
     {
-        QPixmap pixmap(tr("Data/Menus/Launcher/Fond.png"));
+        QPixmap pixmap(tr("Data/Graphics/Menus/Launcher/Fond.png"));
         fond->setPixmap(pixmap);
         setAttribute(Qt::WA_TranslucentBackground);
         setWindowFlags(Qt::FramelessWindowHint);
