@@ -1,0 +1,1536 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Igor Paliychuk <mansonigor@gmail.com>\n"
+"Language-Team: SPANISH <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Damage increased: "
+msgstr "Dégâts accrus: "
+
+msgid "Damage by fire: "
+msgstr "Daños por fuego: "
+
+msgid "Damage by faith: "
+msgstr "Daños por fe: "
+
+msgid "Damage by corrosion: "
+msgstr "Daños por corrosión: "
+
+msgid "Armor increased: "
+msgstr "Armadura mejorada de: "
+
+msgid "Fire resistance: "
+msgstr "Resistencia al fuego: "
+
+msgid "Faith resistance: "
+msgstr "Resistencia a la fe: "
+
+msgid "Corrosion resistance: "
+msgstr "Resistencia a la corrosión: "
+
+msgid "Damage per bleeding: "
+msgstr "Dégats par saignement: "
+
+msgid "Damage by the burn: "
+msgstr "Dégats par la brulure: "
+
+msgid "Damage per purification: "
+msgstr "Dégats par la purification: "
+
+msgid "Damage by poison: "
+msgstr "Dégats par le poison: "
+
+msgid "///SHRINE///"
+msgstr ""
+
+msgid "What would you do?\\\\"
+msgstr ""
+
+msgid "Teleport"
+msgstr "Teletransportarse"
+
+msgid "Jump to my stash"
+msgstr "Ir en mi baúl"
+
+msgid "The Abbey"
+msgstr "Abadía"
+
+msgid "Agrarian Lands"
+msgstr "Las tierras agrarias"
+
+msgid "The Catacombs"
+msgstr "Catacombes"
+
+msgid "The Crypt"
+msgstr "La Cripta"
+
+msgid "The Graveyard"
+msgstr "Cementerio"
+
+msgid "///TUTORIAL///"
+msgstr ""
+
+msgid "Miserable fisherman!\\Here you are in Limbo. You have much to do before they can hope to reach Paradise...\\For you to prove to myself first and foremost that you are worthy of my trust. Some of your fellows to whom I gave a chance for redemption have not even been able to get out by themselves in this room... Fools... Show me that you're better from them!"
+msgstr ""
+
+msgid "Miserable sinner!\\Here you are in Limbo. You have much to do before they can hope to reach Paradise...\\For you to prove to myself first and foremost that you are worthy of my trust. Some of your fellows to whom I gave a chance for redemption have not even been able to get out by themselves in this room... Fools... Show me that you're better from them!"
+msgstr ""
+
+msgid "Fine. I would still not explain how to get through a door!\\Let's see if you can beat you. It drags in the next room the soul of one of your fellows who do me any good. If I think your history of violence hast not foreign. Eliminate this creature!\\\\(Click on the creature to destroy it)"
+msgstr ""
+
+msgid "Not bad! I would now like you to confront many of these stupid creatures who keep safe. Look at them... They do not know why they keep, or even what's inside... If you do not want to end up like they catch you!\\\\ (Click to open the safe, ALT to see the objects and click on their name to pick them up)"
+msgstr ""
+
+msgid "Hold down alt and click on the name of the object to pick it up."
+msgstr ""
+
+msgid "Perfect. You can now find the items you've collected in your inventory.\\\\(Click on the icon of the interface below or on \"I\". It is also possible to equip them by placing them in the appropriate box or placed in use with shortcuts keys 1 to 8.)"
+msgstr ""
+
+msgid "You will notice also that each destroyed enemy strengthens your soul and helps make you stronger.\\\\(When the bar is filled souls you win a level)"
+msgstr ""
+
+msgid "Now you have to eliminate the creatures in the next room (Do not kill, they are already dead for centuries). You will win and the strengths and talents more!"
+msgstr ""
+
+msgid "Well! You're learning fast and that's what I expected from you...\\You've turned a corner, and you can now choose which area you want to improve yourself.\\\\(We choose the features that one wishes improve through the inventory, \"I\")"
+msgstr ""
+
+msgid "-Your strength increases your melee damage and allows you to wear heavier equipment.\\-Dexterity allows you to dodge better and carry more items.\\-Vitality increases your life.\\-Your piety is your ability to invoke your god, it allows you to run more miracles (we'll come back...).\\-Your charisma affects the price of objects and allows you to wear certain items."
+msgstr ""
+
+msgid "You must know your current status allows you to access certain powers.\\You can now call upon your god to destroy your opponents.\\\\(Click on the icon shaped like a cross to open the panel of miracles. You can choose the way in which you specialize you want by clicking on one of the three tabs at the top. You just have to right click on a miracle to learn or improve. This will place it in the shortcut bar at the bottom. You can access it during the game with the 1-8 keys and clicking the right mouse button.)"
+msgstr ""
+
+msgid "Perfect! This test was very small but all the poor souls I've known have not succeeded, far away... Yes, I know this is appalling.\\Now join the light at the back of the room and embrace your next mission.\\If I had knowledge of your past I'll complain packages..."
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "To the Abbey of St. Clodomir"
+msgstr ""
+
+msgid "////ABBE///"
+msgstr ""
+
+msgid "Hello to you my son! Is that you? Yes it can be you! Big, strong... The Savior! Out of nowhere! God spoke to me, and I knew he did not abandon us! Vas, exterminate the vermin demonic rode around everywhere!"
+msgstr ""
+
+msgid "Who are you woman? From what country do you come up with this evocative, these strange clothes? Are you a demon who was able to interfere in God's house? Pay attention to your actions, even in these troubled times we can find time to burn witches..."
+msgstr ""
+
+msgid "I recognize in you a servant of God my brother. But the fever that I read in your eyes me some concern... Are you okay?"
+msgstr ""
+
+msgid "Hello to you my son. You have to come from a country very far away to wander in such attire.\\Maybe you will know how to get rid of the vermin that has befallen our poor country?"
+msgstr ""
+
+msgid "Where am I?"
+msgstr ""
+
+msgid "You're in the abbey of Saint Clodomir. By these days it is one of the few places in the country where we find some peace. And more... Even here it is woven of devilry!"
+msgstr ""
+
+msgid "Of devilry?"
+msgstr ""
+
+msgid "Yes, well, of devilry. My brother monks have a strange behavior, sometimes unhealthy, and some have mysteriously disappeared... I hear noises in the catacombs under the Abbey at night. I initially thought that wild animals that would be introduced but I do not know what to think... I'm afraid I must admit, and the only solution I found is to close the door leading to it. But he will have someone to go and see what happens there... I'm worried about my monks!"
+msgstr ""
+
+msgid "Do you want me to go?"
+msgstr ""
+
+msgid "Oh! I dared not ask... I have some qualms about sending you there alone, but we are not fighters you see... If you need help I'll do what I can! Here, take the key of the catacombs and good luck, God assist you!\\Come back soon and tell me what you saw."
+msgstr ""
+
+msgid "That's what I thought! It ran terrible things behind that door... Certainly we are surrounded by evil! He's out, it is under our feet! Is the sky itself is really kind to us poor miserable human?\\Let us... It is urgent to clean our basement! We are surrounded by evil, but we can not tolerate it in the den of the Lord!\\To perform purification at all costs you must find the relics of four saints who are dispersed in the catacombs."
+msgstr ""
+
+msgid "Finally, you found the source of evil! Here I am reassured, but not that much... The whole world seems overrun by this disgusting filth of undead and mysteriously animated objects... I think the end of this chaotic period is still far alas!"
+msgstr ""
+
+msgid "I am looking for weapons."
+msgstr ""
+
+msgid "You can ask Rognorak, our blacksmith who has taken refuge with us in this holy place. That's a big guy friendly, he continues to forge weapons even if it no longer serves to nothing, he says it occupies until the end of the world."
+msgstr ""
+
+msgid "Do you have things to sell?"
+msgstr ""
+
+msgid "Could you bless something?"
+msgstr ""
+
+msgid "Goodbye!"
+msgstr "Adios."
+
+msgid "Ah! Our hero!"
+msgstr ""
+
+msgid "You're back, woman?"
+msgstr ""
+
+msgid "I saw skeletons in the catacombs!"
+msgstr ""
+
+msgid "I got relic."
+msgstr ""
+
+msgid "Perfect! You quickly, I did not even think you could do it to be honest...\\Now go see the lesser brother next to me, he will accompany you to pronounce the mantra in the Oculus. Follow him and make sure it reaches the Oculus safe and sound!"
+msgstr ""
+
+msgid "The brother was murdered by Hergahrt, a demonic priest!"
+msgstr ""
+
+msgid "Hergahrt, the former priest of the Church of Saint Waldinghe! My God... I did never hear from him... We have banned years ago for his behavior intolerable. With a neighboring parish priest named Johannes they spent their time drinking and laughing in public the result of confessions they received. Not to mention everything we could agree on their differences with women...\\I think Hergahrt went much further now. It is the henchman of the ignominy that is sweeping Ruhigland.\\I am sure there is land in the crypt of his former church, which communicates with our catacombs... Well, here's the key to the gate that separates our catacombs in the crypt.\\Hergahrt must be eliminated, it is now an enemy of the Church and of the human race!"
+msgstr ""
+
+msgid "Of course! The blessing increases the virtues of weapons and armor. So I can give my blessing I need some holy water, and to sing a litany of course object to bless!"
+msgstr ""
+
+msgid "Let's go!"
+msgstr ""
+
+msgid "And then?"
+msgstr ""
+
+msgid "Then he'll have to escort a minor brother to deliver a litany in the Oculus, the old ceremonial hall of the first Christians. You will recognize, is the largest room of the catacombs and the outside light gives it.\\For now fetches the relics! It's been a long time that nobody went to see them and we lost the plans of the catacombs...\\You'll find the Holy Frenegonde ear, the heart of St. Joachim, St. Galswintha eyes and the finger of St. Clodomir. Good luck!"
+msgstr ""
+
+msgid "///FARMER///"
+msgstr ""
+
+msgid "Hey! What are you doing man? You look like a stranger but you're saying so well built! You would not get a service?"
+msgstr ""
+
+msgid "Hello madmoizelle! Let me guess: you are going from the city right? Because i do not like rags now... If you know a beefy guy I would need a service for get me back to my farm."
+msgstr ""
+
+msgid "Who are you?"
+msgstr ""
+
+msgid "I'm Borlor, of the southern farm. Many farmers to feed this beautiful world that is anything but pray. Moreover c'qui seen falling on our face because there is not pray out loud...\\Finally you have not criticize because chui virtually refugee... Besides I need a service, remember?"
+msgstr ""
+
+msgid "What service?"
+msgstr ""
+
+msgid "In fact there are plenty of funny creatures everywhere at the moment, as you have noticed as well. Well they are not ben solid, often a good sod between the eyes and talk about it more!\\But there are things tougher, the kinds of living stones! I saw with my own eyes! They look like regular rocks from afar but it will move and attack you if you approach. I can not drive them more and I can go home! Want to see what you can do? I give a bottle of liquor turnip my personal cuy who chase these bastards from my house!"
+msgstr ""
+
+msgid "I'll see what I can do..."
+msgstr ""
+
+msgid "Frankly I have better things to do than take care of the wall of a peasant!"
+msgstr ""
+
+msgid "Thank you so much! I hope I can trust you! Ten, that's a little turnip of my liquor. It's hard but it gives energy, with it you can not plow horse!"
+msgstr ""
+
+msgid "Great! Follow the path that goes south and you will find my farm at roadside. You will recognize the monsters who will jump on you!"
+msgstr ""
+
+msgid "///ROMULUS TRADER///"
+msgstr ""
+
+msgid "Hello my fine fellow! Would you need anything? I sell everything but sacred objects - out of respect for the Father - and weapons - since Rognorak threatened me with an ax me to swallow."
+msgstr ""
+
+msgid "Hello miss! You might want to buy something? I have no perfumes or makeup in stock but maybe you'll be interested in something else?"
+msgstr ""
+
+msgid "Good God, you make a head! You should offer a small gift to cheer you up! I have a lot of niceties that I give you at a friendly price!"
+msgstr ""
+
+msgid "Hi guy! You know I like your quickdraw? This is not the conventional home but need to know innovate, eh? I'll want a lot of things ES-SEN-TI-AL to sell you. I say \"sell\" but that's the principle, in fact it is almost set!"
+msgstr ""
+
+msgid "My name is Romulus and I am a merchant. Normally I was going to Nekhag, not far from a corn Flatagahn. A friendly city, unpretentious. In short I went there, just to get some rest, but I had the bad idea to spend in this unfortunate country. I ran things for the bizarre, such as stones moving or animated skeletons... I got scared and when I saw the abbey in the distance I abandoned my cart to rush into this holy place. At least for now it survives without undergoing these visions of horror and chaos!"
+msgstr ""
+
+msgid "And your cart?"
+msgstr ""
+
+msgid "Well it should always be there, somewhere south of here. Unless the bone puppets have chosen to play with... I would love to get something! Just a little bag of tobacco from Mad-Retsam. It would help me pass the time, we are so bored here...\\If you bring it back to me I'll give a you little, with a small purse too!\\It would make me so happy!"
+msgstr ""
+
+msgid "Must ask Rognorak, the guy not comfortable there. He forbade me to sell arms on pain of death. As if the external threats were not enough! Talk about a shopping..."
+msgstr ""
+
+msgid "Got the deal?"
+msgstr "Comerciar"
+
+msgid "I have your tobacco!"
+msgstr ""
+
+msgid "Ahhh! In my arms my friend! My good tobacco! Hey, for the trouble I give you a little as promised! Using it in moderation, it is strong enough and its effects are unpredictable. You have there for about ten takes. Thank you again, with this book I will not see spending the next week!"
+msgstr ""
+
+msgid "Pfffff... What nice dog!"
+msgstr ""
+
+msgid "///ROGNORAK BLACKSMITH///"
+msgstr ""
+
+msgid "Yeah? What do you want abroad? A weapon, armor, tools? Times are troubled but life goes on, as they say!"
+msgstr ""
+
+msgid "Well chick! You're up awfully! If you need a service would ask Rognorak! He always knows to please the ladies... Rognorak"
+msgstr ""
+
+msgid "Frankly it's not lack of men in dress here... We'll end up talking my man! And I only sell things that are bad for the health of souls."
+msgstr ""
+
+msgid "Hi there! You too have decided to disguise yourself to celebrate the end of the world? When I see spend all that happening right now I think we need a clean sweep and start all over again. I do not like your clothes and your upper air but if it is to kill the unspeakable horrors lurking around I'll sell you what you want!"
+msgstr ""
+
+msgid "I'm Rognorak, former blacksmith of the Empire. I like to forge weapons quietly in my corner but a fight that's not really my cup of tea. I am an artist! So when they decided to send me to the front to forge swords to chain I cut and I left to chance...\\I do not know if it was a good idea to think... I could not stand to be just a few kilometers from the horde of monsters and now I have to survive a few yards away, taking refuge in that damn Abbey!"
+msgstr ""
+
+msgid "Where are we?"
+msgstr ""
+
+msgid "You're not very observant boy! We see in a monastery! Or an abbey, I've never understood the difference... Question dresses were what level must be female but it is a little sad!"
+msgstr ""
+
+msgid "You're not very observant sweetie! Most often men dress like this are found in the monasteries. Well sometimes we also unearthed in the brothels, huh, hey hey!"
+msgstr ""
+
+msgid "We trade?"
+msgstr ""
+
+msgid "You can do something for me?"
+msgstr ""
+
+msgid "So, what's up my man?"
+msgstr ""
+
+msgid "So miss, we come back to see the blacksmith? We do not shy, eh, heh heh..."
+msgstr ""
+
+msgid "RETURN INQUISITOR"
+msgstr ""
+
+msgid "RETURN PISTOLERO"
+msgstr ""
+
+msgid "What are you doing?"
+msgstr ""
+
+msgid "There? Immediately? But I'm bored! That is, perfectly, I'm bored to the point where it could go bad... You know what? I am so idle that if you give me something to tinker with a gun I'll make the free, just for fun. \\If you want I have an old plan that I train sword for ages. Find me three pounds of metal and I will forge a wink. It will always be better than the usual junk that sells Romulus. Finally he sold before I blast him in the bronchi! Ha ha ha!"
+msgstr ""
+
+msgid "There? Immediately? But I'm bored! That is, perfectly, I'm bored to the point where it could go bad... You know what? I am so idle that if you give me something to tinker with a gun I'll make the free, just for fun. \\If you want I plan a sophisticated machine that I train for ages. Find me a pound of metal and a solid piece of wood and I'll factory in stride. It is a gift, because I love the pretty girls!"
+msgstr ""
+
+msgid "///BARKEEPER////"
+msgstr ""
+
+msgid "Pssst! Hey you!"
+msgstr ""
+
+msgid "Pssst! Hey you! Come help me!\\I dare not leave my hostel since these demons attacked me!"
+msgstr ""
+
+msgid "I'll get rid of right away!"
+msgstr ""
+
+msgid "Wait, I have other details to be worked before..."
+msgstr ""
+
+msgid "Hey! I still need you! Help me, I can not stand to stay locked up here!"
+msgstr ""
+
+msgid "Thank you, I do not know where to go but at least I'm going to run away from here!"
+msgstr ""
+
+msgid "You hear a howl of pain in the distance... Looks like the voice of the innkeeper..."
+msgstr ""
+
+msgid "///SERGEANT WALDEMAR////"
+msgstr ""
+
+msgid "Greetings my guys. You are here safe because me and my men are guarding the place. If you go by and you find survivors sends us, we represent the last vestiges of civilization!"
+msgstr ""
+
+msgid "Greetings, female. I have nothing against you but avoids dispel my men, they need all their concentration to keep the walls of the Abbey..."
+msgstr ""
+
+msgid "I'm Waldemar, Sub-Officer of the Empire. Normally I'm Sergeant but given the circumstances I might as well be Marshall! All these skeletons almost make me regret the barbarians. At least they were flesh and blood like us and killing made sense..."
+msgstr ""
+
+msgid "I can do something for you?"
+msgstr ""
+
+msgid "Well no, not now. These horrible creatures seem to ignore the abbey for now... I hope it will last because if they decide to storm it will not stand for long. At least Will is the consolation of dying all together!"
+msgstr ""
+
+msgid "What is happening?"
+msgstr ""
+
+msgid "Ah! What a question! Well I can not answer you specifically. Everything seems to be Ruhigland suddenly invaded by hostile creatures, corpses and skeletons strangely resuscitated... Some point to a bloodthirsty creature that walks the night, nicknamed the \"reaper\", others talk of a monstrosity in the eyes that shine like fire in the forest... Going to sort out the fantasies of these bumpkins and reality!\\In any case many of us think that all this has something to do with a barbarian revenge..."
+msgstr ""
+
+msgid "Was he outside of the survivors of the abbey?"
+msgstr ""
+
+msgid "Some... The old Ridwen Myrta and her niece who live in the woods to the south, the innkeeper of the Wolf peeled who has cut his home, and Jacquou, the poor fool who walks around the village. He is not afraid of him anything! He wanders the night with strange small bright objects. I wonder how he manages to survive amidst all that, but he refuses to come with us!"
+msgstr ""
+
+msgid "///FARMER SUITE///"
+msgstr ""
+
+msgid "Beware the reaper!"
+msgstr ""
+
+msgid "The reaper?"
+msgstr ""
+
+msgid "Yeah, the reaper! You know? This is kind of lanky beast with a head! The horrible is the reaper! And terrible, nobody can kill him, ten peasants died with their fork while trying to zigouiller. Y comes out at night, then must be locked at night. The day never seen!"
+msgstr ""
+
+msgid "///DOORS///"
+msgstr ""
+
+msgid "It's locked."
+msgstr ""
+
+msgid "It's closed."
+msgstr ""
+
+msgid "//MISSED RELIC///"
+msgstr ""
+
+msgid "The reliquary of St. Galswintha is empty!"
+msgstr ""
+
+msgid "///MONK ALCUIN///"
+msgstr ""
+
+msgid "Hello! I am brother Alcuin. I am the second brother of the abbey, although Hademar consider myself his slave..."
+msgstr ""
+
+msgid "What can you tell me about the abbey?"
+msgstr ""
+
+msgid "The abbey of Saint Clodomir is a venerable institution known throughout Ruhigland. As you can see it now serves as a refuge for neighbors who escape the horror that fell on us..."
+msgstr ""
+
+msgid "What do you know about relics?"
+msgstr ""
+
+msgid "The relics are treasures that ensure the reputation of the abbey. Specifically they are useless, except to perform miraculous incantations once a century... And yet these incantations do not always work!\\Since monks were lost in the catacombs we banned their access, and Hademar no one cares much. I'm sure he does not even know that relics disappeared..."
+msgstr ""
+
+msgid "It lacks a relic?"
+msgstr ""
+
+msgid "Yes, before Hademar happens, the monks indulged in questionable practices. Some farmers were paid to show them the relics... And one day one of them, the pair of eyes of St. Galswintha, disappeared due to the negligence of a brother..."
+msgstr ""
+
+msgid "Where can I find it?"
+msgstr ""
+
+msgid "Hm... I do not know. Some pointed to a thief, other animal that would have won the thing... I do not know what is the exact reality about this unfortunate event! Yet there is something that should simplify searching: the eyes have the ability to glow in the dark. If it's any help..."
+msgstr ""
+
+msgid "///TEUDERIC///"
+msgstr ""
+
+msgid "Forgotten by all the gods... a human being, a real, flesh!\\I did not see one day...\\Help me to die! I want to go to my grave and find rest but I can not do it alone!"
+msgstr ""
+
+msgid "I'm Teuderic, King of the Old People. Not the brightest for sure, I was duped and betrayed by a bunch of mediocre courtiers. When I realized their treachery I have them all hanged. But since my death their ghosts haunt me incessantly, and it's been ages since I experienced this hellish existence without hope of rest. Only a living can get rid of it!"
+msgstr ""
+
+msgid "Meurs, skeletal abomination!"
+msgstr ""
+
+msgid "For now I have something else to do..."
+msgstr ""
+
+msgid "How can I help you?"
+msgstr ""
+
+msgid "It's simple. Wait a few moments and they will come back. Gunther, Ingmar, Boris and others, these vile pigs! I am powerless against them but you will be able to defeat them. Or perish by the way, I must warn you they are more powerful dead than they were alive!"
+msgstr ""
+
+msgid "Okay."
+msgstr ""
+
+msgid "In this case I'm going!"
+msgstr ""
+
+msgid "At the enemy!"
+msgstr ""
+
+msgid "You'll die, vermin!"
+msgstr ""
+
+msgid "Finally... freedom..."
+msgstr ""
+
+msgid "///Johannes///"
+msgstr ""
+
+msgid "Forgiveness young person, but this relic comes back to me! I was just going to take it when you arrived! Hi hi!"
+msgstr ""
+
+msgid "Go, my dear, you take care of our valiant heroes!"
+msgstr ""
+
+msgid "Go, my dear, you take care of that little idiot!"
+msgstr ""
+
+msgid "Idiot, you'll run out to follow me..."
+msgstr ""
+
+msgid "Go a little exercise!"
+msgstr ""
+
+msgid "From Johannes!"
+msgstr ""
+
+msgid "It's time that I make you suffer... personally!"
+msgstr ""
+
+msgid "\"Sunday, November 5:\\\\Abbey apparently based on huge catacombs containing the relics of four venerable saints. If this rental is a huge source of prestige for the Abbey, our good father Hademar has regret in the R block access. It seems that some zealous monks, eager to pray with Saints got lost in the maze and never resurfaced.\\We therefore got access to a tiny part of the catacombs: two rooms equipped with cells of prayer and rest and in a library. The rest is strongly condemned by a heavy door that it is forbidden to touch.\\\\Tuesday, November 7:\\\\The cells arranged in order of the Father Hademar in these ancient catacombs offer an ideal place for meditation. The darkness, the silence is such that the monk is totally receptive to subtle signs of Very Large sometimes seems whispered something his humble nearest ear.\\\\Friday, November 10:\\\\I must admit that sometimes my mind, in this silence delicious, seems to me to play tricks. A bit like a corpse found in length show ends nearest the viewer a discrete movement, the deep silence of the cells gives rise to illusions of sounds, sometimes troubling when consider they emanate actually from the depths of our soul.\\\\Sunday November 13:\\\\After the celebration of the Sunday service I spent a few hours reading in the library nearest the catacombs. Leaving the door open because I was alone, I heard, this time I'm sure, sounds strange and disturbing, like moans alternating expression of pain and the pleasure of obscene. Believing be the subject of a joke of Lothair, a brother who loves nearest distract us beyond reason, I have traveled the corridor hoping to uncover, in vain... Noises quickly stopped.\\\\Monday, November 14:\\\\I just heard strange noises again nearest to the catacombs, and now I know where they come from: the other side of the forbidden door! Certainly there are creatures on the other side. Of tormented souls seeking rest, even, who knows, monks who eventually lost find their way, miraculously surviving in the catacombs for years? I know that Our Almighty knows we be challenged by the most incredible wonders!\\Despite the ban Hademar nearest I will get their meeting tomorrow. Whether men or spirits there can be as benevolent entities are based in places where not one but four Saints!\""
+msgstr ""
+
+msgid "Holy Frenegonde was a sensitive and creative young woman, who liked to play the penny whistle in the green meadows of his childhood. From exquisite beauty, she was in the prime of life when the legions of filthy barbarians poured on our good earth Ruhigland.\\Haksil Wurgasht, one of the powerful chiefs of these tribes claims, arrived one day with a small band of barbarians very excited nearest the idea of shedding blood and burning villages.\\Foreseeing the catastrophe to come nearest to his modest village of Pilunder, Frenegonde, basking in the glory of martyrs, fell nearest knees at the feet of Haksil, offering him tribute in his mouth to save the village.\\The Barbarian, surprised by this unexpected reception, first enter their face with his powerful hands, then grabbed him by the ears while his office, according to what had seemed you typically use it barbaric.\\Things were going well and the atmosphere relaxed subtly, when a lieutenant Haksil, very ugly and deformed, had an access of jealousy and of his heavy club struck the skull of unfortunate Frenegonde.\\The brutality of the coup was an explosion in the skull Frenegonde and left ears of the unfortunate in the hands of Haksil. The male member of the latter ever remained nearest the mouth of the Saint, as the teeth of the unfortunate remained tight nearest his death.\\To expiate his fault, Lieutenant angry undergoes triple removal of his member and his ears."
+msgstr ""
+
+msgid "Joachim was a shepherd who spoke little. He led an austere life, retired to the mountains and never went battle its congeners. Many took him for a fool and had against him nearest the greatest contempt... His only good, except an animal skin and a few sheep, was a strong shepherd's staff who fanned gossip as much jealousy (that detail the lives of Joachim, however, remains obscure).\\When the barbarians who were ruining everything Ruhigland penetrated in our sweet country, the people flowed loosely, leaving the weak and the innocent. Joachim was to be part of the batch of victims.\\The barbarians, led by the formidable Haksil Shortcut, gave away the women, children and the remaining animals, probably by engaging nearest cannibalism (in all likelihood more greedy than rituals).\\It is found that a heart of flesh adult human, we considered its size as that of Joachim. Certainly the whole village was worth a martyr canonization in good and due form, but the merit of his nearest relative Joachim congeners was to have left something to be a relic for posterity."
+msgstr ""
+
+msgid "Galswintha was already known from her youth for the purity of her thoughts. Her extreme modesty made him look away even when innocent animals were mating nearest proximity. Her only pleasure was embroidery, she performed with a proven talent for miles nearest the nearest round...\\She must have known the torment that would ensure her fame with the terrible barbarian invasions, when his unfortunate fate made her cross the sinister Haksil Shortcut, whose virility diminished by the Office of Holy Frenegonde had strengthened the bestial cruelty.\\Nearest always looking for new distractions to entertain the troops, gave the Haksil Galswintha nearest congeners sordid games with pets village (games whose moral condemnation to discuss the details).\\Asked to attend the show by the infamous invaders, who hoped to force then indirectly to take part, had the merit Galswintha thrice holy to mutilate his own flesh to escape its nearest vision. With a gesture of defiance and ignoring any pain, she tore her eyes with her fingers and threw for at her feet, her hollow eyes weeping blood in abundance.\\Her courageous act was to unfortunately not provided to avoid obscene and Cruel games Haksil that because they can not steal her virtue-even the horrible task entrusted nearest a strong bull."
+msgstr ""
+
+msgid "Saint Clodomir, just between the righteous, is the largest ever known Ruhigland Saint.\\Renowned for his wisdom, he was accustomed to lift the middle finger of his right hand in a gesture of appeasement when the inhabitants of the Old People bickered, which about a misplaced fence, which about a poultry disappeared suspiciously. At the end of his speech, he invariably threw an acorn on the ground to signify that he had finished, his every action is as a grain of wisdom designed to thrive as the venerable oak.\\A constant friendly smile on the face, He stated the justice of his sweet voice, without ever raising his voice and the good farmers - as their lords - accepted his judgment with these words again and again repeated: \"Just spoke Clodomir the raised finger, he threw the acorn Everything is set!\".\\When the horrific hordes of barbarians beastly manners well known befell Ruhigland, spreading desolation, Clodomir reassured his people: he would talk to these thugs and would surely lambs, because justice is born of love, and it was missing, uneducated poor, the revelation that the values of the Old People to stop doing evil!\\Clodomir then crossed with his usual calm smoldering villages to talk with the barbarians. Meeting one of the leaders of these, named Wilankar Wurgasht he wore a friendly smile and lifted his usual middle finger as a sign of temperance. Las! The other believed he was about to cast a spell, and his sharp sword, cut off in a flash the finger of the holy man, then are arms, and finally his head. His plan is accomplished, the bloodthirsty brute made a pendant Clodomir macabre finger and gave the rest of his body and its reservation of acorns to pigs hungry, bursting into a laugh like the roar of a wild beast."
+msgstr ""
+
+msgid "This book is an account of the inventory of the relics of the abbey of Saint Clodomir.\\\\\\\\Heart of St. Joachim\\\\The heart of Saint Joachim was found ninety-eight years after his unfortunate death , in a bazaar. He slept in a small wooden box. At the sight of the body withered by years, a particularly devout buyer felt a warmth divine invade, and he called upon God to destroy the field he could not see where the noble body of the saint. As the sentence invoked did not come, the happy man knew he was right and gave the relic to the abbey of Saint Clodomir.\\The heart of St. Joachim is still preserved at St. Clodomir. His condition is correct.\\\\Oreille de Saint Frenegonde\\\\ear of St. Frenegonde was miraculously found one hundred twenty-seven years after his terrible ordeal. Canon Ambroisius was discovered in the stomach of a sow in skinning the animal to make a sausage. Illuminated by divine grace, he immediately recognized the ear as belonging to the saint.\\The ear is preserved in the catacombs of St. Clodomir, in fair condition, though somewhat dry.\\\\\\Eye of Santa Galswintha\\\\The eyes of St. Galswintha appeared in a ceremonial necklace worn by one of the last kings of barbarians Ruhigland. Struck down by a warrior led a holy faith, and the abominable creature freed the precious relic which became property of the abbey.\\Galswintha holy eyes have unfortunately left the catacombs of St. Clodomir following an unfortunate event. A monk of evil memory having judged it expedient to leave the eyes of the Holy shrine for its exhibit at the sight of peasants of his knowledge, the relic disappeared mysteriously. The rumor involves Katrina (suspected of witchcraft) but following the deaths by a sudden illness of three successive investigators recovering the relic has been postponed.\\\\The finger of Saint Clodomir\\\\The mummified finger Saint Clodomir was found in the loot of a barbarian king, who used it as a pen to scribble some incomprehensible gibberish. This use explains the black color of the holy body, which is otherwise in excellent condition."
+msgstr ""
+
+msgid "To Vlanker brother, honorary monk of the abbey.\\\\As everyone knows the abbey of Saint Clodomir is considered a beacon of faith and imperial heirs of the Old People. Founded three centuries after the death of the saint whose name it bears, not far from where Clodomir was eaten by pigs, it contains many unknown treasures of ordinary mortals.\\Built on an underground necropolis forgotten at the time of barbarian rule, the abbey was presented to them as an ignorant vulgar to salting ham. The cult can not be done within the building itself for fear of arousing the suspicion of the invaders, the faithful of the Old courageous people settled in the catacombs and enlarged gradually.\\The underground network became a well huge maze under the action of the faithful who find themselves more and more to pray. Digging became an act of faith, and fervor was such that under the barbarous oppression catacombs stretched themselves in colossal proportions (to the point that one should attempt to venture without a plan).\\Once the period of barbarian rule ended, the catacombs were evacuated by the faithful and collected the remains of countless martyrs of the occupant. Four of them were canonized because of the exemplary nature of their sacrifice: the kind Frenegonde, Joachim the shepherd, and the pure Galswintha course Clodomir.\\One might also note the presence of the tomb of Teuderic, one of ancient kings of our people. Prohibits burial in the crypt of the kings of the capital, as his reign was deemed pathetic, he was taken to St. Clodomir respect for the sovereign lineage. Most aware of our history know that Teuderic had indeed prevailed under the influence of advisors and dishonest fancier one than the other (we still remember the magician Boris invert the fencing master Gunther paralytic and Ingmar lecherous Minister who obtains the favor of successive Teuderic wife and his daughter Princess Theodora)."
+msgstr ""
+
+msgid "Barrel"
+msgstr "Tonel"
+
+msgid "Stash"
+msgstr "Baúl"
+
+msgid "Urn"
+msgstr "Urna"
+
+msgid "Door"
+msgstr "Puerta"
+
+msgid "Morbid Arquebuser "
+msgstr "Arcabucero morboso"
+
+msgid "Morbid Puppet"
+msgstr "Títere morboso"
+
+msgid "Skeletton Guardian"
+msgstr "Guardián esqueleto"
+
+msgid "Dark Shadow"
+msgstr "Sombra tenebrosa"
+
+msgid "Demonic Priest"
+msgstr "Sacerdote demoníaco"
+
+msgid "Tainted Militia : Bully"
+msgstr "Milicia corrompida : Bruto"
+
+msgid "Wandering Stones"
+msgstr "Errante de las rocas"
+
+msgid "Borlor the farmer"
+msgstr ""
+
+msgid "Reliquary"
+msgstr ""
+
+msgid "Gaunt Dog"
+msgstr ""
+
+msgid "Zombified Peasant "
+msgstr "Сampesino zombi"
+
+msgid "Putrid corpse"
+msgstr ""
+
+msgid "Romulus the merchant"
+msgstr ""
+
+msgid "Rare Trader"
+msgstr "Mercantil raro"
+
+msgid "The Great Questor"
+msgstr "El Gran Cuestor"
+
+msgid "Lever"
+msgstr "Palanca"
+
+msgid "Zombie macer"
+msgstr "Zombi con maza"
+
+msgid "Brother"
+msgstr ""
+
+msgid "The Reaper"
+msgstr ""
+
+msgid "Pack Chief"
+msgstr "Jefe de manada"
+
+msgid "Alcuin the archivist"
+msgstr ""
+
+msgid "Infernal Dog"
+msgstr "Moloso infernal"
+
+msgid "Abbe Hademar"
+msgstr ""
+
+msgid "Abbey Shrine"
+msgstr "Estatua de protección de la Abadia"
+
+msgid "Catacombs Shrine"
+msgstr ""
+
+msgid "Graveyard Shrine"
+msgstr ""
+
+msgid "Barkeeper behind the door"
+msgstr ""
+
+msgid "Crusader"
+msgstr ""
+
+msgid "Concubine"
+msgstr ""
+
+msgid "Pistolero"
+msgstr ""
+
+msgid "Skeletton Lord"
+msgstr "Señor esqueleto"
+
+msgid "Burning charcoal golem"
+msgstr "Golem de charbon ardent"
+
+msgid "Bones stack"
+msgstr ""
+
+msgid "Rognorak the blacksmith"
+msgstr "Rognorak le forgeron"
+
+msgid "Sarcophagus"
+msgstr "Sarcophage"
+
+msgid "Wandering cemeteries"
+msgstr ""
+
+msgid "Mass grave (Creates wanderers)"
+msgstr ""
+
+msgid "Passage"
+msgstr ""
+
+msgid "Damned soul"
+msgstr ""
+
+msgid "Guard"
+msgstr ""
+
+msgid "Sergeant Waldemar"
+msgstr ""
+
+msgid "Writing case"
+msgstr ""
+
+msgid "Corrupted peasant"
+msgstr ""
+
+msgid "Offshoot"
+msgstr ""
+
+msgid "Tomb of King Teuderic"
+msgstr ""
+
+msgid "King Teuderic"
+msgstr ""
+
+msgid "Teuderic's torment"
+msgstr ""
+
+msgid "Johannes the Fallen"
+msgstr ""
+
+msgid "Relic"
+msgstr ""
+
+msgid "Marrow sucker"
+msgstr ""
+
+msgid "Pile of stones"
+msgstr ""
+
+msgid "Leather cuffs"
+msgstr "Brazaletes"
+
+msgid "These leather cuffs\\protect the forearm."
+msgstr "Brazaletes básicos de cuero"
+
+msgid "Quilted armor"
+msgstr "Armadura acolchonada"
+
+msgid "This modest armor consists of a lined\\split leather for cushion the blows."
+msgstr "Armadura ligera con poca protección."
+
+msgid "Arquebus"
+msgstr "Arcabuz"
+
+msgid "This strange object has the power\\to propel projectiles with great metal speed.\\Much better than a bow but more painful to the ears!"
+msgstr "Arcabuz como se hacía a la anciana.\\No puede usarla."
+
+msgid "Leather boots"
+msgstr "Bota"
+
+msgid "Boots made for walking...and for\\protecting feet beats slightly."
+msgstr "Botas básicas"
+
+msgid "Ceremonial dagger"
+msgstr "Daga de ceremonia"
+
+msgid "A sharp dagger designed for\\sacrifices during ceremonies."
+msgstr "Daga de ceremonia."
+
+msgid "Chainmail"
+msgstr "Cuota de malla"
+
+msgid "An armor made of many steel\\rings, a good compromise between\\protection and freedom of movement."
+msgstr "Cuota de malla simple."
+
+msgid "Coal"
+msgstr "Carbón"
+
+msgid "Coal is a base material for\\the manufacture of steel"
+msgstr "El carbón es una materia de base\\para l afabriación de municiones."
+
+msgid "Hand crossbow"
+msgstr "Ballesta de puño"
+
+msgid "This small throwing weapon\\is handy and fast, however less\\destructive than a firearm."
+msgstr "Ballesta ligera."
+
+msgid "Dagger"
+msgstr "Puñal"
+
+msgid "Thin, pointed dagger\\is a perfect weapon for\\a traitor... or a woman."
+msgstr "Pequeño puñal."
+
+msgid "Minor faith potion"
+msgstr "Poción de fe"
+
+msgid "The flask contents strangely\\fluorescent gasoline will flow\\divine in your veins!\\You will regenerate 150 PF."
+msgstr "Una poción permitiendo\\de regenerarle de\\150 PF."
+
+msgid "Frock"
+msgstr "Buriel"
+
+msgid "A monk's robe."
+msgstr "Gran escudo."
+
+msgid "Great shield"
+msgstr "Un gran escudo."
+
+msgid "This shield protects holder\\from metal from the chest to the feet."
+msgstr ""
+
+msgid "Minor health potion"
+msgstr "Poción curativa"
+
+msgid "A red and thick liquid,\\tastes disgusting. It is\\certainly not good, but it\\gives a famous whip.\\You heal 150 HP."
+msgstr "Una poción permitiendo\regeneración de\150 HP."
+
+msgid "Cervelliere"
+msgstr "Cervilière"
+
+msgid "This helmet is a\\good head protection."
+msgstr "Una cervilière básica"
+
+msgid "Katzbalger"
+msgstr "Katzpalger"
+
+msgid "This terrible two-handed weapon\\is made to kill,\\and not human beings..."
+msgstr ""
+
+msgid "Long sword"
+msgstr "Espada larga"
+
+msgid "This longsword\\is well balanced:\\an excellent weapon."
+msgstr "Una espada larga.\\perfecta para la guerra."
+
+msgid "Azure pendant"
+msgstr "Colgante azur"
+
+msgid "A pretty small pendant."
+msgstr "Un bello colgante azur."
+
+msgid "Iron ore"
+msgstr "Mineral de hierro"
+
+msgid "Iron ore is a basic material for\\weapons and armors crafting."
+msgstr "El mineral de hierro es una materia\\de base para la fabricación de armas y armaduras."
+
+msgid "Ring"
+msgstr "Anillo"
+
+msgid "A small ring with one stone."
+msgstr "Un pequeño anillo."
+
+msgid "Wooden board"
+msgstr ""
+
+msgid "A board that can be used to\\make many objects...\\Perhaps the first step in a coffin?"
+msgstr ""
+
+msgid "Saddle Crossbow"
+msgstr ""
+
+msgid "..."
+msgstr "..."
+
+msgid "Buckler"
+msgstr "Pequeño escudo."
+
+msgid "A small wooden shield\\topped with metal reinforcements."
+msgstr "Un pequeño escudo."
+
+msgid "Short sword"
+msgstr "Espada pequeña"
+
+msgid "A steel sword,\\short but sharp."
+msgstr "Una pequeña espada oxidada."
+
+msgid "Wrath blade"
+msgstr ""
+
+msgid "???"
+msgstr "???"
+
+msgid "Two-handed sword"
+msgstr "Espada mandoble"
+
+msgid "This heavy sword crushes\\and does not crack..."
+msgstr "Una espada mandoble."
+
+msgid "Boots"
+msgstr "Bota"
+
+msgid "Devine boots."
+msgstr "Unas botas divinas."
+
+msgid "Scarifier"
+msgstr "Arado de subsuelo"
+
+msgid "Scarifier is a ceremonial dagger\\used by the terrible killer Lavoisin."
+msgstr "Arado de subsuelo es una daga\\de ceremonia que fue utilizada por\\la terrible asesina Lavoisin."
+
+msgid "Harold's damnation"
+msgstr "La condenación de Harold"
+
+msgid "This shield once belonged to\\the great king Harold."
+msgstr "Este escudo perteneció al gran rey Harold."
+
+msgid "Reinforced gloves"
+msgstr "Guantes reforzados"
+
+msgid "Strong leather gloves\\reinforced by metal plates."
+msgstr "Unos sólidos guantes en cuero\\reforzados por placas de metal."
+
+msgid "Leather hood"
+msgstr "Capucha de cuero"
+
+msgid "A simple leather hood\\offering little protection."
+msgstr "una simple capucha de cuero\\con poca protección."
+
+msgid "Satin robe of the Tearful Widow."
+msgstr "Vestido en satina de la Viuda desconsolada"
+
+msgid "A black robe which suit perfectly to a woman in mourning."
+msgstr "Un vestido negro que va de maravilla para una mujer en duelo."
+
+msgid "Winged mace"
+msgstr "Maza con álabes"
+
+msgid "A powerful weapon,\\which crushes the skulls also\\easily than eggs."
+msgstr "Una maza con álabes muy oxidada.\\Debe de ser muy antigua."
+
+msgid "Fracasseuse"
+msgstr "Rompecabezas"
+
+msgid "A formidable weapon capable of crushing\\a human skull in one fell swoop.\\\\One-handed weapon."
+msgstr "Una temible arma capaz de estrellar\\un cráneo humano de un golpe.\\Arma a dos manos."
+
+msgid "Flamboyant"
+msgstr "Flamígera"
+
+msgid "Sword forged in the Hell's flammes\\which belonged to the demon\\before being stole by\\the archangel Michel. This one lose it\\by becoming incarnate\\on Earth and is believed\\gone forever."
+msgstr "Espada forjada en las llamas\\del Infierno, perteneció al\\demonio antes de ser robada por el arcángel  Miguel. Este la perdió encarnándose sobre la Tierra y se creyó\\desaparecida hasta siempre."
+
+msgid "Timber axe"
+msgstr "Hacha de leñador"
+
+msgid ""
+"A simple axe for\\cutting wood.\\But it's also slices very\\n"
+"ice meat and bones..."
+msgstr "Una simple hacha para\\cortar madera.\\Aún así, es un arma mortal."
+
+msgid "Butcher's mace"
+msgstr "Maza de escudo"
+
+msgid "This mace has pig killing for first goal.\\But it's also very efficient against demons.\\\\Two-handed weapon."
+msgstr "Esta maza tiene como objetivo\\primero de matar a cerdos.\\Pero también se revela muy eficaz contra demonios.\\\\Arma mandoble."
+
+msgid "Leather armor"
+msgstr ""
+
+msgid "Tears of the Tearful Widow"
+msgstr "Lagrima de la viuda desconsolada"
+
+msgid "A jewel which suit perfectly to a woman in mourning."
+msgstr "Una joya que va de maravilla a una mujer en duelo."
+
+msgid "Horned barbute"
+msgstr "Barbuta con cuernos"
+
+msgid "A barbarian helmet\\extremely resistant.\\Unavailable in the shops."
+msgstr "Un casco de bárbaro\\extremamente resistente.\\No se encuentra en el comercio."
+
+msgid "Copper ore"
+msgstr "Mineral de cobre"
+
+msgid "The copper ore is basic material for\\weapons and armors crafting."
+msgstr "El mineral de cobre es una materia\\de base para la fabricación\\de armas y armaduras."
+
+msgid "Ruby"
+msgstr "Rubí"
+
+msgid "A beautiful precious stone."
+msgstr "Una preciosa joya."
+
+msgid "Blueprint : Horned barbute"
+msgstr "Esquema : Barbuta con cuernos"
+
+msgid "Blueprint explaining the construction of a horned barbute."
+msgstr "Esquema explicando la concepción de una barbuta con cuernos."
+
+msgid "Blueprint : Chainmail"
+msgstr "Esquema : Cuota de malla"
+
+msgid "Blueprint explaining the construction of a chainmail."
+msgstr "Esquema explicando la concepción de una cuota de malla."
+
+msgid "Blueprint : Pendant"
+msgstr "Esquema : Colgante"
+
+msgid "Blueprint explaining the construction of a pendant."
+msgstr "Esquema explicando la concepción de un colgante."
+
+msgid "Blueprint : Tiara"
+msgstr "Esquema : Tiara"
+
+msgid "Blueprint explaining the construction of a tiara."
+msgstr "Esquema explicando la concepción de una tiara."
+
+msgid "Tiara"
+msgstr "Tiara"
+
+msgid "Beautiful tiara orned with an emerald."
+msgstr "Una magnifica tiara engastada de una esmeralda."
+
+msgid "Cleaver"
+msgstr "Cuchilla"
+
+msgid "Knife used by butchers,\\he shall rule the chairs."
+msgstr "Cuchillo utilizado por los carniceros.\\Sirve a cortar la carne."
+
+msgid "Emerald"
+msgstr "Esmeralda"
+
+msgid "Gold ore"
+msgstr "Mineral de oro."
+
+msgid "Precious metal,\\gold is mainly used in jewelry."
+msgstr "Una materia preciosa.\\El oro esta usado en la confección\\de joyas."
+
+msgid "Bronze shield"
+msgstr "Escudo de bronce"
+
+msgid "A buckler forged entirely in bronze. \\Very tough."
+msgstr "Escudo forjado integralmente\\en bronce. Es muy muy duro."
+
+msgid "Blueprint : Bronze shield"
+msgstr "Esquema : Escudo de bronce."
+
+msgid "Blueprint explaining the construction of a bronze shield."
+msgstr "Esquema explicando la concepción de un escudo de bronce."
+
+msgid "Diadem of the Tearful Widow"
+msgstr "Diadema de la viuda desconsolada"
+
+msgid "A diadem which suits perfectly to a woman in mourning."
+msgstr "Diadema que va de maravilla a una mujer en duelo."
+
+msgid "Set of the Tearful Widow"
+msgstr "Set de la viuda desconsolada"
+
+msgid "Minor litany"
+msgstr "Letanía minora"
+
+msgid "This parchment holds the incantation\\required to bless an item."
+msgstr ""
+"Este pergamino contiene el encanto\\n"
+"ecesario a la bendición de un objeto."
+
+msgid "Minor Toxic Cloud Litany"
+msgstr "Letanía de nube toxica minora"
+
+msgid "This parchment holds the incantation\\required to bless an item so that this one\\ could drop a toxic cloud on the battlefield.\\This cloud deal 20 damage over 6 seconds."
+msgstr "Este pergamino contiene el encanto necesario a la\\bendición para que este suelte una nube toxica.\\Esta nube hace 20 puntos de daño durante 6 segundos."
+
+msgid "Blueprint : Burning coal golem"
+msgstr "Schéma : Golem de charbon ardent"
+
+msgid "Blueprint explaining how to make a coal golem familiar."
+msgstr "Schéma expliquant la confection d'un compagnon golem en charbon."
+
+msgid "Burning coal golem"
+msgstr "Golem de charbon ardent"
+
+msgid "A powerful companion.\\The burning coal golem is an humanoid\\made of coal."
+msgstr "Un puissant allié.\\Le golem de charbon ardent est un humanoide\\en charbon incendescant."
+
+msgid "Bone Espadon"
+msgstr "Espadon en os"
+
+msgid "A two-handed sword made of bone."
+msgstr "Une épée à deux mains taillée dans l'os."
+
+msgid "Bone shield"
+msgstr "Bouclier en os"
+
+msgid "Shield made of human bones.\\Some say that it is cursed..."
+msgstr "Bouclier fabriqué à l'aide d'os humains.\\Certains prétendent qu'ils sont maudits..."
+
+msgid "Limited faith potion"
+msgstr "Potion de foi limitée"
+
+msgid "The flask contents strangely\\fluorescent gasoline will flow\\divine in your veins!\\You will regenerate 300 PF."
+msgstr "Une potion permettant\\de vous régénérer de\\300 PF."
+
+msgid "Limited heal potion"
+msgstr "Potion de soins limitée"
+
+msgid "A red and thick liquid,\\tastes disgusting. It is\\certainly not good, but it\\gives a famous whip.\\You heal 300 PV."
+msgstr "Une potion permettant\\de vous soigner de\\300 PV."
+
+msgid "Aventail"
+msgstr "Camail"
+
+msgid "A cap made of mail\\protecting the head and the neck."
+msgstr "Un capuchon en maille\\protégeant la tête et la nuque."
+
+msgid "Clodomir's Scepter"
+msgstr ""
+
+msgid "Description and story of Clodomir."
+msgstr ""
+
+msgid "Journal of the monk Redimus"
+msgstr ""
+
+msgid "Some notes that seem to\\come from the Redimus's the\\monk newspaper.\\Right-click to use."
+msgstr ""
+
+msgid "Book of Saints - Calvary of Frenegonde"
+msgstr ""
+
+msgid "Excerpt from the Book of Saints, the paper\\tells the story of St. Frenegonde.\\Right-click to use."
+msgstr ""
+
+msgid "Book of Saints - The Sacrifice of Joachim"
+msgstr ""
+
+msgid "Excerpt from the Book of Saints, the paper\\tells the story of St. Joachim.\\Right-click to use."
+msgstr ""
+
+msgid "Book of Saints - The Courage of Galswintha"
+msgstr ""
+
+msgid "Excerpt from the Book of Saints, the paper\\tells the story of St. Galswintha.\\Right-click to use."
+msgstr ""
+
+msgid "Book of Saints - Story of Clodomir's Life"
+msgstr ""
+
+msgid "Excerpt from the Book of Saints, the paper\\tells the story of Saint Clodomir.\\Right-click to use."
+msgstr ""
+
+msgid "Barbarian Haksil armor"
+msgstr ""
+
+msgid "Weaved mesh and leather\\belonged to the terrible barbarian leader\\Haksil Wurgasht.\\Some say it still stained by\\the blood of St. Frenegonde..."
+msgstr ""
+
+msgid "Crossbow of eternal fire"
+msgstr ""
+
+msgid "The crossbow was soaked\\in the blood of the demon,\\giving it the ability to\\pull the explosive bolts."
+msgstr ""
+
+msgid "The finger of Saint Clodomir"
+msgstr ""
+
+msgid "No description"
+msgstr ""
+
+msgid "The ear of St. Frenegonde"
+msgstr ""
+
+msgid "The heart of Saint Joachim"
+msgstr ""
+
+msgid "The eye of St. Galswintha"
+msgstr ""
+
+msgid "Silver: "
+msgstr ""
+
+msgid "Blueprint : Short sword"
+msgstr ""
+
+msgid "Blueprint explaining the design of a short sword."
+msgstr ""
+
+msgid "Blueprint : Hand crossbow"
+msgstr ""
+
+msgid "Blueprint explaining the design of a hand crossbow."
+msgstr ""
+
+msgid "Teuderic's Seal"
+msgstr ""
+
+msgid "Ring that belonged to the glorious King Teuderic."
+msgstr ""
+
+msgid "Teuderic's Crown"
+msgstr ""
+
+msgid "Crown that belonged to the glorious King Teuderic."
+msgstr ""
+
+msgid "Teuderic's Plastron"
+msgstr ""
+
+msgid "Plastron that belonged to the glorious King Teuderic."
+msgstr ""
+
+msgid "Teuderic's Finery"
+msgstr ""
+
+msgid "History of the Abbey of St. Clodomir"
+msgstr ""
+
+msgid "By brother Vlanker, honorary monk of the abbey."
+msgstr ""
+
+msgid "Tobacco pouch"
+msgstr ""
+
+msgid "Romulus's Tobacco!"
+msgstr ""
+
+msgid "Bone sword"
+msgstr ""
+
+msgid "Tutorial"
+msgstr "Tutorial"
+
+msgid "The Abbey - Exterior"
+msgstr ""
+
+msgid "The Catacombs - Level 1"
+msgstr ""
+
+msgid "The Abbey - Interior"
+msgstr ""
+
+msgid "The Catacombs - Level 2"
+msgstr ""
+
+msgid "The Cave"
+msgstr "La Cueva"
+
+msgid "Mausoleum"
+msgstr ""
+
+msgid "Pretended soldier deliverer of God and Christ's tomb, you have much killing and sometimes breach,\\flouting the values in whose name you did bloodshed...\\Of course you know how to fight, but your burden is the heaviest and you must accomplish many feats to win you back!"
+msgstr ""
+
+msgid "At least you've never pretended to be virtuous...\\Nee in the mud, you've dressed up in finery demonic female seductrices for you infiltrate the highest levels of society.\\But even among the princes we can not deny its origins when they are unworthy,\\and when your charm was not enough you were able to wield the dagger like poison..."
+msgstr ""
+
+msgid "The gunslinger is one of those bounty hunters who count only its own interests. He does not hesitate to kill innocent people if he should and his contracts are its only limit. And even if another offer him seem more interesting, it may turn against his boss. Normally destined to hell, it is committed by God to do the dirty work."
+msgstr ""
+
+msgid "Religious fanatic par excellence, he was made a point to go to any heretic or witch bonfire ever. And without further ado, having never had remorse or doubt when has the guilt of his victims. So God decided to fulfill the dream of the inquisitor, that is to say the really let go in a world overrun by evil, a place where he can let go of his madness and sadism without making any innocent victim."
+msgstr ""
+
+msgid "Display/Hide map (M)"
+msgstr "Mostrar/Esconder mapa (M)"
+
+msgid "Inventory (I)"
+msgstr "Inventario (I)"
+
+msgid "Quests (Q)"
+msgstr "Misiones (Q)"
+
+msgid "Miracles (T)"
+msgstr "Milagros (T)"
+
+msgid "Menu (Escape)"
+msgstr "Menú (Esc.)"
+
+msgid "Console (Tab)"
+msgstr "Consola (Tab)"
+
+msgid "Documents (D)"
+msgstr ""
+
+msgid "Weapon set n1 (W)"
+msgstr ""
+
+msgid "Weapon set n2 (W)"
+msgstr ""
+
+msgid "The Persecutor path"
+msgstr "La vía del Perseguidor"
+
+msgid "The Protector path"
+msgstr "La vía del Protector"
+
+msgid "The Pious Path"
+msgstr "La vía del Pío"
+
+msgid "The Poisoner Path"
+msgstr "La vía de la emponzoñara"
+
+msgid "The Assassin Path"
+msgstr "La vía del Asesino"
+
+msgid "The Seductress Path"
+msgstr "La vía del Seductora"
+
+msgid "Saint Barbe Incarnation"
+msgstr "Encarnación de la Santa Barba"
+
+msgid "The crusader summons Saint Barbe to help him.\\She allows the crusader to inflict fire damages."
+msgstr "El cruzado llama a Santa Barba para acudir en su ayuda.\\Esta permita la cruzado de infligir daños  por fuego."
+
+msgid "Fire Damage : %1-%2"
+msgstr "Daños por fuego : %1-%2"
+
+msgid "Charge"
+msgstr "Carga"
+
+msgid "The crusader charges an adversary knocking down everything on his way.\\Usable only with a shield."
+msgstr "El cruzado carga un adversario destrozando todo sobre su camino.\\Utilizable únicamente con un escudo."
+
+msgid "Damage during the charge : %1-%2"
+msgstr "Daños durante carga : %1-%2"
+
+msgid "Damage upon impact : %3-%4"
+msgstr "Dégâts à l'impact : %3-%4"
+
+msgid "Divine Tornado"
+msgstr "Tornado divino"
+
+msgid "The crusader makes his blade spin\\pushing back ennemies close to him.\\Usable only with two-handed weapons."
+msgstr "El cruzado hace girar su espada\\rechazando a los enemigos en contacto con él.\\Utilizable únicamente con espadas mandobles."
+
+msgid "Damage : %1 \\% of the weapon"
+msgstr "Daños : %1 \\% del arma"
+
+msgid "Saint Lazare Incarnation : Vampirism"
+msgstr "Encarnación de Santo Lázaro : Vampirismo"
+
+msgid "In addition to heal the crusader, Saint Lazare\\allows him to stole the health of his ennemies."
+msgstr "Además de curar al cruzado, Santo lázaro\\le permite de robar la vida de sus enemigos."
+
+msgid "Health stolen: %1\\%"
+msgstr "Robo de vida : %1\\%"
+
+msgid "Saint Lazare Incarnation"
+msgstr "Encarnación de Santo Lázaro"
+
+msgid "The crusader summons Saint Lazare to help him.\\He boosts the crusader health regeneration.\\Can not be combined with other incarnations."
+msgstr "El cruzado llama a Santo Lázaro para acudir en su ayuda.\\Este mejorará regeneración de salud del cruzado."
+
+msgid "Health regeneration : +%1"
+msgstr "Regeneración de vida : +%1"
+
+msgid "Charm"
+msgstr "Encanto"
+
+msgid "The concubine charms an ennemy\\to help her in her fight."
+msgstr "La cortesana encanta un enemigo\\para que luche para ella."
+
+msgid "Maximum health : %2"
+msgstr "Vida máxima : %2"
+
+msgid "Charm : Mastodont"
+msgstr "Encanto : Mastodonte"
+
+msgid "Charmed ennemy gain more life under the charm\\and regenerate their health more rapidly. "
+msgstr "Los adversarios encantados tienen más vida\\y se regeneran  más rapidammente."
+
+msgid "Health added : %2"
+msgstr "Vida suplementaria : %2"
+
+msgid "Health regeneration : +%1/s "
+msgstr "Regeneración de vida : +%1/s"
+
+msgid "Toxic cloud"
+msgstr "Nube toxica"
+
+msgid "The concubine throws a globe that\\unleashes a toxic cloud on impact."
+msgstr "La cortesana enviá un globo que\\libera una nube toxica al impacto."
+
+msgid "%1 damages on 6 seconds"
+msgstr "%1 daños durante 6 segundos"
+
+msgid "Venom"
+msgstr "Veneno"
+
+msgid "The concubine poison her weapons during a certain period of time."
+msgstr "La cortesana envenena su arma durante algún tiempo."
+
+msgid "Duration : %1 seconds"
+msgstr "Duración : %1 segundos"
+
+msgid "Corrosion damage: %3 on 2 seconds."
+msgstr "Daños por veneno : %3 durante 2 segundos"
+
+msgid "Mighty Blow"
+msgstr "Golpe potente"
+
+msgid "The crusader sends a powerful blow\\pushing back adversaries."
+msgstr "El cruzado da un violento golpe\\pudiendo rechazar a un enemigo."
+
+msgid "Damage : +%1 to %2"
+msgstr "Daños : +%1 a %2"
+
+msgid "Divine Tornado : Projection"
+msgstr "Tornado divino : Proyección"
+
+msgid "When the crusader rotate, this create a\\real tornado which destroys everything on its path."
+msgstr "Cuando el cruzado gira sobre el mismo, crea un\\verdadero tornado que destruye todo sobre su camino."
+
+msgid "Air blow damage : %1 to %2"
+msgstr "Daños por el sople : %1 a %2"
+
+msgid "Minor toxic cloud litany"
+msgstr "Letanía de nube toxica minora"
+
+msgid "20 damage over 6 seconds."
+msgstr "20 puntos de daño durante 6 segundos."
+
+msgid "Judgment"
+msgstr "Ultimo juicio"
+
+msgid "The crusader curses an enemy who will explode at his death."
+msgstr "El cruzado maldice a su enemigo que explotará cuando morirá"
+
+msgid "Blast damages : %1 to %2"
+msgstr "Daños por explosión : %1 a %2"
+
+msgid "Armor of Faith"
+msgstr "Armadura de fe"
+
+msgid "The faith of the cross-protection against the elements"
+msgstr "La fe del cruzado le protege contra los elementos"
+
+msgid "+ 1% resistance to all elements"
+msgstr "+ 1% de resistencia contra cualquier elemento"
+
+msgid "Duration: %2 seconds"
+msgstr "Duración : %2 segundos"
+
+msgid "Judgment Day: Ignite"
+msgstr ""
+
+msgid "The explosion ignited the fire of the enemy,\\causing additional fire damage over time."
+msgstr ""
+
+msgid "Damage: %1 to %2 seconds."
+msgstr ""
+
+msgid "Shooting fragmentation"
+msgstr ""
+
+msgid "The concubine sends a tile\\explodes after a second, splitting into hundreds of fragments."
+msgstr ""
+
+msgid "Damage: %1\\% of the original damage."
+msgstr ""
+
+msgid "Explosion"
+msgstr ""
+
+msgid "The tile is fired by a crossbow explosive.\\It inflicts 10-20 points of damage by fire."
+msgstr ""
+
+msgid "Shadow"
+msgstr ""
+
+msgid "The concubine blabla"
+msgstr ""
+
+msgid "Evasion: +1%"
+msgstr ""
+
+msgid "Assassin"
+msgstr ""
+
+msgid "The concubine makes a mortal blow to its target.\\Applicable only in Shadow mode."
+msgstr ""
+
+msgid "Damage +%1\\%"
+msgstr ""
+
+msgid "To cut the throats"
+msgstr ""
+
+msgid "The concubine moves almost instantaneously behind his target, dealing then a lightning attack.\\Usable only in Shadow mode."
+msgstr ""
+
+msgid "Damage: 1% to 2%"
+msgstr ""
+
+msgid "Attack"
+msgstr ""
+
+msgid "Damage: 0% to 1%"
+msgstr ""
+
+msgid "Things that loitering in the catacombs"
+msgstr ""
+
+msgid "I have to go into the catacombs to see what is going on."
+msgstr ""
+
+msgid "I found the diary of the monk Redimus. This indicates that terrifying things are happening in the catacombs. I ought to speak with the Abbe."
+msgstr ""
+
+msgid "The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification."
+msgstr ""
+
+msgid "I have to escort a Brother to the Oculus, the center of the catacombs, in order that the Purification Ritual."
+msgstr ""
+
+msgid "The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification. After Alcuin, a relic would have disappeared in recent years."
+msgstr ""
+
+msgid "Abandoned charette"
+msgstr ""
+
+msgid "I must find and bring to Romulus the merchant the pouch of tobacco abandoned in his cart."
+msgstr ""
+
+msgid "I have to return tobacco Romulus the merchant."
+msgstr ""
+
+msgid "Romulus recover tobacco history."
+msgstr ""
+
+msgid "A hobby for Rognorak"
+msgstr ""
+
+msgid "Rognorak the blacksmith is so bored that was proposing to build me a gun charge. I have to bring needed ingredients."
+msgstr ""
+
+msgid "Rognorak makes me a weapon."
+msgstr ""
+
+msgid "The blessing of the good abbe"
+msgstr ""
+
+msgid "The abbe can bless one of my items if I will give him water and a holy litany."
+msgstr ""
+
+msgid "The abbot has blessed one of my objects."
+msgstr ""
+
+msgid "The evil wall"
+msgstr ""
+
+msgid "I have to eliminate the creatures that infest the wall of the farm of Borlor."
+msgstr ""
+
+msgid "All creatures have been eliminated."
+msgstr ""
+
+msgid "The innkeeper is besieged"
+msgstr ""
+
+msgid "I must free the passage in front of the inn."
+msgstr ""
+
+msgid "I have to talk with landlord."
+msgstr ""
+
+msgid "The innkeeper was able to escape."
+msgstr ""
+
+msgid "A house in the forest"
+msgstr ""
+
+msgid "I must rescue a young woman which is holed up in her house southeast of the abbey, in the forest."
+msgstr ""
+
+msgid "The young woman was more alas herself. I have to terminate its new horrible existence."
+msgstr ""
+
+msgid "A creature in the night"
+msgstr ""
+
+msgid "REAPER"
+msgstr ""
+
+msgid "I decided to help Teuderic fight his ghosts."
+msgstr ""
+
+msgid "I helped Teuderic."
+msgstr ""
+
+msgid "I decided to face and take Teuderic's treasure."
+msgstr ""
+
+msgid "I failed, Teuderic became absorbed by his phantoms."
+msgstr ""
+

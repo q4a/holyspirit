@@ -2180,7 +2180,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
         if(m_armure > 0)
         {
             std::ostringstream buf;
-            buf<<gettext("Armor")<<(int)(m_armure*multiplieurEfficacite/100);
+            buf<<gettext("Armor: ")<<(int)(m_armure*multiplieurEfficacite/100);
 
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
 
