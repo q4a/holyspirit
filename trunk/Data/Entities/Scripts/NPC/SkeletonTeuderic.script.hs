@@ -166,8 +166,11 @@ main
 	else
 		setActif * 0
 		
-		setQuestState * 8 * 1 * 40
-		setQuestActif * 8 * 0
+		if quest * 8 * 1
+		then else
+			setQuestState * 8 * 1 * 40
+			setQuestActif * 8 * 0
+		end
 		
 		if variable * 7 * 0
 		then
