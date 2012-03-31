@@ -845,6 +845,8 @@ void Map::GererProjectilesEtEffets(Jeu *jeu,Hero *hero,float temps)
     {
         int nombreInactif=0;
         for (int i=0;i<(int)m_effets.size();++i)
+        {
+            m_effets[i].Animer(temps);
             if (!m_effets[i].m_actif)
             {
                 if(m_effets[i].m_position_case.x >= 0
@@ -856,6 +858,8 @@ void Map::GererProjectilesEtEffets(Jeu *jeu,Hero *hero,float temps)
                 nombreInactif++;
                 moteurGraphique->LightManager->Delete_Light(m_effets[i].m_light);
             }
+        }
+
         if (nombreInactif==(int)m_effets.size())
             m_effets.clear();
     }
