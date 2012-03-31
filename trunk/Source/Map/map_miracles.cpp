@@ -633,7 +633,7 @@ bool Map::Miracle_EffetGraphique(Jeu *jeu, Personnage *personnage, Miracle &mode
 
         if(info.m_IDObjet < (int)m_effets.size())
         {
-            m_effets[info.m_IDObjet].Animer(temps);
+            //m_effets[info.m_IDObjet].Animer(temps);
 
             if (!m_effets[info.m_IDObjet].m_actif)
                 suppr = true;
