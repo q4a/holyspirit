@@ -5030,14 +5030,14 @@ void Hero::SetQuestActif(int id, int a)
     for (int i = 0;i < (int)m_quetes.size(); ++i)
         if (m_quetes[i].m_id == id)
         {
-            m_quetes[i].m_actif = a;
-            if(!m_quetes[i].m_actif)
+            if(m_quetes[i].m_actif && !a)
             {
                 moteurSons->JouerSon(configuration->sound_quest_end,coordonnee (0,0),0);
 
                 m_newQuest_label.SetText(gettext("Quest ended"));
                 m_newQuest_label.Reset();
             }
+            m_quetes[i].m_actif = a;
         }
 }
 
