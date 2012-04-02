@@ -664,13 +664,13 @@ bool Configuration::Options()
             {
                 no_menu_option = O_GRAPHICS,moteurSons->JouerSon(configuration->sound_menu,coordonnee (0,0),0);
                 eventManager->StopEvenement(sf::Mouse::Left,EventClic);
-                moteurGraphique->special_typo_p.Draw(gettext("Graphics options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
+                moteurGraphique->special_typo_p.Draw(gettext("Graphic options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
             }
             else
-                moteurGraphique->special_typo_h.Draw(gettext("Graphics options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
+                moteurGraphique->special_typo_h.Draw(gettext("Graphic options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
           }
           else
-            moteurGraphique->special_typo.Draw(gettext("Graphics options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
+            moteurGraphique->special_typo.Draw(gettext("Graphic options"), sf::Vector2f(configuration->Resolution.w/2,Resolution.h/2 - 128), 72, 19, true);
 
 
         if (eventManager->getPositionSouris().y > Resolution.h/2 - 64

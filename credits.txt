@@ -63,7 +63,7 @@ Bravach (English)
 Gonze Philippe (English)
 Derycke Valérie (Nederlands)
 Richard Jim (Spanish)
-Igor Paliychuk (Ukrainian)
+Igor Paliychuk (Russian, Ukrainian)
 
 *2D GUI Artist
 Cremuss (http://cremuss.free.fr/)

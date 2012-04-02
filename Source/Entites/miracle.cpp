@@ -1005,25 +1005,25 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
         if (m_coutFoi > 0)
         {
             std::ostringstream buf;
-            buf<<gettext("Cost of faith: ")<<m_coutFoi;
+            buf<<gettext("Faith cost: ")<<m_coutFoi;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_reserveFoi > 0)
         {
             std::ostringstream buf;
-            buf<<gettext("Reserve of faith: ")<<m_reserveFoi;
+            buf<<gettext("Faith stock: ")<<m_reserveFoi;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_coutVie > 0)
         {
             std::ostringstream buf;
-            buf<<gettext("Cost of life: ")<<m_coutVie;
+            buf<<gettext("Health cost: ")<<m_coutVie;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_reserveVie > 0)
         {
             std::ostringstream buf;
-            buf<<gettext("Reserve of life: ")<<m_reserveVie;
+            buf<<gettext("Health stock: ")<<m_reserveVie;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
 
@@ -1053,25 +1053,25 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
         if (m_coutFoi_suivant > 0)
         {
             std::ostringstream buf;
-            buf<<gettext("Cost of faith: ")<<m_coutFoi_suivant;
+            buf<<gettext("Faith cost: ")<<m_coutFoi_suivant;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_reserveFoi_suivant > 0)
         {
             std::ostringstream buf;
-            buf<<gettext("Reserve of faith: ")<<m_reserveFoi_suivant;
+            buf<<gettext("Faith stock: ")<<m_reserveFoi_suivant;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_coutVie_suivant > 0)
         {
             std::ostringstream buf;
-            buf<<gettext("Cost of life: ")<<m_coutVie_suivant;
+            buf<<gettext("Health cost: ")<<m_coutVie_suivant;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
         if (m_reserveVie_suivant > 0)
         {
             std::ostringstream buf;
-            buf<<gettext("Reserve of life: ")<<m_reserveVie_suivant;
+            buf<<gettext("Health stock: ")<<m_reserveVie_suivant;
             temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
         }
     }

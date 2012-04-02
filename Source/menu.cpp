@@ -439,7 +439,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     && eventManager->getPositionSouris().y < (classe->orbe_vie.position.y + classe->orbe_vie.position.h) + (configuration->Resolution.x - 600))
     {
         std::ostringstream buf;
-        buf<<gettext("Life")<<" : "<<(int)caracteristique.vie<<" / "<<caracteristique.maxVie;
+        buf<<gettext("Health")<<" : "<<(int)caracteristique.vie<<" / "<<caracteristique.maxVie;
 
         moteurGraphique->AjouterTexte(buf.str(),coordonnee(eventManager->getPositionSouris().x,
                                                                          eventManager->getPositionSouris().y - 20),

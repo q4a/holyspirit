@@ -2,17 +2,17 @@ Things that loitering in the catacombs
 I have to go into the catacombs to see what is going on.
 I found the diary of the monk Redimus. This indicates that terrifying things are happening in the catacombs. I ought to speak with the Abbe.
 The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification.
-I have to escort a Brother to the Oculus, the center of the catacombs, in order that the Purification Ritual.
-The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification. After Alcuin, a relic would have disappeared in recent years.
+I have to escort a Brother to the Oculus, the center of the catacombs, in order to do the Purification Ritual.
+The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification. After Alcuin took care of them, one relic has disappeared in recent years.
 
 
 Abandoned charette
 I must find and bring to Romulus the merchant the pouch of tobacco abandoned in his cart.
-I have to return tobacco Romulus the merchant.
+I have to return tobacco to Romulus the merchant.
 Romulus recover tobacco history.
 
 A hobby for Rognorak
-Rognorak the blacksmith is so bored that was proposing to build me a gun charge. I have to bring needed ingredients.
+Rognorak the blacksmith is so bored that was proposing to make me a weapon. I have to bring needed ingredients.
 Rognorak makes me a weapon.
 
 The blessing of the good abbe
@@ -29,7 +29,7 @@ I have to talk with landlord.
 The innkeeper was able to escape.
 A house in the forest
 I must rescue a young woman which is holed up in her house southeast of the abbey, in the forest.
-The young woman was more alas herself. I have to terminate its new horrible existence.
+The young woman was looking bad. I have to terminate her new horrible existence.
 
 A creature in the night
 REAPER
@@ -37,7 +37,7 @@ REAPER
 
 
 King Teuderic
-I decided to help Teuderic fight his ghosts.
+I decided to help Teuderic to fight his ghosts.
 I helped Teuderic.
 I decided to face and take Teuderic's treasure.
 I failed, Teuderic became absorbed by his phantoms.

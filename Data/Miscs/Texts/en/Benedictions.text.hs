@@ -6,7 +6,7 @@ Armor increased:
 Fire resistance: 
 Faith resistance: 
 Corrosion resistance: 
-Damage per bleeding: 
-Damage by the burn: 
-Damage per purification: 
+Damage by bleeding: 
+Damage by burn: 
+Damage by purification: 
 Damage by poison: 

@@ -1092,7 +1092,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
                                           19,0,12,sf::Color(224,224,224));
     }
 
-    string.setString(toUtf32(gettext("Life")));
+    string.setString(toUtf32(gettext("Health")));
     string.setCharacterSize(14);
     string.setPosition(AutoScreenAdjust(224,319,decalage));
     moteurGraphique->AjouterTexte(&string,15);
@@ -1123,7 +1123,7 @@ void Hero::AfficherCaracteristiques(float decalage, bool trader)
          &&eventManager->getPositionSouris().x < string.getGlobalBounds().left + string.getGlobalBounds().width
          &&eventManager->getPositionSouris().y > string.getGlobalBounds().top
          &&eventManager->getPositionSouris().y < string.getGlobalBounds().top + string.getGlobalBounds().height)
-        moteurGraphique->AjouterTexte(gettext("Life"),coordonnee(   eventManager->getPositionSouris().x,
+        moteurGraphique->AjouterTexte(gettext("Health"),coordonnee(   eventManager->getPositionSouris().x,
                                                                                 eventManager->getPositionSouris().y - 20),
                                       m_classe.border,
                                       19,0,12,sf::Color(224,224,224));
@@ -5034,7 +5034,7 @@ void Hero::SetQuestActif(int id, int a)
             {
                 moteurSons->JouerSon(configuration->sound_quest_end,coordonnee (0,0),0);
 
-                m_newQuest_label.SetText(gettext("Quest ended"));
+                m_newQuest_label.SetText(gettext("Quest finished"));
                 m_newQuest_label.Reset();
             }
             m_quetes[i].m_actif = a;
