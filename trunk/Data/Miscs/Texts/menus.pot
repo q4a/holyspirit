@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-30 12:22+0300\n"
+"POT-Creation-Date: 2012-04-02 21:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../../../Source/configuration.cpp:667 ../../../Source/configuration.cpp:670
 #: ../../../Source/configuration.cpp:673
-msgid "Graphics options"
+msgid "Graphic options"
 msgstr ""
 
 #: ../../../Source/configuration.cpp:683 ../../../Source/configuration.cpp:686
@@ -115,8 +115,8 @@ msgstr ""
 
 #: ../../../Source/menu.cpp:442 ../../../Source/Entites/hero.cpp:1095
 #: ../../../Source/Entites/hero.cpp:1126
-#: ../../../Source/Entites/objet.cpp:2195
-msgid "Life"
+#: ../../../Source/Entites/objet.cpp:2197
+msgid "Health"
 msgstr ""
 
 #: ../../../Source/menu.cpp:493 ../../../Source/Entites/hero.cpp:1131
@@ -350,8 +350,8 @@ msgid "Damage"
 msgstr ""
 
 #: ../../../Source/Entites/hero.cpp:1562
-#: ../../../Source/Entites/objet.cpp:2183
-#: ../../../Source/Entites/objet.cpp:2203
+#: ../../../Source/Entites/objet.cpp:2185
+#: ../../../Source/Entites/objet.cpp:2205
 msgid "Armor: "
 msgstr ""
 
@@ -391,8 +391,8 @@ msgstr ""
 msgid "My bag is full!"
 msgstr ""
 
-#: ../../../Source/Entites/hero.cpp:5038
-msgid "Quest ended"
+#: ../../../Source/Entites/hero.cpp:5037
+msgid "Quest finished"
 msgstr ""
 
 #: ../../../Source/Entites/miracle.cpp:960
@@ -405,22 +405,22 @@ msgstr ""
 
 #: ../../../Source/Entites/miracle.cpp:1008
 #: ../../../Source/Entites/miracle.cpp:1056
-msgid "Cost of faith: "
+msgid "Faith cost: "
 msgstr ""
 
 #: ../../../Source/Entites/miracle.cpp:1014
 #: ../../../Source/Entites/miracle.cpp:1062
-msgid "Reserve of faith: "
+msgid "Faith stock: "
 msgstr ""
 
 #: ../../../Source/Entites/miracle.cpp:1020
 #: ../../../Source/Entites/miracle.cpp:1068
-msgid "Cost of life: "
+msgid "Health cost: "
 msgstr ""
 
 #: ../../../Source/Entites/miracle.cpp:1026
 #: ../../../Source/Entites/miracle.cpp:1074
-msgid "Reserve of life: "
+msgid "Health stock: "
 msgstr ""
 
 #: ../../../Source/Entites/miracle.cpp:1039
@@ -463,84 +463,88 @@ msgstr ""
 msgid "Increased faith: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:1961
+#: ../../../Source/Entites/objet.cpp:1962
 msgid "over"
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:1970
+#: ../../../Source/Entites/objet.cpp:1962
+msgid " s"
+msgstr ""
+
+#: ../../../Source/Entites/objet.cpp:1972
 msgid "Miracle: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2018
+#: ../../../Source/Entites/objet.cpp:2020
 msgid "Equiped: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2022
+#: ../../../Source/Entites/objet.cpp:2024
 msgid "Stash: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2024
+#: ../../../Source/Entites/objet.cpp:2026
 msgid "Trader: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2026
+#: ../../../Source/Entites/objet.cpp:2028
 msgid "Inventory: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2116
+#: ../../../Source/Entites/objet.cpp:2118
 msgid "Production time: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2119
+#: ../../../Source/Entites/objet.cpp:2121
 msgid "minutes"
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2121
+#: ../../../Source/Entites/objet.cpp:2123
 msgid "seconds"
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2153
-#: ../../../Source/Entites/objet.cpp:2199
+#: ../../../Source/Entites/objet.cpp:2155
+#: ../../../Source/Entites/objet.cpp:2201
 msgid "Damage: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2169
+#: ../../../Source/Entites/objet.cpp:2171
 msgid "Two-handed weapon"
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2171
+#: ../../../Source/Entites/objet.cpp:2173
 msgid "One hand weapon"
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2222
+#: ../../../Source/Entites/objet.cpp:2224
 msgid "Required Strength: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2232
+#: ../../../Source/Entites/objet.cpp:2234
 msgid "Dexterity required: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2242
+#: ../../../Source/Entites/objet.cpp:2244
 msgid "Charisma required: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2252
+#: ../../../Source/Entites/objet.cpp:2254
 msgid "Vitality required: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2262
+#: ../../../Source/Entites/objet.cpp:2264
 msgid "Piety required: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2275
+#: ../../../Source/Entites/objet.cpp:2277
 msgid "Only for: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2351
+#: ../../../Source/Entites/objet.cpp:2353
 msgid "Free slot"
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2369
+#: ../../../Source/Entites/objet.cpp:2371
 msgid "Price: "
 msgstr ""
 

@@ -3,7 +3,7 @@ These leather cuffs\protect the forearm.
 Quilted armor
 This modest armor consists of a lined\split leather for cushion the blows.
 Arquebus
-This strange object has the power\to propel projectiles with great metal speed.\Much better than a bow but more painful to the ears!
+This strange object has the power\to propel projectiles with great speed.\Much better than a bow but more painful for ears!
 Leather boots
 Boots made for walking...and for\protecting feet beats slightly.
 Ceremonial dagger
@@ -11,13 +11,13 @@ A sharp dagger designed for\sacrifices during ceremonies.
 Chainmail
 An armor made of many steel\rings, a good compromise between\protection and freedom of movement.
 Coal
-Coal is a base material for\the manufacture of steel
+Coal is a base material for\the manufacture of steel.
 Hand crossbow
 This small throwing weapon\is handy and fast, however less\destructive than a firearm.
 Dagger
 Thin, pointed dagger\is a perfect weapon for\a traitor... or a woman.
 Minor faith potion
-The flask contents strangely\fluorescent gasoline will flow\divine in your veins!\You will regenerate 150 PF.
+The flask contents strangely\fluorescents, it will flow\divine in your veins!\You will regenerate 150 PF.
 Frock
 A monk's robe.
 Great shield
@@ -37,7 +37,7 @@ Iron ore is a basic material for\weapons and armors crafting.
 Ring
 A small ring with one stone.
 Wooden board
-A board that can be used to\make many objects...\Perhaps the first step in a coffin?
+A board that can be used to\make many objects...\Perhaps the first step to a coffin?
 Saddle Crossbow
 ...
 Buckler
@@ -59,23 +59,23 @@ Strong leather gloves\reinforced by metal plates.
 Leather hood
 A simple leather hood\offering little protection.
 Satin robe of the Tearful Widow.
-A black robe which suit perfectly to a woman in mourning.
+A black robe which suits perfectly to a woman in mourning.
 Winged mace
-A powerful weapon,\which crushes the skulls also\easily than eggs.
+A powerful weapon,\which crushes the skulls also\easily as eggs.
 Fracasseuse
 A formidable weapon capable of crushing\a human skull in one fell swoop.\\One-handed weapon.
 Flamboyant
-Sword forged in the Hell's flammes\which belonged to the demon\before being stole by\the archangel Michel. This one lose it\by becoming incarnate\on Earth and is believed\gone forever.
+Sword forged in the Hell's flammes\which belonged to the demon\before being stolen by\the archangel Michel. This one lose it\by becoming incarnate\on Earth and it is believed\has gone forever.
 Timber axe
-A simple axe for\cutting wood.\But it's also slices very\nice meat and bones...
+A simple axe for\cutting wood.\But also it slices very\nice meat and bones...
 Butcher's mace
-This mace has pig killing for first goal.\But it's also very efficient against demons.\\Two-handed weapon.
+This mace has pig killing for first goal.\But it is also very efficient against demons.\\Two-handed weapon.
 Leather armor
 
 Tears of the Tearful Widow
-A jewel which suit perfectly to a woman in mourning.
+A jewel which suits perfectly to a woman in mourning.
 Horned barbute
-A barbarian helmet\extremely resistant.\Unavailable in the shops.
+A barbarian helmet,\extremely resistant.\Unavailable in the shops.
 Copper ore
 The copper ore is basic material for\weapons and armors crafting.
 Ruby
@@ -91,22 +91,22 @@ Blueprint explaining the construction of a tiara.
 Tiara
 Beautiful tiara orned with an emerald.
 Cleaver
-Knife used by butchers,\he shall rule the chairs.
+Knife used by butchers,\it should rule the chairs.
 Emerald
 A beautiful precious stone.
 Gold ore
 Precious metal,\gold is mainly used in jewelry.
 Bronze shield
-A buckler forged entirely in bronze. \Very tough.
+A buckler forged entirely from bronze. \Very tough.
 Blueprint : Bronze shield
 Blueprint explaining the construction of a bronze shield.
 Diadem of the Tearful Widow
 A diadem which suits perfectly to a woman in mourning.
 Set of the Tearful Widow
 Minor litany
-This parchment holds the incantation\required to bless an item.
+This parchment holds the incantation,\required to bless an item.
 Minor Toxic Cloud Litany
-This parchment holds the incantation\required to bless an item so that this one\ could drop a toxic cloud on the battlefield.\This cloud deal 20 damage over 6 seconds.
+This parchment holds the incantation,\required to bless an item so that this one\ could drop a toxic cloud on the battlefield.\It cloud deal 20 damage over 6 seconds.
 Blueprint : Burning coal golem
 Blueprint explaining how to make a coal golem familiar.
 Burning coal golem
@@ -116,11 +116,11 @@ A two-handed sword made of bone.
 Bone shield
 Shield made of human bones.\Some say that it is cursed...
 Limited faith potion
-The flask contents strangely\fluorescent gasoline will flow\divine in your veins!\You will regenerate 300 PF.
+The flask contents strangely\fluorescents, it will flow\divine in your veins!\You will regenerate 300 PF.
 Limited heal potion
 A red and thick liquid,\tastes disgusting. It is\certainly not good, but it\gives a famous whip.\You heal 300 PV.
 Aventail
-A cap made of mail\protecting the head and the neck.
+A cap made of mail,\protecting the head and the neck.
 Clodomir's Scepter
 Description and story of Clodomir.
 Journal of the monk Redimus
@@ -134,7 +134,7 @@ Excerpt from the Book of Saints, the paper\tells the story of St. Galswintha.\Ri
 Book of Saints - Story of Clodomir's Life
 Excerpt from the Book of Saints, the paper\tells the story of Saint Clodomir.\Right-click to use.
 Barbarian Haksil armor
-Weaved mesh and leather\belonged to the terrible barbarian leader\Haksil Wurgasht.\Some say it still stained by\the blood of St. Frenegonde...
+Weaved mesh and leather\belonged to the terrible barbarian leader\Haksil Wurgasht.\Some say it is still stained by\the blood of St. Frenegonde...
 Crossbow of eternal fire
 The crossbow was soaked\in the blood of the demon,\giving it the ability to\pull the explosive bolts.
 The finger of Saint Clodomir

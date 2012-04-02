@@ -1949,17 +1949,19 @@ std::string getTextBenediction(const benediction &bene)
             buf<<gettext("Increased faith: ");
         buf<<" "<<bene.info2;
     }
-	textdomain ("data");
     if(bene.type == DEGATS_SUPP)
     {
+    textdomain ("data");
         buf<<gettext(configuration->getText(1,0 + bene.info1).c_str());
         buf<<" "<<bene.info2<<" - "<<bene.info3;
+    textdomain ("menus");
     }
     if(bene.type == DEGATS_TEMPS_SUPP)
     {
         buf<<gettext(configuration->getText(1,8 + bene.info1).c_str());
-        buf<<" "<<bene.info2<<" "<<gettext("over")<<" "<<bene.info3<<" s";
+        buf<<" "<<bene.info2<<" "<<gettext("over")<<" "<<bene.info3<<gettext(" s");
     }
+    textdomain ("data");
     if(bene.type == ARMURE_SUPP)
     {
         buf<<gettext(configuration->getText(1,4 + bene.info1).c_str());
@@ -1971,7 +1973,7 @@ std::string getTextBenediction(const benediction &bene)
         buf<<gettext(configuration->getText(6,getNomMiracle(bene.text)).c_str());
         buf<<" +"<<bene.info1;
     }
-	textdomain ("menus");
+    textdomain ("menus");
     return buf.str();
 }
 
@@ -2192,7 +2194,7 @@ int Objet::AfficherCaracteristiques(coordonnee position, Border &border,const Ca
     if(m_type == GOLEM)
     {
         std::ostringstream buf;
-        buf<<gettext("Life")<<" : "<<m_gol_caract.maxVie;
+        buf<<gettext("Health")<<" : "<<m_gol_caract.maxVie;
         temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,buf.str().c_str()));
 
         buf.str("");
