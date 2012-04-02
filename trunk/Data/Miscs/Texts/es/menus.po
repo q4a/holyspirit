@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-30 12:22+0300\n"
-"PO-Revision-Date: 2012-03-30 12:24+0200\n"
+"POT-Creation-Date: 2012-04-02 21:36+0300\n"
+"PO-Revision-Date: 2012-04-02 22:25+0200\n"
 "Last-Translator: Igor Paliychuk <mansonigor@gmail.com>\n"
 "Language-Team: SPANISH <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #: ../../../Source/configuration.cpp:667
 #: ../../../Source/configuration.cpp:670
 #: ../../../Source/configuration.cpp:673
-msgid "Graphics options"
+msgid "Graphic options"
 msgstr ""
 
 #: ../../../Source/configuration.cpp:683
@@ -120,8 +120,8 @@ msgstr ""
 #: ../../../Source/menu.cpp:442
 #: ../../../Source/Entites/hero.cpp:1095
 #: ../../../Source/Entites/hero.cpp:1126
-#: ../../../Source/Entites/objet.cpp:2195
-msgid "Life"
+#: ../../../Source/Entites/objet.cpp:2197
+msgid "Health"
 msgstr "Vida"
 
 #: ../../../Source/menu.cpp:493
@@ -154,7 +154,7 @@ msgid "Loop iteration nbr : "
 msgstr ""
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:81
-msgid "An old law required has always been the good and evil meet has at least one rule in their eternal conflict. They could not directly intervene in the affairs of living entities, acting only by the subtle suggestion and battling within each soul...\\Egoism, violence, pity, love and clashed in the form of thoughts, of dreams, with varied fates.\\\\But one day evil, which no longer supported the balance was satisfied with the Good, decided to violate the rule RESPECTED far and achieved this in incarnating directly into most living beings vulnerable to his impulses, and, curiously, in some objects.\\Henceforth evil reign could only be on each of which he took possession of some ordinary objects become demonic.\\\\Having anticipated this treachery, the Well was not surprised. Renouncing to violate the law as Evil had done and refusing to sacrifice the good and generous souls, he used a few storms and damned spirits who wanted to redeem himself deeply with him...\\considering himself already lost, alone unconsciousness would have to address the foul legion that has swept across the world."
+msgid "An old law has always required the Good and Evil have at least one rule in their eternal conflict. They could not directly intervene in the affairs of living entities, acting only by the subtle suggestion and battling within each soul...\\Egoism, violence, pity and love clashed in the form of thoughts, of dreams, with varied fates.\\\\But one day Evil, which no longer wanted to support the balance, satisfied with the Good, decided to violate the far RESPECTED rule and achieved this in incarnating directly into most living beings vulnerable to his impulses, and, curiously, in some objects.\\Henceforth Evil began to reign on each of ordinary objects which he took to possession and some become demonic.\\\\Having anticipated this treachery, the Good was not surprised. Renouncing to violate The Law as Evil had done and refusing to sacrifice the good and generous souls, he used a few storms and damned spirits who wanted to redeem themself...\\considering themself already lost, alone unconsciousness would have to beat the legion that has swept across the world."
 msgstr ""
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:271
@@ -339,8 +339,8 @@ msgid "Damage"
 msgstr "Daños"
 
 #: ../../../Source/Entites/hero.cpp:1562
-#: ../../../Source/Entites/objet.cpp:2183
-#: ../../../Source/Entites/objet.cpp:2203
+#: ../../../Source/Entites/objet.cpp:2185
+#: ../../../Source/Entites/objet.cpp:2205
 msgid "Armor: "
 msgstr "Armadura: "
 
@@ -380,8 +380,8 @@ msgstr ""
 msgid "My bag is full!"
 msgstr ""
 
-#: ../../../Source/Entites/hero.cpp:5038
-msgid "Quest ended"
+#: ../../../Source/Entites/hero.cpp:5037
+msgid "Quest finished"
 msgstr ""
 
 #: ../../../Source/Entites/miracle.cpp:960
@@ -394,22 +394,22 @@ msgstr ""
 
 #: ../../../Source/Entites/miracle.cpp:1008
 #: ../../../Source/Entites/miracle.cpp:1056
-msgid "Cost of faith: "
+msgid "Faith cost: "
 msgstr "Cuesto en fe: "
 
 #: ../../../Source/Entites/miracle.cpp:1014
 #: ../../../Source/Entites/miracle.cpp:1062
-msgid "Reserve of faith: "
+msgid "Faith stock: "
 msgstr "Reserva de fe: "
 
 #: ../../../Source/Entites/miracle.cpp:1020
 #: ../../../Source/Entites/miracle.cpp:1068
-msgid "Cost of life: "
+msgid "Health cost: "
 msgstr "Cuesto en vida: "
 
 #: ../../../Source/Entites/miracle.cpp:1026
 #: ../../../Source/Entites/miracle.cpp:1074
-msgid "Reserve of life: "
+msgid "Health stock: "
 msgstr "Reserva de vida: "
 
 #: ../../../Source/Entites/miracle.cpp:1039
@@ -452,84 +452,88 @@ msgstr "Vida mejorada de: "
 msgid "Increased faith: "
 msgstr "Daños mejorados de: "
 
-#: ../../../Source/Entites/objet.cpp:1961
+#: ../../../Source/Entites/objet.cpp:1962
 msgid "over"
 msgstr "sur"
 
-#: ../../../Source/Entites/objet.cpp:1970
+#: ../../../Source/Entites/objet.cpp:1962
+msgid " s"
+msgstr " s"
+
+#: ../../../Source/Entites/objet.cpp:1972
 msgid "Miracle: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2018
+#: ../../../Source/Entites/objet.cpp:2020
 msgid "Equiped: "
 msgstr "Equipaje: "
 
-#: ../../../Source/Entites/objet.cpp:2022
+#: ../../../Source/Entites/objet.cpp:2024
 msgid "Stash: "
 msgstr "Baúl: "
 
-#: ../../../Source/Entites/objet.cpp:2024
+#: ../../../Source/Entites/objet.cpp:2026
 msgid "Trader: "
 msgstr "Mercantil: "
 
-#: ../../../Source/Entites/objet.cpp:2026
+#: ../../../Source/Entites/objet.cpp:2028
 msgid "Inventory: "
 msgstr "Inventario: "
 
-#: ../../../Source/Entites/objet.cpp:2116
+#: ../../../Source/Entites/objet.cpp:2118
 msgid "Production time: "
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2119
+#: ../../../Source/Entites/objet.cpp:2121
 msgid "minutes"
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2121
+#: ../../../Source/Entites/objet.cpp:2123
 msgid "seconds"
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2153
-#: ../../../Source/Entites/objet.cpp:2199
+#: ../../../Source/Entites/objet.cpp:2155
+#: ../../../Source/Entites/objet.cpp:2201
 msgid "Damage: "
 msgstr "Daños: "
 
-#: ../../../Source/Entites/objet.cpp:2169
+#: ../../../Source/Entites/objet.cpp:2171
 msgid "Two-handed weapon"
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2171
+#: ../../../Source/Entites/objet.cpp:2173
 msgid "One hand weapon"
 msgstr ""
 
-#: ../../../Source/Entites/objet.cpp:2222
+#: ../../../Source/Entites/objet.cpp:2224
 msgid "Required Strength: "
 msgstr "Fuerza física: "
 
-#: ../../../Source/Entites/objet.cpp:2232
+#: ../../../Source/Entites/objet.cpp:2234
 msgid "Dexterity required: "
 msgstr "Destreza necesaria: "
 
-#: ../../../Source/Entites/objet.cpp:2242
+#: ../../../Source/Entites/objet.cpp:2244
 msgid "Charisma required: "
 msgstr "Carisma necesario: "
 
-#: ../../../Source/Entites/objet.cpp:2252
+#: ../../../Source/Entites/objet.cpp:2254
 msgid "Vitality required: "
 msgstr "Vitalidad necesaria: "
 
-#: ../../../Source/Entites/objet.cpp:2262
+#: ../../../Source/Entites/objet.cpp:2264
 msgid "Piety required: "
 msgstr "Piedad necesaria: "
 
-#: ../../../Source/Entites/objet.cpp:2275
+#: ../../../Source/Entites/objet.cpp:2277
 msgid "Only for: "
 msgstr "Solamente para: "
 
-#: ../../../Source/Entites/objet.cpp:2351
+#: ../../../Source/Entites/objet.cpp:2353
 msgid "Free slot"
 msgstr "Sitio libre"
 
-#: ../../../Source/Entites/objet.cpp:2369
+#: ../../../Source/Entites/objet.cpp:2371
 msgid "Price: "
 msgstr "Precio: "
 
