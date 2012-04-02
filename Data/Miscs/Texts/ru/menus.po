@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-30 12:22+0300\n"
-"PO-Revision-Date: 2012-03-30 12:28+0200\n"
+"POT-Creation-Date: 2012-04-02 21:36+0300\n"
+"PO-Revision-Date: 2012-04-02 22:21+0200\n"
 "Last-Translator: Igor Paliychuk <mansonigor@gmail.com>\n"
 "Language-Team: RUSSIAN <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: ../../../Source/configuration.cpp:667
 #: ../../../Source/configuration.cpp:670
 #: ../../../Source/configuration.cpp:673
-msgid "Graphics options"
+msgid "Graphic options"
 msgstr "Настройки графики"
 
 #: ../../../Source/configuration.cpp:683
@@ -122,8 +122,8 @@ msgstr "Громкость музыки: "
 #: ../../../Source/menu.cpp:442
 #: ../../../Source/Entites/hero.cpp:1095
 #: ../../../Source/Entites/hero.cpp:1126
-#: ../../../Source/Entites/objet.cpp:2195
-msgid "Life"
+#: ../../../Source/Entites/objet.cpp:2197
+msgid "Health"
 msgstr "Жизнь"
 
 #: ../../../Source/menu.cpp:493
@@ -156,8 +156,8 @@ msgid "Loop iteration nbr : "
 msgstr "Номер итерации:"
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:81
-msgid "An old law required has always been the good and evil meet has at least one rule in their eternal conflict. They could not directly intervene in the affairs of living entities, acting only by the subtle suggestion and battling within each soul...\\Egoism, violence, pity, love and clashed in the form of thoughts, of dreams, with varied fates.\\\\But one day evil, which no longer supported the balance was satisfied with the Good, decided to violate the rule RESPECTED far and achieved this in incarnating directly into most living beings vulnerable to his impulses, and, curiously, in some objects.\\Henceforth evil reign could only be on each of which he took possession of some ordinary objects become demonic.\\\\Having anticipated this treachery, the Well was not surprised. Renouncing to violate the law as Evil had done and refusing to sacrifice the good and generous souls, he used a few storms and damned spirits who wanted to redeem himself deeply with him...\\considering himself already lost, alone unconsciousness would have to address the foul legion that has swept across the world."
-msgstr "Старый закон требует всегда была добра и зла встречаются по крайней мере один править в их вечном конфликте. Они не могут непосредственно вмешиваться в делах живых существ, действуя только тонкие  внушения и борьба внутри каждой души...\\Эгоизм, насилие, жалость, любовь и столкновение в виде мыслей, от мечты, с различными судьбами.\\\\Но однажды зло, которое больше не поддерживается баланс остался доволен Хорошо, решил нарушить правила УВАЖАЕМЫЕ далеко, и добились этого в воплощения непосредственно в большинстве живых существ уязвимых к своим импульсам и, как ни странно, в некоторых объектах.\\Отныне зло правления может быть только на каждом из которых он завладел некоторые обычные предметы становятся демоническими.\\\\После этого ожидается предательство, ну не был удивлен. Отказ нарушать закон, как зло сделал и отказываются жертвовать хорошими и щедрые души, он использовал несколько штормов и проклятые духи, которые хотели выкупить Сам глубоко с ним...\\Считая себя уже потеряли, только бессознательное придется решения фол легион, который прокатился по всему миру."
+msgid "An old law has always required the Good and Evil have at least one rule in their eternal conflict. They could not directly intervene in the affairs of living entities, acting only by the subtle suggestion and battling within each soul...\\Egoism, violence, pity and love clashed in the form of thoughts, of dreams, with varied fates.\\\\But one day Evil, which no longer wanted to support the balance, satisfied with the Good, decided to violate the far RESPECTED rule and achieved this in incarnating directly into most living beings vulnerable to his impulses, and, curiously, in some objects.\\Henceforth Evil began to reign on each of ordinary objects which he took to possession and some become demonic.\\\\Having anticipated this treachery, the Good was not surprised. Renouncing to violate The Law as Evil had done and refusing to sacrifice the good and generous souls, he used a few storms and damned spirits who wanted to redeem themself...\\considering themself already lost, alone unconsciousness would have to beat the legion that has swept across the world."
+msgstr "Старый закон всегда требовал, чтобы в противостоянии Добра и Зла придерживалось хотя бы одно правило. Они не могут непосредственно вмешиваться в дела живых существ, лишь внушением позиции в борьбе внутри каждой души...\\Эгоизм, насилие, жалость, любовь сталкивались в виде мыслей, как мечты, и меняли судьбы.\\\\Но однажды Зло, которое больше перестало удовлетворяться балансои с Добром, решило нарушить БОЛЬШОЕ правило, и добились своего воплощения непосредственно у большинстве живых существ уязвимых к своим импульсов и, как ни странно, в некоторых объектах.\\Отныне простые предметы, которыми завладело Зло, становятся демоническими .\\\\ Добро не удивился, это было ожидаемое предательство. Отказываясь нарушать закон, как это сделало Зло и отказываясь жертвовать хорошими и щедрыми душами, он применил несколько штормов и проклятых духов, которые хотели искупить грехи перед Добром ...\\не видя другого выхода, поскольку целый легион бессознательных существ прокатился по всему миру."
 
 #: ../../../Source/Contextes/c_mainMenu.cpp:271
 #: ../../../Source/Contextes/c_mainMenu.cpp:279
@@ -341,8 +341,8 @@ msgid "Damage"
 msgstr "Урон"
 
 #: ../../../Source/Entites/hero.cpp:1562
-#: ../../../Source/Entites/objet.cpp:2183
-#: ../../../Source/Entites/objet.cpp:2203
+#: ../../../Source/Entites/objet.cpp:2185
+#: ../../../Source/Entites/objet.cpp:2205
 msgid "Armor: "
 msgstr "Броня: "
 
@@ -382,8 +382,8 @@ msgstr "У меня нет нужного оборудование!"
 msgid "My bag is full!"
 msgstr "Моя сумка переполнена!"
 
-#: ../../../Source/Entites/hero.cpp:5038
-msgid "Quest ended"
+#: ../../../Source/Entites/hero.cpp:5037
+msgid "Quest finished"
 msgstr "Квест закончен"
 
 #: ../../../Source/Entites/miracle.cpp:960
@@ -396,23 +396,23 @@ msgstr "Правый щелчек"
 
 #: ../../../Source/Entites/miracle.cpp:1008
 #: ../../../Source/Entites/miracle.cpp:1056
-msgid "Cost of faith: "
-msgstr "Цена веры:"
+msgid "Faith cost: "
+msgstr "Цена веры: "
 
 #: ../../../Source/Entites/miracle.cpp:1014
 #: ../../../Source/Entites/miracle.cpp:1062
-msgid "Reserve of faith: "
-msgstr "Запас веры:"
+msgid "Faith stock: "
+msgstr "Запас веры: "
 
 #: ../../../Source/Entites/miracle.cpp:1020
 #: ../../../Source/Entites/miracle.cpp:1068
-msgid "Cost of life: "
-msgstr "Цена жызни:"
+msgid "Health cost: "
+msgstr "Цена жизни: "
 
 #: ../../../Source/Entites/miracle.cpp:1026
 #: ../../../Source/Entites/miracle.cpp:1074
-msgid "Reserve of life: "
-msgstr "Запас жызни:"
+msgid "Health stock: "
+msgstr "Запас жизни: "
 
 #: ../../../Source/Entites/miracle.cpp:1039
 msgid "Next level: "
@@ -454,84 +454,88 @@ msgstr "Повышение здоровья: "
 msgid "Increased faith: "
 msgstr "Повышение веры: "
 
-#: ../../../Source/Entites/objet.cpp:1961
+#: ../../../Source/Entites/objet.cpp:1962
 msgid "over"
 msgstr "за"
 
-#: ../../../Source/Entites/objet.cpp:1970
+#: ../../../Source/Entites/objet.cpp:1962
+msgid " s"
+msgstr " с"
+
+#: ../../../Source/Entites/objet.cpp:1972
 msgid "Miracle: "
 msgstr "Чудо: "
 
-#: ../../../Source/Entites/objet.cpp:2018
+#: ../../../Source/Entites/objet.cpp:2020
 msgid "Equiped: "
 msgstr "На себе: "
 
-#: ../../../Source/Entites/objet.cpp:2022
+#: ../../../Source/Entites/objet.cpp:2024
 msgid "Stash: "
 msgstr "Тайник: "
 
-#: ../../../Source/Entites/objet.cpp:2024
+#: ../../../Source/Entites/objet.cpp:2026
 msgid "Trader: "
 msgstr "Торговец: "
 
-#: ../../../Source/Entites/objet.cpp:2026
+#: ../../../Source/Entites/objet.cpp:2028
 msgid "Inventory: "
 msgstr "Инвентарь: "
 
-#: ../../../Source/Entites/objet.cpp:2116
+#: ../../../Source/Entites/objet.cpp:2118
 msgid "Production time: "
 msgstr "Время изготовления: "
 
-#: ../../../Source/Entites/objet.cpp:2119
+#: ../../../Source/Entites/objet.cpp:2121
 msgid "minutes"
 msgstr "минут"
 
-#: ../../../Source/Entites/objet.cpp:2121
+#: ../../../Source/Entites/objet.cpp:2123
 msgid "seconds"
 msgstr "секунд"
 
-#: ../../../Source/Entites/objet.cpp:2153
-#: ../../../Source/Entites/objet.cpp:2199
+#: ../../../Source/Entites/objet.cpp:2155
+#: ../../../Source/Entites/objet.cpp:2201
 msgid "Damage: "
 msgstr "Урон: "
 
-#: ../../../Source/Entites/objet.cpp:2169
+#: ../../../Source/Entites/objet.cpp:2171
 msgid "Two-handed weapon"
 msgstr "Двуручное оружие"
 
-#: ../../../Source/Entites/objet.cpp:2171
+#: ../../../Source/Entites/objet.cpp:2173
 msgid "One hand weapon"
 msgstr "Одноручное оружие"
 
-#: ../../../Source/Entites/objet.cpp:2222
+#: ../../../Source/Entites/objet.cpp:2224
 msgid "Required Strength: "
 msgstr "Требуемая сила: "
 
-#: ../../../Source/Entites/objet.cpp:2232
+#: ../../../Source/Entites/objet.cpp:2234
 msgid "Dexterity required: "
 msgstr "Требуемая ловкость: "
 
-#: ../../../Source/Entites/objet.cpp:2242
+#: ../../../Source/Entites/objet.cpp:2244
 msgid "Charisma required: "
 msgstr "Требуемая харизма: "
 
-#: ../../../Source/Entites/objet.cpp:2252
+#: ../../../Source/Entites/objet.cpp:2254
 msgid "Vitality required: "
 msgstr "Требуемая жывучесть: "
 
-#: ../../../Source/Entites/objet.cpp:2262
+#: ../../../Source/Entites/objet.cpp:2264
 msgid "Piety required: "
 msgstr "Требуемое благочестие: "
 
-#: ../../../Source/Entites/objet.cpp:2275
+#: ../../../Source/Entites/objet.cpp:2277
 msgid "Only for: "
 msgstr "Только для: "
 
-#: ../../../Source/Entites/objet.cpp:2351
+#: ../../../Source/Entites/objet.cpp:2353
 msgid "Free slot"
 msgstr "Пустой слот"
 
-#: ../../../Source/Entites/objet.cpp:2369
+#: ../../../Source/Entites/objet.cpp:2371
 msgid "Price: "
 msgstr "Цена: "
 
