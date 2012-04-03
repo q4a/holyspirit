@@ -1645,7 +1645,7 @@ bool Personnage::EnVie()
 
 float Personnage::getTime()
 {
-    float t = m_clock.getElapsedTime().asSeconds();
+    float t = m_clock.getElapsedTime().asMilliseconds();
     m_clock.restart();
     return t;
 }
