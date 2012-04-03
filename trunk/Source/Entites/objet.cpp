@@ -1958,7 +1958,9 @@ std::string getTextBenediction(const benediction &bene)
     }
     if(bene.type == DEGATS_TEMPS_SUPP)
     {
+        textdomain ("data");
         buf<<gettext(configuration->getText(1,8 + bene.info1).c_str());
+        textdomain ("menus");
         buf<<" "<<bene.info2<<" "<<gettext("over")<<" "<<bene.info3<<gettext(" s");
     }
     textdomain ("data");
