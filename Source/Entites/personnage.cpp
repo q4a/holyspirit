@@ -866,11 +866,32 @@ void Personnage::EmulerDeplacement(float time)
         m_positionPixel.x = m_emul_pos.back().nextPos.x;
         m_positionPixel.y = m_emul_pos.back().nextPos.y;
         m_positionPixel.h = m_emul_pos.back().nextPos.h;
+
+        if(abs(m_emul_pos.back().pose - m_entite_graphique.m_noAnimation) <= 2
+        && m_emul_pos.back().etat == getEtat())
+            m_emul_pos.back().pose = m_entite_graphique.m_noAnimation;
+
+        setEtat(m_emul_pos.back().etat,m_emul_pos.back().pose);
+        setForcedAngle(m_emul_pos.back().angle);
+        setCaracteristique(m_emul_pos.back().caract);
+
+
         m_emul_pos.clear();
     }
 
     if(!m_emul_pos.empty())
     {
+        if(m_emul_pos.front().time == 0)
+        {
+            if(abs(m_emul_pos.front().pose - m_entite_graphique.m_noAnimation) <= 2
+            && m_emul_pos.front().etat == getEtat())
+                m_emul_pos.front().pose = m_entite_graphique.m_noAnimation;
+
+            setEtat(m_emul_pos.front().etat,m_emul_pos.front().pose);
+            setForcedAngle(m_emul_pos.front().angle);
+            setCaracteristique(m_emul_pos.front().caract);
+        }
+
         m_emul_pos.front().time += time;
         if(m_emul_pos.size() >= 5)
             m_emul_pos.front().time += time;
@@ -888,7 +909,17 @@ void Personnage::EmulerDeplacement(float time)
             m_emul_pos.erase(m_emul_pos.begin());
 
             if(!m_emul_pos.empty())
+            {
+                if(abs(m_emul_pos.front().pose - m_entite_graphique.m_noAnimation) <= 2
+                && m_emul_pos.front().etat == getEtat())
+                    m_emul_pos.front().pose = m_entite_graphique.m_noAnimation;
+
+                setEtat(m_emul_pos.front().etat,m_emul_pos.front().pose);
+                setForcedAngle(m_emul_pos.front().angle);
+                setCaracteristique(m_emul_pos.front().caract);
+
                 m_emul_pos.front().time += buf;
+            }
         }
     }
 
@@ -1538,7 +1569,7 @@ void Personnage::setCoordonneePixel2(const coordonneeDecimal &position)
     m_positionPixel.y=position.y;
 }
 
-void Personnage::setEmulatePos(const coordonneeDecimal &positionD, float time)
+void Personnage::setEmulatePos(const coordonneeDecimal &positionD, int etat, int pose, int angle, Caracteristique &caract, float time)
 {
     if(notyetemulate)
     {
@@ -1552,13 +1583,18 @@ void Personnage::setEmulatePos(const coordonneeDecimal &positionD, float time)
         if(!m_emul_pos.empty())
             prevPos = m_emul_pos.back().nextPos;
 
-        if(!(prevPos.x == positionD.x && prevPos.y == positionD.y))
+        //if(!(prevPos.x == positionD.x && prevPos.y == positionD.y))
         {
             m_emul_pos.push_back(Emulate_pos ());
             m_emul_pos.back().nextPos = positionD;
             m_emul_pos.back().prevPos = prevPos;
             m_emul_pos.back().time = 0;
             m_emul_pos.back().maxTime = time;
+
+            m_emul_pos.back().etat = etat;
+            m_emul_pos.back().pose = pose;
+            m_emul_pos.back().angle = angle;
+            m_emul_pos.back().caract = caract;
         }
     }
 
