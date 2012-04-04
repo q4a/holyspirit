@@ -94,17 +94,15 @@ sf::Packet& operator >>(sf::Packet& Packet, Personnage& C)
 
     if((Packet >> caract >> pos >> time >> etat >> pose /*>> anim*/ >> angle))
     {
-        C.setEmulatePos(pos,(float)(time)/1000);
+        C.setEmulatePos(pos,etat,pose,angle,caract,(float)(time)/1000);
 
-        if(abs(pose - C.m_entite_graphique.m_noAnimation) <= 2
+        /*if(abs(pose - C.m_entite_graphique.m_noAnimation) <= 2
         && etat == C.getEtat())
             pose = C.m_entite_graphique.m_noAnimation;
-       // else
-         //   C.m_entite_graphique.m_animation = (float)anim/1000;
 
         C.setEtat(etat,pose);
         C.setForcedAngle(angle);
-        C.setCaracteristique(caract);
+        C.setCaracteristique(caract);*/
     }
 
     return Packet;
@@ -356,7 +354,6 @@ bool Network::Connect(sf::IpAddress ServerAddress)
 
 void Network::Disconnect()
 {
-    std::cout<<"You have been disconnected"<<std::endl;
 
     GlobalMutex.lock();
     if(m_host)
@@ -367,14 +364,11 @@ void Network::Disconnect()
     //m_udp.Unbind();
     GlobalMutex.unlock();
 
-    std::cout<<"You have been disconnected 2"<<std::endl;
-
     if(m_thread_clientTCP)
     {
         m_thread_clientTCP->wait();
         delete m_thread_clientTCP;
     }
-    std::cout<<"You have been disconnected 3"<<std::endl;
 
     if(m_thread_clientUDP)
     {
@@ -382,10 +376,10 @@ void Network::Disconnect()
         delete m_thread_clientUDP;
     }
 
-    std::cout<<"You have been disconnected 4"<<std::endl;
-
     m_thread_clientTCP = NULL;
     m_thread_clientUDP = NULL;
+
+    std::cout<<"You have been disconnected"<<std::endl;
 }
 
 

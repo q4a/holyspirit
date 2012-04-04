@@ -59,6 +59,11 @@ struct Emulate_pos
     float maxTime;
     coordonneeDecimal nextPos;
     coordonneeDecimal prevPos;
+
+    int etat;
+    int angle,pose;
+
+    Caracteristique caract;
 };
 
 class Modele_Personnage
@@ -142,7 +147,7 @@ public:
     void setVitesse(float vitesse);
     void setCoordonneePixel(const coordonnee &position);
     void setCoordonneePixel2(const coordonneeDecimal &position);
-    void setEmulatePos(const coordonneeDecimal &positionD, float time);
+    void setEmulatePos(const coordonneeDecimal &positionD, int etat, int pose, int angle, Caracteristique &caract, float time);
     void setProchaineCase(const coordonnee &position);
     void setCaracteristique(const Caracteristique &caracteristique);
     void regenererVie(float vie);
