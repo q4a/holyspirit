@@ -485,37 +485,31 @@ void Configuration::SetLanguage()
 #ifdef WIN32
 	bool lang;
 
-	if (language=="en") {
+	if (language=="en_US") {
 		lang = SetThreadLocale(0x0409);
 	}
-	else if (language=="fr") {
+	else if (language=="fr_FR") {
 		lang = SetThreadLocale(0x040C);
 	}
-	else if (language=="es") {
+	else if (language=="es_ES") {
 		lang = SetThreadLocale(0x0C0A);
 	}
-	else if (language=="ru") {
+	else if (language=="ru_RU") {
 		lang = SetThreadLocale(0x0419);
 	}
-	else if (language=="uk") {
+	else if (language=="uk_UA") {
 		lang = SetThreadLocale(0x0422);
 	}
 #else
-	if (language=="en") {
-		setlocale(LC_MESSAGES, "en_US");
-	}
-	else if (language=="fr") {
-		setlocale(LC_MESSAGES, "fr_Fr");
-	}
-	else if (language=="es") {
-		setlocale(LC_MESSAGES, "es_ES");
-	}
-	else if (language=="ru") {
-		setlocale(LC_MESSAGES, "ru_RU");
-	}
-	else if (language=="ru") {
-		setlocale(LC_MESSAGES, "uk_UA");
-	}
+    std::string extensions[3] = {".utf-8",".UTF-8",""};
+    std::string locale_ext;
+        for (int i=0; i<3; i++)
+        {
+            locale_ext = language;
+            locale_ext += extensions[i];
+            setlocale(LC_MESSAGES, locale_ext.c_str());
+            setenv("LANGUAGE", locale_ext.c_str(), 1);
+        }
 #endif
 }
 

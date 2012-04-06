@@ -84,3 +84,12 @@ Note that there may be more recent versions of libraries. Use them instead.
 4. Configure HolySpirit using CMake-gui. It will fail. Uncheck "SFML_STATIC", than set SFML Include Directory and
    SFML libraries pathes using just built SFML files. Click "Configure" again. This time it should work.
    Click "Generate" and than use preferred IDE or just "console make" to build the game. Enjoy ;)
+
+TROUBLESHOOTING
+
+Q: I have set xx_XX language (using Launcher or manually) but game is still in English. I'm using Linux.
+A: Maybe your locale is not installed in the system. Use:
+
+	sudo locale-gen xx_XX.UTF-8
+
+to generate it and try again.
