@@ -62,6 +62,20 @@ To build SFML you will need to get next packages from your distro repository:
 
 Don't forget to install the DEVELOPMENT version of these packages
 
+For Ubuntu Linux this will look next:
+
+	sudo apt-get install libpthread-stubs0-dev
+	sudo apt-get install libgl1-mesa-dev
+	sudo apt-get install libx11-dev
+	sudo apt-get install libxrandr-dev
+	sudo apt-get install libfreetype6-dev
+	sudo apt-get install libglew1.5-dev
+	sudo apt-get install libjpeg8-dev
+	sudo apt-get install libsndfile1-dev
+	sudo apt-get install libopenal-dev
+	
+Note that there may be more recent versions of libraries. Use them instead.
+
 2. CMake-gui is recommended way to build SFML (and the Game) under Linux. Get it from your distro repo with CMake itself.
 
 3. Configure SFML using CMake-gui. It will report if you dont have any from above dependencies.
