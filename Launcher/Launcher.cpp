@@ -321,10 +321,10 @@ void Launcher::verificationPresenceMiseAJour(bool demarrer) {
     //On s'occupe de supprimer les fichiers inutiles et de les ajouter dans le fichier maj.conf
     //Ca permet d'éviter de télécharger des fichiers inutiles.
 #ifdef WINDOWS
-    std::ifstream f_specific("Data/Menus/Launcher/specific.linux",std::ios::in);
+    std::ifstream f_specific("Data/Graphics/Menus/Launcher/specific.linux",std::ios::in);
 #endif
 #ifdef LINUX
-    std::ifstream f_specific("Data/Menus/Launcher/specific.windows",std::ios::in);
+    std::ifstream f_specific("Data/Graphics/Menus/Launcher/specific.windows",std::ios::in);
 #endif
     if(f_specific.good()) {
         QList<std::string> fichiersAExclure;
@@ -345,7 +345,7 @@ void Launcher::verificationPresenceMiseAJour(bool demarrer) {
         for(int i = 0; i < n_fichiersAExclure; i++) {
             for(int j = 0; j < n_fichiersATelecharger; j++) {
                 if(_fichiersATelecharger->at(j).nom == fichiersAExclure[i] ) {
-                    qWarning("Le fichier %s ne sera pas téléchargé comme spécifié dans le fichier specific.system.", fichiersAExclure[i].c_str());
+                    qWarning("The file %s will not be downloaded as specified in the file specific.system.", fichiersAExclure[i].c_str());
                     ajouterFichierDansTelecharges(_fichiersATelecharger->at(j));
 
                     _fichiersATelecharger->removeAt(j);
