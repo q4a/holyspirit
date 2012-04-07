@@ -43,12 +43,12 @@ Gettext:
 
 libintl3.dll
 
-BUILDING UNDER LINUX SYSTEMS:
+BUILDING AND RUNNING UNDER LINUX SYSTEMS:
 
 1. As SFML 2.0 wasn't released yet and is not included in your distro repository, so
    you will need to build it yourself before compiling HolySpirit.
 
-To build SFML you will need to get next packages from your distro repository:
+To build SFML and run the game you will need to get next packages from your distro repository:
 
 	pthread
 	opengl
@@ -62,7 +62,7 @@ To build SFML you will need to get next packages from your distro repository:
 
 Don't forget to install the DEVELOPMENT version of these packages
 
-For Ubuntu Linux this will look next:
+For Ubuntu Linux this will look next(for DEVELOPMENT versions):
 
 	sudo apt-get install libpthread-stubs0-dev
 	sudo apt-get install libgl1-mesa-dev
@@ -93,3 +93,12 @@ A: Maybe your locale is not installed in the system. Use:
 	sudo locale-gen xx_XX.UTF-8
 
 to generate it and try again.
+
+Q: Game executable doesn't start. I'm using Linux.
+A: Once you download the game, you’ll need to change the permission to allow executing the file as a program.
+If you’re not sure how to do this the simplest way is to right-click the file, then click “Properties” followed by the “Permissions” tab.
+You’ll find the option to allow execution at the bottom of the window.
+
+Q: Game executable doesn't start. I'm using Linux and i didn't build executable by myself.
+A: Try to run the game from console. Go to game folder and type <./Holysprit>. If game gives an error about "can't find shared library"
+but you have it than check it's version: seems you need to install another version of that library(e.g. libjpeg6 instead of libjpeg8)
