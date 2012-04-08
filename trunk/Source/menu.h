@@ -100,7 +100,6 @@ class Menu
 	Border border;
 	Image_interface mainscreen;
 	Image_interface logo;
-	Bouton_pressoire buttons[8];
 
 
 	private:
