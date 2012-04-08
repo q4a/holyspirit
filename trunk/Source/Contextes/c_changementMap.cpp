@@ -563,7 +563,7 @@ void c_Chargement::Utiliser(Jeu *jeu)
         {
             sprite2.setTexture(*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre.image));
 
-            sprite2.setTextureRect(sf::IntRect(0, 0,(int)((float)jeu->map->m_etat_chargement/5*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre.image)->getWidth()), 32));
+            sprite2.setTextureRect(sf::IntRect(0, 0,(int)((float)jeu->map->m_etat_chargement/5*moteurGraphique->getImage(jeu->hero.m_classe.barre_vie_monstre.image)->getSize().x), 32));
             sprite2.setPosition(configuration->Resolution.w/2 + jeu->hero.m_classe.barre_vie_monstre.position.x,
                                 configuration->Resolution.h - 48);
 

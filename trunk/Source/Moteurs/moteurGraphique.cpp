@@ -1051,7 +1051,7 @@ bool MoteurGraphique::getEvent(sf::Event &EventReceived)
 
 sf::Vector2f MoteurGraphique::getPositionSouris()
 {
-    return m_ecran.convertCoords(sf::Mouse::getPosition(m_ecran).x, sf::Mouse::getPosition(m_ecran).y, m_camera);
+    return m_ecran.convertCoords(sf::Mouse::getPosition(m_ecran), m_camera);
 }
 
 sf::Vector2f MoteurGraphique::getPositionSourisEcran()
