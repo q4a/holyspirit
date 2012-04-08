@@ -546,7 +546,7 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
         float vie = (int)caracteristiqueMonstre.vie;
         if(vie == 0)
             vie = 1;
-        sprite2.setTextureRect(sf::IntRect(0, 0, (int)(vie/caracteristiqueMonstre.maxVie*moteurGraphique->getImage(classe->barre_vie_monstre.image)->getWidth()), 32));
+        sprite2.setTextureRect(sf::IntRect(0, 0, (int)(vie/caracteristiqueMonstre.maxVie*moteurGraphique->getImage(classe->barre_vie_monstre.image)->getSize().x), 32));
         sprite2.setPosition(configuration->Resolution.w/2 + classe->barre_vie_monstre.position.x ,
                             classe->barre_vie_monstre.position.y);
 
