@@ -146,6 +146,10 @@ void Charger(void* UserData)
 
 void c_Chargement::PreLoad(Jeu *jeu)
 {
+    if(jeu->map!=NULL)
+        for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+            p->m_ready = false;
+
     if(jeu->m_jeu->m_thread_sauvegarde && ! m_debut)
     {
         jeu->m_jeu->m_thread_sauvegarde->wait();
