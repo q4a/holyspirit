@@ -148,8 +148,8 @@ void Network::CheckPacketClient(sf::Packet &packet)
                 GlobalMutex.lock();
                 jeu->m_chargement->setC_Chargement(prochaineMap,coordonneePerso);
                 jeu->m_contexte = jeu->m_chargement;
-                for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
-                    p->m_ready = false;
+                //for (std::list<Hero>::iterator p = jeu->m_personnageClients.begin(); p != jeu->m_personnageClients.end(); ++p)
+                  //  p->m_ready = false;
                 configuration->heure = h;
                 configuration->minute = m;
                 GlobalMutex.unlock();
