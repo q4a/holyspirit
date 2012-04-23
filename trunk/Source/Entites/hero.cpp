@@ -1804,9 +1804,9 @@ void Hero::AfficherQuetes(float decalage)
 
             if(!actif)
                 texte.setColor(sf::Color(128,128,128));
-
-            texte.setString(toUtf32(m_quetes[i].m_nom));
-
+            textdomain ("data");
+            texte.setString(toUtf32(DecouperTexte(gettext(m_quetes[i].m_nom.c_str()), m_classe.position_contenu_quetes.w, 16)));
+            textdomain ("menu");
             moteurGraphique->AjouterTexte(&texte,15);
 
             if(eventManager->getPositionSouris().x > AutoScreenAdjust(m_classe.position_contenu_quetes.x,0).x
@@ -1843,16 +1843,18 @@ void Hero::AfficherQuetes(float decalage)
         texte.setCharacterSize(16);
         texte.setPosition(AutoScreenAdjust(m_classe.position_contenu_description_quete.x + 2,
                                            m_classe.position_contenu_description_quete.y,decalage));
-        texte.setString(toUtf32(m_quetes[queteAffichee].m_nom));
+        textdomain ("data");
+        texte.setString(toUtf32(DecouperTexte(gettext(m_quetes[queteAffichee].m_nom.c_str()), m_classe.position_contenu_quetes.w, 16)));
 
         moteurGraphique->AjouterTexte(&texte,15,0);
 
         texte.setCharacterSize(14);
         texte.setPosition(AutoScreenAdjust(m_classe.position_contenu_description_quete.x + 2,
                                            m_classe.position_contenu_description_quete.y + 32,decalage));
-        texte.setString(toUtf32(m_quetes[queteAffichee].m_description));
+        texte.setString(toUtf32(DecouperTexte(gettext(m_quetes[queteAffichee].m_description.c_str()),m_classe.position_contenu_description_quete.w, 14)));
 
         moteurGraphique->AjouterTexte(&texte,15,0);
+        textdomain ("menu");
     }
 }
 
@@ -5005,24 +5007,19 @@ void Hero::NewQuest(int id)
 
 void Hero::SetQuestName(int id, int n)
 {
-	textdomain ("data");
     for (int i = 0;i < (int)m_quetes.size(); ++i)
         if (m_quetes[i].m_id == id)
-            m_quetes[i].m_nom = DecouperTexte(gettext(configuration->getText(8, n).c_str()), m_classe.position_contenu_quetes.w, 16);
-	textdomain ("menus");
+            m_quetes[i].m_nom = configuration->getText(8, n);
 }
 
 void Hero::SetQuestState(int id, int s, int d)
 {
-	textdomain ("data");
     for (int i = 0;i < (int)m_quetes.size(); ++i)
         if (m_quetes[i].m_id == id)
         {
-            m_quetes[i].m_description = DecouperTexte(gettext(configuration->getText(8, d).c_str()),
-                                                                                    m_classe.position_contenu_description_quete.w, 14);
+            m_quetes[i].m_description = configuration->getText(8, d);
             m_quetes[i].m_statut = s;
         }
-	textdomain ("menus");
 }
 
 void Hero::SetQuestActif(int id, int a)
