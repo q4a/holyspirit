@@ -4742,7 +4742,7 @@ bool Hero::UtiliserObjet(int numero)
         {
             bool add = true;
             for(unsigned i =0 ; i< m_docs.size() ; ++i)
-                if(m_docs.back().m_chemin == m_inventaire[numero].getChemin())
+                if(m_docs[i].m_chemin == m_inventaire[numero].getChemin())
                     add = false;
 
             if(add)
