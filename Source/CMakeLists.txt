@@ -91,28 +91,40 @@ add_Executable (Holyspirit ${GAME_SOURCES})
 # add an option for choosing the build type of SFML(shared or static)
 set_option(SFML_STATIC_LIBRARIES TRUE BOOL "TRUE to build SFML as static libraries, FALSE to build it as shared libraries")
 
+# Detect and add SFML
+find_package(SFML 2.0 REQUIRED system window graphics network audio)
+if(SFML_FOUND)
+	include_directories(${SFML_INCLUDE_DIR})
+	list(APPEND LINKS
+${GNUWIN_LIBRARY} ${SFML_AUDIO_LIBRARY} ${SFML_NETWORK_LIBRARY} ${SFML_GRAPHICS_LIBRARY} ${SFML_WINDOW_LIBRARY} ${SFML_SYSTEM_LIBRARY})
+endif()
+
+#If game doesn't build try to put next IF statement before SFML detection
 if (NOT WIN32 AND SFML_STATIC_LIBRARIES)
+
+#This can be used if your distro can't find needed libraries
+#find_package(OpenGL REQUIRED)		${OPENGL_gl_LIBRARY}
+#find_package(Freetype REQUIRED)	${FREETYPE_LIBRARY}
+#find_package(GLEW REQUIRED)		${GLEW_LIBRARY}
+#find_package(JPEG REQUIRED)		${JPEG_LIBRARY}
+#find_package(X11 REQUIRED)			${X11_LIBRARIES}
+#find_package(OpenAL REQUIRED)		${OPENAL_LIBRARY}
+#find_package(Sndfile REQUIRED)		${SNDFILE_LIBRARY}
+
 list(APPEND LINKS
-	pthread
-	GL
-	X11
+#if needed uncomment those
+#pthread
+#X11
+#GL
 	Xrandr
 	freetype
 	GLEW
 	jpeg
 	sndfile
 	openal
-)
+	)
 endif()
 
-
-# Detect and add SFML
-find_package(SFML 1.6 REQUIRED system window graphics network audio)
-if(SFML_FOUND)
-	include_directories(${SFML_INCLUDE_DIR})
-	list(APPEND LINKS
-${GNUWIN_LIBRARY} ${SFML_AUDIO_LIBRARY} ${SFML_NETWORK_LIBRARY} ${SFML_GRAPHICS_LIBRARY} ${SFML_WINDOW_LIBRARY} ${SFML_SYSTEM_LIBRARY})
-endif()
 
 target_link_libraries(Holyspirit ${LINKS})
 
