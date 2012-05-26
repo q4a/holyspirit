@@ -2,7 +2,7 @@ HolySpirit README FILE
 
 To build the game you will need next 3dparty software
 
-1. SFML v2.0 (development snapshot 9163d04517 from Mar 14, 2012)
+1. SFML v2.0
 
 1.1 Development files (includes)
 
@@ -45,7 +45,7 @@ libintl3.dll
 
 BUILDING AND RUNNING UNDER LINUX SYSTEMS:
 
-1. As SFML 2.0 wasn't released yet and is not included in your distro repository, so
+1. If SFML 2.0 is not included in your distro repository and official binaries don't work for you,
    you will need to build it yourself before compiling HolySpirit.
 
 To build SFML and run the game you will need to get next packages from your distro repository:
