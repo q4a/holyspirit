@@ -1443,13 +1443,13 @@ msgid "I have to go into the catacombs to see what is going on."
 msgstr "Мені треба сходити в катакомби, і глянути, що там коїться."
 
 msgid "I found the diary of the monk Redimus. This indicates that terrifying things are happening in the catacombs. I ought to speak with the Abbe."
-msgstr "Я знайшов щоденник монаха Редімуса. Він підтверджує що в катакомбах творяться страшні речі. Я повинен поговорити з Абатом."
+msgstr "Я знайшов щоденник монаха Редімуса. Він підтверджує що в катакомбах творяться страшні речі. Треба поговорити з Абатом."
 
 msgid "The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification."
 msgstr "Абат попросив мене знайти чотири мощі абатства, щоб змогти прочитати молитву очищення."
 
 msgid "I have to escort a Brother to the Oculus, the center of the catacombs, in order to do the Purification Ritual."
-msgstr "Я повинен провести Брата в Окулус в центрі катакомб для проведення Ритуалу Очищення."
+msgstr "Треба провести Брата в Окулус в центрі катакомб для проведення Ритуалу Очищення."
 
 msgid "The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification. After Alcuin took care of them, one relic has disappeared in recent years."
 msgstr "Абат попросив мене знайти чотири мощі абатства, щоб змогти прочитати молитву очищення. Після того як останні роки за ними наглядав Алкуїн, мощі зникли."
@@ -1458,10 +1458,10 @@ msgid "Abandoned charette"
 msgstr "Покинутий віз"
 
 msgid "I must find and bring to Romulus the merchant the pouch of tobacco abandoned in his cart."
-msgstr "Я повинен знайти і принести Ромулу торговцю мішечок тютюну, який він залишив в своєму возі."
+msgstr "Треба знайти і принести Ромулу торговцю мішечок тютюну, який він залишив в своєму возі."
 
 msgid "I have to return tobacco to Romulus the merchant."
-msgstr "Я повинен повернути тютюн торговцю Ромулу."
+msgstr "Треба повернути тютюн торговцю Ромулу."
 
 msgid "Romulus recover tobacco history."
 msgstr "Історія повернення тютюну Ромулу."
@@ -1470,7 +1470,7 @@ msgid "A hobby for Rognorak"
 msgstr "Захоплення Рогнорака"
 
 msgid "Rognorak the blacksmith is so bored that was proposing to make me a weapon. I have to bring needed ingredients."
-msgstr "Рагнораку ковалю так нудно, що він запропонував виготовити мені зброю. Я повинен принести необхідні складники."
+msgstr "Рагнораку ковалю так нудно, що він запропонував виготовити мені зброю. Треба принести необхідні складники."
 
 msgid "Rognorak makes me a weapon."
 msgstr "Рогнорак робить мені зброю."
@@ -1488,7 +1488,7 @@ msgid "The evil wall"
 msgstr "Стіна зла"
 
 msgid "I have to eliminate the creatures that infest the wall of the farm of Borlor."
-msgstr "Я повинен знищити істот, які паразитують на стіні ферми Борлора."
+msgstr "Треба знищити істот, які паразитують на стіні ферми Борлора."
 
 msgid "All creatures have been eliminated."
 msgstr "Всі істоти були знищені."
@@ -1497,10 +1497,10 @@ msgid "The innkeeper is besieged"
 msgstr "Господар в облозі"
 
 msgid "I must free the passage in front of the inn."
-msgstr "Я повинен звільнити місцевість перед готелем."
+msgstr "Треба звільнити місцевість перед готелем."
 
 msgid "I have to talk with landlord."
-msgstr "Я повинен поговорити з господарем."
+msgstr "Треба поговорити з господарем."
 
 msgid "The innkeeper was able to escape."
 msgstr "Господарю вдалося втекти."
@@ -1509,10 +1509,10 @@ msgid "A house in the forest"
 msgstr "Хатина в лісі"
 
 msgid "I must rescue a young woman which is holed up in her house southeast of the abbey, in the forest."
-msgstr "Я повинен врятувати молоду жінку, яка ховається в хатині на південний-схід від монастиря, в лісі."
+msgstr "Треба врятувати молоду жінку, яка ховається в хатині на південний-схід від монастиря, в лісі."
 
 msgid "The young woman was looking bad. I have to terminate her new horrible existence."
-msgstr "Молода жінка була не в собі. Я повинен припинити її нове жахливе існування."
+msgstr "Молода жінка була не в собі. Треба припинити її нове жахливе існування."
 
 msgid "A creature in the night"
 msgstr "Нічна істота"
