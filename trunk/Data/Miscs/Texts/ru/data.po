@@ -1443,13 +1443,13 @@ msgid "I have to go into the catacombs to see what is going on."
 msgstr "Мне надо сходить в катакомбы, и посмотреть, что там творится."
 
 msgid "I found the diary of the monk Redimus. This indicates that terrifying things are happening in the catacombs. I ought to speak with the Abbe."
-msgstr "Я нашел дневник монаха Редимуса. Он подтверждает в катакомбах происходят страшные вещи. Я должен поговорить с аббатом."
+msgstr "Я нашел дневник монаха Редимуса. Он подтверждает в катакомбах происходят страшные вещи. Мне нужно поговорить с аббатом."
 
 msgid "The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification."
 msgstr "Аббат поросил меня найти четыре мощи аббатства, чтобы смочь прочитать молитву очищения."
 
 msgid "I have to escort a Brother to the Oculus, the center of the catacombs, in order to do the Purification Ritual."
-msgstr "Я должен провести Брата в Окулус в центре катакомб для проведения ритуала очищения."
+msgstr "Мне нужно провести Брата в Окулус в центре катакомб для проведения ритуала очищения."
 
 msgid "The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification. After Alcuin took care of them, one relic has disappeared in recent years."
 msgstr "Аббат попросил меня найти четыре мощи аббатства, чтобы смочь прочитать молитву очищения. После того как последние годы за ними присматривал Алкуин, мощи исчезли."
@@ -1458,10 +1458,10 @@ msgid "Abandoned charette"
 msgstr "Брошенный воз"
 
 msgid "I must find and bring to Romulus the merchant the pouch of tobacco abandoned in his cart."
-msgstr "Я должен найти и принести Ромулу торговцу мешочек табака, который он оставил в своей телеге."
+msgstr "Мне нужно найти и принести Ромулу торговцу мешочек табака, который он оставил в своей телеге."
 
 msgid "I have to return tobacco to Romulus the merchant."
-msgstr "Я должен вернуть табак торговцу Ромулу."
+msgstr "Мне нужно вернуть табак торговцу Ромулу."
 
 msgid "Romulus recover tobacco history."
 msgstr "История возвращения табака Ромулу."
@@ -1470,7 +1470,7 @@ msgid "A hobby for Rognorak"
 msgstr "Увлечение Рогнорака"
 
 msgid "Rognorak the blacksmith is so bored that was proposing to make me a weapon. I have to bring needed ingredients."
-msgstr "Рагнораку кузнецу так скучно, что он предлагал изготовить мне пороховой заряд. Я должен принести необходимые составляющие."
+msgstr "Рагнораку кузнецу так скучно, что он предлагал изготовить мне пороховой заряд. Мне нужно принести необходимые составляющие."
 
 msgid "Rognorak makes me a weapon."
 msgstr "Рогнорак делает мне оружие."
@@ -1488,7 +1488,7 @@ msgid "The evil wall"
 msgstr "Стена зла"
 
 msgid "I have to eliminate the creatures that infest the wall of the farm of Borlor."
-msgstr "Я должен уничтожить существ, паразитирующих на стене фермы Борлора."
+msgstr "Мне нужно уничтожить существ, паразитирующих на стене фермы Борлора."
 
 msgid "All creatures have been eliminated."
 msgstr "Все существа были устранены."
@@ -1497,10 +1497,10 @@ msgid "The innkeeper is besieged"
 msgstr "Хозяин в осаде"
 
 msgid "I must free the passage in front of the inn."
-msgstr "Я должен освободить место перед гостиницей."
+msgstr "Мне нужно освободить место перед гостиницей."
 
 msgid "I have to talk with landlord."
-msgstr "Я должен поговорить с хозяином."
+msgstr "Мне нужно поговорить с хозяином."
 
 msgid "The innkeeper was able to escape."
 msgstr "Хозяину удалось сбежать."
@@ -1509,10 +1509,10 @@ msgid "A house in the forest"
 msgstr "Дом в лесу"
 
 msgid "I must rescue a young woman which is holed up in her house southeast of the abbey, in the forest."
-msgstr "Я должен спасти молодую женщину которая скрывается в доме к юго-востоку от монастыря, в лесу."
+msgstr "Мне нужно спасти молодую женщину которая скрывается в доме к юго-востоку от монастыря, в лесу."
 
 msgid "The young woman was looking bad. I have to terminate her new horrible existence."
-msgstr "Молодая женщина была не в своем уме. Я должен прекратить ее новое ужасное существование."
+msgstr "Молодая женщина была не в своем уме. Мне нужно прекратить ее новое ужасное существование."
 
 msgid "A creature in the night"
 msgstr "Существо в ночи"
