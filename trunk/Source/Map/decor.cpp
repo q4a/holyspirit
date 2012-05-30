@@ -140,7 +140,7 @@ bool Decor::AfficherTexteObjet(Border &border, coordonnee position,int objet, fl
         texte.setFont(moteurGraphique->m_font);
 
         texte.setString(toUtf32(m_objets[objet].getNom()));
-        texte.setCharacterSize(14*configuration->Resolution.w/800);
+        texte.setCharacterSize(14/* *configuration->Resolution.w/800*/);
         texte.setPosition(((position.x-GetViewRect(moteurGraphique->m_camera).left)/configuration->zoom) ,
                           ((position.y-GetViewRect(moteurGraphique->m_camera).top)/configuration->zoom));
 

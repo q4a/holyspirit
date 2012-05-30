@@ -219,7 +219,7 @@ bool MoteurSons::JouerSon(int ID,coordonnee position,bool unique,bool preserv,in
                     y=m_sons[i].getPosition().y;
                     //z=m_sons[i].getPosition().z;
 
-                 /*   m_sons[i].SetVolume(volume * m_buffers[ID]->volume / 100);*/
+                    m_sons[i].setVolume(volume * m_buffers[ID]->volume / 100);
 
                     // Je test voir si le nouveau son du même type est plus près du perso que l'ancien, si oui, je mets la position du nouveau à la place de l'ancien
                     if ((double)(((positionHero.x-x)*(positionHero.x-x)+(positionHero.y-y)*(positionHero.y-y)))>
