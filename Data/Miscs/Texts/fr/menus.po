@@ -424,35 +424,35 @@ msgstr "Niveau requis : "
 
 #: ../../../Source/Entites/objet.cpp:1927
 msgid "Increased efficiency: "
-msgstr ""
+msgstr "Efficacité accrue : "
 
 #: ../../../Source/Entites/objet.cpp:1933
 msgid "Increased strength: "
-msgstr ""
+msgstr "Force accrue : "
 
 #: ../../../Source/Entites/objet.cpp:1935
 msgid "Increased dexterity: "
-msgstr ""
+msgstr "Dextérité accrue : "
 
 #: ../../../Source/Entites/objet.cpp:1937
 msgid "Increased vitality: "
-msgstr ""
+msgstr "Vitalité accrue : "
 
 #: ../../../Source/Entites/objet.cpp:1939
 msgid "Increased piety: "
-msgstr ""
+msgstr "Piété accrue : "
 
 #: ../../../Source/Entites/objet.cpp:1941
 msgid "Increased charisma: "
-msgstr ""
+msgstr "Charisme accru : "
 
 #: ../../../Source/Entites/objet.cpp:1947
 msgid "Increased health: "
-msgstr ""
+msgstr "Vie accrue : "
 
 #: ../../../Source/Entites/objet.cpp:1949
 msgid "Increased faith: "
-msgstr ""
+msgstr "Foi accrue : "
 
 #: ../../../Source/Entites/objet.cpp:1962
 msgid "over"
@@ -468,7 +468,7 @@ msgstr "Miracle: "
 
 #: ../../../Source/Entites/objet.cpp:2020
 msgid "Equiped: "
-msgstr ""
+msgstr "Equipé : "
 
 #: ../../../Source/Entites/objet.cpp:2024
 msgid "Stash: "
@@ -497,7 +497,7 @@ msgstr "secondes"
 #: ../../../Source/Entites/objet.cpp:2155
 #: ../../../Source/Entites/objet.cpp:2201
 msgid "Damage: "
-msgstr "Degats:"
+msgstr "Dégats: "
 
 #: ../../../Source/Entites/objet.cpp:2171
 msgid "Two-handed weapon"
