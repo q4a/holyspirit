@@ -694,6 +694,9 @@ msgstr "Suceur de Moelle"
 msgid "Pile of stones"
 msgstr "Tas de pierres"
 
+msgid "Corpse"
+msgstr "Cadavre"
+
 msgid "Leather cuffs"
 msgstr "Brassards de cuir"
 

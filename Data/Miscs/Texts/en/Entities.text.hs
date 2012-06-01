@@ -53,3 +53,4 @@ Johannes the Fallen
 Relic
 Marrow sucker
 Pile of stones
+Corpse
