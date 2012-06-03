@@ -1,6 +1,7 @@
 *Data/Graphics/Landscapes/AgrarianLands/Cliffs.png
 *Data/Graphics/Landscapes/AgrarianLands/Cliffs_corner.png
 *Data/Graphics/Menus/UI/MinimapIcones.png
+*Data/Graphics/Landscapes/AgrarianLands/Cliffs_cave.png
 $
 $
 * x0 y0 w128 h1024 ey576 i0 c1 z1 vFalaiseX1 u-3		m i2 x0 y152 	w16 h32 $ $
@@ -31,4 +32,6 @@ $
 * x0 y0 w0 h0 i0 c1 lh128 vCollisionY m i2 x16 y152 	w16 h32 $ $
 
 * x0 y0 w0 h0 i0 c1 lh128 vCollision $
+
+* x0 y0 w256 h1024 ey720 i3 c1 z1 vFalaiseCaverne u-2 $
 $
