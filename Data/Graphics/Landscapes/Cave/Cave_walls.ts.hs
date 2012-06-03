@@ -29,17 +29,17 @@ $
 *x0 y0 w0 h0 i0 c1 lr0 lv0 lb0 li-255 ry lh96 	z1	vMurInvisibleY		m i2 x0 y0 	w16 h16 $ $
 
 
-*x0 y0 w128 h256 ey192 i0 c1 lr0 lv0 lb0 li-255 rx lh96 	z1	vMurX1 u-2		m i2 x16 y0 	w16 h16 $ $
-*x129 y0 w128 h256 ey192 i0 c1 lr0 lv0 lb0 li-255 rx lh96 	z1	vMurX2 u-2		m i2 x16 y0 	w16 h16 $ $
-*x258 y0 w128 h256 ey192 i0 c1 lr0 lv0 lb0 li-255 rx lh96 	z1	vMurX3 u-2		m i2 x16 y0 	w16 h16 $ $
-*x387 y0 w128 h256 ey192 i0 c1 lr0 lv0 lb0 li-255 rx lh96 	z1	vMurX4 u-2		m i2 x16 y0 	w16 h16 $ $
-*x516 y0 w128 h256 ey192 i0 c1 lr0 lv0 lb0 li-255 rx lh96 	z1	vMurX5 u-2		m i2 x16 y0 	w16 h16 $ $
+*x0 y0 w128 h256 ey192 i0 c1 lr0 lv0 lb0 li-255 ry lh96 	z1	vMurX1 u-2		m i2 x16 y0 	w16 h16 $ $
+*x129 y0 w128 h256 ey192 i0 c1 lr0 lv0 lb0 li-255 ry lh96 	z1	vMurX2 u-2		m i2 x16 y0 	w16 h16 $ $
+*x258 y0 w128 h256 ey192 i0 c1 lr0 lv0 lb0 li-255 ry lh96 	z1	vMurX3 u-2		m i2 x16 y0 	w16 h16 $ $
+*x387 y0 w128 h256 ey192 i0 c1 lr0 lv0 lb0 li-255 ry lh96 	z1	vMurX4 u-2		m i2 x16 y0 	w16 h16 $ $
+*x516 y0 w128 h256 ey192 i0 c1 lr0 lv0 lb0 li-255 ry lh96 	z1	vMurX5 u-2		m i2 x16 y0 	w16 h16 $ $
 
-*x0 y256 w128 h156 ey96 i0 c1 lr0 lv0 lb0 li-255 rx lh96 	z1	vMurbX1		m i2 x16 y0 	w16 h16 $ $
-*x129 y256 w128 h156 ey96 i0 c1 lr0 lv0 lb0 li-255 rx lh96 	z1	vMurbX2		m i2 x16 y0 	w16 h16 $ $
-*x258 y256 w128 h156 ey96 i0 c1 lr0 lv0 lb0 li-255 rx lh96 	z1	vMurbX3		m i2 x16 y0 	w16 h16 $ $
-*x387 y256 w128 h156 ey96 i0 c1 lr0 lv0 lb0 li-255 rx lh96 	z1	vMurbX4		m i2 x16 y0 	w16 h16 $ $
-*x516 y256 w128 h156 ey96 i0 c1 lr0 lv0 lb0 li-255 rx lh96 	z1	vMurbX5		m i2 x16 y0 	w16 h16 $ $
+*x0 y256 w128 h156 ey96 i0 c1 lr0 lv0 lb0 li-255 ry lh96 	z1	vMurbX1		m i2 x16 y0 	w16 h16 $ $
+*x129 y256 w128 h156 ey96 i0 c1 lr0 lv0 lb0 li-255 ry lh96 	z1	vMurbX2		m i2 x16 y0 	w16 h16 $ $
+*x258 y256 w128 h156 ey96 i0 c1 lr0 lv0 lb0 li-255 ry lh96 	z1	vMurbX3		m i2 x16 y0 	w16 h16 $ $
+*x387 y256 w128 h156 ey96 i0 c1 lr0 lv0 lb0 li-255 ry lh96 	z1	vMurbX4		m i2 x16 y0 	w16 h16 $ $
+*x516 y256 w128 h156 ey96 i0 c1 lr0 lv0 lb0 li-255 ry lh96 	z1	vMurbX5		m i2 x16 y0 	w16 h16 $ $
 
 *x0 y0 w320 h288 ey160 i1 c1 lr0 lv0 lb0 li-255 ry lh192 	z1	vMurExitY		m i2 x0 y120 	w32 h32 $ $
 
