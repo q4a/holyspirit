@@ -974,6 +974,11 @@ void Miracle::AfficherDescription(coordonnee position, Border &border, bool suiv
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,m_nom.c_str()));
     temp.back().setCharacterSize(16);
  //   temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"---------------"));
+
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
+    temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,"_"));
     temp.push_back(AjouterCaracteristiqueAfficher(&decalage,&tailleCadran,""));
