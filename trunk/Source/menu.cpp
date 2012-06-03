@@ -577,9 +577,13 @@ void Menu::AfficherDynamique(Caracteristique caracteristique,int type,Caracteris
     }
     else if(caracteristiqueMonstre.maxVie == 1 && m_dialogue.empty())
     {
-        coordonnee pos =  eventManager->getPositionSouris();
+        /*coordonnee pos =  eventManager->getPositionSouris();
         pos.y -= 28;
-        moteurGraphique->AjouterTexte(caracteristiqueMonstre.nom, pos, classe->border,20, 0, 14, sf::Color(224,224,224));
+        moteurGraphique->AjouterTexte(caracteristiqueMonstre.nom, pos, classe->border,20, 0, 14, sf::Color(224,224,224));*/
+
+        moteurGraphique->AjouterTexte(caracteristiqueMonstre.nom,coordonnee(eventManager->getPositionSouris().x,
+                                                                         eventManager->getPositionSouris().y - 20),
+                                                                         classe->border,20,0,14,sf::Color(224,224,224));
     }
 }
 

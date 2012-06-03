@@ -282,8 +282,9 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
     temp.setCharacterSize(tailleTexte);
     temp.setFont(moteurGraphique->m_font);
 
-    std::string buf;
+    std::string buf = "";
     std::string bufMot = "";
+    std::string bufLigne = "";
     for (int p = 0;p < (int)texte.size();p++)
     {
         if (texte[p] != ' ' && texte[p] != '\0' && texte[p] != '\n')
@@ -292,21 +293,35 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
                 texte[p] = '\n';
             bufMot += texte[p];
 
-            temp.setString(toUtf32(buf + bufMot));
+           /* temp.setString(toUtf32(buf + bufMot));
             if (temp.getGlobalBounds().width > tailleCadran)
-                bufMot = '\n' + bufMot.substr(1,bufMot.size()-1);
+                bufMot = '\n' + bufMot.substr(1,bufMot.size()-1);*/
         }
         else
         {
-            buf += bufMot;
+            temp.setString(toUtf32(bufLigne + bufMot));
+            if (temp.getGlobalBounds().width > tailleCadran)
+            {
+                bufLigne += '\n';
+                buf += bufLigne;
+                bufLigne = "";
+                if(bufMot.size() > 1 & bufMot[0] == ' ')
+                    bufMot = bufMot.substr(1,bufMot.size()-1);
+            }
+            bufLigne += bufMot;
             if(texte[p] == '\0' || texte[p] == '\n')
+            {
                 bufMot = "";
+                buf += bufLigne;
+                bufLigne = "";
+            }
             else
                 bufMot = " ";
         }
 
     }
-    buf += bufMot;
+    bufLigne += bufMot;
+    buf += bufLigne;
 
     return buf;
 }

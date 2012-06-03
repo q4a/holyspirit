@@ -914,12 +914,12 @@ void MoteurGraphique::AjouterTexte(const std::string &txt, coordonnee pos, Borde
     temp.setColor(color);
     AjouterTexte(&temp, couche, titre);
 
-    pos.x -= 6;
-    pos.y -= 2;
+    pos.x -= 4;
+    pos.y += 2;
 
     coordonnee s;
-    s.x = (int)temp.getGlobalBounds().width + 13;
-    s.y = (int)temp.getGlobalBounds().height + 6;
+    s.x = (int)temp.getGlobalBounds().width + 8;
+    s.y = (int)temp.getGlobalBounds().height + 4;
     border.Afficher(pos, s, couche, sf::Color(224,224,224,color.a));
 }
 
