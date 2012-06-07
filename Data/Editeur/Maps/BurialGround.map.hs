@@ -1,6 +1,6 @@
 * n6 $ 
 $
-*Data/Maps/Loading_screens/BurialGround0.png
+*Data/Maps/Loading_screens/BurialGround0.jpg
 $
 *Data/Musics/DarkForest.ogg
 $

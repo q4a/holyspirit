@@ -1,6 +1,6 @@
 * n1 $ 
 $
-*Data/Maps/Loading_screens/Forest0.png
+*Data/Maps/Loading_screens/Abbey0.jpg
 $
 *Data/Musics/Abbey.ogg
 $

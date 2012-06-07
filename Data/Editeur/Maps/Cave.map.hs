@@ -154,9 +154,9 @@ $
 
 main 
 	entity_name * 0 * 5 * 4 
-			if entity_variable * 0 * 0 * 1 
+				if entity_variable * 0 * 0 * 1 
 	then
-		change_map * 163 * 25 " Agrarian_lands0.map.hs"
+		change_map * 222 * 149 " Agrarian_lands0.map.hs"
 	end
 
 end
