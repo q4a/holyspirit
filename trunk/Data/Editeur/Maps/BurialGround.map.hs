@@ -248,7 +248,7 @@ main
 				if entity_variable * 0 * 0 * 0 
 	then
 	else
-		change_map * 212 * 57 " Agrarian_lands0.map.hs"
+		change_map * 269 * 106 " Agrarian_lands0.map.hs"
 		entity_variable * 0 * 0 * 0 
 	end
 

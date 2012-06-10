@@ -3,6 +3,7 @@
 *Data/Graphics/Landscapes/AgrarianLands/Ruin3.png
 *Data/Graphics/Landscapes/AgrarianLands/Ruin4.png
 *Data/Graphics/Landscapes/AgrarianLands/Ruin4_2.png
+*Data/Graphics/Landscapes/AgrarianLands/Ruin_tower.png
 $
 $
 * x0 y180 w64 h224 i0 c1 f1 z1 lr0 lv0 lb0 li-255 lh512 rg vMaison1-1 $
@@ -74,5 +75,8 @@ $
 * x832 y256 w64 h128 ey128  i3 c1 f1 z1 lr0 lv0 lb0 li-255 lh512 rd vMaison2-2-11 $
 
 * x0 y0 w896 h512 ey496 i4 t1 z1 vMaison2-toit $
+
+* x0 y0 w512 h512 ey412 i5 t1 z1 c1 vTour $
+
 
 $

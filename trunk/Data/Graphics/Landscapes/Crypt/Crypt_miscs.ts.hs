@@ -13,4 +13,6 @@ $
 *x184 y0 w72 h288 ex14 ey240 i1 c1 z1 vArc_part3 $
 
 *x0 y0 w192 h320 i2 c1 z1 t1 vArc2 li-255 lh96 rc $
+
+*x192 y0 w128 h128 ey80 i0 c1 z1 vAutel $
 $

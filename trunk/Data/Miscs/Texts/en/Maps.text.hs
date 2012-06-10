@@ -7,3 +7,4 @@ The Catacombs - Level 2
 The Graveyard
 The Cave
 Mausoleum
+Tumulus
