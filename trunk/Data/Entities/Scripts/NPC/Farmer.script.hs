@@ -109,10 +109,17 @@ main
 					end
 					variable * 1 * 1
 				else
-					if quest * 4 * 2
+					if quest * 4 * 1
 					then
 						speak * 88
 						variable * 1 * 1
+						setQuestState * 4 * 2 * 22
+						setQuestActif * 4 * 0
+						giftItem * 0
+						giftItem * 0
+						giftItem * 0
+						giftItem * 0
+						giftItem * 0
 					else
 						speak * 168
 					end

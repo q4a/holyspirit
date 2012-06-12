@@ -781,9 +781,10 @@ main
 		setAmbiance * 1 * 0 
 	end
 
-	if quest * 4 * 0 
+	if quest * 5 * 0 
 	then
 		if entity_variable * 3 * 0 * 0 
+		   variable * 3 * 0 
 		then
 			entity_variable * 3 * 0 * 1 
 			entity_variable * 3 * 1 * 5 
@@ -803,7 +804,7 @@ main
 		   entity_dead * 5 
 		then
 			variable * 3 * 0 
-			setQuestState * 4 * 1 * 27 
+			setQuestState * 5 * 1 * 27 
 		end
 
 	end
@@ -816,6 +817,19 @@ main
 			entity_variable * 8 * 2 * 2 
 			entity_variable * 7 * 0 * 1 
 			entity_variable * 7 * 2 * 3 
+		end
+
+	end
+
+	if quest * 4 * -1 
+	then
+		entity_variable * 10 * 9 * 1 
+	else
+		entity_variable * 10 * 9 * 0 
+		if entity_dead * 10 
+		   quest * 4 * 0 
+		then
+			setQuestState * 4 * 1 * 23 
 		end
 
 	end

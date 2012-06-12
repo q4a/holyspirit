@@ -1,5 +1,5 @@
 main 
-	if quest * 4 * -1
+	if quest * 5 * -1
 	then
 		if see
 		then
@@ -10,7 +10,7 @@ main
 
 	if talk
 	then
-		if quest * 4 * -1
+		if quest * 5 * -1
 		then
 			if variable * 0 * 0
 			then
@@ -23,9 +23,9 @@ main
 			if speak_choice * 1
 			then	
 				stop_speak
-				newQuest * 4 
-				setQuestName * 4  * 25
-				setQuestState * 4 * 0 * 26
+				newQuest * 5 
+				setQuestName * 5  * 25
+				setQuestState * 5 * 0 * 26
 			end
 		
 			if speak_choice * 2
@@ -33,11 +33,11 @@ main
 				stop_speak
 			end
 		else
-			if quest * 4 * 1
+			if quest * 5 * 1
 			then
 				speak * 142
-				setQuestState * 4 * 2 * 28
-				setQuestActif * 4 * 0
+				setQuestState * 5 * 2 * 28
+				setQuestActif * 5 * 0
 				setActif * 0
 			end
 		end
