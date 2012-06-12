@@ -8,6 +8,10 @@ $
 $
 	*Data/Entities/Scripts/NPC/Farmer.script.hs
 $
+	*
+		*Potion_heal0.item.hs
+		r-1
+	$
 $
 $
 *Data/Miscs/Miracles/Quest/Quest.miracle.hs
