@@ -76,7 +76,7 @@ $
 
 * x0 y0 w896 h512 ey496 i4 t1 z1 vMaison2-toit $
 
-* x0 y0 w512 h512 ey412 i5 t1 z1 c1 vTour $
+* x0 y0 w512 h512 ey412 i5 z1 c1 vTour $
 
 
 $

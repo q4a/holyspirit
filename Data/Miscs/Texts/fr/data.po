@@ -1181,7 +1181,7 @@ msgid "Bone sword"
 msgstr "Epée en os"
 
 msgid "Tutorial"
-msgstr "Tutorial"
+msgstr "Les limbes"
 
 msgid "The Abbey - Exterior"
 msgstr "L'abbaye - extérieur"
