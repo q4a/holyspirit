@@ -59,6 +59,8 @@ void Map::Detruire()
     if (configuration->debug)
         console->Ajouter("Monster's models destroyed !");
 
+    for(int i = 0 ; i < m_monstre.size() ; ++i)
+        delete m_monstre[i];
     m_monstre.clear();
 
     if (configuration->debug)
@@ -475,8 +477,8 @@ void Map::ChargerEntites(ifstream *fichier2, const std::string &chemin)
                 bool etat_force = false;
                 vector <Objet> objets;
                 std::vector <int> variables;
-                m_monstre.push_back(Monstre ());
-                m_monstre.back().m_no = m_monstre.size() - 1;
+                m_monstre.push_back(new Monstre ());
+                m_monstre.back()->m_no = m_monstre.size() - 1;
 
                 int pos;
 
@@ -529,7 +531,7 @@ void Map::ChargerEntites(ifstream *fichier2, const std::string &chemin)
 
 
                     case 'p':
-                        m_monstre.back().m_entite_graphique.LoadParameters(*fichier2);
+                        m_monstre.back()->m_entite_graphique.LoadParameters(*fichier2);
                         break;
 
                     case 'o':
@@ -564,8 +566,8 @@ void Map::ChargerEntites(ifstream *fichier2, const std::string &chemin)
                 if ((int)m_monstre.size()>0)
                 {
                     if (numeroModele>=0&&numeroModele<(int)m_ModeleMonstre.size())
-                        m_monstre.back().Charger(numeroModele,&m_ModeleMonstre[numeroModele]);
-                    Caracteristique caracteristique = m_monstre.back().getCaracteristique();
+                        m_monstre.back()->Charger(numeroModele,&m_ModeleMonstre[numeroModele]);
+                    Caracteristique caracteristique = m_monstre.back()->getCaracteristique();
                     caracteristique.vie=vieMin;
                     caracteristique.maxVie=vieMax;
                     caracteristique.degatsMin[PHYSIQUE]=degatsMin;
@@ -573,14 +575,14 @@ void Map::ChargerEntites(ifstream *fichier2, const std::string &chemin)
                     caracteristique.rang=rang;
                     caracteristique.pointAme=ame;
                     caracteristique.modificateurTaille=taille;
-                    m_monstre.back().setCaracteristique(caracteristique);
-                    m_monstre.back().setEtat(etat);
-                    m_monstre.back().setPose(pose);
-                    m_monstre.back().setForcedAngle(angle);
-                    m_monstre.back().setObjets(objets);
-                    m_monstre.back().m_etatForce = etat_force;
+                    m_monstre.back()->setCaracteristique(caracteristique);
+                    m_monstre.back()->setEtat(etat);
+                    m_monstre.back()->setPose(pose);
+                    m_monstre.back()->setForcedAngle(angle);
+                    m_monstre.back()->setObjets(objets);
+                    m_monstre.back()->m_etatForce = etat_force;
                     for(unsigned z=0;z<variables.size();++z)
-                        m_monstre.back().m_scriptAI.setVariable(z,variables[z]);
+                        m_monstre.back()->m_scriptAI.setVariable(z,variables[z]);
                 }
 
                 objets.clear();
@@ -744,16 +746,16 @@ void Map::ChargerCases(ifstream *fichier, const std::string &chemin, bool entite
                                 if (monstre[i]>=0&&monstre[i]<(int)m_monstre.size())
                                 {
                                     int etat,pose,angle;
-                                    etat=m_monstre[monstre[i]].getEtat();
-                                    pose=m_monstre[monstre[i]].getPose();
-                                    angle=m_monstre[monstre[i]].getAngle();
-                                    m_monstre[monstre[i]].setCoordonnee(position);
-                                    m_monstre[monstre[i]].setDepart();
-                                    m_monstre[monstre[i]].setEtat(etat);
-                                    m_monstre[monstre[i]].setPose(pose);
-                                    m_monstre[monstre[i]].setAngle(angle);
+                                    etat=m_monstre[monstre[i]]->getEtat();
+                                    pose=m_monstre[monstre[i]]->getPose();
+                                    angle=m_monstre[monstre[i]]->getAngle();
+                                    m_monstre[monstre[i]]->setCoordonnee(position);
+                                    m_monstre[monstre[i]]->setDepart();
+                                    m_monstre[monstre[i]]->setEtat(etat);
+                                    m_monstre[monstre[i]]->setPose(pose);
+                                    m_monstre[monstre[i]]->setAngle(angle);
 
-                                    m_monstre[monstre[i]].m_ID = id;
+                                    m_monstre[monstre[i]]->m_ID = id;
 
                                     if(id >= 0)
                                     {
@@ -835,13 +837,13 @@ void Map::AddMonstre(vector <int> &monstre, vector <int> &monstreFinal, std::vec
     {
         if (monstreFinal.back()>=0&&monstreFinal.back()<(int)m_ModeleMonstre.size())
         {
-            m_monstre.push_back(Monstre ());
-            m_monstre.back().m_no = m_monstre.size() - 1;
-            m_monstre.back().Charger(monstreFinal.back(),&m_ModeleMonstre[monstreFinal.back()]);
-            m_monstre.back().setCoordonnee(position),m_monstre.back().setDepart();
-            m_monstre.back().m_ID = id;
-            m_monstre.back().m_entite_graphique = entite_monstre_final;
-            m_monstre.back().setForcedAngle(entite_angle);
+            m_monstre.push_back(new Monstre ());
+            m_monstre.back()->m_no = m_monstre.size() - 1;
+            m_monstre.back()->Charger(monstreFinal.back(),&m_ModeleMonstre[monstreFinal.back()]);
+            m_monstre.back()->setCoordonnee(position),m_monstre.back()->setDepart();
+            m_monstre.back()->m_ID = id;
+            m_monstre.back()->m_entite_graphique = entite_monstre_final;
+            m_monstre.back()->setForcedAngle(entite_angle);
             entite_angle = 0;
 
             if(id >= 0)
@@ -851,7 +853,7 @@ void Map::AddMonstre(vector <int> &monstre, vector <int> &monstreFinal, std::vec
                 m_listID[id].push_back(m_monstre.size() - 1);
             }
 
-            TrierInventaire(m_monstre.back().getPointeurObjets(),w/*hero->m_classe.position_contenu_marchand.w*/);
+            TrierInventaire(m_monstre.back()->getPointeurObjets(),w/*hero->m_classe.position_contenu_marchand.w*/);
 
             monstreFinal.back()=m_monstre.size()-1;
         }
@@ -939,19 +941,19 @@ void Map::Initialiser(Hero *hero)
         console->Ajouter("Initializing scenery ended.");
 
     for (int i=0;i<(int)m_monstre.size();++i)
-       // if (m_monstre[i].getCaracteristique().rang>=0)
+       // if (m_monstre[i]->getCaracteristique().rang>=0)
         {
             coordonnee pos;
 
-            pos.x = (int)(((m_monstre[i].getCoordonnee().x-m_monstre[i].getCoordonnee().y)*64));
-            pos.y = (int)(((m_monstre[i].getCoordonnee().x+m_monstre[i].getCoordonnee().y+1)*32));
+            pos.x = (int)(((m_monstre[i]->getCoordonnee().x-m_monstre[i]->getCoordonnee().y)*64));
+            pos.y = (int)(((m_monstre[i]->getCoordonnee().x+m_monstre[i]->getCoordonnee().y+1)*32));
 
-            m_monstre[i].m_entite_graphique.setPosition(pos.x, pos.y);
+            m_monstre[i]->m_entite_graphique.setPosition(pos.x, pos.y);
 
-            if(m_monstre[i].getModele() >= 0
-            && m_monstre[i].getModele() < (int)m_ModeleMonstre.size())
-                m_monstre[i].Animer(&m_ModeleMonstre[m_monstre[i].getModele()],0);
-            m_monstre[i].m_entite_graphique.Initialiser(pos);
+            if(m_monstre[i]->getModele() >= 0
+            && m_monstre[i]->getModele() < (int)m_ModeleMonstre.size())
+                m_monstre[i]->Animer(&m_ModeleMonstre[m_monstre[i]->getModele()],0);
+            m_monstre[i]->m_entite_graphique.Initialiser(pos);
         }
 
     if (configuration->debug)
@@ -1122,18 +1124,18 @@ void Map::Sauvegarder(Hero *hero)
 
                     for (unsigned k = 0 ; k < m_decor[couche][i][j].getMonstre().size() ; ++k)
                         if (m_decor[couche][i][j].getMonstre()[k] >= 0 && m_decor[couche][i][j].getMonstre()[k] < (int)m_monstre.size())
-                            if(!m_monstre[m_decor[couche][i][j].getMonstre()[k]].m_inexistant)
+                            if(!m_monstre[m_decor[couche][i][j].getMonstre()[k]]->m_inexistant)
                             {
                                 bool ok = true;
 
                                 for(unsigned o = 0 ; o < hero->m_amis.size(); ++o)
-                                    if(hero->m_amis[o] == &m_monstre[m_decor[couche][i][j].getMonstre()[k]])
+                                    if(hero->m_amis[o] == m_monstre[m_decor[couche][i][j].getMonstre()[k]])
                                         ok = false;
 
                                 if(ok)
                                 {
-                                    if(m_monstre[m_decor[couche][i][j].getMonstre()[k]].m_ID >= 0)
-                                        fichier<<"d"<<m_monstre[m_decor[couche][i][j].getMonstre()[k]].m_ID<<" ";
+                                    if(m_monstre[m_decor[couche][i][j].getMonstre()[k]]->m_ID >= 0)
+                                        fichier<<"d"<<m_monstre[m_decor[couche][i][j].getMonstre()[k]]->m_ID<<" ";
 
                                     fichier<<"m"<<m_decor[couche][i][j].getMonstre()[k]<<" ";
                                 }
@@ -1190,8 +1192,8 @@ void Map::Sauvegarder(Hero *hero)
 
     if (fichier2)
     {
-        for (std::vector<Monstre>::iterator iter = m_monstre.begin();iter!=m_monstre.end();++iter)
-            iter->Sauvegarder(fichier2);
+        for (std::vector<Monstre*>::iterator iter = m_monstre.begin();iter!=m_monstre.end();++iter)
+            (*iter)->Sauvegarder(fichier2);
 
         fichier2<<"\n$";
 

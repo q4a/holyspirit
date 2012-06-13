@@ -192,7 +192,7 @@ private:
     std::vector <std::string> m_fond;
 
     std::vector <Modele_Monstre> m_ModeleMonstre;
-    std::vector <Monstre> m_monstre;
+    std::vector <Monstre*> m_monstre;
     std::vector <Projectile> m_projectile;
     std::vector <EffetGraphique> m_effets;
 
