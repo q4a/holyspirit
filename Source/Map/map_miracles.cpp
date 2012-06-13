@@ -352,8 +352,8 @@ bool Map::Miracle_Charme (Jeu *jeu, Personnage *personnage, Miracle &modele, Eff
             bool ok = false;
             int id = -1;
             for(unsigned i = 0 ; i < m_monstre.size() ; ++i)
-                if(&m_monstre[i] == info.m_cible)
-                    id = i, m_decor[1][m_monstre[i].getCoordonnee().y][m_monstre[i].getCoordonnee().x].delMonstre(i);
+                if(m_monstre[i] == info.m_cible)
+                    id = i, m_decor[1][m_monstre[i]->getCoordonnee().y][m_monstre[i]->getCoordonnee().x].delMonstre(i);
 
             temp.x = personnage->getCoordonnee().x - 1;
             temp.y = personnage->getCoordonnee().y - 1;
@@ -770,40 +770,40 @@ bool Map::Miracle_Invocation(Jeu *jeu, Personnage *personnage, Miracle &modele, 
                 numero=m_ModeleMonstre.size()-1;
             }
 
-            m_monstre.push_back(Monstre ());
+            m_monstre.push_back(new Monstre ());
 
             if(effet.m_informations[1] == 1)
             {
-                m_monstre.back().setCoordonneePixel2(personnage->getCoordonneePixel());
+                m_monstre.back()->setCoordonneePixel2(personnage->getCoordonneePixel());
 
-                positionCase.x = (int)(m_monstre.back().getCoordonneePixel().x/COTE_TILE + 0.5);
-                positionCase.y = (int)(m_monstre.back().getCoordonneePixel().y/COTE_TILE + 0.5);
+                positionCase.x = (int)(m_monstre.back()->getCoordonneePixel().x/COTE_TILE + 0.5);
+                positionCase.y = (int)(m_monstre.back()->getCoordonneePixel().y/COTE_TILE + 0.5);
             }
 
-            m_monstre.back().Charger(numero,&m_ModeleMonstre[numero]);
-            m_monstre.back().setCoordonnee(positionCase),m_monstre.back().setDepart();
+            m_monstre.back()->Charger(numero,&m_ModeleMonstre[numero]);
+            m_monstre.back()->setCoordonnee(positionCase),m_monstre.back()->setDepart();
 
             if(effet.m_informations[1] == 1)
-                m_monstre.back().setCoordonneePixel2(personnage->getCoordonneePixel());
+                m_monstre.back()->setCoordonneePixel2(personnage->getCoordonneePixel());
 
             if(effet.m_informations[1] == 1)
-            m_monstre.back().setForcedAngle(personnage->getAngle());
+            m_monstre.back()->setForcedAngle(personnage->getAngle());
 
             coordonnee pos;
-            pos.x=(int)(((m_monstre.back().getCoordonneePixel().x-m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE*64));
-            pos.y=(int)(((m_monstre.back().getCoordonneePixel().x+m_monstre.back().getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
+            pos.x=(int)(((m_monstre.back()->getCoordonneePixel().x-m_monstre.back()->getCoordonneePixel().y)*64/COTE_TILE*64));
+            pos.y=(int)(((m_monstre.back()->getCoordonneePixel().x+m_monstre.back()->getCoordonneePixel().y)*64/COTE_TILE)/2+32)*2;
 
-            m_monstre.back().Animer(&m_ModeleMonstre[numero],0);
-            m_monstre.back().m_entite_graphique.Initialiser(pos);
+            m_monstre.back()->Animer(&m_ModeleMonstre[numero],0);
+            m_monstre.back()->m_entite_graphique.Initialiser(pos);
 
-           // m_monstre.back().m_friendly = personnage->m_friendly;
+           // m_monstre.back()->m_friendly = personnage->m_friendly;
 
 
             for (std::list<Hero*>::iterator p = jeu->m_listHeroes.begin(); p != jeu->m_listHeroes.end(); ++p)
                 if(personnage == &(*p)->m_personnage)
-                    jeu->hero.m_amis.push_back(&m_monstre.back());
+                    jeu->hero.m_amis.push_back(m_monstre.back());
 
-            info.m_cible = &m_monstre.back();
+            info.m_cible = m_monstre.back();
 
 
             m_decor[1][positionCase.y][positionCase.x].setMonstre(m_monstre.size()-1);
@@ -812,7 +812,7 @@ bool Map::Miracle_Invocation(Jeu *jeu, Personnage *personnage, Miracle &modele, 
 
             if(modele.m_golem)
             {
-                Caracteristique temp = m_monstre.back().getCaracteristique();
+                Caracteristique temp = m_monstre.back()->getCaracteristique();
                 temp.maxVie = miracleEnCours.m_source->m_gol_caract.maxVie;
                 temp.vie    = miracleEnCours.m_source->m_gol_caract.vie;
 
@@ -830,7 +830,7 @@ bool Map::Miracle_Invocation(Jeu *jeu, Personnage *personnage, Miracle &modele, 
                 temp.piete          += miracleEnCours.m_source->m_gol_caract.piete;
                 temp.charisme       += miracleEnCours.m_source->m_gol_caract.charisme;
 
-                m_monstre.back().setCaracteristique(temp);
+                m_monstre.back()->setCaracteristique(temp);
 
                 bool mir = false;
 
@@ -838,23 +838,23 @@ bool Map::Miracle_Invocation(Jeu *jeu, Personnage *personnage, Miracle &modele, 
                 {
                     if(!mir)
                     {
-                        m_ModeleMonstre[m_monstre.back().getModele()].m_miracles.push_back(Miracle (
+                        m_ModeleMonstre[m_monstre.back()->getModele()].m_miracles.push_back(Miracle (
                                     miracleEnCours.m_source->m_miracles_benedictions[j].m_chemin,
                                     temp,0));
 
-                        m_monstre.back().m_miracleEnCours.push_back(EntiteMiracle ());
-                        m_monstre.back().m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
+                        m_monstre.back()->m_miracleEnCours.push_back(EntiteMiracle ());
+                        m_monstre.back()->m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
 
-                        m_monstre.back().m_miracleEnCours.back().m_modele = m_ModeleMonstre[m_monstre.back().getModele()].m_miracles.size() - 1;
+                        m_monstre.back()->m_miracleEnCours.back().m_modele = m_ModeleMonstre[m_monstre.back()->getModele()].m_miracles.size() - 1;
 
-                        m_monstre.back().m_miracleEnCours.back().m_infos.back()->m_position.x = m_monstre.back().getCoordonneePixel().x;
-                        m_monstre.back().m_miracleEnCours.back().m_infos.back()->m_position.y = m_monstre.back().getCoordonneePixel().y;
+                        m_monstre.back()->m_miracleEnCours.back().m_infos.back()->m_position.x = m_monstre.back()->getCoordonneePixel().x;
+                        m_monstre.back()->m_miracleEnCours.back().m_infos.back()->m_position.y = m_monstre.back()->getCoordonneePixel().y;
 
                         mir = true;
                     }
                     else
                     {
-                        m_ModeleMonstre[m_monstre.back().getModele()].m_miracles.back().Concatenencer(
+                        m_ModeleMonstre[m_monstre.back()->getModele()].m_miracles.back().Concatenencer(
                                     miracleEnCours.m_source->m_miracles_benedictions[j].m_chemin,
                                     temp,0);
                     }
@@ -864,19 +864,19 @@ bool Map::Miracle_Invocation(Jeu *jeu, Personnage *personnage, Miracle &modele, 
                 {
                     if(!mir)
                     {
-                        m_ModeleMonstre[m_monstre.back().getModele()].m_miracles.push_back(Miracle ());
+                        m_ModeleMonstre[m_monstre.back()->getModele()].m_miracles.push_back(Miracle ());
 
-                        m_monstre.back().m_miracleEnCours.push_back(EntiteMiracle ());
-                        m_monstre.back().m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
+                        m_monstre.back()->m_miracleEnCours.push_back(EntiteMiracle ());
+                        m_monstre.back()->m_miracleEnCours.back().m_infos.push_back(new InfosEntiteMiracle ());
 
-                        m_monstre.back().m_miracleEnCours.back().m_modele = m_ModeleMonstre[m_monstre.back().getModele()].m_miracles.size() - 1;
+                        m_monstre.back()->m_miracleEnCours.back().m_modele = m_ModeleMonstre[m_monstre.back()->getModele()].m_miracles.size() - 1;
 
-                        m_monstre.back().m_miracleEnCours.back().m_infos.back()->m_position.x = m_monstre.back().getCoordonneePixel().x;
-                        m_monstre.back().m_miracleEnCours.back().m_infos.back()->m_position.y = m_monstre.back().getCoordonneePixel().y;
+                        m_monstre.back()->m_miracleEnCours.back().m_infos.back()->m_position.x = m_monstre.back()->getCoordonneePixel().x;
+                        m_monstre.back()->m_miracleEnCours.back().m_infos.back()->m_position.y = m_monstre.back()->getCoordonneePixel().y;
 
                     }
 
-                    ChargerMiracleBenediction(miracleEnCours.m_source->m_benedictions[i],m_ModeleMonstre[m_monstre.back().getModele()].m_miracles.back(),mir);
+                    ChargerMiracleBenediction(miracleEnCours.m_source->m_benedictions[i],m_ModeleMonstre[m_monstre.back()->getModele()].m_miracles.back(),mir);
                 }
 
 
@@ -913,8 +913,8 @@ bool Map::Miracle_Invocation(Jeu *jeu, Personnage *personnage, Miracle &modele, 
             bool ok = false;
             int id = -1;
             for(unsigned i = 0 ; i < m_monstre.size() ; ++i)
-                if(&m_monstre[i] == info.m_cible)
-                    id = i, m_decor[1][m_monstre[i].getCoordonnee().y][m_monstre[i].getCoordonnee().x].delMonstre(i);
+                if(m_monstre[i] == info.m_cible)
+                    id = i, m_decor[1][m_monstre[i]->getCoordonnee().y][m_monstre[i]->getCoordonnee().x].delMonstre(i);
 
             temp.x = personnage->getProchaineCase().x - 1;
             temp.y = personnage->getProchaineCase().y - 1;
@@ -1297,17 +1297,17 @@ bool Map::Miracle_Zone(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet 
 
                 for (unsigned z = 0 ; z < m_decor[1][y][x].getMonstre().size() ; ++z)
                     if (m_decor[1][y][x].getMonstre()[z]>=0&&m_decor[1][y][x].getMonstre()[z]<(int)m_monstre.size())
-                        if (m_monstre[m_decor[1][y][x].getMonstre()[z]].EnVie()
-                        && ((m_monstre[m_decor[1][y][x].getMonstre()[z]].m_friendly != personnage->m_friendly)
-                         || (m_monstre[m_decor[1][y][x].getMonstre()[z]].m_friendly == personnage->m_friendly && effet.m_informations[5]/*&& y==jeu->hero.m_personnage.getCoordonnee().y&&x==jeu->hero.m_personnage.getCoordonnee().x*/ /*&& ((!personnage->m_friendly) || effet.m_informations[5]))*/))
-                        &&m_monstre[m_decor[1][y][x].getMonstre()[z]].getCaracteristique().rang>=0
-                        &&m_monstre[m_decor[1][y][x].getMonstre()[z]].m_actif
-                        &&m_monstre[m_decor[1][y][x].getMonstre()[z]].getCaracteristique().niveau>=0)
+                        if (m_monstre[m_decor[1][y][x].getMonstre()[z]]->EnVie()
+                        && ((m_monstre[m_decor[1][y][x].getMonstre()[z]]->m_friendly != personnage->m_friendly)
+                         || (m_monstre[m_decor[1][y][x].getMonstre()[z]]->m_friendly == personnage->m_friendly && effet.m_informations[5]/*&& y==jeu->hero.m_personnage.getCoordonnee().y&&x==jeu->hero.m_personnage.getCoordonnee().x*/ /*&& ((!personnage->m_friendly) || effet.m_informations[5]))*/))
+                        &&m_monstre[m_decor[1][y][x].getMonstre()[z]]->getCaracteristique().rang>=0
+                        &&m_monstre[m_decor[1][y][x].getMonstre()[z]]->m_actif
+                        &&m_monstre[m_decor[1][y][x].getMonstre()[z]]->getCaracteristique().niveau>=0)
                         {
                             miracleEnCours.m_infos.push_back(new InfosEntiteMiracle ());
-                            miracleEnCours.m_infos.back()->m_effetEnCours    =  effet.m_informations[0];
-                            miracleEnCours.m_infos.back()->m_position        =  info.m_position;
-                            miracleEnCours.m_infos.back()->m_cible           = &m_monstre[m_decor[1][y][x].getMonstre()[z]];
+                            miracleEnCours.m_infos.back()->m_effetEnCours    = effet.m_informations[0];
+                            miracleEnCours.m_infos.back()->m_position        = info.m_position;
+                            miracleEnCours.m_infos.back()->m_cible           = m_monstre[m_decor[1][y][x].getMonstre()[z]];
                         }
 
                 if (y==jeu->hero.m_personnage.getCoordonnee().y&&x==jeu->hero.m_personnage.getCoordonnee().x && ((!personnage->m_friendly) || effet.m_informations[5]))
@@ -1537,7 +1537,7 @@ void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,fl
                 {
                     int no = 0;
                     for(unsigned k = 0 ; k < m_monstre.size() ; ++k)
-                        if(&m_monstre[k] == personnage)
+                        if(m_monstre[k] == personnage)
                             no = k;
                     continuer = Miracle_Invocation( jeu,personnage, miracles[personnage->m_miracleEnCours[i].m_modele],
                                                     miracles[personnage->m_miracleEnCours[i].m_modele].m_effets[effetEnCours],
@@ -1545,7 +1545,7 @@ void Map::GererMiracle(Personnage *personnage,std::vector<Miracle> &miracles ,fl
                                                     temps, o, detruire);
 
                     if(personnage != &jeu->hero.m_personnage)
-                        personnage = &m_monstre[no];
+                        personnage = m_monstre[no];
                 }
 
                 else if (type == CHANGEMENT_POSE)
