@@ -174,9 +174,9 @@ $
 * ||||||| s2 t6 l0 |||| s1 t1 p sx-100 $ l0 ||m10 l0 ||m10 l0 | s1 t1 p sx-100 $ l0 |||| s2 t15 l0 ||||||||||||| s2 t6 l0 ||| s4 t1 p sx-100 $ l0 ||| s4 t1 p sx-100 $ l0 ||| s2 t15 l0 |||||||||||||| s2 t5 l0 ||| s2 t15 l0 ||||||||||||||||$
 * ||||||| s2 t7 l0 ||||||||||||| s2 t15 l0 ||||||||||||| s2 t7 l0 |||m8  d3 l0 |||m8  d3 l0 ||| s2 t15 l0 |||||||||||||| s2 t4 l0 ||| s2 t15 l0 ||||||||||||||||$
 * ||||||| s2 t4 l0 |||| s1 t5 p sx-100 $ l0 ||m8 l0 ||||||| s2 t23 l0 | s2 t3 l0 | s2 t2 l0 | s2 t1 l0 | s2 t0 l0 | s2 t3 l0 | s2 t2 l0 | s2 t1 l0 | s2 t0 l0 | s2 t3 l0 | s2 t2 l0 | s2 t1 l0 | s2 t0 l0 | s2 t17 l0 ||||||||| s2 t23 l0 | s2 t3 l0 | s2 t2 l0 | s2 t1 l0 | s2 t0 l0 | s2 t3 l0 | s2 t2 l0 | s2 t0 l0 | s2 t1 l0 | s2 t0 l0 | s2 t3 l0 | s2 t2 l0 | s2 t1 l0 | s2 t0 l0 | s2 t17 l0 ||| s2 t23 l0 | s2 t0 l0 | s2 t3 l0 | s2 t2 l0 | s2 t1 l0 | s2 t0 l0 | s2 t0 l0 | s2 t1 l0 | s2 t2 l0 | s2 t3 l0 | s2 t0 l0 | s2 t1 l0 | s2 t2 l0 | s2 t3 l0 | s2 t0 l0 ||$
-* ||||||| s2 t5 l0 |m4 p tx-53 ty16 $ l0 |||||||||||||||||||||||||m19 a45  d4 l0 |||||||||||||||||||| s1 t6 p tx42 ty-12 sx-100 $ l0 |||m19 a45  d2 l0 |||||||| s1 t7 p tx42 ty-12 sx-100 $ l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 ||$
-* ||||||| s2 t6 l0 |m3 p tx-24 ty-12 $ l0 |||m18 p sx-100 $ l0 ||m9 l0 ||||||||||||||||||||m19 a45  d4 l0 |||| s1 t2 p sx-100 $ l0 |||||||||||||||||||m19 a45  d2 l0 |||||||||m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 | s3 t0 p sx-500 sy295 caU $ m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 ||$
-* ||||||| s2 t7 l0 |m4 p tx17 ty-15 $ l0 |||||||||||||||||||||||||m19 a45  d4 l0 |||||||||||||||||||||||m19 a45  d2 l0 |||||||||m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 |m14  d0 l0 ||$
+* ||||||| s2 t5 l0 |m4 p tx-53 ty16 $ l0 |||||||||||||||||||||||||m19 a45  d4 l0 |||||||||||||||||||| s1 t6 p tx42 ty-12 sx-100 $ l0 |||m19 a45  d2 l0 |||||||| s1 t7 p tx42 ty-12 sx-100 $ l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 ||$
+* ||||||| s2 t6 l0 |m3 p tx-24 ty-12 $ l0 |||m18 p sx-100 $ l0 ||m9 l0 ||||||||||||||||||||m19 a45  d4 l0 |||| s1 t2 p sx-100 $ l0 |||||||||||||||||||m19 a45  d2 l0 |||||||||m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 | s3 t0 p sx-500 sy295 caU $ m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 ||$
+* ||||||| s2 t7 l0 |m4 p tx17 ty-15 $ l0 |||||||||||||||||||||||||m19 a45  d4 l0 |||||||||||||||||||||||m19 a45  d2 l0 |||||||||m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 |m14  d5 l0 ||$
 * ||||||| s2 t4 l0 |||| s1 t5 p sx-100 $ l0 | s1 t7 p tx-15 ty3 $ l0 |m8 l0 ||||||| s2 t25 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t22 l0 ||||||||| s2 t25 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t22 l0 ||| s2 t25 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 | s2 t14 l0 ||$
 * ||||||| s2 t5 l0 ||||||||||||| s2 t15 l0 ||||||||||||| s2 t7 p tx23 ty-13 $ l0 |||m8  d3 l0 |||m8  d3 l0 ||| s2 t15 l0 |||||||||||||| s2 t4 p tx25 ty-15 $ l0 ||| s2 t15 l0 ||||||||||||||||$
 * ||||||| s2 t6 l0 |||| s1 t1 p sx-100 $ l0 ||m10 l0 ||| s1 t0 p sx-100 $ l0 |||| s2 t15 l0 ||||||||||||| s2 t6 l0 ||| s4 t1 p sx-100 $ l0 ||| s4 t1 p sx-100 $ l0 ||| s2 t15 l0 |||||||||||||| s2 t5 l0 ||| s2 t15 l0 ||||||||||||||||$
@@ -217,10 +217,10 @@ $
 
 main 
 	entity_name * 0 * 5 * 4 
-				if entity_variable * 0 * 0 * 0 
+				if entity_variable * 5 * 0 * 0 
 	then
 	else
-		entity_variable * 0 * 0 * 0 
+		entity_variable * 5 * 0 * 0 
 		change_map * 196 * 187 " Agrarian_lands0.map.hs"
 	end
 
