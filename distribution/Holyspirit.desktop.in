@@ -11,5 +11,5 @@ Comment[uk]=Ізометричний рольовий екшн (Action/RPG) дл
 TryExec=@HOLYSPIRIT_EXECUTABLE_PATH@
 Exec=@HOLYSPIRIT_EXECUTABLE_PATH@
 Categories=Game;RolePlaying;
-Icon=Holyspirit.ico
+Icon=/usr/share/icons/hicolor/128x128/apps/Holyspirit.png
 Terminal=false

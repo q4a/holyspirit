@@ -86,7 +86,11 @@ Note that there may be more recent versions of libraries. Use them instead.
    SFML libraries pathes manually using just built SFML files. Click "Configure" again. This time it should work.
    Click "Generate" and than use preferred IDE or just "console make" to build the game. Enjoy ;)
    
-5. Before running "make install" make sure that file "LauncherHolyspirit" was copied to the same directory, where file "Holyspirit" was built.
+5. Before running "make install" make sure that file "LauncherHolyspirit" was copied to the same directory, where file "Holyspirit" was built. Also maybe you will need to use sudo (sudo make install) to get write permissions.
+
+6. The game will be installed into '/usr/local' by default. You can set different paths in the cmake step, like:
+
+	cmake -DCMAKE_INSTALL_PREFIX:STRING="/usr" ..
 
 TROUBLESHOOTING
 
