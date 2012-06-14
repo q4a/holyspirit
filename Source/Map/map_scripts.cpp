@@ -287,10 +287,8 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
     std::string bufLigne = "";
     for (int p = 0;p < (int)texte.size();p++)
     {
-        if (texte[p] != ' ' && texte[p] != '\0' && texte[p] != '\n')
+        if (texte[p] != ' ' && texte[p] != '\0' && texte[p] != '\n' && texte[p] != '\\')
         {
-            if(texte[p] == '\\')
-                texte[p] = '\n';
             bufMot += texte[p];
 
            /* temp.setString(toUtf32(buf + bufMot));
@@ -299,6 +297,9 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
         }
         else
         {
+            if(texte[p] == '\\')
+                texte[p] = '\n';
+
             temp.setString(toUtf32(bufLigne + bufMot));
             if (temp.getGlobalBounds().width > tailleCadran)
             {
@@ -312,7 +313,7 @@ std::string DecouperTexte(std::string texte, int tailleCadran, int tailleTexte)
             if(texte[p] == '\0' || texte[p] == '\n')
             {
                 bufMot = "";
-                buf += bufLigne;
+                buf += bufLigne+'\n';
                 bufLigne = "";
             }
             else
