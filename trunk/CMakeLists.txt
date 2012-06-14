@@ -16,7 +16,7 @@ macro(set_option var default type docstring)
 	set(${var} ${${var}} CACHE ${type} ${docstring} FORCE)
 endmacro()
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/Source/cmake_modules" ${CMAKE_MODULE_PATH})
 
 include_directories(
 	${SFML_INCLUDE}
@@ -87,7 +87,7 @@ list(APPEND GAME_SOURCES
 # Add icon to executable for Windows systems
 if (WIN32)
 list(APPEND GAME_SOURCES 
-	ressource.rc)
+	Source/ressource.rc)
 find_package(GNUWIN REQUIRED)
 endif()
 
