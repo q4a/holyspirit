@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Holyspirit
+GenericName=Holyspirit (Action Role-Playing Game)
+GenericName[ru]=Holyspirit (ролевая игра)
+GenericName[uk]=Holyspirit (рольовий екшн або Action/RPG)
+Comment=A single player, 2D-isometric, action Role-Playing Game
+Comment[ru]=Изометрический ролевой боевик для одного игрока
+Comment[uk]=Ізометричний рольовий екшн (Action/RPG) для одного гравця
+TryExec=@HOLYSPIRIT_EXECUTABLE_PATH@
+Exec=@HOLYSPIRIT_EXECUTABLE_PATH@
+Categories=Game;RolePlaying;
+Icon=Holyspirit.ico
+Terminal=false

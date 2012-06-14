@@ -81,9 +81,12 @@ Note that there may be more recent versions of libraries. Use them instead.
 3. Configure SFML using CMake-gui. It will report if you dont have any from above dependencies.
    Than build it with preferred IDE or by using "console make". You will need to build ALL SFML libraries.
 
-4. Configure HolySpirit using CMake-gui. It will fail. Uncheck "SFML_STATIC", than set SFML Include Directory and
-   SFML libraries pathes using just built SFML files. Click "Configure" again. This time it should work.
+4. Configure HolySpirit using CMake-gui. If <SMFLDIR> environment variable is correct, all should work.
+   If it fails, uncheck "SFML_STATIC" option if you have dynamic SFML libraries, than set SFML Include Directory and
+   SFML libraries pathes manually using just built SFML files. Click "Configure" again. This time it should work.
    Click "Generate" and than use preferred IDE or just "console make" to build the game. Enjoy ;)
+   
+5. Before running "make install" make sure that file "LauncherHolyspirit" was copied to the same directory, where file "Holyspirit" was built.
 
 TROUBLESHOOTING
 
