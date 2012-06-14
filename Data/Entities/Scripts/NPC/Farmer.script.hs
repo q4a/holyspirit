@@ -113,7 +113,7 @@ main
 					then
 						speak * 88
 						variable * 1 * 1
-						setQuestState * 4 * 2 * 22
+						setQuestState * 4 * 2 * 23
 						setQuestActif * 4 * 0
 						giftItem * 0
 						giftItem * 0
