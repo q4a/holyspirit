@@ -32,7 +32,7 @@ void Label::Draw()
         else if(m_clock.getElapsedTime().asSeconds() < 5)
             moteurGraphique->special_typo_p.Draw( m_text, sf::Vector2f( configuration->Resolution.w/2,
                                                                         configuration->Resolution.h/2-128),
-                                                48, 19, true, sf::Color(255,255,255,(5000 - m_clock.getElapsedTime().asSeconds())*255));
+                                                48, 19, true, sf::Color(255,255,255,(5.f - m_clock.getElapsedTime().asSeconds())*255));
         else
             m_draw = false;
     }

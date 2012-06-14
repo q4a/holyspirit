@@ -1041,6 +1041,8 @@ void Map::CreerSprite(sf::Vector3f position_case)
         m_decor[z][y][x].m_spriteMinimap.setPosition(position.x, position.y);
         m_decor[z][y][x].m_spriteMinimap.setOrigin(positionPartieDecor.w/2, positionPartieDecor.h/2);
         m_decor[z][y][x].m_spriteMinimap.setColor(sf::Color(255,255,255,255));
+        if(m_decor[z][y][x].m_entite_graphique.m_scale.x < 0)
+            m_decor[z][y][x].m_spriteMinimap.setScale(-1,1);
     }
 }
 
