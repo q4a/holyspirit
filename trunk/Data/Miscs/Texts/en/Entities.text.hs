@@ -55,3 +55,4 @@ Marrow sucker
 Pile of stones
 Corpse
 Plagued dog
+Agrarian Lands Shrine
