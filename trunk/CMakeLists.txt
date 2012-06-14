@@ -135,6 +135,8 @@ target_link_libraries(Holyspirit ${LINKS})
 
 set(HOLYSPIRIT_EXECUTABLE_PATH ${CMAKE_INSTALL_PREFIX}/${BINDIR}/Holyspirit)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/distribution/Holyspirit.desktop.in" "${CMAKE_CURRENT_BINARY_DIR}/Holyspirit.desktop")
+set(HOLYSPIRIT_DATADIR ${CMAKE_INSTALL_PREFIX}/${DATADIR})
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/distribution/holyspirit.ini.in" "${CMAKE_CURRENT_BINARY_DIR}/holyspirit.ini")
 
 
 # installing to the proper places
@@ -146,20 +148,21 @@ install(DIRECTORY
   "${CMAKE_CURRENT_SOURCE_DIR}/Data"
   "${CMAKE_CURRENT_SOURCE_DIR}/Launcher/Data"
   "${CMAKE_CURRENT_SOURCE_DIR}/Launcher/Languages"
-  DESTINATION ${CMAKE_INSTALL_PREFIX}/${DATADIR})
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/${DATADIR}
+  PATTERN ".svn" EXCLUDE)
 install(FILES
   "${CMAKE_CURRENT_SOURCE_DIR}/Liste_des_references_des_touches.txt"
   "${CMAKE_CURRENT_SOURCE_DIR}/configuration.conf"
   "${CMAKE_CURRENT_SOURCE_DIR}/credits.txt"
-  "${CMAKE_CURRENT_SOURCE_DIR}/holyspirit.ini"
+  "${CMAKE_CURRENT_BINARY_DIR}/holyspirit.ini"
   "${CMAKE_CURRENT_SOURCE_DIR}/key_mapping.conf"
   "${CMAKE_CURRENT_SOURCE_DIR}/liste_resolution.conf"
   "${CMAKE_CURRENT_SOURCE_DIR}/Launcher/liste_langages.conf"
-  DESTINATION ${CMAKE_INSTALL_PREFIX}/${DATADIR})
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/${BINDIR})
 install(FILES
   "${CMAKE_CURRENT_BINARY_DIR}/Holyspirit.desktop"
   DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications)
 install(FILES
-  "${CMAKE_CURRENT_SOURCE_DIR}/icone.ico"
-  DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/scalable/apps
-  RENAME Holyspirit.ico)
+  "${CMAKE_CURRENT_SOURCE_DIR}/Source/Holyspirit.png"
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/128x128/apps
+  RENAME Holyspirit.png)

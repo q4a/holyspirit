@@ -1,0 +1,83 @@
+CHEMINS
+maps: @HOLYSPIRIT_DATADIR@/Data/Maps/Maps.rs.hs
+items: @HOLYSPIRIT_DATADIR@/Data/Miscs/Items.rs.hs
+temps: @HOLYSPIRIT_DATADIR@/Data/User/Temps/
+saves: @HOLYSPIRIT_DATADIR@/Data/User/Saves/
+cursor: @HOLYSPIRIT_DATADIR@/Data/Graphics/Menus/Cursors/
+menus: @HOLYSPIRIT_DATADIR@/Data/Graphics/Menus/
+fonts: @HOLYSPIRIT_DATADIR@/Data/Miscs/Fonts/
+fx: @HOLYSPIRIT_DATADIR@/Data/Graphics/Shaders/
+
+alpha_arts: @HOLYSPIRIT_DATADIR@/Data/Graphics/Menus/Alpha-arts.png
+mainscreen_menu: @HOLYSPIRIT_DATADIR@/Data/Graphics/Menus/Mainscreen_menu.png
+
+death_sound: @HOLYSPIRIT_DATADIR@/Data/Sounds/Miscs/Death.wav
+sound_menu: @HOLYSPIRIT_DATADIR@/Data/Sounds/UI/Clic.wav
+sound_create_item: @HOLYSPIRIT_DATADIR@/Data/Sounds/UI/Create_item0.wav
+sound_bless_item: @HOLYSPIRIT_DATADIR@/Data/Sounds/UI/Bless_item0.wav
+sound_select_miracle: @HOLYSPIRIT_DATADIR@/Data/Sounds/UI/Miracle0.wav
+sound_dialog: @HOLYSPIRIT_DATADIR@/Data/Sounds/UI/Tic_dialog.wav
+sound_book: @HOLYSPIRIT_DATADIR@/Data/Sounds/UI/Turnpage0.wav
+sound_trade: @HOLYSPIRIT_DATADIR@/Data/Sounds/UI/Trade.wav
+sound_trade_i: @HOLYSPIRIT_DATADIR@/Data/Sounds/UI/Trade_impossible.wav
+sound_quest_start: @HOLYSPIRIT_DATADIR@/Data/Sounds/Miscs/QuestStart.wav
+sound_quest_step: @HOLYSPIRIT_DATADIR@/Data/Sounds/Miscs/QuestStep.wav
+sound_quest_end: @HOLYSPIRIT_DATADIR@/Data/Sounds/Miscs/QuestEnd.wav
+sound_menu_open: @HOLYSPIRIT_DATADIR@/Data/Sounds/UI/Menu_open.wav
+sound_menu_close: @HOLYSPIRIT_DATADIR@/Data/Sounds/UI/Menu_close.wav
+sound_nofaith:  @HOLYSPIRIT_DATADIR@/Data/Sounds/UI/NoFaith.wav
+
+music_menu: @HOLYSPIRIT_DATADIR@/Data/Musics/Menu.ogg
+
+basic_cursor: Basic_cursor.png
+menu_item_background: UI/Item_background.png
+menu_item_unusable: UI/Hand.png
+menu_logo: Logo_hs.png
+menu_slot: UI/Slot.png
+menu_slot_text: UI/Slot_text.png
+menu_del: UI/Talks.png
+
+fxDeath: Death.sfx
+fxBlur: Blur.sfx
+fxFilter: Filter.sfx
+fxDistortion: Distortion.sfx
+fxWater: Water.sfx
+fxWater_image: @HOLYSPIRIT_DATADIR@/Data/Graphics/Shaders/Water.png
+
+ambient_shadow_tileset: @HOLYSPIRIT_DATADIR@/Data/Graphics/Miscs/AmbientShadow.ts.hs
+
+miracle_item_physic: @HOLYSPIRIT_DATADIR@/Data/Miscs/Miracles/Items/PhysicEffect.miracle.hs
+miracle_item_fire: @HOLYSPIRIT_DATADIR@/Data/Miscs/Miracles/Items/FireEffect.miracle.hs
+miracle_item_holy: @HOLYSPIRIT_DATADIR@/Data/Miscs/Miracles/Items/HolyEffect.miracle.hs
+miracle_item_poison: @HOLYSPIRIT_DATADIR@/Data/Miscs/Miracles/Items/PoisonEffect.miracle.hs
+
+miracle_item_physic_t: @HOLYSPIRIT_DATADIR@/Data/Miscs/Miracles/Items/PhysicTimeEffect.miracle.hs
+miracle_item_fire_t: @HOLYSPIRIT_DATADIR@/Data/Miscs/Miracles/Items/FireTimeEffect.miracle.hs
+miracle_item_holy_t: @HOLYSPIRIT_DATADIR@/Data/Miscs/Miracles/Items/HolyTimeEffect.miracle.hs
+miracle_item_poison_t: @HOLYSPIRIT_DATADIR@/Data/Miscs/Miracles/Items/PoisonTimeEffect.miracle.hs
+
+font: LiberationSerif-Regular.ttf
+font_title: Morpheus.ttf
+special_font: menu.typo.hs
+special_font_h: menu_h.typo.hs
+special_font_p: menu_p.typo.hs
+
+localisation: @HOLYSPIRIT_DATADIR@/Data/Miscs/Texts/
+
+text_benedictions: Benedictions.text.hs
+text_menus: Menus.text.hs
+text_items: Items.text.hs
+text_entities: Entities.text.hs
+text_dialogs: Dialogs.text.hs
+text_maps: Maps.text.hs
+text_miracles: Miracles.text.hs
+text_docs: Docs.text.hs
+text_quests: Quests.text.hs
+
+map_start: Tutorial.map.hs 35 10
+
+AUTRES
+version: 0.1.0
+
+player_class: @HOLYSPIRIT_DATADIR@/Data/Miscs/Heroes/Crusader/Crusader.class.hs
+player_class: @HOLYSPIRIT_DATADIR@/Data/Miscs/Heroes/Concubine/Concubine.class.hs
