@@ -989,9 +989,13 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
             jeu->hero.SauvegarderApercu();
             jeu->hero.Sauvegarder();
             jeu->hero.m_caracteristiques.nom = nom_hero;
+            configuration->hote = true;
+            configuration->multi = false;
 
+            eventManager->StopEvenement(Mouse::Left,EventClic);
             no_ecran = E_PRINCIPAL;
             configuration->entering_text = false;
+            jeu->m_display = false;
 
             jeu->m_contexte = jeu->m_chargement;
         }
