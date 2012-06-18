@@ -1340,9 +1340,10 @@ bool Map::Miracle_Zone(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet 
 bool Map::Miracle_Conditions(Jeu *jeu, Personnage *personnage, Miracle &modele, Effet &effet, EntiteMiracle &miracleEnCours, InfosEntiteMiracle &info, float temps, int o, bool detruire)
 {
     bool oui = false;
-    if(effet.m_informations[1] == C_ANGLE)
+    if(effet.m_informations[1] == C_ANGLE){
+            cout<<(int)(personnage->getAngle()/45)<<endl;
         if((int)(personnage->getAngle()/45) == effet.m_informations[2])
-            oui = true;
+            oui = true;}
 
     if(effet.m_informations[1] == C_EQUIPEMENT)
         if((int)(jeu->hero.m_cas) == effet.m_informations[2])
