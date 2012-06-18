@@ -3,12 +3,12 @@ main
 		variable * 0 * 0
 	then
 		variable * 0 * 1
-		add_checkpoint * 170 * 142 * 4 " Agrarian_lands0.map.hs"
+		add_checkpoint * 170 * 142 * 5 " Agrarian_lands0.map.hs"
 	end
 
 	if talk
 	then
-		add_checkpoint * 170 * 142 * 4 " Agrarian_lands0.map.hs"
+		add_checkpoint * 170 * 142 * 5 " Agrarian_lands0.map.hs"
 	
 		if variable * 1 * 0 
 		then

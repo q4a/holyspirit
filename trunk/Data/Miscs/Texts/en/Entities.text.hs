@@ -56,3 +56,4 @@ Pile of stones
 Corpse
 Plagued dog
 Agrarian Lands Shrine
+Ridwen the witch
