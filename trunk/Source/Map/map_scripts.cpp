@@ -352,6 +352,7 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
                         if (m_ModeleMonstre[m_monstre[monstre]->getModele()].m_miracles[m_monstre[monstre]->m_miracleEnCours[i].m_modele].m_effets[m_monstre[monstre]->m_miracleEnCours[i].m_infos[o]->m_effetEnCours].m_type==EFFET)
                             m_monstre[monstre]->m_miracleEnCours[i].m_infos[o]->m_cible->m_effets[m_monstre[monstre]->m_miracleEnCours[i].m_infos[o]->m_IDObjet].m_effet.m_actif = false;
             }
+            m_monstre[monstre]->m_miracleALancer = -1;
 
         }
         else if (script->m_instructions[noInstruction].nom=="setState" && monstre != -1 && configuration->hote)

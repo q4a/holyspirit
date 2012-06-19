@@ -5,9 +5,10 @@ $
 $
 	* t-1 l1 $ 
 
-	* t3 s0 l2 ia32 $
 	
-	* t4 l2 l3 mData/Entities/Resources/Monsters/Skeletons/Warrior2.char.hs $
+	* t4 l2 $
+	* t3 l3 s0 ia32 $
+	* t4 ia1 mData/Entities/Resources/Monsters/Skeletons/Warrior2.char.hs $
 
 $
 	*

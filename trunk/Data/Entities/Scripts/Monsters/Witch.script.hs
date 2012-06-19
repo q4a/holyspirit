@@ -1,44 +1,41 @@
 
 main 
-	if alive
+		variable * 0 * 1
+	
+	if variable * 0 * 1
 	then
-			variable * 0 * 1
-		
-		if variable * 0 * 1
+		setFriendly * 0
+		stop_speak
+	
+		if alive
 		then
-			setFriendly * 0
-			stop_speak
-		
-			if alive
+			if see
 			then
-				if see
+				if distance * 4
 				then
-					if distance * 4
+					if distance * 2
 					then
-						if distance * 2
-						then
-							useMiracle * 0
-						else
-							fight
-						end
+						useMiracle * 0
 					else
-						useMiracle * 1
+						fight
 					end
 				else
-					randomDisplace
+					useMiracle * 1
 				end
 			else
-				if variable * 1 * 0
+				randomDisplace
+			end
+		else
+			if variable * 1 * 0
+			then
+				stopMiracle * 0
+				stopMiracle * 1
+				
+				useMiracle * 2
+				
+				if miracle * 2
 				then
-					stopMiracle * 0
-					stopMiracle * 1
-					
-					useMiracle * 2
-					
-					if miracle * 2
-					then
-					variable * 1 * 1
-					end
+				variable * 1 * 1
 				end
 			end
 		end
