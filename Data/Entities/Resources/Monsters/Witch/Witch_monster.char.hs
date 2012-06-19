@@ -4,7 +4,7 @@ $
 $
 * 3
 $
-*v3000 di100 da250 m0.3 o1 a2000 n5 s1 x100 $
+*v1000 di100 da250 m0.75 o1 a2000 n5 s1 x50 $
 $
 *Data/Entities/Scripts/Monsters/Witch_monster.script.hs
 $
