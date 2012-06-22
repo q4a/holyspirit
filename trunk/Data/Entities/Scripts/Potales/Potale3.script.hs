@@ -34,6 +34,5 @@ main
 		
 	else
 		variable * 1 * 0
-		variable * 0 * 0
 	end
 end 

@@ -3,11 +3,19 @@ $
 $
 $
 $
-	* t-1 l1 $ 
+	* t-1 l1 l4 l7 $ 
 
 	
 	* t4 l2 $
 	* t3 l3 s0 ia32 $
+	* t4 ia1 mData/Entities/Resources/Monsters/Skeletons/Warrior2.char.hs $
+	
+	* t4 l5 $
+	* t3 l6 s0 ia32 $
+	* t4 ia1 mData/Entities/Resources/Monsters/Skeletons/Warrior2.char.hs $
+	
+	* t4 l8 $
+	* t3 l9 s0 ia32 $
 	* t4 ia1 mData/Entities/Resources/Monsters/Skeletons/Warrior2.char.hs $
 
 $
