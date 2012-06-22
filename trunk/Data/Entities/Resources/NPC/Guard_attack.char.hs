@@ -1,4 +1,4 @@
-*Data/Entities/Resources/NPC/Guard.rs.hs
+*Data/Entities/Resources/NPC/Guard_attack.rs.hs
 $
 	* n43 $
 $
