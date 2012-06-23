@@ -1,6 +1,6 @@
 * n0 $ 
 $
-*Data/Maps/Loading_screens/Heaven0.png
+*Data/Maps/Loading_screens/Heaven0.jpg
 $
 *Data/Musics/Catacombs0.ogg
 $
