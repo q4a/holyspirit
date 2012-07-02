@@ -58,3 +58,4 @@ Plagued dog
 Agrarian Lands Shrine
 Ridwen the witch
 Caporal
+Crucify
