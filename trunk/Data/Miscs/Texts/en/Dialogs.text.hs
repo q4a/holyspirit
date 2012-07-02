@@ -218,3 +218,34 @@ Idiot, you'll run to follow me...
 Go a little exercise!
 From Johannes!
 It's time when I'll make you suffer... personally!
+
+
+
+
+///CRUCIFY///
+*Hé... Toi là ! Viens ici... 
+*J'ai besoin de toi !
+*Un squelette qui parle ? 
+*Je ne suis pas un squelette, je suis un homme dépourvu de chair.
+*Tu désirais me faire part d'une de tes pensées ? 
+*Je commence à en avoir assez de cette situation. Ca fait des semaines que j'attends de l'aide.
+*Quelle aide ?
+*J'étais un crucifié comme les autres, mais j'ai eu le malheur de croiser Ridwen, la nièce de Myrta. Disons qu'on avait un petit différent d'ordre sentimental qui la tiraillait, et quand elle m'a vu, la garce m'a jeté un sort. Un sort pourri qui prolonge la vie de l'âme mais pas celle du corps. Tu vois le genre ?
+*Pas exactement... 
+*Et bien je me suis vu et senti pourrir progressivement, jusqu'à ne plus être qu'un tas d'os. Maintenant que j'ai bien profité de cette expérience délicieuse j'aimerais assez que cela cesse. 
+*Allez, sois concret.
+*Va voir Ridwen, ou Myrta, et dis leur que je souffre le martyre. Implore leur pitié, qu'elles me délivrent de cet état pathétique. Je ne demande qu'une chose : la mort, enfin. Tu trouveras ces deux furies  vers l'ouest, au nord du hameau, en rentrant dans la forêt au niveau des deux tas de pierre...
+*Je vais voir ce que je peux faire.
+*Ton cas ne m'intéresse pas. 
+*Du neuf ?
+*Non, pas encore.
+*Je n'ai guère pu discuter avec tes amies... L'une avait disparu et l'autre s'est jetée sur moi pour me tuer.
+*Ca ne m'étonne pas, elles sont complètement timbrées. Tu as pu malgré tout apprendre comment m'aider ?
+*Oui, il faut que je te fasse brûler. 
+*Il ne te reste plus qu'à chercher du bois alors... Je t'en prie, aide moi !
+*Non, hélas je l'ignore...
+*Non... Non ! Ne me laisse pas ! Nooooooooooon !
+**Faire brûler le crucifié*
+*Vas-y, fais moi brûler, que je disparaisse enfin pour de bon... Aaaaaaaah ! Je quitte ce monde de douleur ! Merci !
+
+
