@@ -4,6 +4,11 @@ main
 		if distance * 5
 		then
 			tell * 225 * 5000
+			if getState * 4 
+			then
+			else
+				setState * 4
+			end
 		end
 	end
 
