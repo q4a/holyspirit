@@ -249,3 +249,26 @@ It's time when I'll make you suffer... personally!
 *Vas-y, fais moi brûler, que je disparaisse enfin pour de bon... Aaaaaaaah ! Je quitte ce monde de douleur ! Merci !
 
 
+
+
+
+///RIDWEN THE WITCH///
+*Oh, un bel homme… Et vivant de surcroît ! 
+*Salut jeune fille. Si tu cherches des hommes par ici tu perds ton temps. 
+*Je cherche Jacquou, un simple d’esprit. Vous le connaissez ?
+*Oh oui, c’est un brave garçon. Un garçon délicieux même, mais je ne l’ai pas vu depuis un bout de temps.
+*Vous êtes bien sûre de ne pas avoir vu Jacquou dernièrement ? Je me demande si sa disparition n’est pas liée à l’apparition du faucheur...
+*Mais c’est qu’il en sait des choses le bougre ! On lit des livres, paysan ? Alors tu le sais, que je l’ai bouffé ton Jacquou !  On aurait dit un porc : une panse énorme et une cervelle comme un abricot !\Allez, viens là, je vais t’apprendre encore bien des choses…
+*Mais mademoiselle est instruite ! On vous fait la lecture au bordel ? Je l’ai bouffé ton Jacquou !  On aurait dit un porc : une panse énorme et une cervelle comme un abricot !
+*Je cherche les yeux de sainte Galswinthe, vous n’en auriez pas entendu parler ?
+*Les yeux d’une sainte ? Non, je ne m’intéresse pas à ces choses là… Les bondieuseries très peu pour moi…
+*Vous connaissez le faucheur ?
+*Le Faucheur ? Je ne l’ai jamais vu, mais je sais qu’il fait très peur aux paysans. Mais les paysans ont peur de tout : le feu, la foudre… La peur nait de l’ignorance n’est-ce pas ?
+*Je sais que vous avez créé le Faucheur, sorcière !
+*Mais oui, imbécile, c’est bien moi qui l’ai fait, je sentais que la Terre voulait le faire naître, j’ai senti les contractions maléfiques ! Il me fallait une sorcière et un simplet pour le créer… J’ai dû les manger, et de leur digestion est né le Faucheur ! Maintenant, meurs !
+*J’ai croisé un pauvre supplicié sur une croix. Il implore votre clémence.
+*Qu’il implore, puisqu’il n’a rien d’autre à faire ! Il mérite de souffrir encore un bon moment.
+
+
+
+

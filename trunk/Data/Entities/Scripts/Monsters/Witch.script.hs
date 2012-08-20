@@ -1,6 +1,6 @@
 
 main 
-		variable * 0 * 1
+	variable * 0 * 1
 	
 	if variable * 0 * 1
 	then
