@@ -49,3 +49,11 @@ I failed, Teuderic became absorbed by his phantoms.
 *Je dois trouver du bois pour bruler le crucifié.
 *J'ai libéré le crucifié.
 
+
+
+*La grotte de l’ultime espoir
+*Waldemar m’a demandé de prendre des nouvelles de sa patrouille partie dans les environs. Ses hommes pourraient s’être réfugiés dans une grotte
+*Les hommes de Waldemar sont tous morts, de même que les villageois qu’ils protégeaient.
+*Waldemar sait à présent ce qu’est devenue sa patrouille.
+
+
