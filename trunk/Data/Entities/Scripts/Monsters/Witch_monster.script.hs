@@ -22,5 +22,7 @@ main
 		else
 			randomDisplace
 		end
+	else
+		setQuestState * 10 * 1 * 62
 	end
 end 
