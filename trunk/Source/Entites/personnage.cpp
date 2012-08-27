@@ -977,7 +977,8 @@ void Personnage::InfligerDegats(float degats, int type, float temps)
     else if(degats > 0)
         m_degats.push_back(Degats (temps, degats, type));
 
-    m_cible = NULL;
+    if(!m_heroic)
+        m_cible = NULL;
 
     if(degats > 0 && temps == 0 && EnVie())
     if(m_entite_graphique.m_tileset != NULL)

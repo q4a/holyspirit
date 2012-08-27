@@ -253,22 +253,38 @@ It's time when I'll make you suffer... personally!
 
 
 ///RIDWEN THE WITCH///
-*Oh, un bel homme… Et vivant de surcroît ! 
+*Oh, un bel homme... Et vivant de surcroît ! 
 *Salut jeune fille. Si tu cherches des hommes par ici tu perds ton temps. 
-*Je cherche Jacquou, un simple d’esprit. Vous le connaissez ?
-*Oh oui, c’est un brave garçon. Un garçon délicieux même, mais je ne l’ai pas vu depuis un bout de temps.
-*Vous êtes bien sûre de ne pas avoir vu Jacquou dernièrement ? Je me demande si sa disparition n’est pas liée à l’apparition du faucheur...
-*Mais c’est qu’il en sait des choses le bougre ! On lit des livres, paysan ? Alors tu le sais, que je l’ai bouffé ton Jacquou !  On aurait dit un porc : une panse énorme et une cervelle comme un abricot !\Allez, viens là, je vais t’apprendre encore bien des choses…
-*Mais mademoiselle est instruite ! On vous fait la lecture au bordel ? Je l’ai bouffé ton Jacquou !  On aurait dit un porc : une panse énorme et une cervelle comme un abricot !
-*Je cherche les yeux de sainte Galswinthe, vous n’en auriez pas entendu parler ?
-*Les yeux d’une sainte ? Non, je ne m’intéresse pas à ces choses là… Les bondieuseries très peu pour moi…
+*Je cherche Jacquou, un simple d'esprit. Vous le connaissez ?
+*Oh oui, c'est un brave garçon. Un garçon délicieux même, mais je ne l'ai pas vu depuis un bout de temps.
+*Vous êtes bien sûre de ne pas avoir vu Jacquou dernièrement ? Je me demande si sa disparition n'est pas liée à l'apparition du faucheur...
+*Mais c'est qu'il en sait des choses le bougre ! On lit des livres, paysan ? Alors tu le sais, que je l'ai bouffé ton Jacquou !  On aurait dit un porc : une panse énorme et une cervelle comme un abricot !\Allez, viens là, je vais t'apprendre encore bien des choses...
+*Mais mademoiselle est instruite ! On vous fait la lecture au bordel ? Je l'ai bouffé ton Jacquou !  On aurait dit un porc : une panse énorme et une cervelle comme un abricot !
+*Je cherche les yeux de sainte Galswinthe, vous n'en auriez pas entendu parler ?
+*Les yeux d'une sainte ? Non, je ne m'intéresse pas à ces choses là... Les bondieuseries très peu pour moi...
 *Vous connaissez le faucheur ?
-*Le Faucheur ? Je ne l’ai jamais vu, mais je sais qu’il fait très peur aux paysans. Mais les paysans ont peur de tout : le feu, la foudre… La peur nait de l’ignorance n’est-ce pas ?
+*Le Faucheur ? Je ne l'ai jamais vu, mais je sais qu'il fait très peur aux paysans. Mais les paysans ont peur de tout : le feu, la foudre... La peur nait de l'ignorance n'est-ce pas ?
 *Je sais que vous avez créé le Faucheur, sorcière !
-*Mais oui, imbécile, c’est bien moi qui l’ai fait, je sentais que la Terre voulait le faire naître, j’ai senti les contractions maléfiques ! Il me fallait une sorcière et un simplet pour le créer… J’ai dû les manger, et de leur digestion est né le Faucheur ! Maintenant, meurs !
-*J’ai croisé un pauvre supplicié sur une croix. Il implore votre clémence.
-*Qu’il implore, puisqu’il n’a rien d’autre à faire ! Il mérite de souffrir encore un bon moment.
+*Mais oui, imbécile, c'est bien moi qui l'ai fait, je sentais que la Terre voulait le faire naître, j'ai senti les contractions maléfiques ! Il me fallait une sorcière et un simplet pour le créer... J'ai dû les manger, et de leur digestion est né le Faucheur ! Maintenant, meurs !
+*J'ai croisé un pauvre supplicié sur une croix. Il implore votre clémence.
+*Qu'il implore, puisqu'il n'a rien d'autre à faire ! Il mérite de souffrir encore un bon moment.
 
 
 
+
+///CAPORAL///
+*Salut femelle ! Ici on accepte que les couillus, les burnés, ceux qu'en ont dans les braies ! C'est l'enfer venu sur Terre ! 
+*Qui es-tu ?
+*Je suis le commandant de la tour. Waldemar nous a envoyé ici pour se débarrasser de nous... Pardon, je veux dire pour surveiller la route ! Je suis flanqué de nos deux éléments d'élite : un qui a failli mourir en chargeant une arquebuse et un autre qui a peur du noir...
+*C'est donc vous l'avant-poste installé par Waldemar ? 
+*Ah ! Ah ! Installé par Waldemar ? Non, on a fait ça tous seuls. Waldemar ne risque rien, il a les miches bien planquées dans l'abbaye. S'il se les fait attaquer ce sera par un moine ! Remarque il lui faudrait peut-être un garde du corps, un moine décidé ça peut faire mal !
+*Vous ne semblez pas avoir le sens de la hiérarchie...
+*Oh que si. Si je ne l'avais pas, je serais déjà à la place de Waldemar...
+*Vous avez vu le faucheur ?
+*Le faucheur, le faucheur, la faucheuse oui ! Cette saleté est une femelle qui pond des œufs, on en a trouvé dans son ancien repère. Quand on l'entend approcher je peux te dire qu'on fiche le camp, ce machin est aussi laid qu'énorme !
+*Vous n'auriez pas vu un simple d'esprit ?
+*Oui, il y a quelques jours... Il se trimballait avec des drôles de choses brillantes. On a essayé de le raisonner mais il courrait dans tous les sens comme un canard sans tête. Ca fait un moment qu'il n'a plus pointé le bout de son nez. Il doit être crevé par là, dans un fossé...
+*Vous connaissez Myrta et Ridwen ?
+*Les deux sorcières ? Ma foi je les connais de loin et ça me suffit. Trois de mes gars ont tenté de chahuter la petite, mais ils sont revenus de là-bas avec leur machin tout rétréci... Je crois qu'ils ont essuyé un vilain sort de réduction cruellement placé, si tu vois ce que je veux dire...  Si tu veux te soulager je te conseille plutôt une brebis errante, c'est moins dangereux !
+*Les deux sorcières ? Ma foi je les connais de loin et ça suffit. Trois de mes gars ont tenté de chahuter la petite, mais ils sont revenus de là-bas avec leur machin tout rétréci... Je crois qu'ils ont essuyé un vilain sort de réduction cruellement placé, si tu vois ce que je veux dire...  Elles ont pas l'air conciliantes, c'est pas comme toi. Hein, t'as l'air urbaine toi, tu veux pas nous tenir compagnie ?
 
