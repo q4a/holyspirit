@@ -115,7 +115,7 @@ void EventManager::GererLesEvenements(bool *continuer,float temps,coordonnee tai
         }
     }
 
-    if(m_EventTableau[sf::Keyboard::Back])
+    if(m_EventTableau[sf::Keyboard::BackSpace])
         isEnteredText = false;
     if(m_EventTableau[sf::Keyboard::Return])
         isEnteredText = false;

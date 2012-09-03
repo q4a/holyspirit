@@ -585,10 +585,10 @@ int GestionBoutons(Jeu *jeu, bool diplace_mode = false, bool inventory = false, 
         if(eventManager->IsEnteredText())
             jeu->hero.m_personnage.m_speak += eventManager->getChar();
 
-        if(eventManager->getEvenement(sf::Keyboard::Back,EventKey))
+        if(eventManager->getEvenement(sf::Keyboard::BackSpace,EventKey))
             if(!jeu->hero.m_personnage.m_speak.empty())
                 jeu->hero.m_personnage.m_speak.erase(jeu->hero.m_personnage.m_speak.begin() + jeu->hero.m_personnage.m_speak.size() - 1);
-        eventManager->StopEvenement(sf::Keyboard::Back,EventKey);
+        eventManager->StopEvenement(sf::Keyboard::BackSpace,EventKey);
     }
 
     if (   eventManager->getPositionSouris().x > AutoScreenAdjust(775,0).x

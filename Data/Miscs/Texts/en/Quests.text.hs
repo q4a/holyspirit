@@ -57,3 +57,7 @@ I failed, Teuderic became absorbed by his phantoms.
 *Waldemar sait à présent ce qu’est devenue sa patrouille.
 
 
+
+*La relique perdue
+*Une des quatre reliques, les yeux de Sainte Galswinthe, ne se trouve pas dans les catacombes.
+*Ridwen la sorcière avait pris la relique.

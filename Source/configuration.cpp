@@ -1261,7 +1261,7 @@ void Configuration::InitKeys()
     key_mapping_converter[sf::Keyboard::Dash] = "Dash";
     key_mapping_converter[sf::Keyboard::Space] = "Space";
     key_mapping_converter[sf::Keyboard::Return] = "Return";
-    key_mapping_converter[sf::Keyboard::Back] = "Back";
+    key_mapping_converter[sf::Keyboard::BackSpace] = "Back";
     key_mapping_converter[sf::Keyboard::Tab] = "Tab";
     key_mapping_converter[sf::Keyboard::PageUp] = "PageUp";
     key_mapping_converter[sf::Keyboard::PageDown] = "PageDown";
