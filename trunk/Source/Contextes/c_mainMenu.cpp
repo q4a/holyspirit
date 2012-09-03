@@ -770,10 +770,10 @@ void  c_MainMenu::E_Continuer(Jeu *jeu)
         && nom_hero.size() < 16)
             nom_hero += eventManager->getChar();
 
-        if(eventManager->getEvenement(sf::Keyboard::Back,EventKey))
+        if(eventManager->getEvenement(sf::Keyboard::BackSpace,EventKey))
             if(!nom_hero.empty())
                 nom_hero.erase(nom_hero.begin() + nom_hero.size() - 1);
-        eventManager->StopEvenement(sf::Keyboard::Back,EventKey);
+        eventManager->StopEvenement(sf::Keyboard::BackSpace,EventKey);
 
 
         texte.setString(nom_hero);
@@ -840,10 +840,10 @@ void  c_MainMenu::E_Nouveau(Jeu *jeu)
     && nom_hero.size() < 16)
         nom_hero += eventManager->getChar();
 
-    if(eventManager->getEvenement(sf::Keyboard::Back,EventKey))
+    if(eventManager->getEvenement(sf::Keyboard::BackSpace,EventKey))
         if(!nom_hero.empty())
             nom_hero.erase(nom_hero.begin() + nom_hero.size() - 1);
-    eventManager->StopEvenement(sf::Keyboard::Back,EventKey);
+    eventManager->StopEvenement(sf::Keyboard::BackSpace,EventKey);
 
     texte.setCharacterSize(20);
 
@@ -1142,10 +1142,10 @@ void  c_MainMenu::E_Multi(Jeu *jeu)
     && */entered_ip.size() <= 16)
         entered_ip += eventManager->getChar();
 
-    if(eventManager->getEvenement(sf::Keyboard::Back,EventKey))
+    if(eventManager->getEvenement(sf::Keyboard::BackSpace,EventKey))
         if(!entered_ip.empty())
             entered_ip.erase(entered_ip.begin() + entered_ip.size() - 1);
-    eventManager->StopEvenement(sf::Keyboard::Back,EventKey);
+    eventManager->StopEvenement(sf::Keyboard::BackSpace,EventKey);
 
     moteurGraphique->special_typo.Draw(entered_ip + (time > 0.5 ? "|" : ""), sf::Vector2f(configuration->Resolution.w/2,
                                                               configuration->Resolution.h/2 + 52 + 48), 48, 19, true);
