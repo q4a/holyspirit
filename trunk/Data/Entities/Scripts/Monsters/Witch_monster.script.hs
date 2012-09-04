@@ -23,6 +23,12 @@ main
 			randomDisplace
 		end
 	else
+		if quest * 10 * -1
+		then
+			newQuest * 10
+			setQuestName * 10 * 60
+		end
+		
 		setQuestState * 10 * 1 * 62
 		setQuestState * 8 * 1 * 47
 		setQuestActif * 10 * 0

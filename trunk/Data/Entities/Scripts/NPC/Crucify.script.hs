@@ -136,15 +136,23 @@ main
 				then
 					speak * 239
 					
+					if quest * 8 * -1
+					then
+						if quest * 10 * 1
+						then 
+							setQuestState * 8 * 1 * 47
+						end
+					end
+					
 					if quest * 8 * 1
 					then
 						speak_choice * 241 * 1
 					end
 					
 					if quest * 8 * 2
-						exist_item * 5 * 0 " Craft_wood_plank.item.hs"
+						exist_item * 3 * 0 " Craft_wood_plank.item.hs"
 					then
-						speak_choice * 247 * 1
+						speak_choice * 247 * 3
 					end
 					
 					speak_choice * 240 * 2
@@ -170,12 +178,13 @@ main
 				then	
 					stop_speak
 					stop_talk
-					if exist_item * 5 * 1 " Craft_wood_plank.item.hs"
+					if exist_item * 3 * 1 " Craft_wood_plank.item.hs"
 					then
 						tell * 248 * 5000
 						setQuestState * 8 * 3 * 49
 						setQuestActif * 8 * 0
 						setActif * 0
+						setState * 0 * 0
 					end
 				end
 			end
