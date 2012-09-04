@@ -14,7 +14,7 @@ main
 		then
 			speak * 1
 			variable * 1 * 1
-			speak_choice * 2 * 1q
+			speak_choice * 2 * 1
 			speak_choice * 3 * 2
 		end
 		
@@ -34,5 +34,6 @@ main
 		
 	else
 		variable * 1 * 0
+		variable * 0 * 0
 	end
 end 

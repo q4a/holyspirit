@@ -12,6 +12,10 @@ $
 		*Quest_relic4.item.hs
 		r-1
 	$
+	*
+		*Doc_malediction.item.hs
+		r-1
+	$
 $
 $
 *Data/Entities/Miracles/Witch_summoning.miracle.hs
