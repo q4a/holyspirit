@@ -24,5 +24,7 @@ main
 		end
 	else
 		setQuestState * 10 * 1 * 62
+		setQuestState * 8 * 1 * 47
+		setQuestActif * 10 * 0
 	end
 end 
