@@ -499,13 +499,13 @@ int Personnage::Pathfinding(casePathfinding** map, bool noDelete)
         casesVisitee.AjouterCase(depart, -1);
 
         if (arrivee.y < 0)
-            arrivee.y = depart.y - 1;
+            arrivee.y = depart.y - 4;
         if (arrivee.x < 0)
-            arrivee.x = depart.x - 1;
+            arrivee.x = depart.x - 4;
         if (arrivee.y >= 10)
-            arrivee.y = depart.y + 1;
+            arrivee.y = depart.y + 4;
         if (arrivee.x >= 10)
-            arrivee.x = depart.x + 1;
+            arrivee.x = depart.x + 4;
 
         if (arrivee.y>=0&&arrivee.x>=0&&arrivee.y<10&&arrivee.x<10)
             if (map[arrivee.y][arrivee.x].collision)
