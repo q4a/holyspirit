@@ -157,9 +157,9 @@ What is happening?
 Ah! What a question! Well I can not answer you specifically. Everything seems to be that Ruhigland was suddenly invaded by hostile creatures, corpses and skeletons strangely resuscitated... Some point to a bloodthirsty creature that walks at night, nicknamed the "reaper", others talk of a monstrosity with the eyes that shine like fire in the forest... Going to sort out the fantasies and reality of these bumpkins!\In any case many of us think that all this has something to do with a barbarian revenge...
 Is there someone of the survivors outside the abbey?
 Some... The old Ridwen Myrta and her niece who live in the woods to the south, the innkeeper of the Wolf who has cut his home, and Jacob, the poor fool who walks around the village. He is not afraid anything! He wanders in the night with strange small bright objects. I wonder how he manages to survive amidst all that, but he refuses to come with us!
-
-
-
+*Oh oui, bien sûr, nous sommes tellement débordés ! J’ai envoyé des hommes à moi chercher d’éventuels survivants dans les environs, et je ne sais pas où ils en sont. Ils ont à leur tête Flahn, et je commence à suspecter une désertion. L’abbé m’a parlé d’une grotte qui sert ordinairement de lieu de prière et où des villageois pourraient s’être réfugiés... Mais le seul endroit qui vaille encore d’être défendu c’est ici. Ramenez-les donc moi, et je trouverai bien une façon de vous remercier.
+*J’ai trouvé tes hommes, ils sont tous morts ainsi que les villageois… 
+*Pauvres gens. Je ne pleurerai pas en revanche sur le sort de nos soldats. Ils ont eu un juste châtiment pour leur lâcheté et leur intolérable insubordination, je leur avais dit de revenir vite ! Bien sûr j’aurais bien aimé les récupérer tout de même, mais leur présence n’aurait pas changé la face de la bataille qui s’annonce... Prenez ceci en guise de dédommagement.
 
 
 
