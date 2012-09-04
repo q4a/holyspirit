@@ -4,7 +4,7 @@ $
 $
 * 1
 $
-*v25 di30 da60 m0.75 o1 a10 n3 t1.2 x40 s1 $
+*v50 di30 da60 m0.75 o1 a10 n3 t1.2 x40 s1 $
 $
 *Data/Entities/Scripts/Monsters/Zombie_dog_plagued.script.hs
 $
