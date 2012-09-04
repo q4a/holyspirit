@@ -242,7 +242,7 @@ It's time when I'll make you suffer... personally!
 *Je n'ai guère pu discuter avec tes amies... L'une avait disparu et l'autre s'est jetée sur moi pour me tuer.
 *Ca ne m'étonne pas, elles sont complètement timbrées. Tu as pu malgré tout apprendre comment m'aider ?
 *Oui, il faut que je te fasse brûler. 
-*Il ne te reste plus qu'à chercher du bois alors... Je t'en prie, aide moi !
+*Il ne te reste plus qu'à chercher du bois alors... 5 planches devraient suffirent... Je t'en prie, aide moi !
 *Non, hélas je l'ignore...
 *Non... Non ! Ne me laisse pas ! Nooooooooooon !
 **Faire brûler le crucifié*
@@ -268,7 +268,7 @@ It's time when I'll make you suffer... personally!
 *Mais oui, imbécile, c'est bien moi qui l'ai fait, je sentais que la Terre voulait le faire naître, j'ai senti les contractions maléfiques ! Il me fallait une sorcière et un simplet pour le créer... J'ai dû les manger, et de leur digestion est né le Faucheur ! Maintenant, meurs !
 *J'ai croisé un pauvre supplicié sur une croix. Il implore votre clémence.
 *Qu'il implore, puisqu'il n'a rien d'autre à faire ! Il mérite de souffrir encore un bon moment.
-
+*Meurs, abomination !
 
 
 
