@@ -46,7 +46,7 @@ I failed, Teuderic became absorbed by his phantoms.
 *Je dois parler aux sorcières, au nord du hameau qui se trouve à l'ouest. Leur cabane se trouve cachée dans la forêt, l'entrée est indiquée par deux tas de pierres.
 *Une des sorcière est portée disparue et l'autre a essayé de me tuer. Je ne sais pas comment aider le crucifié.
 *Une des sorcière est portée disparue et l'autre a essayé de me tuer. Je dois bruler le crucifié.
-*Je dois trouver du bois pour bruler le crucifié.
+*Je dois trouver du bois pour bruler le crucifié. 5 planches devraient faire l'affaire.
 *J'ai libéré le crucifié.
 
 
