@@ -74,7 +74,7 @@ $
 *Data/Entities/Resources/Miscs/Potale1.char.hs
 *Data/Entities/Resources/Monsters/DemonicPriests/Johannes.char.hs
 *Data/Entities/Resources/Miscs/Bones_wall.char.hs
-*Data/Entities/Resources/Miscs/FlammableOil.char.hs
+*Data/Entities/Resources/Miscs/FireEffect.char.hs
 *Data/Entities/Resources/Containers/Writing_case_saintsbook1.char.hs
 *Data/Entities/Resources/Containers/Writing_case_saintsbook2.char.hs
 *Data/Entities/Resources/Containers/SarcophagusSpe0.char.hs
