@@ -1232,7 +1232,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps, bool no_generate)
         m_entite_graphique_shadow.m_light               = Light_Entity();
 
         m_entite_graphique_shadow.setScale(m_caracteristique.modificateurTaille,
-                                                    m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
+                                        m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
         m_entite_graphique_shadow.setRotation(-moteurGraphique->m_angleOmbreSoleil);
     }
 

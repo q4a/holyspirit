@@ -76,6 +76,9 @@ c_MainMenu::c_MainMenu()
     }
 
 
+    texte.setFont(moteurGraphique->m_font);
+
+
     m_credit_defil = 0;
     time = 0;
     m_story = DecouperTexte(gettext("An old law has always required the Good and Evil have at least one rule in their eternal conflict. They could not directly intervene in the affairs of living entities, acting only by the subtle suggestion and battling within each soul...\\Egoism, violence, pity and love clashed in the form of thoughts, of dreams, with varied fates.\\\\But one day Evil, which no longer wanted to support the balance, satisfied with the Good, decided to violate the far RESPECTED rule and achieved this in incarnating directly into most living beings vulnerable to his impulses, and, curiously, in some objects.\\Henceforth Evil began to reign on each of ordinary objects which he took to possession and some become demonic.\\\\Having anticipated this treachery, the Good was not surprised. Renouncing to violate The Law as Evil had done and refusing to sacrifice the good and generous souls, he used a few storms and damned spirits who wanted to redeem themself...\\considering themself already lost, alone unconsciousness would have to beat the legion that has swept across the world."), 640,16);
