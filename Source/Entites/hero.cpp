@@ -958,6 +958,7 @@ void Hero::ChargerGraphics()
 {
     for (int i=0;i<NOMBRE_MORCEAU_PERSONNAGE;++i)
     {
+        m_modelePersonnage[i].m_ombre = true;
         if (m_cheminModeleNouveau[i]!="" && m_cheminModeleNouveau[i]!=m_cheminModele[i])
             m_modelePersonnage[i].Charger(m_classe.chemin_modele+m_cheminModeleNouveau[i]);
         else if (m_cheminModeleNouveau[i]=="")
