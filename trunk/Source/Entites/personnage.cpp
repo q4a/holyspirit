@@ -1140,7 +1140,7 @@ int Personnage::Animer(Modele_Personnage *modele,float temps, bool no_generate)
     {
         if( m_entite_graphique.m_tileset != &modele->m_tileset[m_etat][(int)(m_angle/45)])
         {
-            m_entite_graphique.m_tileset    = &modele->m_tileset[m_etat][(int)(m_angle/45)];
+            m_entite_graphique.m_tileset = &modele->m_tileset[m_etat][(int)(m_angle/45)];
             if(!no_generate)
             {
                 m_entite_graphique.NextTile(true);
@@ -1221,8 +1221,6 @@ int Personnage::Animer(Modele_Personnage *modele,float temps, bool no_generate)
 
         m_entite_graphique_shadow.m_tileset    = &modele->m_tileset[m_etat][(int)(angleOmbre/45)];
 
-        m_entite_graphique_shadow.Generer();
-
         m_entite_graphique_shadow.m_couche     = 9;
         m_entite_graphique_shadow.m_decalCouche= 0;
 
@@ -1233,7 +1231,10 @@ int Personnage::Animer(Modele_Personnage *modele,float temps, bool no_generate)
 
         m_entite_graphique_shadow.setScale(m_caracteristique.modificateurTaille,
                                         m_caracteristique.modificateurTaille*(100-(float)moteurGraphique->m_soleil.hauteur)/50);
-        m_entite_graphique_shadow.setRotation(-moteurGraphique->m_angleOmbreSoleil);
+        m_entite_graphique_shadow.m_rotation = moteurGraphique->m_angleOmbreSoleil;
+
+        m_entite_graphique_shadow.Generer();
+       // m_entite_graphique_shadow.setRotation(-moteurGraphique->m_angleOmbreSoleil);
     }
 
     return retour;

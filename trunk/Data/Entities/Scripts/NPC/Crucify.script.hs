@@ -14,102 +14,105 @@ main
 
 	if talk
 	then
+		
 		if quest * 8 * -1
 		then
-			if variable * 1 * 0
+			if variable * 4 * 0
 			then
-				if variable * 0 * 0
+				if variable * 3 * 0
 				then
 					speak * 226
 					speak_choice * 227 * 1
-					variable * 0 * 1
+					variable * 3 * 1
 				end
 			
 				if speak_choice * 1
 				then	
 					stop_speak
-					variable * 0 * 0
-					variable * 1 * 1
+					variable * 3 * 0
+					variable * 4 * 1
 				end
 			end
 			
-			if variable * 1 * 1
+			if variable * 4 * 1
 			then
-				if variable * 0 * 0
+			
+			tell * 0 * 500
+				if variable * 3 * 0
 				then
 					speak * 228
 					speak_choice * 229 * 1
-					variable * 0 * 1
+					variable * 3 * 1
 				end
 			
 				if speak_choice * 1
 				then	
 					stop_speak
-					variable * 0 * 0
-					variable * 1 * 2
+					variable * 3 * 0
+					variable * 4 * 2
 				end
 			end
 			
-			if variable * 1 * 2
+			if variable * 4 * 2
 			then
-				if variable * 0 * 0
+				if variable * 3 * 0
 				then
 					speak * 230
 					speak_choice * 231 * 1
-					variable * 0 * 1
+					variable * 3 * 1
 				end
 			
 				if speak_choice * 1
 				then	
 					stop_speak
-					variable * 0 * 0
-					variable * 1 * 3
+					variable * 3 * 0
+					variable * 4 * 3
 				end
 			end
 			
-			if variable * 1 * 3
+			if variable * 4 * 3
 			then
-				if variable * 0 * 0
+				if variable * 3 * 0
 				then
 					speak * 232
 					speak_choice * 233 * 1
-					variable * 0 * 1
+					variable * 3 * 1
 				end
 			
 				if speak_choice * 1
 				then	
 					stop_speak
-					variable * 0 * 0
-					variable * 1 * 4
+					variable * 3 * 0
+					variable * 4 * 4
 				end
 			end
 			
-			if variable * 1 * 4
+			if variable * 4 * 4
 			then
-				if variable * 0 * 0
+				if variable * 3 * 0
 				then
 					speak * 234
 					speak_choice * 235 * 1
-					variable * 0 * 1
+					variable * 3 * 1
 				end
 			
 				if speak_choice * 1
 				then	
 					stop_speak
-					variable * 0 * 0
-					variable * 1 * 5
+					variable * 3 * 0
+					variable * 4 * 5
 				end
 			end
 			
 			
-			if variable * 1 * 5
+			if variable * 4 * 5
 			then
-				if variable * 0 * 0
+				if variable * 3 * 0
 				then
 					speak * 236
 					speak_choice * 237 * 1
 					speak_choice * 238 * 2
-					variable * 0 * 1
+					variable * 3 * 1
 				end
 			
 				if speak_choice * 1
@@ -130,9 +133,9 @@ main
 			end
 		
 		else
-			if variable * 1 * 0
+			if variable * 4 * 0
 			then
-				if variable * 0 * 0
+				if variable * 3 * 0
 				then
 					speak * 239
 					
@@ -158,14 +161,14 @@ main
 					speak_choice * 240 * 2
 					
 					
-					variable * 0 * 1
+					variable * 3 * 1
 				end
 			
 				if speak_choice * 1
 				then	
 					stop_speak
-					variable * 0 * 0
-					variable * 1 * 1
+					variable * 3 * 0
+					variable * 4 * 1
 				end
 			
 				if speak_choice * 2
@@ -189,40 +192,40 @@ main
 				end
 			end
 			
-			if variable * 1 * 1
+			if variable * 4 * 1
 			then
-				if variable * 0 * 0
+				if variable * 3 * 0
 				then
 					speak * 242
 					
 					speak_choice * 243 * 1
 				
-					variable * 0 * 1
+					variable * 3 * 1
 				end
 			
 				if speak_choice * 1
 				then	
 					stop_speak
-					variable * 0 * 0
-					variable * 1 * 2
+					variable * 3 * 0
+					variable * 4 * 2
 				end
 			end
 			
-			if variable * 1 * 2
+			if variable * 4 * 2
 			then
-				if variable * 0 * 0
+				if variable * 3 * 0
 				then
 					speak * 244
 					
 					setQuestState * 8 * 2 * 48
 				
-					variable * 0 * 1
+					variable * 3 * 1
 				end
 			end
 			
 		end
 	else
-		variable * 0 * 0
-		variable * 1 * 0
+		variable * 3 * 0
+		variable * 4 * 0
 	end
 end 
