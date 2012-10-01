@@ -4997,13 +4997,13 @@ void Hero::NewQuest(int id)
     if (ok)
     {
         m_quetes.push_back(Quete (id));
-        m_queteSelectionnee = m_quetes.size() - 1;
-        newQuest = true;
+        //m_queteSelectionnee = m_quetes.size() - 1;
+       // newQuest = true;
 
-        m_newQuest_label.SetText(gettext("New quest"));
+        /*m_newQuest_label.SetText(gettext("New quest"));
         m_newQuest_label.Reset();
 
-        moteurSons->JouerSon(configuration->sound_quest_start,coordonnee (0,0),0);
+        moteurSons->JouerSon(configuration->sound_quest_start,coordonnee (0,0),0);*/
     }
 }
 
@@ -5011,7 +5011,18 @@ void Hero::SetQuestName(int id, int n)
 {
     for (int i = 0;i < (int)m_quetes.size(); ++i)
         if (m_quetes[i].m_id == id)
-            m_quetes[i].m_nom = configuration->getText(8, n);
+        {
+            if(m_quetes[i].m_nom != configuration->getText(8, n))
+            {
+                m_quetes[i].m_nom = configuration->getText(8, n);
+
+                m_queteSelectionnee = m_quetes.size() - 1;
+                newQuest = true;
+                m_newQuest_label.SetText(gettext("New quest"));
+                m_newQuest_label.Reset();
+                moteurSons->JouerSon(configuration->sound_quest_start,coordonnee (0,0),0);
+            }
+        }
 }
 
 void Hero::SetQuestState(int id, int s, int d)

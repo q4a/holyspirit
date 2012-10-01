@@ -49,6 +49,7 @@ $
 *Data/Entities/Resources/Containers/Barrel.char.hs
 *Data/Entities/Resources/Containers/Chess0.char.hs
 *Data/Entities/Resources/Containers/Corpse_guard.char.hs
+*Data/Entities/Resources/Containers/Corpse_guard_flahn.char.hs
 $
 * ||||||||||||||||||||||||||||||||||||||||||||||||||$
 * ||||||||||||||||||||||||||||||||||||||||||||||||||$
@@ -127,7 +128,7 @@ $
 * ||||||||| s1 t3 l0 |||||||||||||||||||||||| s1 t7 l0 |||||||||||||||||$
 * ||||||||| s1 t13 l0 | s1 t7 p sx-100 $ l0 | s1 t18 l0 | s1 t6 p sx-100 $ l0 | s1 t18 l0 | s1 t5 p sx-100 $ l0 | s1 t18 l0 | s1 t16 l0 ||||||| s5 t2 p tx-20 ty14 $ l0 ||| s1 t14 l0 | s1 t18 l0 | s1 t9 p sx-100 $ l0 | s1 t18 l0 | s1 t8 p sx-100 $ l0 | s1 t18 l0 | s1 t7 p sx-100 $ l0 | s1 t15 l0 |||||||||||||||||$
 * |||||||||||||||| s1 t19 l0 | s2 t3 p tx-28 ty-18 $ l0 ||| s7 t2 l0 | s7 t7 l0 | s7 t2 l0 |||| s1 t19 l0 ||||||||||||||||||||||||$
-* |||||||||||||||| s1 t0 l0 |m3 p tx-14 ty-21 $ l0 |||| s6 t2 l0 || s5 t3 p sx-100 $ m4 p tx-4 ty-24 $ l0 | s6 t0 p sx125 sy125 $ l0 || s1 t9 l0 ||||||||||||||||||||||||$
+* |||||||||||||||| s1 t0 l0 |m3 p tx-14 ty-21 $ l0 |||| s6 t2 l0 || s5 t3 p sx-100 $ m5 p tx-8 ty-30 $ l0 | s6 t0 p sx125 sy125 $ l0 || s1 t9 l0 ||||||||||||||||||||||||$
 * |||||||||||||||| s1 t19 l0 | s6 t1 p tx-26 ty-24 sx-125 sy125 $ l0 ||||||||| s1 t19 l0 ||||||||||||||||||||||||$
 * |||||||||||||||| s1 t1 l0 | s6 t1 p tx-26 ty-23 sx-125 sy125 $ l0 ||||||||| s1 t8 l0 ||||||||||||||||||||||||$
 * |||||||||||||||| s1 t19 l0 |||||| s6 t0 p sx-125 sy125 $ l0 |||| s1 t19 l0 ||||||||||||||||||||||||$
@@ -159,7 +160,18 @@ main
 	then
 		change_map * 59 * 117 " Agrarian_lands0.map.hs"
 	end
-
+	
+	if quest * 9 * -1
+	then
+		newQuest * 9
+		setQuestState * 9 * 3 
+	else
+		if quest * 9 * 0
+		then
+			setQuestState * 9 * 1 * 55
+		end
+	end
+	
 end
 
 

@@ -164,3 +164,5 @@ Romulus's Tobacco!
 Bone sword
 *De la délivrance des malédictions
 *Extrait de l’ouvrage de référence « De la délivrance des malédictions », du Frère Majeur Wolfgang Prikopil
+*Journal du capitain Flahn
+

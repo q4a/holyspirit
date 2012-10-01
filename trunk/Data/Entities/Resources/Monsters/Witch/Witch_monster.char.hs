@@ -13,7 +13,7 @@ $
 		r-1
 	$
 	*
-		*Doc_malediction.item.hs
+		*Doc_curse.item.hs
 		r-1
 	$
 $
