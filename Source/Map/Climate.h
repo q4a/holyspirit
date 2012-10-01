@@ -45,6 +45,7 @@ class Climate
         void Continue();
 
         bool m_actif;
+        bool m_passif;
 
         std::string m_chemin;
 

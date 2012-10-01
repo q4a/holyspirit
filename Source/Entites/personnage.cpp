@@ -394,7 +394,8 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
             if(!sansEffetBas)
             if(m_effets[i].m_effet.getOrdre() == -1)
             {
-                m_effets[i].m_effet.m_position = m_positionPixel;
+                m_effets[i].m_effet.m_position.x = m_positionPixel.x + m_entite_graphique.m_decalage.x;
+                m_effets[i].m_effet.m_position.y = m_positionPixel.y + m_entite_graphique.m_decalage.y;
                 m_effets[i].m_effet.Afficher();
             }
 
@@ -437,7 +438,8 @@ void Personnage::Afficher(Modele_Personnage *modele, Border &border,bool surbril
             if(m_effets[i].m_effet.m_actif)
                 if(m_effets[i].m_effet.getOrdre() >= 0)
                 {
-                    m_effets[i].m_effet.m_position = m_positionPixel;
+                    m_effets[i].m_effet.m_position.x = m_positionPixel.x + m_entite_graphique.m_decalage.x;
+                    m_effets[i].m_effet.m_position.y = m_positionPixel.y + m_entite_graphique.m_decalage.y;
                     m_effets[i].m_effet.Afficher();
                 }
 

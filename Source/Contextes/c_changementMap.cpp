@@ -261,12 +261,24 @@ void c_Chargement::PostLoad(Jeu *jeu)
         moteurSons->PlayNewMusic(jeu->map->m_musiques[jeu->map->m_musiqueEnCours]);
 
     for(unsigned j = 0 ; j < climatsEnCours.size() ; ++j)
+    {
+        bool climatPassif = true;
         for(unsigned i = 0 ; i < jeu->map->m_climates.size() ; ++i)
             if(jeu->map->m_climates[i].m_chemin == climatsEnCours[j])
             {
+                climatPassif = false;
                 jeu->map->m_climates[i].m_actif = true;
                 jeu->map->m_climates[i].m_cur_time = climatsTimeEnCours[j];
             }
+        if(climatPassif)
+        {
+            jeu->map->m_climates.push_back(climatsEnCours[j]);
+            jeu->map->m_climates.back().m_cur_time = climatsTimeEnCours[j];
+            jeu->map->m_climates.back().m_passif = true;
+            jeu->map->m_climates.back().m_actif = true;
+        }
+    }
+
 
     for(unsigned i = 0 ; i < jeu->hero.m_amis.size() ; ++i)
     if(!buffer[i].m_heroic)

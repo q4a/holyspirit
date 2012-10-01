@@ -231,4 +231,5 @@ $
 	
 $
 $
+*Data/Miscs/Miracles/Quest/Quest.miracle.hs
 $

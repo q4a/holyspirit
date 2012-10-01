@@ -7,6 +7,7 @@
 Climate::Climate(std::string chemin)
 {
     m_actif = false;
+    m_passif = false;
     m_cur_time = 0;
     m_max_time = 0;
 
@@ -211,7 +212,7 @@ void Climate::Update(float time)
         float temp = (float)color.a * GetState();
         color.a = (unsigned char)temp;
         m_entities[i].setColor(color);
-        m_entities[i].m_sound_volume = GetState() * 100;
+        m_entities[i].m_sound_volume = GetState() * 100 * !m_passif;
     }
 
     if(m_actif)
@@ -226,7 +227,7 @@ void Climate::Update(float time)
 
 void Climate::Draw()
 {
-    if(m_actif)
+    if(m_actif && !m_passif)
         for(unsigned i = 0 ; i < m_entities.size() ; ++i)
             moteurGraphique->AjouterEntiteGraphique(&m_entities[i]);
 }
