@@ -127,6 +127,7 @@ main
 			newQuest * 2 
 			setQuestName * 2 * 13
 			setQuestState * 2 * 0 * 14
+			stopMiracle * 0
 		end
 		
 		if variable * 2 * 0
@@ -167,6 +168,14 @@ main
 	then
 			setQuestState * 2 * 1 * 15
 			setQuestActif * 2 * 0
+	end
+	
+	
+	if quest * 2 * -1
+		variable * 10 * 0
+	then
+		variable * 10 * 1
+		useMiracle * 0
 	end
 	
 	if variable * 7 * day

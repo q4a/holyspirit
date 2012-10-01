@@ -1086,7 +1086,8 @@ void Map::Sauvegarder(Hero *hero)
         fichier<<"$\n";
 
         for(unsigned i = 0 ; i < m_climates.size() ; ++i)
-            fichier<<" *"<<m_climates[i].m_chemin<<endl;
+            if(!m_climates[i].m_passif)
+                fichier<<" *"<<m_climates[i].m_chemin<<endl;
         fichier<<"$\n";
 
         for (unsigned i=0;i<m_tileset.size();++i)

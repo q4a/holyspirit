@@ -86,6 +86,7 @@ main
 				newQuest * 9
 				setQuestName * 9  * 53
 				setQuestState * 9 * 0 * 54
+				stopMiracle * 0
 			else
 				if quest * 9 * 3
 				then
@@ -118,8 +119,9 @@ main
 		   variable * 3 * 5
 		then
 			speak * 161
-			setQuestState * 9 * 0 * 55
+			setQuestState * 9 * 2 * 55
 			setQuestActif * 9 * 0
+			stopMiracle * 0
 			variable * 3 * 0
 		end
 		
@@ -152,6 +154,19 @@ main
 			
 			variable * 2 * 1
 		end
+	end
+	
+	if quest * 9 * -1
+		variable * 8 * 0
+	then
+		variable * 8 * 1
+		useMiracle * 0
+	end
+	if quest * 9 * 1
+		variable * 8 * 0
+	then
+		variable * 8 * 1
+		useMiracle * 0
 	end
 	
 end 
