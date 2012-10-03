@@ -344,7 +344,7 @@ msgid "Pssst! Hey you!"
 msgstr "Pssst ! Hé vous !"
 
 msgid "Pssst! Hey you! Come help me!\\I dare not leave my hostel since these demons attacked me!"
-msgstr "Pssst ! Hé vous ! Venez m'aider!\\Je n'ose plus sortir de mon auberge depuis que ces démons m'ont attaqué ! "
+msgstr "Pssst ! Hé vous ! Venez m'aider !\\Je n'ose plus sortir de mon auberge depuis que ces démons m'ont attaqué ! "
 
 msgid "I'll get rid of them right now!"
 msgstr "Je vais vous en débarrasser tout de suite !"
