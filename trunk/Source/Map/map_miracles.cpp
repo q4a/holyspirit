@@ -1060,7 +1060,7 @@ bool Map::Miracle_Charge(Jeu *jeu, Personnage *personnage, Miracle &modele, Effe
                 personnage->setCoordonnee(coordonnee (miracleEnCours.m_coordonneeCible.x,
                                                       miracleEnCours.m_coordonneeCible.y));*/
 
-            personnage->setPousse(coordonneeDecimal  (0,0));
+            personnage->setPousse(coordonneeDecimal  (0,0), true);
 
             info.m_position.x = (float)personnage->getCoordonneePixel().x;
             info.m_position.y = (float)personnage->getCoordonneePixel().y;
@@ -1102,12 +1102,12 @@ bool Map::Miracle_Charge(Jeu *jeu, Personnage *personnage, Miracle &modele, Effe
         coordonneeDecimal temp = personnage->getPousse();
 
         personnage->setPousse(coordonneeDecimal  (sin(m) * effet.m_informations[0],
-                                                  cos(m) * effet.m_informations[0]));
+                                                  cos(m) * effet.m_informations[0]), true);
 
         if(personnage->getCoordonnee().x == miracleEnCours.m_coordonneeCible.x && temp.x == 0)
-            personnage->setPousse(coordonneeDecimal(0, personnage->getPousse().y));
+            personnage->setPousse(coordonneeDecimal(0, personnage->getPousse().y), true);
         if(personnage->getCoordonnee().y == miracleEnCours.m_coordonneeCible.y && temp.y == 0)
-            personnage->setPousse(coordonneeDecimal(personnage->getPousse().x, 0));
+            personnage->setPousse(coordonneeDecimal(personnage->getPousse().x, 0), true);
     }
 
     info.m_IDObjet= 1;

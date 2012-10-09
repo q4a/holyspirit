@@ -55,8 +55,9 @@ main
 					if distance * 10
 					then
 						useMiracle * 0
-						if getState * 0
+						if getState * 5
 						then
+						else
 							setState * 5 * 0
 						end
 					else
