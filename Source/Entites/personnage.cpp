@@ -1634,9 +1634,9 @@ void Personnage::setModele(int modele)
 }
 
 
-void Personnage::setPousse(const coordonneeDecimal &pousse)
+void Personnage::setPousse(const coordonneeDecimal &pousse, bool forced)
 {
-    if(!m_impoussable)
+    if(!m_impoussable || forced)
     {
         if(pousse.x == 0 && pousse.y == 0)
             if(fabs(m_pousse.x) > 0 || fabs(m_pousse.y) > 0 )

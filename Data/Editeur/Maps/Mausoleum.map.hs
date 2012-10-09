@@ -46,7 +46,7 @@ $
 *Data/Entities/Resources/Containers/Catacomb_sarcophagus.char.hs
 *Data/Entities/Resources/Containers/Urn0.char.hs
 *Data/Entities/Resources/Containers/Urn1.char.hs
-*Data/Entities/Resources/Monsters/Reaper/Offspring.char.hs
+*Data/Entities/Resources/Monsters/Reaper/Offspring_indoor.char.hs
 *Data/Entities/Resources/Monsters/Reaper/Offspring_champion.char.hs
 *Data/Entities/Resources/Monsters/Reaper/Reaper.char.hs
 $
@@ -139,7 +139,7 @@ $
 * ||||||||||||||||||||||| s1 t4 l0 |||| s1 t4 l0 ||||| s1 t12 l0 | s6 t4 l0 | s1 t12 l0 | s6 t4 l0 | s1 t12 l0 | s6 t5 l0 | s1 t12 l0 | s6 t7 l0 | s1 t12 l0 | s6 t4 l0 | s1 t12 l0 | s6 t6 l0 | s1 t12 l0 | s6 t4 l0 | s1 t12 l0 ||||$
 * ||||||||||||||||||||||| s1 t13 p sx0 sy0 $ l0 |||| s1 t13 p sx0 sy0 $ l0 |||||||||||||||||||||||$
 * ||||||||||||||||||||| s1 t10 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t8 l0 |||| s1 t9 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t11 l0 |||||||m5 l0 ||||||||||||||$
-* ||||||||||||||||||||| s1 t13 p sx0 sy0 $ l0 | s2 t2 l0 | s3 t6 p tx13 ty-22 sx-100 $ l0 ||||| s2 t2 l0 | s1 t13 l0 |||||||||m5 l0 |m6 l0 |||||||||||$
+* ||||||||||||||||||||| s1 t13 p sx0 sy0 $ l0 | s2 t2 l0 | s3 t6 p tx13 ty-22 sx-100 $ l0 ||||| s2 t2 l0 | s1 t13 l0 |||||||||m5 l0 |m6 l0 |m7 l0 ||||||||||$
 * ||||||||||||||||||||| s1 t5 p tx8 ty21 sx0 sy0 $ l0 || s5 t1 p tx23 ty-1 $ l-5 |||||||||||||||||||||||||||$
 * ||||||||||||||||||||| s1 t13 p sx0 sy0 $ l0 ||||||||||||||m5 l0 ||||m5 l0 |||m6 l0 ||||||||$
 * ||||||||||||||||||||| s1 t16 p sx-100 $ m0 p sx-100 $  d0 l0 |||||||||||||||||||||||||||||$

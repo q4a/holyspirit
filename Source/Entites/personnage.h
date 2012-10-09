@@ -155,7 +155,7 @@ public:
 
     void ClearEmulate();
 
-    void setPousse(const coordonneeDecimal &pousse);
+    void setPousse(const coordonneeDecimal &pousse, bool forced = false);
 
     void AjouterPointAme(int pointAme);
 
