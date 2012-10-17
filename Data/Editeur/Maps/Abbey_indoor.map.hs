@@ -150,7 +150,6 @@ $
 * ||||||||||||||||||||||||||||||||||||||||||||||||||$
 * ||||||||||||||||||||||||||||||||||||||||||||||||||$
 $
- $db->query('UPDATE  `savhon1.42`.`threads` SET  `locked` = \'1\' WHERE  `threads`.`id` ='. $_GET['lock']);
 main 
 	entity_name * 0 * 5 * 1 
 				entity_name * 1 * 5 * 2 
