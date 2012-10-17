@@ -288,3 +288,15 @@ It's time when I'll make you suffer... personally!
 *Les deux sorcières ? Ma foi je les connais de loin et ça me suffit. Trois de mes gars ont tenté de chahuter la petite, mais ils sont revenus de là-bas avec leur machin tout rétréci... Je crois qu'ils ont essuyé un vilain sort de réduction cruellement placé, si tu vois ce que je veux dire...  Si tu veux te soulager je te conseille plutôt une brebis errante, c'est moins dangereux !
 *Les deux sorcières ? Ma foi je les connais de loin et ça suffit. Trois de mes gars ont tenté de chahuter la petite, mais ils sont revenus de là-bas avec leur machin tout rétréci... Je crois qu'ils ont essuyé un vilain sort de réduction cruellement placé, si tu vois ce que je veux dire...  Elles ont pas l'air conciliantes, c'est pas comme toi. Hein, t'as l'air urbaine toi, tu veux pas nous tenir compagnie ?
 
+
+
+
+
+
+
+///MONK OCULUS///
+*Nous y voici. Je vais pouvoir commencer le Rituel de Purification. Donnez-moi les reliques je vous prie… Ce sera court. 
+*(donner les reliques)
+*In nomine dei, et spiritu Clodomirus, per sanctii sanctus… 
+
+
