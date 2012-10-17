@@ -12,6 +12,26 @@ $
 		*Doc_abbey.item.hs
 		r-1
 	$
+	
+	*
+		*Quest_relic1.item.hs
+		r-1
+	$
+	
+	*
+		*Quest_relic2.item.hs
+		r-1
+	$
+	
+	*
+		*Quest_relic3.item.hs
+		r-1
+	$
+	
+	*
+		*Quest_relic4.item.hs
+		r-1
+	$
 
 $
 $
