@@ -594,6 +594,11 @@ void Map::GererInstructions(Jeu *jeu,Script *script,int noInstruction,int monstr
             m_monstre[monstre]->setArrivee(
                         coordonnee((int)script->getValeur(noInstruction, 0), (int)script->getValeur(noInstruction, 1)));
         }
+        else if (script->m_instructions[noInstruction].nom=="hero_goto")
+        {
+            hero->m_personnage.setArrivee(
+                        coordonnee((int)script->getValeur(noInstruction, 0), (int)script->getValeur(noInstruction, 1)));
+        }
         else if (script->m_instructions[noInstruction].nom=="stop" && monstre != -1 && (configuration->hote || !configuration->hote))
         {
             m_monstre[monstre]->setArrivee(
