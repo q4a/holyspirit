@@ -8,3 +8,4 @@ The Graveyard
 The Cave
 Mausoleum
 Tumulus
+*La crypte

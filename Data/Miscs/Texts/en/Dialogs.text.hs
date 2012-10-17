@@ -298,5 +298,8 @@ It's time when I'll make you suffer... personally!
 *Nous y voici. Je vais pouvoir commencer le Rituel de Purification. Donnez-moi les reliques je vous prie… Ce sera court. 
 *(donner les reliques)
 *In nomine dei, et spiritu Clodomirus, per sanctii sanctus… 
-
+*Ainsi vous venez déranger Hergahrt en sa demeure avec vos grotesques psalmodies ? Et tes maîtres t’envoient, toi, un frère mineur... Hademar est à ce point dénué de courage qu’il n’ose venir lui-même ? Et toi, qui es tu ?
+*Je suis le messager de la mort.
+*Peu importe, grands ou petits, les moines et les autres viennent ici pour mourir. J’ai besoin de méditer en paix pour ouvrir le passage à toute la pourriture qui vous emportera tous. Vous les avez vu, ces paysans à la panse pourrie qui marchent et se battent comme des automates ? Ca n’est que l’avant-garde de la légion des putréfiés ! Chaos, charogne, ordure ! Telle est la fin de toute chose !
+*(continuer)
 
