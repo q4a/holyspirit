@@ -59,3 +59,4 @@ Agrarian Lands Shrine
 Ridwen the witch
 Caporal
 Crucify
+Hergahrt
