@@ -4,7 +4,7 @@ I found the diary of the monk Redimus. This indicates that terrifying things are
 The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification.
 I have to escort a Brother to the Oculus, the center of the catacombs, in order to do the Purification Ritual.
 The abbe told me to find four relics from the abbey to be able to pronounce the mantra of purification. After Alcuin took care of them, one relic has disappeared in recent years.
-
+*The brother was murdered by Hergahrt, a demonic priest!
 
 Abandoned charette
 I must find and bring to Romulus the merchant the pouch of tobacco abandoned in his cart.
@@ -61,3 +61,10 @@ I failed, Teuderic became absorbed by his phantoms.
 *La relique perdue
 *Une des quatre reliques, les yeux de Sainte Galswinthe, ne se trouve pas dans les catacombes.
 *Ridwen la sorcière avait pris la relique.
+
+
+
+*Hergahrt le Déchu
+*Je dois aller dans la crypte de l'église de Sainte Waldinghe afin de mettre fin à la vie du prêtre déchu Hergahrt.
+*J'ai accompli mon devoir de messager de la mort...
+
