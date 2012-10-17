@@ -120,7 +120,8 @@ void Entite_graphique::NextTile(bool cur,bool no_sound)
                 attaque_pause   = true;
         }
 
-        m_old_lightIntensity = moteurGraphique->LightManager->GetRadius(m_light)/3;//m_tileset->getLumiereDuTile(m_noAnimation).intensite;
+       // m_old_lightIntensity = moteurGraphique->LightManager->GetRadius(m_light)/3;//m_tileset->getLumiereDuTile(m_noAnimation).intensite;
+        m_old_lightIntensity = m_tileset->getLumiereDuTile(m_noAnimation).intensite;
 
         if(!cur)
             m_noAnimation = m_tileset->getAnimationTile(m_noAnimation);
