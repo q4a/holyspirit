@@ -49,6 +49,7 @@ $
 *Data/Entities/Resources/Monsters/Reaper/Offspring_indoor.char.hs
 *Data/Entities/Resources/Monsters/Reaper/Offspring_champion.char.hs
 *Data/Entities/Resources/Monsters/Reaper/Reaper.char.hs
+*Data/Entities/Resources/Monsters/Reaper/Summoner_trigger.char.hs
 $
 * ||||||||||||||||||||||||||||||||||||||||||||||||||$
 * ||||||||||||||||||||||||||||||||||||||||||||||||||$
@@ -133,7 +134,7 @@ $
 * ||||||||||||||||||| s1 t9 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t0 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t11 l0 |||| s1 t10 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t0 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t8 l0 |||||||||||||||||||$
 * ||||||||||||||||||||||| s1 t13 p sx0 sy0 $ l0 |||| s1 t13 p sx0 sy0 $ l0 |||||||||||||||||||||||$
 * ||||||||||||||||||||||| s1 t4 p tx26 ty11 $ l0 |||| s1 t4 l0 |||| s1 t12 l0 | s6 t0 l0 | s1 t12 l0 | s6 t0 l0 | s1 t12 l0 | s6 t1 l0 | s1 t12 l0 | s6 t0 l0 | s1 t12 l0 | s6 t2 l0 | s1 t12 l0 | s6 t0 l0 | s1 t12 l0 | s6 t3 l0 | s1 t12 l0 | s6 t0 l0 | s1 t12 l0 |||$
-* ||||||||||||||||||||||| s1 t13 p tx63 ty-11 sx0 sy0 $ l0 |||| s1 t13 p sx0 sy0 $ l0 |||||||||||||||||||||||$
+* ||||||||||||||||||||||| s1 t13 p tx63 ty-11 sx0 sy0 $ l0 |||| s1 t13 p sx0 sy0 $ l0 ||||||m8  d2 l0 |||m8  d2 l0 |||m8  d2 l0 |||m8  d2 l0 ||||||||$
 * ||||||||||||||||||||||| s1 t6 p sx0 sy0 $ l0 |||| s1 t4 l0 |||||||||||||||||||||||$
 * ||||||||||||||||||||||| s1 t13 p sx0 sy0 $ l0 |||| s1 t13 p sx0 sy0 $ l0 |||||||||||||||||||||||$
 * ||||||||||||||||||||||| s1 t4 l0 |||| s1 t4 l0 ||||| s1 t12 l0 | s6 t4 l0 | s1 t12 l0 | s6 t4 l0 | s1 t12 l0 | s6 t5 l0 | s1 t12 l0 | s6 t7 l0 | s1 t12 l0 | s6 t4 l0 | s1 t12 l0 | s6 t6 l0 | s1 t12 l0 | s6 t4 l0 | s1 t12 l0 ||||$
