@@ -16,20 +16,32 @@ main
 						fight
 						
 						incrementVariable * 2 * time
+						incrementVariable * 3 * time
 						
 						if variable_bigger * 2 * 10
 						then
 							setState * 5 * 0
 							variable * 2 * 0
 						end
+						
+						if variable_bigger * 3 * 20
+						then
+							setState * 6 * 0
+							variable * 3 * 0
+							variable * 4 * 1
+						end
 					end
 				else
-					useMiracle * 0
-					if getState * 4
+					if getState * 6
 					then
 					else
-						setState * 4 * 0
-						variable * 2 * 0
+						useMiracle * 0
+						if getState * 4
+						then
+						else
+							setState * 4 * 0
+							variable * 2 * 0
+						end
 					end
 				end
 			else
