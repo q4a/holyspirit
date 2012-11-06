@@ -189,6 +189,11 @@ main
 			setQuestName * 0 * 0
 			setQuestState * 0 * 0 * 1
 			stopMiracle * 0
+			
+			
+			newQuest * 11 
+			setQuestName * 11 * 66
+			setQuestState * 11 * 0 * 67
 		end
 		
 		if variable * 2 * 0

@@ -1546,3 +1546,6 @@ msgstr "J'ai décidé d'affronter Teudéric et prendre son trésor."
 msgid "I failed, Teuderic became absorbed by his phantoms."
 msgstr "J'ai échoué, Teudéric s'est fait absorber par ses fantômes."
 
+msgid "*Congratulation ! You finished the demo of Holyspirit : Act of Faith !\\You can follow us and support us on :\\www.holyspirit.fr"
+msgstr "Félicitations ! Vous avez terminé la démo d'Holyspirit : Act of Faith !\\Vous pouvez suivre nos avancées et nous soutenir pour continuer le jeu sur :\\www.holyspirit.fr"
+

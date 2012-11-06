@@ -309,4 +309,5 @@ It's time when I'll make you suffer... personally!
 
 
 ///END_DEMO///
+*Congratulation ! You finished the demo of Holyspirit : Act of Faith !\You can follow us and support us on :\www.holyspirit.fr
 *Félicitations ! Vous avez terminé la démo d'Holyspirit : Act of Faith !\Vous pouvez suivre nos avancées et nous soutenir pour continuer le jeu sur :\www.holyspirit.fr
