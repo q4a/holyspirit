@@ -87,7 +87,16 @@ main
 		end
 		
 		
+		
+		
 		if quest * 11 * 0
+			if variable * 5 * 0
+				see
+			then
+				tell * 307 * 5000
+				variable * 5 * 1
+			end
+		
 			variable * 1 * 1
 			variable * 0 * -1
 

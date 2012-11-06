@@ -304,8 +304,8 @@ It's time when I'll make you suffer... personally!
 *(continuer)
 
 
-
-
+///HERGAHRT//
+*Cette fois-ci nous y sommes, je ne reculerai pas davantage... Bélial, donne-moi la force !
 
 
 ///END_DEMO///
