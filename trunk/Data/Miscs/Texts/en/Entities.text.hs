@@ -53,10 +53,11 @@ Johannes the Fallen
 Relic
 Marrow sucker
 Pile of stones
-Corpse
-Plagued dog
-Agrarian Lands Shrine
-Ridwen the witch
-Caporal
-Crucify
-Hergahrt
+*Corpse
+*Plagued dog
+*Agrarian Lands Shrine
+*Ridwen the witch
+*Caporal
+*Crucify
+*Hergahrt
+*Vers d'autres aventures
