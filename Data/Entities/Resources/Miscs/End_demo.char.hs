@@ -1,7 +1,8 @@
 *Data/Entities/Resources/Miscs/NULL.rs.hs
 $
+	* n62 $
 $
-* 62
+* 0
 $
 *v1 i0 c0 n-1 f1 m0 $
 $

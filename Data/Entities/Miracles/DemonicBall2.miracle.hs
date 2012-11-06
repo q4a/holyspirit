@@ -3,15 +3,11 @@ $
 $
 $
 $
-	* t-1 l1 l2 l3  $
-	
-	* t0 l5 l4 l6 l7 s0 ia10 ib-30 $
-	* t0 l5 l4 l6 l7 s0 ia10 ib0 $
-	* t0 l5 l4 l6 l7 s0 ia10 ib30 $
+	* t0 l2 l1 l3 l4 s0 ia10 $
 	* t2 ia100 ib150 ic2 $
 	* t3 s1 ia7 $
-	* t13 ia1 $
 	* t11 ia0 ib4 $
+	* t13 ia2 $
 $
 	*
 		*Data/Graphics/Miracles/DemonicBall0.png
