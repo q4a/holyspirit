@@ -303,3 +303,10 @@ It's time when I'll make you suffer... personally!
 *Peu importe, grands ou petits, les moines et les autres viennent ici pour mourir. J’ai besoin de méditer en paix pour ouvrir le passage à toute la pourriture qui vous emportera tous. Vous les avez vu, ces paysans à la panse pourrie qui marchent et se battent comme des automates ? Ca n’est que l’avant-garde de la légion des putréfiés ! Chaos, charogne, ordure ! Telle est la fin de toute chose !
 *(continuer)
 
+
+
+
+
+
+///END_DEMO///
+*Félicitations ! Vous avez terminé la démo d'Holyspirit : Act of Faith !\Vous pouvez suivre nos avancées et nous soutenir pour continuer le jeu sur :\www.holyspirit.fr

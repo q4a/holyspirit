@@ -500,10 +500,10 @@ main
 	end
 
 	entity_name * 33 * 5 * 10 
-	if entity_variable * 33 * 0 * 1 
+				if entity_variable * 33 * 0 * 1 
 	then
 		entity_variable * 33 * 0 * 0 
-		change_map * 193 * 12 " Crypt0.map.hs"
+		change_map * 21 * 41 " Crypt0.map.hs"
 	end
 
 	if entity_variable * 19 * 0 * 0 
@@ -645,10 +645,12 @@ main
 
 	if quest * 11 * -1 
 	then
-		entity_variable * 4 * 1 * 2 
+		entity_variable * 32 * 1 * 2 
 	else
-		entity_variable * 4 * 1 * 0 
+		entity_variable * 32 * 1 * 0 
 	end
+
+
 
 end
 
