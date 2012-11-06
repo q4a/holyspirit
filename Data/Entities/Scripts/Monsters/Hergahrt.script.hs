@@ -115,7 +115,7 @@ main
 						then
 							evasion  
 						else
-							if distance * 8 
+							if distance * 10 
 							then
 							
 								if numberInvocation * 0
@@ -149,12 +149,11 @@ main
 					if variable * 0 * 1
 					then
 						useMiracle * 2
-						setState * 4
+						setState * 4 * 0
 					end
 				
 				else
 					variable * 0 * -1
-					randomDisplace  
 				end
 			end
 		end
