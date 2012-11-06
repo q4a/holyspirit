@@ -135,7 +135,7 @@ $
 * ||||||||||||||||| s1 t13 p sx0 sy0 $ l0 || s2 t6 p sx-100 $ l0 |||||||||||| s2 t6 p sx-100 $ l0 || s1 t13 p sx0 sy0 $ l0 |||||||||||||||||$
 * ||||||||||||||||| s1 t9 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t11 l0 |||||||||||| s1 t10 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t8 l0 |||||||||||||||||$
 * ||||||||||||||||||| s1 t13 p sx0 sy0 $ l0 |||||||||||| s1 t13 p sx0 sy0 $ l0 |||||||||||||||||||$
-* ||||||||||||||||||| s1 t9 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t0 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t11 l0 | s2 t3 p cr} cg} cb_ $ l0 | s2 t4 p cr} cg} cb_ $ m11 p cr} cg} cb_ $  d5 l0 | s2 t5 p cr} cg} cb_ $ l0 | s1 t10 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t0 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t8 l0 |||||||||||||||||||$
+* ||||||||||||||||||| s1 t9 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t0 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t11 l0 | s2 t3 p cr} cg} cb_ $ l0 | s2 t4 p cr} cg} cb_ $ m11  d5 l0 | s2 t5 p cr} cg} cb_ $ l0 | s1 t10 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t0 l0 | s1 t12 p sx0 sy0 $ l0 | s1 t8 l0 |||||||||||||||||||$
 * ||||||||||||||||||||||| s1 t13 p sx0 sy0 $ l0 |||| s1 t13 p sx0 sy0 $ l0 |||||||||||||||||||||||$
 * ||||||||||||||||||||||| s1 t4 l0 |||| s1 t4 l0 ||||||||||||||||| s6 t3 l0 ||||||$
 * ||||||||||||||||||||||| s1 t13 p sx0 sy0 $ l0 |||| s1 t13 p sx0 sy0 $ l0 |||||||||||||||||||||||$
@@ -159,8 +159,8 @@ $
 $
 
 main 
-	entity_name * 0 * 5 * 5 
-				if entity_variable * 0 * 0 * 1 
+	entity_name * 1 * 5 * 5 
+				if entity_variable * 1 * 0 * 1 
 	then
 		change_map * 195 * 181 " Catacombs1.map.hs"
 	end
@@ -171,11 +171,12 @@ main
 		entity_variable * 5 * 1 * 0 
 	else
 		entity_variable * 3 * 1 * 2 
-		if entity_variable * 4 * 5 * 1
+		if entity_variable * 4 * 5 * 1 
 		then
-			entity_variable * 5 * 1 * 2 
-			
+			entity_variable * 5 * 1 * 1 
+			entity_variable * 5 * 0 * 0 
 		end
+
 	end
 
 end

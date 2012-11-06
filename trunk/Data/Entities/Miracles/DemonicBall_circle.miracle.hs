@@ -5,17 +5,18 @@ $
 $
 	* t-1 l1 l2 l3 l4 l5 l6 l7 l8  $
 	
-	* t0 l10 l9 l11 s0 ia10 ib0 $
-	* t0 l10 l9 l11 s0 ia10 ib45 $
-	* t0 l10 l9 l11 s0 ia10 ib90 $
-	* t0 l10 l9 l11 s0 ia10 ib135 $
-	* t0 l10 l9 l11 s0 ia10 ib180 $
-	* t0 l10 l9 l11 s0 ia10 ib225 $
-	* t0 l10 l9 l11 s0 ia10 ib270 $
-	* t0 l10 l9 l11 s0 ia10 ib315 $
+	* t0 l10 l9 l11 l12 s0 ia10 ib0 $
+	* t0 l10 l9 l11 l12 s0 ia10 ib45 $
+	* t0 l10 l9 l11 l12 s0 ia10 ib90 $
+	* t0 l10 l9 l11 l12 s0 ia10 ib135 $
+	* t0 l10 l9 l11 l12 s0 ia10 ib180 $
+	* t0 l10 l9 l11 l12 s0 ia10 ib225 $
+	* t0 l10 l9 l11 l12 s0 ia10 ib270 $
+	* t0 l10 l9 l11 l12 s0 ia10 ib315 $
 
-	* t2 ia10 ib30 ic2 $
+	* t2 ia100 ib150 ic2 $
 	* t3 s1 ia7 $
+	* t13 ia1 $
 
 	* t11 ia0 ib4 $
 $

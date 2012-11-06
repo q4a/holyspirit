@@ -503,7 +503,7 @@ main
 				if entity_variable * 33 * 0 * 1 
 	then
 		entity_variable * 33 * 0 * 0 
-		change_map * 21 * 41 " Crypt0.map.hs"
+		change_map * 22 * 41 " Crypt0.map.hs"
 	end
 
 	if entity_variable * 19 * 0 * 0 
@@ -649,8 +649,6 @@ main
 	else
 		entity_variable * 32 * 1 * 0 
 	end
-
-
 
 end
 
