@@ -14,4 +14,6 @@ $
 *x0 y640 w256 h320 ey282 t1 i0 c0 z1 vLianesX0  $
 *x256 y640 w256 h320 ey282 t1 i0 c0 z1 vLianesX1 $
 
+*x512 y320 w256 h320 ey282 t1 i0 c1 z1 vMurXEgg0 lr0 lv0 lb0 li-255 rx lh-224 t1 m i1 x16 y0 	w16 h16 $ $
+
 $
