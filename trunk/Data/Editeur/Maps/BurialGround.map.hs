@@ -255,7 +255,7 @@ main
 	entity_name * 1 * 5 * 8 
 				if entity_variable * 1 * 0 * 1 
 	then
-		change_map * 22 * 41 " Mausoleum.map.hs"
+		change_map * 22 * 41 " Mausoleum2.map.hs"
 		entity_variable * 1 * 0 * 0 
 	end
 
