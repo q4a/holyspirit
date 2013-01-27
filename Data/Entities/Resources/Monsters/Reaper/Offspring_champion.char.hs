@@ -4,7 +4,7 @@ $
 $
 * 0
 $
-*v100 di20 da50 m0.45 o1 a3 n3 t1.3 x40 s1 $
+*v100 di20 da50 m0.45 o1 a3 n3 t1.6 x40 s1 $
 $
 *Data/Entities/Scripts/Monsters/Reaper_offspring_champion.script.hs
 $
