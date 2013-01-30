@@ -7,8 +7,8 @@ $
 *x512 y0 w256 h320 ey282 t1 i0 c1 z1 vMurX2 lr0 lv0 lb0 li-255 rx lh-224 t1 m i1 x16 y0 	w16 h16 $ $
 *x768 y0 w256 h320 ey282 t1 i0 c1 z1 vMurX3 lr0 lv0 lb0 li-255 rx lh-224 t1 m i1 x16 y0 	w16 h16 $ $
 
-*x512 y320 w256 h320 ey250 t1 i0 c1 z1 vMurHaut lr0 lv0 lb0 li-255 rh lh-224 t1 m i1 x16 y0 	w16 h16 $ $
-*x512 y640 w304 h320 ey314 t1 i0 c1 z1 vMurBas lr0 lv0 lb0 li-255 rb lh-224 t1 m i1 x16 y0 	w16 h16 $ $
+*x512 y320 w256 h320 ey250 t1 i0 c1 z1 vMurHaut lr0 lv0 lb0 li-255 rh lh-224 t1 m i1 x32 y0 	w16 h16 $ $
+*x512 y640 w304 h320 ey314 t1 i0 c1 z1 vMurBas lr0 lv0 lb0 li-255 rb lh-224 t1 m i1 x80 y0 	w16 h16 $ $
 
 
 *x0 y320 w256 h320 ex104 ey292 t1 i0 c0 z1 vArcheX0  $
