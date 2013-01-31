@@ -10,6 +10,12 @@ main
 				setState * 4
 			end
 		end
+	else
+		if quest * 8 * 0
+			quest * 10 * 1
+		then
+			setQuestState * 8 * 1 * 47
+		end
 	end
 
 	if talk
