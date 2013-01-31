@@ -216,7 +216,7 @@ $
 $
 
 main 
-	entity_name * 0 * 5 * 4 
+	entity_name * 5 * 5 * 4 
 				if entity_variable * 5 * 0 * 0 
 	then
 	else
