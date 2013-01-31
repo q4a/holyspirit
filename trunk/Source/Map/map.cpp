@@ -275,9 +275,9 @@ void Map::Afficher(std::list<Hero*> &players,bool alt,float alpha)
                         {
                             int alpha2=(int)(positionHero.y-(k+j)*32 - 16)+224;
 
-                            if(m_decor[couche][j][k].m_entite_graphique.m_tileset->getOrientationDuTile(m_decor[couche][j][k].m_entite_graphique.m_noAnimation) == 'x')
+                            if(m_decor[couche][j][k].m_entite_graphique.getOrientationTile() == 'x')
                                 alpha2 = (int)(hero->m_personnage.getCoordonneePixel().y-j*COTE_TILE + COTE_TILE * 3);
-                            else if(m_decor[couche][j][k].m_entite_graphique.m_tileset->getOrientationDuTile(m_decor[couche][j][k].m_entite_graphique.m_noAnimation) == 'y')
+                            else if(m_decor[couche][j][k].m_entite_graphique.getOrientationTile() == 'y')
                                 alpha2 = (int)(hero->m_personnage.getCoordonneePixel().x-k*COTE_TILE + COTE_TILE * 3);
 
                             if (alpha2<configuration->alpha)

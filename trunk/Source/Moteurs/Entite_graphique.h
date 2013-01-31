@@ -38,6 +38,8 @@ class Entite_graphique : public sf::Sprite
         void SetParameters (Entite_graphique &entite);
 
         int  getOrdre();
+
+        char getOrientationTile();
    // protected:
     //private:
 

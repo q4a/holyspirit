@@ -216,20 +216,7 @@ void Entite_graphique::AddWallLight(const coordonnee &pos2)
     && m_tileset->getLumiereDuTile(m_noAnimation).intensite < 0
     && m_tileset->getOrientationDuTile(m_noAnimation) != ' ')// && !option_forcedLight)
     {
-        char o = m_tileset->getOrientationDuTile(m_noAnimation);
-
-        if(m_scale.x < 0)
-        {
-            if(o == 'x')
-                o = 'y';
-            else if(o == 'y')
-                o = 'x';
-            else if(o == 'd')
-                o = 'g';
-            else if(o == 'g')
-                o = 'd';
-        }
-
+        char o = getOrientationTile();
 
         if (o=='x'||o=='c'||o=='o'||o=='q')
             m_light_wall = moteurGraphique->LightManager->Add_Wall(sf::Vector2f(pos.x-32, pos.y-32), sf::Vector2f(pos.x+32 , pos.y+32),(int)m_tileset->getLumiereDuTile(m_noAnimation).hauteur);
@@ -484,4 +471,23 @@ int Entite_graphique::getOrdre()
         return m_tileset->getOrdreDuTile(m_noAnimation);
     else
         return 0;
+}
+
+char Entite_graphique::getOrientationTile()
+{
+    char o = m_tileset->getOrientationDuTile(m_noAnimation);
+
+    if(m_scale.x < 0)
+    {
+        if(o == 'x')
+            o = 'y';
+        else if(o == 'y')
+            o = 'x';
+        else if(o == 'd')
+            o = 'g';
+        else if(o == 'g')
+            o = 'd';
+    }
+
+    return o;
 }
