@@ -7,7 +7,8 @@ $
 *x768 y0 w256 h340 ey262 i0 z1 t1 rx vOeufs3 lr8 lv87 lb192 li64 lh0 $
 
 *x0 y320 w256 h320 i0 z1 c1 vOeufsSolo0 lr8 lv87 lb192 li64 lh0 $
-*x256 y340 w256 h320 i0 z0 vDefeuSol  $
+*x256 y340 w256 h320 i0 z0 vDegeuSol  $
+*x512 y340 w256 h320 i0 z0 vOeufPillier0  $
 
 
 $
