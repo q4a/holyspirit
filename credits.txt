@@ -54,16 +54,14 @@ Merwin (Gabriel Pichot)
 
 *Helper programmer
 Bmauet (Baptiste Careil)
+Igor Paliychuk (English, Russian, Ukrainian)
 
 *Webdesigner
 Angelis
 
 *Translators
-Bravach (English)
-Gonze Philippe (English)
-Derycke Valérie (Nederlands)
-Richard Jim (Spanish)
-Igor Paliychuk (Russian, Ukrainian)
+Igor Paliychuk (English, Russian, Ukrainian)
+Elena Atienza y Rubio (English)
 
 *2D GUI Artist
 Cremuss (http://cremuss.free.fr/)
