@@ -27,4 +27,7 @@ $
 *x0 y0 w0 h0 i0 c1 z1 vCollision  $
 
 
+*x768 y320 w256 h320 ey282 t1 i0 c1 z1 vEntrance lr0 lv0 lb0 li-255 rx lh-224 t1 m i1 x16 y0 	w16 h16 $ $
+
+
 $
