@@ -6,7 +6,7 @@ main
 		then
 			if see
 			then
-				if distance * 4
+				if distance * 3
 				then
 				
 					if miracle * 0

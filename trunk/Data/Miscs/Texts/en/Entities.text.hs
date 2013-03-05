@@ -24,7 +24,7 @@ The Reaper
 Pack Chief
 Alcuin the archivist
 Infernal Dog
-Abbe Hademar
+Abbot Hademar
 Abbey Shrine
 Catacombs Shrine
 Graveyard Shrine
