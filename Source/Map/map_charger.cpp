@@ -1153,7 +1153,7 @@ void Map::Sauvegarder(Hero *hero)
                         if(m_decor[couche][i][j].getCouche()-1 > 0)
                             fichier<<"l"<<m_decor[couche][i][j].getCouche()-1<<" ";
                     }
-                    else if(m_decor[couche][i][j].getCouche()-10 > 0)
+                    else if(m_decor[couche][i][j].getCouche()-10 != 0)
                         fichier<<"l"<<m_decor[couche][i][j].getCouche()-10<<" ";
 
                     for (int o=0;o<(int)m_decor[couche][i][j].getNombreObjets();o++)
